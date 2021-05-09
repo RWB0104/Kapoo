@@ -1,0 +1,42 @@
+@font-face {
+	font-family: "Spoqa Han Sans";
+	src: url("/assets/fonts/SpoqaHanSansNeo-Regular.eot");
+	src: url("/assets/fonts/SpoqaHanSansNeo-Regular.eot?#iefix") format("embedded-opentype"),
+		url("/assets/fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2"),
+		url("/assets/fonts/SpoqaHanSansNeo-Regular.woff") format("woff"),
+		url("/assets/fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype")
+}
+
+*:not(.dragable, code) {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+html, body {
+	padding: 0px;
+	margin: 0px;
+
+	height: 100%;
+}
+
+#__next {
+	min-width: 320px;
+	height: 100%;
+
+	padding-top: 64px;
+	padding-bottom: 24px;
+}
+
+@keyframes rotate {
+	from {
+		-webkit-transform: rotate(0deg);
+		-o-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
