@@ -37,7 +37,7 @@ export default function PreviewList({ type, data })
 		{
 			list.push(
 				<Grid item md={6} key={i} className={classes.contents_grid}>
-					<ButtonBase focusRipple className={classes.contents} style={{ backgroundImage: data[i].coverImage }} onClick={() => router.push(`/${type}/${data[i].slug}`)}>
+					<ButtonBase focusRipple className={classes.contents} style={{ backgroundImage: `url(${data[i].coverImage})` }} onClick={() => router.push(`/${type}/${data[i].slug}`)}>
 						<Typography variant="h4" align="center" noWrap>{data[i].title}</Typography>
 					</ButtonBase>
 				</Grid>

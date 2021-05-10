@@ -90,14 +90,17 @@ export default function Index({ images, posts, projects })
 							</Grid>
 						</Box>
 
-						<Divider />
+						<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
+							<Hidden smDown>
+								<Typography variant="h4" align="center" className={classes.typo_easter}>{piece.title}</Typography>
+								<Typography variant="h6" align="center" className={classes.typo_easter}>{piece.author}</Typography>
+							</Hidden>
 
-						<Box component="article" className={classes.box}>
-							<Typography variant="h4" align="center">{piece.title}</Typography>
-							<Typography variant="h6" align="center">{piece.author}</Typography>
+							<Hidden mdUp>
+								<Typography variant="h5" align="center" className={classes.typo_easter}>{piece.title}</Typography>
+								<Typography variant="body" align="center" className={classes.typo_easter}>{piece.author}</Typography>
+							</Hidden>
 						</Box>
-
-						<Divider />
 					</Container>
 				</Box>
 			</Grow>
@@ -144,6 +147,20 @@ function getStyles(image)
 			marginTop: theme.spacing(7),
 			marginBottom: theme.spacing(7)
 		},
+		box_easter: {
+			paddingTop: theme.spacing(20),
+			paddingBottom: theme.spacing(20),
+			paddingLeft: theme.spacing(3),
+			paddingRight: theme.spacing(3),
+			backgroundColor: "rgba(0, 0, 0, 0.6)",
+			backgroundBlendMode: "multiply",
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+			textAlign: "center"
+		},
+		typo_easter: {
+			color: "white"
+		},
 		more_grid: {
 			textAlign: "center"
 		},
@@ -171,7 +188,8 @@ export async function getStaticProps()
 		"author",
 		"coverImage",
 		"excerpt",
-		"type"
+		"type",
+		"category"
 	]);
 
 	const projects = getTypePosts("projects", [

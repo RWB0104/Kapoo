@@ -37,17 +37,15 @@ export default function Posts({ posts })
 
 							<Grid item xs={12}>
 								<FormControl variant="outlined" fullWidth>
-									<Hidden smDown>
-										<InputLabel id="name">Category</InputLabel>
+									<InputLabel id="name">Category</InputLabel>
 
+									<Hidden smDown>
 										<Select labelId="name" label="Category">
 											<MenuItem value="">All</MenuItem>
 										</Select>
 									</Hidden>
 
 									<Hidden mdUp>
-										<InputLabel id="name">Category</InputLabel>
-
 										<Select native labelId="name" label="Category" style={{width: "100%"}}>
 											<option value="">All</option>
 										</Select>
