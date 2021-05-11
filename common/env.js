@@ -17,25 +17,37 @@ export const MENU_LIST = [
 	{
 		id: 1,
 		title: "Home",
-		url: "/",
+		url: { pathname: "/" },
 		icon: "🏠"
 	},
 	{
 		id: 2,
 		title: "Posts",
-		url: "/posts",
+		url: {
+			pathname: "/posts",
+			query: {
+				page: 1,
+				category: "all"
+			}
+		},
 		icon: "📑"
 	},
 	{
 		id: 3,
 		title: "Projects",
-		url: "/projects",
+		url: {
+			pathname: "/projects",
+			query: {
+				page: 1,
+				category: "all"
+			}
+		},
 		icon: "🏆"
 	},
 	{
 		id: 4,
 		title: "About",
-		url: "/about",
+		url: { pathname: "/about" },
 		icon: "🔍"
 	}
 ];

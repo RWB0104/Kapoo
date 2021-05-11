@@ -26,8 +26,6 @@ export default function MobileHeader()
 {
 	const router = useRouter();
 
-	const path = `/${router.asPath.split("/")[1]}`;
-
 	const classes = getStyles();
 
 	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
@@ -43,7 +41,7 @@ export default function MobileHeader()
 				<List>
 					{
 						MENU_LIST.map((element, index) => (
-							<ListItem button key={index} disabled={path === element.url} onClick={() =>
+							<ListItem button key={index} disabled={router.pathname === element.url.pathname} onClick={() =>
 							{
 								router.push(element.url);
 								setMenuState(false);

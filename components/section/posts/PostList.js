@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { Box, Grid, Typography, Zoom } from "@material-ui/core";
+import { Avatar, Box, ButtonBase, Chip, Grid, Link, Typography, Zoom } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { useRouter } from "next/router";
 
@@ -25,33 +25,48 @@ export default function PostList({ data })
 				{data.map((element, index) => (
 					<Zoom in={true} style={{ transitionDelay: `${index * 150}ms` }}>
 						<Grid item xs={12}>
-							<Grid container spacing={0}>
-								<Grid item xs={5} style={{ height: "380px", backgroundImage: "url(https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-07-14-17-16/this-portal-2-level-completed-without-portals-is-outrageous-1594743396198.jpg/EG11/resize/1200x-1/this-portal-2-level-completed-without-portals-is-outrageous-1594743396198.jpg)" }} />
+							<ButtonBase style={{ textAlign: "initial" }} onClick={() => alert(14234)}>
+								<Grid container spacing={0}>
+									<Grid item xs={4} style={{ height: "303.98px", backgroundImage: `url(${element.coverImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
 
-								<Grid item xs={7}>
-									<Typography>{element.category}</Typography>
-									<Typography>{element.title}</Typography>
+									<Grid item xs={8} style={{ padding: 20, display: "flex", flexDirection: "column" }}>
+										<Typography variant="h6" onClick={(e) => e.stopPropagation()}>
+											📌<Link href="#">{element.category}</Link>
+										</Typography>
+										<Typography variant="h4">{element.title}</Typography>
+
+										<Typography variant="body" style={{ flexGrow: 1 }}>{element.excerpt}</Typography>
+
+										<Box>
+											<Chip label="#WEB" style={{ marginLeft: 3, marginRight: 3 }} onClick={(e) => e.stopPropagation()} />
+											<Chip label="#Security" style={{ marginLeft: 3, marginRight: 3 }} onClick={(e) => e.stopPropagation()} />
+											<Chip label="#WAS" style={{ marginLeft: 3, marginRight: 3 }} onClick={(e) => e.stopPropagation()} />
+											<Chip label="#JavaScript" style={{ marginLeft: 3, marginRight: 3 }} onClick={(e) => e.stopPropagation()} />
+										</Box>
+									</Grid>
 								</Grid>
-							</Grid>
+							</ButtonBase>
 						</Grid>
 					</Zoom>
 				))}
-
-				<Grid item xs={12}>
-					<p>???</p>
-				</Grid>
-
-				<Grid item xs={12}>
-					<p>???</p>
-				</Grid>
-
-				<Grid item xs={12}>
-					<p>???</p>
-				</Grid>
 			</Grid>
 
 			<Box>
-				<Pagination count={32} color="primary" siblingCount={1} boundaryCount={2} showFirstButton showLastButton onClick={(e) => console.dir(e.target.innerText)} />
+				<Pagination
+					count={32}
+					page={parseInt(router.query.page) || 1}
+					defaultPage={1}
+					color="primary"
+					siblingCount={1}
+					boundaryCount={2}
+					showFirstButton
+					showLastButton
+					onChange={(e, page) => router.push({
+						query: {
+							...router.query,
+							page: page
+						}
+					})} />
 			</Box>
 		</Box>
 	);

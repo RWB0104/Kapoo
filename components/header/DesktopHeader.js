@@ -26,8 +26,6 @@ export default function DesktopHeader()
 {
 	const router = useRouter();
 
-	const path = `/${router.asPath.split("/")[1]}`;
-
 	const classes = getStyles();
 
 	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
@@ -38,7 +36,7 @@ export default function DesktopHeader()
 
 			<Typography variant="h4" className={classes.title}>{TITLE}</Typography>
 
-			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={path === element.url} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
+			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={router.pathname === element.url.pathname} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
 
 			<Fade in={!darkState} timeout={300} unmountOnExit>
 				<Fab variant="extended" className={classes.fab_dark} onClick={() => setDarkState(true)}>

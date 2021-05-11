@@ -13,6 +13,7 @@ import Head from "next/head";
 // 사용자 모듈
 import PostList from "../../components/section/posts/PostList";
 import { getTypePosts } from "../../common/api";
+import { useRouter } from "next/router";
 
 /**
  * 게시글 페이지 JSX 반환 함수
@@ -21,6 +22,10 @@ import { getTypePosts } from "../../common/api";
  */
 export default function Posts({ posts })
 {
+	const router = useRouter();
+
+	const categories = [...new Set(posts.map(e => e.category))];
+
 	return (
 		<React.Fragment>
 			<Head>
@@ -40,14 +45,26 @@ export default function Posts({ posts })
 									<InputLabel id="name">Category</InputLabel>
 
 									<Hidden smDown>
-										<Select labelId="name" label="Category">
-											<MenuItem value="">All</MenuItem>
+										<Select labelId="name" label="Category" onChange={e => router.push({
+											query: {
+												...router.query,
+												category: e.target.value
+											}
+										})}>
+											<MenuItem value="all">All</MenuItem>
+											{categories.map((element, index) => <MenuItem key={index} value={element}>{element}</MenuItem>)}
 										</Select>
 									</Hidden>
 
 									<Hidden mdUp>
-										<Select native labelId="name" label="Category" style={{width: "100%"}}>
-											<option value="">All</option>
+										<Select native labelId="name" label="Category" style={{width: "100%"}} onChange={e => router.push({
+											query: {
+												...router.query,
+												category: e.target.value
+											}
+										})}>
+											<option value="all">All</option>
+											{categories.map((element, index) => <option key={index} value={element}>{element}</option>)}
 										</Select>
 									</Hidden>
 								</FormControl>
@@ -69,8 +86,9 @@ export default function Posts({ posts })
  *
  * @returns {Object} 사용자 Props
  */
-export async function getStaticProps()
+export async function getStaticProps(context)
 {
+	console.dir(context);
 	const posts = getTypePosts("posts", [
 		"title",
 		"date",
@@ -78,7 +96,8 @@ export async function getStaticProps()
 		"author",
 		"coverImage",
 		"excerpt",
-		"type"
+		"type",
+		"category"
 	]);
 
 	return {

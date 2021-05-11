@@ -12,10 +12,6 @@ import { AppBar, Box, Container, Hidden, makeStyles, Toolbar } from "@material-u
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 
-// 사용자 모듈
-//import DesktopHeader from "./DesktopHeader";
-//import MobileHeader from "./MobileHeader";
-
 /**
  * 헤더 JSX 반환 함수
  *

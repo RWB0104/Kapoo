@@ -9,7 +9,7 @@ author:
 ogImage:
   url: 'https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-07-14-17-16/this-portal-2-level-completed-without-portals-is-outrageous-1594743396198.jpg/EG11/resize/1200x-1/this-portal-2-level-completed-without-portals-is-outrageous-1594743396198.jpg'
 type: "posts"
-category: "web"
+category: "js"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

@@ -63,43 +63,55 @@ export default function Index({ images, posts, projects })
 						<Box component="article" className={classes.box}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
-									<Typography variant="h2" align="center" gutterBottom>📑Post</Typography>
+									<Hidden smDown>
+										<Typography variant="h2" align="center" gutterBottom>📑Post</Typography>
+									</Hidden>
+
+									<Hidden mdUp>
+										<Typography variant="h4" align="center" gutterBottom>📑Post</Typography>
+									</Hidden>
 								</Grid>
 
 								<PreviewList type="posts" data={posts} />
 
 								<Grid item xs={12} className={classes.more_grid}>
-									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/posts")}>M O R E</Button>
+									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/posts?page=1&category=all")}>M O R E</Button>
 								</Grid>
 							</Grid>
 						</Box>
+					</Container>
 
-						<Divider />
+					<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
+						<Hidden smDown>
+							<Typography variant="h4" align="center" className={classes.typo_easter}>{piece.title}</Typography>
+							<Typography variant="h6" align="center" className={classes.typo_easter}>{piece.author}</Typography>
+						</Hidden>
 
+						<Hidden mdUp>
+							<Typography variant="h5" align="center" className={classes.typo_easter}>{piece.title}</Typography>
+							<Typography variant="body" align="center" className={classes.typo_easter}>{piece.author}</Typography>
+						</Hidden>
+					</Box>
+
+					<Container maxWidth="md">
 						<Box component="article" className={classes.box}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
-									<Typography variant="h2" align="center" gutterBottom>🏆Project</Typography>
+									<Hidden smDown>
+										<Typography variant="h2" align="center" gutterBottom>🏆Project</Typography>
+									</Hidden>
+
+									<Hidden mdUp>
+										<Typography variant="h4" align="center" gutterBottom>🏆Project</Typography>
+									</Hidden>
 								</Grid>
 
 								<PreviewList type="projects" data={projects} />
 
 								<Grid item xs={12} className={classes.more_grid}>
-									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/projects")}>M O R E</Button>
+									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/projects?page=1&category=all")}>M O R E</Button>
 								</Grid>
 							</Grid>
-						</Box>
-
-						<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
-							<Hidden smDown>
-								<Typography variant="h4" align="center" className={classes.typo_easter}>{piece.title}</Typography>
-								<Typography variant="h6" align="center" className={classes.typo_easter}>{piece.author}</Typography>
-							</Hidden>
-
-							<Hidden mdUp>
-								<Typography variant="h5" align="center" className={classes.typo_easter}>{piece.title}</Typography>
-								<Typography variant="body" align="center" className={classes.typo_easter}>{piece.author}</Typography>
-							</Hidden>
 						</Box>
 					</Container>
 				</Box>
@@ -148,8 +160,8 @@ function getStyles(image)
 			marginBottom: theme.spacing(7)
 		},
 		box_easter: {
-			paddingTop: theme.spacing(20),
-			paddingBottom: theme.spacing(20),
+			paddingTop: theme.spacing(30),
+			paddingBottom: theme.spacing(30),
 			paddingLeft: theme.spacing(3),
 			paddingRight: theme.spacing(3),
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
