@@ -7,6 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
+import cookie from "react-cookies";
 import { useRouter } from "next/router";
 import { Avatar, Button, Fab, Fade, makeStyles, Typography } from "@material-ui/core";
 import { blue, grey, orange, yellow } from "@material-ui/core/colors";
@@ -16,6 +17,7 @@ import { useRecoilState } from "recoil";
 // 사용자 모듈
 import { LOGO, MENU_LIST, TITLE } from "../../common/env";
 import { darkAtom } from "../../common/states";
+
 
 /**
  * 데스크탑 헤더 JSX 반환 함수
@@ -39,14 +41,22 @@ export default function DesktopHeader()
 			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={router.pathname === element.url.pathname} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
 
 			<Fade in={!darkState} timeout={300} unmountOnExit>
-				<Fab variant="extended" className={classes.fab_dark} onClick={() => setDarkState(true)}>
+				<Fab variant="extended" className={classes.fab_dark} onClick={() =>
+				{
+					cookie.save("theme", "true", { path: "/" });
+					setDarkState(true);
+				}}>
 					<NightsStay />
 					<Typography variant="button">다크 모드 활성화</Typography>
 				</Fab>
 			</Fade>
 
 			<Fade in={darkState} timeout={300} unmountOnExit>
-				<Fab variant="extended" className={classes.fab_bright} onClick={() => setDarkState(false)}>
+				<Fab variant="extended" className={classes.fab_bright} onClick={() =>
+				{
+					cookie.save("theme", "false",  { path: "/" });
+					setDarkState(false);
+				}}>
 					<WbSunny />
 					<Typography variant="button">라이트 모드 활성화</Typography>
 				</Fab>

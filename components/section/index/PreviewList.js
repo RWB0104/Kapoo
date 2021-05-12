@@ -10,6 +10,14 @@ import React from "react";
 import { ButtonBase, Grid, makeStyles, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 
+/**
+ * 미리보기 컴포넌트 반환 함수
+ *
+ * @param {String} type: 컨텐츠 타입
+ * @param {data} data: 게시글 리스트
+ *
+ * @returns {JSX} JSX 객체
+ */
 export default function PreviewList({ type, data })
 {
 	const classes = getStyles();

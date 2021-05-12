@@ -7,20 +7,26 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, FormControl, Grid, Grow, Hidden, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
+import { Box, Container, Divider, FormControl, Grid, Grow, Hidden, InputLabel, makeStyles, MenuItem, Select, Typography } from "@material-ui/core";
 import Head from "next/head";
 
 // 사용자 모듈
 import ProjectList from "../../components/section/projects/ProjectList";
-import { getTypePosts } from "../../common/api";
+import { getMainImages, getTypePosts } from "../../common/api";
+import { Top } from "../../components/global/Top";
+import { getRandomItem } from "../../common/common";
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
  *
  * @returns {JSX} JSX 객체
  */
-export default function Project({ projects })
+export default function Project({ projects, images })
 {
+	const url = getRandomItem(images);
+
+	const classes = getStyles();
+
 	return (
 		<React.Fragment>
 			<Head>
@@ -29,10 +35,12 @@ export default function Project({ projects })
 
 			<Grow in={true}>
 				<Box component="section">
+					<Top title="🏆 Project" image={`/assets/images/main/${url}`} />
+
 					<Container maxWidth="md">
 						<Grid container spacing={5}>
 							<Grid item xs={12}>
-								<Typography variant="h4" gutterBottom>🏆Post</Typography>
+								<Divider className={classes.divider} />
 							</Grid>
 
 							<Grid item xs={12}>
@@ -67,6 +75,26 @@ export default function Project({ projects })
 }
 
 /**
+ * 스타일 객체 반환 함수
+ *
+ * @returns {JSON} 스타일 객체
+ */
+function getStyles()
+{
+	return makeStyles((theme) => ({
+		divider: {
+			marginTop: theme.spacing(10),
+			marginBottom: theme.spacing(5)
+		},
+		category: {
+			"& > select": {
+				padding: 12
+			}
+		}
+	}))();
+}
+
+/**
  * 사용자 Props 반환 함수
  *
  * @returns {Object} 사용자 Props
@@ -83,7 +111,9 @@ export async function getStaticProps()
 		"type"
 	]);
 
+	const images = getMainImages();
+
 	return {
-		props: { projects }
+		props: { projects, images }
 	};
 }

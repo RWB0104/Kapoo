@@ -7,21 +7,30 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, FormControl, Grid, Grow, Hidden, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
+import { Box, Container, Divider, Grid, Grow, makeStyles, Select, Typography } from "@material-ui/core";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 // 사용자 모듈
+import { Top } from "../../components/global/Top";
 import PostList from "../../components/section/posts/PostList";
-import { getTypePosts } from "../../common/api";
-import { useRouter } from "next/router";
+import { getMainImages, getTypePosts } from "../../common/api";
+import { getRandomItem } from "../../common/common";
+import { Autocomplete } from "@material-ui/lab";
 
 /**
  * 게시글 페이지 JSX 반환 함수
  *
+ * @param {JSON[]} posts: 게시글 리스트
+ *
  * @returns {JSX} JSX 객체
  */
-export default function Posts({ posts })
+export default function Posts({ posts, images })
 {
+	const url = getRandomItem(images);
+
+	const classes = getStyles();
+
 	const router = useRouter();
 
 	const categories = [...new Set(posts.map(e => e.category))];
@@ -34,40 +43,19 @@ export default function Posts({ posts })
 
 			<Grow in={true}>
 				<Box component="section">
+					<Top title="📑 Post" image={`/assets/images/main/${url}`} />
+
 					<Container maxWidth="md">
 						<Grid container spacing={5}>
 							<Grid item xs={12}>
-								<Typography variant="h4" gutterBottom>🏆Post</Typography>
+								<Divider className={classes.divider} />
 							</Grid>
 
-							<Grid item xs={12}>
-								<FormControl variant="outlined" fullWidth>
-									<InputLabel id="name">Category</InputLabel>
-
-									<Hidden smDown>
-										<Select labelId="name" label="Category" onChange={e => router.push({
-											query: {
-												...router.query,
-												category: e.target.value
-											}
-										})}>
-											<MenuItem value="all">All</MenuItem>
-											{categories.map((element, index) => <MenuItem key={index} value={element}>{element}</MenuItem>)}
-										</Select>
-									</Hidden>
-
-									<Hidden mdUp>
-										<Select native labelId="name" label="Category" style={{width: "100%"}} onChange={e => router.push({
-											query: {
-												...router.query,
-												category: e.target.value
-											}
-										})}>
-											<option value="all">All</option>
-											{categories.map((element, index) => <option key={index} value={element}>{element}</option>)}
-										</Select>
-									</Hidden>
-								</FormControl>
+							<Grid item xs={4}>
+								<Select native className={classes.category} value={router.query.category} onChange={e => onSelectCategory(e, router)} fullWidth>
+									<option value="all">All</option>
+									{categories.map((element, index) => <option key={index} value={element}>{element}</option>)}
+								</Select>
 							</Grid>
 
 							<Grid item xs={12}>
@@ -82,13 +70,48 @@ export default function Posts({ posts })
 }
 
 /**
+ * 카테고리 선택 이벤트 함수
+ *
+ * @param {Event} e: 이벤트 객체
+ * @param {Object} router: 라우터 객체
+ */
+function onSelectCategory(e, router)
+{
+	router.push({
+		query: {
+			page: 1,
+			category: e.target.value
+		}
+	});
+}
+
+/**
+ * 스타일 객체 반환 함수
+ *
+ * @returns {JSON} 스타일 객체
+ */
+function getStyles()
+{
+	return makeStyles((theme) => ({
+		divider: {
+			marginTop: theme.spacing(10),
+			marginBottom: theme.spacing(5)
+		},
+		category: {
+			"& > select": {
+				padding: 12
+			}
+		}
+	}))();
+}
+
+/**
  * 사용자 Props 반환 함수
  *
  * @returns {Object} 사용자 Props
  */
-export async function getStaticProps(context)
+export async function getStaticProps()
 {
-	console.dir(context);
 	const posts = getTypePosts("posts", [
 		"title",
 		"date",
@@ -97,10 +120,13 @@ export async function getStaticProps(context)
 		"coverImage",
 		"excerpt",
 		"type",
-		"category"
+		"category",
+		"tag"
 	]);
 
+	const images = getMainImages();
+
 	return {
-		props: { posts }
+		props: { posts, images }
 	};
 }

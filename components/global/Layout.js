@@ -6,13 +6,14 @@
  */
 
 // 라이브러리 모듈
+import cookie from "react-cookies";
 import { createMuiTheme, CssBaseline, MuiThemeProvider } from "@material-ui/core";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 // 사용자 모듈
-import { darkAtom } from "../../common/states";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
+import { darkAtom } from "../../common/states";
 
 /**
  * 레이아웃 JSX 반환 함수
@@ -23,9 +24,9 @@ import Header from "../header/Header";
  */
 export default function Layout({ children })
 {
-	const darkState = useRecoilValue(darkAtom);
-	const theme = getThemes(darkState);
+	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
 
+	const theme = getThemes(darkState);
 	return (
 		<MuiThemeProvider theme={theme}>
 			<CssBaseline />
@@ -65,10 +66,10 @@ function getThemes(isDark)
 						WebkitFontSmoothing: "auto"
 					},
 					"*::-webkit-scrollbar, *::-webkit-scrollbar-thumb": {
-						width: 26,
+						width: 13,
 						borderRadius: 13,
 						backgroundClip: "padding-box",
-						border: "10px solid transparent"
+						border: "1px solid transparent"
 					},
 					"*::-webkit-scrollbar-thumb": {
 						boxShadow: "inset 0 0 0 10px",

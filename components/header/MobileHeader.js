@@ -8,14 +8,14 @@
 // 라이브러리 모듈
 import React from "react";
 import { useRouter } from "next/router";
-import { Avatar, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography } from "@material-ui/core";
+import { Avatar, Box, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography } from "@material-ui/core";
 import { Menu, NightsStay, WbSunny } from "@material-ui/icons";
+import { blue, orange } from "@material-ui/core/colors";
 import { useRecoilState } from "recoil";
 
 // 사용자 모듈
 import { LOGO, MENU_LIST, TITLE } from "../../common/env";
 import { darkAtom, menuAtom } from "../../common/states";
-import { blue, orange } from "@material-ui/core/colors";
 
 /**
  * 모바일 헤더 JSX 반환 함수
@@ -61,9 +61,9 @@ export default function MobileHeader()
 				</List>
 			</Drawer>
 
-			<div className={classes.title_wrap}>
+			<Box className={classes.title_wrap}>
 				<Typography variant="h6" className={classes.title}>{TITLE}</Typography>
-			</div>
+			</Box>
 
 			<Avatar variant="square" alt={TITLE} src={LOGO} className={classes.logo} />
 		</React.Fragment>

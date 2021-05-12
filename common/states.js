@@ -6,11 +6,13 @@
  */
 
 // 라이브러리 모듈
+import cookie from "react-cookies";
 import { atom } from "recoil";
 
+// 테마 상태
 export const darkAtom = atom({
 	key: "darkState",
-	default: true
+	default: cookie.load("theme") === "true"
 });
 
 // 메뉴 상태

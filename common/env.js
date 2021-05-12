@@ -144,3 +144,5 @@ export const PIECE = [
 		images: "https://i.ytimg.com/vi/TuOjcQsdlbw/mqdefault.jpg"
 	}
 ];
+
+export const MAX_CONTENT = 10;

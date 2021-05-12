@@ -9,7 +9,7 @@ author:
 ogImage:
   url: '/assets/blog/dynamic-routing/cover.jpg'
 type: "posts"
-category: "js"
+category: "node"
 tag: [ "JavaScript", "WEB", "NodeJS" ]
 ---
 

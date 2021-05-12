@@ -9,7 +9,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Box, Button, Container, Divider, Grid, Grow, Hidden, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Container, Grid, Grow, Hidden, makeStyles, Typography } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
 // 사용자 모듈
@@ -17,6 +17,7 @@ import { getMainImages, getTypePosts } from "../common/api";
 import { DESCRIPTION, PIECE, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
 import PreviewList from "../components/section/index/PreviewList";
+import { Top } from "../components/global/Top";
 
 
 /**
@@ -35,7 +36,7 @@ export default function Index({ images, posts, projects })
 
 	const router = useRouter();
 
-	const classes = getStyles(`/assets/images/main/${url}`);
+	const classes = getStyles();
 
 	return (
 		<React.Fragment>
@@ -45,30 +46,18 @@ export default function Index({ images, posts, projects })
 
 			<Grow in={true}>
 				<Box component="section">
-					<Box className={classes.main}>
-						<Box className={classes.main_wrapper}>
-							<Hidden smDown>
-								<Typography variant="h1" align="center">{TITLE}</Typography>
-								<Typography variant="h4" align="center">{DESCRIPTION}</Typography>
-							</Hidden>
-
-							<Hidden mdUp>
-								<Typography variant="h2" align="center">{TITLE}</Typography>
-								<Typography variant="h6" align="center">{DESCRIPTION}</Typography>
-							</Hidden>
-						</Box>
-					</Box>
+					<Top title={TITLE} desc={DESCRIPTION} image={`/assets/images/main/${url}`} />
 
 					<Container maxWidth="md">
 						<Box component="article" className={classes.box}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
 									<Hidden smDown>
-										<Typography variant="h2" align="center" gutterBottom>📑Post</Typography>
+										<Typography variant="h2" align="center" className={classes.typo_title} gutterBottom>📑 Post</Typography>
 									</Hidden>
 
 									<Hidden mdUp>
-										<Typography variant="h4" align="center" gutterBottom>📑Post</Typography>
+										<Typography variant="h4" align="center" className={classes.typo_title} gutterBottom>📑 Post</Typography>
 									</Hidden>
 								</Grid>
 
@@ -89,7 +78,7 @@ export default function Index({ images, posts, projects })
 
 						<Hidden mdUp>
 							<Typography variant="h5" align="center" className={classes.typo_easter}>{piece.title}</Typography>
-							<Typography variant="body" align="center" className={classes.typo_easter}>{piece.author}</Typography>
+							<Typography variant="body1" align="center" className={classes.typo_easter}>{piece.author}</Typography>
 						</Hidden>
 					</Box>
 
@@ -98,11 +87,11 @@ export default function Index({ images, posts, projects })
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
 									<Hidden smDown>
-										<Typography variant="h2" align="center" gutterBottom>🏆Project</Typography>
+										<Typography variant="h2" align="center" className={classes.typo_title} gutterBottom>🏆 Project</Typography>
 									</Hidden>
 
 									<Hidden mdUp>
-										<Typography variant="h4" align="center" gutterBottom>🏆Project</Typography>
+										<Typography variant="h4" align="center" className={classes.typo_title} gutterBottom>🏆 Project</Typography>
 									</Hidden>
 								</Grid>
 
@@ -123,55 +112,34 @@ export default function Index({ images, posts, projects })
 /**
  * 스타일 객체 반환 함수
  *
- * @param {String} image: 배경 이미지 URL
- *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(image)
+function getStyles()
 {
 	return makeStyles((theme) => ({
-		main: {
-			display: "flex",
-			height: "calc(100vh - 64px)",
-			backgroundImage: `url(${image})`,
-			backgroundColor: "rgba(0, 0, 0, 0.6)",
-			backgroundBlendMode: "multiply",
-			backgroundSize: "cover",
-			backgroundAttachment: "fixed",
-			backgroundPosition: "center"
-		},
-		main_wrapper: {
-			width: "100%",
-			padding: 50,
-			justifyContent: "center",
-			alignSelf: "center",
-			"& h1, & h2": {
-				color: "white",
-				marginBottom: 60,
-				fontWeight: "bold"
-			},
-			"& h4, & h6": {
-				color: "white",
-				fontWeight: "bold"
-			}
-		},
 		box: {
 			marginTop: theme.spacing(7),
 			marginBottom: theme.spacing(7)
 		},
 		box_easter: {
-			paddingTop: theme.spacing(30),
-			paddingBottom: theme.spacing(30),
-			paddingLeft: theme.spacing(3),
-			paddingRight: theme.spacing(3),
+			padding: theme.spacing(3),
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
 			backgroundPosition: "center",
-			textAlign: "center"
+			textAlign: "center",
+			height: "30vw",
+			maxHeight: 600,
+			minHeight: 300,
+			display: "flex",
+			flexDirection: "column",
+			justifyContent: "center"
 		},
 		typo_easter: {
 			color: "white"
+		},
+		typo_title: {
+			fontWeight: "bold"
 		},
 		more_grid: {
 			textAlign: "center"
