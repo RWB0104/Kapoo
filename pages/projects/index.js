@@ -15,6 +15,8 @@ import ProjectList from "../../components/section/projects/ProjectList";
 import { getMainImages, getTypePosts } from "../../common/api";
 import { Top } from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
+import { MENU_LIST } from "../../common/env";
+import Title from "../../components/global/Title";
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
@@ -29,13 +31,11 @@ export default function Project({ projects, images })
 
 	return (
 		<React.Fragment>
-			<Head>
-				<title>🐾Kapoo - Projects</title>
-			</Head>
+			<Title title={MENU_LIST[2].title} />
 
 			<Grow in={true}>
 				<Box component="section">
-					<Top title="🏆 Project" image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[2].title} image={`/assets/images/main/${url}`} />
 
 					<Container maxWidth="md">
 						<Grid container spacing={5}>

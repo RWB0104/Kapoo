@@ -12,6 +12,8 @@ import Head from "next/head";
 import { Top } from "../components/global/Top";
 import { getRandomItem } from "../common/common";
 import { getMainImages } from "../common/api";
+import { MENU_LIST } from "../common/env";
+import Title from "../components/global/Title";
 
 /**
  * 소개 페이지 JSX 반환 함수
@@ -24,13 +26,11 @@ export default function About({ images })
 
 	return (
 		<React.Fragment>
-			<Head>
-				<title>🐾Kapoo - About</title>
-			</Head>
+			<Title title={MENU_LIST[3].title} />
 
 			<Grow in={true}>
 				<Box component="section">
-					<Top title="🔍 About" image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[3].title} image={`/assets/images/main/${url}`} />
 				</Box>
 			</Grow>
 		</React.Fragment>

@@ -5,6 +5,8 @@
  * @since 2021.05.08 Sat 14:57:38
  */
 
+import { Apps, Home, Info, Stars } from "@material-ui/icons";
+
 export const TITLE = "Kapoo";
 
 export const DESCRIPTION = "314159265359번째 알파카의 개발 낙서장🐾";
@@ -18,7 +20,7 @@ export const MENU_LIST = [
 		id: 1,
 		title: "Home",
 		url: { pathname: "/" },
-		icon: "🏠"
+		icon: <Home />
 	},
 	{
 		id: 2,
@@ -27,10 +29,10 @@ export const MENU_LIST = [
 			pathname: "/posts",
 			query: {
 				page: 1,
-				category: "all"
+				category: "All"
 			}
 		},
-		icon: "📑"
+		icon: <Apps />
 	},
 	{
 		id: 3,
@@ -39,16 +41,16 @@ export const MENU_LIST = [
 			pathname: "/projects",
 			query: {
 				page: 1,
-				category: "all"
+				category: "All"
 			}
 		},
-		icon: "🏆"
+		icon: <Stars />
 	},
 	{
 		id: 4,
 		title: "About",
 		url: { pathname: "/about" },
-		icon: "🔍"
+		icon: <Info />
 	}
 ];
 

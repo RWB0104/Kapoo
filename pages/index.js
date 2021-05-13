@@ -14,10 +14,11 @@ import { Add } from "@material-ui/icons";
 
 // 사용자 모듈
 import { getMainImages, getTypePosts } from "../common/api";
-import { DESCRIPTION, PIECE, TITLE } from "../common/env";
+import { DESCRIPTION, MENU_LIST, PIECE, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
 import PreviewList from "../components/section/index/PreviewList";
 import { Top } from "../components/global/Top";
+import Title from "../components/global/Title";
 
 
 /**
@@ -40,9 +41,7 @@ export default function Index({ images, posts, projects })
 
 	return (
 		<React.Fragment>
-			<Head>
-				<title>🐾Kapoo - Home</title>
-			</Head>
+			<Title title={MENU_LIST[0].title} />
 
 			<Grow in={true}>
 				<Box component="section">
@@ -64,7 +63,7 @@ export default function Index({ images, posts, projects })
 								<PreviewList type="posts" data={posts} />
 
 								<Grid item xs={12} className={classes.more_grid}>
-									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/posts?page=1&category=all")}>M O R E</Button>
+									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/posts?page=1&category=All")}>M O R E</Button>
 								</Grid>
 							</Grid>
 						</Box>
@@ -98,7 +97,7 @@ export default function Index({ images, posts, projects })
 								<PreviewList type="projects" data={projects} />
 
 								<Grid item xs={12} className={classes.more_grid}>
-									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/projects?page=1&category=all")}>M O R E</Button>
+									<Button className={classes.more} startIcon={<Add />} onClick={() => router.push("/projects?page=1&category=All")}>M O R E</Button>
 								</Grid>
 							</Grid>
 						</Box>

@@ -6,7 +6,9 @@
  */
 
 // 라이브러리 모듈
-import { Box, ButtonBase, Chip, Grid, Link, makeStyles, Typography, Zoom } from "@material-ui/core";
+import { Box, ButtonBase, Chip, Grid, Link, makeStyles, TextField, Typography, Zoom } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+import { Label, LocalOffer } from "@material-ui/icons";
 import { Autocomplete, Pagination } from "@material-ui/lab";
 import { useRouter } from "next/router";
 
@@ -26,7 +28,7 @@ export default function PostList({ data })
 
 	const router = useRouter();
 
-	const row = data.filter(element => router.query.category === "all" ? true : element.category === router.query.category);
+	const row = data.filter(element => router.query.category === "All" ? true : element.category === router.query.category);
 
 	const total = Math.max(Math.ceil(row.length / MAX_CONTENT), 1);
 	const page = parseInt(router.query.page) || 1;
@@ -37,7 +39,13 @@ export default function PostList({ data })
 		<Box>
 			<Grid container spacing={8}>
 				<Grid item xs={12}>
-					<Autocomplete />
+					<Autocomplete
+						options={data}
+						groupBy={option => option.category}
+						getOptionLabel={option => option.title}
+						onChange={(e, option) => router.push(`/posts/${option.slug}`)}
+						renderInput={param => <TextField {...param} label="search" variant="outlined" />}
+					/>
 				</Grid>
 
 				{content.map((element, index) => (
@@ -50,26 +58,30 @@ export default function PostList({ data })
 									</Grid>
 
 									<Grid item xs={8} className={classes.post_content}>
-										<Typography variant="h6" onClick={(e) =>
-										{
-											e.stopPropagation();
+										<Grid container direction="row" alignItems="center">
+											<LocalOffer className={classes.post_category} />
 
-											router.push({
-												query: {
-													page: 1,
-													category: e.target.innerText
-												}
-											});
-										}}>
-											📌 <Link href="#">{element.category}</Link>
-										</Typography>
+											<Typography variant="h6" onClick={(e) =>
+											{
+												e.stopPropagation();
+
+												router.push({
+													query: {
+														page: 1,
+														category: e.target.innerText
+													}
+												});
+											}}>
+												<Link href="#">{element.category}</Link>
+											</Typography>
+										</Grid>
 
 										<Typography variant="h4" className={classes.post_title}>{element.title}</Typography>
 
 										<Typography variant="caption" className={classes.post_desc}>{element.excerpt}</Typography>
 
 										<Box>
-											{element.tag?.map((sub, index) => <Chip key={index} label={`# ${sub}`} className={classes.post_tag} onClick={(e) => e.stopPropagation()} />)}
+											{element.tag?.map((sub, index) => <Chip key={index} color="primary" label={`# ${sub}`} className={classes.post_tag} onClick={(e) => e.stopPropagation()} />)}
 										</Box>
 									</Grid>
 								</Grid>
@@ -129,6 +141,10 @@ function getStyles()
 			padding: "7px 20px 7px 20px",
 			display: "flex",
 			flexDirection: "column"
+		},
+		post_category: {
+			color: red[500],
+			marginRight: 10
 		},
 		post_title: {
 			paddingBottom: theme.spacing(2),
