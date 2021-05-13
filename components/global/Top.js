@@ -5,24 +5,20 @@
  * @since 2021.05.12 Wed 17:13:59
  */
 
-import { Box, Hidden, makeStyles, Typography } from "@material-ui/core";
+import { Box, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 
 export function Top({ title, desc, image })
 {
 	const classes = getStyles(image);
 
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
 	return (
 		<Box className={classes.top_wrapper}>
 			<Box className={classes.top_content}>
-				<Hidden smDown>
-					<Typography variant="h1" align="center">{title}</Typography>
-					<Typography variant="h4" align="center">{desc}</Typography>
-				</Hidden>
-
-				<Hidden mdUp>
-					<Typography variant="h2" align="center">{title}</Typography>
-					<Typography variant="h6" align="center">{desc}</Typography>
-				</Hidden>
+				<Typography variant={isMobile ? "h2" : "h1"} align="center">{title}</Typography>
+				<Typography variant={isMobile ? "h6" : "h4"} align="center">{desc}</Typography>
 			</Box>
 		</Box>
 	);

@@ -12,7 +12,7 @@ import { atom } from "recoil";
 // 테마 상태
 export const darkAtom = atom({
 	key: "darkState",
-	default: cookie.load("theme") === "true"
+	default: cookie.load("theme") ? cookie.load("theme") === "true" : true
 });
 
 // 메뉴 상태

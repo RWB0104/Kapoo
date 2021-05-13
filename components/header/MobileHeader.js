@@ -33,7 +33,7 @@ export default function MobileHeader()
 
 	return (
 		<React.Fragment>
-			<IconButton className={classes.menu} onClick={() => setMenuState(!menuState)}>
+			{/*<IconButton className={classes.menu} onClick={() => setMenuState(!menuState)}>
 				<Menu />
 			</IconButton>
 
@@ -59,7 +59,8 @@ export default function MobileHeader()
 						<ListItemText primary={darkState ? "라이트 모드 활성화" : "다크 모드 활성화"} />
 					</ListItem>
 				</List>
-			</Drawer>
+				</Drawer>*/}
+
 
 			<Box className={classes.title_wrap}>
 				<Typography variant="h6" className={classes.title}>{TITLE}</Typography>

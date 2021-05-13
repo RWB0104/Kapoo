@@ -7,18 +7,16 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider, Grid, Grow, makeStyles, Select, Typography, useTheme } from "@material-ui/core";
-import Head from "next/head";
+import { Box, Container, Divider, Grid, Grow, makeStyles, Select } from "@material-ui/core";
 import { useRouter } from "next/router";
 
 // 사용자 모듈
 import { Top } from "../../components/global/Top";
+import Title from "../../components/global/Title";
 import PostList from "../../components/section/posts/PostList";
 import { getMainImages, getTypePosts } from "../../common/api";
 import { getRandomItem } from "../../common/common";
-import { Autocomplete } from "@material-ui/lab";
 import { MENU_LIST } from "../../common/env";
-import Title from "../../components/global/Title";
 
 /**
  * 게시글 페이지 JSX 반환 함수
@@ -34,9 +32,6 @@ export default function Posts({ posts, images })
 	const classes = getStyles();
 
 	const router = useRouter();
-	const theme = useTheme();
-
-	console.dir(theme.breakpoints.down("md"));
 
 	const categories = [ ...new Set(posts.map(element => element.category)) ];
 
@@ -46,7 +41,7 @@ export default function Posts({ posts, images })
 
 			<Grow in={true}>
 				<Box component="section">
-					<Top title={MENU_LIST[1].title} desc="test" image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[1].title} desc={`Posts of "${router.query.category}"`} image={`/assets/images/main/${url}`} />
 
 					<Container maxWidth="md">
 						<Grid container spacing={5}>

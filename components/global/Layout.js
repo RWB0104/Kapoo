@@ -7,13 +7,15 @@
 
 // 라이브러리 모듈
 import cookie from "react-cookies";
-import { createMuiTheme, CssBaseline, MuiThemeProvider } from "@material-ui/core";
+import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from "@material-ui/core";
 import { useRecoilState } from "recoil";
 
 // 사용자 모듈
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import { darkAtom } from "../../common/states";
+import BottomMenu from "../footer/BottomMenu";
+import ThemeSwitch from "./ThemeSwitch";
 
 /**
  * 레이아웃 JSX 반환 함수
@@ -27,6 +29,10 @@ export default function Layout({ children })
 	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
 
 	const theme = getThemes(darkState);
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+	console.dir(isMobile);
+
 	return (
 		<MuiThemeProvider theme={theme}>
 			<CssBaseline />
@@ -36,6 +42,10 @@ export default function Layout({ children })
 			{children}
 
 			<Footer />
+
+			<ThemeSwitch />
+
+			{isMobile && <BottomMenu />}
 		</MuiThemeProvider>
 	);
 }

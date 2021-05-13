@@ -9,7 +9,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { Box, Button, Container, Grid, Grow, Hidden, makeStyles, Typography } from "@material-ui/core";
+import { Box, Button, Container, Grid, Grow, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
 // 사용자 모듈
@@ -36,6 +36,9 @@ export default function Index({ images, posts, projects })
 	const piece = getRandomItem(PIECE);
 
 	const router = useRouter();
+	const theme = useTheme();
+
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	const classes = getStyles();
 
@@ -51,13 +54,7 @@ export default function Index({ images, posts, projects })
 						<Box component="article" className={classes.box}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
-									<Hidden smDown>
-										<Typography variant="h2" align="center" className={classes.typo_title} gutterBottom>📑 Post</Typography>
-									</Hidden>
-
-									<Hidden mdUp>
-										<Typography variant="h4" align="center" className={classes.typo_title} gutterBottom>📑 Post</Typography>
-									</Hidden>
+									<Typography variant={isMobile ? "h4" : "h2"} align="center" className={classes.typo_title} gutterBottom>Post</Typography>
 								</Grid>
 
 								<PreviewList type="posts" data={posts} />
@@ -70,28 +67,15 @@ export default function Index({ images, posts, projects })
 					</Container>
 
 					<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
-						<Hidden smDown>
-							<Typography variant="h4" align="center" className={classes.typo_easter}>{piece.title}</Typography>
-							<Typography variant="h6" align="center" className={classes.typo_easter}>{piece.author}</Typography>
-						</Hidden>
-
-						<Hidden mdUp>
-							<Typography variant="h5" align="center" className={classes.typo_easter}>{piece.title}</Typography>
-							<Typography variant="body1" align="center" className={classes.typo_easter}>{piece.author}</Typography>
-						</Hidden>
+						<Typography variant={isMobile ? "h5" : "h4"} align="center" className={classes.typo_easter}>{piece.title}</Typography>
+						<Typography variant={isMobile ? "body1" : "h5"} align="center" className={classes.typo_easter}>{piece.author}</Typography>
 					</Box>
 
 					<Container maxWidth="md">
 						<Box component="article" className={classes.box}>
 							<Grid container spacing={5}>
 								<Grid item xs={12}>
-									<Hidden smDown>
-										<Typography variant="h2" align="center" className={classes.typo_title} gutterBottom>🏆 Project</Typography>
-									</Hidden>
-
-									<Hidden mdUp>
-										<Typography variant="h4" align="center" className={classes.typo_title} gutterBottom>🏆 Project</Typography>
-									</Hidden>
+									<Typography variant={isMobile ? "h4" : "h2"} align="center" className={classes.typo_title} gutterBottom>Project</Typography>
 								</Grid>
 
 								<PreviewList type="projects" data={projects} />

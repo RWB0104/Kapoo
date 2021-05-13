@@ -7,16 +7,12 @@
 
 // 라이브러리 모듈
 import React from "react";
-import cookie from "react-cookies";
 import { useRouter } from "next/router";
-import { Avatar, Button, Fab, Fade, makeStyles, Typography } from "@material-ui/core";
-import { blue, grey, orange, yellow } from "@material-ui/core/colors";
-import { NightsStay, WbSunny } from "@material-ui/icons";
-import { useRecoilState } from "recoil";
+import { Avatar, Button, makeStyles, Typography } from "@material-ui/core";
+import { yellow } from "@material-ui/core/colors";
 
 // 사용자 모듈
 import { LOGO, MENU_LIST, TITLE } from "../../common/env";
-import { darkAtom } from "../../common/states";
 
 
 /**
@@ -30,8 +26,6 @@ export default function DesktopHeader()
 
 	const classes = getStyles();
 
-	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
-
 	return (
 		<React.Fragment>
 			<Avatar variant="square" alt={TITLE} src={LOGO} className={classes.logo} />
@@ -39,28 +33,6 @@ export default function DesktopHeader()
 			<Typography variant="h4" className={classes.title}>{TITLE}</Typography>
 
 			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={router.pathname === element.url.pathname} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
-
-			<Fade in={!darkState} timeout={300} unmountOnExit>
-				<Fab variant="extended" className={classes.fab_dark} onClick={() =>
-				{
-					cookie.save("theme", "true", { path: "/" });
-					setDarkState(true);
-				}}>
-					<NightsStay />
-					<Typography variant="button">다크 모드 활성화</Typography>
-				</Fab>
-			</Fade>
-
-			<Fade in={darkState} timeout={300} unmountOnExit>
-				<Fab variant="extended" className={classes.fab_bright} onClick={() =>
-				{
-					cookie.save("theme", "false",  { path: "/" });
-					setDarkState(false);
-				}}>
-					<WbSunny />
-					<Typography variant="button">라이트 모드 활성화</Typography>
-				</Fab>
-			</Fade>
 		</React.Fragment>
 	);
 }
@@ -92,34 +64,6 @@ function getStyles()
 			"&:disabled": {
 				color: text,
 				fontWeight: "bold"
-			}
-		},
-		fab_bright: {
-			position: "fixed",
-			bottom: 50,
-			right: 50,
-			backgroundColor: grey[800],
-			color: grey[200],
-			"&:hover": {
-				backgroundColor: grey[700]
-			},
-			"& svg": {
-				color: orange[600],
-				marginRight: theme.spacing(1)
-			}
-		},
-		fab_dark: {
-			position: "fixed",
-			bottom: 50,
-			right: 50,
-			backgroundColor: grey[200],
-			color: grey[900],
-			"&:hover": {
-				backgroundColor: grey[300]
-			},
-			"& svg": {
-				color: blue[600],
-				marginRight: theme.spacing(1)
 			}
 		}
 	}))();
