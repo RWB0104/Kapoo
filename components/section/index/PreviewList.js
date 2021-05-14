@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { ButtonBase, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Button, ButtonBase, Grid, makeStyles, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 
 /**
@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
  *
  * @returns {JSX} JSX 객체
  */
-export default function PreviewList({ type, data })
+export default function PreviewList({ type, data, test })
 {
 	const classes = getStyles();
 

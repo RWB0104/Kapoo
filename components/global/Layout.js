@@ -63,7 +63,7 @@ function getThemes(isDark)
 		palette: {
 			type: isDark ? "dark" : "light",
 			background: {
-				default: isDark ? "#202020" : "#FFFFFF"
+				default: isDark ? "#0d1117" : "#FFFFFF"
 			}
 		},
 		typography: {
