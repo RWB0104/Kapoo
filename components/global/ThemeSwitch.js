@@ -51,11 +51,16 @@ export default function ThemeSwitch()
 				{
 					isMobile ? (
 						<Fab className={classes.fab_bright} onClick={() => onClickSwitch(cookie, setDarkState, false)}>
-							<WbSunny />
+							<Box>
+								<WbSunny />
+							</Box>
 						</Fab>
 					) : (
 						<Fab variant="extended" className={classes.fab_bright} onClick={() => onClickSwitch(cookie, setDarkState, false)}>
-							<WbSunny />
+							<Box>
+								<WbSunny />
+							</Box>
+
 							<Typography variant="button">라이트 모드 활성화</Typography>
 						</Fab>
 					)
@@ -104,7 +109,8 @@ function getStyles()
 				}
 			},
 			[theme.breakpoints.down("sm")]: {
-				bottom: 100
+				bottom: 70,
+				right: 20
 			}
 		},
 		fab_dark: {
@@ -125,7 +131,8 @@ function getStyles()
 				}
 			},
 			[theme.breakpoints.down("sm")]: {
-				bottom: 100
+				bottom: 70,
+				right: 20
 			}
 		}
 	}))();

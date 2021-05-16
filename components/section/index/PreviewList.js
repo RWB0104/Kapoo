@@ -7,8 +7,8 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Button, ButtonBase, Grid, makeStyles, Typography } from "@material-ui/core";
-import { useRouter } from "next/router";
+import { Grid, makeStyles } from "@material-ui/core";
+import PostItem from "../posts/PostItem";
 
 /**
  * 미리보기 컴포넌트 반환 함수
@@ -18,36 +18,20 @@ import { useRouter } from "next/router";
  *
  * @returns {JSX} JSX 객체
  */
-export default function PreviewList({ type, data, test })
+export default function PreviewList({ type, data })
 {
 	const classes = getStyles();
-
-	const router = useRouter();
 
 	const list = [];
 
 	for (let i = 0; i < 4; i++)
 	{
-		// 게시글이 없을 경우
-		if (data[i] === undefined)
-		{
-			list.push(
-				<Grid item md={6} key={i} className={classes.contents_grid}>
-					<ButtonBase focusRipple disabled className={classes.contents} style={{ backgroundImage: "url(https://i.pinimg.com/originals/17/c4/a4/17c4a4f21be8344c713b69f7ca26f11c.gif)" }}>
-						<Typography variant="h4" noWrap>o_O</Typography>
-					</ButtonBase>
-				</Grid>
-			);
-		}
-
 		// 게시글이 있을 경우
-		else
+		if (data[i] !== undefined)
 		{
 			list.push(
-				<Grid item md={6} key={i} className={classes.contents_grid}>
-					<ButtonBase focusRipple className={classes.contents} style={{ backgroundImage: `url(${data[i].coverImage})` }} onClick={() => router.push(`/${type}/${data[i].slug}`)}>
-						<Typography variant="h4" align="center" noWrap>{data[i].title}</Typography>
-					</ButtonBase>
+				<Grid item md={12} key={i} className={classes.contents_grid}>
+					<PostItem item={data[i]} index={i} />
 				</Grid>
 			);
 		}

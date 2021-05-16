@@ -9,7 +9,7 @@
 import React from "react";
 import { Box, Grow } from "@material-ui/core";
 import Head from "next/head";
-import { Top } from "../components/global/Top";
+import Top from "../components/global/Top";
 import { getRandomItem } from "../common/common";
 import { getMainImages } from "../common/api";
 import { MENU_LIST } from "../common/env";

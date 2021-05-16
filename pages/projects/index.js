@@ -7,13 +7,13 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider, FormControl, Grid, Grow, Hidden, InputLabel, makeStyles, MenuItem, Select, Typography } from "@material-ui/core";
-import Head from "next/head";
+import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
+import { Fade } from "react-reveal";
 
 // 사용자 모듈
 import ProjectList from "../../components/section/projects/ProjectList";
 import { getMainImages, getTypePosts } from "../../common/api";
-import { Top } from "../../components/global/Top";
+import Top from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
 import Title from "../../components/global/Title";
@@ -33,8 +33,8 @@ export default function Project({ projects, images })
 		<React.Fragment>
 			<Title title={MENU_LIST[2].title} />
 
-			<Grow in={true}>
-				<Box component="section">
+			<Box component="section">
+				<Fade>
 					<Top title={MENU_LIST[2].title} image={`/assets/images/main/${url}`} />
 
 					<Container maxWidth="md">
@@ -68,8 +68,8 @@ export default function Project({ projects, images })
 							</Grid>
 						</Grid>
 					</Container>
-				</Box>
-			</Grow>
+				</Fade>
+			</Box>
 		</React.Fragment>
 	);
 }

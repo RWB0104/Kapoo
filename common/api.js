@@ -9,6 +9,9 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
+import remark from "remark";
+import html from "remark-html";
+import prism from "remark-prism";
 
 const POST_DIR = join(process.cwd(), "_posts");
 
@@ -98,4 +101,16 @@ export function getTypePosts(type, fields = [])
 export function getMainImages()
 {
 	return fs.readdirSync(join(process.cwd(), "public", "assets", "images", "main"));
+}
+
+/**
+ * Markdown HTML 변환 및 반환 함수
+ *
+ * @returns {Promise} 변환 Promise 객체
+ */
+export async function markdownToHtml(markdown)
+{
+	const result = await remark().use(html).use(prism).process(markdown);
+
+	return result.toString();
 }

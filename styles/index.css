@@ -7,7 +7,7 @@
 		url("/assets/fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype")
 }
 
-*:not(.dragable, code) {
+*:not(.dragable) {
 	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;

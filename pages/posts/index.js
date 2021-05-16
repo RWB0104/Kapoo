@@ -7,11 +7,13 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider, Grid, Grow, makeStyles, Select } from "@material-ui/core";
+import { Box, Container, Divider, FormControl, Grid, InputLabel, makeStyles, Select, TextField, useMediaQuery, useTheme } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 import { useRouter } from "next/router";
+import { Fade } from "react-reveal";
 
 // 사용자 모듈
-import { Top } from "../../components/global/Top";
+import Top from "../../components/global/Top";
 import Title from "../../components/global/Title";
 import PostList from "../../components/section/posts/PostList";
 import { getMainImages, getTypePosts } from "../../common/api";
@@ -29,6 +31,9 @@ export default function Posts({ posts, images })
 {
 	const url = getRandomItem(images);
 
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
 	const classes = getStyles();
 
 	const router = useRouter();
@@ -39,21 +44,31 @@ export default function Posts({ posts, images })
 		<React.Fragment>
 			<Title title={MENU_LIST[1].title} />
 
-			<Grow in={true}>
-				<Box component="section">
+			<Box component="section">
+				<Fade>
 					<Top title={MENU_LIST[1].title} desc={`Posts of "${router.query.category}"`} image={`/assets/images/main/${url}`} />
 
-					<Container maxWidth="md">
+					<Container maxWidth="md" className={classes.section}>
 						<Grid container spacing={5}>
-							<Grid item xs={12}>
-								<Divider className={classes.divider} />
+							<Grid item xs={isMobile ? 12 : 4}>
+								<FormControl variant="outlined" fullWidth>
+									<InputLabel id="name">Category</InputLabel>
+
+									<Select native label="Category" value={router.query.category} onChange={e => onSelectCategory(e, router)}>
+										<option value="All">All</option>
+										{categories.map((element, index) => <option key={index + 1} value={element}>{element}</option>)}
+									</Select>
+								</FormControl>
 							</Grid>
 
-							<Grid item xs={4}>
-								<Select native className={classes.category} value={router.query.category} onChange={e => onSelectCategory(e, router)} fullWidth>
-									<option value="All">All</option>
-									{categories.map((element, index) => <option key={index} value={element}>{element}</option>)}
-								</Select>
+							<Grid item xs={12}>
+								<Autocomplete
+									options={posts.sort((a, b) => -b.category.localeCompare(a.category))}
+									groupBy={option => option.category}
+									getOptionLabel={option => option.title}
+									onChange={(e, option) => router.push(`/posts/${option.slug}`)}
+									renderInput={param => <TextField {...param} label="게시글 검색" variant="outlined" />}
+								/>
 							</Grid>
 
 							<Grid item xs={12}>
@@ -61,8 +76,8 @@ export default function Posts({ posts, images })
 							</Grid>
 						</Grid>
 					</Container>
-				</Box>
-			</Grow>
+				</Fade>
+			</Box>
 		</React.Fragment>
 	);
 }
@@ -75,11 +90,14 @@ export default function Posts({ posts, images })
  */
 function onSelectCategory(e, router)
 {
+	console.dir(e.target.value);
 	router.push({
 		query: {
 			page: 1,
 			category: e.target.value
 		}
+	},undefined, {
+		scroll: false
 	});
 }
 
@@ -91,14 +109,8 @@ function onSelectCategory(e, router)
 function getStyles()
 {
 	return makeStyles((theme) => ({
-		divider: {
-			marginTop: theme.spacing(10),
-			marginBottom: theme.spacing(5)
-		},
-		category: {
-			"& > select": {
-				padding: 12
-			}
+		section: {
+			marginTop: theme.spacing(10)
 		}
 	}))();
 }
