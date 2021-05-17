@@ -11,6 +11,7 @@ import { join } from "path";
 import matter from "gray-matter";
 import remark from "remark";
 import html from "remark-html";
+import gfm from "remark-gfm";
 import prism from "remark-prism";
 
 const POST_DIR = join(process.cwd(), "_posts");
@@ -110,7 +111,7 @@ export function getMainImages()
  */
 export async function markdownToHtml(markdown)
 {
-	const result = await remark().use(html).use(prism).process(markdown);
+	const result = await remark().use(html).use(gfm).use(prism).process(markdown);
 
 	return result.toString();
 }

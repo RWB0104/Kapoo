@@ -227,6 +227,9 @@ function getStyles()
 			return acc;
 		}, {});
 
+
+		const refColor = theme.palette.type === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)";
+
 		return {
 			markdown: {
 				fontSize: "1.5em",
@@ -285,7 +288,7 @@ function getStyles()
 					height: 1,
 					margin: 0,
 					flexShrink: 0,
-					backgroundColor: theme.palette.type === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)"
+					backgroundColor: refColor
 				},
 				"& .remark-highlight": {
 					"& *": {
@@ -298,8 +301,52 @@ function getStyles()
 				"& h1, & h2, & h3, & h4, & h5, & h6": {
 					marginTop: theme.spacing(10)
 				},
+				"& h1, & h2, & h3": {
+					borderBottom: refColor
+				},
 				"& a": {
 					color: lightBlue[400]
+				},
+				"& blockquote": {
+					borderLeft: `4px solid ${refColor}`,
+					padding: "0 15px",
+					color: "#777777",
+					"& > :first-child": {
+						marginTop: 0
+					},
+					"& > :last-child": {
+						marginBottom: 0
+					}
+				},
+				"& table": {
+					padding: 0,
+					borderCollapse: "collapse",
+					"& tr": {
+						borderTop: `1px solid ${refColor}`,
+						backgroundColor: "transparent",
+						margin: 0,
+						padding: 0
+					},
+					"& tr:nth-child(2n)": {
+						backgroundColor: theme.palette.type === "dark" ? "#041733" : "whitesmoke"
+					},
+					"& tr th": {
+						fontWeight: "bold",
+						border: `1px solid ${refColor}`,
+						margin: 0,
+						padding: "6px 13px"
+					},
+					"& tr td": {
+						border: `1px solid ${refColor}`,
+						margin: 0,
+						padding: "6px 13px"
+					},
+					"& tr th :first-child, & tr td :first-child": {
+						marginTop: 0
+					},
+					"& tr th :last-child, & tr td :last-child": {
+						marginBottom: 0
+					}
 				},
 				"& code:not([class*='language-'])": {
 					backgroundColor: theme.palette.primary[theme.palette.type],
