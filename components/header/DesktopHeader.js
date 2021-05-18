@@ -32,7 +32,7 @@ export default function DesktopHeader()
 
 			<Typography variant="h4" className={classes.title}>{TITLE}</Typography>
 
-			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={router.pathname === element.url.pathname} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
+			{MENU_LIST.map((element, index) => (<Button key={index} className={classes.menu} disabled={`/${router.pathname.split("/")[1]}` === element.url.pathname} startIcon={element.icon} onClick={() => router.push(element.url)}>{element.title}</Button>))}
 		</React.Fragment>
 	);
 }

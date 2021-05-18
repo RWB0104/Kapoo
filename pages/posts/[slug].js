@@ -302,7 +302,7 @@ function getStyles()
 					marginTop: theme.spacing(10)
 				},
 				"& h1, & h2, & h3": {
-					borderBottom: refColor
+					borderBottom: `1px solid ${refColor}`
 				},
 				"& a": {
 					color: lightBlue[400]
@@ -322,7 +322,7 @@ function getStyles()
 					padding: 0,
 					borderCollapse: "collapse",
 					"& tr": {
-						borderTop: `1px solid ${refColor}`,
+						borderTop: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
 						backgroundColor: "transparent",
 						margin: 0,
 						padding: 0
@@ -332,12 +332,12 @@ function getStyles()
 					},
 					"& tr th": {
 						fontWeight: "bold",
-						border: `1px solid ${refColor}`,
+						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
 						margin: 0,
 						padding: "6px 13px"
 					},
 					"& tr td": {
-						border: `1px solid ${refColor}`,
+						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
 						margin: 0,
 						padding: "6px 13px"
 					},

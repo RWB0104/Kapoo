@@ -15,6 +15,8 @@ import Header from "../header/Header";
 import { darkAtom } from "../../common/states";
 import BottomMenu from "../footer/BottomMenu";
 import ThemeSwitch from "./ThemeSwitch";
+import { useEffect } from "react";
+import { blue, indigo } from "@material-ui/core/colors";
 
 /**
  * 레이아웃 JSX 반환 함수
@@ -29,6 +31,11 @@ export default function Layout({ children })
 
 	const theme = getThemes(darkState);
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+	useEffect(() =>
+	{
+		document.addEventListener("contextmenu", (e) => e.preventDefault());
+	});
 
 	return (
 		<MuiThemeProvider theme={theme}>
@@ -61,7 +68,9 @@ function getThemes(isDark)
 			type: isDark ? "dark" : "light",
 			background: {
 				default: isDark ? "#020d1d" : "#FFFFFF"
-			}
+			},
+			primary: blue,
+			secondary: indigo
 		},
 		typography: {
 			fontFamily: "Spoqa Han Sans, sans-serif"

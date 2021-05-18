@@ -24,44 +24,10 @@ import { darkAtom, menuAtom } from "../../common/states";
  */
 export default function MobileHeader()
 {
-	const router = useRouter();
-
 	const classes = getStyles();
-
-	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
-	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
 
 	return (
 		<React.Fragment>
-			{/*<IconButton className={classes.menu} onClick={() => setMenuState(!menuState)}>
-				<Menu />
-			</IconButton>
-
-			<Drawer anchor="left" open={menuState} className={classes.drawer} onClose={() => setMenuState(false)}>
-				<List>
-					{
-						MENU_LIST.map((element, index) => (
-							<ListItem button key={index} disabled={router.pathname === element.url.pathname} onClick={() =>
-							{
-								router.push(element.url);
-								setMenuState(false);
-							}}>
-								<ListItemIcon>{element.icon}</ListItemIcon>
-								<ListItemText primary={element.title} />
-							</ListItem>
-						))
-					}
-
-					<Divider />
-
-					<ListItem button className={classes.drawer_item} onClick={() => setDarkState(!darkState)}>
-						<ListItemIcon>{darkState ? <WbSunny className={classes.fab_bright} /> : <NightsStay className={classes.fab_dark} />}</ListItemIcon>
-						<ListItemText primary={darkState ? "라이트 모드 활성화" : "다크 모드 활성화"} />
-					</ListItem>
-				</List>
-				</Drawer>*/}
-
-
 			<Box className={classes.title_wrap}>
 				<Typography variant="h6" className={classes.title}>{TITLE}</Typography>
 			</Box>

@@ -40,7 +40,7 @@ export default function PostItem({ item, index })
 							<Grid container direction="row" alignItems="center">
 								<LocalOffer className={classes.post_category} />
 
-								<Typography variant="h6" onClick={(e) =>
+								<Typography variant="h6" color="primary" className={classes.post_category_typo} onClick={(e) =>
 								{
 									e.stopPropagation();
 
@@ -52,7 +52,7 @@ export default function PostItem({ item, index })
 										}
 									});
 								}}>
-									<Link href="#">{item.category}</Link>
+									{item.category}
 								</Typography>
 							</Grid>
 
@@ -111,6 +111,11 @@ function getStyles(index, url)
 		post_category: {
 			color: red[500],
 			marginRight: 10
+		},
+		post_category_typo: {
+			"&:hover": {
+				textDecoration: "underline"
+			}
 		},
 		post_title: {
 			paddingBottom: theme.spacing(2),
