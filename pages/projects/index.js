@@ -35,7 +35,7 @@ export default function Project({ projects, images })
 
 			<Box component="section">
 				<Fade>
-					<Top title={MENU_LIST[2].title} image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[2].title} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md">
 						<Grid container spacing={5}>

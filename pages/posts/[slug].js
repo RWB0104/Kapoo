@@ -1,16 +1,33 @@
+/**
+ * 게시글 컴포넌트 JavaScript
+ *
+ * @author RWB
+ * @since 2021.05.19 Wed 20:04:13
+ */
+
+// 라이브러리 모듈
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import ErrorPage from "next/error";
 import { Container, Divider, makeStyles } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
 
-import { getPostBySlug, getTypePosts, markdownToHtml } from "../../common/api";
+// 사용자 모듈
 import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
+import { getPostBySlug, getTypePosts, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
-import Head from "next/head";
+import Utterance from "../../components/global/Utterance";
 
-export default function Post({ post, morePosts, preview })
+/**
+ * 게시글 JSX 반환 함수
+ *
+ * @param {Object} post: 게시글
+ *
+ * @returns {JSX} JSX 객체
+ */
+export default function Post({ post })
 {
 	const router = useRouter();
 
@@ -26,25 +43,31 @@ export default function Post({ post, morePosts, preview })
 		}
 	});
 
+	// 유효하지 않은 경로일 경우
 	if (!router.isFallback && !post?.slug)
 	{
 		return <ErrorPage statusCode={404} />;
 	}
 
-	return (
-		<>
-			<Title title={post.title} />
-			<Head>
-				<link href="/prism.css" rel="stylesheet" />
-			</Head>
+	// 유효한 경로일 경우
+	else
+	{
+		return (
+			<>
+				<Title title={post.title} />
 
-			<Top title={post.title} desc={getFormattedDate(new Date(post.date))} image={post.coverImage} />
+				<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
 
-			<Container maxWidth="md">
-				<div className={classes.markdown} dangerouslySetInnerHTML={{ __html: post.content }}></div>
-			</Container>
-		</>
-	);
+				<Container maxWidth="md">
+					<div className={classes.markdown} dangerouslySetInnerHTML={{ __html: post.content }}></div>
+
+					<Divider />
+
+					<Utterance />
+				</Container>
+			</>
+		);
+	}
 }
 
 /**
@@ -227,7 +250,6 @@ function getStyles()
 			return acc;
 		}, {});
 
-
 		const refColor = theme.palette.type === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)";
 
 		return {
@@ -308,8 +330,11 @@ function getStyles()
 					color: lightBlue[400]
 				},
 				"& blockquote": {
-					borderLeft: `4px solid ${refColor}`,
-					padding: "0 15px",
+					borderLeft: `4px solid ${orange[500]}`,
+					marginTop: theme.spacing(8),
+					marginBottom: theme.spacing(8),
+					padding: "5px 25px",
+					fontStyle: "italic",
 					color: "#777777",
 					"& > :first-child": {
 						marginTop: 0
@@ -349,20 +374,97 @@ function getStyles()
 					}
 				},
 				"& code:not([class*='language-'])": {
-					backgroundColor: theme.palette.primary[theme.palette.type],
+					backgroundColor: "#020213",
+					color: "white",
 					padding: 5,
 					borderRadius: 5,
-					fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+					fontFamily: "Hack, Spoqa Han Sans, monospace",
 					userSelect: "text",
 					msUserSelect: "text",
 					MozUserSelect: "text",
 					WebkitUserSelect: "text"
+				},
+				"& code[class*='language-'], pre[class*='language-']": {
+					color: "#ccc",
+					background: "none",
+					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					fontSize: 16,
+					textAlign: "left",
+					whiteSpace: "pre",
+					wordSpacing: "normal",
+					wordBreak: "normal",
+					wordWrap: "normal",
+					lineHeight: 1.5,
+					tabSize: 4,
+					MozTabSize: 4,
+					hyphens: "none",
+					msHyphens: "none",
+					MozHyphens: "none",
+					WebkitHyphens: "none"
+				},
+				"& pre[class*='language-']": {
+					padding: "1em",
+					margin: ".5em 0",
+					overflow: "auto"
+				},
+				"& :not(pre) > code[class*='language-'], pre[class*='language-']": {
+					background: "#020213",
+					borderRadius: 10
+				},
+				"& :not(pre) > code[class*='language-']": {
+					padding: ".1em",
+					borderRadius: ".3em",
+					whiteSpace: "normal"
+				},
+				"& .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata": {
+					color: "#00c800"
+				},
+				"& .token.punctuation": {
+					color: "#ccc"
+				},
+				"& .token.tag, .token.attr-name, .token.namespace, .token.deleted": {
+					color: "#e2777a"
+				},
+				"& .token.function-name": {
+					color: "#6196cc"
+				},
+				"& .token.boolean, .token.number, .token.function": {
+					color: "#f08d49"
+				},
+				"& .token.property, .token.class-name, .token.constant, .token.symbol": {
+					color: "#f8c555"
+				},
+				"& .token.selector, .token.important, .token.atrule, .token.keyword, .token.builtin": {
+					color: "#cc99cd"
+				},
+				"& .token.string, .token.char, .token.attr-value, .token.regex, .token.variable": {
+					color: "#7ec699"
+				},
+				"& .token.operator, .token.entity, .token.url": {
+					color: "#67cdcc"
+				},
+				"& .token.important, .token.bold": {
+					fontWeight: "bold"
+				},
+				"& .token.italic":  {
+					fontStyle: "italic"
+				},
+				"& .token.entity": {
+					cursor: "help"
+				},
+				"& .token.inserted": {
+					color: "green"
 				}
 			}
 		};
 	})();
 }
 
+/**
+ * 사용자 Props 반환 함수
+ *
+ * @returns {Object} 사용자 Props
+ */
 export async function getStaticProps({ params })
 {
 	const post = getPostBySlug("posts", params.slug, [
@@ -372,7 +474,8 @@ export async function getStaticProps({ params })
 		"author",
 		"content",
 		"ogImage",
-		"coverImage"
+		"coverImage",
+		"category"
 	]);
 
 	const content = await markdownToHtml(post.content || "");

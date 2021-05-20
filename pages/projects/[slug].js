@@ -1,64 +1,475 @@
-import { useRouter } from "next/router";
-import ErrorPage from "next/error";
-import Container from "../../components/container";
-import PostBody from "../../components/post-body";
-import Header from "../../components/header";
-import PostHeader from "../../components/post-header";
-import Layout from "../../components/layout";
-import { getPostBySlug, getTypePosts } from "../../common/api";
-import PostTitle from "../../components/post-title";
-import Head from "next/head";
-import { CMS_NAME } from "../../lib/constants";
-import markdownToHtml from "../../lib/markdownToHtml";
+/**
+ * 게시글 컴포넌트 JavaScript
+ *
+ * @author RWB
+ * @since 2021.05.19 Wed 20:04:13
+ */
 
-export default function Project({ post, morePosts, preview })
+// 라이브러리 모듈
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import ErrorPage from "next/error";
+import { Container, makeStyles } from "@material-ui/core";
+import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
+
+// 사용자 모듈
+import Title from "../../components/global/Title";
+import Top from "../../components/global/Top";
+import { getPostBySlug, getTypePosts, markdownToHtml } from "../../common/api";
+import { getFormattedDate } from "../../common/common";
+
+/**
+ * 게시글 JSX 반환 함수
+ *
+ * @param {Object} post: 게시글
+ *
+ * @returns {JSX} JSX 객체
+ */
+export default function Post({ post })
 {
 	const router = useRouter();
+
+	const classes = getStyles();
+
+	useEffect(() =>
+	{
+		const img = document.getElementsByTagName("img");
+
+		for (const element of img)
+		{
+			element.addEventListener("contextmenu", e => e.preventDefault());
+		}
+	});
+
+	// 유효하지 않은 경로일 경우
 	if (!router.isFallback && !post?.slug)
 	{
 		return <ErrorPage statusCode={404} />;
 	}
-	return (
-		<Layout preview={preview}>
-			<Container>
-				<Header />
-				{router.isFallback ? (
-					<PostTitle>Loading…</PostTitle>
-				) : (
-					<>
-						<article className="mb-32">
-							<Head>
-								<title>
-									{post.title} | Next.js Blog Example with {CMS_NAME}
-								</title>
-								<meta property="og:image" content={post.ogImage.url} />
-							</Head>
-							<PostHeader
-								title={post.title}
-								coverImage={post.coverImage}
-								date={post.date}
-								author={post.author}
-							/>
-							<PostBody content={post.content} />
-						</article>
-					</>
-				)}
-			</Container>
-		</Layout>
-	);
+
+	// 유효한 경로일 경우
+	else
+	{
+		return (
+			<>
+				<Title title={post.title} />
+
+				<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
+
+				<Container maxWidth="md">
+					<div className={classes.markdown} dangerouslySetInnerHTML={{ __html: post.content }}></div>
+				</Container>
+			</>
+		);
+	}
 }
 
+/**
+ * 스타일 객체 반환 함수
+ *
+ * @returns {JSON} 스타일 객체
+ */
+function getStyles()
+{
+	return makeStyles((theme) =>
+	{
+		const colorRed = Object.entries(red).reduce((acc, element) =>
+		{
+			acc[`& .red-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorPink = Object.entries(pink).reduce((acc, element) =>
+		{
+			acc[`& .pink-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorPurple = Object.entries(purple).reduce((acc, element) =>
+		{
+			acc[`& .purple-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorDeepPurple = Object.entries(deepPurple).reduce((acc, element) =>
+		{
+			acc[`& .deepPurple-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorIndigo = Object.entries(indigo).reduce((acc, element) =>
+		{
+			acc[`& .indigo-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorBlue = Object.entries(blue).reduce((acc, element) =>
+		{
+			acc[`& .blue-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorLightBlue = Object.entries(lightBlue).reduce((acc, element) =>
+		{
+			acc[`& .lightBlue-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorCyan = Object.entries(cyan).reduce((acc, element) =>
+		{
+			acc[`& .cyan-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorTeal = Object.entries(teal).reduce((acc, element) =>
+		{
+			acc[`& .teal-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorGreen = Object.entries(green).reduce((acc, element) =>
+		{
+			acc[`& .green-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorLightGreen = Object.entries(lightGreen).reduce((acc, element) =>
+		{
+			acc[`& .lightGreen-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorLime = Object.entries(lime).reduce((acc, element) =>
+		{
+			acc[`& .lime-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorYellow = Object.entries(yellow).reduce((acc, element) =>
+		{
+			acc[`& .yellow-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorAmber = Object.entries(amber).reduce((acc, element) =>
+		{
+			acc[`& .amber-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorOrange = Object.entries(orange).reduce((acc, element) =>
+		{
+			acc[`& .orange-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorDeepOrange = Object.entries(deepOrange).reduce((acc, element) =>
+		{
+			acc[`& .deepOrange-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorBrown = Object.entries(brown).reduce((acc, element) =>
+		{
+			acc[`& .brown-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorGrey = Object.entries(grey).reduce((acc, element) =>
+		{
+			acc[`& .grey-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const colorBlueGrey = Object.entries(blueGrey).reduce((acc, element) =>
+		{
+			acc[`& .blueGrey-${element[0]}`] = {
+				color: element[1]
+			};
+
+			return acc;
+		}, {});
+
+		const refColor = theme.palette.type === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)";
+
+		return {
+			markdown: {
+				fontSize: "1.5em",
+				lineHeight: 1.8,
+				"& .center": {
+					textAlign: "center"
+				},
+				"& .small": {
+					fontSize: "1.25em"
+				},
+				"& .large": {
+					fontSize: "1.75em"
+				},
+				"& .bold": {
+					fontWeight: "bold"
+				},
+				"& .primary": {
+					color: theme.palette.primary[theme.palette.type]
+				},
+				"& .secondary": {
+					color: theme.palette.secondary[theme.palette.type]
+				},
+				"& .error": {
+					color: theme.palette.error[theme.palette.type]
+				},
+				"& .warning": {
+					color: theme.palette.warning[theme.palette.type]
+				},
+				"& .info": {
+					color: theme.palette.warning[theme.palette.type]
+				},
+				"& .success": {
+					color: theme.palette.warning[theme.palette.type]
+				},
+				...colorRed,
+				...colorPink,
+				...colorPurple,
+				...colorDeepPurple,
+				...colorIndigo,
+				...colorBlue,
+				...colorLightBlue,
+				...colorCyan,
+				...colorTeal,
+				...colorGreen,
+				...colorLightGreen,
+				...colorLime,
+				...colorYellow,
+				...colorAmber,
+				...colorOrange,
+				...colorDeepOrange,
+				...colorBrown,
+				...colorGrey,
+				...colorBlueGrey,
+				"& .MuiDivider-root": {
+					border: "none",
+					height: 1,
+					margin: 0,
+					flexShrink: 0,
+					backgroundColor: refColor
+				},
+				"& .remark-highlight": {
+					"& *": {
+						userSelect: "text",
+						msUserSelect: "text",
+						MozUserSelect: "text",
+						WebkitUserSelect: "text"
+					}
+				},
+				"& h1, & h2, & h3, & h4, & h5, & h6": {
+					marginTop: theme.spacing(10)
+				},
+				"& h1, & h2, & h3": {
+					borderBottom: `1px solid ${refColor}`
+				},
+				"& a": {
+					color: lightBlue[400]
+				},
+				"& blockquote": {
+					borderLeft: `4px solid ${refColor}`,
+					padding: "0 15px",
+					color: "#777777",
+					"& > :first-child": {
+						marginTop: 0
+					},
+					"& > :last-child": {
+						marginBottom: 0
+					}
+				},
+				"& table": {
+					padding: 0,
+					borderCollapse: "collapse",
+					"& tr": {
+						borderTop: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
+						backgroundColor: "transparent",
+						margin: 0,
+						padding: 0
+					},
+					"& tr:nth-child(2n)": {
+						backgroundColor: theme.palette.type === "dark" ? "#041733" : "whitesmoke"
+					},
+					"& tr th": {
+						fontWeight: "bold",
+						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
+						margin: 0,
+						padding: "6px 13px"
+					},
+					"& tr td": {
+						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
+						margin: 0,
+						padding: "6px 13px"
+					},
+					"& tr th :first-child, & tr td :first-child": {
+						marginTop: 0
+					},
+					"& tr th :last-child, & tr td :last-child": {
+						marginBottom: 0
+					}
+				},
+				"& code:not([class*='language-'])": {
+					backgroundColor: "#020213",
+					color: "white",
+					padding: 5,
+					borderRadius: 5,
+					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					userSelect: "text",
+					msUserSelect: "text",
+					MozUserSelect: "text",
+					WebkitUserSelect: "text"
+				},
+				"& code[class*='language-'], pre[class*='language-']": {
+					color: "#ccc",
+					background: "none",
+					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					fontSize: 16,
+					textAlign: "left",
+					whiteSpace: "pre",
+					wordSpacing: "normal",
+					wordBreak: "normal",
+					wordWrap: "normal",
+					lineHeight: 1.5,
+					tabSize: 4,
+					MozTabSize: 4,
+					hyphens: "none",
+					msHyphens: "none",
+					MozHyphens: "none",
+					WebkitHyphens: "none"
+				},
+				"& pre[class*='language-']": {
+					padding: "1em",
+					margin: ".5em 0",
+					overflow: "auto"
+				},
+				"& :not(pre) > code[class*='language-'], pre[class*='language-']": {
+					background: "#020213",
+					borderRadius: 10
+				},
+				"& :not(pre) > code[class*='language-']": {
+					padding: ".1em",
+					borderRadius: ".3em",
+					whiteSpace: "normal"
+				},
+				"& .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata": {
+					color: "#00c800"
+				},
+				"& .token.punctuation": {
+					color: "#ccc"
+				},
+				"& .token.tag, .token.attr-name, .token.namespace, .token.deleted": {
+					color: "#e2777a"
+				},
+				"& .token.function-name": {
+					color: "#6196cc"
+				},
+				"& .token.boolean, .token.number, .token.function": {
+					color: "#f08d49"
+				},
+				"& .token.property, .token.class-name, .token.constant, .token.symbol": {
+					color: "#f8c555"
+				},
+				"& .token.selector, .token.important, .token.atrule, .token.keyword, .token.builtin": {
+					color: "#cc99cd"
+				},
+				"& .token.string, .token.char, .token.attr-value, .token.regex, .token.variable": {
+					color: "#7ec699"
+				},
+				"& .token.operator, .token.entity, .token.url": {
+					color: "#67cdcc"
+				},
+				"& .token.important, .token.bold": {
+					fontWeight: "bold"
+				},
+				"& .token.italic":  {
+					fontStyle: "italic"
+				},
+				"& .token.entity": {
+					cursor: "help"
+				},
+				"& .token.inserted": {
+					color: "green"
+				}
+			}
+		};
+	})();
+}
+
+/**
+ * 사용자 Props 반환 함수
+ *
+ * @returns {Object} 사용자 Props
+ */
 export async function getStaticProps({ params })
 {
-	const post = getPostBySlug("projects", params.slug, [
+	const post = getPostBySlug("posts", params.slug, [
 		"title",
 		"date",
 		"slug",
 		"author",
 		"content",
 		"ogImage",
-		"coverImage"
+		"coverImage",
+		"category"
 	]);
+
 	const content = await markdownToHtml(post.content || "");
 
 	return {
@@ -73,7 +484,7 @@ export async function getStaticProps({ params })
 
 export async function getStaticPaths()
 {
-	const posts = getTypePosts("projects", ["slug"]);
+	const posts = getTypePosts("posts", ["slug"]);
 
 	return {
 		paths: posts.map((post) =>

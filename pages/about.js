@@ -30,7 +30,7 @@ export default function About({ images })
 
 			<Grow in={true}>
 				<Box component="section">
-					<Top title={MENU_LIST[3].title} image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[3].title} image={`/assets/images/main/${url}`} onlyEng />
 				</Box>
 			</Grow>
 		</React.Fragment>

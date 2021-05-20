@@ -17,11 +17,13 @@ import { KeyboardArrowDown } from "@material-ui/icons";
  *
  * @param {String} title: 제목
  * @param {String} desc: 내용
+ * @param {String} category: 카테고리
+ * @param {boolean} onlyEng: 영문 전용 폰트 사용 여부
  * @param {String} image: 이미지 URL
  *
  * @returns {JSX} JSX 객체
  */
-export default function Top({ title, desc, image })
+export default function Top({ title, desc, category, onlyEng, image })
 {
 	const classes = getStyles(image);
 
@@ -46,7 +48,11 @@ export default function Top({ title, desc, image })
 
 	return (
 		<Box id="top" display="flex" className={classes.top_wrapper}>
-			<Box display="flex" className={classes.top_content}>
+			<Box display="flex" className={onlyEng ? classes.top_content_eng : classes.top_content}>
+				<Typography variant={isMobile ? "h5" : "h3"} align="center">
+					<Flip left cascade>{category && `[${category}]`}</Flip>
+				</Typography>
+
 				<Typography variant={isMobile ? "h2" : "h1"} align="center">
 					<Flip left cascade>{title}</Flip>
 				</Typography>
@@ -72,7 +78,7 @@ export default function Top({ title, desc, image })
  *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(image)
+function getStyles(image, onlyEng)
 {
 	return makeStyles((theme) => ({
 		top_wrapper: {
@@ -100,7 +106,25 @@ function getStyles(image)
 				marginBottom: 60,
 				fontWeight: "bold"
 			},
-			"& h4, & h6": {
+			"& h3, & h4, & h5, & h6": {
+				color: "white",
+				fontWeight: "bold"
+			}
+		},
+		top_content_eng: {
+			flexDirection: "column",
+			width: "100%",
+			height: "100%",
+			padding: 50,
+			justifyContent: "center",
+			alignSelf: "center",
+			"& h1, & h2": {
+				color: "white",
+				marginBottom: 60,
+				fontFamily: "Blacksword, sans-serif",
+				fontWeight: "bold"
+			},
+			"& h3, & h4, & h5, & h6": {
 				color: "white",
 				fontWeight: "bold"
 			}

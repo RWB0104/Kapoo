@@ -55,12 +55,14 @@ function getStyles()
 		},
 		title: {
 			flexGrow: 1,
-			fontWeight: "bold"
+			fontWeight: "bold",
+			fontFamily: "Blacksword, sans-serif"
 		},
 		menu: {
 			paddingLeft: theme.spacing(3),
 			paddingRight: theme.spacing(3),
 			color: "white",
+			fontFamily: "Hack, sans-serif",
 			"&:disabled": {
 				color: text,
 				fontWeight: "bold"

@@ -55,7 +55,7 @@ export default function PostList({ data })
 						...router.query,
 						page: page
 					}
-				})}
+				}, undefined, { scroll: false })}
 			/>
 		</Box>
 	);

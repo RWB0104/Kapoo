@@ -46,7 +46,7 @@ export default function Posts({ posts, images })
 
 			<Box component="section">
 				<Fade>
-					<Top title={MENU_LIST[1].title} desc={`Posts of "${router.query.category}"`} image={`/assets/images/main/${url}`} />
+					<Top title={MENU_LIST[1].title} desc={`Posts of "${router.query.category}"`} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md" className={classes.section}>
 						<Grid container spacing={5}>

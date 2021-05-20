@@ -38,7 +38,7 @@ export default function Index({ images, posts, projects })
 
 			<Box component="section">
 				<Fade>
-					<Top title={TITLE} desc={DESCRIPTION} image={`/assets/images/main/${url}`} />
+					<Top title={TITLE} desc={DESCRIPTION} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md">
 						<Divider />

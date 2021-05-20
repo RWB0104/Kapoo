@@ -31,8 +31,8 @@ export default function ShowBox()
 	return (
 		<Fade>
 			<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
-				<Typography variant={isMobile ? "h5" : "h4"} align="center" className={classes.typo_easter}>{piece.title}</Typography>
-				<Typography variant={isMobile ? "body1" : "h5"} align="center" className={classes.typo_easter}>{piece.author}</Typography>
+				<Typography variant={isMobile ? "h5" : "h3"} align="center" className={classes.typo_easter}>{piece.title}</Typography>
+				<Typography variant={isMobile ? "body1" : "h4"} align="center" className={classes.typo_easter}>{piece.author}</Typography>
 			</Box>
 		</Fade>
 	);
@@ -48,13 +48,14 @@ function getStyles()
 	return makeStyles((theme) => ({
 		box_easter: {
 			padding: theme.spacing(3),
-			backgroundColor: "rgba(0, 0, 0, 0.6)",
+			backgroundAttachment: "fixed",
+			backgroundColor: "rgba(0, 0, 0, 0.5)",
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
 			backgroundPosition: "center",
 			textAlign: "center",
 			height: "30vw",
-			maxHeight: 600,
+			maxHeight: 800,
 			minHeight: 300,
 			display: "flex",
 			flexDirection: "column",
