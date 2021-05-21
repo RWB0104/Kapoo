@@ -27,7 +27,7 @@ export default function PostList({ data })
 
 	const router = useRouter();
 
-	const row = data.filter(element => router.query.category === "All" ? true : element.category === router.query.category);
+	const row = data.filter(element => router.query.category === "All" ? true : element.category === router.query.category).sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
 
 	const total = Math.max(Math.ceil(row.length / MAX_CONTENT), 1);
 	const page = parseInt(router.query.page) || 1;

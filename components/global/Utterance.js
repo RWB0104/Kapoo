@@ -15,20 +15,26 @@ export default function Utterance()
 
 	useEffect(() =>
 	{
-		const script = document.createElement("script");
-		script.src = "https://utteranc.es/client.js";
-		script.async = true,
-		script.setAttribute("repo", "RWB0104/RWB0104.github.io-comments");
-		script.setAttribute("issue-term", "pathname");
-		script.setAttribute("theme", type === "dark" ? "github-dark" : "github-light");
-		script.setAttribute("crossOrigin", "anonymous");
-
-		document.getElementById("test").appendChild(script);
-
-		return (() =>
+		if (document.querySelectorAll("#test > div").length === 0)
 		{
+			const wrapper = document.createElement("div");
 
-		});
+			const script = document.createElement("script");
+			script.src = "https://utteranc.es/client.js";
+			script.async = true,
+			script.setAttribute("repo", "RWB0104/RWB0104.github.io-comments");
+			script.setAttribute("issue-term", "pathname");
+			script.setAttribute("theme", type === "dark" ? "github-dark" : "github-light");
+			script.setAttribute("crossOrigin", "anonymous");
+
+			wrapper.appendChild(script);
+			document.getElementById("test").appendChild(wrapper);
+		}
+
+		else
+		{
+			document.querySelector("#test iframe")?.contentWindow.postMessage({ type: "set-theme", theme: type === "dark" ? "github-dark" : "github-light" }, "https://utteranc.es/");
+		}
 	});
 
 	return (

@@ -59,6 +59,10 @@ function getStyles()
 			marginTop: theme.spacing(7),
 			marginBottom: theme.spacing(7)
 		},
+		typo_title: {
+			fontFamily: "Blacksword, sans-serif",
+			fontWeight: "bold"
+		},
 		more_grid: {
 			textAlign: "center"
 		},

@@ -36,7 +36,7 @@ export default function Footer()
 
 						<Box display="flex" flexDirection="column" justifyContent="center">
 							<Typography variant="subtitle2" align={isMobile ? "center" : "left"}>
-								🔗 <Link href="https://rwb0104.github.io/">https://rwb0104.github.io/</Link>
+								🔗 <Link href="https://rwb0104.github.io/" className={classes.link}>https://rwb0104.github.io/</Link>
 							</Typography>
 
 							<Typography variant="subtitle1" align={isMobile ? "center" : "left"} className={classes.desc}>{DESCRIPTION}</Typography>
@@ -131,10 +131,18 @@ function getStyles()
 		title: {
 			marginBottom: theme.spacing(3),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "Hack, sans-serif"
+			fontFamily: "바른히피, sans-serif",
+			fontSize: "1.75rem",
+			fontWeight: "bold"
 		},
 		desc: {
-			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555"
+			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
+			fontFamily: "바른히피, sans-serif",
+			fontSize: "1.25rem"
+		},
+		link: {
+			fontFamily: "바른히피, sans-serif",
+			fontSize: "1.25rem"
 		},
 		stack_icon: {
 			marginLeft: theme.spacing(2),
@@ -144,7 +152,8 @@ function getStyles()
 		stack_typo: {
 			margin: theme.spacing(1),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "Hack, sans-serif"
+			fontFamily: "바른히피, sans-serif",
+			fontSize: "1.25rem"
 		}
 	}))();
 }

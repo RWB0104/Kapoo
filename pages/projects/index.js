@@ -12,7 +12,7 @@ import { Fade } from "react-reveal";
 
 // 사용자 모듈
 import ProjectList from "../../components/section/projects/ProjectList";
-import { getMainImages, getTypePosts } from "../../common/api";
+import { getMainImages, getPosts } from "../../common/api";
 import Top from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
@@ -101,15 +101,7 @@ function getStyles()
  */
 export async function getStaticProps()
 {
-	const projects = getTypePosts("projects", [
-		"title",
-		"date",
-		"slug",
-		"author",
-		"coverImage",
-		"excerpt",
-		"type"
-	]);
+	const projects = getPosts("projects");
 
 	const images = getMainImages();
 

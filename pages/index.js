@@ -15,7 +15,7 @@ import Top from "../components/global/Top";
 import Title from "../components/global/Title";
 import ShowBox from "../components/section/index/ShowBox";
 import Preview from "../components/section/index/Preview";
-import { getMainImages, getTypePosts } from "../common/api";
+import { getMainImages, getPosts } from "../common/api";
 import { DESCRIPTION, MENU_LIST, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
 
@@ -64,26 +64,9 @@ export default function Index({ images, posts, projects })
  */
 export async function getStaticProps()
 {
-	const posts = getTypePosts("posts", [
-		"title",
-		"date",
-		"slug",
-		"author",
-		"coverImage",
-		"excerpt",
-		"type",
-		"category"
-	]);
+	const posts = getPosts("posts");
 
-	const projects = getTypePosts("projects", [
-		"title",
-		"date",
-		"slug",
-		"author",
-		"coverImage",
-		"excerpt",
-		"type"
-	]);
+	const projects = getPosts("projects");
 
 	const images = getMainImages();
 

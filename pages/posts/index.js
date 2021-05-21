@@ -16,7 +16,7 @@ import { Fade } from "react-reveal";
 import Top from "../../components/global/Top";
 import Title from "../../components/global/Title";
 import PostList from "../../components/section/posts/PostList";
-import { getMainImages, getTypePosts } from "../../common/api";
+import { getMainImages, getPosts } from "../../common/api";
 import { getRandomItem } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
 
@@ -90,13 +90,12 @@ export default function Posts({ posts, images })
  */
 function onSelectCategory(e, router)
 {
-	console.dir(e.target.value);
 	router.push({
 		query: {
 			page: 1,
 			category: e.target.value
 		}
-	},undefined, {
+	}, undefined, {
 		scroll: false
 	});
 }
@@ -122,17 +121,7 @@ function getStyles()
  */
 export async function getStaticProps()
 {
-	const posts = getTypePosts("posts", [
-		"title",
-		"date",
-		"slug",
-		"author",
-		"coverImage",
-		"excerpt",
-		"type",
-		"category",
-		"tag"
-	]);
+	const posts = getPosts("posts");
 
 	const images = getMainImages();
 

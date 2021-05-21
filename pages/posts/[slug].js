@@ -8,7 +8,6 @@
 // 라이브러리 모듈
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import ErrorPage from "next/error";
 import { Container, Divider, makeStyles } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
@@ -16,9 +15,9 @@ import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey
 // 사용자 모듈
 import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
-import { getPostBySlug, getTypePosts, markdownToHtml } from "../../common/api";
-import { getFormattedDate } from "../../common/common";
 import Utterance from "../../components/global/Utterance";
+import { getPostBySlug, getPosts, markdownToHtml } from "../../common/api";
+import { getFormattedDate } from "../../common/common";
 
 /**
  * 게시글 JSX 반환 함수
@@ -63,7 +62,7 @@ export default function Post({ post })
 
 					<Divider />
 
-					<Utterance />
+					{post.comment && <Utterance />}
 				</Container>
 			</>
 		);
@@ -254,16 +253,17 @@ function getStyles()
 
 		return {
 			markdown: {
-				fontSize: "1.5em",
-				lineHeight: 1.8,
+				fontSize: "1.5rem",
+				fontFamily: "바른히피, sans-serif",
+				lineHeight: 1.5,
 				"& .center": {
 					textAlign: "center"
 				},
 				"& .small": {
-					fontSize: "1.25em"
+					fontSize: "1.25rem"
 				},
 				"& .large": {
-					fontSize: "1.75em"
+					fontSize: "1.75rem"
 				},
 				"& .bold": {
 					fontWeight: "bold"
@@ -379,6 +379,9 @@ function getStyles()
 					padding: 5,
 					borderRadius: 5,
 					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					fontSize: "0.75em",
+					marginLeft: theme.spacing(1),
+					marginRight: theme.spacing(1),
 					userSelect: "text",
 					msUserSelect: "text",
 					MozUserSelect: "text",
@@ -467,16 +470,7 @@ function getStyles()
  */
 export async function getStaticProps({ params })
 {
-	const post = getPostBySlug("posts", params.slug, [
-		"title",
-		"date",
-		"slug",
-		"author",
-		"content",
-		"ogImage",
-		"coverImage",
-		"category"
-	]);
+	const post = getPostBySlug("posts", params.slug);
 
 	const content = await markdownToHtml(post.content || "");
 
@@ -492,7 +486,7 @@ export async function getStaticProps({ params })
 
 export async function getStaticPaths()
 {
-	const posts = getTypePosts("posts", ["slug"]);
+	const posts = getPosts("posts");
 
 	return {
 		paths: posts.map((post) =>

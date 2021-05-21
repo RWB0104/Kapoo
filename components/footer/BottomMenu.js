@@ -6,12 +6,17 @@
  */
 
 // 라이브러리 모듈
-import { BottomNavigation, BottomNavigationAction, Box, makeStyles } from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, makeStyles } from "@material-ui/core";
 import { useRouter } from "next/router";
 
 // 사용자 모듈
 import { MENU_LIST } from "../../common/env";
 
+/**
+ * 하단 메뉴 JSX 반환 함수
+ *
+ * @returns {JSX} JSX 객체
+ */
 export default function BottomMenu()
 {
 	const classes = getStyles();

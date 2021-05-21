@@ -38,6 +38,7 @@ export default function Top({ title, desc, category, onlyEng, image })
 	{
 		document.getElementById("top").addEventListener("wheel", (e) =>
 		{
+			// 하단 스크롤일 경우
 			if (e.deltaY > 0)
 			{
 				e.preventDefault();
@@ -47,17 +48,17 @@ export default function Top({ title, desc, category, onlyEng, image })
 	});
 
 	return (
-		<Box id="top" display="flex" className={classes.top_wrapper}>
-			<Box display="flex" className={onlyEng ? classes.top_content_eng : classes.top_content}>
-				<Typography variant={isMobile ? "h5" : "h3"} align="center">
+		<Box id="top" display="flex" flexDirection="column" className={classes.top_wrapper}>
+			<Box display="flex" flexDirection="column" justifyContent="center" alignSelf="center" className={classes.top_content}>
+				<Typography variant={isMobile ? "h5" : "h3"} align="center" className={classes.desc}>
 					<Flip left cascade>{category && `[${category}]`}</Flip>
 				</Typography>
 
-				<Typography variant={isMobile ? "h2" : "h1"} align="center">
+				<Typography variant={isMobile ? "h3" : "h1"} align="center" className={onlyEng ? classes.title_eng : classes.title}>
 					<Flip left cascade>{title}</Flip>
 				</Typography>
 
-				<Typography variant={isMobile ? "h6" : "h4"} align="center">
+				<Typography variant={isMobile ? "h6" : "h4"} align="center" className={classes.desc}>
 					<Flip left cascade>{desc}</Flip>
 				</Typography>
 			</Box>
@@ -82,7 +83,6 @@ function getStyles(image, onlyEng)
 {
 	return makeStyles((theme) => ({
 		top_wrapper: {
-			flexDirection: "column",
 			height: "calc(100vh - 64px)",
 			backgroundImage: `url(${image})`,
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
@@ -95,39 +95,25 @@ function getStyles(image, onlyEng)
 			}
 		},
 		top_content: {
-			flexDirection: "column",
 			width: "100%",
 			height: "100%",
-			padding: 50,
-			justifyContent: "center",
-			alignSelf: "center",
-			"& h1, & h2": {
-				color: "white",
-				marginBottom: 60,
-				fontWeight: "bold"
-			},
-			"& h3, & h4, & h5, & h6": {
-				color: "white",
-				fontWeight: "bold"
-			}
+			padding: 50
 		},
-		top_content_eng: {
-			flexDirection: "column",
-			width: "100%",
-			height: "100%",
-			padding: 50,
-			justifyContent: "center",
-			alignSelf: "center",
-			"& h1, & h2": {
-				color: "white",
-				marginBottom: 60,
-				fontFamily: "Blacksword, sans-serif",
-				fontWeight: "bold"
-			},
-			"& h3, & h4, & h5, & h6": {
-				color: "white",
-				fontWeight: "bold"
-			}
+		title: {
+			color: "white",
+			marginBottom: 60,
+			fontFamily: "바른히피, sans-serif",
+			fontWeight: "bold"
+		},
+		title_eng: {
+			color: "white",
+			marginBottom: 60,
+			fontFamily: "Blacksword, sans-serif",
+			fontWeight: "bold"
+		},
+		desc: {
+			color: "white",
+			fontFamily: "바른히피, sans-serif"
 		},
 		down: {
 			width: "100%",

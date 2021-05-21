@@ -36,62 +36,30 @@ export function getPostSlugs(type)
  *
  * @returns
  */
-export function getPostBySlug(type, slug, fields = [])
+export function getPostBySlug(type, slug)
 {
 	const realSlug = slug.replace(/\.md$/, "");
 	const fullPath = join(`${POST_DIR}/${type}`, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const items = {};
-
-	fields.forEach((field) =>
-	{
-		// slug 필드가 포함될 경우
-		if (field === "slug")
-		{
-			items[field] = realSlug;
-		}
-
-		// content 필드가 포함될 경우
-		if (field === "content")
-		{
-			items[field] = content;
-		}
-
-		// metadate에 해당 필드가 존재할 경우
-		if (data[field])
-		{
-			items[field] = data[field];
-		}
-	});
-
-	return items;
+	return {
+		...data,
+		slug: realSlug,
+		content: content
+	};
 }
 
 /**
- * 전체 게시물 리스트 반환 함수
- *
- * @param {String[]} fields: 메타데이터 필드
- *
- * @returns {JSON[]} 전체 게시물 리스트
- */
-export function getAllPosts(fields = [])
-{
-	return getPostSlugs().map((slug) => getPostBySlug(type, slug, fields)).sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-}
-
-/**
- * 타입별 게시물 리스트 반환 함수
+ * 게시물 리스트 반환 함수
  *
  * @param {String} type: 타입
- * @param {String[]} fields: 메타데이터 필드
  *
- * @returns {JSON[]} 타입별 게시물 리스트
+ * @returns {JSON[]} 게시물 리스트
  */
-export function getTypePosts(type, fields = [])
+export function getPosts(type)
 {
-	return getPostSlugs(type).map((slug) => getPostBySlug(type, slug, fields)).sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+	return getPostSlugs(type).map((slug) => getPostBySlug(type, slug)).filter(post => post.publish);
 }
 
 /**

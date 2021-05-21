@@ -16,7 +16,7 @@ import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey
 // 사용자 모듈
 import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
-import { getPostBySlug, getTypePosts, markdownToHtml } from "../../common/api";
+import { getPostBySlug, getPosts, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
 
 /**
@@ -484,7 +484,7 @@ export async function getStaticProps({ params })
 
 export async function getStaticPaths()
 {
-	const posts = getTypePosts("posts", ["slug"]);
+	const posts = getPosts("posts");
 
 	return {
 		paths: posts.map((post) =>

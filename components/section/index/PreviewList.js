@@ -24,6 +24,8 @@ export default function PreviewList({ type, data })
 
 	const list = [];
 
+	data.sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
+
 	for (let i = 0; i < 4; i++)
 	{
 		// 게시글이 있을 경우
