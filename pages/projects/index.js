@@ -7,12 +7,12 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 import { Fade } from "react-reveal";
+import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 
 // 사용자 모듈
 import ProjectList from "../../components/section/projects/ProjectList";
-import { getMainImages, getPosts } from "../../common/api";
+import { getMainImages, getContents } from "../../common/api";
 import Top from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
@@ -101,7 +101,7 @@ function getStyles()
  */
 export async function getStaticProps()
 {
-	const projects = getPosts("projects");
+	const projects = getContents("projects");
 
 	const images = getMainImages();
 

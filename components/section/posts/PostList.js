@@ -6,9 +6,9 @@
  */
 
 // 라이브러리 모듈
-import { Box, Grid, makeStyles, TextField } from "@material-ui/core";
-import { Autocomplete, Pagination } from "@material-ui/lab";
 import { useRouter } from "next/router";
+import { Box, Grid, makeStyles } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 
 // 사용자 모듈
 import { MAX_CONTENT } from "../../../common/env";
@@ -27,7 +27,9 @@ export default function PostList({ data })
 
 	const router = useRouter();
 
-	const row = data.filter(element => router.query.category === "All" ? true : element.category === router.query.category).sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
+	const category = router.query.category || "All";
+
+	const row = data.filter(element => category === "All" ? true : element.category === category).sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
 
 	const total = Math.max(Math.ceil(row.length / MAX_CONTENT), 1);
 	const page = parseInt(router.query.page) || 1;
@@ -52,7 +54,7 @@ export default function PostList({ data })
 				showLastButton
 				onChange={(e, page) => router.push({
 					query: {
-						...router.query,
+						category: category,
 						page: page
 					}
 				}, undefined, { scroll: false })}

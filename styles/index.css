@@ -23,7 +23,7 @@
 
 @font-face {
 	font-family: "바른히피";
-	src: url("/assets/fonts/바른히피.ttf") format("truetype")
+	src: url("/assets/fonts/dovemayo.otf")
 }
 
 *:not(.dragable) {

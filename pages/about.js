@@ -8,12 +8,13 @@
 // 라이브러리 모듈
 import React from "react";
 import { Box, Grow } from "@material-ui/core";
-import Head from "next/head";
+
+// 사용자 모듈
 import Top from "../components/global/Top";
+import Title from "../components/global/Title";
 import { getRandomItem } from "../common/common";
 import { getMainImages } from "../common/api";
 import { MENU_LIST } from "../common/env";
-import Title from "../components/global/Title";
 
 /**
  * 소개 페이지 JSX 반환 함수

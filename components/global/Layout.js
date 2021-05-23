@@ -6,17 +6,17 @@
  */
 
 // 라이브러리 모듈
+import { useEffect } from "react";
+import { blue, indigo } from "@material-ui/core/colors";
 import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from "@material-ui/core";
 import { useRecoilValue } from "recoil";
 
 // 사용자 모듈
-import Footer from "../footer/Footer";
 import Header from "../header/Header";
-import { darkAtom } from "../../common/states";
+import Footer from "../footer/Footer";
 import BottomMenu from "../footer/BottomMenu";
 import ThemeSwitch from "./ThemeSwitch";
-import { useEffect } from "react";
-import { blue, indigo } from "@material-ui/core/colors";
+import { darkAtom } from "../../common/states";
 
 /**
  * 레이아웃 JSX 반환 함수

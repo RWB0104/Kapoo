@@ -8,17 +8,18 @@
 // 라이브러리 모듈
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
+
+// 사용자 모듈
 import PostItem from "../posts/PostItem";
 
 /**
  * 미리보기 컴포넌트 반환 함수
  *
- * @param {String} type: 컨텐츠 타입
  * @param {data} data: 게시글 리스트
  *
  * @returns {JSX} JSX 객체
  */
-export default function PreviewList({ type, data })
+export default function PreviewList({ data })
 {
 	const classes = getStyles();
 
@@ -49,21 +50,9 @@ export default function PreviewList({ type, data })
  */
 function getStyles()
 {
-	return makeStyles((theme) => ({
+	return makeStyles(() => ({
 		contents_grid: {
 			width: "100%"
-		},
-		contents: {
-			width: "100%",
-			minHeight: 400,
-			padding: theme.spacing(5),
-			color: "white",
-			overflow: "hidden",
-			backgroundColor: "rgba(0, 0, 0, 0.5)",
-			backgroundBlendMode: "multiply",
-			backgroundSize: "cover",
-			backgroundPosition: "center",
-			borderRadius: 20
 		}
 	}))();
 }

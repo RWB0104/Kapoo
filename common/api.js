@@ -14,32 +14,32 @@ import html from "remark-html";
 import gfm from "remark-gfm";
 import prism from "remark-prism";
 
-const POST_DIR = join(process.cwd(), "_posts");
+const CONTENT_DIR = join(process.cwd(), "_posts");
 
 /**
- * 게시물 제목 리스트 반환 함수
+ * 컨텐츠 제목 리스트 반환 함수
  *
  * @param {String} type: 타입
  *
- * @returns {String[]} 게시물 제목 리스트
+ * @returns {String[]} 컨텐츠 제목 리스트
  */
-export function getPostSlugs(type)
+export function getContentSlugs(type)
 {
-	return fs.readdirSync(`${POST_DIR}/${type}`);
+	return fs.readdirSync(`${CONTENT_DIR}/${type}`);
 }
 
 /**
- * 게시물 반환 함수
+ * 컨텐츠 반환 함수
  *
+ * @param {String} type: 타입
  * @param {String} slug: 게시물 제목
- * @param {String[]} fields: 메타데이터 필드
  *
- * @returns
+ * @returns {Object} 컨텐츠 내용
  */
-export function getPostBySlug(type, slug)
+export function getContentBySlug(type, slug)
 {
 	const realSlug = slug.replace(/\.md$/, "");
-	const fullPath = join(`${POST_DIR}/${type}`, `${realSlug}.md`);
+	const fullPath = join(`${CONTENT_DIR}/${type}`, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
@@ -51,15 +51,15 @@ export function getPostBySlug(type, slug)
 }
 
 /**
- * 게시물 리스트 반환 함수
+ * 컨텐츠 리스트 반환 함수
  *
  * @param {String} type: 타입
  *
- * @returns {JSON[]} 게시물 리스트
+ * @returns {JSON[]} 컨텐츠 리스트
  */
-export function getPosts(type)
+export function getContents(type)
 {
-	return getPostSlugs(type).map((slug) => getPostBySlug(type, slug)).filter(post => post.publish);
+	return getContentSlugs(type).map((slug) => getContentBySlug(type, slug)).filter(post => post.publish);
 }
 
 /**

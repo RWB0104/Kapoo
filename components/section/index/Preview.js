@@ -6,9 +6,9 @@
  */
 
 // 라이브러리 모듈
+import { useRouter } from "next/router";
 import { Box, Button, Grid, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import { useRouter } from "next/router";
 
 // 사용자 모듈
 import PreviewList from "./PreviewList";
@@ -34,10 +34,10 @@ export default function Preview({ menu, data })
 		<Box component="article" className={classes.box}>
 			<Grid container spacing={5}>
 				<Grid item xs={12}>
-					<Typography variant={isMobile ? "h4" : "h2"} align="center" className={classes.typo_title} gutterBottom>{menu.title}</Typography>
+					<Typography variant={isMobile ? "h3" : "h1"} align="center" className={classes.typo_title} gutterBottom>{menu.title}</Typography>
 				</Grid>
 
-				<PreviewList type={menu.url.pathname} data={data} />
+				<PreviewList data={data} />
 
 				<Grid item xs={12} className={classes.more_grid}>
 					<Button className={classes.more} startIcon={<Add />} onClick={() => router.push(menu.url)}>M O R E</Button>

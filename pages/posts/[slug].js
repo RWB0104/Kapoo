@@ -6,18 +6,23 @@
  */
 
 // 라이브러리 모듈
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { Container, Divider, makeStyles } from "@material-ui/core";
-import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
+import { Avatar, Box, Button, Container, Divider, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
 
 // 사용자 모듈
 import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
-import Utterance from "../../components/global/Utterance";
-import { getPostBySlug, getPosts, markdownToHtml } from "../../common/api";
+import ContentsBody from "../../components/section/contents/CotentsBody";
+import SideMover from "../../components/section/contents/SideMover";
+import Utterances from "../../components/section/contents/Utterances";
+import NoUtterances from "../../components/section/contents/NoUtterances";
+import { getContentBySlug, getContents, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
+import { MENU_LIST } from "../../common/env";
+import Head from "next/head";
+import RelatedList from "../../components/section/posts/RelatedList";
 
 /**
  * 게시글 JSX 반환 함수
@@ -26,21 +31,13 @@ import { getFormattedDate } from "../../common/common";
  *
  * @returns {JSX} JSX 객체
  */
-export default function Post({ post })
+export default function Post({ page, post, group })
 {
-	const router = useRouter();
-
 	const classes = getStyles();
 
-	useEffect(() =>
-	{
-		const img = document.getElementsByTagName("img");
+	const router = useRouter();
 
-		for (const element of img)
-		{
-			element.addEventListener("contextmenu", e => e.preventDefault());
-		}
-	});
+	console.dir(group);
 
 	// 유효하지 않은 경로일 경우
 	if (!router.isFallback && !post?.slug)
@@ -53,16 +50,48 @@ export default function Post({ post })
 	{
 		return (
 			<>
+				<Head>
+					<meta property="og:site_name" content="Kapoo" />
+					<meta property="og:title" content={post.title} />
+					<meta property="og:description" content={post.excerpt} />
+					<meta property="og:type" content="website" />
+					<meta property="og:url" content={`https://rwb0104.github.io/posts/${post.slug}`} />
+					<meta property="og:image" content={post.coverImage} />
+					<meta property="og:locale" content="ko_KR" />
+				</Head>
+
 				<Title title={post.title} />
 
 				<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
 
 				<Container maxWidth="md">
-					<div className={classes.markdown} dangerouslySetInnerHTML={{ __html: post.content }}></div>
+					<ContentsBody content={post} />
 
-					<Divider />
+					{group.length > 0 && <RelatedList list={group} />}
 
-					{post.comment && <Utterance />}
+					<SideMover page={page} />
+
+					<Box display="flex" alignItems="center" className={classes.divider}>
+						<Box flexGrow={1}>
+							<Divider />
+						</Box>
+
+						<Box>
+							<Avatar alt="RWB" className={classes.avatar} src="/assets/images/profile.jpg" />
+						</Box>
+
+						<Box flexGrow={1}>
+							<Divider />
+						</Box>
+					</Box>
+
+					<Grid container justify="flex-end">
+						<Grid item>
+							<Button variant="outlined" className={classes.list_button} fullWidth startIcon={<Menu />} onClick={() => router.push(MENU_LIST[1].url)}>목록</Button>
+						</Grid>
+					</Grid>
+
+					{post.comment ? <Utterances /> : <NoUtterances />}
 				</Container>
 			</>
 		);
@@ -76,406 +105,48 @@ export default function Post({ post })
  */
 function getStyles()
 {
-	return makeStyles((theme) =>
-	{
-		const colorRed = Object.entries(red).reduce((acc, element) =>
-		{
-			acc[`& .red-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorPink = Object.entries(pink).reduce((acc, element) =>
-		{
-			acc[`& .pink-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorPurple = Object.entries(purple).reduce((acc, element) =>
-		{
-			acc[`& .purple-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorDeepPurple = Object.entries(deepPurple).reduce((acc, element) =>
-		{
-			acc[`& .deepPurple-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorIndigo = Object.entries(indigo).reduce((acc, element) =>
-		{
-			acc[`& .indigo-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorBlue = Object.entries(blue).reduce((acc, element) =>
-		{
-			acc[`& .blue-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorLightBlue = Object.entries(lightBlue).reduce((acc, element) =>
-		{
-			acc[`& .lightBlue-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorCyan = Object.entries(cyan).reduce((acc, element) =>
-		{
-			acc[`& .cyan-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorTeal = Object.entries(teal).reduce((acc, element) =>
-		{
-			acc[`& .teal-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorGreen = Object.entries(green).reduce((acc, element) =>
-		{
-			acc[`& .green-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorLightGreen = Object.entries(lightGreen).reduce((acc, element) =>
-		{
-			acc[`& .lightGreen-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorLime = Object.entries(lime).reduce((acc, element) =>
-		{
-			acc[`& .lime-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorYellow = Object.entries(yellow).reduce((acc, element) =>
-		{
-			acc[`& .yellow-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorAmber = Object.entries(amber).reduce((acc, element) =>
-		{
-			acc[`& .amber-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorOrange = Object.entries(orange).reduce((acc, element) =>
-		{
-			acc[`& .orange-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorDeepOrange = Object.entries(deepOrange).reduce((acc, element) =>
-		{
-			acc[`& .deepOrange-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorBrown = Object.entries(brown).reduce((acc, element) =>
-		{
-			acc[`& .brown-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorGrey = Object.entries(grey).reduce((acc, element) =>
-		{
-			acc[`& .grey-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const colorBlueGrey = Object.entries(blueGrey).reduce((acc, element) =>
-		{
-			acc[`& .blueGrey-${element[0]}`] = {
-				color: element[1]
-			};
-
-			return acc;
-		}, {});
-
-		const refColor = theme.palette.type === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.12)";
-
-		return {
-			markdown: {
-				fontSize: "1.5rem",
-				fontFamily: "바른히피, sans-serif",
-				lineHeight: 1.5,
-				"& .center": {
-					textAlign: "center"
-				},
-				"& .small": {
-					fontSize: "1.25rem"
-				},
-				"& .large": {
-					fontSize: "1.75rem"
-				},
-				"& .bold": {
-					fontWeight: "bold"
-				},
-				"& .primary": {
-					color: theme.palette.primary[theme.palette.type]
-				},
-				"& .secondary": {
-					color: theme.palette.secondary[theme.palette.type]
-				},
-				"& .error": {
-					color: theme.palette.error[theme.palette.type]
-				},
-				"& .warning": {
-					color: theme.palette.warning[theme.palette.type]
-				},
-				"& .info": {
-					color: theme.palette.warning[theme.palette.type]
-				},
-				"& .success": {
-					color: theme.palette.warning[theme.palette.type]
-				},
-				...colorRed,
-				...colorPink,
-				...colorPurple,
-				...colorDeepPurple,
-				...colorIndigo,
-				...colorBlue,
-				...colorLightBlue,
-				...colorCyan,
-				...colorTeal,
-				...colorGreen,
-				...colorLightGreen,
-				...colorLime,
-				...colorYellow,
-				...colorAmber,
-				...colorOrange,
-				...colorDeepOrange,
-				...colorBrown,
-				...colorGrey,
-				...colorBlueGrey,
-				"& .MuiDivider-root": {
-					border: "none",
-					height: 1,
-					margin: 0,
-					flexShrink: 0,
-					backgroundColor: refColor
-				},
-				"& .remark-highlight": {
-					"& *": {
-						userSelect: "text",
-						msUserSelect: "text",
-						MozUserSelect: "text",
-						WebkitUserSelect: "text"
-					}
-				},
-				"& h1, & h2, & h3, & h4, & h5, & h6": {
-					marginTop: theme.spacing(10)
-				},
-				"& h1, & h2, & h3": {
-					borderBottom: `1px solid ${refColor}`
-				},
-				"& a": {
-					color: lightBlue[400]
-				},
-				"& blockquote": {
-					borderLeft: `4px solid ${orange[500]}`,
-					marginTop: theme.spacing(8),
-					marginBottom: theme.spacing(8),
-					padding: "5px 25px",
-					fontStyle: "italic",
-					color: "#777777",
-					"& > :first-child": {
-						marginTop: 0
-					},
-					"& > :last-child": {
-						marginBottom: 0
-					}
-				},
-				"& table": {
-					padding: 0,
-					borderCollapse: "collapse",
-					"& tr": {
-						borderTop: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
-						backgroundColor: "transparent",
-						margin: 0,
-						padding: 0
-					},
-					"& tr:nth-child(2n)": {
-						backgroundColor: theme.palette.type === "dark" ? "#041733" : "whitesmoke"
-					},
-					"& tr th": {
-						fontWeight: "bold",
-						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
-						margin: 0,
-						padding: "6px 13px"
-					},
-					"& tr td": {
-						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
-						margin: 0,
-						padding: "6px 13px"
-					},
-					"& tr th :first-child, & tr td :first-child": {
-						marginTop: 0
-					},
-					"& tr th :last-child, & tr td :last-child": {
-						marginBottom: 0
-					}
-				},
-				"& code:not([class*='language-'])": {
-					backgroundColor: "#020213",
-					color: "white",
-					padding: 5,
-					borderRadius: 5,
-					fontFamily: "Hack, Spoqa Han Sans, monospace",
-					fontSize: "0.75em",
-					marginLeft: theme.spacing(1),
-					marginRight: theme.spacing(1),
-					userSelect: "text",
-					msUserSelect: "text",
-					MozUserSelect: "text",
-					WebkitUserSelect: "text"
-				},
-				"& code[class*='language-'], pre[class*='language-']": {
-					color: "#ccc",
-					background: "none",
-					fontFamily: "Hack, Spoqa Han Sans, monospace",
-					fontSize: 16,
-					textAlign: "left",
-					whiteSpace: "pre",
-					wordSpacing: "normal",
-					wordBreak: "normal",
-					wordWrap: "normal",
-					lineHeight: 1.5,
-					tabSize: 4,
-					MozTabSize: 4,
-					hyphens: "none",
-					msHyphens: "none",
-					MozHyphens: "none",
-					WebkitHyphens: "none"
-				},
-				"& pre[class*='language-']": {
-					padding: "1em",
-					margin: ".5em 0",
-					overflow: "auto"
-				},
-				"& :not(pre) > code[class*='language-'], pre[class*='language-']": {
-					background: "#020213",
-					borderRadius: 10
-				},
-				"& :not(pre) > code[class*='language-']": {
-					padding: ".1em",
-					borderRadius: ".3em",
-					whiteSpace: "normal"
-				},
-				"& .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata": {
-					color: "#00c800"
-				},
-				"& .token.punctuation": {
-					color: "#ccc"
-				},
-				"& .token.tag, .token.attr-name, .token.namespace, .token.deleted": {
-					color: "#e2777a"
-				},
-				"& .token.function-name": {
-					color: "#6196cc"
-				},
-				"& .token.boolean, .token.number, .token.function": {
-					color: "#f08d49"
-				},
-				"& .token.property, .token.class-name, .token.constant, .token.symbol": {
-					color: "#f8c555"
-				},
-				"& .token.selector, .token.important, .token.atrule, .token.keyword, .token.builtin": {
-					color: "#cc99cd"
-				},
-				"& .token.string, .token.char, .token.attr-value, .token.regex, .token.variable": {
-					color: "#7ec699"
-				},
-				"& .token.operator, .token.entity, .token.url": {
-					color: "#67cdcc"
-				},
-				"& .token.important, .token.bold": {
-					fontWeight: "bold"
-				},
-				"& .token.italic":  {
-					fontStyle: "italic"
-				},
-				"& .token.entity": {
-					cursor: "help"
-				},
-				"& .token.inserted": {
-					color: "green"
-				}
-			}
-		};
-	})();
+	return makeStyles((theme) => ({
+		divider: {
+			marginTop: theme.spacing(3),
+			marginBottom: theme.spacing(3)
+		},
+		avatar: {
+			marginRight: theme.spacing(3),
+			marginLeft: theme.spacing(3)
+		},
+		list_button: {
+			paddingRight: theme.spacing(2),
+			paddingLeft: theme.spacing(2)
+		}
+	}))();
 }
 
 /**
  * 사용자 Props 반환 함수
  *
+ * @param {Object} params: 컨텐츠
+ *
  * @returns {Object} 사용자 Props
  */
 export async function getStaticProps({ params })
 {
-	const post = getPostBySlug("posts", params.slug);
+	const posts = getContents("posts");
+	const post = getContentBySlug("posts", params.slug);
+
+	const index = posts.findIndex(element => element.slug === post.slug);
+
+	const group = post.group ? posts.filter(element => (element.group === post.group && element.slug !== post.slug)) : [];
 
 	const content = await markdownToHtml(post.content || "");
 
 	return {
 		props: {
+			page: {
+				type: "posts",
+				prev: index - 1 > 0 ? posts[index - 1] : -1,
+				next: index + 1 > posts.length - 1 ? -1 : posts[index + 1]
+			},
+			group: group,
 			post: {
 				...post,
 				content
@@ -484,9 +155,14 @@ export async function getStaticProps({ params })
 	};
 }
 
+/**
+ * 동적 경로 반환 함수
+ *
+ * @returns {Object} 동적 경로 객체
+ */
 export async function getStaticPaths()
 {
-	const posts = getPosts("posts");
+	const posts = getContents("posts");
 
 	return {
 		paths: posts.map((post) =>

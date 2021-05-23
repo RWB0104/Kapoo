@@ -6,11 +6,11 @@
  */
 
 // 라이브러리 모듈
-import { Box, ButtonBase, Chip, Grid, Link, makeStyles, Typography, Zoom } from "@material-ui/core";
+import { Fade } from "react-reveal";
+import { useRouter } from "next/router";
+import { Box, ButtonBase, Chip, Grid, makeStyles, Typography } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import { LocalOffer } from "@material-ui/icons";
-import { useRouter } from "next/router";
-import { Fade } from "react-reveal";
 
 /**
  * 게시글 아이템 JSX 반환 함수
@@ -29,7 +29,7 @@ export default function PostItem({ item, index })
 	return (
 
 		<Grid component="article" item xs={12}>
-			<Fade right>
+			<Fade>
 				<ButtonBase className={classes.post_button} onClick={() => router.push(`/posts/${item.slug}`)}>
 					<Grid container spacing={0}>
 						<Grid className={classes.image_wrap, "wrapper"} item xs={4}>

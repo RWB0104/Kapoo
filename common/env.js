@@ -26,25 +26,13 @@ export const MENU_LIST = [
 	{
 		id: 2,
 		title: "Posts",
-		url: {
-			pathname: "/posts",
-			query: {
-				page: 1,
-				category: "All"
-			}
-		},
+		url: { pathname: "/posts" },
 		icon: <Apps />
 	},
 	{
 		id: 3,
 		title: "Projects",
-		url: {
-			pathname: "/projects",
-			query: {
-				page: 1,
-				category: "All"
-			}
-		},
+		url: { pathname: "/projects" },
 		icon: <Stars />
 	},
 	{
@@ -170,6 +158,11 @@ export const PIECE = [
 		title: "No kids, No women",
 		author: "Leon",
 		images: "https://user-images.githubusercontent.com/50317129/118973681-e4425d00-b9ac-11eb-8db5-301f55bd6472.png"
+	},
+	{
+		title: "이런 날엔, 너 같은 꼬마들은...",
+		author: "WA! Sxxs!!",
+		images: "https://user-images.githubusercontent.com/50317129/119267705-b9653c80-bc2a-11eb-845c-fac6fcd313f8.gif"
 	}
 ];
 

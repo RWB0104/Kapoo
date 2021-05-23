@@ -16,7 +16,7 @@ import { Fade } from "react-reveal";
 import Top from "../../components/global/Top";
 import Title from "../../components/global/Title";
 import PostList from "../../components/section/posts/PostList";
-import { getMainImages, getPosts } from "../../common/api";
+import { getMainImages, getContents } from "../../common/api";
 import { getRandomItem } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
 
@@ -38,6 +38,8 @@ export default function Posts({ posts, images })
 
 	const router = useRouter();
 
+	const category = router.query.category || "All";
+
 	const categories = [ ...new Set(posts.map(element => element.category)) ];
 
 	return (
@@ -46,7 +48,7 @@ export default function Posts({ posts, images })
 
 			<Box component="section">
 				<Fade>
-					<Top title={MENU_LIST[1].title} desc={`Posts of "${router.query.category}"`} image={`/assets/images/main/${url}`} onlyEng />
+					<Top title={MENU_LIST[1].title} desc={`Posts of "${category}"`} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md" className={classes.section}>
 						<Grid container spacing={5}>
@@ -54,7 +56,7 @@ export default function Posts({ posts, images })
 								<FormControl variant="outlined" fullWidth>
 									<InputLabel id="name">Category</InputLabel>
 
-									<Select native label="Category" value={router.query.category} onChange={e => onSelectCategory(e, router)}>
+									<Select native label="Category" value={category} onChange={e => onSelectCategory(e, router)}>
 										<option value="All">All</option>
 										{categories.map((element, index) => <option key={index + 1} value={element}>{element}</option>)}
 									</Select>
@@ -121,7 +123,7 @@ function getStyles()
  */
 export async function getStaticProps()
 {
-	const posts = getPosts("posts");
+	const posts = getContents("posts");
 
 	const images = getMainImages();
 

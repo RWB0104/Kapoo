@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import cookie from "react-cookies";
-import { Box, Fab, Fade, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Box, Fab, Fade, Icon, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { blue, grey, orange } from "@material-ui/core/colors";
 import { NightsStay, WbSunny } from "@material-ui/icons";
 import { useRecoilState } from "recoil";
@@ -35,11 +35,15 @@ export default function ThemeSwitch()
 				{
 					isMobile ? (
 						<Fab className={classes.fab_dark} onClick={() => onClickSwitch(cookie, setDarkState, true)}>
-							<NightsStay />
+							<Box className={classes.div}>
+								<NightsStay />
+							</Box>
 						</Fab>
 					) : (
 						<Fab variant="extended" className={classes.fab_dark} onClick={() => onClickSwitch(cookie, setDarkState, true)}>
-							<NightsStay />
+							<Box className={classes.div}>
+								<NightsStay />
+							</Box>
 							<Typography variant="button">다크 모드 활성화</Typography>
 						</Fab>
 					)
@@ -51,16 +55,11 @@ export default function ThemeSwitch()
 				{
 					isMobile ? (
 						<Fab className={classes.fab_bright} onClick={() => onClickSwitch(cookie, setDarkState, false)}>
-							<Box>
-								<WbSunny />
-							</Box>
+							<WbSunny />
 						</Fab>
 					) : (
 						<Fab variant="extended" className={classes.fab_bright} onClick={() => onClickSwitch(cookie, setDarkState, false)}>
-							<Box>
-								<WbSunny />
-							</Box>
-
+							<WbSunny />
 							<Typography variant="button">라이트 모드 활성화</Typography>
 						</Fab>
 					)
@@ -134,6 +133,9 @@ function getStyles()
 				bottom: 70,
 				right: 20
 			}
+		},
+		div: {
+			height: 24
 		}
 	}))();
 }

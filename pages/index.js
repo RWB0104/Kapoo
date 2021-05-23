@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import { Fade } from "react-reveal";
 
 // 사용자 모듈
@@ -15,7 +15,7 @@ import Top from "../components/global/Top";
 import Title from "../components/global/Title";
 import ShowBox from "../components/section/index/ShowBox";
 import Preview from "../components/section/index/Preview";
-import { getMainImages, getPosts } from "../common/api";
+import { getMainImages, getContents } from "../common/api";
 import { DESCRIPTION, MENU_LIST, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
 
@@ -41,8 +41,6 @@ export default function Index({ images, posts, projects })
 					<Top title={TITLE} desc={DESCRIPTION} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md">
-						<Divider />
-
 						<Preview menu={MENU_LIST[1]} data={posts} />
 					</Container>
 
@@ -64,9 +62,9 @@ export default function Index({ images, posts, projects })
  */
 export async function getStaticProps()
 {
-	const posts = getPosts("posts");
+	const posts = getContents("posts");
 
-	const projects = getPosts("projects");
+	const projects = getContents("projects");
 
 	const images = getMainImages();
 
