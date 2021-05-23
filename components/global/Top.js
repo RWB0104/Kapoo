@@ -79,7 +79,7 @@ export default function Top({ title, desc, category, onlyEng, image })
  *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(image, onlyEng)
+function getStyles(image)
 {
 	return makeStyles((theme) => ({
 		top_wrapper: {
@@ -102,7 +102,7 @@ function getStyles(image, onlyEng)
 		title: {
 			color: "white",
 			marginBottom: 60,
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontWeight: "bold"
 		},
 		title_eng: {
@@ -113,7 +113,7 @@ function getStyles(image, onlyEng)
 		},
 		desc: {
 			color: "white",
-			fontFamily: "바른히피, sans-serif"
+			fontFamily: "둘기마요, sans-serif"
 		},
 		down: {
 			width: "100%",

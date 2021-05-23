@@ -208,7 +208,7 @@ function getStyles()
 		return {
 			markdown: {
 				fontSize: "1.25rem",
-				fontFamily: "바른히피, sans-serif",
+				fontFamily: "둘기마요, Spoqa Han Sans, sans-serif",
 				marginBottom: theme.spacing(20),
 				lineHeight: 2,
 				"& .center": {

@@ -9,7 +9,11 @@
 
 @font-face {
 	font-family: "Hack";
-	src: url("/assets/fonts/Hack-Regular.ttf") format("truetype")
+	src: url("/assets/fonts/Hack-Regular.eot");
+	src: url("/assets/fonts/Hack-Regular.eot?#iefix") format("embedded-opentype"),
+		url("/assets/fonts/Hack-Regular.woff2") format("woff2"),
+		url("/assets/fonts/Hack-Regular.woff") format("woff"),
+		url("/assets/fonts/Hack-Regular.ttf") format("truetype")
 }
 
 @font-face {
@@ -22,8 +26,12 @@
 }
 
 @font-face {
-	font-family: "바른히피";
-	src: url("/assets/fonts/dovemayo.otf")
+	font-family: "둘기마요";
+	src: url("/assets/fonts/Dovemayo-Medium.eot");
+	src: url("/assets/fonts/Dovemayo-Medium.eot?#iefix") format("embedded-opentype"),
+		url("/assets/fonts/Dovemayo-Medium.woff2") format("woff2"),
+		url("/assets/fonts/Dovemayo-Medium.woff") format("woff"),
+		url("/assets/fonts/Dovemayo-Medium.ttf") format("truetype")
 }
 
 *:not(.dragable) {

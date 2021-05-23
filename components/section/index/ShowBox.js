@@ -63,13 +63,13 @@ function getStyles()
 		},
 		typo_title: {
 			color: "white",
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontStyle: "italic",
 			fontWeight: "bold"
 		},
 		typo_desc: {
 			color: "white",
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontStyle: "italic"
 		}
 	}))();

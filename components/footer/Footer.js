@@ -131,17 +131,17 @@ function getStyles()
 		title: {
 			marginBottom: theme.spacing(3),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontSize: "1.75rem",
 			fontWeight: "bold"
 		},
 		desc: {
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontSize: "1.25rem"
 		},
 		link: {
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontSize: "1.25rem"
 		},
 		stack_icon: {
@@ -152,7 +152,7 @@ function getStyles()
 		stack_typo: {
 			margin: theme.spacing(1),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "바른히피, sans-serif",
+			fontFamily: "둘기마요, sans-serif",
 			fontSize: "1.25rem"
 		}
 	}))();

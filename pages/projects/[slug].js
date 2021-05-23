@@ -14,7 +14,7 @@ import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
 import { getContentBySlug, getContents, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
-import ContentsBody from "../../components/global/CotentsBody";
+import ContentsBody from "../../components/section/contents/CotentsBody";
 
 /**
  * 프로젝트 JSX 반환 함수
