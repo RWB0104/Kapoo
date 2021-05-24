@@ -48,6 +48,8 @@ export default class MyDocument extends Document
 				<Head>
 					<link rel="icon" href="/favicons/favicon.ico" />
 					<link rel="shortcut icon" href="/favicons/favicon.ico" />
+
+					<meta name="google-site-verification" content="4NW8SDMGP89T6Sldqnv7ldyklb-kQkq0hq9tOdGgLsM" />
 				</Head>
 
 				<body>
