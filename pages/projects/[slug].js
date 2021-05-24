@@ -46,7 +46,7 @@ export default function Project({ page, project })
 	{
 		return (
 			<>
-				<Meta title={project.title} description={project.excerpt} url={project.slug} image={project.coverImage} />
+				<Meta title={project.title} description={project.excerpt} url={`/projects/${post.slug}`} image={project.coverImage} />
 
 				<Top title={project.title} desc={getFormattedDate(new Date(project.date))} category={project.category} image={project.coverImage} />
 

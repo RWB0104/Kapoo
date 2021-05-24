@@ -47,7 +47,7 @@ export default function Post({ page, post, group })
 	{
 		return (
 			<>
-				<Meta title={post.title} description={post.excerpt} url={post.slug} image={post.coverImage} />
+				<Meta title={post.title} description={post.excerpt} url={`/posts/${post.slug}`} image={post.coverImage} />
 
 				<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
 

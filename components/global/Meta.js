@@ -23,7 +23,7 @@ import { DESCRIPTION, PROFILE, TITLE } from "../../common/env";
  *
  * @returns {JSX} JSX 객체
  */
-export default function Meta({ title, description = DESCRIPTION, type = "website", url, image = PROFILE, locale = "ko_KR" })
+export default function Meta({ title, description = DESCRIPTION, type = "website", url, image = `https://rwb0104.github.io${PROFILE}`, locale = "ko_KR" })
 {
 	return (
 		<Head>
@@ -35,11 +35,11 @@ export default function Meta({ title, description = DESCRIPTION, type = "website
 			<meta property="og:title" content={title} />
 			<meta property="og:description" content={description} />
 			<meta property="og:type" content={type} />
-			<meta property="og:url" content={`https://rwb0104.github.io/${url}`} />
+			<meta property="og:url" content={`https://rwb0104.github.io/${url.startsWith("/") ? url.slice(1) : url}`} />
 			<meta property="og:image" content={image} />
 			<meta property="og:locale" content={locale} />
 
-			<link rel="canonical" href={`https://rwb0104.github.io/${url}`}></link>
+			<link rel="canonical" href={`https://rwb0104.github.io/${url.startsWith("/") ? url.slice(1) : url}`}></link>
 		</Head>
 	);
 }
