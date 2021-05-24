@@ -29,11 +29,9 @@ export default function About({ images })
 		<React.Fragment>
 			<Meta title={MENU_LIST[3].title} description={DESCRIPTION} url={MENU_LIST[3].url.pathname} />
 
-			<Grow in={true}>
-				<Box component="section">
-					<Top title={MENU_LIST[3].title} image={`/assets/images/main/${url}`} onlyEng />
-				</Box>
-			</Grow>
+			<Box component="section">
+				<Top title={MENU_LIST[3].title} image={`/assets/images/main/${url}`} onlyEng />
+			</Box>
 		</React.Fragment>
 	);
 }

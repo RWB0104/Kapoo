@@ -47,9 +47,7 @@ export default function Utterances()
 		}
 	});
 
-	return (
-		<Box component="article" id="utterances" className={classes.utterances} />
-	);
+	return <Box component="article" id="utterances" className={classes.utterances} />;
 }
 
 /**

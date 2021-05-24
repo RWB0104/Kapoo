@@ -8,6 +8,13 @@
 // 라이브러리 모듈
 import { Box, makeStyles, Typography } from "@material-ui/core";
 
+/**
+ * 태그 JSX 반환 함수
+ *
+ * @param {String[]} list: 태그 배열
+ *
+ * @returns {JSX} JSX 객체
+ */
 export default function Tags({ list })
 {
 	const classes = getStyles();

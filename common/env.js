@@ -163,6 +163,16 @@ export const PIECE = [
 		title: "이런 날엔, 너 같은 꼬마들은...",
 		author: "WA! Sxxs!!",
 		images: "https://user-images.githubusercontent.com/50317129/119267705-b9653c80-bc2a-11eb-845c-fac6fcd313f8.gif"
+	},
+	{
+		title: "Rip and Tear... Until it's done.",
+		author: "Doom Slayer",
+		images: "https://user-images.githubusercontent.com/50317129/119292046-936f8480-bc8a-11eb-9400-33f06d901878.gif"
+	},
+	{
+		title: "If no one else can help, and if you can find them, maybe you can hire",
+		author: "the A-Team",
+		images: "https://user-images.githubusercontent.com/50317129/119294369-4510b480-bc8f-11eb-9a20-f64a071a2110.png"
 	}
 ];
 
