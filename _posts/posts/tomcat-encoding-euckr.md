@@ -5,7 +5,7 @@ coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d
 date: "2021-05-22 12:52:51"
 type: "posts"
 category: "WAS"
-tag: [ "WAS", "Tomcat" ]
+tag: [ "WAS", "Tomcat(톰캣)", "Console(콘솔)" ]
 comment: true
 publish: true
 ---

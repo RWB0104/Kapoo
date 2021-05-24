@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/119211732-cf6de2
 date: "2021-05-21 15:09:33"
 type: "posts"
 category: "잡담"
-tag: [ "React", "Next.js", "개발 블로그" ]
+tag: [ "React(리액트)", "Next.js", "개발 블로그", "Jekyll", "Next.js" ]
 comment: true
 publish: true
 ---

@@ -22,6 +22,7 @@ import { getFormattedDate } from "../../common/common";
 import { MENU_LIST } from "../../common/env";
 import RelatedList from "../../components/section/posts/RelatedList";
 import Meta from "../../components/global/Meta";
+import Tags from "../../components/section/contents/Tags";
 
 /**
  * 게시글 JSX 반환 함수
@@ -55,6 +56,8 @@ export default function Post({ page, post, group })
 					<ContentsBody content={post} />
 
 					{group.length > 0 && <RelatedList list={group} />}
+
+					<Tags list={post.tag} />
 
 					<SideMover page={page} />
 
