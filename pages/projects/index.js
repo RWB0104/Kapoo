@@ -8,6 +8,7 @@
 // 라이브러리 모듈
 import React from "react";
 import { Fade } from "react-reveal";
+import Head from "next/head";
 import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
 
 // 사용자 모듈
@@ -15,7 +16,7 @@ import ProjectList from "../../components/section/projects/ProjectList";
 import { getMainImages, getContents } from "../../common/api";
 import Top from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
-import { MENU_LIST } from "../../common/env";
+import { DESCRIPTION, MENU_LIST, TITLE } from "../../common/env";
 import Title from "../../components/global/Title";
 
 /**
@@ -32,6 +33,16 @@ export default function Project({ projects, images })
 	return (
 		<React.Fragment>
 			<Title title={MENU_LIST[2].title} />
+
+			<Head>
+				<meta property="og:site_name" content={TITLE} />
+				<meta property="og:title" content={MENU_LIST[2].title} />
+				<meta property="og:description" content={DESCRIPTION} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={`https://rwb0104.github.io/${MENU_LIST[2].url.pathname}/`} />
+				<meta property="og:image" content={"https://rwb0104.github.io/assets/images/logo.png"} />
+				<meta property="og:locale" content="ko_KR" />
+			</Head>
 
 			<Box component="section">
 				<Fade>

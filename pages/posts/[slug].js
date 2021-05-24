@@ -20,7 +20,7 @@ import Utterances from "../../components/section/contents/Utterances";
 import NoUtterances from "../../components/section/contents/NoUtterances";
 import { getContentBySlug, getContents, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
-import { MENU_LIST } from "../../common/env";
+import { MENU_LIST, TITLE } from "../../common/env";
 import Head from "next/head";
 import RelatedList from "../../components/section/posts/RelatedList";
 
@@ -37,8 +37,6 @@ export default function Post({ page, post, group })
 
 	const router = useRouter();
 
-	console.dir(group);
-
 	// 유효하지 않은 경로일 경우
 	if (!router.isFallback && !post?.slug)
 	{
@@ -51,7 +49,7 @@ export default function Post({ page, post, group })
 		return (
 			<>
 				<Head>
-					<meta property="og:site_name" content="Kapoo" />
+					<meta property="og:site_name" content={TITLE} />
 					<meta property="og:title" content={post.title} />
 					<meta property="og:description" content={post.excerpt} />
 					<meta property="og:type" content="website" />

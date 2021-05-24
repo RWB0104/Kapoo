@@ -65,7 +65,7 @@ function genSitemap(list)
 			${sitemap}
 		</urlset>`;
 
-	fs.writeFile(`${target}/sitemap`, template, err =>
+	fs.writeFile(`${target}/sitemap.xml`, template, err =>
 	{
 		if (err)
 		{

@@ -7,10 +7,11 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container, Divider, FormControl, Grid, InputLabel, makeStyles, Select, TextField, useMediaQuery, useTheme } from "@material-ui/core";
-import { Autocomplete } from "@material-ui/lab";
-import { useRouter } from "next/router";
 import { Fade } from "react-reveal";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { Box, Container, FormControl, Grid, InputLabel, makeStyles, Select, TextField, useMediaQuery, useTheme } from "@material-ui/core";
+import { Autocomplete } from "@material-ui/lab";
 
 // 사용자 모듈
 import Top from "../../components/global/Top";
@@ -18,7 +19,7 @@ import Title from "../../components/global/Title";
 import PostList from "../../components/section/posts/PostList";
 import { getMainImages, getContents } from "../../common/api";
 import { getRandomItem } from "../../common/common";
-import { MENU_LIST } from "../../common/env";
+import { DESCRIPTION, MENU_LIST, TITLE } from "../../common/env";
 
 /**
  * 게시글 페이지 JSX 반환 함수
@@ -45,6 +46,16 @@ export default function Posts({ posts, images })
 	return (
 		<React.Fragment>
 			<Title title={MENU_LIST[1].title} />
+
+			<Head>
+				<meta property="og:site_name" content={TITLE} />
+				<meta property="og:title" content={MENU_LIST[1].title} />
+				<meta property="og:description" content={DESCRIPTION} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={`https://rwb0104.github.io/${MENU_LIST[1].url.pathname}/`} />
+				<meta property="og:image" content={"https://rwb0104.github.io/assets/images/logo.png"} />
+				<meta property="og:locale" content="ko_KR" />
+			</Head>
 
 			<Box component="section">
 				<Fade>

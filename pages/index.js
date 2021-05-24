@@ -7,6 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
+import Head from "next/head";
 import { Box, Container } from "@material-ui/core";
 import { Fade } from "react-reveal";
 
@@ -35,6 +36,16 @@ export default function Index({ images, posts, projects })
 	return (
 		<React.Fragment>
 			<Title title={MENU_LIST[0].title} />
+
+			<Head>
+				<meta property="og:site_name" content={TITLE} />
+				<meta property="og:title" content={MENU_LIST[0].title} />
+				<meta property="og:description" content={DESCRIPTION} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={`https://rwb0104.github.io/${MENU_LIST[0].url.pathname}/`} />
+				<meta property="og:image" content={"https://rwb0104.github.io/assets/images/logo.png"} />
+				<meta property="og:locale" content="ko_KR" />
+			</Head>
 
 			<Box component="section">
 				<Fade>
