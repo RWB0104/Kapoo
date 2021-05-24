@@ -173,6 +173,21 @@ export const PIECE = [
 		title: "If no one else can help, and if you can find them, maybe you can hire",
 		author: "the A-Team",
 		images: "https://user-images.githubusercontent.com/50317129/119294369-4510b480-bc8f-11eb-9a20-f64a071a2110.png"
+	},
+	{
+		title: "Living in the Sunlight, Loving in the Moonlight",
+		author: "&new",
+		images: "https://user-images.githubusercontent.com/50317129/119343456-714d2500-bcd1-11eb-9b6a-3c9921da7959.png"
+	},
+	{
+		title: "I am Iron man.",
+		author: "Tony Stark",
+		images: "https://user-images.githubusercontent.com/50317129/119344000-1b2cb180-bcd2-11eb-8419-aa62608ff2c5.png"
+	},
+	{
+		title: "LEEEEEEROY JENKINS!",
+		author: "Leyroy Jenkins",
+		images: "https://user-images.githubusercontent.com/50317129/119344321-78286780-bcd2-11eb-85d0-6fe498abc1db.gif"
 	}
 ];
 
