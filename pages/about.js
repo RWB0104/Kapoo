@@ -7,15 +7,14 @@
 
 // 라이브러리 모듈
 import React from "react";
-import Head from "next/head";
 import { Box, Grow } from "@material-ui/core";
 
 // 사용자 모듈
 import Top from "../components/global/Top";
-import Title from "../components/global/Title";
 import { getRandomItem } from "../common/common";
 import { getMainImages } from "../common/api";
-import { DESCRIPTION, MENU_LIST, TITLE } from "../common/env";
+import { DESCRIPTION, MENU_LIST } from "../common/env";
+import Meta from "../components/global/Meta";
 
 /**
  * 소개 페이지 JSX 반환 함수
@@ -28,17 +27,7 @@ export default function About({ images })
 
 	return (
 		<React.Fragment>
-			<Title title={MENU_LIST[3].title} />
-
-			<Head>
-				<meta property="og:site_name" content={TITLE} />
-				<meta property="og:title" content={MENU_LIST[3].title} />
-				<meta property="og:description" content={DESCRIPTION} />
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content={`https://rwb0104.github.io/${MENU_LIST[3].url.pathname}/`} />
-				<meta property="og:image" content={"https://rwb0104.github.io/assets/images/logo.png"} />
-				<meta property="og:locale" content="ko_KR" />
-			</Head>
+			<Meta title={MENU_LIST[3].title} description={DESCRIPTION} url={MENU_LIST[3].url.pathname} />
 
 			<Grow in={true}>
 				<Box component="section">

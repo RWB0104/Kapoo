@@ -6,14 +6,12 @@
  */
 
 // 라이브러리 모듈
-import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { Avatar, Box, Button, Container, Divider, Grid, makeStyles, Typography } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 
 // 사용자 모듈
-import Title from "../../components/global/Title";
 import Top from "../../components/global/Top";
 import ContentsBody from "../../components/section/contents/CotentsBody";
 import SideMover from "../../components/section/contents/SideMover";
@@ -21,7 +19,8 @@ import Utterances from "../../components/section/contents/Utterances";
 import NoUtterances from "../../components/section/contents/NoUtterances";
 import { getContentBySlug, getContents, markdownToHtml } from "../../common/api";
 import { getFormattedDate } from "../../common/common";
-import { MENU_LIST, TITLE } from "../../common/env";
+import { MENU_LIST } from "../../common/env";
+import Meta from "../../components/global/Meta";
 
 /**
  * 프로젝트 JSX 반환 함수
@@ -47,17 +46,7 @@ export default function Project({ page, project })
 	{
 		return (
 			<>
-				<Head>
-					<meta property="og:site_name" content={TITLE} />
-					<meta property="og:title" content={project.title} />
-					<meta property="og:description" content={project.excerpt} />
-					<meta property="og:type" content="website" />
-					<meta property="og:url" content={`https://rwb0104.github.io/projects/${project.slug}`} />
-					<meta property="og:image" content={project.coverImage} />
-					<meta property="og:locale" content="ko_KR" />
-				</Head>
-
-				<Title title={project.title} />
+				<Meta title={project.title} description={project.excerpt} url={project.slug} image={project.coverImage} />
 
 				<Top title={project.title} desc={getFormattedDate(new Date(project.date))} category={project.category} image={project.coverImage} />
 

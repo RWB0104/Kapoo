@@ -7,18 +7,17 @@
 
 // 라이브러리 모듈
 import React from "react";
-import Head from "next/head";
 import { Box, Container } from "@material-ui/core";
 import { Fade } from "react-reveal";
 
 // 사용자 모듈
 import Top from "../components/global/Top";
-import Title from "../components/global/Title";
 import ShowBox from "../components/section/index/ShowBox";
 import Preview from "../components/section/index/Preview";
 import { getMainImages, getContents } from "../common/api";
 import { DESCRIPTION, MENU_LIST, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
+import Meta from "../components/global/Meta";
 
 /**
  * 인덱스 JSX 반환 함수
@@ -35,17 +34,7 @@ export default function Index({ images, posts, projects })
 
 	return (
 		<React.Fragment>
-			<Title title={MENU_LIST[0].title} />
-
-			<Head>
-				<meta property="og:site_name" content={TITLE} />
-				<meta property="og:title" content={MENU_LIST[0].title} />
-				<meta property="og:description" content={DESCRIPTION} />
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content={`https://rwb0104.github.io/${MENU_LIST[0].url.pathname}/`} />
-				<meta property="og:image" content={"https://rwb0104.github.io/assets/images/logo.png"} />
-				<meta property="og:locale" content="ko_KR" />
-			</Head>
+			<Meta title={MENU_LIST[0].title} description={DESCRIPTION} url={MENU_LIST[0].url.pathname} />
 
 			<Box component="section">
 				<Fade>
