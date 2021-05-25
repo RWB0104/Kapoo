@@ -14,7 +14,7 @@ export const DESCRIPTION = "314159265359번째 알파카의 개발 낙서장";
 
 export const LOGO = "/assets/images/logo.png";
 
-export const PROFILE = "/assets/images/profile.png";
+export const PROFILE = "/assets/images/profile.jpg";
 
 export const MENU_LIST = [
 	{

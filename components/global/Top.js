@@ -117,6 +117,7 @@ function getStyles(image)
 		},
 		down: {
 			width: "100%",
+			color: "white",
 			padding: 20,
 			"& svg": {
 				width: 50,

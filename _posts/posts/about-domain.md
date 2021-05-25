@@ -26,12 +26,19 @@ IP를 유동성으로 나누면 크게 유동 IP, 고정 IP로 분류할 수 있
 
 우리가 흔히 <span class="green-400">네이버</span>라고 부르는 사이트의 실제 IP는 ![125.209.222.141](http://125.209.222.141)이다. 하지만 우리들 중 그 누구도 저런 IP로 <span class="green-400">네이버</span>에 접속하지 않는다. 대신 우리는 ![https://www.naver.com](https://www.naver.com)이라는 도메인으로 접속한다. 이유는 간단하다. 주소 자체에 <span class="green-400">naver</span>라는 키워드가 포함되어 있으므로 기억하기 쉽기 때문이다.
 
-도메인은 숫자가 아닌, 문자 형태로 이루어진 주소다. 문자이므로, 주소에 의미를 부여하기 용이하다. 사용자가 주소를 기억하기 쉬워 주소에 대한 접근성을 높여준다.  
-생성한 도메인에 원하는 IP를 연결하면 도메인 주소를 통해서도 해당 IP에 접근할 수 있다.
-도메인 제공 업체에 따라, 영숫자 뿐만 아니라 한글과 같은 유니코드 문자도 지원하므로, 딱딱한 IP 대신 개성있는 주소를 사용할 수 있는 것이다.
+<span class="pink-400">도메인</span>은 숫자가 아닌, 문자 형태로 이루어진 주소다. 문자이므로, 주소에 의미를 부여하기 용이하다. 사용자가 주소를 기억하기 쉬워 주소에 대한 접근성을 높여준다.  
+생성한 <span class="pink-400">도메인</span>에 원하는 IP를 연결하면 <span class="pink-400">도메인</span> 주소를 통해서도 해당 IP에 접근할 수 있다.
+<span class="pink-400">도메인</span> 제공 업체에 따라, 영숫자 뿐만 아니라 한글과 같은 유니코드 문자도 지원하므로, 딱딱한 IP 대신 개성있는 주소를 사용할 수 있는 것이다.
 
 # 도메인의 원리
 
-여기서 의문점이 한 가지 생긴다. IP ![125.209.222.141](http://125.209.222.141)와 도메인 ![https://www.naver.com](https://www.naver.com)가 <span class="green-400">네이버</span>를 가리키는 주소인건 알겠는데, 인터넷은 과연 두 주소의 연결고리를 어떻게 아는 걸까?
+여기서 의문점이 한 가지 생긴다. IP ![125.209.222.141](http://125.209.222.141)와 <span class="pink-400">도메인</span> ![https://www.naver.com](https://www.naver.com)가 <span class="green-400">네이버</span>를 가리키는 주소인건 알겠는데, 인터넷은 과연 두 주소의 연결고리를 어떻게 아는 걸까?
 
-이는 원리
+이는 <span class="pink-400">도메인</span>의 동작 원리를 보면 알 수 있다.
+
+-- 사진 --
+
+1. 사용자가 <span class="pink-400">도메인</span>에 접근을 요청한다.
+2. 사용자의 네트워트에 지정된 로컬<span class="pink-400">DNS(Domain Name System)</span>에 <span class="pink-400">도메인</span>의 정보를 요청한다.
+3. 로컬<span class="pink-400">DNS(Domain Name System)</span>에 해당 정보가 있을 경우, 정보를 즉시 반환한다.
+4. 전 세계에 구축된 Root <span class="pink-400">DNS(Domain Name System)</span>

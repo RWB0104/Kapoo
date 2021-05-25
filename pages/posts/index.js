@@ -19,6 +19,7 @@ import { getMainImages, getContents } from "../../common/api";
 import { getRandomItem } from "../../common/common";
 import { DESCRIPTION, MENU_LIST } from "../../common/env";
 import Meta from "../../components/global/Meta";
+import NoContents from "../../components/section/contents/NoContents";
 
 /**
  * 게시글 페이지 JSX 반환 함수
@@ -51,32 +52,42 @@ export default function Posts({ posts, images })
 					<Top title={MENU_LIST[1].title} desc={`Posts of "${category}"`} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md" className={classes.section}>
-						<Grid container spacing={5}>
-							<Grid item xs={isMobile ? 12 : 4}>
-								<FormControl variant="outlined" fullWidth>
-									<InputLabel id="name">Category</InputLabel>
+						{
+							posts.length > 0 ? (
+								<Grid container spacing={5}>
+									<Grid item xs={isMobile ? 12 : 4}>
+										<FormControl variant="outlined" fullWidth>
+											<InputLabel id="name">Category</InputLabel>
 
-									<Select native label="Category" value={category} onChange={e => onSelectCategory(e, router)}>
-										<option value="All">All</option>
-										{categories.map((element, index) => <option key={index + 1} value={element}>{element}</option>)}
-									</Select>
-								</FormControl>
-							</Grid>
+											<Select native label="Category" value={category} onChange={e => onSelectCategory(e, router)}>
+												<option value="All">All</option>
+												{categories.map((element, index) => <option key={index + 1} value={element}>{element}</option>)}
+											</Select>
+										</FormControl>
+									</Grid>
 
-							<Grid item xs={12}>
-								<Autocomplete
-									options={posts.sort((a, b) => -b.category.localeCompare(a.category))}
-									groupBy={option => option.category}
-									getOptionLabel={option => option.title}
-									onChange={(e, option) => router.push(`/posts/${option.slug}`)}
-									renderInput={param => <TextField {...param} label="게시글 검색" variant="outlined" />}
-								/>
-							</Grid>
+									<Grid item xs={12}>
+										<Autocomplete
+											options={posts.sort((a, b) => -b.category.localeCompare(a.category))}
+											groupBy={option => option.category}
+											getOptionLabel={option => option.title}
+											onChange={(e, option) => router.push(`/posts/${option.slug}`)}
+											renderInput={param => <TextField {...param} label="게시글 검색" variant="outlined" />}
+										/>
+									</Grid>
 
-							<Grid item xs={12}>
-								<PostList data={posts} />
-							</Grid>
-						</Grid>
+									<Grid item xs={12}>
+										<PostList data={posts} />
+									</Grid>
+								</Grid>
+							) : (
+								<Grid container spacing={5}>
+									<Grid item xs={12}>
+										<NoContents />
+									</Grid>
+								</Grid>
+							)
+						}
 					</Container>
 				</Fade>
 			</Box>

@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import React from "react";
 import { Fade } from "react-reveal";
-import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select } from "@material-ui/core";
+import { Box, Container, Divider, FormControl, Grid, Hidden, InputLabel, makeStyles, MenuItem, Select, useMediaQuery, useTheme } from "@material-ui/core";
 
 // 사용자 모듈
 import ProjectList from "../../components/section/projects/ProjectList";
@@ -17,6 +17,8 @@ import Top from "../../components/global/Top";
 import { getRandomItem } from "../../common/common";
 import { DESCRIPTION, MENU_LIST } from "../../common/env";
 import Meta from "../../components/global/Meta";
+import { useRouter } from "next/router";
+import NoContents from "../../components/section/contents/NoContents";
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
@@ -27,7 +29,14 @@ export default function Project({ projects, images })
 {
 	const url = getRandomItem(images);
 
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
 	const classes = getStyles();
+
+	const router = useRouter();
+
+	const category = router.query.category || "All";
 
 	return (
 		<React.Fragment>
@@ -37,36 +46,43 @@ export default function Project({ projects, images })
 				<Fade>
 					<Top title={MENU_LIST[2].title} image={`/assets/images/main/${url}`} onlyEng />
 
-					<Container maxWidth="md">
-						<Grid container spacing={5}>
-							<Grid item xs={12}>
-								<Divider className={classes.divider} />
-							</Grid>
+					<Container maxWidth="md" className={classes.section}>
+						{
+							projects.length > 0 ? (
+								<Grid container spacing={5}>
+									<Grid item xs={isMobile ? 12 : 4}>
+										<FormControl variant="outlined" fullWidth>
+											<InputLabel id="name">Category</InputLabel>
 
-							<Grid item xs={12}>
-								<FormControl variant="outlined" fullWidth>
-									<Hidden smDown>
-										<InputLabel id="name">Category</InputLabel>
+											<Select native label="Category" value={category} onChange={e => onSelectCategory(e, router)}>
+												<option value="All">All</option>
+												{categories.map((element, index) => <option key={index + 1} value={element}>{element}</option>)}
+											</Select>
+										</FormControl>
+									</Grid>
 
-										<Select labelId="name" label="Category">
-											<MenuItem value="">All</MenuItem>
-										</Select>
-									</Hidden>
+									<Grid item xs={12}>
+										<Autocomplete
+											options={posts.sort((a, b) => -b.category.localeCompare(a.category))}
+											groupBy={option => option.category}
+											getOptionLabel={option => option.title}
+											onChange={(e, option) => router.push(`/projects/${option.slug}`)}
+											renderInput={param => <TextField {...param} label="프로젝트 검색" variant="outlined" />}
+										/>
+									</Grid>
 
-									<Hidden mdUp>
-										<InputLabel id="name">Category</InputLabel>
-
-										<Select native labelId="name" label="Category" style={{width: "100%"}}>
-											<option value="">All</option>
-										</Select>
-									</Hidden>
-								</FormControl>
-							</Grid>
-
-							<Grid item xs={12}>
-								<ProjectList data={projects} />
-							</Grid>
-						</Grid>
+									<Grid item xs={12}>
+										<ProjectList data={projects} />
+									</Grid>
+								</Grid>
+							) : (
+								<Grid container spacing={5}>
+									<Grid item xs={12}>
+										<NoContents />
+									</Grid>
+								</Grid>
+							)
+						}
 					</Container>
 				</Fade>
 			</Box>
@@ -82,14 +98,8 @@ export default function Project({ projects, images })
 function getStyles()
 {
 	return makeStyles((theme) => ({
-		divider: {
-			marginTop: theme.spacing(10),
-			marginBottom: theme.spacing(5)
-		},
-		category: {
-			"& > select": {
-				padding: 12
-			}
+		section: {
+			marginTop: theme.spacing(10)
 		}
 	}))();
 }

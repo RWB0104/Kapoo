@@ -7,17 +7,17 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Container } from "@material-ui/core";
 import { Fade } from "react-reveal";
+import { Box, Container } from "@material-ui/core";
 
 // 사용자 모듈
 import Top from "../components/global/Top";
+import Meta from "../components/global/Meta";
 import ShowBox from "../components/section/index/ShowBox";
 import Preview from "../components/section/index/Preview";
 import { getMainImages, getContents } from "../common/api";
 import { DESCRIPTION, MENU_LIST, TITLE } from "../common/env";
 import { getRandomItem } from "../common/common";
-import Meta from "../components/global/Meta";
 
 /**
  * 인덱스 JSX 반환 함수

@@ -54,9 +54,9 @@ function getStyles()
 			backgroundSize: "cover",
 			backgroundPosition: "center",
 			textAlign: "center",
-			height: "30vw",
-			maxHeight: 800,
-			minHeight: 300,
+			height: "40vw",
+			maxHeight: 1000,
+			minHeight: 500,
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center"

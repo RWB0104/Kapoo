@@ -11,6 +11,7 @@ import { Grid, makeStyles } from "@material-ui/core";
 
 // 사용자 모듈
 import PostItem from "../posts/PostItem";
+import NoContents from "../contents/NoContents";
 
 /**
  * 미리보기 컴포넌트 반환 함수
@@ -27,17 +28,27 @@ export default function PreviewList({ data })
 
 	data.sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1));
 
-	for (let i = 0; i < 4; i++)
+	// 게시글이 있을 경우
+	if (data.length > 0)
 	{
-		// 게시글이 있을 경우
-		if (data[i] !== undefined)
+		for (let i = 0; i < 4; i++)
 		{
-			list.push(
-				<Grid item md={12} key={i} className={classes.contents_grid}>
-					<PostItem item={data[i]} index={i} />
-				</Grid>
-			);
+			// 게시글이 있을 경우
+			if (data[i] !== undefined)
+			{
+				list.push(
+					<Grid item md={12} key={i} className={classes.contents_grid}>
+						<PostItem item={data[i]} index={i} />
+					</Grid>
+				);
+			}
 		}
+	}
+
+	// 게시글이 없을 경우
+	else
+	{
+		list.push(<NoContents />);
 	}
 
 	return list;
