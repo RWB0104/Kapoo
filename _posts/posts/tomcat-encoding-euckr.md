@@ -7,7 +7,7 @@ type: "posts"
 category: "WAS"
 tag: [ "WAS", "Tomcat(톰캣)", "Console(콘솔)" ]
 comment: true
-publish: true
+publish: false
 ---
 
 # 와장창!
