@@ -6,7 +6,9 @@
  */
 
 import { Box, Container, Divider, Grid, IconButton, Link, makeStyles, SvgIcon, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { grey } from "@material-ui/core/colors";
 import { GitHub } from "@material-ui/icons";
+import { getFormattedDate } from "../../common/common";
 import { DESCRIPTION, TITLE } from "../../common/env";
 import { Gmail, MaterialUI, React } from "../global/Icons";
 
@@ -19,14 +21,24 @@ export default function Footer()
 
 	return (
 		<Box component="footer" className={classes.root}>
-			<Divider />
+			<Box display="flex" alignItems="center" className={classes.divider}>
+				<Box flexGrow={1}>
+					<Divider />
+				</Box>
+
+				<Box>
+					<img src="/assets/images/logo.png" width="84" className={classes.logo} />
+				</Box>
+
+				<Box flexGrow={1}>
+					<Divider />
+				</Box>
+			</Box>
 
 			<Container maxWidth="md">
 				<Grid container spacing={5} className={classes.content}>
 					<Grid item xs={12}>
 						<Box display="flex" flexDirection="column" alignItems="center">
-							<img src="/assets/images/logo.png" width="84" className={classes.logo} />
-
 							<Typography variant="body1" className={classes.title}>Developed by RWB at 2021.</Typography>
 						</Box>
 					</Grid>
@@ -44,7 +56,7 @@ export default function Footer()
 					</Grid>
 
 					<Grid item md={4} xs={12}>
-						<Typography variant="h4" align="center" className={classes.title}>Contact Me.</Typography>
+						<Typography variant="h4" align="center" className={classes.title}>Contact Me</Typography>
 
 						<Box display="flex" justifyContent="center">
 							<Box display="flex" flexDirection="column" alignItems="center">
@@ -100,6 +112,12 @@ export default function Footer()
 							</Box>
 						</Box>
 					</Grid>
+
+					<Grid item xs={12}>
+						<Box display="flex" flexDirection="column" alignItems="center">
+							<Typography variant="sub" className={classes.build_typo}>Build at {getFormattedDate(new Date())}</Typography>
+						</Box>
+					</Grid>
 				</Grid>
 			</Container>
 		</Box>
@@ -131,7 +149,7 @@ function getStyles()
 		title: {
 			marginBottom: theme.spacing(3),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "Blacksword, sans-serif",
+			fontFamily: "Hack, sans-serif",
 			fontSize: "1.75rem",
 			fontWeight: "bold"
 		},
@@ -151,6 +169,10 @@ function getStyles()
 			margin: theme.spacing(1),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
 			fontSize: "1rem"
+		},
+		build_typo: {
+			fontFamily: "Hack, sans-serif",
+			color: grey[500]
 		}
 	}))();
 }
