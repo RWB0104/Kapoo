@@ -123,7 +123,7 @@ function genRss()
 		// 발행 대상일 경우
 		if (element.publish)
 		{
-			const content = markdownToHtml(element.content).replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
+			const content = markdownToHtml(element.content).replace(/&/g, "&amp;").replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
 			const tag = element.tag.reduce((acc, element) =>
 			{
 				acc += `<category>${element}</category>\n`;
@@ -150,7 +150,7 @@ function genRss()
 		// 발행 대상일 경우
 		if (element.publish)
 		{
-			const content = markdownToHtml(element.content).replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
+			const content = markdownToHtml(element.content).replace(/&/g, "&amp;").replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
 			const tag = element.tag.reduce((acc, element) =>
 			{
 				acc += `<category>${element}</category>\n`;

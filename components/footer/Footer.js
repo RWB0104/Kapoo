@@ -112,12 +112,6 @@ export default function Footer()
 							</Box>
 						</Box>
 					</Grid>
-
-					<Grid item xs={12}>
-						<Box display="flex" flexDirection="column" alignItems="center">
-							<Typography variant="sub" className={classes.build_typo}>Build at {getFormattedDate(new Date())}</Typography>
-						</Box>
-					</Grid>
 				</Grid>
 			</Container>
 		</Box>
@@ -169,10 +163,6 @@ function getStyles()
 			margin: theme.spacing(1),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
 			fontSize: "1rem"
-		},
-		build_typo: {
-			fontFamily: "Hack, sans-serif",
-			color: grey[500]
 		}
 	}))();
 }

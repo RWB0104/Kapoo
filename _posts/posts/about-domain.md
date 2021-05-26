@@ -7,7 +7,7 @@ type: "posts"
 category: "WEB"
 tag: [ "WEB(웹)" ]
 comment: true
-publish: true
+publish: false
 ---
 
 # Domain(도메인)이란?
