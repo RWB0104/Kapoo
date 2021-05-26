@@ -109,7 +109,7 @@ async function genSitemap()
 /**
  * RSS 생성 함수
  */
-function genRss()
+export function genRss()
 {
 	console.log("=========================");
 	console.log("rss.xml 생성 중...");
