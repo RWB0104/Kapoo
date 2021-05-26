@@ -112,7 +112,7 @@ async function genSitemap()
 function genRss()
 {
 	console.log("=========================");
-	console.log("rss 생성 중...");
+	console.log("rss.xml 생성 중...");
 	console.log("=========================\n\n\n");
 
 	const posts = getContents("posts");
@@ -186,10 +186,10 @@ function genRss()
 		${projectsItem}
 	</rss>`;
 
-	fs.writeFileSync("./public/rss", format(rss, FORMAT));
+	fs.writeFileSync("./public/rss.xml", format(rss, FORMAT));
 
 	console.log("=========================");
-	console.log("./public/rss 생성 완료");
+	console.log("./public/rss.xml 생성 완료");
 	console.log("=========================");
 }
 
