@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import cookie from "react-cookies";
-import { Box, Fab, Fade, Icon, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Box, Fab, Fade, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { blue, grey, orange } from "@material-ui/core/colors";
 import { NightsStay, WbSunny } from "@material-ui/icons";
 import { useRecoilState } from "recoil";

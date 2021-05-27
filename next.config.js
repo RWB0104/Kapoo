@@ -3,5 +3,15 @@ module.exports = {
 		loader: "imgix",
 		path: ""
 	},
-	trailingSlash: true
+	trailingSlash: true,
+	async redirects()
+	{
+		return [
+			{
+				source: "/rss/",
+				destination: "/feed.xml",
+				permanent: true
+			}
+		];
+	}
 };

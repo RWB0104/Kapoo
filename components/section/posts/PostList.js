@@ -38,7 +38,7 @@ export default function PostList({ data })
 
 	return (
 		<Box>
-			<Grid container spacing={8}>
+			<Grid container spacing={5}>
 				{content.map((element, index) => <PostItem key={index} item={element} index={index} />)}
 			</Grid>
 

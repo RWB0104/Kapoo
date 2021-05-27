@@ -51,7 +51,9 @@ function getStyles()
 		root: {
 			flexGrow: 1,
 			background: theme.palette.type === "dark" ? "linear-gradient(to right, #000000CC, #434343CC);" : "linear-gradient(to right, #fc466bCC, #3f5efbCC)",
-			zIndex: theme.zIndex.drawer + 1
+			zIndex: theme.zIndex.drawer + 1,
+			backdropFilter: "blur(5px) saturate(180%)",
+			WebkitBackdropFilter: "blur(5px) saturate(180%)"
 		},
 		bar: {
 			minHeight: 64

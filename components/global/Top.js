@@ -9,8 +9,9 @@
 import { useEffect, useRef } from "react";
 import { Flip } from "react-reveal";
 import config from "react-reveal/globals";
-import { Box, ButtonBase, Divider, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Box, ButtonBase, Divider, makeStyles } from "@material-ui/core";
 import { KeyboardArrowDown } from "@material-ui/icons";
+import SemanticTypo from "./SemanticTypo";
 
 /**
  * Top 컴포넌트 JSX 반환 함수
@@ -26,9 +27,6 @@ import { KeyboardArrowDown } from "@material-ui/icons";
 export default function Top({ title, desc, category, onlyEng, image })
 {
 	const classes = getStyles(image);
-
-	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	const ref = useRef(null);
 
@@ -50,17 +48,17 @@ export default function Top({ title, desc, category, onlyEng, image })
 	return (
 		<Box id="top" display="flex" flexDirection="column" className={classes.top_wrapper}>
 			<Box display="flex" flexDirection="column" justifyContent="center" alignSelf="center" className={classes.top_content}>
-				<Typography variant={isMobile ? "h5" : "h3"} align="center" className={classes.desc}>
+				<SemanticTypo up="h3" down="h5" align="center" className={classes.desc}>
 					<Flip left cascade>{category && `[${category}]`}</Flip>
-				</Typography>
+				</SemanticTypo>
 
-				<Typography variant={isMobile ? "h3" : "h1"} align="center" className={onlyEng ? classes.title_eng : classes.title}>
+				<SemanticTypo up="h1" down="h3" align="center" className={onlyEng ? classes.title_eng : classes.title}>
 					<Flip left cascade>{title}</Flip>
-				</Typography>
+				</SemanticTypo>
 
-				<Typography variant={isMobile ? "h6" : "h4"} align="center" className={classes.desc}>
+				<SemanticTypo up="h6" down="h4" align="center" className={classes.desc}>
 					<Flip left cascade>{desc}</Flip>
-				</Typography>
+				</SemanticTypo>
 			</Box>
 
 			<ButtonBase className={classes.down} onClick={() => ref.current.scrollIntoView({ behavior: "smooth" })}>
@@ -90,6 +88,7 @@ function getStyles(image)
 			backgroundSize: "cover",
 			backgroundAttachment: "fixed",
 			backgroundPosition: "center",
+			WebkitBackgroundSize: "cover",
 			[theme.breakpoints.down("sm")]: {
 				height: "calc(100vh - 112px)"
 			}

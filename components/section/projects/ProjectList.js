@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { Box, ButtonBase, Chip, Grid, Link, makeStyles, TextField, Typography, Zoom } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
-import { Label, LocalOffer } from "@material-ui/icons";
+import { LocalOffer } from "@material-ui/icons";
 import { Autocomplete, Pagination } from "@material-ui/lab";
 import { useRouter } from "next/router";
 

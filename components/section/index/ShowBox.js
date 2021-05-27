@@ -6,12 +6,13 @@
  */
 
 // 라이브러리 모듈
-import { Box, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import { Fade } from "react-reveal";
 
 // 사용자 모듈
 import { getRandomItem } from "../../../common/common";
 import { PIECE } from "../../../common/env";
+import SemanticTypo from "../../global/SemanticTypo";
 
 /**
  * 쇼박스 JSX 반환 함수
@@ -22,17 +23,13 @@ export default function ShowBox()
 {
 	const classes = getStyles();
 
-	const theme = useTheme();
-
-	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
 	const piece = getRandomItem(PIECE);
 
 	return (
 		<Fade>
 			<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
-				<Typography variant={isMobile ? "h5" : "h3"} align="center" className={classes.typo_title}>{piece.title}</Typography>
-				<Typography variant={isMobile ? "body1" : "h4"} align="center" className={classes.typo_desc}>{piece.author}</Typography>
+				<SemanticTypo up="h3" down="h5" align="center" className={classes.typo_title}>{piece.title}</SemanticTypo>
+				<SemanticTypo up="h4" down="body1" align="center" className={classes.typo_desc}>{piece.author}</SemanticTypo>
 			</Box>
 		</Fade>
 	);

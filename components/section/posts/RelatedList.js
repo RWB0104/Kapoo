@@ -17,10 +17,10 @@ import { useRouter } from "next/router";
  */
 export default function RelatedList({ list })
 {
-	const classes = getStyles();
-
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+	const classes = getStyles(isMobile);
 
 	const router = useRouter();
 
@@ -46,9 +46,11 @@ export default function RelatedList({ list })
 /**
  * 스타일 객체 반환 함수
  *
+ * @param {boolean} isMobile: 모바일 여부
+ *
  * @returns {JSON} 스타일 객체
  */
-function getStyles()
+function getStyles(isMobile)
 {
 	return makeStyles((theme) => ({
 		title: {
@@ -66,7 +68,7 @@ function getStyles()
 		},
 		griditem: {
 			"&:hover img": {
-				transform: "translateY(-50%) scale(1.2)",
+				transform: isMobile ? "translateX(-50%) scale(1.2)" : "translateY(-50%) scale(1.2)",
 				transition: "0.5s"
 			},
 			"& .MuiGridListTileBar-title": {

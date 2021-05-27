@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import { Avatar, Box, Button, Container, Divider, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Avatar, Box, Button, Container, Divider, Grid, makeStyles } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 
 // 사용자 모듈

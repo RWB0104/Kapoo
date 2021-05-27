@@ -24,7 +24,7 @@ export default function MobileHeader()
 	return (
 		<React.Fragment>
 			<Box className={classes.title_wrap}>
-				<Typography variant="h6" className={classes.title}>{TITLE}</Typography>
+				<Typography variant="h5" className={classes.title}>{TITLE}</Typography>
 			</Box>
 
 			<Avatar variant="square" alt={TITLE} src={LOGO} className={classes.logo} />
@@ -50,7 +50,8 @@ function getStyles()
 			textAlign: "center",
 			justifyContent: "center",
 			alignItems: "center",
-			alignSelf: "center"
+			alignSelf: "center",
+			paddingLeft: 40
 		},
 		logo: {
 			justifyContent: "center",

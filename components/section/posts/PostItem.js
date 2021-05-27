@@ -8,9 +8,10 @@
 // 라이브러리 모듈
 import { Fade } from "react-reveal";
 import { useRouter } from "next/router";
-import { Box, ButtonBase, Chip, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Box, ButtonBase, Chip, Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import { LocalOffer } from "@material-ui/icons";
+import SemanticTypo from "../../global/SemanticTypo";
 
 /**
  * 게시글 아이템 JSX 반환 함수
@@ -26,8 +27,10 @@ export default function PostItem({ item, index })
 
 	const router = useRouter();
 
-	return (
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+	return (
 		<Grid component="article" item xs={12}>
 			<Fade>
 				<ButtonBase className={classes.post_button} onClick={() => router.push(`/posts/${item.slug}`)}>
@@ -40,7 +43,7 @@ export default function PostItem({ item, index })
 							<Grid container direction="row" alignItems="center">
 								<LocalOffer className={classes.post_category} />
 
-								<Typography variant="h6" color="primary" className={classes.post_category_typo} onClick={(e) =>
+								<SemanticTypo up="h6" down="body1" color="primary" className={classes.post_category_typo} onClick={(e) =>
 								{
 									e.stopPropagation();
 
@@ -53,11 +56,11 @@ export default function PostItem({ item, index })
 									});
 								}}>
 									{item.category}
-								</Typography>
+								</SemanticTypo>
 							</Grid>
 
-							<Typography variant="h4" className={classes.post_title}>{item.title}</Typography>
-							<Typography variant="caption" className={classes.post_desc}>{item.excerpt}</Typography>
+							<SemanticTypo up="h4" down="h6" className={classes.post_title}>{item.title}</SemanticTypo>
+							<SemanticTypo up="caption" down="caption" className={classes.post_desc}>{item.excerpt}</SemanticTypo>
 
 							<Box>
 								{item.tag?.map((sub, index) => <Chip key={index} color="primary" label={`# ${sub}`} className={classes.post_tag} onClick={(e) => e.stopPropagation()} />)}

@@ -5,9 +5,10 @@
  * @since 2021.05.25 Tue 20:53:17
  */
 
-import { Grid, makeStyles, Typography } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { CloudOff } from "@material-ui/icons";
+import SemanticTypo from "../../global/SemanticTypo";
 
 /**
  * 컨텐츠 없음 표시 JSX 반환 함수
@@ -25,7 +26,7 @@ export default function NoContents()
 			</Grid>
 
 			<Grid item xs={12}>
-				<Typography className={classes.grid_typo}>컨텐츠가 존재하지 않습니다.</Typography>
+				<SemanticTypo up="h4" down="h6" className={classes.grid_typo}>컨텐츠가 존재하지 않습니다.</SemanticTypo>
 			</Grid>
 		</Grid>
 	);
@@ -50,7 +51,6 @@ function getStyles()
 		},
 		grid_typo: {
 			color: grey[500],
-			fontSize: "2em",
 			marginTop: theme.spacing(2)
 		}
 	}))();

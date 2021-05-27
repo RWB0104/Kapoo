@@ -6,9 +6,10 @@
  */
 
 // 라이브러리 모듈
-import { Grid, makeStyles, Typography } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { SpeakerNotesOff } from "@material-ui/icons";
+import SemanticTypo from "../../global/SemanticTypo";
 
 /**
  * 댓글 미사용 표시 JSX 반환 함수
@@ -26,7 +27,7 @@ export default function NoUtterances()
 			</Grid>
 
 			<Grid item xs={12}>
-				<Typography className={classes.grid_typo}>댓글 서비스가 중지된 게시물입니다.</Typography>
+				<SemanticTypo up="h4" down="h6" className={classes.grid_typo}>댓글 서비스가 중지된 게시물입니다.</SemanticTypo>
 			</Grid>
 		</Grid>
 	);

@@ -5,19 +5,18 @@
  * @since 2021.05.09 Sun 01:59:12
  */
 
-import { Box, Container, Divider, Grid, IconButton, Link, makeStyles, SvgIcon, Typography, useMediaQuery, useTheme } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
+import { Box, Container, Divider, Grid, IconButton, Link, makeStyles, SvgIcon, useMediaQuery, useTheme } from "@material-ui/core";
 import { GitHub } from "@material-ui/icons";
-import { getFormattedDate } from "../../common/common";
 import { DESCRIPTION, TITLE } from "../../common/env";
 import { Gmail, MaterialUI, React } from "../global/Icons";
+import SemanticTypo from "../global/SemanticTypo";
 
 export default function Footer()
 {
-	const classes = getStyles();
-
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+	const classes = getStyles(isMobile);
 
 	return (
 		<Box component="footer" className={classes.root}>
@@ -39,76 +38,76 @@ export default function Footer()
 				<Grid container spacing={5} className={classes.content}>
 					<Grid item xs={12}>
 						<Box display="flex" flexDirection="column" alignItems="center">
-							<Typography variant="body1" className={classes.title}>Developed by RWB at 2021.</Typography>
+							<SemanticTypo up="h4" down="h5" className={classes.title}>Developed by RWB at 2021.</SemanticTypo>
 						</Box>
 					</Grid>
 
 					<Grid item md={4} xs={12}>
-						<Typography variant="h4" align="center" className={classes.title}>{TITLE}</Typography>
+						<SemanticTypo up="h4" down="h5" align="center" className={classes.title}>{TITLE}</SemanticTypo>
 
 						<Box display="flex" flexDirection="column" justifyContent="center">
-							<Typography variant="subtitle2" align={isMobile ? "center" : "left"}>
+							<SemanticTypo up="subtitle2" down="caption1" align={isMobile ? "center" : "left"}>
 								🔗 <Link href="https://rwb0104.github.io/" className={classes.link}>https://rwb0104.github.io/</Link>
-							</Typography>
+							</SemanticTypo>
 
-							<Typography variant="subtitle1" align={isMobile ? "center" : "left"} className={classes.desc}>{DESCRIPTION}</Typography>
+							<SemanticTypo up="subtitle2" down="caption1" align={isMobile ? "center" : "left"} className={classes.desc}>{DESCRIPTION}</SemanticTypo>
 						</Box>
 					</Grid>
 
 					<Grid item md={4} xs={12}>
-						<Typography variant="h4" align="center" className={classes.title}>Contact Me</Typography>
+						<SemanticTypo up="h4" down="h5" align="center" className={classes.title}>Contact Me</SemanticTypo>
 
 						<Box display="flex" justifyContent="center">
 							<Box display="flex" flexDirection="column" alignItems="center">
 								<IconButton className={classes.stack_icon} style={{ backgroundColor: "#EA4335", color: "white" }} onClick={() => window.location = "mailto:psj2716@gmail.com"}>
-									<SvgIcon fontSize="large">
+									<SvgIcon fontSize={isMobile ? "small" : "large"}>
 										<Gmail />
 									</SvgIcon>
 								</IconButton>
 
-								<Typography className={classes.stack_typo} align="center">Mail</Typography>
+								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">Mail</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
 								<IconButton className={classes.stack_icon} style={{ backgroundColor: "#181717", color: "white" }} onClick={() => window.open("https://github.com/RWB0104", "_blank")}>
-									<GitHub fontSize="large" />
+									<GitHub fontSize={isMobile ? "small" : "large"} />
 								</IconButton>
 
-								<Typography className={classes.stack_typo} align="center">Github</Typography>
+								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">Github</SemanticTypo>
 							</Box>
 						</Box>
 					</Grid>
 
 					<Grid item md={4} xs={12}>
-						<Typography variant="h4" align="center" className={classes.title}>Associated</Typography>
+						<SemanticTypo up="h4" down="h5" align="center" className={classes.title}>Associated</SemanticTypo>
 
 						<Box display="flex" justifyContent="center">
 							<Box display="flex" flexDirection="column" alignItems="center">
 								<IconButton className={classes.stack_icon} style={{ backgroundColor: "#181717", color: "#61DAFB" }} onClick={() => window.open("https://ko.reactjs.org/", "_blank")}>
-									<SvgIcon fontSize="large">
+									<SvgIcon fontSize={isMobile ? "small" : "large"}>
 										<React />
 									</SvgIcon>
 								</IconButton>
 
-								<Typography className={classes.stack_typo} align="center">with Develop</Typography>
+								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Develop</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
 								<IconButton className={classes.stack_icon} style={{ backgroundColor: "#0081CB", color: "white" }} onClick={() => window.open("https://material-ui.com/", "_blank")}>
-									<SvgIcon fontSize="large">
+									<SvgIcon fontSize={isMobile ? "small" : "large"}>
 										<MaterialUI />
 									</SvgIcon>
 								</IconButton>
 
-								<Typography className={classes.stack_typo} align="center">with Design</Typography>
+								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Design</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
 								<IconButton className={classes.stack_icon} style={{ backgroundColor: "#181717", color: "white" }} onClick={() => window.open("https://pages.github.com/", "_blank")}>
-									<GitHub fontSize="large" />
+									<GitHub fontSize={isMobile ? "small" : "large"} />
 								</IconButton>
 
-								<Typography className={classes.stack_typo} align="center">with Publish</Typography>
+								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Publish</SemanticTypo>
 							</Box>
 						</Box>
 					</Grid>
@@ -121,19 +120,22 @@ export default function Footer()
 /**
  * 스타일 객체 반환 함수
  *
+ * @param {boolean} isMobile: 모바일 여부
+ *
  * @returns {JSON} 스타일 객체
  */
-function getStyles()
+function getStyles(isMobile)
 {
+	const flag = isMobile ? 4 : 1;
 	return makeStyles((theme) => ({
 		root: {
-			marginTop: theme.spacing(20),
-			paddingBottom: theme.spacing(10)
+			marginTop: theme.spacing(20 / flag),
+			paddingBottom: theme.spacing(10 / flag)
 		},
 		content: {
-			marginTop: theme.spacing(10),
+			marginTop: theme.spacing(10 / flag),
 			"& > div": {
-				marginBottom: theme.spacing(5)
+				marginBottom: theme.spacing(5 / flag)
 			}
 		},
 		logo: {
@@ -144,15 +146,12 @@ function getStyles()
 			marginBottom: theme.spacing(3),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
 			fontFamily: "Hack, sans-serif",
-			fontSize: "1.75rem",
 			fontWeight: "bold"
 		},
 		desc: {
-			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontSize: "1rem"
+			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555"
 		},
 		link: {
-			fontSize: "1rem"
 		},
 		stack_icon: {
 			marginLeft: theme.spacing(2),
@@ -161,8 +160,7 @@ function getStyles()
 		},
 		stack_typo: {
 			margin: theme.spacing(1),
-			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontSize: "1rem"
+			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555"
 		}
 	}))();
 }

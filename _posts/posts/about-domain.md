@@ -5,7 +5,7 @@ coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d
 date: "2021-05-22 12:52:51"
 type: "posts"
 category: "WEB"
-tag: [ "WEB(웹)" ]
+tag: [ "WEB(웹)", "Domain(도메인)" ]
 comment: true
 publish: false
 ---

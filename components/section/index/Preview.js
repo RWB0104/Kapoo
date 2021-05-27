@@ -7,11 +7,12 @@
 
 // 라이브러리 모듈
 import { useRouter } from "next/router";
-import { Box, Button, Grid, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { Box, Button, Grid, makeStyles } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
 // 사용자 모듈
 import PreviewList from "./PreviewList";
+import SemanticTypo from "../../global/SemanticTypo";
 
 /**
  * 미리보기 JSX 반환 함수
@@ -25,16 +26,13 @@ export default function Preview({ menu, data })
 {
 	const classes = getStyles();
 
-	const theme = useTheme();
 	const router = useRouter();
-
-	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
 		<Box component="article" className={classes.box}>
 			<Grid container spacing={5}>
 				<Grid item xs={12}>
-					<Typography variant={isMobile ? "h3" : "h1"} align="center" className={classes.typo_title} gutterBottom>{menu.title}</Typography>
+					<SemanticTypo up="h1" down="h2" align="center" className={classes.typo_title} gutterBottom>{menu.title}</SemanticTypo>
 				</Grid>
 
 				<PreviewList data={data} />

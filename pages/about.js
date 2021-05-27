@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Box, Grow } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 // 사용자 모듈
 import Top from "../components/global/Top";
