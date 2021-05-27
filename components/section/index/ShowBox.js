@@ -73,7 +73,8 @@ function getStyles()
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
 			backgroundAttachment: "fixed",
-			backgroundPosition: "center",
+			backgroundPosition: "center top",
+			backgroundRepeat: "no-repeat",
 			WebkitBackgroundSize: "cover",
 			OBackgroundSize: "cover",
 			MozBackgroundSize: "cover"
