@@ -54,7 +54,7 @@ export default function Posts({ posts, images })
 					<Container maxWidth="md" className={classes.section}>
 						{
 							posts.length > 0 ? (
-								<Grid container spacing={5}>
+								<Grid container spacing={4}>
 									<Grid item xs={isMobile ? 12 : 4}>
 										<FormControl variant="outlined" fullWidth>
 											<InputLabel id="name">Category</InputLabel>

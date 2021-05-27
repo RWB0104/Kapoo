@@ -49,7 +49,7 @@ export default function Project({ projects, images })
 					<Container maxWidth="md" className={classes.section}>
 						{
 							projects.length > 0 ? (
-								<Grid container spacing={5}>
+								<Grid container spacing={4}>
 									<Grid item xs={isMobile ? 12 : 4}>
 										<FormControl variant="outlined" fullWidth>
 											<InputLabel id="name">Category</InputLabel>

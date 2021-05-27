@@ -11,6 +11,11 @@ import { DESCRIPTION, TITLE } from "../../common/env";
 import { Gmail, MaterialUI, React } from "../global/Icons";
 import SemanticTypo from "../global/SemanticTypo";
 
+/**
+ * 푸터 JSX 반환 함수
+ *
+ * @returns {JSX} JSX 객체
+ */
 export default function Footer()
 {
 	const theme = useTheme();
@@ -35,7 +40,7 @@ export default function Footer()
 			</Box>
 
 			<Container maxWidth="md">
-				<Grid container spacing={5} className={classes.content}>
+				<Grid container spacing={3} className={classes.content}>
 					<Grid item xs={12}>
 						<Box display="flex" flexDirection="column" alignItems="center">
 							<SemanticTypo up="h4" down="h5" className={classes.title}>Developed by RWB at 2021.</SemanticTypo>
@@ -127,6 +132,7 @@ export default function Footer()
 function getStyles(isMobile)
 {
 	const flag = isMobile ? 4 : 1;
+
 	return makeStyles((theme) => ({
 		root: {
 			marginTop: theme.spacing(20 / flag),

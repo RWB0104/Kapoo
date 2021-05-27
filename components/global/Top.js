@@ -46,7 +46,11 @@ export default function Top({ title, desc, category, onlyEng, image })
 	});
 
 	return (
-		<Box id="top" display="flex" flexDirection="column" className={classes.top_wrapper}>
+		<Box id="top" position="relative" display="flex" flexDirection="column" className={classes.top_wrapper}>
+			<Box position="absolute" className={classes.top_image_wrapper}>
+				<Box className={classes.top_image} />
+			</Box>
+
 			<Box display="flex" flexDirection="column" justifyContent="center" alignSelf="center" className={classes.top_content}>
 				<SemanticTypo up="h3" down="h5" align="center" className={classes.desc}>
 					<Flip left cascade>{category && `[${category}]`}</Flip>
@@ -56,7 +60,7 @@ export default function Top({ title, desc, category, onlyEng, image })
 					<Flip left cascade>{title}</Flip>
 				</SemanticTypo>
 
-				<SemanticTypo up="h6" down="h4" align="center" className={classes.desc}>
+				<SemanticTypo up="h4" down="h6" align="center" className={classes.desc}>
 					<Flip left cascade>{desc}</Flip>
 				</SemanticTypo>
 			</Box>
@@ -82,16 +86,33 @@ function getStyles(image)
 	return makeStyles((theme) => ({
 		top_wrapper: {
 			height: "calc(100vh - 64px)",
+			width: "100%",
+			[theme.breakpoints.down("sm")]: {
+				height: "calc(100vh - 136px)"
+			}
+		},
+		top_image_wrapper: {
+			clip: "rect(0, auto, auto, 0)",
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%"
+		},
+		top_image: {
+			position: "fixed",
+			display: "block",
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%",
+			objectFit: "cover",
 			backgroundImage: `url(${image})`,
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
 			backgroundBlendMode: "multiply",
-			backgroundSize: "cover",
+			backgroundSize: "100vmax 100vmax",
 			backgroundAttachment: "fixed",
-			backgroundPosition: "center",
-			WebkitBackgroundSize: "cover",
-			[theme.breakpoints.down("sm")]: {
-				height: "calc(100vh - 112px)"
-			}
+			backgroundPosition: "100%",
+			WebkitBackgroundSize: "cover"
 		},
 		top_content: {
 			width: "100%",

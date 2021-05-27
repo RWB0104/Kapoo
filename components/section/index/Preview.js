@@ -30,7 +30,7 @@ export default function Preview({ menu, data })
 
 	return (
 		<Box component="article" className={classes.box}>
-			<Grid container spacing={5}>
+			<Grid container spacing={4}>
 				<Grid item xs={12}>
 					<SemanticTypo up="h1" down="h2" align="center" className={classes.typo_title} gutterBottom>{menu.title}</SemanticTypo>
 				</Grid>

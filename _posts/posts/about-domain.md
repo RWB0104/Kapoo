@@ -2,7 +2,7 @@
 title: "도메인이란?"
 excerpt: "Jekyll에서 Next.js로의 블로그 이동기"
 coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d91-24b08c6dde16/Tomcat-logo.png"
-date: "2021-05-22 12:52:51"
+date: "2021-05-22T12:52:51"
 type: "posts"
 category: "WEB"
 tag: [ "WEB(웹)", "Domain(도메인)" ]

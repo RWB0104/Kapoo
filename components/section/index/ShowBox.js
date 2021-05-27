@@ -27,9 +27,15 @@ export default function ShowBox()
 
 	return (
 		<Fade>
-			<Box component="article" className={classes.box_easter} style={{ backgroundImage: `url(${piece.images})` }}>
-				<SemanticTypo up="h3" down="h5" align="center" className={classes.typo_title}>{piece.title}</SemanticTypo>
-				<SemanticTypo up="h4" down="body1" align="center" className={classes.typo_desc}>{piece.author}</SemanticTypo>
+			<Box component="article" position="relative" display="flex" flexDirection="column" justifyContent="center" className={classes.box_easter}>
+				<Box position="absolute" className={classes.box_image_wrapper}>
+					<Box position="fixed" display="block" className={classes.box_image} style={{ backgroundImage: `url(${piece.images})` }} />
+				</Box>
+
+				<Box display="flex" flexDirection="column" justifyContent="center" alignSelf="center" zIndex={10}>
+					<SemanticTypo up="h3" down="h5" align="center" className={classes.typo_title}>{piece.title}</SemanticTypo>
+					<SemanticTypo up="h4" down="body1" align="center" className={classes.typo_desc}>{piece.author}</SemanticTypo>
+				</Box>
 			</Box>
 		</Fade>
 	);
@@ -45,18 +51,30 @@ function getStyles()
 	return makeStyles((theme) => ({
 		box_easter: {
 			padding: theme.spacing(3),
-			backgroundAttachment: "fixed",
+			textAlign: "center",
+			height: "40vmax",
+			width: "100%",
+			maxHeight: 1000,
+			minHeight: 500
+		},
+		box_image_wrapper: {
+			clip: "rect(0, auto, auto, 0)",
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%"
+		},
+		box_image: {
+			top: 0,
+			left: 0,
+			width: "100%",
+			height: "100%",
 			backgroundColor: "rgba(0, 0, 0, 0.5)",
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
-			backgroundPosition: "center",
-			textAlign: "center",
-			height: "40vw",
-			maxHeight: 1000,
-			minHeight: 500,
-			display: "flex",
-			flexDirection: "column",
-			justifyContent: "center"
+			backgroundAttachment: "fixed",
+			backgroundPosition: "center center",
+			WebkitBackgroundSize: "cover"
 		},
 		typo_title: {
 			color: "white",

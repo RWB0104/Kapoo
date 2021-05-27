@@ -82,8 +82,8 @@ function getThemes(isDark)
 						WebkitFontSmoothing: "auto"
 					},
 					"*::-webkit-scrollbar, *::-webkit-scrollbar-thumb": {
-						width: 13,
-						borderRadius: 13,
+						width: 6,
+						borderRadius: 6,
 						backgroundClip: "padding-box",
 						border: "1px solid transparent"
 					},

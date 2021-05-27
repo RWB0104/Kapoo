@@ -2,7 +2,7 @@
 title: "Tomcat(톰캣) 현재 콘솔창에서 구동하기"
 excerpt: "Jekyll에서 Next.js로의 블로그 이동기"
 coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d91-24b08c6dde16/Tomcat-logo.png"
-date: "2021-05-26 16:32:16"
+date: "2021-05-26T16:32:16"
 type: "posts"
 category: "WAS"
 tag: [ "WAS", "Tomcat(톰캣)", "Console(콘솔)" ]
