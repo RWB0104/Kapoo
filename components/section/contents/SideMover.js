@@ -27,7 +27,7 @@ export default function SideMover({ page })
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
-		<Grid container spacing={5} justify="space-between">
+		<Grid container spacing={4} justify="space-between">
 			<Grid item xs={isMobile ? 6 : 4}>
 				{page.prev !== -1 && <Button variant="outlined" color="primary" className={classes.button} fullWidth startIcon={<ArrowBack />} onClick={() => router.push(`/${page.type}/${page.prev.slug}`)}>{page.prev.title}</Button>}
 			</Grid>

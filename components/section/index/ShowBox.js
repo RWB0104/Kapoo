@@ -73,8 +73,10 @@ function getStyles()
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
 			backgroundAttachment: "fixed",
-			backgroundPosition: "center center",
-			WebkitBackgroundSize: "cover"
+			backgroundPosition: "center",
+			WebkitBackgroundSize: "cover",
+			OBackgroundSize: "cover",
+			MozBackgroundSize: "cover"
 		},
 		typo_title: {
 			color: "white",

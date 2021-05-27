@@ -109,10 +109,12 @@ function getStyles(image)
 			backgroundImage: `url(${image})`,
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
 			backgroundBlendMode: "multiply",
-			backgroundSize: "100vmax 100vmax",
+			backgroundSize: "cover",
 			backgroundAttachment: "fixed",
-			backgroundPosition: "100%",
-			WebkitBackgroundSize: "100vmax 100vmax"
+			backgroundPosition: "center",
+			WebkitBackgroundSize: "cover",
+			OBackgroundSize: "cover",
+			MozBackgroundSize: "cover"
 		},
 		top_content: {
 			width: "100%",
