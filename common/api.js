@@ -10,6 +10,9 @@ import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
 import remark from "remark";
+import toc from "remark-toc";
+import slug from "remark-slug";
+import heading from "remark-autolink-headings";
 import html from "remark-html";
 import gfm from "remark-gfm";
 import prism from "remark-prism";
@@ -79,7 +82,21 @@ export function getMainImages()
  */
 export async function markdownToHtml(markdown)
 {
-	const result = await remark().use(html).use(gfm).use(prism).process(markdown);
+	const result = await remark().use(toc).use(slug).use(heading, {
+		linkProperties: {
+			className: [ "head-link" ]
+		},
+		content: {
+			type: "element",
+			tagName: "span",
+			children: [
+				{
+					type: "text",
+					value: "🔗"
+				}
+			]
+		}
+	}).use(html).use(gfm).use(prism).process(markdown);
 
 	return result.toString();
 }

@@ -418,6 +418,10 @@ function getStyles()
 				},
 				"& .token.inserted": {
 					color: "green"
+				},
+				"& a.head-link": {
+					textDecoration: "none",
+					marginRight: theme.spacing(1)
 				}
 			}
 		};

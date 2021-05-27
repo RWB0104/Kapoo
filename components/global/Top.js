@@ -112,7 +112,7 @@ function getStyles(image)
 			backgroundSize: "100vmax 100vmax",
 			backgroundAttachment: "fixed",
 			backgroundPosition: "100%",
-			WebkitBackgroundSize: "cover"
+			WebkitBackgroundSize: "100vmax 100vmax"
 		},
 		top_content: {
 			width: "100%",
