@@ -31,7 +31,7 @@
 	src: url("/assets/fonts/Dovemayo-Medium.eot?#iefix") format("embedded-opentype"),
 		url("/assets/fonts/Dovemayo-Medium.woff2") format("woff2"),
 		url("/assets/fonts/Dovemayo-Medium.woff") format("woff"),
-		url("/assets/fonts/Dovemayo-Medium.ttf") format("truetype")
+		url("/assets/fonts/Dovemayo-Medium.ttf") format("truetype");
 }
 
 *:not(.dragable) {

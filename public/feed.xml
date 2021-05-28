@@ -6,7 +6,7 @@
 		<link>https://rwb0104.github.io//</link>
 		<atom:link href="https://rwb0104.github.io/feed.xml" rel="self" type="application/rss+xml"/>
 		<pubDate>2021-05-26T14:36:57.000Z</pubDate>
-		<lastBuildDate>2021-05-27T12:24:00.151Z</lastBuildDate>
+		<lastBuildDate>2021-05-28T09:36:29.601Z</lastBuildDate>
 	</channel>
 	<item>
 		<title>[JAVA] 백준 알고리즘 1000번 A + B</title>
@@ -910,5 +910,223 @@ N&lt;sub&gt;3&lt;/sub&gt; = 4 -&gt; &lt;code&gt;f(4)&lt;/code&gt; 부터 &lt;cod
 		<category>WAS</category>
 		<category>Tomcat(톰캣)</category>
 		<category>Console(콘솔)</category>
+	</item>
+	<item>
+		<title>URI? URL? URN? 리소스 식별자 구분하기</title>
+		<description>&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;h1&gt;URL! URI... URN??&lt;/h1&gt;
+&lt;p&gt;우리가 인터넷 상에서 &lt;strong&gt;특정한 데이터&lt;/strong&gt;에 접근할 때 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;이라는 것을 활용하여 접근한다.&lt;br&gt;
+원하는 자료의 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;을 얻으면, 브라우저 같은 HTTP 통신 프로그램에 해당 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;을 호출하여 응답을 얻는 것이다.&lt;/p&gt;
+&lt;p&gt;개발자나, 굳이 개발자가 아니더라도 관련 정보를 찾다보면 심심치않게 &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;라는 용어를 접하게 된다.&lt;br&gt;
+I와 L의 오묘한 유사성 때문에 아예 &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;를 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;로 오독하는가 하면, 오타라고 생각하는 사람도 더러 있을 것이다.&lt;br&gt;
+하지만 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;과 &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;는 그 의미가 비슷하면서도 살짝 다르다.&lt;/p&gt;
+&lt;p&gt;누구나 알고있는 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;과 아리까리한 &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;, 생소한 &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;. 이들에 대해 알아보자&lt;/p&gt;
+&lt;h1&gt;UR* 톱아보기&lt;/h1&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;, &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;, &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;은 구조상 서로 연관이 있다.&lt;/p&gt;
+&lt;h2&gt;URI(Uniform Resource Identifier, 통합 자원 식별자)&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;는 우리말로 &lt;strong&gt;통합 자원 식별자&lt;/strong&gt;라고 한다. &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;는 앞서 말한 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;, &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;을 포함하는 상위 개념으로, &lt;span class=&quot;orange-400&quot;&gt;인터넷 상에 존재하는 &lt;strong&gt;자원을 구분&lt;/strong&gt;하는 식별자&lt;/span&gt;라 할 수 있다. 웹 상에서 자원을 식별하는 모든 수단이 곧 &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;이라 할 수 있다.&lt;/p&gt;
+&lt;h2&gt;URL(Uniform Resource Locater, 통합 자원 지시자)&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 굳이 우리말로 하자면 &lt;strong&gt;통합 자원 지시자&lt;/strong&gt;라고 할 수 있겠지만, 흔히 인터넷 상에서 &lt;strong&gt;주소&lt;/strong&gt;라 함은 99% 이 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;을 의미한다.&lt;br&gt;
+&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 &lt;strong&gt;Locater&lt;/strong&gt;라는 키워드에 걸맞게 &lt;span class=&quot;orange-400&quot;&gt;인터넷 상에 존재하는 자원의 &lt;strong&gt;위치&lt;/strong&gt;를 나타내는 식별자&lt;/span&gt;라 할 수 있다. 여기서 &lt;strong&gt;위치&lt;/strong&gt;라는 키워드에 주목하자. &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 자원의 위치정보를 가지므로, 어떠한 이유로든 자원의 위치가 변경되면 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 자원을 찾을 수 없으며, 변경된 위치를 추적할 수도 없다. 이 때 맞이하게 되는 HTTP 오류가 누구나 알고있는 404 Not Found다.&lt;br&gt;
+당장 내가 이 게시물의 이름을 한 글자만 변경해도, 지금까지의 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 아무 쓸모가 없어지며, 사용자들 또한 해당 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;로 이 게시물에 접근할 수 없다. 또한, 이 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;을 통해 원래 있던 게시물의 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;을 논리적으로 유추할 수도 없다.&lt;/p&gt;
+&lt;h2&gt;URN(Uniform Resource Name, 통합 자원 이름)&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;은 &lt;strong&gt;통합 자원 이름&lt;/strong&gt;이다. 눈치가 빠른 분들은 아시겠지만, &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;은 &lt;span class=&quot;orange-400&quot;&gt;인터넷 상에 존재하는 자원의 &lt;strong&gt;이름&lt;/strong&gt;을 나타내는 식별자&lt;/span&gt;다. 자원의 이름은 고유한 값을 가지므로, 인터넷 상의 수 많은 자원들 중 특정 자원을 식별할 수 있는 것이다.&lt;br&gt;
+&lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;은 대부분 위에 언급한 두 개념에 비해 생소할 것이다. 그도 그럴 것이, &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;은 위 두 개념보다 훨씬 뒤에 나온 개념이기 때문이다.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;의 치명적인 단점은 &lt;strong&gt;위치&lt;/strong&gt;정보 외에 다른 정보를 저장하지 않는다. 이 상황에서 해당 자원을 찾아야 한다면? 안타깝게도 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;만으로는 찾아낼 수 없다. 구글링해서 운 좋게 찾아낸다면 모를까.&lt;br&gt;
+반면 &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;을 사용한다면 어떨까? 위치가 아무리 변경된다 하더라도, 자원의 고유한 이름을 통해 찾기 때문에 자원이 웹 상에서 완전히 삭제된 게 아니라면 손쉽게 찾아낼 수 있을 것이다.&lt;/p&gt;
+&lt;h2&gt;정리&lt;/h2&gt;
+&lt;p&gt;난 어려운 개념을 이해할 때 현실세계와 연관지어 이해하는 걸 좋아한다. 위 세 개념을 현실에서 특정 사람의 신원을 확인하는 과정과 접목해서 정리하면 아래와 같이 정리할 수 있을 것 같다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;구분&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;현실&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;값&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;자원&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;나 자신&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;나&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;URI&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;나를 식별할 수 있는 모든 식별자&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;URL&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;내가 사는 주소&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;서울특별시 A구 가동&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;URN&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;내 주민등록번호&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;000000-0000000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;span class=&quot;small red-A400&quot;&gt;※ URN은 모든 자원의 고유값이므로, 사람과 연관지었을 때, 중복 가능성이 있는 이름 보다는 고유값인 주민등록번호가 더 적합하다.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;예를 들어, 내 정보가 위와 같다고 가정해보자. 내가 사는 주소 및 내 주민등록번호 모두 내 신원을 확인할 수 있는 방식(&lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;)이므로, 나를 찾기에 적합하다.&lt;br&gt;
+만약 내 주소(&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;)를 통해 확인할 경우, 내가 이사(자원의 이동)를 가게 되면 해당 주소엔 아무것도 없으며, 날 찾을 수도 없다(404 HTTP 에러). 또한, 내가 예전에 살던 주소만으로 내가 이사간 주소를 유추해낼 수도 없을 것이다.&lt;/p&gt;
+&lt;p&gt;반면, 내 주민등록번호(&lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;)을 통해 확인할 경우, 내 주민등록번호와 매칭되는 사람을 찾는 것으로 나를 식별할 수 있다. 이 과정에서 내가 어디에 있는지는 전혀 중요치 않은 것이다. 주민등록번호 자체가 말소(자원 삭제)되지 않는 한, 내가 어디에서 무엇을 하고있든 내 신원을 확인할 수 있다.&lt;/p&gt;
+&lt;h1&gt;구조&lt;/h1&gt;
+&lt;p&gt;그렇다면 이들은 어떻게 생겼는지 알아보자. &lt;span class=&quot;primary&quot;&gt;URI&lt;/span&gt;는 자원의 식별자를 포괄하여 지칭하는 개념 그 자체이므로, 구조라고 할 건 없다. 하위 개념인 &lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;, &lt;span class=&quot;primary&quot;&gt;URN&lt;/span&gt;에 대해 알아보자.&lt;/p&gt;
+&lt;h2&gt;URL 구조&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;은 아래와 같은 구조로 이루어진다. 매우 익숙할 것이다.&lt;/p&gt;
+&lt;p class=&quot;large&quot; align=&quot;center&quot;&gt;&lt;span class=&quot;lightBlue-400&quot;&gt;https&lt;/span&gt;://&lt;span class=&quot;green-400&quot;&gt;rwb0104&lt;/span&gt;.&lt;span class=&quot;yellow-400&quot;&gt;github&lt;/span&gt;.&lt;span class=&quot;pink-400&quot;&gt;com&lt;/span&gt;:&lt;span class=&quot;amber-400&quot;&gt;443&lt;/span&gt;/&lt;span class=&quot;cyan-400&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;teal-400&quot;&gt;?category=WEB&amp;page=1&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;구조별로 색상을 입혔으며, 순서대로 기술한다.&lt;/p&gt;
+&lt;h3&gt;Protocol(프로토콜)&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;상의 &lt;span class=&quot;lightBlue-400&quot;&gt;https&lt;/span&gt; 부분.&lt;/p&gt;
+&lt;p&gt;통신규약을 의미한다. 작성일 기준으로, 이 규약엔 계층별로 많은 &lt;span class=&quot;lightBlue-400&quot;&gt;프로토콜&lt;/span&gt;이 존재하는데, 웹 통신을 수행할 땐 크게 두 가지로 나뉜다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;구분&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;내용&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;HTTP&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;W3 상에서의 HTML 문서 통신규약&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;HTTPS&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;암호화된 HTTP 통신 규약&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;현재는 포털, 쇼핑몰같은 대형 비즈니스 사이트나 블로그, 카페 등 중소규모의 개인 사이트까지 &lt;span class=&quot;red-A400&quot;&gt;HTTPS의 사용이 반 강제적으로 권장&lt;/span&gt;되어 있다. 특히 전자상거래가 접목된 비즈니스 사이트의 경우 필수로 적용해야 한다. 더군다나 &lt;span class=&quot;red-A400&quot;&gt;HTTPS가 적용되지 않는 사이트(localhost 제외)에 접근할 경우 브라우저 측에서 보안 관련 경고 메시지&lt;/span&gt;를 띄우니, 규모에 관계없이 웹 사이트를 운영할 경우 HTTPS는 필수로 적용하는 편이다.&lt;/p&gt;
+&lt;h3&gt;SLD(Second Level Domain, 서브도메인, 호스트)&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;상의 &lt;span class=&quot;green-400&quot;&gt;rwb0104&lt;/span&gt; 부분.&lt;/p&gt;
+&lt;p&gt;도메인 앞에 붙으며, &lt;span class=&quot;green-400&quot;&gt;서브도메인&lt;/span&gt;을 통해 하나의 &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;으로 다중 서비스를 제공할 수 있다. 하나의 &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;에 여러 &lt;span class=&quot;green-400&quot;&gt;서브도메인&lt;/span&gt;을 생성할 수 있으며, 우리가 흔히 아는 &lt;code&gt;www&lt;/code&gt; 외에도 &lt;code&gt;dev&lt;/code&gt;, &lt;code&gt;admin&lt;/code&gt;, &lt;code&gt;m&lt;/code&gt; 용도에 따라 다양한 문자열을 지정할 수 있다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;URL&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;내용&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://naver.com&quot;&gt;naver.com&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;기본 네이버 홈페이지. 각 플랫폼(데스크탑, 모바일 등)에 가장 적합한 사이트로 리다이렉트&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.naver.com&quot;&gt;www.naver.com&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;데스크탑용 네이버 홈페이지&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://m.naver.com&quot;&gt;m.naver.com&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;모바일용 네이버 홈페이지&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://map.naver.com&quot;&gt;map.naver.com&lt;/a&gt;&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;네이버 지도&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;위는 네이버 서비스의 &lt;span class=&quot;green-400&quot;&gt;서브도메인&lt;/span&gt;으로, &lt;code&gt;naver.com&lt;/code&gt; &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;을 중심으로 각기 다른 서비스를 제공하는 것을 확인할 수 있다.&lt;/p&gt;
+&lt;h3&gt;Domain(도메인)&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;상의 &lt;span class=&quot;yellow-400&quot;&gt;github&lt;/span&gt; 부분.&lt;/p&gt;
+&lt;p&gt;URL의 중심이 되는 부분으로, 제공하는 웹 서비스의 아이덴티티 역할을 겸한다. 때문에 &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;에는 대부분 해당 웹 서비스의 이름이 들어간다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;서비스&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;네이버&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://naver.com&quot;&gt;naver.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;다음&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.daum.com&quot;&gt;www.daum.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;GitHub&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com&quot;&gt;github.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;Instagram&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://instagram.com&quot;&gt;instagram.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;대부분의 서비스가 &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;으로 서비스의 이름을 사용하고 있다.&lt;/p&gt;
+&lt;h3&gt;TLD(Top Level Domain, 최상위 도메인)&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;primary&quot;&gt;URL&lt;/span&gt;상의 &lt;span class=&quot;pink-400&quot;&gt;com&lt;/span&gt; 부분.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;이란, 앞서 언급한 &lt;span class=&quot;green-400&quot;&gt;서브도메인&lt;/span&gt;, &lt;span class=&quot;yellow-400&quot;&gt;도메인&lt;/span&gt;을 관리하는 업체 혹은 기관이라고 볼 수 있다.&lt;br&gt;
+앞서 언급한 개념의 경우, 중복되지 않는 선에서 사용자가 임의로 지정할 수 있다. 하지만 &lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;의 경우 현재 운영 중인 업체나 기관 중 하나를 &lt;strong&gt;선택&lt;/strong&gt;해서 등록해야 한다. &lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;을 선택할 경우, 당신의 도메인은 해당 &lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;을 운영하는 곳에서 관리하게 된다.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;은 운영 주체에 따라 두 가지로 나뉜다.&lt;/p&gt;
+&lt;h4&gt;ccTLD(country code TLD, 국가 코드 최상위 도메인)&lt;/h4&gt;
+&lt;p&gt;국가를 나타내는 &lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;이다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;ccTLD&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;내용&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.kr&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;한국(KISA)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.us&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;미국(LLC)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.jp&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;일본&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;span class=&quot;pink-400&quot;&gt;ccTLD&lt;/span&gt;는 위 표와 같이 국가 코드 형태이며, 각 국가기관이 직접 관리한다. 즉, &lt;code&gt;.kr&lt;/code&gt;을 가진 모든 도메인은 &lt;strong&gt;한국의 KISA(한국 인터넷 진흥원)에서 관리&lt;/strong&gt;한다.&lt;/p&gt;
+&lt;h4&gt;gTLD(generic TLD, 일반 최상위 도메인)&lt;/h4&gt;
+&lt;p&gt;사이트 혹은 사이트를 소유한 조직, 기관의 특성에 따라 사용하는 &lt;span class=&quot;pink-400&quot;&gt;최상위 도메인&lt;/span&gt;이다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;gTLD&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;내용&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.com&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;영리 단체 및 기관&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.net&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;네트워크 관리기관&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.org&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;비영리 기관&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;.gov&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;정부 기관&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;span class=&quot;pink-400&quot;&gt;gTLD&lt;/span&gt;는 위 표와 같이 다양한 종류가 있으며, 몇몇은&lt;/p&gt;
+</description>
+		<pubDate>2021-05-27T06:52:51.000Z</pubDate>
+		<link>https://rwb0104.github.io/posts/uri-url-urn/</link>
+		<guid isPermaLink="true">https://rwb0104.github.io/posts/uri-url-urn/</guid>
+		<category>WEB</category>
+		<category>WEB</category>
+		<category>WEB(웹)</category>
+		<category>URI</category>
+		<category>URL</category>
+		<category>URN</category>
 	</item>
 </rss>

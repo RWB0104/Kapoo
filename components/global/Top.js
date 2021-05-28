@@ -12,6 +12,7 @@ import config from "react-reveal/globals";
 import { Box, ButtonBase, Divider, makeStyles } from "@material-ui/core";
 import { KeyboardArrowDown } from "@material-ui/icons";
 import SemanticTypo from "./SemanticTypo";
+import { isIOS } from "react-device-detect";
 
 /**
  * Top 컴포넌트 JSX 반환 함수
@@ -26,11 +27,11 @@ import SemanticTypo from "./SemanticTypo";
  */
 export default function Top({ title, desc, category, onlyEng, image })
 {
-	const classes = getStyles(image);
+	const classes = getStyles(isIOS, image);
 
 	const ref = useRef(null);
 
-	config({ ssrFadeOut: true });
+	config({ ssrFadeOut: true, display: "unset" });
 
 	useEffect(() =>
 	{
@@ -81,7 +82,7 @@ export default function Top({ title, desc, category, onlyEng, image })
  *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(image)
+function getStyles(isIOS, image)
 {
 	return makeStyles((theme) => ({
 		top_wrapper: {
@@ -109,8 +110,8 @@ function getStyles(image)
 			backgroundColor: "rgba(0, 0, 0, 0.6)",
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
-			backgroundAttachment: "fixed",
-			backgroundPosition: "center top",
+			backgroundAttachment: isIOS ? "scroll" : "fixed",
+			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 			WebkitBackgroundSize: "cover",
 			OBackgroundSize: "cover",
@@ -131,7 +132,10 @@ function getStyles(image)
 			color: "white",
 			marginBottom: 60,
 			fontFamily: "Blacksword, sans-serif",
-			fontWeight: "bold"
+			fontWeight: "bold",
+			"& span": {
+				display: isIOS ? "compact" : "inline-block"
+			}
 		},
 		desc: {
 			color: "white",
