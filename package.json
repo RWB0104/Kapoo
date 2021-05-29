@@ -2,7 +2,7 @@
 	"name": "kapoo",
 	"version": "1.0.0",
 	"scripts": {
-		"start": "next start -p 4000",
+		"start": "next start -p 3001",
 		"dev": "next -p 4000",
 		"build": "next build",
 		"export": "next export",

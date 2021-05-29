@@ -123,7 +123,7 @@ export async function getStaticProps({ params })
 	const posts = getContents("posts");
 	const post = getContentBySlug("posts", params.slug);
 
-	const index = posts.findIndex(element => element.slug === post.slug);
+	const index = posts.sort((post1, post2) => (new Date(post1.date) > new Date(post2.date) ? -1 : 1)).findIndex(element => element.slug === post.slug);
 
 	const group = post.group ? posts.filter(element => (element.group === post.group && element.slug !== post.slug)) : [];
 

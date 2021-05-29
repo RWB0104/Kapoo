@@ -51,7 +51,9 @@ function getStyles()
 			justifyContent: "center",
 			alignItems: "center",
 			alignSelf: "center",
-			paddingLeft: 40
+			paddingLeft: 40,
+			fontWeight: "bold",
+			fontFamily: "Blacksword, sans-serif"
 		},
 		logo: {
 			justifyContent: "center",

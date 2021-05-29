@@ -20,3 +20,9 @@ export const menuAtom = new atom({
 	key: "menuState",
 	default: false
 });
+
+// 게시글 폰트 상태
+export const fontAtom = new atom({
+	key: "fontState",
+	default: cookie.load("cursive") ? cookie.load("theme") === "true" : true
+});

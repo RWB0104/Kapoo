@@ -1,7 +1,7 @@
 ---
 title: "Tomcat(톰캣) 현재 콘솔창에서 구동하기"
-excerpt: "Jekyll에서 Next.js로의 블로그 이동기"
-coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d91-24b08c6dde16/Tomcat-logo.png"
+excerpt: "오늘도 어느때와 다름없이 톰캣을 구동하는 A씨. 어제까지만 해도 잘 되던 톰캣이 무슨 오류가 있는지 구동 중에 바로 꺼져버린다. 꺼지기 직전의 순간 무슨 오류가 뜬 거 같은데..... 너무 빨라서 도통 확인할 수가 없다. 할 수 없이 일일이 로그를 찾아보며 오류를 수정하는 A씨. 건드린 것도 없는데, 왜 이러는 걸까?"
+coverImage: "https://user-images.githubusercontent.com/50317129/119212068-1b218b80-baf1-11eb-9a42-85945bceb7d9.png"
 date: "2021-05-26T16:32:16"
 type: "posts"
 category: "WAS"

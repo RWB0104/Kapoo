@@ -8,6 +8,10 @@
 // 라이브러리 모듈
 import { makeStyles } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
+import { useRecoilState } from "recoil";
+
+// 사용자 모듈
+import { fontAtom } from "../../../common/states";
 
 /**
  * 컨텐츠 내용 JSX 반환 함수
@@ -18,7 +22,9 @@ import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey
  */
 export default function ContentsBody({ content })
 {
-	const classes = getStyles();
+	const [ fontState, setFontState ] = useRecoilState(fontAtom);
+
+	const classes = getStyles(fontState);
 
 	return <div className={classes.markdown} dangerouslySetInnerHTML={{ __html: content.content }} />;
 }
@@ -26,9 +32,11 @@ export default function ContentsBody({ content })
 /**
  * 스타일 객체 반환 함수
  *
+ * @param {Object} fontState: 폰트 상태
+ *
  * @returns {JSON} 스타일 객체
  */
-function getStyles()
+function getStyles(fontState)
 {
 	return makeStyles((theme) =>
 	{
@@ -208,7 +216,7 @@ function getStyles()
 		return {
 			markdown: {
 				fontSize: "1.25rem",
-				fontFamily: "둘기마요, Spoqa Han Sans, sans-serif",
+				fontFamily: fontState ? "둘기마요, Spoqa Han Sans, sans-serif" : "Spoqa Han Sans, sans-serif",
 				marginBottom: theme.spacing(20),
 				lineHeight: 2,
 				"& .center": {
@@ -283,11 +291,12 @@ function getStyles()
 				},
 				"& blockquote": {
 					borderLeft: `4px solid ${orange[500]}`,
+					backgroundColor: theme.palette.type === "dark" ? "#222" : "#EEE",
 					marginTop: theme.spacing(8),
 					marginBottom: theme.spacing(8),
-					padding: "5px 25px",
+					padding: "15px 25px",
 					fontStyle: "italic",
-					color: "#888888",
+					color: theme.palette.type === "dark" ? "#AAA" : "#555",
 					"& > :first-child": {
 						marginTop: 0
 					},
@@ -305,6 +314,9 @@ function getStyles()
 				},
 				"& table": {
 					padding: 0,
+					margin: "auto",
+					marginTop: theme.spacing(7),
+					marginBottom: theme.spacing(7),
 					borderCollapse: "collapse",
 					"& tr": {
 						borderTop: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,

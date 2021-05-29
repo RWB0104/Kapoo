@@ -7,6 +7,7 @@
 
 // 라이브러리 모듈
 import { Box, makeStyles } from "@material-ui/core";
+import { isIOS } from "react-device-detect";
 import { Fade } from "react-reveal";
 
 // 사용자 모듈
@@ -72,8 +73,8 @@ function getStyles()
 			backgroundColor: "rgba(0, 0, 0, 0.5)",
 			backgroundBlendMode: "multiply",
 			backgroundSize: "cover",
-			backgroundAttachment: "fixed",
-			backgroundPosition: "center top",
+			backgroundAttachment: isIOS ? "scroll" : "fixed",
+			backgroundPosition: "center",
 			backgroundRepeat: "no-repeat",
 			WebkitBackgroundSize: "cover",
 			OBackgroundSize: "cover",

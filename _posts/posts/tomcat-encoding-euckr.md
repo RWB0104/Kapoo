@@ -1,13 +1,13 @@
 ---
 title: "Tomcat(톰캣) 콘솔창 한글 인코딩 깨짐 현상 해결하기"
 excerpt: "톰캣을 구동하다보면 심심치않게 마주하는 오류(?)는 아니고 현상. Windows Console의 기본 인코딩과 Tomcat이 출력하는 인코딩이 서로 달라서 생긴다."
-coverImage: "https://media.vlpt.us/images/hanblueblue/post/0261303c-2557-4673-9d91-24b08c6dde16/Tomcat-logo.png"
+coverImage: "https://user-images.githubusercontent.com/50317129/119212068-1b218b80-baf1-11eb-9a42-85945bceb7d9.png"
 date: "2021-05-22T12:52:51"
 type: "posts"
 category: "WAS"
 tag: [ "WAS", "Tomcat(톰캣)", "Console(콘솔)" ]
 comment: true
-publish: false
+publish: true
 ---
 
 # 와장창!

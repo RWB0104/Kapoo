@@ -27,7 +27,7 @@ import { isIOS } from "react-device-detect";
  */
 export default function Top({ title, desc, category, onlyEng, image })
 {
-	const classes = getStyles(isIOS, image);
+	const classes = getStyles(image);
 
 	const ref = useRef(null);
 
@@ -82,7 +82,7 @@ export default function Top({ title, desc, category, onlyEng, image })
  *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(isIOS, image)
+function getStyles(image)
 {
 	return makeStyles((theme) => ({
 		top_wrapper: {
@@ -134,7 +134,7 @@ function getStyles(isIOS, image)
 			fontFamily: "Blacksword, sans-serif",
 			fontWeight: "bold",
 			"& span": {
-				display: isIOS ? "compact" : "inline-block"
+				display: isIOS ? "compact !important" : "inline-block"
 			}
 		},
 		desc: {
