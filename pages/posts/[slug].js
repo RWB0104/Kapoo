@@ -38,7 +38,7 @@ export default function Post({ page, post, group })
 	const router = useRouter();
 
 	// 유효하지 않은 경로일 경우
-	if (!router.isFallback && !post?.slug)
+	if(!router.isFallback && !post?.slug)
 	{
 		return <ErrorPage statusCode={404} />;
 	}
@@ -133,8 +133,8 @@ export async function getStaticProps({ params })
 		props: {
 			page: {
 				type: "posts",
-				prev: index - 1 > 0 ? posts[index - 1] : -1,
-				next: index + 1 > posts.length - 1 ? -1 : posts[index + 1]
+				prev: index + 1 > posts.length - 1 ? -1 : posts[index + 1],
+				next: index - 1 > -1 ? posts[index - 1] : -1
 			},
 			group: group,
 			post: {

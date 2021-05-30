@@ -8,10 +8,6 @@
 // 라이브러리 모듈
 import { makeStyles } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
-import { useRecoilState } from "recoil";
-
-// 사용자 모듈
-import { fontAtom } from "../../../common/states";
 
 /**
  * 컨텐츠 내용 JSX 반환 함수
@@ -22,9 +18,7 @@ import { fontAtom } from "../../../common/states";
  */
 export default function ContentsBody({ content })
 {
-	const [ fontState, setFontState ] = useRecoilState(fontAtom);
-
-	const classes = getStyles(fontState);
+	const classes = getStyles();
 
 	return <div className={classes.markdown} dangerouslySetInnerHTML={{ __html: content.content }} />;
 }
@@ -32,11 +26,9 @@ export default function ContentsBody({ content })
 /**
  * 스타일 객체 반환 함수
  *
- * @param {Object} fontState: 폰트 상태
- *
  * @returns {JSON} 스타일 객체
  */
-function getStyles(fontState)
+function getStyles()
 {
 	return makeStyles((theme) =>
 	{
@@ -216,7 +208,7 @@ function getStyles(fontState)
 		return {
 			markdown: {
 				fontSize: "1.25rem",
-				fontFamily: fontState ? "둘기마요, Spoqa Han Sans, sans-serif" : "Spoqa Han Sans, sans-serif",
+				fontFamily: "Spoqa Han Sans, sans-serif",
 				marginBottom: theme.spacing(20),
 				lineHeight: 2,
 				"& .center": {
@@ -308,6 +300,10 @@ function getStyles(fontState)
 					maxWidth: "100%",
 					display: "block",
 					margin: "0 auto"
+				},
+				"& p span": {
+					display: "inline-block",
+					wordBreak: "break-word"
 				},
 				"& strong": {
 					wordBreak: "break-word"
@@ -422,7 +418,7 @@ function getStyles(fontState)
 				"& .token.important, .token.bold": {
 					fontWeight: "bold"
 				},
-				"& .token.italic":  {
+				"& .token.italic": {
 					fontStyle: "italic"
 				},
 				"& .token.entity": {

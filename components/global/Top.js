@@ -38,7 +38,7 @@ export default function Top({ title, desc, category, onlyEng, image })
 		document.getElementById("top").addEventListener("wheel", (e) =>
 		{
 			// 하단 스크롤일 경우
-			if (e.deltaY > 0)
+			if(e.deltaY > 0)
 			{
 				e.preventDefault();
 				ref.current.scrollIntoView({ behavior: "smooth" });
@@ -125,7 +125,6 @@ function getStyles(image)
 		title: {
 			color: "white",
 			marginBottom: 60,
-			fontFamily: "둘기마요, sans-serif",
 			fontWeight: "bold"
 		},
 		title_eng: {
@@ -139,7 +138,6 @@ function getStyles(image)
 		},
 		desc: {
 			color: "white",
-			fontFamily: "둘기마요, sans-serif"
 		},
 		down: {
 			width: "100%",
