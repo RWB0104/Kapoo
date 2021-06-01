@@ -12,6 +12,7 @@ import { Box, ButtonBase, Chip, Grid, makeStyles, useMediaQuery, useTheme } from
 import { red } from "@material-ui/core/colors";
 import { LocalOffer } from "@material-ui/icons";
 import SemanticTypo from "../../global/SemanticTypo";
+import { slugRegex } from "../../../common/common";
 
 /**
  * 게시글 아이템 JSX 반환 함수
@@ -30,10 +31,12 @@ export default function PostItem({ item, index })
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+	const slugs = slugRegex.exec(item.slug);
+
 	return (
 		<Grid component="article" item xs={12}>
 			<Fade>
-				<ButtonBase className={classes.post_button} onClick={() => router.push(`/posts/${item.slug}`)}>
+				<ButtonBase className={classes.post_button} onClick={() => router.push(`/posts/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/`)}>
 					<Grid container spacing={0}>
 						<Grid className={classes.image_wrap, "wrapper"} item xs={4}>
 							<Box className={classes.post_image} />
@@ -60,10 +63,10 @@ export default function PostItem({ item, index })
 							</Grid>
 
 							<SemanticTypo up="h4" down="h6" className={classes.post_title}>{item.title}</SemanticTypo>
-							<SemanticTypo up="caption" down="caption" className={classes.post_desc}>{item.excerpt}</SemanticTypo>
+							{!isMobile && <SemanticTypo up="caption" down="caption" className={classes.post_desc}>{item.excerpt}</SemanticTypo>}
 
 							<Box>
-								{item.tag?.map((sub, index) => <Chip key={index} color="primary" label={`# ${sub}`} className={classes.post_tag} onClick={(e) => e.stopPropagation()} />)}
+								{item.tag?.map((sub, index) => <Chip key={index} variant="outlined" label={`# ${sub}`} className={classes.post_tag} onClick={(e) => e.stopPropagation()} />)}
 							</Box>
 						</Grid>
 					</Grid>
@@ -122,14 +125,13 @@ function getStyles(index, url)
 		},
 		post_title: {
 			paddingBottom: theme.spacing(2),
-			fontWeight: "bold"
+			fontWeight: "bolder"
 		},
 		post_desc: {
 			flexGrow: 1
 		},
 		post_tag: {
-			marginLeft: 3,
-			marginRight: 3
+			margin: 3
 		}
 	}))();
 }

@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Card, CardContent, CardHeader, CardMedia, Grid, makeStyles } from "@material-ui/core";
 
 // 사용자 모듈
 import PostItem from "../posts/PostItem";

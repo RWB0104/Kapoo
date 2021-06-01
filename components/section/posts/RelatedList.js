@@ -7,6 +7,7 @@
 
 import { Box, GridList, GridListTile, GridListTileBar, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { useRouter } from "next/router";
+import { slugRegex } from "../../../common/common";
 
 /**
  * 연관 리스트 JSX 반환 함수
@@ -30,13 +31,18 @@ export default function RelatedList({ list })
 
 			<Box className={classes.gridlist_wrapper}>
 				<GridList cols={isMobile ? 1.5 : 2.5} className={classes.gridlist}>
-					{list.map((element, index) => (
-						<GridListTile key={index} className={classes.griditem} onClick={() => router.push(`/posts/${element.slug}`)}>
-							<img src={element.coverImage} className={classes.img} />
+					{list.map((element, index) =>
+					{
+						const slugs = slugRegex.exec(element.slug);
 
-							<GridListTileBar title={element.title} />
-						</GridListTile>
-					))}
+						return (
+							<GridListTile key={index} className={classes.griditem} onClick={() => router.push(`/posts/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}`)}>
+								<img src={element.coverImage} className={classes.img} />
+
+								<GridListTileBar title={element.title} />
+							</GridListTile>
+						);
+					})}
 				</GridList>
 			</Box>
 		</Box>
@@ -75,7 +81,7 @@ function getStyles(isMobile)
 				transition: "0.5s"
 			},
 			"&:hover .MuiGridListTileBar-title": {
-				color: theme.palette.primary.light,
+				color: theme.palette.primary.dark,
 				transition: "0.5s"
 			}
 		},

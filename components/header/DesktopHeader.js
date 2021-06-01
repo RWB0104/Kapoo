@@ -62,7 +62,7 @@ function getStyles()
 			paddingLeft: theme.spacing(3),
 			paddingRight: theme.spacing(3),
 			color: "white",
-			fontFamily: "Hack, sans-serif",
+			fontFamily: "나눔스퀘어라운드, sans-serif",
 			"&:disabled": {
 				color: text,
 				fontWeight: "bold"

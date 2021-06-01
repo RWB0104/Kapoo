@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Fade } from "react-reveal";
+import { Fade } from "react-awesome-reveal";
 import { useRouter } from "next/router";
 import { Box, Container, FormControl, Grid, InputLabel, makeStyles, Select, TextField, useMediaQuery, useTheme } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
@@ -49,7 +49,7 @@ export default function Posts({ posts, images })
 
 			<Box component="section">
 				<Fade>
-					<Top title={MENU_LIST[1].title} desc={`Posts of "${category}"`} image={`/assets/images/main/${url}`} onlyEng />
+					<Top title={MENU_LIST[1].title} image={`/assets/images/main/${url}`} onlyEng />
 
 					<Container maxWidth="md" className={classes.section}>
 						{

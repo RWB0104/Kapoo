@@ -51,11 +51,11 @@ export default function Footer()
 						<SemanticTypo up="h4" down="h5" align="center" className={classes.title}>{TITLE}</SemanticTypo>
 
 						<Box display="flex" flexDirection="column" justifyContent="center">
-							<SemanticTypo up="subtitle2" down="caption1" align={isMobile ? "center" : "left"}>
+							<SemanticTypo up="subtitle2" down="caption" align={isMobile ? "center" : "left"}>
 								🔗 <Link href="https://rwb0104.github.io/" className={classes.link}>https://rwb0104.github.io/</Link>
 							</SemanticTypo>
 
-							<SemanticTypo up="subtitle2" down="caption1" align={isMobile ? "center" : "left"} className={classes.desc}>{DESCRIPTION}</SemanticTypo>
+							<SemanticTypo up="subtitle2" down="caption" align={isMobile ? "center" : "left"} className={classes.desc}>{DESCRIPTION}</SemanticTypo>
 						</Box>
 					</Grid>
 
@@ -70,7 +70,7 @@ export default function Footer()
 									</SvgIcon>
 								</IconButton>
 
-								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">Mail</SemanticTypo>
+								<SemanticTypo up="subtitle2" down="caption" className={classes.stack_typo} align="center">Mail</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
@@ -78,7 +78,7 @@ export default function Footer()
 									<GitHub fontSize={isMobile ? "small" : "large"} />
 								</IconButton>
 
-								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">Github</SemanticTypo>
+								<SemanticTypo up="subtitle2" down="caption" className={classes.stack_typo} align="center">Github</SemanticTypo>
 							</Box>
 						</Box>
 					</Grid>
@@ -94,7 +94,7 @@ export default function Footer()
 									</SvgIcon>
 								</IconButton>
 
-								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Develop</SemanticTypo>
+								<SemanticTypo up="subtitle2" down="caption" className={classes.stack_typo} align="center">with Develop</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
@@ -104,7 +104,7 @@ export default function Footer()
 									</SvgIcon>
 								</IconButton>
 
-								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Design</SemanticTypo>
+								<SemanticTypo up="subtitle2" down="caption" className={classes.stack_typo} align="center">with Design</SemanticTypo>
 							</Box>
 
 							<Box display="flex" flexDirection="column" alignItems="center">
@@ -112,7 +112,7 @@ export default function Footer()
 									<GitHub fontSize={isMobile ? "small" : "large"} />
 								</IconButton>
 
-								<SemanticTypo up="subtitle2" down="caption1" className={classes.stack_typo} align="center">with Publish</SemanticTypo>
+								<SemanticTypo up="subtitle2" down="caption" className={classes.stack_typo} align="center">with Publish</SemanticTypo>
 							</Box>
 						</Box>
 					</Grid>
@@ -151,7 +151,7 @@ function getStyles(isMobile)
 		title: {
 			marginBottom: theme.spacing(3),
 			color: theme.palette.type === "dark" ? "#CCCCCC" : "#555555",
-			fontFamily: "Hack, sans-serif",
+			fontFamily: "나눔스퀘어라운드, sans-serif",
 			fontWeight: "bold"
 		},
 		desc: {

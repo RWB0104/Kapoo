@@ -16,6 +16,8 @@ const prism = require("remark-prism");
 const globby = require("globby");
 const format = require("xml-formatter");
 
+const slugRegex = /^(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*)$/;
+
 const BASE_URL = "https://rwb0104.github.io";
 const CONTENT_DIR = join(process.cwd(), "_posts");
 const FORMAT = {
@@ -39,7 +41,8 @@ async function genSitemap()
 	const page = await globby([
 		"./pages/**/*.js",
 		"!./pages/_*.js",
-		"!./pages/**/[slug].js"
+		"!./pages/**/[slug].js",
+		"!./pages/**/[...slug].js"
 	]);
 
 	const posts = getContents("posts");
@@ -65,8 +68,10 @@ async function genSitemap()
 		// 발행 대상일 경우
 		if (element.publish)
 		{
+			const slugs = slugRegex.exec(element.slug);
+
 			acc += `<url>
-				<loc>${BASE_URL}/${element.type}/${element.slug}/</loc>
+				<loc>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</loc>
 				<priority>0.5</priority>
 				<lastmod>${new Date(element.date).toISOString()}</lastmod>
 				<changefreq>monthly</changefreq>
@@ -130,12 +135,14 @@ function genRss()
 				return acc;
 			}, `<category>${element.category}</category>\n`);
 
+			const slugs = slugRegex.exec(element.slug);
+
 			acc += `<item>
 				<title>${element.title}</title>
 				<description>${content}</description>
 				<pubDate>${new Date(element.date).toISOString()}</pubDate>
-				<link>${BASE_URL}/${element.type}/${element.slug}/</link>
-				<guid isPermaLink="true">${BASE_URL}/${element.type}/${element.slug}/</guid>
+				<link>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</link>
+				<guid isPermaLink="true">${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</guid>
 				<category>${element.category}</category>
 				${tag}
 			</item>

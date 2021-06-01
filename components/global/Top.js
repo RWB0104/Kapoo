@@ -38,7 +38,7 @@ export default function Top({ title, desc, category, onlyEng, image })
 		document.getElementById("top").addEventListener("wheel", (e) =>
 		{
 			// 하단 스크롤일 경우
-			if(e.deltaY > 0)
+			if (e.deltaY > 0)
 			{
 				e.preventDefault();
 				ref.current.scrollIntoView({ behavior: "smooth" });
@@ -57,7 +57,7 @@ export default function Top({ title, desc, category, onlyEng, image })
 					<Flip left cascade>{category && `[${category}]`}</Flip>
 				</SemanticTypo>
 
-				<SemanticTypo up="h1" down="h3" align="center" className={onlyEng ? classes.title_eng : classes.title}>
+				<SemanticTypo up={onlyEng ? "h1" : "h2"} down={onlyEng ? "h3" : "h4"} align="center" className={onlyEng ? classes.title_eng : classes.title}>
 					<Flip left cascade>{title}</Flip>
 				</SemanticTypo>
 
@@ -125,7 +125,7 @@ function getStyles(image)
 		title: {
 			color: "white",
 			marginBottom: 60,
-			fontWeight: "bold"
+			fontWeight: "bolder"
 		},
 		title_eng: {
 			color: "white",
@@ -137,7 +137,7 @@ function getStyles(image)
 			}
 		},
 		desc: {
-			color: "white",
+			color: "white"
 		},
 		down: {
 			width: "100%",

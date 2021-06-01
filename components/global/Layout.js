@@ -73,7 +73,7 @@ function getThemes(isDark)
 			secondary: indigo
 		},
 		typography: {
-			fontFamily: "Spoqa Han Sans, sans-serif"
+			fontFamily: "나눔스퀘어라운드, sans-serif"
 		},
 		overrides: {
 			MuiCssBaseline: {

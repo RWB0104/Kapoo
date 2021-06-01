@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
 
 /**
@@ -18,7 +18,10 @@ import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey
  */
 export default function ContentsBody({ content })
 {
-	const classes = getStyles();
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+	const classes = getStyles(isMobile);
 
 	return <div className={classes.markdown} dangerouslySetInnerHTML={{ __html: content.content }} />;
 }
@@ -26,9 +29,11 @@ export default function ContentsBody({ content })
 /**
  * 스타일 객체 반환 함수
  *
+ * @param {boolean} isMobile: 모바일 여부
+ *
  * @returns {JSON} 스타일 객체
  */
-function getStyles()
+function getStyles(isMobile)
 {
 	return makeStyles((theme) =>
 	{
@@ -207,18 +212,18 @@ function getStyles()
 
 		return {
 			markdown: {
-				fontSize: "1.25rem",
-				fontFamily: "Spoqa Han Sans, sans-serif",
+				fontSize: isMobile ? "1.25rem" : "1.5rem",
+				fontFamily: "나눔스퀘어라운드, sans-serif",
 				marginBottom: theme.spacing(20),
-				lineHeight: 2,
+				lineHeight: 1.75,
 				"& .center": {
 					textAlign: "center"
 				},
 				"& .small": {
-					fontSize: "1rem"
+					fontSize: isMobile ? "1rem" : "1.25rem"
 				},
 				"& .large": {
-					fontSize: "1.5rem"
+					fontSize: isMobile ? "1.5rem" : "1.75rem"
 				},
 				"& .primary": {
 					color: theme.palette.primary[theme.palette.type]
@@ -299,18 +304,22 @@ function getStyles()
 				"& img": {
 					maxWidth: "100%",
 					display: "block",
-					margin: "0 auto"
+					margin: "0 auto",
+					marginTop: 80,
+					marginBottom: 80
 				},
 				"& p span": {
-					display: "inline-block",
 					wordBreak: "break-word"
 				},
 				"& strong": {
 					wordBreak: "break-word"
 				},
 				"& table": {
+					display: "block",
+					overflow: "auto",
 					padding: 0,
 					margin: "auto",
+					fontSize: "1rem",
 					marginTop: theme.spacing(7),
 					marginBottom: theme.spacing(7),
 					borderCollapse: "collapse",
@@ -327,12 +336,14 @@ function getStyles()
 						fontWeight: "bold",
 						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
 						margin: 0,
-						padding: "6px 13px"
+						padding: "6px 13px",
+						wordBreak: "keep-all"
 					},
 					"& tr td": {
 						border: `1px solid ${theme.palette.type === "dark" ? "#333333" : "#CCCCCC"}`,
 						margin: 0,
-						padding: "6px 13px"
+						padding: "6px 13px",
+						wordBreak: "keep-all"
 					},
 					"& tr th :first-child, & tr td :first-child": {
 						marginTop: 0
@@ -346,7 +357,7 @@ function getStyles()
 					color: "white",
 					padding: 5,
 					borderRadius: 5,
-					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					fontFamily: "Hack, 나눔스퀘어라운드, monospace",
 					fontSize: "0.75em",
 					marginLeft: theme.spacing(1),
 					marginRight: theme.spacing(1),
@@ -359,7 +370,7 @@ function getStyles()
 				"& code[class*='language-'], pre[class*='language-']": {
 					color: "#ccc",
 					background: "none",
-					fontFamily: "Hack, Spoqa Han Sans, monospace",
+					fontFamily: "Hack, 나눔스퀘어라운드, monospace",
 					fontSize: 16,
 					textAlign: "left",
 					whiteSpace: "pre",

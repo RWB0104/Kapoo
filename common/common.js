@@ -5,6 +5,8 @@
  * @since 2021.05.01 Sat 20:10:41
  */
 
+export const slugRegex = /^(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*)$/;
+
 /**
  * 입력한 배열의 랜덤 아이템 반환 함수
  *
@@ -38,4 +40,35 @@ export function getFormattedDate(date)
 	const week = weekList[date.getDay()];
 
 	return `${year}-${month}-${day} ${week} ${hour}:${minute}:${second}`;
+}
+
+/**
+ * 날짜/시간 조각 반환 함수
+ *
+ * @param {Date} date: 날짜/시간 객체
+ *
+ * @returns {Object} 날짜/시간 조각 객체
+ */
+export function getDateTimeSnippet(date)
+{
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+
+	const hour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+	const minute = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+	const second = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
+
+	const weekList = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
+	const week = weekList[date.getDay()];
+
+	return {
+		year: year,
+		month: month,
+		day: day,
+		week: week,
+		hour: hour,
+		minute: minute,
+		second: second
+	};
 }
