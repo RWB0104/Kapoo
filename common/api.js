@@ -82,7 +82,7 @@ export function getMainImages()
  */
 export async function markdownToHtml(markdown)
 {
-	const result = await remark().use(toc).use(slug).use(heading, {
+	const headingOption = {
 		linkProperties: {
 			className: [ "head-link" ]
 		},
@@ -96,7 +96,9 @@ export async function markdownToHtml(markdown)
 				}
 			]
 		}
-	}).use(html).use(gfm).use(prism).process(markdown);
+	};
+
+	const result = await remark().use(toc, {parents: ["root", "blockquote"]}).use(slug).use(heading, headingOption).use(html).use(gfm).use(prism).process(markdown);
 
 	return result.toString();
 }

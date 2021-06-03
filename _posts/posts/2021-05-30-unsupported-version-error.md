@@ -10,6 +10,8 @@ comment: true
 publish: true
 ---
 
+## Table of Contents
+
 # Unsupported major.minor version
 
 간혹 JAVA 프로그램을 실행하다보면 <span class="error">Unsupported major.minor version 52</span>(숫자는 class 버전에 따라 다름) 오류가 출력되면서 정상적으로 동작하지 않는 오류가 발생한다.  
