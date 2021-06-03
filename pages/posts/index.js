@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import React from "react";
-import { Fade } from "react-awesome-reveal";
+import { Fade } from "react-reveal";
 import { useRouter } from "next/router";
 import { Box, Container, FormControl, Grid, InputLabel, makeStyles, Select, TextField, useMediaQuery, useTheme } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";

@@ -24,6 +24,7 @@ import { MENU_LIST } from "../../common/env";
 import RelatedList from "../../components/section/posts/RelatedList";
 import Meta from "../../components/global/Meta";
 import Tags from "../../components/section/contents/Tags";
+import { Fade } from "react-reveal";
 
 /**
  * 게시글 JSX 반환 함수
@@ -53,7 +54,9 @@ export default function Post({ page, post, group })
 			<React.Fragment>
 				<Meta title={post.title} description={post.excerpt} url={`/posts/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/`} image={post.coverImage} />
 
-				<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
+				<Fade>
+					<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />
+				</Fade>
 
 				<Container maxWidth="md">
 					<ContentsBody content={post} />
