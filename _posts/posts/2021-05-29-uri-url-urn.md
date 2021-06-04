@@ -10,8 +10,6 @@ comment: true
 publish: true
 ---
 
-## Table of Contents
-
 # URL! URI... URN??
 
 우리가 인터넷 상에서 **특정한 데이터**에 접근할 때 <span class="primary">URL</span>이라는 것을 활용하여 접근한다.  

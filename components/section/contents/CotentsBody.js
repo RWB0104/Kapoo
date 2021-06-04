@@ -399,6 +399,10 @@ function getStyles(isMobile)
 					borderRadius: ".3em",
 					whiteSpace: "normal"
 				},
+				"& pre.language-case": {
+					maxHeight: 300,
+					overflow: "auto"
+				},
 				"& .token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata": {
 					color: "#00c800"
 				},
@@ -441,6 +445,20 @@ function getStyles(isMobile)
 				"& a.head-link": {
 					textDecoration: "none",
 					marginRight: theme.spacing(1)
+				},
+				"& .toc-wrap": {
+					backgroundColor: theme.palette.type === "dark" ? "#222" : "#EEE",
+					marginTop: theme.spacing(10),
+					padding: theme.spacing(3),
+					"& .toc-link": {
+						textDecoration: "none",
+						color: theme.palette.text.primary,
+						transition: "500ms",
+						"&:hover": {
+							color: theme.palette.primary.main,
+							transition: "500ms"
+						}
+					}
 				}
 			}
 		};

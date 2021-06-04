@@ -25,6 +25,7 @@ import RelatedList from "../../components/section/posts/RelatedList";
 import Meta from "../../components/global/Meta";
 import Tags from "../../components/section/contents/Tags";
 import { Fade } from "react-reveal";
+import Head from "next/head";
 
 /**
  * 게시글 JSX 반환 함수
@@ -53,6 +54,10 @@ export default function Post({ page, post, group })
 		return (
 			<React.Fragment>
 				<Meta title={post.title} description={post.excerpt} url={`/posts/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/`} image={post.coverImage} />
+				<Head>
+					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous" />
+					<link rel="stylesheet" href="/te.css" />
+				</Head>
 
 				<Fade>
 					<Top title={post.title} desc={getFormattedDate(new Date(post.date))} category={post.category} image={post.coverImage} />

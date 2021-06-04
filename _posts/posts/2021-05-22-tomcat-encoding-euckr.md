@@ -10,8 +10,6 @@ comment: true
 publish: true
 ---
 
-## Table of Contents
-
 # 와장창!
 
 ![Encoding Broken](https://user-images.githubusercontent.com/50317129/119212087-342a3c80-baf1-11eb-89bc-06829a5f7c16.png)

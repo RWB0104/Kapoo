@@ -11,8 +11,6 @@ comment: true
 publish: true
 ---
 
-## Table of Contents
-
 # 백준 알고리즘
 
 코딩 테스트 및 개인 실력 향상을 위해 백준 알고리즘을 차례로 풀어보기로 했다.

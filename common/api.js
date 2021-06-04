@@ -9,13 +9,20 @@
 import fs from "fs";
 import { join } from "path";
 import matter from "gray-matter";
-import remark from "remark";
-import toc from "remark-toc";
+import unified from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
 import slug from "remark-slug";
-import heading from "remark-autolink-headings";
-import html from "remark-html";
 import gfm from "remark-gfm";
 import prism from "remark-prism";
+import rehypeParse from "rehype-parse";
+import rehypeToc from "rehype-toc";
+import rehypeStr from "rehype-stringify";
+import headings from "rehype-autolink-headings";
+import mathjax from "rehype-mathjax";
+import math from "remark-math";
+import katex from "rehype-katex";
+import raw from "rehype-raw";
 
 const CONTENT_DIR = join(process.cwd(), "_posts");
 
@@ -78,12 +85,22 @@ export function getMainImages()
 /**
  * Markdown HTML 변환 및 반환 함수
  *
+ * @param {String} body: 내용
+ *
  * @returns {Promise} 변환 Promise 객체
  */
-export async function markdownToHtml(markdown)
+export async function markdownToHtml(body)
 {
-	const headingOption = {
-		linkProperties: {
+	const tocOptions = {
+		nav: true,
+		cssClasses: {
+			toc: "toc-wrap",
+			link: "toc-link"
+		}
+	};
+
+	const headingOptions = {
+		properties: {
 			className: [ "head-link" ]
 		},
 		content: {
@@ -98,7 +115,19 @@ export async function markdownToHtml(markdown)
 		}
 	};
 
-	const result = await remark().use(toc, {parents: ["root", "blockquote"]}).use(slug).use(heading, headingOption).use(html).use(gfm).use(prism).process(markdown);
+	console.dir(unified().use(remarkParse).use(remarkRehype).use(rehypeStr).processSync(body));
 
-	return result.toString();
+	const t = await unified().use(remarkParse).use(math).use(slug).use(prism, {
+		plugins: [
+			"autolinker",
+			"command-line",
+			"data-uri-highlight",
+			"diff-highlight",
+			"inline-color",
+			"keep-markup",
+			"line-numbers"
+		  ]
+	}).use(remarkRehype, { allowDangerousHtml: true }).use(raw).use(katex).use(rehypeStr).use(gfm).use(rehypeToc, tocOptions).use(headings, headingOptions).process(body);
+
+	return t.toString();
 }

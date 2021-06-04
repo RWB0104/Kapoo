@@ -10,8 +10,6 @@ comment: true
 publish: true
 ---
 
-## Table of Contents
-
 # Bye, Jekyll!
 
 <div>

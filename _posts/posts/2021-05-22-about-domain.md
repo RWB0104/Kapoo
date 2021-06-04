@@ -10,8 +10,6 @@ comment: true
 publish: true
 ---
 
-## Table of Contents
-
 # Domain(도메인)이란?
 
 도메인을 이해하기 위해선, IP에 대해 짚고 넘어가야 한다.  
