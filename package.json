@@ -7,6 +7,7 @@
 		"build": "next build",
 		"export": "next export",
 		"seo": "node ./next-seo.js",
+		"devist": "next build && next export -o ../RWB0104.github.io/docs",
 		"dist": "node ./next-seo.js && next build && next export -o ../RWB0104.github.io/docs"
 	},
 	"dependencies": {
@@ -25,10 +26,9 @@
 		"react-dom": "^17.0.2",
 		"react-reveal": "^1.2.2",
 		"recoil": "^0.2.0",
+		"rehype-add-classes": "^1.0.0",
 		"rehype-autolink-headings": "^5.1.0",
 		"rehype-katex": "^5.0.0",
-		"rehype-mathjax": "^3.1.0",
-		"rehype-parse": "^7.0.1",
 		"rehype-raw": "^5.1.0",
 		"rehype-stringify": "^8.0.0",
 		"rehype-toc": "^3.0.2",

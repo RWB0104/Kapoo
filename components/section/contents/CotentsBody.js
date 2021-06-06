@@ -8,6 +8,8 @@
 // 라이브러리 모듈
 import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
+import Head from "next/head";
+import React from "react";
 
 /**
  * 컨텐츠 내용 JSX 반환 함수
@@ -23,7 +25,15 @@ export default function ContentsBody({ content })
 
 	const classes = getStyles(isMobile);
 
-	return <div className={classes.markdown} dangerouslySetInnerHTML={{ __html: content.content }} />;
+	return (
+		<React.Fragment>
+			<Head>
+				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous" />
+			</Head>
+
+			<div className={classes.markdown} dangerouslySetInnerHTML={{ __html: content.content }} />
+		</React.Fragment>
+	);
 }
 
 /**
@@ -386,7 +396,8 @@ function getStyles(isMobile)
 					WebkitHyphens: "none"
 				},
 				"& pre[class*='language-']": {
-					padding: "1em",
+					padding: "2em",
+					paddingLeft: "3.8em",
 					margin: ".5em 0",
 					overflow: "auto"
 				},
@@ -399,7 +410,7 @@ function getStyles(isMobile)
 					borderRadius: ".3em",
 					whiteSpace: "normal"
 				},
-				"& pre.language-case": {
+				"& pre.language-tc": {
 					maxHeight: 300,
 					overflow: "auto"
 				},
@@ -459,6 +470,9 @@ function getStyles(isMobile)
 							transition: "500ms"
 						}
 					}
+				},
+				"& .math-display": {
+					overflow: "auto"
 				}
 			}
 		};

@@ -9,10 +9,6 @@
 const fs = require("fs");
 const { join } = require("path");
 const matter = require("gray-matter");
-const remark = require("remark");
-const html = require("remark-html");
-const gfm = require("remark-gfm");
-const prism = require("remark-prism");
 const globby = require("globby");
 const format = require("xml-formatter");
 
@@ -26,23 +22,17 @@ const FORMAT = {
 	lineSeparator: "\n"
 };
 
-genSitemap();
-genRss();
+seo();
 
-/**
- * 사이트맵 생성 함수
- */
-async function genSitemap()
+async function seo()
 {
-	console.log("=========================");
-	console.log("sitemap.xml 생성 중...");
-	console.log("=========================\n\n\n");
+	console.log("==================================================");
+	console.log("seo 파일 생성 시작\n\n");
 
 	const page = await globby([
 		"./pages/**/*.js",
 		"!./pages/_*.js",
-		"!./pages/**/[slug].js",
-		"!./pages/**/[...slug].js"
+		"!./pages/**/[*.js"
 	]);
 
 	const posts = getContents("posts");
@@ -63,83 +53,37 @@ async function genSitemap()
 		return acc;
 	}, "");
 
-	const postsUrl = posts.reduce((acc, element) =>
+	console.log(" - 페이지 정보 조회 완료");
+
+	let postUrl = "";
+	let projectUrl = "";
+
+	let postItem = "";
+	let projectItem = "";
+
+	posts.forEach(element =>
 	{
 		// 발행 대상일 경우
 		if (element.publish)
 		{
 			const slugs = slugRegex.exec(element.slug);
-
-			acc += `<url>
-				<loc>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</loc>
-				<priority>0.5</priority>
-				<lastmod>${new Date(element.date).toISOString()}</lastmod>
-				<changefreq>monthly</changefreq>
-			</url>
-			`;
-		}
-
-		return acc;
-	}, []);
-
-	const projectsUrl = projects.reduce((acc, element) =>
-	{
-		// 발행 대상일 경우
-		if (element.publish)
-		{
-			acc += `<url>
-				<loc>${BASE_URL}/${element.type}/${element.slug}/</loc>
-				<priority>0.5</priority>
-				<lastmod>${new Date(element.date).toISOString()}</lastmod>
-				<changefreq>monthly</changefreq>
-			</url>
-			`;
-		}
-
-		return acc;
-	}, []);
-
-	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-		${pageUrl.concat(postsUrl, projectsUrl).replace("\t", "")}
-	</urlset>`;
-
-	fs.writeFileSync("./public/sitemap.xml", format(sitemap, FORMAT));
-
-	console.log("=========================");
-	console.log("./public/sitemap.xml 생성 완료");
-	console.log("=========================");
-}
-
-/**
- * RSS 생성 함수
- */
-function genRss()
-{
-	console.log("=========================");
-	console.log("feed.xml 생성 중...");
-	console.log("=========================\n\n\n");
-
-	const posts = getContents("posts");
-	const projects = getContents("projects");
-
-	const postsItem = posts.reduce((acc, element) =>
-	{
-		// 발행 대상일 경우
-		if (element.publish)
-		{
-			const content = markdownToHtml(element.content).replace(/&/g, "&amp;").replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
 			const tag = element.tag.reduce((acc, element) =>
 			{
 				acc += `<category>${element}</category>\n`;
 				return acc;
 			}, `<category>${element.category}</category>\n`);
 
-			const slugs = slugRegex.exec(element.slug);
+			postUrl += `<url>
+				<loc>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</loc>
+				<priority>0.5</priority>
+				<lastmod>${new Date(element.date).toISOString()}</lastmod>
+				<changefreq>monthly</changefreq>
+			</url>
+			`;
 
-			acc += `<item>
+			postItem += `<item>
 				<title>${element.title}</title>
-				<description>${content}</description>
+				<description>${element.excerpt}</description>
 				<pubDate>${new Date(element.date).toISOString()}</pubDate>
 				<link>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</link>
 				<guid isPermaLink="true">${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</guid>
@@ -148,23 +92,30 @@ function genRss()
 			</item>
 			`;
 		}
+	});
 
-		return acc;
-	}, []);
+	console.log(" - 게시글 정보 조회 완료");
 
-	const projectsItem = projects.reduce((acc, element) =>
+	projects.forEach(element =>
 	{
 		// 발행 대상일 경우
 		if (element.publish)
 		{
-			const content = markdownToHtml(element.content).replace(/&/g, "&amp;").replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/"/gi, "&quot;");
 			const tag = element.tag.reduce((acc, element) =>
 			{
 				acc += `<category>${element}</category>\n`;
 				return acc;
 			}, `<category>${element.category}</category>\n`);
 
-			acc += `<item>
+			projectUrl += `<url>
+				<loc>${BASE_URL}/${element.type}/${element.slug}/</loc>
+				<priority>0.5</priority>
+				<lastmod>${new Date(element.date).toISOString()}</lastmod>
+				<changefreq>monthly</changefreq>
+			</url>
+			`;
+
+			projectItem += `<item>
 				<title>${element.title}</title>
 				<description>${content}</description>
 				<pubDate>${new Date(element.date).toISOString()}</pubDate>
@@ -175,9 +126,14 @@ function genRss()
 			</item>
 			`;
 		}
+	});
 
-		return acc;
-	}, []);
+	console.log(" - 프로젝트 정보 조회 완료");
+
+	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+		${pageUrl.concat(postUrl, projectUrl).replace("\t", "")}
+	</urlset>`;
 
 	const rss = `<?xml version="1.0" encoding="UTF-8"?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -189,15 +145,15 @@ function genRss()
 			<pubDate>${new Date("2021-05-26 23:36:57").toISOString()}</pubDate>
 			<lastBuildDate>${new Date().toISOString()}</lastBuildDate>
 		</channel>
-		${postsItem}
-		${projectsItem}
+		${postItem}
+		${projectItem}
 	</rss>`;
 
+	fs.writeFileSync("./public/sitemap.xml", format(sitemap, FORMAT));
 	fs.writeFileSync("./public/rss", format(rss, FORMAT));
 
-	console.log("=========================");
-	console.log("./public/feed.xml 생성 완료");
-	console.log("=========================");
+	console.log(" - seo 생성 완료");
+	console.log("==================================================\n\n\n");
 }
 
 /**
@@ -244,16 +200,4 @@ function getContentBySlug(type, slug)
 function getContents(type)
 {
 	return getContentSlugs(type).map((slug) => getContentBySlug(type, slug)).filter(post => post.publish);
-}
-
-/**
- * Markdown HTML 변환 및 반환 함수
- *
- * @returns {Promise} 변환 Promise 객체
- */
-function markdownToHtml(markdown)
-{
-	const result = remark().use(html).use(gfm).use(prism).processSync(markdown);
-
-	return result.toString();
 }

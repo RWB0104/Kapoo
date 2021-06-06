@@ -15,14 +15,13 @@ import remarkRehype from "remark-rehype";
 import slug from "remark-slug";
 import gfm from "remark-gfm";
 import prism from "remark-prism";
-import rehypeParse from "rehype-parse";
 import rehypeToc from "rehype-toc";
 import rehypeStr from "rehype-stringify";
 import headings from "rehype-autolink-headings";
-import mathjax from "rehype-mathjax";
 import math from "remark-math";
 import katex from "rehype-katex";
 import raw from "rehype-raw";
+import classes from "rehype-add-classes";
 
 const CONTENT_DIR = join(process.cwd(), "_posts");
 
@@ -115,19 +114,7 @@ export async function markdownToHtml(body)
 		}
 	};
 
-	console.dir(unified().use(remarkParse).use(remarkRehype).use(rehypeStr).processSync(body));
-
-	const t = await unified().use(remarkParse).use(math).use(slug).use(prism, {
-		plugins: [
-			"autolinker",
-			"command-line",
-			"data-uri-highlight",
-			"diff-highlight",
-			"inline-color",
-			"keep-markup",
-			"line-numbers"
-		  ]
-	}).use(remarkRehype, { allowDangerousHtml: true }).use(raw).use(katex).use(rehypeStr).use(gfm).use(rehypeToc, tocOptions).use(headings, headingOptions).process(body);
+	const t = await unified().use(remarkParse).use(math).use(slug).use(prism).use(remarkRehype, { allowDangerousHtml: true }).use(raw).use(katex).use(rehypeStr).use(gfm).use(rehypeToc, tocOptions).use(headings, headingOptions).process(body);
 
 	return t.toString();
 }
