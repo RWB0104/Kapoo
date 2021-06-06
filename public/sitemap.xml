@@ -3,25 +3,25 @@
 	<url>
 		<loc>https://rwb0104.github.io/about/</loc>
 		<priority>1.00</priority>
-		<lastmod>2021-06-06T14:09:36.878Z</lastmod>
+		<lastmod>2021-06-06T15:20:46.806Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/</loc>
 		<priority>1.00</priority>
-		<lastmod>2021-06-06T14:09:36.878Z</lastmod>
+		<lastmod>2021-06-06T15:20:46.806Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/posts/</loc>
 		<priority>1.00</priority>
-		<lastmod>2021-06-06T14:09:36.878Z</lastmod>
+		<lastmod>2021-06-06T15:20:46.806Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/projects/</loc>
 		<priority>1.00</priority>
-		<lastmod>2021-06-06T14:09:36.878Z</lastmod>
+		<lastmod>2021-06-06T15:20:46.807Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
@@ -110,6 +110,12 @@
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/posts/2021/06/06/A1006/</loc>
+		<priority>0.5</priority>
+		<lastmod>2021-06-06T13:42:02.000Z</lastmod>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>https://rwb0104.github.io/posts/2021/06/07/jekyll-blog-start/</loc>
 		<priority>0.5</priority>
 		<lastmod>2021-06-06T13:42:02.000Z</lastmod>
 		<changefreq>monthly</changefreq>

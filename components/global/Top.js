@@ -11,8 +11,10 @@ import { Flip } from "react-reveal";
 import config from "react-reveal/globals";
 import { Box, ButtonBase, Divider, makeStyles } from "@material-ui/core";
 import { KeyboardArrowDown } from "@material-ui/icons";
-import SemanticTypo from "./SemanticTypo";
 import { isIOS } from "react-device-detect";
+
+// 사용자 모듈
+import SemanticTypo from "./SemanticTypo";
 
 /**
  * Top 컴포넌트 JSX 반환 함수

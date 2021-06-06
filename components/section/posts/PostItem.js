@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { Box, ButtonBase, Chip, Grid, makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import { LocalOffer } from "@material-ui/icons";
+
+// 사용자 모듈
 import SemanticTypo from "../../global/SemanticTypo";
 import { slugRegex } from "../../../common/common";
 

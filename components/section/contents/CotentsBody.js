@@ -6,10 +6,10 @@
  */
 
 // 라이브러리 모듈
+import React from "react";
 import { makeStyles, useMediaQuery, useTheme } from "@material-ui/core";
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from "@material-ui/core/colors";
 import Head from "next/head";
-import React from "react";
 
 /**
  * 컨텐츠 내용 JSX 반환 함수

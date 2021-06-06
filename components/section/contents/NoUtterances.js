@@ -9,6 +9,8 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { SpeakerNotesOff } from "@material-ui/icons";
+
+// 사용자 모듈
 import SemanticTypo from "../../global/SemanticTypo";
 
 /**

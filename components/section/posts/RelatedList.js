@@ -5,8 +5,11 @@
  * @since 2021.05.24 Mon 01:08:21
  */
 
+// 라이브러리 모듈
 import { Box, GridList, GridListTile, GridListTileBar, makeStyles, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { useRouter } from "next/router";
+
+// 사용자 모듈
 import { slugRegex } from "../../../common/common";
 
 /**

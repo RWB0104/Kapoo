@@ -5,9 +5,12 @@
  * @since 2021.05.25 Tue 20:53:17
  */
 
+// 라이브러리 모듈
 import { Grid, makeStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { CloudOff } from "@material-ui/icons";
+
+// 사용자 모듈
 import SemanticTypo from "../../global/SemanticTypo";
 
 /**
