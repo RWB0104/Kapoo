@@ -21,7 +21,6 @@ import headings from "rehype-autolink-headings";
 import math from "remark-math";
 import katex from "rehype-katex";
 import raw from "rehype-raw";
-import classes from "rehype-add-classes";
 
 const CONTENT_DIR = join(process.cwd(), "_posts");
 

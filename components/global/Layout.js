@@ -7,6 +7,7 @@
 
 // 라이브러리 모듈
 import { useEffect } from "react";
+import Head from "next/head";
 import { blue, indigo } from "@material-ui/core/colors";
 import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from "@material-ui/core";
 import { useRecoilValue } from "recoil";
@@ -35,11 +36,26 @@ export default function Layout({ children })
 	useEffect(() =>
 	{
 		document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag()
+		{
+			dataLayer.push(arguments);
+		}
+
+		gtag("js", new Date());
+
+		gtag("config", "G-X2THE3XLX1");
 	});
 
 	return (
 		<MuiThemeProvider theme={theme}>
 			<CssBaseline />
+
+			<Head>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2THE3XLX1"></script>
+			</Head>
 
 			<Header />
 

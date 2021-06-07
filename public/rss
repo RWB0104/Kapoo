@@ -6,7 +6,7 @@
 		<link>https://rwb0104.github.io//</link>
 		<atom:link href="https://rwb0104.github.io/feed.xml" rel="self" type="application/rss+xml"/>
 		<pubDate>2021-05-26T14:36:57.000Z</pubDate>
-		<lastBuildDate>2021-06-06T15:20:46.807Z</lastBuildDate>
+		<lastBuildDate>2021-06-07T00:55:31.843Z</lastBuildDate>
 	</channel>
 	<item>
 		<title>[JAVA] 백준 알고리즘 1000번 A + B</title>
@@ -207,18 +207,28 @@
 		<category>PLATINUM III</category>
 	</item>
 	<item>
+		<title>[Jekyll] GitHub Pages를 이용해 나만의 블로그 만들기 - 2. GitHub와 친해지기</title>
+		<description>초라기는 한국의 비밀국방기지(원타곤)를 습격하라는 임무를 받은 특급요원이다. 원타곤의 건물은 도넛 형태이며, 초라기는 효율적인 타격 포인트를 정하기 위해 구역을 아래와 같이 두 개의 원 모양으로 나누었다. (그림의 숫자는 각 구역의 번호이다.) 초라기는 각각 W명으로 구성된 특수소대를 다수 출동시켜 모든 구역에 침투시킬 예정이며, 각 구역 별로 적이 몇 명씩 배치되어 있는지는 초라기가 모두 알고 있다. 특수소대를 아래 조건에 따라 침투 시킬 수 있다.</description>
+		<pubDate>2021-06-07T13:42:02.000Z</pubDate>
+		<link>https://rwb0104.github.io/posts/2021/06/07/jekyll-blog-github/</link>
+		<guid isPermaLink="true">https://rwb0104.github.io/posts/2021/06/07/jekyll-blog-github/</guid>
+		<category>Jekyll</category>
+		<category>Jekyll</category>
+		<category>GitHub Pages(깃허브 페이지)</category>
+		<category>Jekyll(지킬)</category>
+		<category>Blog(블로그)</category>
+		<category>GitHub(깃허브)</category>
+	</item>
+	<item>
 		<title>[Jekyll] GitHub Pages를 이용해 나만의 블로그 만들기 - 1. Jekyll이란?</title>
 		<description>초라기는 한국의 비밀국방기지(원타곤)를 습격하라는 임무를 받은 특급요원이다. 원타곤의 건물은 도넛 형태이며, 초라기는 효율적인 타격 포인트를 정하기 위해 구역을 아래와 같이 두 개의 원 모양으로 나누었다. (그림의 숫자는 각 구역의 번호이다.) 초라기는 각각 W명으로 구성된 특수소대를 다수 출동시켜 모든 구역에 침투시킬 예정이며, 각 구역 별로 적이 몇 명씩 배치되어 있는지는 초라기가 모두 알고 있다. 특수소대를 아래 조건에 따라 침투 시킬 수 있다.</description>
-		<pubDate>2021-06-06T13:42:02.000Z</pubDate>
+		<pubDate>2021-06-07T13:42:02.000Z</pubDate>
 		<link>https://rwb0104.github.io/posts/2021/06/07/jekyll-blog-start/</link>
 		<guid isPermaLink="true">https://rwb0104.github.io/posts/2021/06/07/jekyll-blog-start/</guid>
-		<category>알고리즘</category>
-		<category>알고리즘</category>
-		<category>백준</category>
-		<category>알고리즘</category>
-		<category>JAVA(자바)</category>
-		<category>DP(동적 계획법)</category>
-		<category>PLATINUM</category>
-		<category>PLATINUM III</category>
+		<category>Jekyll</category>
+		<category>Jekyll</category>
+		<category>GitHub Pages(깃허브 페이지)</category>
+		<category>Jekyll(지킬)</category>
+		<category>Blog(블로그)</category>
 	</item>
 </rss>
