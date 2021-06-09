@@ -1,8 +1,8 @@
 ---
 title: "[Jekyll] GitHub Pages를 이용해 나만의 블로그 만들기 - 3. Git 설치하기"
-excerpt: "초라기는 한국의 비밀국방기지(원타곤)를 습격하라는 임무를 받은 특급요원이다. 원타곤의 건물은 도넛 형태이며, 초라기는 효율적인 타격 포인트를 정하기 위해 구역을 아래와 같이 두 개의 원 모양으로 나누었다. (그림의 숫자는 각 구역의 번호이다.) 초라기는 각각 W명으로 구성된 특수소대를 다수 출동시켜 모든 구역에 침투시킬 예정이며, 각 구역 별로 적이 몇 명씩 배치되어 있는지는 초라기가 모두 알고 있다. 특수소대를 아래 조건에 따라 침투 시킬 수 있다."
+excerpt: "GitHub는 각 프로젝트를 하나의 Repository로 관리한다. 생성한 Repository는 Git을 이용하여 관리할 수 있다. GitHub 페이지 자체로도 Repository 내부의 파일 생성, 수정, 삭제가 가능하지만 매우 번거로우므로 대부분 Git을 활용하는 것이 권장된다."
 coverImage: "https://user-images.githubusercontent.com/50317129/90983201-582f1080-e5a7-11ea-970b-8d7d82cb2084.png"
-date: "2021-06-07T22:42:02"
+date: "2021-06-06T23:42:11"
 type: "posts"
 category: "Jekyll"
 tag: [ "GitHub Pages(깃허브 페이지)", "Jekyll(지킬)", "Blog(블로그)", "Git" ]
@@ -49,20 +49,20 @@ publish: true
 	<img src="https://user-images.githubusercontent.com/50317129/90917728-6bfb3b00-e41e-11ea-8313-0251fba0659f.png" width="820px" />
 </p>
 
-생성된 저장소로 접근하면 위와 같은 화면이 나온다. 위 내용은 <span class="primary">Git</span> 명령어를 이용하여 사용자의 PC에 저장소를 생성하고, 이를 <span class="primary">GitHub</span>의 원격 저장소와 연결하여 소스관리를 하는 절차를 안내하는 내용이다.
+생성된 저장소로 접근하면 위와 같은 화면이 나온다. 위 내용은 <span class="orange-A400">Git</span> 명령어를 이용하여 사용자의 PC에 저장소를 생성하고, 이를 <span class="primary">GitHub</span>의 원격 저장소와 연결하여 소스관리를 하는 절차를 안내하는 내용이다.
 
 # Git 설치하기
 
-이제 생성한 Repository를 관리할 <span class="primary">Git</span>을 설치해보자. <span class="primary">Git</span>은 소스코드를 효율적으로 관리할 수 있는 강력한 형상관리 툴로, Linux의 아버지 리누스 토르발스(Linus Benedict Torvalds)가 개발했다. 넓은 의미로 우리가 흔히 하는 복사 및 백업과 동일하지만, <span class="primary">Git</span>은 그것 보다는 더욱 강력하다.
+이제 생성한 Repository를 관리할 <span class="orange-A400">Git</span>을 설치해보자. <span class="orange-A400">Git</span>은 소스코드를 효율적으로 관리할 수 있는 강력한 형상관리 툴로, Linux의 아버지 리누스 토르발스(Linus Benedict Torvalds)가 개발했다. 넓은 의미로 우리가 흔히 하는 복사 및 백업과 동일하지만, <span class="orange-A400">Git</span>은 그것 보다는 더욱 강력하다.
 
 * 명령어 입력만으로 소스코드 백업이 가능하다.
-* <span class="primary">Git</span> 저장소와 통신이 가능한 환경이면 어디서나 저장된 소스코드를 받아오거나, 수정, 반영할 수 있다.
+* <span class="orange-A400">Git</span> 저장소와 통신이 가능한 환경이면 어디서나 저장된 소스코드를 받아오거나, 수정, 반영할 수 있다.
 * 커밋 시 해당 내역이 관리되며, 원할 경우 해당 커밋 이전으로 되돌릴 수 있다.
 * 커밋 별로 변경점을 비교할 수 있다.
 
 > Commit(커밋): Git의 변경사항(파일 생성, 수정, 삭제)을 저장소에 기록하는 작업
 
-Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므로, 이와 연계된 <span class="primary">Git</span>의 사용은 필수다. 물론 <span class="primary">Git</span>을 사용하지 않고 <span class="primary">GitHub</span>의 Repository에서 파일 추가, 삭제, 수정이 가능하다. 그러나 이 방법은 다수의 파일을 관리하는데 매우 비효율적이며, 파일 갱신 즉시 블로그에 내용이 반영되므로 오류가 있을 경우에도 블로그에 그대로 반영된다. 또한, 어찌됐든 Jekyll 사용하면서 코드를 만지게 될텐데, VSCode같은 에디터라도 쓰는게 개발환경에 여러모로 도움이 된다.
+Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므로, 이와 연계된 <span class="orange-A400">Git</span>의 사용은 필수다. 물론 <span class="orange-A400">Git</span>을 사용하지 않고 <span class="primary">GitHub</span>의 Repository에서 파일 추가, 삭제, 수정이 가능하다. 그러나 이 방법은 다수의 파일을 관리하는데 매우 비효율적이며, 파일 갱신 즉시 블로그에 내용이 반영되므로 오류가 있을 경우에도 블로그에 그대로 반영된다. 또한, 어찌됐든 Jekyll 사용하면서 코드를 만지게 될텐데, VSCode같은 에디터라도 쓰는게 개발환경에 여러모로 도움이 된다.
 
 ## 설치파일 다운로드
 
@@ -72,7 +72,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 	<img src="https://user-images.githubusercontent.com/50317129/90918409-90a3e280-e41f-11ea-846f-68332ffecdbe.png" width="820px" />
 </p>
 
-<span class="primary">Git</span> 홈페이지는 위와 같다. 놀랍게도 홈페이지에서 자체적으로 **접속한 OS의 정보를 확인하고 해당 OS에 가장 적합한 Git을 추천**한다. 페이지 우측 상단의 모니터 그림에서 적합한 버전을 제공받을 수 있다.
+<span class="orange-A400">Git</span> 홈페이지는 위와 같다. 놀랍게도 홈페이지에서 자체적으로 **접속한 OS의 정보를 확인하고 해당 OS에 가장 적합한 Git을 추천**한다. 페이지 우측 상단의 모니터 그림에서 적합한 버전을 제공받을 수 있다.
 
 ## 라이센스 동의
 
@@ -80,7 +80,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 	<img src="https://user-images.githubusercontent.com/50317129/90949816-b0222600-e486-11ea-95d7-7ee7150d4f4f.png" width="820px" />
 </p>
 
-<span class="primary">Git</span> 사용 라이센스에 동의한다. 당연하게도 동의 안 하면 설치가 불가능하다.
+<span class="orange-A400">Git</span> 사용 라이센스에 동의한다. 당연하게도 동의 안 하면 설치가 불가능하다.
 
 ## 설치경로 선택
 
@@ -123,7 +123,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 	<img src="https://user-images.githubusercontent.com/50317129/90952499-f97e6f80-e49e-11ea-95a0-818471fd3417.png" width="820px" />
 </p>
 
-<span class="primary">Git</span>을 사용하기 위한 기본 편집기를 선택한다. 기본 권장옵션은 Vim이며, 원하는 편집기로 변경이 가능하다. 지원하는 편집기는 아래와 같다.
+<span class="orange-A400">Git</span>을 사용하기 위한 기본 편집기를 선택한다. 기본 권장옵션은 Vim이며, 원하는 편집기로 변경이 가능하다. 지원하는 편집기는 아래와 같다.
 
 * Nano Editor
 * <span class="primary">Vim</span>
@@ -156,7 +156,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 	<img src="https://user-images.githubusercontent.com/50317129/90952734-0e5c0280-e4a1-11ea-8a9f-08a164f05b5e.png" width="820px" />
 </p>
 
-<span class="primary">Git</span> 사용 시 HTTPS 전송 방법을 선택한다.
+<span class="orange-A400">Git</span> 사용 시 HTTPS 전송 방법을 선택한다.
 
 * <span class="primary">Use The OpenSSH library</span>: OpenSSH 라이브러리 사용
 * Use The native Windows Secure Channel library: Windows 인증서 저장소 사용
@@ -226,7 +226,7 @@ Credential helper를 지정한다.
 	<img src="https://user-images.githubusercontent.com/50317129/90954553-225b3080-e4b0-11ea-8930-6b461f966b4c.png" width="820px" />
 </p>
 
-<span class="primary">Git</span>에서 제공하는 실험적인 옵션을 선택한다. 해당 옵션은 업데이트에 따라 정식으로 지원되거나, 제외될 수 있다.
+<span class="orange-A400">Git</span>에서 제공하는 실험적인 옵션을 선택한다. 해당 옵션은 업데이트에 따라 정식으로 지원되거나, 제외될 수 있다.
 
 * Enable experimental support for pseudo consoles: 가상 터미널 지원
 
