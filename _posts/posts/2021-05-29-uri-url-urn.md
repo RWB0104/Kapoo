@@ -252,8 +252,8 @@ URL의 중심이 되는 부분으로, 제공하는 웹 서비스의 아이덴티
 
 ## URN 구조
 
-지금까지 <span class="primary">URL</span>에 대해선 상당히 장황하게 설명했지만, <span class="primary">URN</span>의 경우 <span class="primary">URL</span>보다 역사가 짧다. 또한 <span class="primary">URN</span>이 상당수 활성화된 후 생긴 탓에, 현재까지도 비주류를 면치 못 해 구현된 예시도 그리 많지 않은게 현실이다.  
-<span class="primary">URL</span>이 위치만 바뀌어도 찾을 수 없다는 단점은, 오히려 제공중인 데이터를 은닉하는 측면 등 상황에 따라 오히려 이득이기도 하다. 즉, <span class="primary">URL</span>의 단점이 사용에 있어서 크리티컬하지 않는다는 것이다. 이는 곳 <span class="primary">URN</span>의 장점이 현재 구축된 <span class="primary">URL</span>체계를 갈아 엎을 정도로 매력적이지 않다는 주장이 된다.
+지금까지 <span class="primary">URL</span>에 대해선 상당히 장황하게 설명했지만, <span class="primary">URN</span>의 경우 <span class="primary">URL</span>보다 역사가 짧다. 이미 3년이라는 시간 사이에 <span class="primary">URL</span>이 표준으로 자리매김한 탓에, 현재까지도 비주류를 면치 못 해 구현된 예시도 그리 많지 않은게 현실이다.  
+<span class="primary">URL</span>이 위치만 바뀌어도 찾을 수 없다는 단점은, 오히려 제공중인 데이터를 은닉하는 측면 등 상황에 따라 오히려 유용하게 사용할 여지도 있다. 즉, <span class="primary">URL</span>의 단점이 마냥 나쁜것만은 아닌 셈이다. 이는 곳 <span class="primary">URN</span>의 장점이 현재 구축된 <span class="primary">URL</span>체계를 갈아 엎을 정도로 매력적이지 않다는 주장을 뒷받침한다.
 
 <span class="primary">URN</span>은 아래와 같은 구조로 이루어진다. 각 요소는 `:`으로 구분한다.
 

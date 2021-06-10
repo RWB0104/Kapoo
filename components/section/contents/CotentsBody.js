@@ -469,6 +469,10 @@ function getStyles(isMobile)
 							color: theme.palette.primary.main,
 							transition: "500ms"
 						}
+					},
+					"& .toc-item-h1": {
+						marginTop: theme.spacing(3),
+						marginBottom: theme.spacing(3)
 					}
 				},
 				"& .math-display": {

@@ -67,9 +67,9 @@ async function seo()
 		if (element.publish)
 		{
 			const slugs = slugRegex.exec(element.slug);
-			const tag = element.tag.reduce((acc, element) =>
+			const tag = element.tag.reduce((acc, tags) =>
 			{
-				acc += `<category>${element}</category>\n`;
+				acc += element.category !== tags ? `<category>${tags}</category>\n` : "";
 				return acc;
 			}, `<category>${element.category}</category>\n`);
 
@@ -82,12 +82,11 @@ async function seo()
 			`;
 
 			postItem += `<item>
-				<title>${element.title}</title>
-				<description>${element.excerpt}</description>
+				<title>${element.title.replace(/&/gi, "&amp;")}</title>
+				<description>${element.excerpt.replace(/&/gi, "&amp;")}</description>
 				<pubDate>${new Date(element.date).toISOString()}</pubDate>
 				<link>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</link>
 				<guid isPermaLink="true">${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}/</guid>
-				<category>${element.category}</category>
 				${tag}
 			</item>
 			`;
@@ -101,9 +100,9 @@ async function seo()
 		// 발행 대상일 경우
 		if (element.publish)
 		{
-			const tag = element.tag.reduce((acc, element) =>
+			const tag = element.tag.reduce((acc, tags) =>
 			{
-				acc += `<category>${element}</category>\n`;
+				acc += element.category !== tags ? `<category>${tags}</category>\n` : "";
 				return acc;
 			}, `<category>${element.category}</category>\n`);
 
@@ -116,12 +115,11 @@ async function seo()
 			`;
 
 			projectItem += `<item>
-				<title>${element.title}</title>
-				<description>${content}</description>
+				<title>${element.title.replace(/&/gi, "&amp;")}</title>
+				<description>${content.replace(/&/gi, "&amp;")}</description>
 				<pubDate>${new Date(element.date).toISOString()}</pubDate>
 				<link>${BASE_URL}/${element.type}/${element.slug}/</link>
 				<guid isPermaLink="true">${BASE_URL}/${element.type}/${element.slug}/</guid>
-				<category>${element.category}</category>
 				${tag}
 			</item>
 			`;
