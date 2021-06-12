@@ -19,6 +19,8 @@ import Meta from "../components/global/Meta";
 /**
  * 소개 페이지 JSX 반환 함수
  *
+ * @param {String} images: 이미지 객체
+ *
  * @returns {JSX} JSX 객체
  */
 export default function About({ images })

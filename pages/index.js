@@ -22,7 +22,7 @@ import { getRandomItem } from "../common/common";
 /**
  * 인덱스 JSX 반환 함수
  *
- * @param {String[]} images: 메인 이미지 배열
+ * @param {String} images: 이미지 객체
  * @param {Object} posts: 게시글 리스트
  * @param {Object} projects: 프로젝트 리스트
  *

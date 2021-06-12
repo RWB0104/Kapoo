@@ -15,7 +15,6 @@
 		"@material-ui/icons": "^4.11.2",
 		"@material-ui/lab": "^4.0.0-alpha.58",
 		"date-fns": "2.16.1",
-		"fs": "^0.0.1-security",
 		"globby": "^11.0.3",
 		"gray-matter": "4.0.2",
 		"next": "latest",

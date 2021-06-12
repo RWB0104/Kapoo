@@ -25,6 +25,7 @@ import NoContents from "../../components/section/contents/NoContents";
  * 게시글 페이지 JSX 반환 함수
  *
  * @param {JSON[]} posts: 게시글 리스트
+ * @param {String} images: 이미지 객체
  *
  * @returns {JSX} JSX 객체
  */

@@ -1,6 +1,9 @@
 @font-face {
 	font-family: "나눔스퀘어라운드";
-	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff");
+	src: url("/assets/fonts/NanumSquareRound.eot");
+	src: url("/assets/fonts/NanumSquareRound.eot?#iefix") format("embedded-opentype"),
+		url("/assets/fonts/NanumSquareRound.woff2") format("woff2"),
+		url("/assets/fonts/NanumSquareRound.woff") format("woff")
 }
 
 @font-face {
@@ -8,8 +11,7 @@
 	src: url("/assets/fonts/Hack-Regular.eot");
 	src: url("/assets/fonts/Hack-Regular.eot?#iefix") format("embedded-opentype"),
 		url("/assets/fonts/Hack-Regular.woff2") format("woff2"),
-		url("/assets/fonts/Hack-Regular.woff") format("woff"),
-		url("/assets/fonts/Hack-Regular.ttf") format("truetype")
+		url("/assets/fonts/Hack-Regular.woff") format("woff")
 }
 
 @font-face {
@@ -17,8 +19,7 @@
 	src: url("/assets/fonts/Blacksword.eot");
 	src: url("/assets/fonts/Blacksword.eot?#iefix") format("embedded-opentype"),
 		url("/assets/fonts/Blacksword.woff2") format("woff2"),
-		url("/assets/fonts/Blacksword.woff") format("woff"),
-		url("/assets/fonts/Blacksword.ttf") format("truetype")
+		url("/assets/fonts/Blacksword.woff") format("woff")
 }
 
 *:not(.dragable) {

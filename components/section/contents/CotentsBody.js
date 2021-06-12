@@ -222,7 +222,7 @@ function getStyles(isMobile)
 
 		return {
 			markdown: {
-				fontSize: isMobile ? "1.25rem" : "1.5rem",
+				fontSize: isMobile ? "1rem" : "1.25rem",
 				fontFamily: "나눔스퀘어라운드, sans-serif",
 				marginBottom: theme.spacing(20),
 				lineHeight: 1.75,
@@ -230,10 +230,10 @@ function getStyles(isMobile)
 					textAlign: "center"
 				},
 				"& .small": {
-					fontSize: isMobile ? "1rem" : "1.25rem"
+					fontSize: isMobile ? "0.75rem" : "1rem"
 				},
 				"& .large": {
-					fontSize: isMobile ? "1.5rem" : "1.75rem"
+					fontSize: isMobile ? "1.25rem" : "1.5rem"
 				},
 				"& .primary": {
 					color: theme.palette.primary[theme.palette.type]
@@ -397,7 +397,6 @@ function getStyles(isMobile)
 				},
 				"& pre[class*='language-']": {
 					padding: "2em",
-					paddingLeft: "3.8em",
 					margin: ".5em 0",
 					overflow: "auto"
 				},

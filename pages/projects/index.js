@@ -23,6 +23,9 @@ import NoContents from "../../components/section/contents/NoContents";
 /**
  * 프로젝트 페이지 JSX 반환 함수
  *
+ * @param {Object[]} projects: 프로젝트 객체
+ * @param {String} images: 이미지 객체
+ *
  * @returns {JSX} JSX 객체
  */
 export default function Project({ projects, images })

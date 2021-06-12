@@ -3,5 +3,11 @@ module.exports = {
 		loader: "imgix",
 		path: ""
 	},
-	trailingSlash: true
+	trailingSlash: true,
+	webpack: (config, options) =>
+	{
+		return {
+			...config
+		};
+	  }
 };
