@@ -53,10 +53,8 @@ function getStyles()
 		box_easter: {
 			padding: theme.spacing(3),
 			textAlign: "center",
-			height: "40vmax",
-			width: "100%",
-			maxHeight: 1000,
-			minHeight: 500
+			height: "100vh",
+			width: "100%"
 		},
 		box_image_wrapper: {
 			clip: "rect(0, auto, auto, 0)",

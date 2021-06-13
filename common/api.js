@@ -33,7 +33,7 @@ const CONTENT_DIR = join(process.cwd(), "_posts");
  */
 export function getContentSlugs(type)
 {
-	return fs.readdirSync(`${CONTENT_DIR}/${type}`);
+	return fs.readdirSync(`${CONTENT_DIR}/${type}`).filter(e => /.md$/gi.test(e));
 }
 
 /**

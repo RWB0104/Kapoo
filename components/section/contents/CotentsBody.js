@@ -362,6 +362,9 @@ function getStyles(isMobile)
 						marginBottom: 0
 					}
 				},
+				"& iframe": {
+					maxWidth: "100%"
+				},
 				"& code:not([class*='language-'])": {
 					backgroundColor: indigo[700],
 					color: "white",
