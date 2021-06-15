@@ -385,6 +385,8 @@ $2^1$, $2^3$처럼 끊어가다가 뜬금없이 1000을 넣은 이유는, 이상
 
 $t = 1,000$이라는 특수한 상황을 제외하고는 보편적으로 `StringTokenizer`가 성능이 더 우수하다. 저런 현상이 왜 발생하는지 이해는 잘 안 된다. 물론 통계라는게 숫자가 클 수록 의미가 커지므로 10번이라는 작은 횟수만으로 단정짓긴 어렵다.
 
+회사 컴퓨터(AMD Ryzen 2700X)에서는 모든 케이스에서 `StringTokenizer`의 속도가 빨랐다. CPU에 따라 연산 결과나 방식에 조금씩 차이가 있을 순 있겠다.
+
 [JAVA API](https://docs.oracle.com/javase/6/docs/api/java/util/StringTokenizer.html)에 의하면, `StringTokenizer`은 하위 호환성을 보장하기 위한 레거시 클래스라고 한다. JAVA API는 가급적 `StringTokenizer`보다 `split` 내지는 `regex` <span class="orange-400">패키지</span>를 활용하도록 권고하고 있다.
 
 > **원문**  
@@ -392,4 +394,4 @@ $t = 1,000$이라는 특수한 상황을 제외하고는 보편적으로 `String
 
 # 결론
 
-표의 수치 상 `StringTokenizer`가 `split`에 비해 최대 약 20% 정도 더 빠르다. 하지만 JAVA API에서 가급적 다른 대체제를 사용하도록 권고하고 있고, 엄청난 속도 향상이 일어나진 않기 때문에 그냥 `split`을 사용해도 무방할 것 같다.
+표의 수치 상 `StringTokenizer`가 `split`에 비해 최대 약 20% 정도 더 빠르다. 하지만 JAVA API에서 가급적 다른 대체제를 사용하도록 권고하고 있고, 백만번의 연산에도 $ms$ 단위에서 움직인다. 상대적으론 차이가 있어도 객관적인 지표로 봤을땐 별다른 차이가 없는 셈. 문자열 분리하자고 새로운 <span class="orange-400">class</span>를 다룰 바에 그냥 문자열 자체를 다루는 `split`을 사용하는 게 더 효율적이라 생각한다.
