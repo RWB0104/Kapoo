@@ -1,11 +1,11 @@
 ---
-title: "split vs StringToken"
+title: "[JAVA] split vs StringTokenizer"
 excerpt: "알고리즘을 풀다보면, 필연적으로 입력값 처리를 하게된다. 다양한 케이스에 대응하기 위해, 사용자의 값을 직접 입력받아 이를 처리하게 된다. 이 때, 우리는 십중팔구 이와 같은 상황이 발생한다. 데이터셋을 보내기 위해 데이터의 모음을 구분자(공백 혹은 쉼표)를 통해 하나의 문자열로 합쳐 전달한다."
 coverImage: "https://www.textrazor.com/img/letters3.png"
 date: "2021-06-14T01:56:01"
 type: "posts"
 category: "JAVA"
-tag: [ "JAVA(자바)", "String(문자열)", "split", "StringToken" ]
+tag: [ "JAVA(자바)", "String(문자열)", "split", "StringTokenizer" ]
 comment: true
 publish: true
 ---
