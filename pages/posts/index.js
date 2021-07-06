@@ -16,7 +16,7 @@ import { Autocomplete } from "@material-ui/lab";
 import Top from "../../components/global/Top";
 import PostList from "../../components/section/posts/PostList";
 import { getMainImages, getContents } from "../../common/api";
-import { getRandomItem } from "../../common/common";
+import { getRandomItem, slugRegex } from "../../common/common";
 import { DESCRIPTION, MENU_LIST } from "../../common/env";
 import Meta from "../../components/global/Meta";
 import NoContents from "../../components/section/contents/NoContents";
@@ -73,7 +73,12 @@ export default function Posts({ posts, images })
 										options={posts.sort((a, b) => -b.category.localeCompare(a.category))}
 										groupBy={option => option.category}
 										getOptionLabel={option => option.title}
-										onChange={(e, option) => router.push(`/posts/${option.slug}`)}
+										onChange={(e, option) =>
+										{
+											const arr = slugRegex.exec(option.slug);
+
+											router.push(`/posts/${arr[1]}/${arr[2]}/${arr[3]}/${arr[4]}`);
+										}}
 										renderInput={param => <TextField {...param} label="게시글 검색" variant="outlined" />}
 									/>
 								</Grid>
