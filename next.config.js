@@ -1,13 +1,18 @@
+const withSass = require("@zeit/next-sass");
+
+module.exports = withSass({
+	cssModules: true
+});
+
 module.exports = {
 	images: {
 		loader: "imgix",
 		path: ""
 	},
-	trailingSlash: true,
 	webpack: (config, options) =>
 	{
 		return {
 			...config
 		};
-	  }
+	}
 };
