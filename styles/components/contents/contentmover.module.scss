@@ -9,8 +9,6 @@
 }
 
 @mixin button {
-	@include multiline(2);
-
 	width: 400px;
 	padding: 10px 15px !important;
 
@@ -19,9 +17,19 @@
 
 	border-radius: 4px !important;
 
-	@media (max-width: 960px) {
-		@include multiline(2);
+	&:first-child {
+		margin-right: 20px;
+	}
 
+	&:last-child {
+		margin-left: 20px;
+	}
+
+	& > div {
+		@include multiline(3);
+	}
+
+	@media (max-width: 960px) {
 		width: 50%;
 	}
 }
@@ -30,16 +38,13 @@
 	margin-top: 100px;
 }
 
-.wrapper {
-	gap: 20px;
-}
-
 .divider {
 	margin: 10px 0px !important;
 }
 
 .button-dark {
 	@include button();
+
 	border: 1px solid rgba(255, 255, 255, 0.23) !important;
 
 	&:hover {

@@ -12,3 +12,8 @@ export const darkAtom = atom({
 	key: 'darkState',
 	default: true
 });
+
+export const menuAtom = atom({
+	key: 'menuState',
+	default: false
+});

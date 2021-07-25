@@ -44,7 +44,7 @@ export default function ContentMover({ page }: Props): ReactElement
 
 	return (
 		<Box component="article" className={styles.root}>
-			<Box className={styles.wrapper} display="flex" justifyContent="space-between">
+			<Box display="flex" justifyContent="space-between">
 				<SideButton data={prev} />
 				<SideButton data={next} />
 			</Box>
@@ -84,7 +84,11 @@ function SideButton({ data }: SubProps): ReactElement | null
 		const urls = data?.url;
 
 		return (
-			<ButtonBase className={styles[`button-${type}`]} onClick={() => router.push(`/${data?.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>{data.header.title}</ButtonBase>
+			<ButtonBase className={styles[`button-${type}`]} onClick={() => router.push(`/${data?.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>
+				<Box>
+					{data.header.title}
+				</Box>
+			</ButtonBase>
 		);
 	}
 }

@@ -13,13 +13,14 @@ import { indigo, orange } from '@material-ui/core/colors';
 import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
+import ThemeSwitch from './ThemeSwitch';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
 import { darkAtom } from '@commons/state';
-import ThemeSwitch from './ThemeSwitch';
 
 // 스타일
 import styles from '@styles/components/global/base-layout.module.scss';
+import MobileMenu from '@components/header/MobileMenu';
 
 interface Props {
 	children: ReactElement
@@ -68,6 +69,8 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 
 				<Box className={styles.main}>
 					{children}
+
+					<MobileMenu />
 
 					<ThemeSwitch />
 

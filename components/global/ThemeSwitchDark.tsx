@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { Box, Fab, useMediaQuery, useTheme } from '@material-ui/core';
+import { Fab, useMediaQuery, useTheme } from '@material-ui/core';
 import { NightsStay } from '@material-ui/icons';
 import { SetterOrUpdater, useSetRecoilState } from 'recoil';
 
@@ -74,7 +74,6 @@ function DarkDesktop({ setter }: Props): ReactElement
 	return (
 		<Fab className={styles['switch-dark']} variant="extended" size="small" aria-label="to Light" onClick={() => setter(true)}>
 			<NightsStay className={styles['icon-dark']} />
-			<Box component="span" className={styles['switch-text']}>다크 모드로 보기</Box>
 		</Fab>
 	);
 }

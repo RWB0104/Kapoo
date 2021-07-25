@@ -36,23 +36,23 @@ export default function ContentMeta({ header }: Props ): ReactElement
 
 	return (
 		<Box component="article" className={styles.root}>
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" alignItems="center">
 				<Typography className={styles.text}>📆 작성일</Typography>
 
 				<Typography className={styles.text}>{`${dateDetail.year}-${dateDetail.month}-${dateDetail.day} ${dateDetail.week} ${dateDetail.hour}:${dateDetail.minute}:${dateDetail.second}`}</Typography>
 			</Box>
 
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" alignItems="center">
 				<Typography className={styles.text}>📌 카테고리</Typography>
 
 				<Box display="grid" gridTemplateColumns="40px 1fr" alignItems="center" gridColumnGap={10}>
 					<Avatar alt={header.category} src={CATEGORY[header.category]} />
 
-					<Typography className={styles.link} onClick={() => router.push(`/${header.type}/category/${header.category}`)}>{header.category}</Typography>
+					<Typography className={styles.link} onClick={() => router.push(`/${header.type}/category/${header.category}/1`)}>{header.category}</Typography>
 				</Box>
 			</Box>
 
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" alignItems="center">
 				<Typography className={styles.text}>🏷️ 태그</Typography>
 
 				<Box>

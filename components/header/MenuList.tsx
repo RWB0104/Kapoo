@@ -7,7 +7,8 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { Box, IconButton } from '@material-ui/core';
+import { Box, IconButton, useMediaQuery, useTheme } from '@material-ui/core';
+import { Close, Menu } from '@material-ui/icons';
 import { useRouter } from 'next/dist/client/router';
 
 // 사용자 모듈
@@ -15,8 +16,60 @@ import { MENU_LIST } from '@commons/env';
 
 // 스타일
 import styles from '@styles/components/header/menulist.module.scss';
+import { useRecoilState } from 'recoil';
+import { menuAtom } from '@commons/state';
 
-export default function MenuList(): ReactElement | null
+/**
+ * 메뉴 리스트 ReactElement 반환 함수
+ *
+ * @returns {ReactElement}: ReactElement
+ */
+export default function MenuList(): ReactElement
+{
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+	// 모바일일 경우
+	if (isMobile)
+	{
+		return (
+			<Box textAlign="right">
+				<Mobile />
+			</Box>
+		);
+	}
+
+	// 아닐 경우
+	else
+	{
+		return <Desktop />;
+	}
+}
+
+/**
+ * 모바일 메뉴 리스트 ReactElement 반환 함수
+ *
+ * @returns {ReactElement}: ReactElement
+ */
+function Mobile(): ReactElement
+{
+	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
+
+	const icon = menuState ? <Close /> : <Menu />;
+
+	return (
+		<IconButton onClick={() => setMenuState(!menuState)}>
+			{icon}
+		</IconButton>
+	);
+}
+
+/**
+ * 데스크탑 메뉴 리스트 ReactElement 반환 함수
+ *
+ * @returns {ReactElement}: ReactElement
+ */
+function Desktop(): ReactElement
 {
 	const router = useRouter();
 
