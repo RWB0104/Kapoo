@@ -1,0 +1,40 @@
+@import "../../common/color.module.scss";
+
+@mixin text {
+	font-size: 20px !important;
+
+	@media (max-width: 960px) {
+		font-size: 16px !important;
+	}
+}
+
+@mixin oneline {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: 0.5s;
+}
+
+.root {
+	& > div:not(:last-child) {
+		margin-bottom: 20px;
+	}
+}
+
+.text {
+	@include oneline();
+	@include text();
+}
+
+.link {
+	@include oneline();
+	@include text();
+
+	color: map-get($map: $amber, $key: "700");
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

@@ -1,0 +1,126 @@
+@import "../../common/color.module.scss";
+
+@mixin oneline {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: 0.5s;
+}
+
+@mixin multiline($num) {
+	display: -webkit-box;
+	white-space: normal;
+	overflow: hidden;
+	transition: 0.5s;
+
+	-webkit-line-clamp: $num;
+	-webkit-box-orient: vertical;
+}
+
+.root {
+	background: initial !important;
+	box-shadow: 0px 0px 0px transparent !important;
+
+	&:hover {
+		.image {
+			transform: scale(1.2);
+		}
+	}
+}
+
+.wrapper {
+	$padding: 30px;
+	padding-left: $padding !important;
+	padding-right: $padding !important;
+}
+
+.footer {
+	$padding: 30px;
+	padding-left: $padding !important;
+	padding-right: $padding !important;
+
+	justify-content: space-between;
+
+	@media (max-width: 960px) {
+		display: none !important;
+	}
+}
+
+.footer-detail {
+	@media (max-width: 960px) {
+		display: none !important;
+	}
+}
+
+.image-wrapper {
+	overflow: hidden;
+}
+
+.image {
+	height: 320px;
+	transition: 0.5s;
+
+	@media (max-width: 960px) {
+		height: 200px;
+		transition: 0.5s;
+	}
+}
+
+.category-wrapper {
+	margin-top: 15px;
+	margin-bottom: 15px
+}
+
+.category-image {
+	$size: 30px !important;
+
+	width: $size;
+	height: $size;
+}
+
+.category {
+	@include oneline;
+
+	width: 50%;
+	font-size: 20px !important;
+	margin-bottom: 0px !important;
+
+	transition: 0.5s;
+
+	color: map-get($map: $amber, $key: "700");
+
+	@media (max-width: 960px) {
+		font-size: 16px !important;
+
+		transition: 0.5s;
+	}
+}
+
+.title {
+	@include multiline(2);
+
+	font-weight: 900 !important;
+	font-size: 50px !important;
+
+	margin-bottom: 60px !important;
+
+	@media (max-width: 960px) {
+		font-size: 30px !important;
+		margin-bottom: 10px !important;
+
+		transition: 0.5s;
+	}
+}
+
+.excerpt {
+	@include multiline(5);
+
+	font-size: 16px !important;
+
+	@media (max-width: 960px) {
+		display: none;
+
+		transition: 0.5s;
+	}
+}

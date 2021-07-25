@@ -1,0 +1,32 @@
+@import "../../common/animation.module.scss";
+
+.root {
+	margin-top: 100px;
+	margin-bottom: 200px;
+}
+
+.title {
+	font-size: 128px !important;
+	font-weight: 900 !important;
+	font-family: Blacksword, sans-serif !important;
+	transition: 0.5s;
+
+	@media (max-width: 960px) {
+		font-size: 64px !important;
+		transition: 0.5s;
+	}
+}
+
+.more {
+	display: block !important;
+	width: 200px;
+	height: 70px;
+	margin: 0px auto !important;
+
+	background: linear-gradient(to right, #4776E6, #8E54E9);
+
+	font-size: 24px !important;
+	color: white !important;
+
+	word-spacing: 5px;
+}

@@ -1,0 +1,40 @@
+@import "../../common/color.module.scss";
+
+$sun: map-get($orange, "400");
+$moon: map-get($deepPurple, "400");
+
+@mixin switch {
+	position: fixed !important;
+	right: 50px;
+	bottom: 50px;
+
+	padding: 25px !important;
+
+	transition: 0.5s;
+}
+
+.switch-light {
+	@include switch;
+
+	background-color: #333333 !important;
+	color: white !important;
+}
+
+.switch-dark {
+	@include switch;
+
+	background-color: #DDDDDD !important;
+	color: black !important;
+}
+
+.switch-text {
+	margin-left: 10px;
+}
+
+.icon-light {
+	color: $sun;
+}
+
+.icon-dark {
+	color: $moon;
+}

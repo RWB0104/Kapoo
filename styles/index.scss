@@ -1,0 +1,44 @@
+@import "./fonts/apple.module.scss";
+@import "./fonts/blacksword.module.scss";
+
+@import "./common/color.module.scss";
+
+@import "./components/global/markdown.scss";
+
+@mixin genColor($map, $str) {
+	@each $key, $val in $map {
+		.#{$str}-#{$key} {
+			color: $val;
+		}
+	}
+}
+
+* {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+body {
+	transition: 0.5s;
+}
+
+@include genColor($red, red);
+@include genColor($pink, pink);
+@include genColor($purple, purple);
+@include genColor($deepPurple, deepPurple);
+@include genColor($indigo, indigo);
+@include genColor($blue, blue);
+@include genColor($lightBlue, lightBlue);
+@include genColor($cyan, cyan);
+@include genColor($teal, teal);
+@include genColor($green, green);
+@include genColor($lightGreen, lightGreen);
+@include genColor($lime, lime);
+@include genColor($yellow, yellow);
+@include genColor($amber, amber);
+@include genColor($orange, orange);
+@include genColor($deepOrange, deepOrange);
+@include genColor($brown, brown);
+@include genColor($grey, grey);
+@include genColor($blueGrey, blueGrey);

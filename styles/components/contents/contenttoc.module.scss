@@ -1,0 +1,71 @@
+@import "../../common/color.module.scss";
+
+@mixin toc() {
+	border-radius: 10px;
+
+	padding: 20px;
+
+	margin-bottom: 100px;
+
+	h2 {
+		font-weight: 700;
+		font-size: 60px;
+
+		padding-top: 40px;
+		padding-bottom: 40px;
+
+		color: map-get($lightBlue, "A400");
+
+		font-family: Blacksword, sans-serif;
+
+		@media (max-width: 960px) {
+			font-size: 40px;
+		}
+	}
+
+	a {
+		text-decoration: none;
+
+		font-size: 20px;
+		line-height: 1.7;
+		transition: 0.5s;
+
+		@media (max-width: 960px) {
+			font-size: 16px;
+		}
+
+		&:hover {
+			color: map-get($lightBlue, "A400");
+			transition: 0.5s;
+		}
+	}
+
+	li {
+		transition: 0.5s;
+
+		&:hover {
+			color: map-get($lightBlue, "A400");
+			transition: 0.5s;
+		}
+	}
+}
+
+.toc-dark {
+	@include toc();
+
+	background-color: #2b3445;
+
+	a {
+		color: white;
+	}
+}
+
+.toc-light {
+	@include toc();
+
+	background-color: whitesmoke;
+
+	a {
+		color: black;
+	}
+}

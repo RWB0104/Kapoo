@@ -1,0 +1,85 @@
+$base-url: "/fonts/apple/";
+$name: "AppleSDGothicNeo";
+
+$font-url: $base-url + $name;
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 900;
+	src: url($font-url + "H.eot");
+	src: url($font-url + "H.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "H.woff2") format("woff2"),
+		url($font-url + "H.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 800;
+	src: url($font-url + "EB.eot");
+	src: url($font-url + "EB.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "EB.woff2") format("woff2"),
+		url($font-url + "EB.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 700;
+	src: url($font-url + "B.eot");
+	src: url($font-url + "B.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "B.woff2") format("woff2"),
+		url($font-url + "B.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 600;
+	src: url($font-url + "SB.eot");
+	src: url($font-url + "SB.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "SB.woff2") format("woff2"),
+		url($font-url + "SB.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 500;
+	src: url($font-url + "M.eot");
+	src: url($font-url + "M.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "M.woff2") format("woff2"),
+		url($font-url + "M.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 400;
+	src: url($font-url + "M.eot");
+	src: url($font-url + "M.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "M.woff2") format("woff2"),
+		url($font-url + "M.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 300;
+	src: url($font-url + "L.eot");
+	src: url($font-url + "L.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "L.woff2") format("woff2"),
+		url($font-url + "L.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 200;
+	src: url($font-url + "UL.eot");
+	src: url($font-url + "UL.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "UL.woff2") format("woff2"),
+		url($font-url + "UL.woff") format("woff")
+}
+
+@font-face {
+	font-family: "AppleSDGothicNeo";
+	font-weight: 100;
+	src: url($font-url + "T.eot");
+	src: url($font-url + "T.eot?#iefix") format("embedded-opentype"),
+		url($font-url + "T.woff2") format("woff2"),
+		url($font-url + "T.woff") format("woff")
+}

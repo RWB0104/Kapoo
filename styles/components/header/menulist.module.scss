@@ -1,0 +1,15 @@
+.root {
+	@media (max-width: 960px) {
+		display: none !important;
+	}
+}
+
+.item {
+	color: white !important;
+	transition: 0.5s;
+
+	&:hover {
+		color: gold !important;
+		transition: 0.5s;
+	}
+}

@@ -1,0 +1,15 @@
+.root {
+	margin: 5px !important;
+
+	background: linear-gradient(45deg, #4776E6, #8E54E9);
+
+	color: white !important;
+
+	transition: 0.5s;
+
+	&:hover {
+		transform: scale(1.1);
+
+		transition: 0.5s;
+	}
+}

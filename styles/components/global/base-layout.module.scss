@@ -1,0 +1,16 @@
+$header: 64px;
+$main: calc(100vh - #{$header});
+
+.root {
+	margin: 0px;
+	padding: 0px;
+
+	overflow: hidden;
+
+	display: grid;
+	grid-template-rows: $header $main
+}
+
+.main {
+	overflow: auto
+}

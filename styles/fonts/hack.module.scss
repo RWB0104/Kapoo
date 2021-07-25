@@ -1,0 +1,12 @@
+$base-url: "/fonts/hack/";
+$name: "Hack-Regular";
+
+$font-url: $base-url + $name;
+
+@font-face {
+	font-family: "Hack";
+	src: url($font-url + ".eot");
+	src: url($font-url + ".eot?#iefix") format("embedded-opentype"),
+		url($font-url + ".woff2") format("woff2"),
+		url($font-url + ".woff") format("woff")
+}

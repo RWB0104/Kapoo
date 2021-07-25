@@ -1,0 +1,62 @@
+@mixin multiline($num) {
+	display: -webkit-box;
+	white-space: normal;
+	overflow: hidden;
+	transition: 0.5s;
+
+	-webkit-line-clamp: $num;
+	-webkit-box-orient: vertical;
+}
+
+@mixin button {
+	@include multiline(2);
+
+	width: 400px;
+	padding: 10px 15px !important;
+
+	font-family: AppleSDGothicNeo, sans-serif;
+	font-size: 16px;
+
+	border-radius: 4px !important;
+
+	@media (max-width: 960px) {
+		@include multiline(2);
+
+		width: 50%;
+	}
+}
+
+.root {
+	margin-top: 100px;
+}
+
+.wrapper {
+	gap: 20px;
+}
+
+.divider {
+	margin: 10px 0px !important;
+}
+
+.button-dark {
+	@include button();
+	border: 1px solid rgba(255, 255, 255, 0.23) !important;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.08);
+	}
+}
+
+.button-light {
+	@include button();
+
+	border: 1px solid rgba(0, 0, 0, 0.23) !important;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.04);
+	}
+}
+
+.menu {
+	font-size: 16px !important;
+}

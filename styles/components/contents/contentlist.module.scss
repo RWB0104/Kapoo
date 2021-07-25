@@ -1,0 +1,11 @@
+.root {
+	margin-bottom: 100px;
+}
+
+.item {
+	width: 100%;
+
+	$margin: 30px !important;
+	margin-top: $margin;
+	margin-bottom: $margin;
+}
