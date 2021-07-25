@@ -42,5 +42,6 @@
 		"unified": "^9.2.1",
 		"xml-formatter": "^2.4.0"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {}
 }
