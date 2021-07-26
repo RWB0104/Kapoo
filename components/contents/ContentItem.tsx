@@ -9,7 +9,7 @@
 import { ReactElement, useState } from 'react';
 import { Avatar, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Collapse, IconButton, Typography } from '@material-ui/core';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 // 사용자 모듈
 import { CATEGORY } from '@commons/env';

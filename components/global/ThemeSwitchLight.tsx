@@ -56,7 +56,7 @@ export default function ThemeSwitchLight(): ReactElement
 function LightMobile({ setter }: Props): ReactElement
 {
 	return (
-		<Fab className={styles['switch-light']} size="small" aria-label="to Light" onClick={() => setter(false)}>
+		<Fab className={styles['switch-light']} aria-label="to Light" onClick={() => setter(false)}>
 			<WbSunny className={styles['icon-light']} />
 		</Fab>
 	);
@@ -72,7 +72,7 @@ function LightMobile({ setter }: Props): ReactElement
 function LightDesktop({ setter }: Props): ReactElement
 {
 	return (
-		<Fab className={styles['switch-light']} variant="extended" size="small" aria-label="to Light" onClick={() => setter(false)}>
+		<Fab className={styles['switch-light']} variant="extended" aria-label="to Light" onClick={() => setter(false)}>
 			<WbSunny className={styles['icon-light']} />
 			<Box component="span" className={styles['switch-text']}>라이트 모드로 보기</Box>
 		</Fab>

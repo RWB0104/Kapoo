@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { ReactElement } from 'react';
 import { Chip } from '@material-ui/core';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 // 스타일
 import styles from '@styles/components/contents/contenttags.module.scss';

@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { ReactElement } from 'react';
 import { Box, ButtonBase, Typography } from '@material-ui/core';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 // 사용자 모듈
 import { ContentProps } from '@commons/common';

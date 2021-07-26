@@ -9,7 +9,7 @@
 import { ReactElement } from 'react';
 import { Box, Button, ButtonBase, Divider, useTheme } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 // 사용자 모듈
 import { ContentProps } from '@commons/common';

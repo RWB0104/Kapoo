@@ -9,7 +9,7 @@
 import { ReactElement } from 'react';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { Router } from 'next/dist/client/router';
+import { Router } from 'next/router';
 
 // 사용자 모듈
 import BaseLayout from '@components/global/BaseLayout';

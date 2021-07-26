@@ -9,7 +9,7 @@
 import { ReactElement } from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, ButtonBase, Container, Grid, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 // 사용자 모듈
 import { CATEGORY } from '@commons/env';

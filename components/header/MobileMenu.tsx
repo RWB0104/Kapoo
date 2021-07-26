@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { ReactElement } from 'react';
 import { Box, Button, Fade, useMediaQuery, useTheme } from '@material-ui/core';
-import { Router, useRouter } from 'next/dist/client/router';
+import { Router, useRouter } from 'next/router';
 
 // 사용자 모듈
 import { MENU_LIST } from '@commons/env';
@@ -40,7 +40,7 @@ export default function MobileMenu(): ReactElement | null
 	{
 		return (
 			<Fade in={menuState}>
-				<Box component="nav" className={styles.root} position="absolute" display="fixed" width="100%" height="100%" top="0px" zIndex={10}>
+				<Box component="nav" className={styles.root} position="absolute" display="fixed" width="100%" height="100vh" top="0px" zIndex={10}>
 					<Box display="grid" gridAutoRows="auto" alignContent="center" height="100%">
 						{list}
 					</Box>

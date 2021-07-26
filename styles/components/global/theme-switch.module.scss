@@ -8,9 +8,13 @@ $moon: map-get($deepPurple, "400");
 	right: 50px;
 	bottom: 50px;
 
-	padding: 25px !important;
-
 	transition: 0.5s;
+
+	padding: 50px;
+
+	@media (max-width: 960px) {
+		padding: 0px;
+	}
 }
 
 .switch-light {
