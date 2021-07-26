@@ -680,7 +680,7 @@ public class InsertionSort
 ```
 
 * 출력
-* 
+
 ``` tc
 [1, 5]
  - 비교 작업량: 25
@@ -804,7 +804,7 @@ public class ImproveIntersection
 ```
 
 * 출력
-* 
+
 ``` tc
 [1, 5]
  - 비교 작업량: 24
