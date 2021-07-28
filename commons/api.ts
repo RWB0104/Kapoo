@@ -141,7 +141,7 @@ export function getContent(type: string, name: string): ContentProps
  */
 export async function converter(body: string): Promise<ConvertProps>
 {
-	loadLanguage([ 'javascript', 'java', 'html', 'css', 'json', 'tc' ]);
+	loadLanguage([ 'javascript', 'java', 'html', 'css', 'json', 'scss' ]);
 
 	const renderer = new marked.Renderer();
 

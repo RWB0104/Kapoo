@@ -53,7 +53,8 @@ export const CATEGORY = {
 	'WAS': 'https://user-images.githubusercontent.com/50317129/126026419-e7c33d7d-5cae-4a4d-9c59-1d403c31ac7d.png',
 	'WEB': 'https://user-images.githubusercontent.com/50317129/126026432-0c79094c-bcf1-4adf-838a-c88e668261a7.png',
 	'알고리즘': 'https://user-images.githubusercontent.com/50317129/126026461-e1fa3a72-6699-4302-9901-9419d8bb7b81.png',
-	'잡담': 'https://user-images.githubusercontent.com/50317129/126055617-cc87a28b-206b-41b6-852f-cc4c4a1d4c45.png'
+	'잡담': 'https://user-images.githubusercontent.com/50317129/126055617-cc87a28b-206b-41b6-852f-cc4c4a1d4c45.png',
+	'React': 'https://user-images.githubusercontent.com/50317129/127342276-4745c29b-c646-4c64-b93b-5c253fa84a70.png'
 } as CategoryProps;
 
 export const PIECE = [
