@@ -223,19 +223,34 @@ publish: true
 * 임시 변수: 5
 * 비교값: 9
 
-비교값 9가 임시 변수 5보다 크므로, 오른쪽으로 시프트한다.
-
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/50317129/126834166-f03e3731-66b8-4b66-95e8-51d176a92bee.png" width="600px" />
 </p>
 
-11. 패스스루 4: 현재 공백에 임시 변수의 값을 삽입한다.
+비교값 9가 임시 변수 5보다 크므로, 오른쪽으로 시프트한다.
 
 <p align="center">
-	<img src="https://user-images.githubusercontent.com/50317129/126834174-6b6b0444-fc8a-4983-814f-e54e93914765.png" width="600px" />
+	<img src="https://user-images.githubusercontent.com/50317129/127515837-4e39a0aa-3acb-465d-aede-b6b888d7816a.png" width="600px" />
+</p>
+
+* 임시 변수: 5
+* 비교값: 7
+
+비교값 7이 임시 변수 5보다 크므로, 오른쪽으로 시프트한다.
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/50317129/127515847-d1acdce7-805a-4f4a-9f5e-886955836dd7.png" width="600px" />
 </p>
 
 네 번째 요소에 임시 변수 5가 삽입된다.
+
+11. 패스스루 4: 현재 공백에 임시 변수의 값을 삽입한다.
+
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/50317129/127515856-478930c0-b866-4b54-a0d7-13f49dfca11e.png" width="600px" />
+</p>
+
+세 번째 요소에 임시 변수 5가 삽입된다.
 
 가장 마지막 요소까지 기준 인덱스가 이동했으므로, 해당 패스스루를 마지막으로 종료한다.
 

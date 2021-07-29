@@ -175,7 +175,7 @@
 	code[class*="language-"] {
 		font-family: Hack, sans-serif;
 
-		.language-tc {
+		.language-input, .language-output {
 			color: white !important;
 		}
 
@@ -294,9 +294,9 @@
 
 	code:not([class*="language-"]) {
 		background-color: #1e2739;
-		color: map-get($map: $lightBlue, $key: "A400");
+		color: map-get($map: $yellow, $key: "400");
 
-		font-size: 0.8em;
+		font-size: 20px;
 
 		display: inline-block;
 
@@ -304,6 +304,10 @@
 		margin: 0px 2px;
 
 		border-radius: 5px;
+
+		@media (max-width: 960px) {
+			font-size: 16px;
+		}
 	}
 
 	pre[class*="language-"] {

@@ -3,25 +3,25 @@
 	<url>
 		<loc>https://rwb0104.github.io</loc>
 		<priority>0.5</priority>
-		<lastmod>2021-07-28T14:47:53.034Z</lastmod>
+		<lastmod>2021-07-29T13:50:02.922Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/about</loc>
 		<priority>0.5</priority>
-		<lastmod>2021-07-28T14:47:53.034Z</lastmod>
+		<lastmod>2021-07-29T13:50:02.922Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/posts</loc>
 		<priority>0.5</priority>
-		<lastmod>2021-07-28T14:47:53.034Z</lastmod>
+		<lastmod>2021-07-29T13:50:02.922Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
 		<loc>https://rwb0104.github.io/projects</loc>
 		<priority>0.5</priority>
-		<lastmod>2021-07-28T14:47:53.034Z</lastmod>
+		<lastmod>2021-07-29T13:50:02.922Z</lastmod>
 		<changefreq>weekly</changefreq>
 	</url>
 	<url>
@@ -268,6 +268,12 @@
 		<loc>https://rwb0104.github.io/posts/2021/07/26/brand-new</loc>
 		<priority>1.0</priority>
 		<lastmod>2021-07-25T19:54:40.000Z</lastmod>
+		<changefreq>monthly</changefreq>
+	</url>
+	<url>
+		<loc>https://rwb0104.github.io/posts/2021/07/29/about-algorithm-chapter07</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-07-28T19:54:40.000Z</lastmod>
 		<changefreq>monthly</changefreq>
 	</url>
 </urlset>
