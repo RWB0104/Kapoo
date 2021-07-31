@@ -24,6 +24,9 @@ const FORMAT = {
 
 seo();
 
+/**
+ * seo 생성 함수
+ */
 async function seo()
 {
 	console.log('==================================================');
@@ -35,8 +38,8 @@ async function seo()
 		'!./pages/**/[*.tsx'
 	]);
 
-	const posts = getContents('posts');
-	const projects = getContents('projects');
+	const posts = getContents('posts').sort((left, right) => (new Date(right.date) > new Date(left.date) ? -1 : 1));
+	const projects = getContents('projects').sort((left, right) => (new Date(right.date) > new Date(left.date) ? -1 : 1));
 
 	const pageUrl = page.reduce((acc, element) =>
 	{
@@ -77,7 +80,7 @@ async function seo()
 				<loc>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}</loc>
 				<priority>1.0</priority>
 				<lastmod>${new Date(element.date).toISOString()}</lastmod>
-				<changefreq>monthly</changefreq>
+				<changefreq>always</changefreq>
 			</url>
 			`;
 
@@ -110,7 +113,7 @@ async function seo()
 				<loc>${BASE_URL}/${element.type}/${element.slug}</loc>
 				<priority>0.5</priority>
 				<lastmod>${new Date(element.date).toISOString()}</lastmod>
-				<changefreq>monthly</changefreq>
+				<changefreq>always</changefreq>
 			</url>
 			`;
 

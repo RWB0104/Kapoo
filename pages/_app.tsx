@@ -22,7 +22,7 @@ import '@styles/index.scss';
  *
  * @param {AppProps} param0: 애플리케이션 프로퍼티
  *
- * @returns {ReactNode} ReactNode
+ * @returns {ReactElement | null} ReactNode
  */
 export default function MyApp({ Component, pageProps }: AppProps): ReactElement | null
 {

@@ -17,10 +17,12 @@ import ThemeSwitch from './ThemeSwitch';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
 import { darkAtom } from '@commons/state';
+import MobileMenu from '@components/header/MobileMenu';
+import Loading from './Loding';
 
 // 스타일
 import styles from '@styles/components/global/base-layout.module.scss';
-import MobileMenu from '@components/header/MobileMenu';
+import { Router } from 'next/router';
 
 interface Props {
 	children: ReactElement
@@ -38,9 +40,26 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 	const darkState = useRecoilValue(darkAtom);
 	const theme = getTheme(darkState);
 
+	Router.events.on('routeChangeStart', () =>
+	{
+		const tag = document.getElementById('loading')?.style;
+
+		if (tag != null)
+		{
+			tag.display = 'grid';
+		}
+	});
+
 	useEffect(() =>
 	{
 		document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+		const tag = document.getElementById('loading')?.style;
+
+		if (tag != null)
+		{
+			tag.display = 'none';
+		}
 	});
 
 	return (
@@ -57,7 +76,6 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 					}
 
 					gtag('js', new Date());
-
 					gtag('config', 'G-X2THE3XLX1');
 				` }}></script>
 			</Head>
@@ -71,6 +89,8 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 					{children}
 
 					<MobileMenu />
+
+					<Loading />
 
 					<ThemeSwitch />
 

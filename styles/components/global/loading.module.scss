@@ -1,0 +1,28 @@
+@import "../../common/animation.module.scss";
+
+@mixin root {
+	display: none;
+
+	top: 0px;
+
+	transition: 0.5s;
+}
+
+.root-dark {
+	@include root();
+	background-color: rgba($color: black, $alpha: 0.8);
+}
+
+.root-light {
+	@include root();
+	background-color: rgba($color: white, $alpha: 0.8);
+}
+
+.logo {
+	animation: rotate 5s linear infinite;
+	transform-origin: 50% 50%;
+
+	margin: 0px auto;
+
+	transition: 0.5s;
+}
