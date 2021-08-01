@@ -23,13 +23,12 @@ export default function Loading(): ReactElement
 	const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 	const size = isMobile ? '100' : '300';
-	const comp = isMobile ? 'h5' : 'h3';
 
 	return (
 		<Box id="loading" className={styles[`root-${theme.palette.type}`]} component="article" position="fixed" width="100%" height="100%" display="grid" alignContent="center" gridRowGap={30} zIndex={20}>
 			<img className={styles.logo} src="/img/logo.png" width={size} height={size} />
 
-			<Typography component={comp} variant={comp} align="center">Loading...</Typography>
+			<Typography className={styles.title} align="center">Loading...</Typography>
 		</Box>
 	);
 }

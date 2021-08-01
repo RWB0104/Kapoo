@@ -43,9 +43,9 @@ export default function Post({ page, group, data }: PageStaticProps): ReactEleme
 /**
  * 사용자 Props 반환 함수
  *
- * @param {Object} params: 컨텐츠
+ * @param {RoutesProps} params: 컨텐츠
  *
- * @returns {Object} 사용자 Props
+ * @returns {Promise<ContentPageProps>} 사용자 Props
  */
 export async function getStaticProps({ params }: RoutesProps): Promise<ContentPageProps>
 {
@@ -77,7 +77,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
 /**
  * 동적 경로 반환 함수
  *
- * @returns {Object} 동적 경로 객체
+ * @returns {Promise<PathsProps>} 동적 경로 객체
  */
 export async function getStaticPaths(): Promise<PathsProps>
 {

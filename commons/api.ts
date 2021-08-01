@@ -328,3 +328,8 @@ export async function converter(body: string): Promise<ConvertProps>
 		content: result.toString()
 	};
 }
+
+export function getBuildTime(): void
+{
+	console.dir(new Date());
+}

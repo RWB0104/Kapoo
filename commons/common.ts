@@ -5,7 +5,7 @@
  * @since 2021.07.12 Mon 15:52:40
  */
 
-interface dateObject {
+export interface DateProps {
 	year: string,
 	month: string,
 	day: string,
@@ -104,11 +104,11 @@ export function getRandomIndex(size: number): number
  *
  * @param {string} raw: 날짜 및 시간 문자열 (yyyy-MM-ddTHH:mm:ss)
  *
- * @returns {dateObject} dateObject
+ * @returns {DateProps} DateProps
  */
-export function getDateDetail(raw: string): dateObject
+export function getDateDetail(raw: string | undefined): DateProps
 {
-	const date = new Date(raw);
+	const date = raw === undefined ? new Date() : new Date(raw);
 	const weeks = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 
 	return {

@@ -26,3 +26,13 @@
 
 	transition: 0.5s;
 }
+
+.title {
+	font-family: Blacksword, sans-serif !important;
+	font-weight: 700;
+	font-size: 128px !important;
+
+	@media (max-width: 960px) {
+		font-size: 64px !important;
+	}
+}

@@ -44,6 +44,7 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 	{
 		const tag = document.getElementById('loading')?.style;
 
+		// 스타일 객체가 유효할 경우
 		if (tag != null)
 		{
 			tag.display = 'grid';
@@ -56,6 +57,7 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 
 		const tag = document.getElementById('loading')?.style;
 
+		// 스타일 객체가 유효할 경우
 		if (tag != null)
 		{
 			tag.display = 'none';

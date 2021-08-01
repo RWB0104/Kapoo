@@ -58,9 +58,9 @@ export default function Posts({ posts, categories, images, page }: Props): React
 /**
  * 사용자 Props 반환 함수
  *
- * @param {Object} params: 컨텐츠
+ * @param {RouteProps} params: 컨텐츠
  *
- * @returns {Object} 사용자 Props
+ * @returns {Promise<StaticProp>} 사용자 Props
  */
 export async function getStaticProps({ params }: RouteProps): Promise<StaticProp>
 {

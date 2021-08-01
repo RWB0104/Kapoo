@@ -13,7 +13,7 @@ import { Box } from '@material-ui/core';
 import Screener from '@components/global/Screener';
 import { getContentsByCategory, getContentsCategory, getScreenerImage } from '@commons/api';
 import { getRandomIndex, ContentProps, PathsProps, RoutesProps } from '@commons/common';
-import { LOGO, MENU_LIST } from '@commons/env';
+import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
@@ -45,7 +45,7 @@ export default function CategoryPosts({ posts, categories, images, category, pag
 
 	return (
 		<Box component="section">
-			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={LOGO} />
+			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={`/img/screener/${images[index]}`} />
 
 			<Screener title={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={`/img/screener/${images[index]}`} special />
 

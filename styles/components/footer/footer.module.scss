@@ -1,4 +1,11 @@
+@import "../../common/color.module.scss";
+
 .root {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.line {
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
@@ -8,4 +15,31 @@
 	height: 72px !important;
 
 	margin: 0px auto;
+}
+
+@mixin button {
+	svg {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+.github {
+	@include button();
+
+	background: linear-gradient(to right, #8E2DE2, #4A00E0) !important;
+	color: white !important;
+
+}
+
+.mail {
+	@include button();
+
+	background: linear-gradient(to right, #00C6FF, #0072FF) !important;
+	color: white !important;
+
+}
+
+.text {
+	color: #AAAAAA;
 }

@@ -36,13 +36,13 @@ export default function ContentMeta({ header }: Props ): ReactElement
 
 	return (
 		<Box component="article" className={styles.root}>
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" className={styles.item} alignItems="center">
 				<Typography className={styles.text}>📆 작성일</Typography>
 
 				<Typography className={styles.text}>{`${dateDetail.year}-${dateDetail.month}-${dateDetail.day} ${dateDetail.week} ${dateDetail.hour}:${dateDetail.minute}:${dateDetail.second}`}</Typography>
 			</Box>
 
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" className={styles.item} alignItems="center">
 				<Typography className={styles.text}>📌 카테고리</Typography>
 
 				<Box display="grid" gridTemplateColumns="40px 1fr" alignItems="center" gridColumnGap={10}>
@@ -52,7 +52,7 @@ export default function ContentMeta({ header }: Props ): ReactElement
 				</Box>
 			</Box>
 
-			<Box display="grid" gridTemplateColumns="200px 1fr" alignItems="center">
+			<Box display="grid" className={styles.item} alignItems="center">
 				<Typography className={styles.text}>🏷️ 태그</Typography>
 
 				<Box>

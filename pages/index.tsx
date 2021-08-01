@@ -14,7 +14,7 @@ import Artbox from '@components/global/Artbox';
 import Screener from '@components/global/Screener';
 import ContentsCase from '@components/home/ContentsCase';
 import { getContentsList, getScreenerImage } from '@commons/api';
-import { DESCRIPTION, LOGO, MENU_LIST, TITLE } from '@commons/env';
+import { DESCRIPTION, MENU_LIST, TITLE } from '@commons/env';
 import { getRandomIndex, ContentProps } from '@commons/common';
 import Meta from '@components/global/Meta';
 
@@ -41,7 +41,7 @@ export default function Home({ images, posts, projects }: Props): ReactElement |
 
 	return (
 		<Box component="section">
-			<Meta title={TITLE} description={DESCRIPTION} image={LOGO} url="" />
+			<Meta title={TITLE} description={DESCRIPTION} image={`/img/screener/${images[index]}`} url="" />
 
 			<Screener title={TITLE} lower={DESCRIPTION} image={`/img/screener/${images[index]}`} special />
 

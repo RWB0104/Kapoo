@@ -1,8 +1,8 @@
 /**
- * 소개 페이지 컴포넌트
+ * 500 페이지 컴포넌트
  *
  * @author RWB
- * @since 2021.07.12 Mon 00:01:37
+ * @since 2021.08.01 Sun 21:41:43
  */
 
 // 라이브러리 모듈
@@ -10,38 +10,33 @@ import { ReactElement } from 'react';
 import { Box } from '@material-ui/core';
 
 // 사용자 모듈
-import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
+import Screener from '@components/global/Screener';
 import { getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
-import { MENU_LIST } from '@commons/env';
 
 interface Props {
 	images: string[]
 }
 
 interface StaticProp {
-	props: {
-		images: string[]
-	}
+	props: Props
 }
 
 /**
- * 소개 페이지 ReactElement 반환 함수
- *
- * @param {Props} param0: 프로퍼티
+ * 500 에러 ReactElement 반환 함수
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Posts({ images }: Props): ReactElement
+export default function Error404({ images }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
 	return (
 		<Box component="section">
-			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} image={`/img/screener/${images[index]}`} />
+			<Meta title="500" description="문제가 생겼어요!" image={`/img/screener/${images[index]}`} url="" />
 
-			<Screener title={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={`/img/screener/${images[index]}`} special />
+			<Screener title="500" lower="문제가 생겼어요!" image={`/img/screener/${images[index]}`} special />
 		</Box>
 	);
 }

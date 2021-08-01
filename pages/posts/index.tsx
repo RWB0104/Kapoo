@@ -13,7 +13,7 @@ import { Box } from '@material-ui/core';
 import Screener from '@components/global/Screener';
 import { getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
 import { getRandomIndex, ContentProps } from '@commons/common';
-import { LOGO, MENU_LIST } from '@commons/env';
+import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
@@ -43,7 +43,7 @@ export default function Posts({ posts, category, images }: Props): ReactElement
 
 	return (
 		<Box component="section">
-			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={LOGO} />
+			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={`/img/screener/${images[index]}`} />
 
 			<Screener title={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={`/img/screener/${images[index]}`} special />
 
@@ -57,9 +57,7 @@ export default function Posts({ posts, category, images }: Props): ReactElement
 /**
  * 사용자 Props 반환 함수
  *
- * @param {Object} params: 컨텐츠
- *
- * @returns {Object} 사용자 Props
+ * @returns {Promise<StaticProp>} 사용자 Props
  */
 export async function getStaticProps(): Promise<StaticProp>
 {

@@ -7,6 +7,12 @@
 
 	transition: 0.5s;
 
+	max-width: 600px;
+
+	@media (max-width: 960px) {
+		max-width: 80vw;
+	}
+
 	&:hover {
 		transform: scale(1.1);
 
