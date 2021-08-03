@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/125144706-add9c0
 date: "2021-07-31T11:58:37"
 type: "posts"
 category: "알고리즘"
-tag: [ "자료구조", "알고리즘", "누구나 자료 구조와 알고리즘", "해시 테이블" ]
+tag: [ "자료구조", "알고리즘", "누구나 자료 구조와 알고리즘", "큐", "스택" ]
 group: "누구나 자료 구조와 알고리즘"
 comment: true
 publish: true
