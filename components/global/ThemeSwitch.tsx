@@ -10,9 +10,9 @@ import { ReactElement } from 'react';
 import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
-import { darkAtom } from '@commons/state';
 import ThemeSwitchDark from './ThemeSwitchDark';
 import ThemeSwitchLight from './ThemeSwitchLight';
+import { darkAtom } from '@commons/state';
 
 /**
  * 테마 스위치 ReactElement 반환 함수

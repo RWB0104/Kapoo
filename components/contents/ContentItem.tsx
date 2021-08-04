@@ -12,12 +12,12 @@ import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
 import { useRouter } from 'next/router';
 
 // 사용자 모듈
-import { CATEGORY } from '@commons/env';
-import { getDateDetail, ContentProps } from '@commons/common';
-
-
-import styles from '@styles/components/contents/contentitem.module.scss';
 import ContentMeta from './ContentMeta';
+import { CATEGORY } from '@commons/env';
+import { ContentProps, getWrittenTimes } from '@commons/common';
+
+// 스타일
+import styles from '@styles/components/contents/contentitem.module.scss';
 
 interface Props {
 	item: ContentProps
@@ -30,9 +30,8 @@ interface Props {
  */
 export default function ContentItem({ item }: Props): ReactElement
 {
-	const { title, excerpt, coverImage, type, category } = item.header;
+	const { title, excerpt, coverImage, type, category, date } = item.header;
 
-	const dateDetail = getDateDetail(item.header.date);
 	const urls = item.url;
 
 	const router = useRouter();
@@ -58,7 +57,7 @@ export default function ContentItem({ item }: Props): ReactElement
 			</CardActionArea>
 
 			<CardActions className={styles.footer}>
-				<Typography>📆 {`${dateDetail.year}-${dateDetail.month}-${dateDetail.day} ${dateDetail.week} ${dateDetail.hour}:${dateDetail.minute}:${dateDetail.second}`}</Typography>
+				<Typography>🕔 {getWrittenTimes(new Date(date))}</Typography>
 
 				<IconButton onClick={() => setState(!state)}>
 					{state ? <ArrowUpward /> : <ArrowDownward />}

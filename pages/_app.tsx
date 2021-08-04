@@ -16,6 +16,7 @@ import BaseLayout from '@components/global/BaseLayout';
 
 // 스타일
 import '@styles/index.scss';
+import { CookiesProvider } from 'react-cookie';
 
 /**
  * 웹 애플리케이션 ReactNode 반환 함수
@@ -33,9 +34,11 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
 
 	return (
 		<RecoilRoot>
-			<BaseLayout>
-				<Component {...pageProps} />
-			</BaseLayout>
+			<CookiesProvider>
+				<BaseLayout>
+					<Component {...pageProps} />
+				</BaseLayout>
+			</CookiesProvider>
 		</RecoilRoot>
 	);
 }

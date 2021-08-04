@@ -12,11 +12,11 @@ import { Box, Container } from '@material-ui/core';
 // 사용자 모듈
 import ContentViewer from './ContentViewer';
 import ContentToc from './ContentToc';
-import { PageStaticProps } from '@commons/common';
 import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import Utterances from './Utterances';
+import { PageStaticProps } from '@commons/common';
 
 /**
  * 컨텐츠 레이아웃 ReactElement 반환 함수

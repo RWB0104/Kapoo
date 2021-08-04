@@ -1,21 +1,14 @@
 @import "../../common/animation.module.scss";
 
-@mixin root {
+.root {
 	display: none;
 
 	top: 0px;
 
 	transition: 0.5s;
-}
 
-.root-dark {
-	@include root();
 	background-color: rgba($color: black, $alpha: 0.8);
-}
-
-.root-light {
-	@include root();
-	background-color: rgba($color: white, $alpha: 0.8);
+	backdrop-filter: blur(5px) saturate(180%);
 }
 
 .logo {
@@ -29,8 +22,10 @@
 
 .title {
 	font-family: Blacksword, sans-serif !important;
-	font-weight: 700;
+	font-weight: 900 !important;
 	font-size: 128px !important;
+
+	color: white;
 
 	@media (max-width: 960px) {
 		font-size: 64px !important;

@@ -34,7 +34,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 	const router = useRouter();
 
 	const categories = list.map((item, index: number): ReactElement => (
-		<Grid key={index} item md={3} xs={4} className={styles['item-wrapper']}>
+		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
 			<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => router.push(`/${type}/category/${item}/1`)}>{item}</ButtonBase>
 		</Grid>
 	));
@@ -43,7 +43,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 		<Container component="article" maxWidth="md">
 			<Accordion className={styles.root} TransitionProps={{ unmountOnExit: true }}>
 				<AccordionSummary className={styles.header} expandIcon={<ExpandMore />}>
-					<Typography component="h4" variant="h4">📌 Category</Typography>
+					<Typography className={styles.title} component="h4" variant="h4">📌 Category</Typography>
 				</AccordionSummary>
 
 				<AccordionDetails className={styles.detail}>

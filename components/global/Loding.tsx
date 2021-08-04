@@ -25,7 +25,7 @@ export default function Loading(): ReactElement
 	const size = isMobile ? '100' : '300';
 
 	return (
-		<Box id="loading" className={styles[`root-${theme.palette.type}`]} component="article" position="fixed" width="100%" height="100%" display="grid" alignContent="center" gridRowGap={30} zIndex={20}>
+		<Box id="loading" className={styles.root} component="article" position="fixed" width="100%" height="100%" display="grid" alignContent="center" gridRowGap={30} zIndex={20}>
 			<img className={styles.logo} src="/img/logo.png" width={size} height={size} />
 
 			<Typography className={styles.title} align="center">Loading...</Typography>

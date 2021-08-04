@@ -168,3 +168,56 @@ export function tableOfContents(toc : TocProps[] | undefined): string
 		return '';
 	}
 }
+
+/**
+ * 작성일 반환 함수
+ *
+ * @param {Date} date: 기준 날짜
+ *
+ * @returns {string} 작성일
+ */
+export function getWrittenTimes(date: Date): string
+{
+	const today = new Date();
+	const stamp = today.getTime() - date.getTime();
+
+	// 연 단위일 경우
+	if (stamp > 31536000000)
+	{
+		const time = Math.floor(stamp / 31536000000);
+
+		return `${time}년 전`;
+	}
+
+	// 월 단위일 경우
+	else if (stamp > 2592000000)
+	{
+		const time = Math.floor(stamp / 2592000000);
+
+		return `${time}달 전`;
+	}
+
+	// 일 단위일 경우
+	else if (stamp > 86400000)
+	{
+		const time = Math.floor(stamp / 86400000);
+
+		return `${time}일 전`;
+	}
+
+	// 시 단위일 경우
+	else if (stamp > 3600000)
+	{
+		const time = Math.floor(stamp / 3600000);
+
+		return `${time}시간 전`;
+	}
+
+	// 분 단위일 경우
+	else
+	{
+		const time = Math.floor(stamp / 60000);
+
+		return `${time}분 전`;
+	}
+}

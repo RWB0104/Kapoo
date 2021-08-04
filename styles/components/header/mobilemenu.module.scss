@@ -1,3 +1,5 @@
+@import "../../common/color.module.scss";
+
 .root {
 	background-color: rgba($color: black, $alpha: 0.8);
 	backdrop-filter: blur(5px) saturate(180%);
@@ -5,15 +7,53 @@
 	& > div:not(:last-child) {
 		margin-bottom: 30px !important;
 	}
+
+	padding: 0px 40px;
 }
 
 .button {
 	margin: 0px auto !important;
+	width: 100%;
 
-	font-size: 50px !important;
+	font-size: 30px !important;
+	color: map-get($map: $blue, $key: "700") !important;
+
+	border: 1px solid map-get($map: $blue, $key: "700") !important;
+	border-radius: 20px !important;
 
 	svg {
-		width: 60px;
+		width: 30px;
 		height: 100%;
 	}
+
+	&:not(:last-child) {
+		margin-bottom: 20px !important;
+	}
+
+	&:hover {
+		border: 1px solid map-get($map: $blue, $key: "700") !important;
+		color: white !important;
+		background-color: map-get($map: $blue, $key: "700") !important;
+	}
+}
+
+.switch {
+	& > span:last-child {
+		background-color: white !important;
+	}
+}
+
+.icon {
+	color: white;
+	font-size: 30px !important;
+}
+
+.dark-select {
+	color: map-get($deepPurple, "400");
+	font-size: 30px !important;
+}
+
+.light-select {
+	color: map-get($orange, "400");
+	font-size: 30px !important;
 }

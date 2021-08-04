@@ -361,6 +361,9 @@ if (index == 1)
 
 `factorial(3)`의 연산을 종료하고 스택에서 제거한다.
 
+<br />
+<br />
+
 7. `factorial(4)`을 종료한다.
 
 <img src="https://user-images.githubusercontent.com/50317129/128024224-c83b0f90-388c-4264-8543-194c56cea310.png" width="200px" />

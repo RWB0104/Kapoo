@@ -10,7 +10,9 @@ import { ReactElement, useEffect } from 'react';
 import Head from 'next/head';
 import { Box, createTheme, CssBaseline, MuiThemeProvider, Theme } from '@material-ui/core';
 import { indigo, orange } from '@material-ui/core/colors';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { Router } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 // 사용자 모듈
 import ThemeSwitch from './ThemeSwitch';
@@ -22,7 +24,6 @@ import Loading from './Loding';
 
 // 스타일
 import styles from '@styles/components/global/base-layout.module.scss';
-import { Router } from 'next/router';
 
 interface Props {
 	children: ReactElement
@@ -37,8 +38,8 @@ interface Props {
  */
 export default function BaseLayout({ children }: Props): ReactElement | null
 {
-	const darkState = useRecoilValue(darkAtom);
-	const theme = getTheme(darkState);
+	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
+	const cookies = useCookies([ 'theme' ])[0];
 
 	Router.events.on('routeChangeStart', () =>
 	{
@@ -62,10 +63,16 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 		{
 			tag.display = 'none';
 		}
+
+		// 이전에 다크 모드를 해제했었을 경우
+		if (cookies.theme === 'false')
+		{
+			setDarkState(false);
+		}
 	});
 
 	return (
-		<MuiThemeProvider theme={theme}>
+		<MuiThemeProvider theme={getTheme(darkState)}>
 			<Head>
 				<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2THE3XLX1"></script>
 

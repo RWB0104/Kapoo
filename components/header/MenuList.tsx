@@ -10,14 +10,14 @@ import { ReactElement } from 'react';
 import { Box, IconButton, useMediaQuery, useTheme } from '@material-ui/core';
 import { Close, Menu } from '@material-ui/icons';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 
 // 사용자 모듈
 import { MENU_LIST } from '@commons/env';
+import { menuAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/header/menulist.module.scss';
-import { useRecoilState } from 'recoil';
-import { menuAtom } from '@commons/state';
 
 /**
  * 메뉴 리스트 ReactElement 반환 함수
@@ -58,7 +58,7 @@ function Mobile(): ReactElement
 	const icon = menuState ? <Close /> : <Menu />;
 
 	return (
-		<IconButton onClick={() => setMenuState(!menuState)}>
+		<IconButton className={styles.button} onClick={() => setMenuState(!menuState)}>
 			{icon}
 		</IconButton>
 	);
