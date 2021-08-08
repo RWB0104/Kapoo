@@ -21,11 +21,111 @@ publish: false
 
 하지만 객체지향 언어에서는 누구나 필요에 의해 쉽게 상속받을 수 있다!
 
-위에서 얘기한 <span class="teal-400">상속</span>이란 <span class="blue-400">객체가 다른 객체를 상속받아 상속받은 객체의 요소를 사용</span>하는 것을 의미한다.
+객체지향 역시 동일한 개념이 존재한다. 객체지향에서의 <span class="teal-400">상속</span>이란 <span class="blue-400">객체가 다른 객체를 상속받아 상속받은 객체의 요소를 사용</span>하는 것을 의미한다.
 
 이 때 객체를 상속받은 객체는 <span class="teal-400">자식</span>, 상속된 객체는 <span class="teal-400">부모</span>라 칭한다.
 
-자식 객체는 상속된 부모 객체의 은닉화 구성에 따라 정해진 변수, 메소드에 접근할 수 있다. 그 뿐만 아니라 자식 객체의 특성에 따라 부모 객체에 기술된 메소드를 변경할 수 있으며, 이를 <span class="teal-400">오버라이딩</span>(Overriding)이라 한다.
+자식 객체는 상속된 부모 객체의 은닉화 구성에 따라 정해진 변수, 메소드에 접근할 수 있다. 또한 부모 객체가 <span class="teal-400">추상 객체</span>일 경우 <span class="teal-400">추상 메소드</span>와 <span class="teal-400">오버라이딩</span>(Overriding)을 통해 부모 객체의 메소드를 구현하거나 다룰 수 있다.
+
+## 추상 객체
+
+<span class="teal-400">추상 객체</span>는 하나 이상의 추상 메소드를 포함하는 객체다.
+
+``` java
+abstract public class Main
+{
+	// 메소드
+}
+```
+
+JAVA로 표현한 추상 클래스는 위와 같으며, 클래스의 맨 앞에 `abstract` 키워드를 적어 해당 객체가 추상 객체임을 표현할 수 있다.
+
+## 추상 메소드
+
+<span class="teal-400">추상 메소드</span>는 자식 객체에서 구현해야하는 메소드다.
+
+``` java
+abstract public class Main
+{
+	public void normalMethod()
+	{
+		System.out.println("일반 메소드");
+	}
+
+	abstract public void abstractMethod();
+}
+```
+
+위는 JAVA로 표현한 추상 객체다. `normalMethod()`은 일반적인 메소드고, `abstractMethod()`는 추상 메소드다. 추상 메소드는 일반적인 메소드와 큰 차이가 있는데, 메소드의 동작이 기술되어있지 않다.
+
+추상 메소드의 구현은 자식 객체가 담당하며, 아래 단계에서 이루어진다.
+
+* 추상 객체의 인스턴스 생성 시
+* 추상 객체를 상속받을 시
+
+일반적인 메소드는 자신의 객체에서 선언되어있다. 하지만 추상 메소드의 경우, 추상 객체를 할당받으려는 객체에서 선언이 이루어진다. 이 경우 어떤 메리트가 있을까?
+
+예를 들어, 부모 객체 `Main`과 이를 상속받은 자식 객체 `Sub`가 있다고 가정하자. 만약 동작 구조 상 `abstractMethod()`에서 자식 객체의 변수나 메소드를 사용해야만 한다면?
+
+`normalMethod()` 처럼 동작이 이미 부모 객체에 선언되는 경우 자식 객체의 요소를 반영하기가 매우 어렵다. 인스턴스를 생성하는 방법도 있겠지만 어떤 객체를 상속받을 지 알 수 없는 경우, 예상되는 객체의 인스턴스를 전부 할당받아놓는 게 아니라면 불가능에 가깝다. 그리고 이 방법의 경우 메모리 낭비가 너무 심해진다.
+
+반면 `abstractMethod()` 같은 추상 메소드의 경우 자식 객체에서 구현되기 때문에 자식 객체의 변수나 메소드에 직접적으로 접근할 수 있다. 때문에 자식 객체의 요소를 활용해서 동작을 구현해야 할 경우, 해당 메소드를 추상으로 정의하면 자식 객체의 특성에 맞게 구현하기 용이하다.
+
+### 추상 메소드 구현 - 인스턴스 생성 시
+
+JAVA를 통해 `Main`의 인스턴스를 `Sub`에서 생성해보자.
+
+``` java
+public class Sub
+{
+	public void run()
+	{
+		Main main = new Main()
+		{
+			@Override
+			public void abstractMethod()
+			{
+				System.out.println(text());
+			}
+		}
+	}
+
+	private String text()
+	{
+		return "Sub 객체의 요소";
+	}
+}
+```
+
+원래대로라면 `abstractMethod()` 메소드는 `Sub` 객체의 `text()`에 접근할 수 없다. `text()`는 `private` 접근제어자를 가지기 때문이다.
+
+하지만 추상 메소드의 경우 구현이 `Sub`에서 이루어지기 때문에 `Sub`의 모든 요소에 직접적으로 접근할 수 있다. 즉, `private` 같은 내부 메소드까지 전부 접근 가능하다.
+
+### 추상 메소드 구현 - 상속 시
+
+JAVA를 통해 `Main`을 `Sub`에 상속시켜보자.
+
+``` java
+public class Sub extends Main
+{
+	@Override
+	public void abstractMethod()
+	{
+		System.out.println(text());
+	}
+
+	private String text()
+	{
+		return "자식 객체 Sub의 요소";
+	}
+}
+```
+
+부모 객체에 추상 메소드가 있을 경우, 자식 객체는 이를 반드시 오버라이딩해야한다. 그러지 않을 경우 컴파일 오류를 일으킨다.
+
+마찬가지로 메소드의 구현이 자식 객체에서 이루어지므로, 자식 객체의 모든 요소에 접근할 수 있다.
+
+추상 메소드는 이처럼 구현의 구체를 사용자에게 전가함으로써, 자식 객체의 요소에 제한없이 접근할 수 있다. 더욱 장점인 점은, 자식 객체의 은닉화를 해치지도 않는다.
 
 # 상속의 예제
 
