@@ -14,6 +14,7 @@ import Prism from 'prismjs';
 import katex from 'katex';
 import loadLanguage from 'prismjs/components/';
 
+// 사용자 모듈
 import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
@@ -164,6 +165,19 @@ export async function converter(body: string): Promise<ConvertProps>
 
 				const langClass = 'language-' + lang;
 
+				const pattern = /<span class="token comment">([\s\S]*?)<\/span>/;
+
+				while (pattern.test(code))
+				{
+					const [ origin, target ] = pattern.exec(code) as string[];
+
+					const newer = target.split('\n').map(item => `<span class="token comment" data-tag="new">${item}</span>`).join('\n');
+
+					code = code.replace(origin, newer);
+				}
+
+				const line = code.split('\n').map((item, index) => `<tr><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+
 				return `
 					<div class="codeblock">
 						<div class="top">
@@ -173,9 +187,9 @@ export async function converter(body: string): Promise<ConvertProps>
 							<div></div>
 						</div>
 
-						<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('code'));document.execCommand('copy');">COPY</button>
+						<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('pre'));document.execCommand('copy');">📋</button>
 
-						<pre class="${langClass}"><code class="${langClass}">${code}</code></pre>
+						<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 					</div>
 				`;
 			}
@@ -188,6 +202,8 @@ export async function converter(body: string): Promise<ConvertProps>
 
 			const langClass = 'language-' + lang;
 
+			const line = code.split('\n').map((item, index) => `<tr><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+
 			return `
 				<div class="codeblock">
 					<div class="top">
@@ -197,9 +213,9 @@ export async function converter(body: string): Promise<ConvertProps>
 						<div></div>
 					</div>
 
-					<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('code'));document.execCommand('copy');">COPY</button>
+					<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('pre'));document.execCommand('copy');">📋</button>
 
-					<pre class="${langClass}"><code class="${langClass}">${code}</code></pre>
+					<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 				</div>
 			`;
 		}

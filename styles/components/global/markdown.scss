@@ -1,6 +1,9 @@
 @import "../../fonts/hack.module.scss";
 @import "../../common/color.module.scss";
 
+$fd: 18px;
+$fm: 14px;
+
 @mixin gutter()
 {
 	margin-top: 70px;
@@ -67,15 +70,13 @@
 }
 
 .markdown {
-	$font-size: 20px;
-
-	font-size: $font-size !important;
+	font-size: $fd !important;
 	line-height: 1.75;
 
 	margin-bottom: 200px;
 
 	@media (max-width: 960px) {
-		font-size: 16px !important;
+		font-size: $fm !important;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -102,38 +103,30 @@
 	}
 
 	h1 {
-		font-size: 70px !important;
-
-		@media (max-width: 960px) {
-			font-size: 50px !important;
-		}
-	}
-
-	h2 {
-		font-size: 60px !important;
+		font-size: 45px !important;
 
 		@media (max-width: 960px) {
 			font-size: 40px !important;
 		}
 	}
 
-	h3 {
-		font-size: 50px !important;
+	h2 {
+		font-size: 40px !important;
 
 		@media (max-width: 960px) {
 			font-size: 35px !important;
 		}
 	}
 
-	h4 {
-		font-size: 40px !important;
+	h3 {
+		font-size: 35px !important;
 
 		@media (max-width: 960px) {
 			font-size: 30px !important;
 		}
 	}
 
-	h5 {
+	h4 {
 		font-size: 30px !important;
 
 		@media (max-width: 960px) {
@@ -141,11 +134,19 @@
 		}
 	}
 
-	h6 {
+	h5 {
 		font-size: 25px !important;
 
 		@media (max-width: 960px) {
 			font-size: 20px !important;
+		}
+	}
+
+	h6 {
+		font-size: 20px !important;
+
+		@media (max-width: 960px) {
+			font-size: 15px !important;
 		}
 	}
 
@@ -220,10 +221,45 @@
 			}
 		}
 
+		table {
+			& tr:nth-child(2n) {
+				background-color: #222c40;
+			}
+
+			& tr:hover {
+				background-color: #546687;
+			}
+
+			& td {
+				line-height: $fd + 4px;
+
+				@media (max-width: 960px) {
+					line-height: $fm + 4px;
+				}
+			}
+
+			& td:nth-child(1) {
+				color: #455983;
+				padding-right: 10px;
+
+				border-right: 1px solid #455983;
+
+				user-select: none;
+				-moz-user-select: none;
+				-webkit-user-select: none;
+			}
+
+			& td:nth-child(2) {
+				width: 100%;
+
+				padding: 0px 20px;
+			}
+		}
+
 		.top {
 			position: absolute;
 
-			top: -10px;
+			top: 0px;
 			left: 0px;
 
 			width: 100%;
@@ -273,16 +309,14 @@
 
 			top: 50px;
 			right: 20px;
+			width: 40px;
+			height: 40px;
 
-			padding: 20px;
-
-			font-weight: 700;
-			background-color: transparent;
-			color: map-get($teal, "500");
+			background-color: #1e2739;
 			cursor: pointer;
 
+			border: 1px solid map-get($green, "700");
 			border-radius: 10px;
-			border: none;
 
 			opacity: 0;
 
@@ -298,7 +332,7 @@
 		background-color: #1e2739;
 		color: map-get($map: $yellow, $key: "400");
 
-		font-size: 20px;
+		font-size: $fd;
 
 		display: inline-block;
 
@@ -308,7 +342,7 @@
 		border-radius: 5px;
 
 		@media (max-width: 960px) {
-			font-size: 16px;
+			font-size: $fm;
 		}
 	}
 
@@ -316,7 +350,7 @@
 		@include gutter;
 
 		background-color: #1e2739;
-		padding: 60px 30px 30px 30px !important;
+		padding: 55px 20px 20px 20px !important;
 
 		border-radius: 10px;
 	}
@@ -334,10 +368,10 @@
 
 		padding: 0px;
 
-		font-size: 20px;
+		font-size: $fd;
 
 		@media (max-width: 960px) {
-			font-size: 16px;
+			font-size: $fm;
 		}
 
 		.vlist > span {
@@ -356,23 +390,23 @@
 		overflow-x: auto;
 
 		@media (max-width: 960px) {
-			font-size: 16px;
+			font-size: $fm;
 		}
 	}
 
 	.large {
-		font-size: 24px;
+		font-size: $fd + 4px;
 
 		@media (max-width: 960px) {
-			font-size: 20px;
+			font-size: $fm + 4px;
 		}
 	}
 
 	.small {
-		font-size: 16px;
+		font-size: $fd - 4px;
 
 		@media (max-width: 960px) {
-			font-size: 12px;
+			font-size: $fm - 4px;
 		}
 	}
 }
