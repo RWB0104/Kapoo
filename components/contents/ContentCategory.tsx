@@ -41,7 +41,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 
 	return (
 		<Container component="article" maxWidth="md">
-			<Accordion className={styles.root} TransitionProps={{ unmountOnExit: true }}>
+			<Accordion className={styles.root} expanded={true} TransitionProps={{ unmountOnExit: true }}>
 				<AccordionSummary className={styles.header} expandIcon={<ExpandMore />}>
 					<Typography className={styles.title} component="h4" variant="h4">📌 Category</Typography>
 				</AccordionSummary>

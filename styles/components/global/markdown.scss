@@ -222,12 +222,18 @@ $fm: 14px;
 		}
 
 		table {
+			border-collapse: collapse;
+
 			& tr:nth-child(2n) {
 				background-color: #222c40;
 			}
 
 			& tr:hover {
 				background-color: #546687;
+
+				& td:first-child {
+					color: white;
+				}
 			}
 
 			& td {
@@ -315,7 +321,7 @@ $fm: 14px;
 			background-color: #1e2739;
 			cursor: pointer;
 
-			border: 1px solid map-get($green, "700");
+			border: 1px solid map-get($grey, "600");
 			border-radius: 10px;
 
 			opacity: 0;
@@ -408,6 +414,16 @@ $fm: 14px;
 		@media (max-width: 960px) {
 			font-size: $fm - 4px;
 		}
+	}
+
+	.i-clipboard {
+		color: map-get($map: $grey, $key: "600");
+		width: 12px;
+	}
+
+	.i-check {
+		color: map-get($map: $green, $key: "A400");
+		width: 12px;
 	}
 }
 

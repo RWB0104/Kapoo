@@ -15,7 +15,7 @@ import katex from 'katex';
 import loadLanguage from 'prismjs/components/';
 
 // 사용자 모듈
-import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps } from './common';
+import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
 
@@ -154,29 +154,29 @@ export async function converter(body: string): Promise<ConvertProps>
 		// 유효한 언어가 있을 경우
 		if (lang && renderer?.options?.highlight)
 		{
+			// 블록 수식일 경우
 			if (lang === 'latex-block')
 			{
 				return `<div class="katex-block">${katex.renderToString(code, { throwOnError: true, output: 'html' })}</div>`;
 			}
 
+			// 아닐 경우
 			else
 			{
 				code = renderer.options.highlight(code, lang as string) as string;
 
 				const langClass = 'language-' + lang;
 
-				const pattern = /<span class="token comment">([\s\S]*?)<\/span>/;
-
-				while (pattern.test(code))
+				while (COMMENT_REGX.test(code))
 				{
-					const [ origin, target ] = pattern.exec(code) as string[];
+					const [ origin, target ] = COMMENT_REGX.exec(code) as string[];
 
 					const newer = target.split('\n').map(item => `<span class="token comment" data-tag="new">${item}</span>`).join('\n');
 
 					code = code.replace(origin, newer);
 				}
 
-				const line = code.split('\n').map((item, index) => `<tr><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+				const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
 
 				return `
 					<div class="codeblock">
@@ -187,7 +187,7 @@ export async function converter(body: string): Promise<ConvertProps>
 							<div></div>
 						</div>
 
-						<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('pre'));document.execCommand('copy');">📋</button>
+						<button onclick="copyCode(this);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard"><path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path></svg></button>
 
 						<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 					</div>
@@ -202,7 +202,7 @@ export async function converter(body: string): Promise<ConvertProps>
 
 			const langClass = 'language-' + lang;
 
-			const line = code.split('\n').map((item, index) => `<tr><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+			const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
 
 			return `
 				<div class="codeblock">
@@ -213,7 +213,7 @@ export async function converter(body: string): Promise<ConvertProps>
 						<div></div>
 					</div>
 
-					<button onclick="window.getSelection().selectAllChildren(this.parentElement.querySelector('pre'));document.execCommand('copy');">📋</button>
+					<button onclick="copyCode(this);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard"><path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path></svg></button>
 
 					<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 				</div>
@@ -224,11 +224,13 @@ export async function converter(body: string): Promise<ConvertProps>
 	// 코드라인 렌더링
 	renderer.codespan = (code) =>
 	{
+		// 수식일 경우
 		if (code[0] === '$')
 		{
 			return katex.renderToString(code.slice(1), { throwOnError: true, output: 'html' });
 		}
 
+		// 코드일 경우
 		else
 		{
 			return `<code class="inline-code">${code}</code>`;

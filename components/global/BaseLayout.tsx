@@ -7,7 +7,6 @@
 
 // 라이브러리 모듈
 import { ReactElement, useEffect } from 'react';
-import Head from 'next/head';
 import { Box, createTheme, CssBaseline, MuiThemeProvider, Theme } from '@material-ui/core';
 import { indigo, orange } from '@material-ui/core/colors';
 import { useRecoilState } from 'recoil';
@@ -73,22 +72,6 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 
 	return (
 		<MuiThemeProvider theme={getTheme(darkState)}>
-			<Head>
-				<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2THE3XLX1"></script>
-
-				<script dangerouslySetInnerHTML={{ __html: `
-					window.dataLayer = window.dataLayer || [];
-
-					function gtag()
-					{
-						dataLayer.push(arguments);
-					}
-
-					gtag('js', new Date());
-					gtag('config', 'G-X2THE3XLX1');
-				` }}></script>
-			</Head>
-
 			<Box className={styles.root}>
 				<CssBaseline />
 

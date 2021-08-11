@@ -86,6 +86,7 @@ export interface TocProps {
 export const CONTENT_REGX = /^((19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-)(.*)(.md)$/;
 export const MD_REGX = /\.md$/;
 export const NAME_REGX = /^(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*)$/;
+export const COMMENT_REGX = /<span class="token comment">([\s\S]*?)<\/span>/;
 
 /**
  * 입력한 크기의 랜덤 인덱스 반환 함수

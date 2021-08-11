@@ -52,8 +52,6 @@ export default class KapooDocument extends Document
 				<Head>
 					<link rel="icon" href="/favicon.ico" />
 					<link rel="shortcut icon" href="/favicon.ico" />
-
-					<meta name="google-site-verification" content="4NW8SDMGP89T6Sldqnv7ldyklb-kQkq0hq9tOdGgLsM" />
 				</Head>
 
 				<body>
