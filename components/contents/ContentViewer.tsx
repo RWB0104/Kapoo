@@ -28,7 +28,6 @@ export default function ContentViewer({ content }: Props): ReactElement
 	return (
 		<>
 			<Head>
-				<link href="/prism.css" />
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
 			</Head>
 

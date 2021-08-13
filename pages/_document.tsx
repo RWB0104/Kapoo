@@ -52,6 +52,9 @@ export default class KapooDocument extends Document
 				<Head>
 					<link rel="icon" href="/favicon.ico" />
 					<link rel="shortcut icon" href="/favicon.ico" />
+
+					<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2THE3XLX1"></script>
+					<script src="/js/ga.js"></script>
 				</Head>
 
 				<body>

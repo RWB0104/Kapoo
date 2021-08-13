@@ -202,5 +202,10 @@ export const PIECE = [
 		title: 'LEEEEEEROY JENKINS!',
 		author: 'Leyroy Jenkins',
 		images: 'https://user-images.githubusercontent.com/50317129/119344321-78286780-bcd2-11eb-85d0-6fe498abc1db.gif'
+	},
+	{
+		title: '*--- *- -*-* -*-',
+		author: 'Are you in there BT?',
+		images: 'https://user-images.githubusercontent.com/50317129/129361016-a5329b8a-b96d-4102-9b9e-ef37b44e025f.gif'
 	}
 ];
