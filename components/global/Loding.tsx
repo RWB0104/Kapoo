@@ -11,6 +11,7 @@ import { Box, Typography, useMediaQuery, useTheme } from '@material-ui/core';
 
 // 스타일
 import styles from '@styles/components/global/loading.module.scss';
+import { React } from '@commons/icons';
 
 /**
  * 로딩 ReactElement 반환 함수
@@ -26,8 +27,7 @@ export default function Loading(): ReactElement
 
 	return (
 		<Box id="loading" className={styles.root} component="article" position="fixed" width="100%" height="100%" display="grid" alignContent="center" gridRowGap={30} zIndex={20}>
-			<img className={styles.logo} src="/img/logo.png" width={size} height={size} />
-
+			<React className={styles.logo} width={size} height={size} />
 			<Typography className={styles.title} align="center">Loading...</Typography>
 		</Box>
 	);

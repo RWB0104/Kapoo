@@ -1,0 +1,18 @@
+svg.react {
+	$color: #00D8FF;
+	& > .st0 {
+		fill: transparent;
+	}
+
+	& > .st1 {
+		fill: $color;
+	}
+
+	& > .st2 {
+		fill: none;
+
+		stroke: $color;
+		stroke-width: 144.7456;
+		stroke-miterlimit: 10;
+	}
+}

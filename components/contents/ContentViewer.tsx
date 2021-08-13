@@ -1,5 +1,3 @@
-/* eslint-disable no-alert, no-console */
-
 /**
  * 컨텐츠 뷰어 컴포넌트
  *
@@ -11,9 +9,6 @@
 import { ReactElement } from 'react';
 import { useTheme } from '@material-ui/core';
 import Head from 'next/head';
-
-// 스타일
-import 'prismjs/themes/prism-tomorrow.css';
 
 interface Props {
 	content: string
