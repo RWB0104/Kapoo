@@ -24,7 +24,7 @@ publish: true
 # 코드로 보는 개방-폐쇄 원칙
 
 <br />
-<p align="large center"><i>If...</i></p>
+<p class="large grey-600" align="center"><i>If...</i></p>
 <br />
 
 저명한 IT업체에서 일하는 당신. 어느덧 정년을 바라보고 있다. 노후 대비를 위해 작은 편의점의 점주로 새로운 시작을 하는 당신. 예전부터 봐뒀던 곳에 적지 않은 비용을 지불하기까지 했다.
