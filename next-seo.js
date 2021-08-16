@@ -142,7 +142,7 @@ async function seo()
 			<title>Kapoo</title>
 			<description>314159265359번째 알파카의 개발 낙서장</description>
 			<link>https://rwb0104.github.io</link>
-			<atom:link href="https://rwb0104.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+			<atom:link href="https://rwb0104.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 			<pubDate>${new Date('2021-05-26 23:36:57').toISOString()}</pubDate>
 			<lastBuildDate>${new Date().toISOString()}</lastBuildDate>
 		</channel>
@@ -151,7 +151,7 @@ async function seo()
 	</rss>`;
 
 	fs.writeFileSync('./public/sitemap.xml', format(sitemap, FORMAT));
-	fs.writeFileSync('./public/rss', format(rss, FORMAT));
+	fs.writeFileSync('./public/rss.xml', format(rss, FORMAT));
 
 	console.log(' - seo 생성 완료');
 	console.log('==================================================\n\n\n');

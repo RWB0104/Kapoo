@@ -215,10 +215,16 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 분 단위일 경우
-	else
+	else if (stamp > 60000)
 	{
 		const time = Math.floor(stamp / 60000);
 
 		return `${time}분 전`;
+	}
+
+	// 해당되지 않을 경우
+	else
+	{
+		return '0분 전';
 	}
 }

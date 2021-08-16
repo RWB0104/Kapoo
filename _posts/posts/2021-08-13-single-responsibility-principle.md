@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/128211434-7c28e0
 date: "2021-08-13T01:37:48"
 type: "posts"
 category: "CS"
-tag: [ "CS", "객체지향", "객체지향 5원칙", "단일 책임 원칙" ]
+tag: [ "CS", "객체지향", "객체지향 5원칙" ]
 group: "객체지향"
 comment: true
 publish: true

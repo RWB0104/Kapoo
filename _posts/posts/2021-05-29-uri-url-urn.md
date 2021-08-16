@@ -226,9 +226,9 @@ URL의 중심이 되는 부분으로, 제공하는 웹 서비스의 아이덴티
 * https://rwb0104.github.io
   * posts
     * index.html
-    * A1000
+    * a1000
       * index.html
-    * A1001
+    * a1001
       * index.html
     * uri-url-urn
       * index.html
