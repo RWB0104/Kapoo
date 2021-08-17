@@ -18,6 +18,7 @@ import { ContentProps, getWrittenTimes } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/contentitem.module.scss';
+import NewContent from './NewContent';
 
 interface Props {
 	item: ContentProps
@@ -38,11 +39,15 @@ export default function ContentItem({ item }: Props): ReactElement
 
 	const [ state, setState ] = useState(false);
 
+	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 7;
+
 	return (
 		<Card className={styles.root}>
 			<CardActionArea onClick={() => router.push(`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>
 				<Box className={styles['image-wrapper']}>
 					<CardMedia className={styles.image} component="img" image={coverImage} />
+
+					<NewContent flag={isNew} />
 				</Box>
 
 				<CardContent className={styles.wrapper}>

@@ -15,7 +15,7 @@ import katex from 'katex';
 import loadLanguage from 'prismjs/components/';
 
 // 사용자 모듈
-import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX } from './common';
+import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
 
@@ -48,13 +48,22 @@ export function getContentsList(type: string): ContentProps[]
  *
  * @param {string} type: 컨텐츠 타입
  *
- * @returns {string[]} 카테고리 목록
+ * @returns {CategoryProps} 카테고리 목록
  */
-export function getContentsCategory(type: string): string[]
+export function getContentsCategory(type: string): CategoryProps
 {
-	const categories = getContentsList(type).map(content => content.header.category);
+	return getContentsList(type).reduce((acc, content) =>
+	{
+		acc[content.header.category] === undefined ? acc[content.header.category] = { count: 1, flag: undefined } : acc[content.header.category].count += 1;
 
-	return [ ...new Set(categories) ].sort();
+		// 카테고리의 최신글 여부가 확인되지 않을 경우
+		if (acc[content.header.category].flag === undefined)
+		{
+			acc[content.header.category].flag = new Date().getTime() - new Date(content.header.date).getTime() < 86400000 * 7 ? true : false;
+		}
+
+		return acc;
+	}, {} as CategoryProps);
 }
 
 /**

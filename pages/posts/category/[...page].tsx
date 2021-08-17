@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getContentsByCategory, getContentsCategory, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps, PathsProps, RoutesProps } from '@commons/common';
+import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -20,7 +20,7 @@ import ContentCategory from '@components/contents/ContentCategory';
 
 interface Props {
 	posts: ContentProps[],
-	categories: string[],
+	categories: CategoryProps,
 	images: string[],
 	category: string
 	page: number
@@ -93,7 +93,7 @@ export async function getStaticPaths(): Promise<PathsProps>
 
 	const arr = [] as RoutesProps[];
 
-	categories.forEach(category =>
+	Object.keys(categories).forEach(category =>
 	{
 		const posts = getContentsByCategory(type, category);
 

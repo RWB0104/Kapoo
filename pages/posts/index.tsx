@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps } from '@commons/common';
+import { getRandomIndex, ContentProps, CategoryProps } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -20,7 +20,7 @@ import ContentCategory from '@components/contents/ContentCategory';
 
 interface Props {
 	posts: ContentProps[],
-	category: string[],
+	category: CategoryProps,
 	images: string[]
 }
 

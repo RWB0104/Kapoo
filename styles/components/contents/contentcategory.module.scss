@@ -54,8 +54,22 @@ $item-height: 200px;
 
 	transition: 0.5s;
 
+	& div span {
+		font-size: 16px;
+
+		border: 1px solid white;
+		border-radius: 20%;
+		padding: 7px;
+	}
+
 	&:hover {
 		color: map-get($map: $lightBlue, $key: "400") !important;
+
+		background-color: rgba($color: #000000, $alpha: 0.8) !important;
+
+		& div span {
+			border-color: map-get($map: $lightBlue, $key: "400");
+		}
 
 		transform: scale(1.2);
 		transition: 0.5s;

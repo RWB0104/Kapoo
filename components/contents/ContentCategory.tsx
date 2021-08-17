@@ -7,19 +7,21 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, ButtonBase, Container, Grid, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, ButtonBase, Container, Grid, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import { useRouter } from 'next/router';
 
 // 사용자 모듈
 import { CATEGORY } from '@commons/env';
+import { CategoryProps } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/contentcategory.module.scss';
+import NewContent from './NewContent';
 
 interface Props {
 	type: string,
-	list: string[]
+	list: CategoryProps
 }
 
 /**
@@ -33,9 +35,20 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 {
 	const router = useRouter();
 
-	const categories = list.map((item, index: number): ReactElement => (
+	const categories = Object.keys(list).map((item, index: number): ReactElement => (
 		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
-			<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => router.push(`/${type}/category/${item}/1`)}>{item}</ButtonBase>
+			<Box height="100%" position="relative">
+				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => router.push(`/${type}/category/${item}/1`)}>
+					<Box display="grid" gridGap={20}>
+						<Box>{item}</Box>
+						<Box>
+							<Box component="span">{list[item].count}</Box>
+						</Box>
+					</Box>
+				</ButtonBase>
+
+				<NewContent flag={list[item].flag as boolean} />
+			</Box>
 		</Grid>
 	));
 
