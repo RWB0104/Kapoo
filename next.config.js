@@ -6,6 +6,7 @@ module.exports = withSass({
 
 module.exports = {
 	reactStrictMode: false,
+	productionBrowserSourceMaps: false,
 	images: {
 		loader: 'imgix'
 	}

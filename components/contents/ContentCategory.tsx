@@ -35,7 +35,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 {
 	const router = useRouter();
 
-	const categories = Object.keys(list).map((item, index: number): ReactElement => (
+	const categories = Object.keys(list).sort().map((item, index: number): ReactElement => (
 		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
 			<Box height="100%" position="relative">
 				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => router.push(`/${type}/category/${item}/1`)}>
