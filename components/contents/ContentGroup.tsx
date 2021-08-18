@@ -50,7 +50,7 @@ export default function ContentGroup({ group }: Props): ReactElement | null
 
 		return (
 			<Box component="article" className={styles.root}>
-				<Typography component="h4" variant="h4" className={styles.title}>🧲 연관 게시물</Typography>
+				<Typography component="h4" variant="h4" className={styles.title}>🧲 연관 게시물 - {group[0].header.group as string}</Typography>
 
 				<Box className={styles.list}>
 					{groups}

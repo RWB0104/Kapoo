@@ -32,12 +32,12 @@ export default function Meta({ title, description = DESCRIPTION, type = 'website
 {
 	return (
 		<Head>
-			<title>{title}</title>
+			<title>{`${title} - Kapoo`}</title>
 
 			<meta name="description" content={description} />
 
 			<meta property="og:site_name" content={TITLE} />
-			<meta property="og:title" content={title} />
+			<meta property="og:title" content={`${title} - Kapoo`} />
 			<meta property="og:description" content={description} />
 			<meta property="og:type" content={type} />
 			<meta property="og:url" content={`https://rwb0104.github.io${url}`} />
