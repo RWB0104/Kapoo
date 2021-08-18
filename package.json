@@ -7,8 +7,9 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"seo": "node ./next-seo.js",
 		"export": "next export",
-		"dist": "node ./next-seo.js && next build && next export -o ../RWB0104.github.io/docs"
+		"dist": "next seo && next build && next export -o ../RWB0104.github.io/docs"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.12.1",
