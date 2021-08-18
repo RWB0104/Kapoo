@@ -93,7 +93,7 @@ export async function getStaticPaths(): Promise<PathsProps>
 
 	const arr = [] as RoutesProps[];
 
-	Object.keys(categories).sort()          .forEach(category =>
+	Object.keys(categories).sort().forEach(category =>
 	{
 		const posts = getContentsByCategory(type, category);
 
