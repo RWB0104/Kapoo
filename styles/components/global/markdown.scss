@@ -4,14 +4,12 @@
 $fd: 18px;
 $fm: 14px;
 
-@mixin gutter()
-{
+@mixin gutter() {
 	margin-top: 70px;
 	margin-bottom: 70px;
 }
 
-@mixin table()
-{
+@mixin table() {
 	@include gutter;
 
 	overflow: auto;
@@ -79,7 +77,12 @@ $fm: 14px;
 		font-size: $fm !important;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		margin-top: 100px;
 		margin-bottom: 30px;
 
@@ -162,7 +165,8 @@ $fm: 14px;
 		max-width: 100%;
 	}
 
-	pre, code {
+	pre,
+	code {
 		user-select: text;
 		-moz-user-select: text;
 		-webkit-user-select: text;
@@ -183,7 +187,7 @@ $fm: 14px;
 
 		border-radius: 10px;
 
-		font-family: Hack, sans-serif;
+		font-family: Hack, AppleSDGothicNeo, sans-serif;
 		color: white;
 
 		text-align: left;
@@ -204,7 +208,7 @@ $fm: 14px;
 		.token.prolog,
 		.token.doctype,
 		.token.cdata {
-			color: map-get($green, "600" ) !important;
+			color: map-get($green, "600") !important;
 		}
 
 		.token.annotation.punctuation {
@@ -281,9 +285,10 @@ $fm: 14px;
 	}
 
 	code:not([class*="language-"]) {
-		background-color: #1e2739;
+		background-color: #1c2335;
 		color: map-get($map: $yellow, $key: "400");
 
+		font-family: Hack, AppleSDGothicNeo, sans-serif;
 		font-size: $fd;
 
 		display: inline-block;
@@ -466,7 +471,7 @@ $fm: 14px;
 			font-size: $fm;
 		}
 
-		.vlist > span {
+		.vlist>span {
 			display: flow-root
 		}
 	}
@@ -514,7 +519,13 @@ $fm: 14px;
 }
 
 .markdown.dark {
-	h1, h2, h3, h4, h5, h6 {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		border-bottom: 1px solid #303030;
 	}
 
@@ -545,7 +556,13 @@ $fm: 14px;
 }
 
 .markdown.light {
-	h1, h2, h3, h4, h5, h6 {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		border-bottom: 1px solid #DDDDDD;
 	}
 

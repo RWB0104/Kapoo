@@ -28,7 +28,7 @@ SSL 인증서를 발급받기 위해선 인증받기 위한 도메인이 필요�
 TLD(Top Level Domain)에 따라 가격이 달라지며, 저렴한 건 연간 몇 천원에서부터 비싸면 수십만원대에 이르기도 한다.
 
 > **TLD?**  
-> TLD에 대한 내용은 이전에 작성한 게시글 [URI? URL? URN? 리소스 식별자 구분하기](/2021/05/29/uri-url-urn#TLD(Top-Level Domain, 최상위 도메인))에서 확인 가능하다.
+> com, net과 같이 URL 마지막에 오는 최상위도메인을 뜻한다. TLD에 대한 내용은 이전에 작성한 게시글 <a href="/2021/05/29/uri-url-urn#TLD(Top-Level Domain, 최상위 도메인)">URI? URL? URN? 리소스 식별자 구분하기</a>에서 확인 가능하다.
 
 # Freenom으로 무료 도메인 받기
 
@@ -49,11 +49,11 @@ Frenom을 사용하는 데 몇 가지 주의사항이 있다.
 
 주로 사용하는 TLD는 `com`, `net` 등이 있지만, Freenom은 `ga`, `ml` 등 특정한 ccTLD만 지원한다.
 
-* `tk`(Tokelau): 뉴질랜드령 토켈라우제도
-* `ml`(Mali): 말리
-* `ga`(Gabon): 가봉
-* `gq`(Equatorial Guinea): 적도 기니
-* `cf`(Central African Republic): 중앙아프리카 공화국
+* `tk (Tokelau)`: 뉴질랜드령 토켈라우제도
+* `ml (Mali)`: 말리
+* `ga (Gabon)`: 가봉
+* `gq (Equatorial Guinea)`: 적도 기니
+* `cf (Central African Republic)`: 중앙아프리카 공화국
 
 대중적인 TLD를 선택할 순 없지만, 무료이니 감안하자. 어차피 후술할 이유로 실제 서비스에 적용하기엔 무리가 있다.
 
