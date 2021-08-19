@@ -37,7 +37,7 @@ export default function ContentToc({ toc }: Props): ReactElement | null
 			<Box className={styles[`toc-${theme.palette.type}`]}>
 				<Typography component="h2" variant="h2" align="center">Table of Contents</Typography>
 
-				<div dangerouslySetInnerHTML={{ __html:  tableOfContents(toc)}}></div>
+				<div dangerouslySetInnerHTML={{ __html: tableOfContents(toc) }}></div>
 			</Box>
 		);
 	}
