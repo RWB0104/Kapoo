@@ -87,7 +87,7 @@ async function seo()
 			postItem += `<item>
 				<title>${element.title.replace(/&/gi, '&amp;')}</title>
 				<description>${element.excerpt.replace(/&/gi, '&amp;')}</description>
-				<pubDate>${new Date(element.date).toISOString()}</pubDate>
+				<pubDate>${new Date(element.date).toUTCString().replace('GMT', '+0900')}</pubDate>
 				<link>${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}</link>
 				<guid isPermaLink="true">${BASE_URL}/${element.type}/${slugs[1]}/${slugs[2]}/${slugs[3]}/${slugs[4]}</guid>
 				${tag}
@@ -120,7 +120,7 @@ async function seo()
 			projectItem += `<item>
 				<title>${element.title.replace(/&/gi, '&amp;')}</title>
 				<description>${content.replace(/&/gi, '&amp;')}</description>
-				<pubDate>${new Date(element.date).toISOString()}</pubDate>
+				<pubDate>${new Date(element.date).toUTCString().replace('GMT', '+0900')}</pubDate>
 				<link>${BASE_URL}/${element.type}/${element.slug}</link>
 				<guid isPermaLink="true">${BASE_URL}/${element.type}/${element.slug}</guid>
 				${tag}
@@ -142,9 +142,13 @@ async function seo()
 			<title>Kapoo</title>
 			<description>314159265359번째 알파카의 개발 낙서장</description>
 			<link>https://rwb0104.github.io</link>
-			<atom:link href="https://rwb0104.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-			<pubDate>${new Date('2021-05-26 23:36:57').toISOString()}</pubDate>
-			<lastBuildDate>${new Date().toISOString()}</lastBuildDate>
+			<copyright>Copyright ⓒ RWB 2021.05</copyright>
+			<language>ko-KR</language>
+			<managingEditor>psj2716@gmail.com</managingEditor>
+			<webMaster>psj2716@gmail.com</webMaster>
+			<generator>Kapoo's next.seo.js</generator>
+			<pubDate>${new Date('2021-05-26 23:36:57').toUTCString().replace('GMT', '+0900')}</pubDate>
+			<lastBuildDate>${new Date().toUTCString().replace('GMT', '+0900')}</lastBuildDate>
 			${postItem}
 			${projectItem}
 		</channel>
