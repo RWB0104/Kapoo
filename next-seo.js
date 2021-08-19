@@ -145,9 +145,9 @@ async function seo()
 			<atom:link href="https://rwb0104.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 			<pubDate>${new Date('2021-05-26 23:36:57').toISOString()}</pubDate>
 			<lastBuildDate>${new Date().toISOString()}</lastBuildDate>
+			${postItem}
+			${projectItem}
 		</channel>
-		${postItem}
-		${projectItem}
 	</rss>`;
 
 	fs.writeFileSync('./public/sitemap.xml', format(sitemap, FORMAT));
