@@ -1,5 +1,5 @@
 ---
-title: "[SSL] Tomcat에 SSL 적용하기"
+title: "[SSL] Windows 10에서 Let's Encrypt로 SSL 인증서 무료 발급받기"
 excerpt: "도메인도 있겠다. 이제 이 도메인을 가지고 SSL 인증서를 발급받아보자. 물론 SSL 인증서 또한 발급받는데 비용이 든다. 대부분의 운영 중인 도메인 업체는 SSL 발급도 병행한다. 테스트 목적이라면 도메인과 마찬가지로 SSL 발급도 부담스러울 것이다. SSL 역시 무료로 발급받을 수 있는 방법이 있으며, 도메인보다 그 방법이 훨씬 많다."
 coverImage: "https://user-images.githubusercontent.com/50317129/129755999-c5d6c474-d5c0-442a-b7c5-37b3cdf703a9.png"
 date: "2021-08-19T23:37:21"
