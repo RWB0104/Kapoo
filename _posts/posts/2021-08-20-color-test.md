@@ -1,7 +1,7 @@
 ---
 title: "블로그 텍스트 색상 예시"
 excerpt: "색상 테스트"
-coverImage: "https://user-images.githubusercontent.com/50317129/129755999-c5d6c474-d5c0-442a-b7c5-37b3cdf703a9.png"
+coverImage: "https://user-images.githubusercontent.com/50317129/130466968-83b176c7-2175-4740-85de-12914252d160.png"
 date: "2021-08-20T15:43:00"
 type: "posts"
 category: "잡담"
