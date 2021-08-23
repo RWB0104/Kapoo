@@ -29,7 +29,6 @@
 
 	background: linear-gradient(to right, #8E2DE2, #4A00E0) !important;
 	color: white !important;
-
 }
 
 .mail {
@@ -37,7 +36,23 @@
 
 	background: linear-gradient(to right, #00C6FF, #0072FF) !important;
 	color: white !important;
+}
 
+.rss {
+	@include button();
+
+	background: linear-gradient(to right, #ec9f05, #ff4e00) !important;
+	color: white !important;
+}
+
+.sitemap-mini {
+	background: linear-gradient(to right, #5f72be, #9921e8) !important;
+	color: white !important;
+}
+
+.rss-mini {
+	background: linear-gradient(to right, #ec9f05, #ff4e00) !important;
+	color: white !important;
 }
 
 .text {

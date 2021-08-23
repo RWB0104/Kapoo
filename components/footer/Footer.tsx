@@ -6,15 +6,15 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Avatar, Box, Divider, IconButton, Typography } from '@material-ui/core';
+import { ReactElement, useState } from 'react';
+import { Avatar, Box, Dialog, DialogTitle, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { AccountTree, GitHub, Mail, RssFeed } from '@material-ui/icons';
 
 // 사용자 모듈
 import { TITLE } from '@commons/env';
 
 // 스타일
 import styles from '@styles/components/footer/footer.module.scss';
-import { GitHub, Mail } from '@material-ui/icons';
 
 /**
  * 푸터 ReactNode 반환 함수
@@ -23,6 +23,8 @@ import { GitHub, Mail } from '@material-ui/icons';
  */
 export default function Footer(): ReactElement | null
 {
+	const [ state, setState ] = useState(false);
+
 	return (
 		<Box component="footer" className={styles.root}>
 			<Box className={styles.line} display="grid" gridTemplateColumns="1fr 100px 1fr" gridColumnGap={20} alignItems="center" textAlign="center">
@@ -41,9 +43,47 @@ export default function Footer(): ReactElement | null
 				<IconButton className={styles.mail} onClick={() => location.href = 'mailto:psj2716@gmail.com'}>
 					<Mail />
 				</IconButton>
+
+				<IconButton className={styles.rss} onClick={() => setState(true)}>
+					<RssFeed />
+				</IconButton>
 			</Box>
 
 			<Typography className={styles.text} align="center">Copyright ⓒ RWB 2021.05</Typography>
+
+			<Dialog open={state} onClose={() => setState(false)}>
+				<DialogTitle>SEO</DialogTitle>
+
+				<List>
+					<ListItem button onClick={() =>
+					{
+						open('/sitemap');
+						setState(false);
+					}}>
+						<ListItemAvatar>
+							<Avatar className={styles['sitemap-mini']}>
+								<AccountTree />
+							</Avatar>
+						</ListItemAvatar>
+
+						<ListItemText>Sitemap</ListItemText>
+					</ListItem>
+
+					<ListItem button onClick={() =>
+					{
+						open('/rss');
+						setState(false);
+					}}>
+						<ListItemAvatar>
+							<Avatar className={styles['rss-mini']}>
+								<RssFeed />
+							</Avatar>
+						</ListItemAvatar>
+
+						<ListItemText>RSS Feed</ListItemText>
+					</ListItem>
+				</List>
+			</Dialog>
 		</Box>
 	);
 }
