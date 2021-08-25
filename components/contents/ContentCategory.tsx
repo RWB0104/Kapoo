@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Box, ButtonBase, Container, Grid, Typography } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import { useRouter } from 'next/router';
@@ -35,6 +35,8 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 {
 	const router = useRouter();
 
+	const [ state, setState ] = useState(true);
+
 	const categories = Object.keys(list).sort().map((item, index: number): ReactElement => (
 		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
 			<Box height="100%" position="relative">
@@ -54,7 +56,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 
 	return (
 		<Container component="article" maxWidth="md">
-			<Accordion className={styles.root} expanded={true} TransitionProps={{ unmountOnExit: true }}>
+			<Accordion className={styles.root} expanded={state} TransitionProps={{ unmountOnExit: true }} onClick={() => setState(!state)}>
 				<AccordionSummary className={styles.header} expandIcon={<ExpandMore />}>
 					<Typography className={styles.title} component="h4" variant="h4">📌 Category</Typography>
 				</AccordionSummary>
