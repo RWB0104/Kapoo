@@ -27,7 +27,7 @@ export default function Footer(): ReactElement | null
 
 	return (
 		<Box component="footer" className={styles.root}>
-			<Box className={styles.line} display="grid" gridTemplateColumns="1fr 100px 1fr" gridColumnGap={20} alignItems="center" textAlign="center">
+			<Box className={styles.line}>
 				<Divider />
 
 				<Avatar className={styles.logo} alt={TITLE} src="/img/profile.jpg" />
@@ -35,7 +35,7 @@ export default function Footer(): ReactElement | null
 				<Divider />
 			</Box>
 
-			<Box width={300} display="flex" justifyContent="space-evenly" margin="0px auto" marginTop={7} marginBottom={7}>
+			<Box className={styles.buttons}>
 				<IconButton className={styles.github} onClick={() => open('https://github.com/RWB0104')}>
 					<GitHub />
 				</IconButton>
