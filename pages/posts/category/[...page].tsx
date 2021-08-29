@@ -11,7 +11,7 @@ import { Box } from '@material-ui/core';
 
 // 사용자 모듈
 import Screener from '@components/global/Screener';
-import { getContentsByCategory, getContentsCategory, getScreenerImage } from '@commons/api';
+import { getBuildHash, getContentsByCategory, getContentsCategory, getScreenerImage } from '@commons/api';
 import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
@@ -23,7 +23,8 @@ interface Props {
 	categories: CategoryProps,
 	images: string[],
 	category: string
-	page: number
+	page: number,
+	hash?: string
 }
 
 interface StaticProp {
@@ -71,13 +72,16 @@ export async function getStaticProps({ params }: RoutesProps): Promise<StaticPro
 	const categories = getContentsCategory(type);
 	const images = getScreenerImage();
 
+	const hash = getBuildHash();
+
 	return {
 		props: {
 			posts,
 			categories,
 			images,
 			category: category,
-			page: parseInt(page)
+			page: parseInt(page),
+			hash
 		}
 	};
 }

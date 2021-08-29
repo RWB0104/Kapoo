@@ -47,7 +47,8 @@ export interface PageStaticProps {
 		next: null | ContentProps,
 	},
 	group?: ContentProps[],
-	data: ContentProps
+	data: ContentProps,
+	hash?: string
 }
 
 export interface PathsProps {

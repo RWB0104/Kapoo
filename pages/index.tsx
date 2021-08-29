@@ -13,7 +13,7 @@ import { Box } from '@material-ui/core';
 import Artbox from '@components/global/Artbox';
 import Screener from '@components/global/Screener';
 import ContentsCase from '@components/home/ContentsCase';
-import { getContentsList, getScreenerImage } from '@commons/api';
+import { getBuildHash, getContentsList, getScreenerImage } from '@commons/api';
 import { DESCRIPTION, MENU_LIST, TITLE } from '@commons/env';
 import { getRandomIndex, ContentProps } from '@commons/common';
 import Meta from '@components/global/Meta';
@@ -21,7 +21,8 @@ import Meta from '@components/global/Meta';
 interface Props {
 	images: string[],
 	posts: ContentProps[],
-	projects: ContentProps[]
+	projects: ContentProps[],
+	hash?: string
 }
 
 interface StaticProp {
@@ -66,7 +67,9 @@ export async function getStaticProps(): Promise<StaticProp>
 	const posts = getContentsList('posts');
 	const projects = getContentsList('projects');
 
+	const hash = getBuildHash();
+
 	return {
-		props: { images, posts, projects }
+		props: { images, posts, projects, hash }
 	};
 }

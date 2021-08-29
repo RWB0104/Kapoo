@@ -3,6 +3,9 @@ import Document, { Html, Head, Main, NextScript, DocumentInitialProps, DocumentC
 import { ServerStyleSheets } from '@material-ui/styles';
 import { RenderPageResult } from 'next/dist/next-server/lib/utils';
 
+// 사용자 모듈
+import { getBuildHash } from '@commons/api';
+
 /**
  * 문서 클래스
  *
@@ -47,9 +50,13 @@ export default class KapooDocument extends Document
 	 */
 	render(): JSX.Element
 	{
+		const hash = getBuildHash();
+
 		return (
 			<Html>
 				<Head>
+					<meta name="hash" content={hash} />
+
 					<link rel="icon" href="/favicon.ico" />
 					<link rel="shortcut icon" href="/favicon.ico" />
 

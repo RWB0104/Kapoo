@@ -356,7 +356,12 @@ export async function converter(body: string): Promise<ConvertProps>
 	};
 }
 
-export function getBuildTime(): void
+/**
+ * 빌드 해쉬 반환 함수
+ *
+ * @returns {string} 빌드 해쉬값
+ */
+export function getBuildHash(): string
 {
-	console.dir(new Date());
+	return fs.readFileSync(join(process.cwd(), 'public', 'build.txt')).toString();
 }

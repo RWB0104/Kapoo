@@ -12,19 +12,18 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
-import { getScreenerImage } from '@commons/api';
+import { getBuildHash, getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Artbox from '@components/global/Artbox';
 
 interface Props {
-	images: string[]
+	images: string[],
+	hash?: string
 }
 
 interface StaticProp {
-	props: {
-		images: string[]
-	}
+	props: Props
 }
 
 /**
@@ -58,7 +57,9 @@ export async function getStaticProps(): Promise<StaticProp>
 {
 	const images = getScreenerImage();
 
+	const hash = getBuildHash();
+
 	return {
-		props: { images }
+		props: { images, hash }
 	};
 }

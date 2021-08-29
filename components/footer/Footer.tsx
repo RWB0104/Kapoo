@@ -16,12 +16,16 @@ import { TITLE } from '@commons/env';
 // 스타일
 import styles from '@styles/components/footer/footer.module.scss';
 
+interface Props {
+	hash: string
+}
+
 /**
  * 푸터 ReactNode 반환 함수
  *
  * @returns {ReactNode} ReactNode
  */
-export default function Footer(): ReactElement | null
+export default function Footer({ hash }: Props): ReactElement | null
 {
 	const [ state, setState ] = useState(false);
 
@@ -50,6 +54,7 @@ export default function Footer(): ReactElement | null
 			</Box>
 
 			<Typography className={styles.text} align="center">Copyright ⓒ RWB 2021.05</Typography>
+			{hash && <Typography className={styles.text} align="center">{hash}</Typography>}
 
 			<Dialog open={state} onClose={() => setState(false)}>
 				<DialogTitle>SEO</DialogTitle>

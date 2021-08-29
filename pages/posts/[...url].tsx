@@ -14,7 +14,7 @@ import { Box } from '@material-ui/core';
 import ContentLayout from '@components/contents/ContentLayout';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
-import { converter, getContent, getContentsList } from '@commons/api';
+import { converter, getBuildHash, getContent, getContentsList } from '@commons/api';
 import { ContentPageProps, PageStaticProps, PathsProps, RoutesProps } from '@commons/common';
 
 const type = 'posts';
@@ -62,6 +62,8 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
 
 	const { content, toc } = await converter(post.content);
 
+	const hash = getBuildHash();
+
 	return {
 		props: {
 			page: {
@@ -74,7 +76,8 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
 				...post,
 				content,
 				toc
-			}
+			},
+			hash: hash
 		}
 	};
 }

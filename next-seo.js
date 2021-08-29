@@ -1,5 +1,5 @@
 /**
- * RSS 생성 JavaScript
+ * SEO JavaScript
  *
  * @author RWB
  * @since 2021.05.26 Wed 16:45:19

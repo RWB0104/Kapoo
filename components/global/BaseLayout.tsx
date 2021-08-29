@@ -25,7 +25,8 @@ import Loading from './Loding';
 import styles from '@styles/components/global/base-layout.module.scss';
 
 interface Props {
-	children: ReactElement
+	children: ReactElement,
+	hash: string
 }
 
 /**
@@ -35,7 +36,7 @@ interface Props {
  *
  * @returns {ReactNode} ReactNode
  */
-export default function BaseLayout({ children }: Props): ReactElement | null
+export default function BaseLayout({ children, hash }: Props): ReactElement | null
 {
 	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
 	const cookies = useCookies([ 'theme' ])[0];
@@ -86,7 +87,7 @@ export default function BaseLayout({ children }: Props): ReactElement | null
 
 					<ThemeSwitch />
 
-					<Footer />
+					<Footer hash={hash} />
 				</Box>
 			</Box>
 		</MuiThemeProvider>

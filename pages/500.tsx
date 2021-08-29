@@ -12,11 +12,12 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
-import { getScreenerImage } from '@commons/api';
+import { getBuildHash, getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
 
 interface Props {
-	images: string[]
+	images: string[],
+	hash?: string
 }
 
 interface StaticProp {
@@ -50,7 +51,9 @@ export async function getStaticProps(): Promise<StaticProp>
 {
 	const images = getScreenerImage();
 
+	const hash = getBuildHash();
+
 	return {
-		props: { images }
+		props: { images, hash }
 	};
 }

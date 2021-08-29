@@ -7,9 +7,10 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"hash": "node ./buildhash.js",
 		"seo": "node ./next-seo.js",
 		"export": "next export",
-		"dist": "yarn seo && next build && next export -o ../RWB0104.github.io/docs"
+		"dist": "yarn hash && yarn seo && next build && next export -o ../RWB0104.github.io/docs"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.12.1",

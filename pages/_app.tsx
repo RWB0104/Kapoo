@@ -10,13 +10,13 @@ import { ReactElement } from 'react';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { Router } from 'next/router';
+import { CookiesProvider } from 'react-cookie';
 
 // 사용자 모듈
 import BaseLayout from '@components/global/BaseLayout';
 
-// 스타일
+
 import '@styles/index.scss';
-import { CookiesProvider } from 'react-cookie';
 
 /**
  * 웹 애플리케이션 ReactNode 반환 함수
@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
 	return (
 		<RecoilRoot>
 			<CookiesProvider>
-				<BaseLayout>
+				<BaseLayout hash={pageProps.hash}>
 					<Component {...pageProps} />
 				</BaseLayout>
 			</CookiesProvider>
