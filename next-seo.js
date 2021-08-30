@@ -14,7 +14,7 @@ const format = require('xml-formatter');
 
 const slugRegex = /^(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*)$/;
 
-const BASE_URL = 'https://rwb0104.github.io';
+const BASE_URL = 'https://blog.itcode.dev';
 const CONTENT_DIR = join(process.cwd(), '_posts');
 const FORMAT = {
 	indentation: '	',
@@ -141,7 +141,7 @@ async function seo()
 		<channel>
 			<title>Kapoo</title>
 			<description>314159265359번째 알파카의 개발 낙서장</description>
-			<link>https://rwb0104.github.io</link>
+			<link>${BASE_URL}</link>
 			<copyright>Copyright ⓒ RWB 2021.05</copyright>
 			<language>ko-KR</language>
 			<managingEditor>psj2716@gmail.com</managingEditor>

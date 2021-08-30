@@ -10,7 +10,7 @@ import { ReactElement } from 'react';
 import Head from 'next/head';
 
 // 사용자 모듈
-import { DESCRIPTION, TITLE } from '@commons/env';
+import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
 
 interface Props {
 	title: string,
@@ -28,7 +28,7 @@ interface Props {
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://rwb0104.github.io/favicon.ico', locale = 'ko_KR' }: Props): ReactElement
+export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = '/favicon.ico', locale = 'ko_KR' }: Props): ReactElement
 {
 	return (
 		<Head>
@@ -40,11 +40,11 @@ export default function Meta({ title, description = DESCRIPTION, type = 'website
 			<meta property="og:title" content={`${title} - Kapoo`} />
 			<meta property="og:description" content={description} />
 			<meta property="og:type" content={type} />
-			<meta property="og:url" content={`https://rwb0104.github.io${url}`} />
+			<meta property="og:url" content={`${BASE_URL}${url}`} />
 			<meta property="og:image" content={image} />
 			<meta property="og:locale" content={locale} />
 
-			<link rel="canonical" href={`https://rwb0104.github.io${url}`}></link>
+			<link rel="canonical" href={`${BASE_URL}${url}`}></link>
 		</Head>
 	);
 }

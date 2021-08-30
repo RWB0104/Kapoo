@@ -223,7 +223,7 @@ URL의 중심이 되는 부분으로, 제공하는 웹 서비스의 아이덴티
 
 <span class="primary">URL</span>상의 <span class="cyan-400">posts</span> 부분. 웹 사이트의 하위 경로를 의미한다. <span class="cyan-400">경로</span>는 `/`로 구분하며, 경로 입력을 통해 서버 내의 원하는 자원에 접근할 수 있다.
 
-* https://rwb0104.github.io
+* https://blog.itcode.dev
   * posts
     * index.html
     * a1000

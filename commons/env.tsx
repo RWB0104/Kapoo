@@ -12,6 +12,9 @@ interface CategoryProps {
 	[ key: string ]: string
 }
 
+export const DOMAIN = 'blog.itcode.dev';
+export const BASE_URL = `https://${DOMAIN}`;
+
 export const TITLE = 'Kapoo';
 export const DESCRIPTION = '314159265359번째 알파카의 개발 낙서장';
 export const LOGO = '/img/logo.png';

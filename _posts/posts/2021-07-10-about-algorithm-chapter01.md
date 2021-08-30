@@ -112,7 +112,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 배열 읽기 클래스
  *
  * @author RWB
- * @see <a href="https://rwb0104.github.io/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
  * @since 2021.07.09 Fri 22:53:39
  */
 public class ArrayRead
@@ -199,7 +199,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 배열 검색 클래스
  *
  * @author RWB
- * @see <a href="https://rwb0104.github.io/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
  * @since 2021.07.09 Fri 23:47:03
  */
 public class ArrayFind
@@ -296,7 +296,7 @@ import java.util.Arrays;
  * 누구나 자료 구조와 알고리즘 배열 삽입 클래스
  *
  * @author RWB
- * @see <a href="https://rwb0104.github.io/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
  * @since 2021.07.09 Sat 00:27:47
  */
 public class ArrayInsert
@@ -403,7 +403,7 @@ import java.util.Arrays;
  * 누구나 자료 구조와 알고리즘 배열 삭제 클래스
  *
  * @author RWB
- * @see <a href="https://rwb0104.github.io/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
  * @since 2021.07.09 Sat 00:59:02
  */
 public class ArrayDelete
@@ -501,7 +501,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 집합 배열 클래스
  *
  * @author RWB
- * @see <a href="https://rwb0104.github.io/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter01/">자료구조가 중요한 까닭</a>
  * @since 2021.07.10 Sat 01:30:56
  */
 public class UniqueArray

@@ -38,15 +38,15 @@ IP를 유동성으로 나누면 크게 유동 IP, 고정 IP로 분류할 수 있
 
 여기서 의문점이 한 가지 생긴다. IP [125.209.222.141](http://125.209.222.141)와 <span class="pink-400">도메인</span> [https://www.naver.com](https://www.naver.com)가 <span class="green-A700">네이버</span>를 가리키는 주소인건 알겠는데, 인터넷은 과연 두 주소의 연결고리를 어떻게 아는 걸까?
 
-이는 <span class="pink-400">도메인</span>의 동작 원리를 보면 알 수 있다. `rwb0104.github.io` <span class="pink-400">도메인</span>에 접근하는 과정을 예시로 보자.
+이는 <span class="pink-400">도메인</span>의 동작 원리를 보면 알 수 있다. `blog.itcode.dev` <span class="pink-400">도메인</span>에 접근하는 과정을 예시로 보자.
 
-1. HTTP 통신을 통해 `rwb0104.github.io`에 접근을 시도한다.
-2. 네트워크에 지정된 로컬 DNS에게 `rwb0104.github.io`의 정보를 요청한다.
+1. HTTP 통신을 통해 `blog.itcode.dev`에 접근을 시도한다.
+2. 네트워크에 지정된 로컬 DNS에게 `blog.itcode.dev`의 정보를 요청한다.
    * 만약 로컬 DNS가 해당 도메인의 정보를 보유하고 있을 경우, 즉시 정보를 제공한다.
-3. `rwb0104.github.io`에 대한 정보가 없을 경우, 근접한 Root DNS에 해당 도메인의 정보를 요청한다.
+3. `blog.itcode.dev`에 대한 정보가 없을 경우, 근접한 Root DNS에 해당 도메인의 정보를 요청한다.
 4. Root DNS가 `.io` TLD를 관리하는 DNS 서버의 정보를 로컬 DNS에 제공한다.
-5. 로컬 DNS가 `rwb0104.github.io`를 관리하는 TLD의 DNS 서버에 해당 정보를 요청한다.
-6. TLD DNS 서버가 `rwb0104.github.io`에 대한 정보(IP 등)을 제공한다.
-7. 로컬 DNS가 `rwb0104.github.io`의 IP를 알고 있으므로, 이를 통해 해당 사이트에 접근할 수 있다.
+5. 로컬 DNS가 `blog.itcode.dev`를 관리하는 TLD의 DNS 서버에 해당 정보를 요청한다.
+6. TLD DNS 서버가 `blog.itcode.dev`에 대한 정보(IP 등)을 제공한다.
+7. 로컬 DNS가 `blog.itcode.dev`의 IP를 알고 있으므로, 이를 통해 해당 사이트에 접근할 수 있다.
 
 기본적으로 <span class="pink-400">도메인</span>은 반드시 하나의 IP와 연결된다. 이런 특징 덕분에 <span class="pink-400">도메인</span>은 항상 특정한 하나의 IP만을 반환한다.
