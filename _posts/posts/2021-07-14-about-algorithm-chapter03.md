@@ -136,7 +136,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 빅 오 표기 클래스
  *
  * @author RWB
- * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter03/">빅 오 표기법</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/14/about-algorithm-chapter03/">빅 오 표기법</a>
  * @since 2021.07.14 Wed 17:40:00
  */
 public class BigO
@@ -197,7 +197,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 빅 오 표기 클래스
  *
  * @author RWB
- * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter03/">빅 오 표기법</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/14/about-algorithm-chapter03/">빅 오 표기법</a>
  * @since 2021.07.14 Wed 17:56:49
  */
 public class BigO2
@@ -244,7 +244,7 @@ import java.io.OutputStreamWriter;
  * 누구나 자료 구조와 알고리즘 소수 판별 클래스
  *
  * @author RWB
- * @see <a href="https://blog.itcode.dev/posts/2021/07/09/about-algorithm-chapter03/">빅 오 표기법</a>
+ * @see <a href="https://blog.itcode.dev/posts/2021/07/14/about-algorithm-chapter03/">빅 오 표기법</a>
  * @since 2021.07.14 Wed 18:01:20
  */
 public class CheckPrime
