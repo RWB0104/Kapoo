@@ -1,5 +1,5 @@
 ---
-title: "[라즈베리파이 4] Hello Rasberry!"
+title: "[라즈베리파이 4] 라즈베리파이에 Unbuntu 설치하기"
 excerpt: "개발자의 적지않은 수가 클라우드든, 디바이스든 자신만의 서버를 구축하여 다양하게 활용하고 있다. 개발을 하다보면 필연적으로 24시간 언제나 가동되는 서버 비스무리한 것이 필요할 때가 있다. 일례로 GitHub Pages의 경우 정적 페이지만 호스팅해줄 뿐, 백엔드나 DB는 사용할 수가 없어 동적 페이지 호스팅은 불가능하다. 그러나 개인 API 혹은 DB 서버가 존재한다면, 해당 서버와의 통신을 통해 더욱 동적 페이지 호스팅이 가능하다. 웹에서 백엔드가 갖는 역할을 생각해본다면, 개인이 활용 가능한 서버가 있고 없고의 차이는 천지차이가 난다. 나 역시도 개발하는 입장에서 제약없이 사용할 수 있는 서버의 소요가 이전부터 있어왔고, 개인 서버를 구축하기 위한 방안을 모색했다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-08-29T13:41:41"
@@ -38,7 +38,7 @@ publish: true
 * Rasberry Pi 4 Model B
 * 전원 케이블 (5V 3A 이상)
 * MicroSD, 리더기 (구형 펌웨어일 경우)
-* microHDMI, 혹은 HDMI 케이블 (모니터 쓸 경우)
+* Micro HDMI, 혹은 HDMI 케이블 (모니터 쓸 경우)
 
 준비물은 위와 같다.
 
@@ -47,3 +47,24 @@ publish: true
 <span class="red-600">2020년 8월 이후 출시된 보드의 경우 펌웨어가 기본적으로 업데이트</span>된다고 한다. 난 중고로 샀는데, 8월 이전 출시된 보드인지 USB를 바로 인식하지 않았었다.
 
 펌웨어 업데이트는 OS설치 후 가능하므로, 만약 <span class="red-600">구형 보드라면 얄쨜없이 MicroSD가 필요</span>하니 참고할 것.
+
+<br />
+
+라즈베리파이는 기본적으로 Micro HDMI라고 하는 작은 단자를 제공한다.
+
+![image](https://user-images.githubusercontent.com/50317129/131310544-4fc47a26-b541-45e1-ac8c-4586bcbdc978.png)
+
+위 사진의 좌측 단자가 일반적으로 알고있는 HDMI, 우측의 작은 단자가 Micro HDMI다. Argon M2 케이스의 경우 Micro HDMI와 연결된 HDMI 단자를 제공해주므로 상관없었으나, 별도의 케이스나 커넥터 없이 모니터를 연결할 경우 위 사진과 같은 <span class="amber-500">Micro HDMI to HDMI</span> 케이블이 필요하니 주의할 것.
+
+## Ubuntu 설치파일 다운로드
+
+디스크에 Ubuntu를 설치하기위해 아래 두 파일을 다운로드하자.
+
+* [이미지 레코더 BalenaEtcher 다운로드](https://www.balena.io/etcher/)
+* [Ubuntu ISO 다운로드](https://ubuntu.com/download/raspberry-pi)
+
+이미지 레코더는 부팅 디스크를 만들어준다. Windows 포맷 USB를 만드는 과정이라고 생각하면 된다.
+
+Ubuntu는 Linux이므로, 위 경로에서 쉽게 다운로드 받을 수 있다.
+
+* Ubuntu Server: 
