@@ -278,6 +278,9 @@ export async function converter(body: string): Promise<ConvertProps>
 		`;
 	};
 
+	// 링크 렌더링
+	renderer.link = (href: string, title: string, text: string): string => `<a href="${href}" target="_blank">${text}</a>`;
+
 	const tokenizer = {
 		codespan(src: string)
 		{

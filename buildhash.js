@@ -10,6 +10,9 @@ const fs = require('fs');
 
 bulidHash();
 
+/**
+ * 빌드 해쉬 생성 함수
+ */
 function bulidHash()
 {
 	const hash = Math.random().toString(16).substr(2, 11);
