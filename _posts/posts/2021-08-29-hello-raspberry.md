@@ -1,5 +1,5 @@
 ---
-title: "[라즈베리파이 4] Hello Rasberry!"
+title: "[라즈베리파이 4] Hello Raspberry!"
 excerpt: "개발자의 적지않은 수가 클라우드든, 디바이스든 자신만의 서버를 구축하여 다양하게 활용하고 있다. 개발을 하다보면 필연적으로 24시간 언제나 가동되는 서버 비스무리한 것이 필요할 때가 있다. 일례로 GitHub Pages의 경우 정적 페이지만 호스팅해줄 뿐, 백엔드나 DB는 사용할 수가 없어 동적 페이지 호스팅은 불가능하다. 그러나 개인 API 혹은 DB 서버가 존재한다면, 해당 서버와의 통신을 통해 더욱 동적 페이지 호스팅이 가능하다. 웹에서 백엔드가 갖는 역할을 생각해본다면, 개인이 활용 가능한 서버가 있고 없고의 차이는 천지차이가 난다. 나 역시도 개발하는 입장에서 제약없이 사용할 수 있는 서버의 소요가 이전부터 있어왔고, 개인 서버를 구축하기 위한 방안을 모색했다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-08-29T13:41:41"
@@ -21,11 +21,11 @@ publish: true
 
 나 역시도 개발하는 입장에서 제약없이 사용할 수 있는 서버의 소요가 이전부터 있어왔고, 개인 서버를 구축하기 위한 방안을 모색했다.
 
-# Hello, Rasberry Pi
+# Hello, Raspberry Pi
 
 ![image](https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png)
 
-많은 선택지가 있었지만, 내가 선택한 방안은 <span class="pink-700">Rasberry Pi</span>를 통해 서버환경을 구축하는 것이였다.
+많은 선택지가 있었지만, 내가 선택한 방안은 <span class="pink-700">Raspberry Pi</span>를 통해 서버환경을 구축하는 것이였다.
 
 한창 트렌디한 <span class="orange-500">Cloud</span> 플랫폼, 서버 호스팅 서비스도 있었지만, 여러 요인을 비교해본 결과 라즈베이 파이가 적절하다고 생각했다.
 
@@ -56,15 +56,15 @@ publish: true
 
 위 조건을 충족하기 위해선 많은 RAM, 디스크 용량이 필요했다. SSD일 경우 가격은 가격은 더욱 상승할 것이고. 서버에서 컴파일같은 연산 작업의 소요는 거의 없을 것 같아 CPU는 크게 신경쓰지 않았다.
 
-<span class="orange-500">AWS</span>와 <span class="pink-700">Rasberry Pi</span>를 비교하면 아래와 같이 정리할 수 있다.
+<span class="orange-500">AWS</span>와 <span class="pink-700">Raspberry Pi</span>를 비교하면 아래와 같이 정리할 수 있다.
 
-|  구분   | <span class="orange-500">AWS LightSail</span> | <span class="pink-700">Rasberry Pi 4 Model B</span> |
-| :-----: | :-------------------------------------------: | :-------------------------------------------------: |
-|   CPU   |                     2Core                     |                        4Core                        |
-|   RAM   |                      8GB                      |                         8GB                         |
-|   VGA   |                       X                       |                   O (Support 4K)                    |
-|   SSD   |                     320GB                     |                    256GB (별도)                     |
-| Pricing |                40$ / per month                |                  160,000 (영구적)                   |
+|  구분   | <span class="orange-500">AWS LightSail</span> | <span class="pink-700">Raspberry Pi 4 Model B</span> |
+| :-----: | :-------------------------------------------: | :--------------------------------------------------: |
+|   CPU   |                     2Core                     |                        4Core                         |
+|   RAM   |                      8GB                      |                         8GB                          |
+|   VGA   |                       X                       |                    O (Support 4K)                    |
+|   SSD   |                     320GB                     |                     256GB (별도)                     |
+| Pricing |                40$ / per month                |                   160,000 (영구적)                   |
 
 CPU와 VGA는 위 조건의 영향을 적게 받으므로 제외하고 본다면 AWS가 우수해보인다. 하지만 AWS는 40$라는 적지않은 돈이 **매 달** 과금된다는 게 문제. 라즈베리 파이가 16만원에 영구적인 소장이 가능함을 감안하면 4개월 이후부터 AWS의 비용이 지속적으로 늘어난다. 환율을 천 원으로 감안했음에도 이 정도다.
 
@@ -86,14 +86,14 @@ AWS 역시 클라우드 업계의 대표로, 최근의 회사들은 AWS를 다�
 
 어떤 장비를 구입했는지 살펴보자. 가능한한 중고품을 적극적으로 활용했다.
 
-|  구분  |         이름          |                          가격                           |
-| :----: | :-------------------: | :-----------------------------------------------------: |
-| Device | Rasberry Pi 4 Model B | 60,000원 <span class="grey-600">(정가 104,000원)</span> |
-|  SSD   | SAMSUNG 256GB M2 SATA | 31,000원 <span class="grey-600">(정가 57,900원)</span>  |
-|  Case  |     Argon ONE M2      |                        59,000원                         |
-| Power  |     5V 4A 어댑터      |                        10,200원                         |
-|  기타  |    MicroSD, 리더기    |                       총 6,400원                        |
-|  총합  |          6종          |                        237,500원                        |
+|  구분  |          이름          |                          가격                           |
+| :----: | :--------------------: | :-----------------------------------------------------: |
+| Device | Raspberry Pi 4 Model B | 60,000원 <span class="grey-600">(정가 104,000원)</span> |
+|  SSD   | SAMSUNG 256GB M2 SATA  | 31,000원 <span class="grey-600">(정가 57,900원)</span>  |
+|  Case  |      Argon ONE M2      |                        59,000원                         |
+| Power  |      5V 4A 어댑터      |                        10,200원                         |
+|  기타  |    MicroSD, 리더기     |                       총 6,400원                        |
+|  총합  |          6종           |                        237,500원                        |
 
 케이스, SSD 등의 별매품을 구매하는데 비용이 좀 소요됐다. 아마 정가로 샀다면 30만원 정도 되지 않았을까 싶다.
 
