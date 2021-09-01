@@ -68,9 +68,9 @@ publish: true
 Ubuntu는 Linux이므로, 위 경로에서 쉽게 다운로드 받을 수 있다.
 
 * <span class="orange-600">Ubuntu Server</span> - CLI 기반 (GUI 없음)
-* <span class="orange-600">Ubuntu Desktop</span> - GUI 기반
+* <span class="orange-600">Ubuntu Desktop</span> - GUI 기반 (설치 시 모니터 필요)
 
-페이지에 접속하면 두 버전을 다운로드 받을 수 있다. Desktop은 우리가 일반적으로 알고있는 GUI 기반의 OS다. Server는 DOS같은 명령어 기반의 CLI OS다. 어떤 걸 설치해도 상관없으나 Linux에 익숙하지 않다면 Desktop을 추천한다.
+페이지에 접속하면 두 버전을 다운로드 받을 수 있다. Desktop은 우리가 일반적으로 알고있는 GUI 기반의 OS다. Server는 DOS같은 명령어 기반의 CLI OS다. 어떤 걸 설치해도 상관없으나 Linux에 익숙하지 않다면 Desktop을 추천한다. 하지만 <span class="red-500">GUI 기반이므로 설치 후 OS 셋팅 시 모니터가 필요함</span>에 유의하자.
 
 이 문서에서는 Ubuntu Desktop을 설치한다. Electron 같은 UI 프로그램이나 Ubuntu에서의 웹 페이지 테스트를 위해선 GUI 환경이 필요하다. CLI에선 브라우저를 띄우는 등의 행위가 불가능하기 때문. Ubuntu Server도 추후 관련 프로그램을 설치하여 GUI 환경으로 구동할 수 있다.
 
@@ -214,6 +214,14 @@ BOOT_ORDER=0xf41
 이제 MicroSD의 역할은 모두 끝났다. 나중을 대비해 MicroSD는 고이 모셔두자. 아주 간간히 쓸 일이 생기기도 하고 그런다.
 
 USB, SSD 등 원하는 디스크에다 본문의 [부팅 디스크 만들기](#Ubuntu-부팅%20디스크%20만들기) 과정을 다시 수행한다.
+
+# 설정
+
+Ubuntu 설치가 완료되면, 이후는 우리가 아는 일반적인 OS 셋팅이 진행된다.
+
+Ubuntu Desktop의 경우, 언어, 계정 등의 설정이 추가로 진행된다.
+
+Ubuntu Server의 경우, CLI 환경이므로 별도의 설정이 필요하지 않다. 기본 계정이 생성되며, 아이디와 비밀번호 모두 동일하게 ubuntu다. 로그인 후 바꿔주자. 
 
 # 목표
 
