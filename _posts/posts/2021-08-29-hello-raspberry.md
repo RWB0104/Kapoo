@@ -4,7 +4,7 @@ excerpt: "개발자의 적지않은 수가 클라우드든, 디바이스든 자�
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-08-29T13:41:41"
 type: "posts"
-category: "알고리즘"
+category: "RaspberryPi"
 tag: [ "라즈베리파이" ]
 group: "라즈베리파이"
 comment: true

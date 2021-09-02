@@ -14,10 +14,10 @@ import { useRouter } from 'next/router';
 // 사용자 모듈
 import { CATEGORY } from '@commons/env';
 import { CategoryProps } from '@commons/common';
+import NewContent from './NewContent';
 
 // 스타일
 import styles from '@styles/components/contents/contentcategory.module.scss';
-import NewContent from './NewContent';
 
 interface Props {
 	type: string,
@@ -40,7 +40,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 	const categories = Object.keys(list).sort().map((item, index: number): ReactElement => (
 		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
 			<Box height="100%" position="relative">
-				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => router.push(`/${type}/category/${item}/1`)}>
+				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item]})` }} onClick={() => item === 'All' ? router.push(`/${type}/1`) : router.push(`/${type}/category/${item}/1`)}>
 					<Box display="grid" gridGap={20}>
 						<Box>{item}</Box>
 						<Box>

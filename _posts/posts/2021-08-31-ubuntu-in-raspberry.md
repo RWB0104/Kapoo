@@ -4,7 +4,7 @@ excerpt: "목요일을 기점으로 모든 준비물의 배송이 완료됐다. 
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-08-31T01:51:39"
 type: "posts"
-category: "알고리즘"
+category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu" ]
 group: "라즈베리파이"
 comment: true

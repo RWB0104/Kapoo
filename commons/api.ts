@@ -62,8 +62,20 @@ export function getContentsCategory(type: string): CategoryProps
 			acc[content.header.category].flag = new Date().getTime() - new Date(content.header.date).getTime() < 86400000 * 7 ? true : false;
 		}
 
+		if (!acc['All'].flag && acc[content.header.category].flag)
+		{
+			acc['All'].flag = true;
+		}
+
+		acc['All'].count += 1;
+
 		return acc;
-	}, {} as CategoryProps);
+	}, {
+		'All': {
+			count: 0,
+			flag: false
+		}
+	} as CategoryProps);
 }
 
 /**
