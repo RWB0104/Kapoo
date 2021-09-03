@@ -56,7 +56,7 @@ publish: true
 명령어를 입력하여 발급을 진행할 것이다.
 
 * <span class="green-300">Create certificate (default settings)</span>: 기본 옵션으로 SSL 발급 (N)
-* <span class="green-600">Create certificate (full settings)</span>: 직접 옵션을 선택하여 SSL 발급 (M)
+* <span class="green-A400">Create certificate (full settings)</span>: 직접 옵션을 선택하여 SSL 발급 (M)
 * <span class="green-300">Run renewals</span>: 갱신 (R)
 * <span class="green-300">Manage renewals</span>: 갱신 관리 (A)
 * <span class="green-300">More options...</span>: 더 많은 옵션 (O)
@@ -69,7 +69,7 @@ publish: true
 ![image](https://user-images.githubusercontent.com/50317129/130080688-2bbbc350-399a-4bc3-b619-732d4b25ae58.png)
 
 * <span class="grey-600">Read site bindings from IIS</span>: IIS에서 바인딩 (1)
-* <span class="green-600">Manual input</span>: 직접 입력 (2)
+* <span class="green-A400">Manual input</span>: 직접 입력 (2)
 * <span class="green-300">CSR created by another program</span>: 다른 프로그램에서 만든 CSR (3)
 * <span class="green-300">Abort</span>: 중단 (C)
 
@@ -99,7 +99,7 @@ example.com,www.example.com,admin.example.com
 
 ![image](https://user-images.githubusercontent.com/50317129/130081483-11eef349-d3e7-4e81-9498-67355eb2632f.png)
 
-* <span class="green-600">Save verification files on (network) path</span>: 네트워크 경로에 인증 파일 저장 (1)
+* <span class="green-A400">Save verification files on (network) path</span>: 네트워크 경로에 인증 파일 저장 (1)
 * <span class="grey-600">Serve verification files from memory</span>: 메모리에 인증 파일 저장 (2)
 * <span class="green-300">Upload verification files via FTP(S)</span>: FTP를 통한 인증 파일 업로드 (3)
 * <span class="green-300">Upload verification files via SSH-FTP</span>: SSH-FTP를 통한 인증 파일 업로드 (4)
@@ -119,7 +119,7 @@ example.com,www.example.com,admin.example.com
 
 웹루트 경로를 입력한다. 예를 들어, `https://example.com` 도메인이 있다면, 이 도메인의 파일들이 위치한 경로를 입력해야한다.
 
-만약 순정 <span class="amber-400">Tomcat</span>이라면 `$TOMCAT_HOME/webapps/ROOT`가 될 것이다.
+만약 순정 <span class="amber-400">Tomcat</span>이라면 `%TOMCAT_HOME%/webapps/ROOT`가 될 것이다.
 
 환경마다 다르니, 적절히 입력해주면 된다. 이 때 반드시 <span class="red-600">80포트로 접속이 가능해야함에 주의</span>한다.
 
@@ -132,7 +132,7 @@ example.com,www.example.com,admin.example.com
 ![image](https://user-images.githubusercontent.com/50317129/130084201-636a0f36-ac1a-4aaa-b17d-948248b2600c.png)
 
 * <span class="green-300">Elliptic Curve key</span>: 타원곡선 암호화 (1)
-* <span class="green-600">RSA Key</span>: 비대칭 암호화 (2)
+* <span class="green-A400">RSA Key</span>: 비대칭 암호화 (2)
 
 [2]를 선택한다.
 
@@ -141,10 +141,10 @@ example.com,www.example.com,admin.example.com
 ![image](https://user-images.githubusercontent.com/50317129/130084595-c96c3c33-ddde-4b95-b395-5e073d6b4eba.png)
 
 * <span class="green-300">IIS Central Certificate Store</span>: IIS용 인증서 (.pfx) (1)
-* <span class="green-600">PEM encoded files</span>: 아파치 계열용 인증서 (.pem) (2)
+* <span class="green-A400">PEM encoded files</span>: 아파치 계열용 인증서 (.pem) (2)
 * <span class="green-300">PFX archive</span>: .pfx 파일 (3)
 * <span class="grey-600">Windows Certificate Store</span>: 윈도우 인증서 저장소 (4)
-* <span class="green-300">No (additional) store steps</span>: (추가적인) 인증서 미저장 (2)
+* <span class="green-300">No (additional) store steps</span>: (추가적인) 인증서 미저장 (5)
 
 본 문서에선 Tomcat을 기준으로 설명하므로 [2]를 선택한다.
 
@@ -159,7 +159,7 @@ example.com,www.example.com,admin.example.com
 ![image](https://user-images.githubusercontent.com/50317129/130085398-cc5e9c1e-6b1c-4b20-ba3d-d62caf3b02e3.png)
 
 * <span class="green-300">None</span>: 안 함 (1)
-* <span class="green-600">Type/paste in console</span>: 콘솔에서 입력/붙여넣기 (2)
+* <span class="green-A400">Type/paste in console</span>: 콘솔에서 입력/붙여넣기 (2)
 * <span class="green-300">Search in vault</span>: vault에서 검색 (3)
 
 [2]를 선택한다.
@@ -181,7 +181,7 @@ example.com,www.example.com,admin.example.com
 * <span class="grey-300">Create or update https bindings in IIS</span>: IIS에 HTTPS 바인딩 생성 혹은 갱신 (1)
 * <span class="grey-300">Create or update ftps bindings in IIS</span>: IIS에 FTPS(보안 FTP) 바인딩 생성 혹은 갱신 (2)
 * <span class="green-300">Start external scripts or program</span>: 외부 스크립트 실행 (3)
-* <span class="green-600"></span>: 추가적인 설치 과정 없음 (4)
+* <span class="green-A400">No (additional) installation steps</span>: 추가적인 설치 과정 없음 (4)
 
 [4] 별도로 할게 없으므로 넘어가자.
 
