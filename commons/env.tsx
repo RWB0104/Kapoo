@@ -59,7 +59,8 @@ export const CATEGORY = {
 	'알고리즘': 'https://user-images.githubusercontent.com/50317129/126026461-e1fa3a72-6699-4302-9901-9419d8bb7b81.png',
 	'잡담': 'https://user-images.githubusercontent.com/50317129/126055617-cc87a28b-206b-41b6-852f-cc4c4a1d4c45.png',
 	'React': 'https://user-images.githubusercontent.com/50317129/127342276-4745c29b-c646-4c64-b93b-5c253fa84a70.png',
-	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/131861737-d089399d-3c09-409d-a06a-28d9bbae4595.png'
+	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/131861737-d089399d-3c09-409d-a06a-28d9bbae4595.png',
+	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132038920-6de448e8-c3d2-4db8-9b26-7297a23a5d5f.png'
 } as CategoryProps;
 
 export const PIECE = [
@@ -69,7 +70,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118843488-126c6200-b905-11eb-9324-9ea96ea833dd.png'
 	},
 	{
-		title: 'Sierra Madre. 일확천금의 꿈이 이루어지는 곳.',
+		title: 'That\'s not the hard part. It\'s letting go.',
 		author: 'Sierra Madre Casino',
 		images: 'https://user-images.githubusercontent.com/50317129/118843635-35971180-b905-11eb-874f-e7929f9f9664.png'
 	},

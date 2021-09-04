@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2a
 date: "2021-09-02T23:07:19"
 type: "posts"
 category: "RaspberryPi"
-tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)" ]
+tag: [ "라즈베리파이", "Ubuntu", "도메인" ]
 group: "라즈베리파이"
 comment: true
 publish: true
@@ -139,27 +139,14 @@ sudo ufw status verbose
 
 ufw를 설치하면 기본적으로 비활성화되어있으므로, `sudo ufw enable` 명령어를 통해 활성화시킨다.
 
-``` bash
-# 22번(SSH) 포트 허용
-sudo ufw allow 22
-
-# 22번 포트 차단
-sudo ufw deny 22
-
-# 1.1.1.1 IP에게만 22번 포트 개방
-sudo ufw allow from 1.1.1.1 to any port 22
-
-# 1.1.1.1 ~ 10 IP 대역에게만 22번 포트 폐쇄
-sudo ufw deny from 1.1.1.1/10 to any port 22
-```
-
-위와 같은 방식으로 포트 정책을 구성할 수 있다.
-
 Tomcat의 경우 `8080`을 기본 포트로 사용하므로 해당 포트를 개방한다.
 
 ``` bash
 sudo ufw allow 8080
 ```
+
+> **ufw를 활용한 방화벽 구성하기**  
+> Ubuntu에선 ufw를 통해 방화벽을 쉽게 구성할 수 있으며, [이 게시글](/posts/2021/09/04/firewall-with-ufw)에서 사용법을 확인할 수 있다.
 
 ## 4. 페이지 호스팅 확인
 

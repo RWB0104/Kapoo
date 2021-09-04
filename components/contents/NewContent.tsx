@@ -11,7 +11,6 @@ import { Box } from '@material-ui/core';
 
 // 스타일
 import styles from '@styles/components/contents/newcontent.module.scss';
-import { PostAdd } from '@material-ui/icons';
 
 interface Props {
 	flag: boolean
@@ -26,5 +25,5 @@ interface Props {
  */
 export default function NewContent({ flag }: Props): ReactElement | null
 {
-	return flag ? <Box position="absolute" className={styles.root} top={10} right={10}><PostAdd/></Box> : null;
+	return flag ? <Box position="absolute" className={styles.root} top={10} right={10}>New</Box> : null;
 }
