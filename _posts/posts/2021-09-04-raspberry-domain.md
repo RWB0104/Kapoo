@@ -4,7 +4,7 @@ excerpt: "지금까지 과정을 거치면서 라즈베리파이에 OS를 설치
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-09-04T12:09:04"
 type: "posts"
-category: "Ubuntu"
+category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "도메인" ]
 comment: true
 publish: true

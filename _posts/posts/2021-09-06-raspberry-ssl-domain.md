@@ -4,7 +4,7 @@ excerpt: "이전 장에서 Google Domains를 통해 dev 도메인을 발급받�
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
 date: "2021-09-06T16:50:40"
 type: "posts"
-category: "Ubuntu"
+category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)", "SSL" ]
 comment: true
 publish: true
@@ -26,7 +26,7 @@ publish: true
 # Cerbot으로 SSL 인증서 발급하기
 
 Ubuntu 서버에서 SSL 인증서를 발급받아보자. 일반적인 SSL 인증서는 인증 과정에서 웹 서버에 특정 파일을 배포한 뒤, 인증 서버에서 해당 파일의 접근 및 유효성 검증을 통해 도메인의 소유권을 확인한다.  
-하지만 와일드카드 인증서는 여러 서브도메인에 전부 적용되는 특별한 인증서라 위의 인증방식을 사용하지 않는다. 위의 인증방식은 하나의 도메인의 소유권만 보증하기 때문. 와일드카드 인증서는 DNS 레코드를 통해 소유권을 인증한다. DNS 레코드는 도메인의 소유권자만 설정 가능하기 때문.
+하지만 와일드카드 인증서는 여러 서브도메인에 전부 적용되는 특별한 인증서라 위의 인증방식을 사용하지 않는다. 위의 인증방식은 하나의 도메인의 소유권만 보증하기 때문. <span class="orange-600">와일드카드 인증서는 DNS 레코드를 통해 소유권을 인증</span>한다. DNS 레코드는 도메인의 소유권자만 설정 가능하기 때문.
 
 만약, 어떠한 이유로든 도메인의 DNS 설정을 변경할 수 없다면 와일드카드 인증서를 발급받을 수 없다.
 
@@ -80,7 +80,7 @@ https://acme-v02.api.letsencrypt.org/directory
 (A)gree/(C)ancel:
 ```
 
-서비스 이용 약관에 동의해달라는 의미로, A를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
+<span class="pink-600">서비스 이용 약관에 동의</span>해달라는 의미로, A를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
 
 ``` output
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -92,9 +92,9 @@ encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o:
 ```
 
-Certbot 개발기관에서 웹 암호화, EFF 뉴스, 이벤트 등의 정보를 소유주의 이메일로 받아보겠냐는 질문이다.
+Certbot 개발기관에서 웹 암호화, EFF 뉴스, 이벤트 등의 <span class="pink-600">정보를 소유주의 이메일로 발송</span>하는데 동의하냐는 질문이다.
 
-좋으면 Y, 싫으면 N을 입력하자. 동의하지 않아도 SSL 발급엔 지장없다.
+좋으면 Y, 싫으면 N을 입력하자. <span class="red-400">동의하지 않아도 SSL 발급엔 지장없다.</span>
 
 ``` output
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -107,7 +107,7 @@ Are you OK with your IP being logged?
 (Y)es/(N)o:
 ```
 
-IP 수집에 동의하냐는 질문으로, Y를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
+<span class="pink-600">IP 수집에 동의</span>하냐는 질문으로, Y를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
 
 ``` output
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -147,7 +147,9 @@ _acme-challenge.itcode.dev      text = "1sz-pJgM-3jL7mZacyByOO0S2lclAF0QmxtqujRu
 Authoritative answers can be found from:
 ```
 
-위 처럼 해당 도메인의 TXT Record에 입력한 문자열이 나오면 성공이다. 만약, 값이 나오지 않는다면 값이 나올 때까지 시간을 두고 기다리자.
+위 처럼 해당 도메인의 TXT Record에 입력한 문자열이 나오면 DNS 설정이 전파된 것으로, 인증을 진행할 수 있다. 만약, 값이 나오지 않는다면 시간을 두고 기다리자.
+
+Enter를 누르면 인증확인을 시도하는데, DNS 레코드 설정이 완료될 때까지 절대로 진행하지 말자.
 
 ### 주의점
 
@@ -159,7 +161,7 @@ DNS 전파가 느리다면 대기시간이 많이 늘어나버리니 주의할 �
 
 ## 4. 인증 확인 요청
 
-DNS TXT Record가 정상적으로 전파됐다면, 콘솔에서 Enter를 눌러 다음 단계로 넘어간다. certbot이 인증확인을 시도하며, 인증이 완료되면 인증서를 발급해준다.
+DNS TXT Record가 정상적으로 전파됐다면, 콘솔에서 Enter를 눌러 다음 단계로 넘어간다. certbot이 인증확인을 시도하며, 인증이 완료되면 <span class="blue-600">인증서를 발급</span>해준다.
 
 ``` bash
 # itcode.dev는 인증한 도메인 이름

@@ -87,11 +87,6 @@ $fm: 14px;
 	h4,
 	h5,
 	h6 {
-		$header-color: map-get($map: $orange, $key: "600");
-
-		border-left: 15px solid $header-color;
-		border-bottom: 1px solid $header-color;
-
 		padding-left: 10px;
 
 		margin-top: 100px;
@@ -296,7 +291,6 @@ $fm: 14px;
 	}
 
 	code:not([class*="language-"]) {
-		background-color: map-get($map: $teal, $key: "700");
 		color: white;
 
 		font-family: Hack, AppleSDGothicNeo, sans-serif;
@@ -530,6 +524,22 @@ $fm: 14px;
 }
 
 .markdown.dark {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		$header-color: map-get($map: $indigo, $key: "700");
+		border-left: 10px solid $header-color;
+		border-bottom: 3px solid $header-color;
+	}
+
+	code:not([class*="language-"]) {
+		background-color: map-get($map: $indigo, $key: "700");
+	}
+
 	blockquote {
 		background-color: #1e2739;
 	}
@@ -557,6 +567,22 @@ $fm: 14px;
 }
 
 .markdown.light {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		$header-color: map-get($map: $pink, $key: "200");
+		border-left: 10px solid $header-color;
+		border-bottom: 3px solid $header-color;
+	}
+
+	code:not([class*="language-"]) {
+		background-color: map-get($map: $pink, $key: "400");
+	}
+
 	blockquote {
 		background-color: whitesmoke;
 	}
