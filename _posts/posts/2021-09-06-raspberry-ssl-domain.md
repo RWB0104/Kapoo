@@ -7,7 +7,7 @@ type: "posts"
 category: "Ubuntu"
 tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)", "SSL" ]
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
