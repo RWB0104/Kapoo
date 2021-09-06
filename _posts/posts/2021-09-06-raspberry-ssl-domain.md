@@ -1,11 +1,11 @@
 ---
 title: "[라즈베리파이 4] Let's Ecrypt로 Ubuntu 서버에 HTTPS 통신 제공하기"
-excerpt: "지금까지 과정을 거치면서 라즈베리파이에 OS를 설치하고, Tomcat을 구동하여 웹 서버로 동작할 수 있도록 환경을 구축했다. 이제 우리는 라즈베리파이의 IP로 접속하여 웹 사이트를 호스팅할 수 있다. 하지만 정상적인 페이지라면 IP를 입력하여 접속하지 않는다. Domain을 발급받아 IP에 연동하고, 이를 URL 주소로 사용할 것이다. 이 장에서는 Domain을 직접 구입하고 라즈베리파이 서버에 이를 연동한다."
+excerpt: "이전 장에서 Google Domains를 통해 dev 도메인을 발급받았다. 이 블로그의 주소는 실제로 구입한 https://blog.itcode.dev 도메인이 적용되어있다. dev 도메인은 강화된 보안정책이 적용되어있다. 해당 도메인으로의 모든 HTTP 통신은 반드시 HTTPS 보안 통신으로만 제공된다. 네트워크 계층에서 https 프로토콜로 라우팅하므로 좋든 싫든 HTTPS 서비스를 제공해야만 한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-04T12:09:04"
+date: "2021-09-06T16:50:40"
 type: "posts"
 category: "Ubuntu"
-tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)" ]
+tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)", "SSL" ]
 comment: true
 publish: false
 ---
@@ -34,7 +34,7 @@ Ubuntu 서버에서 SSL 인증서를 발급받아보자. 일반적인 SSL 인증
 
 DNS 레코드 인증으로 진행하기 때문에 Tomcat에 파일을 배포할 필요가 없어서 아무데서나 진행해도 상관 없다.
 
-Windows 환경에서 인증서를 발급받는 방법은 이전에 작성한 게시물 []()을 참고하길 바란다.
+Windows 환경에서 인증서를 발급받는 방법은 이전에 작성한 게시물 [[SSL] Windows 10에서 Let's Encrypt로 SSL 인증서 무료 발급받기](/posts/2021/08/19/lets-encrypt)을 참고하길 바란다.
 
 ## 준비물
 
@@ -57,17 +57,73 @@ sudo apt-get install certbot
 
 Certbot을 수행하여 인증서 발급을 수행한다.
 
+<p class="red-500" align="center">※ 아래의 itcode.dev 도메인은 예시로, 실제로 입력 시엔 직접 사용할 자신의 도메인을 입력한다.</p>
+
 ``` bash
-sudo certbot certonly --manual --preferred-challenges dns -d *.itcode.dev
+sudo certbot certonly --manual --preferred-challenges dns --email psj2716@gmail.com -d *.itcode.dev
 ```
 
 * `--manual` - 수동 설정
 * `--preferred-challenges` - 인증방식 지정
+* `--email` 소유주 이메일
 * `-d` - 도메인 지정
 
 위 명령어를 사용하면 별다른 명령어 입력 없이 즉시 인증을 수행할 수 있다. `-d`의 인자값으로 구입한 도메인을 입력하되, 서브도메인을 `*`로 지정함을 잊지말자.
 
-certbot에서 서브도메인명 `_acme-challenge`과 랜덤한 문자열을 제공한다. 제시한 서브도메인 `_acme-challenge`의 DNS TXT Record에 제공한 값을 할당하면 된다.
+``` output
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel:
+```
+
+서비스 이용 약관에 동의해달라는 의미로, A를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
+
+``` output
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing to share your email address with the Electronic Frontier
+Foundation, a founding partner of the Let's Encrypt project and the non-profit
+organization that develops Certbot? We'd like to send you email about our work
+encrypting the web, EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
+```
+
+Certbot 개발기관에서 웹 암호화, EFF 뉴스, 이벤트 등의 정보를 소유주의 이메일로 받아보겠냐는 질문이다.
+
+좋으면 Y, 싫으면 N을 입력하자. 동의하지 않아도 SSL 발급엔 지장없다.
+
+``` output
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+NOTE: The IP of this machine will be publicly logged as having requested this
+certificate. If you're running certbot in manual mode on a machine that is not
+your server, please ensure you're okay with that.
+
+Are you OK with your IP being logged?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
+```
+
+IP 수집에 동의하냐는 질문으로, Y를 입력하여 동의한다. 동의하지 않으면 SSL 발급을 진행할 수 없다.
+
+``` output
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please deploy a DNS TXT record under the name
+_acme-challenge.itcode.dev with the following value:
+
+1sz-pJgM-3jL7mZacyByOO0S2lclAF0QmxtqujRuRHM
+
+Before continuing, verify the record is deployed.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+
+certbot에서 서브도메인명 `_acme-challenge`과 랜덤한 문자열을 제공한다. 제시한 도메인 `_acme-challenge.itcode.dev`의 DNS TXT Record에 제공한 값 `O3WQbIWv73aOzneZBu_4XAoE9ieZT1ZLdvbX7UPCkyk`을 할당하면 된다.
+
+도메인은 사용자가 입력한 값에 따라 달라지니 참고할 것.
 
 ## 3. DNS TXT Record 설정
 
@@ -123,3 +179,34 @@ SSL은 도메인의 인증서 뿐만 아니라, 이를 발급해준 CA의 인증
 
 > <b class="teal-600">fullchain.pem</b>의 존재의미  
 > 어차피 `cert.pem`과 `chain.pem`이 제공되는데, 둘의 통합인증서가 무슨 의미가 있냐고 생각할 수 있다. `fullchain.pem`은 두 인증서를 통합함으로써, `cert.pem`과 `chain.pem`의 매칭여부를 확인할 수 있다.
+
+# Tomcat에 SSL 인증서 적용하기
+
+Tomcat Native 설치여부에 따라 적용방법이 조금씩 달라진다. SSL 인증서는 기본적으로 `pem` 확장자로 제공된다.
+
+Tomcat Native는 `pem` 확장자 인증서를 바로 인식할 수 있지만, 일반적인 Tomcat은 `pem`을 인식할 수 없어 `jks` 등 다른 형태의 인증서로 변환해야한다.
+
+## Tomcat Native 설치
+
+``` bash
+sudo apt-get install libtcnative-1
+```
+
+Ubuntu에선 위 라이브러리 설치를 통해 Tomcat Native를 적용할 수 있다.
+
+## Tomcat의 server.xml에 인증서 적용하기
+
+[[SSL] Tomcat에 SSL 적용하기](/posts/2021/08/20/apply-ssl#SSL-인증서%20적용하기) 게시글에서 자세한 내용을 확인할 수 있다.
+
+위 게시글의 방법대로 인증서를 적용하고 Tomcat을 재기동한 뒤 `https://itcode.dev`와 같이 HTTPS 프로토콜을 사용하여 접속을 시도하자. 반드시 접속 전에 HTTPS의 서비스 포트를 확인하자. Tomcat의 기본 HTTPS 포트는 8443이다.
+
+HTTPS 접속이 정상적이라면 성공이다. 인증서 정보 또한 확인할 수 있다.
+
+# 목표
+
+* <del class="grey-400">라즈베리파이에 Ubuntu 서버를 구축한다.</del>
+* <del class="grey-400">Tomcat을 구동하여 페이지를 호스팅한다.</del>
+* <del class="grey-400">도메인을 입힌다.</del>
+* <del class="grey-400">SSL 인증서를 발급하여 HTTPS 통신을 제공한다.</del>
+* SSH, RDP 등의 원격 통신환경을 구축한다.
+* MariaDB를 설치하여 DB 통신을 수행한다.
