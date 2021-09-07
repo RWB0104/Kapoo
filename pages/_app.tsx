@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { Router } from 'next/router';
@@ -27,6 +27,24 @@ import '@styles/index.scss';
  */
 export default function MyApp({ Component, pageProps }: AppProps): ReactElement | null
 {
+	useEffect(() =>
+	{
+		if ('serviceWorker' in navigator)
+		{
+			navigator.serviceWorker
+				.register('/service-worker.js')
+				.then(() =>
+				{
+					console.log('service worker registration successful');
+
+				})
+				.catch(err =>
+				{
+					console.warn('service worker registration failed', err.message);
+				});
+		}
+	});
+
 	Router.events.on('routeChangeComplete', () =>
 	{
 		document.getElementsByTagName('section')[0].scrollIntoView();

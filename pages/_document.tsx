@@ -53,9 +53,11 @@ export default class KapooDocument extends Document
 		const hash = getBuildHash();
 
 		return (
-			<Html>
+			<Html lang="ko">
 				<Head>
 					<meta name="hash" content={hash} />
+
+					<link rel="manifest" href="/manifest.json" />
 
 					<link rel="icon" href="/favicon.ico" />
 					<link rel="shortcut icon" href="/favicon.ico" />
@@ -65,9 +67,9 @@ export default class KapooDocument extends Document
 				</Head>
 
 				<body>
-					<Main />
-
 					<NextScript />
+
+					<Main />
 				</body>
 			</Html>
 		);
