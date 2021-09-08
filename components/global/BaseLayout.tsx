@@ -48,7 +48,8 @@ export default function BaseLayout({ children, hash }: Props): ReactElement | nu
 		// 스타일 객체가 유효할 경우
 		if (tag != null)
 		{
-			tag.display = 'grid';
+			tag.opacity = '1';
+			tag.zIndex = '20';
 		}
 	});
 
@@ -61,7 +62,8 @@ export default function BaseLayout({ children, hash }: Props): ReactElement | nu
 		// 스타일 객체가 유효할 경우
 		if (tag != null)
 		{
-			tag.display = 'none';
+			tag.opacity = '0';
+			tag.zIndex = '-1';
 		}
 
 		// 이전에 다크 모드를 해제했었을 경우

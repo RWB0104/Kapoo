@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { Box, Typography, useMediaQuery, useTheme } from '@material-ui/core';
+import { Box, useTheme } from '@material-ui/core';
 
 // 사용자 모듈
 import { React } from '@commons/icons';
@@ -23,14 +23,12 @@ import styles from '@styles/components/global/loading.module.scss';
 export default function Loading(): ReactElement
 {
 	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-	const size = isMobile ? 100 : 300;
 
 	return (
-		<Box id="loading" className={styles.root} component="article" position="fixed" width="100%" height="100%" display="grid" alignContent="center" gridRowGap={30} zIndex={20}>
-			<React className={styles.logo} width={size} height={size} />
-			<Typography className={styles.title} align="center">Loading...</Typography>
+		<Box id="loading" className={styles[`root-${theme.palette.type}`]} component="article">
+			<Box className={styles['logo-wrap']}>
+				<React className={styles.logo} />
+			</Box>
 		</Box>
 	);
 }

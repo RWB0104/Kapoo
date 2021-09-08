@@ -1,13 +1,13 @@
 ---
 title: "[라즈베리파이 4] 원격 환경 구축하기 (SSH, RDP)"
-excerpt: "이전 장에서 Google Domains를 통해 dev 도메인을 발급받았다. 이 블로그의 주소는 실제로 구입한 https://blog.itcode.dev 도메인이 적용되어있다. dev 도메인은 강화된 보안정책이 적용되어있다. 해당 도메인으로의 모든 HTTP 통신은 반드시 HTTPS 보안 통신으로만 제공된다. 네트워크 계층에서 https 프로토콜로 라우팅하므로 좋든 싫든 HTTPS 서비스를 제공해야만 한다."
+excerpt: "이제 얼추 라즈베리파이에 그럴듯한 웹서버 환경이 구축됐다. 하지만 라즈베리파이를 다루기 위해서 기기에 직접 모니터랑 키보드, 마우스를 연결해서 쓰긴 좀 번거롭다. 이 주제에서의 라즈베리파이는 어디까지나 서브로 운영되는 웹서버이므로, 메인 컴퓨터가 될 수 없다. 즉, 개발같은 대부분의 작업은 메인 컴퓨터에서 진행하고, 배포만 서버가 담당하는 방식이다. 이렇게 디바이스가 서로 나뉠 경우, 두 디바이스의 접근이 서로 원활해야한다. 한 마디로, 원격 환경이 필요하다. 이 장에서는 라즈베리파이에 원격 환경을 구축한다. SSH, RDP 통신을 구축함으로써 SSH 혹은 윈도우 PC 어디에서나 라즈베리파이에 접근할 수 있도록 구성한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-06T16:50:40"
+date: "2021-09-08T22:40:38"
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "SSH", "RDP" ]
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
@@ -16,11 +16,11 @@ publish: false
 
 이 주제에서의 라즈베리파이는 어디까지나 서브로 운영되는 웹서버이므로, 메인 컴퓨터가 될 수 없다. 즉, 개발같은 대부분의 작업은 메인 컴퓨터에서 진행하고, 배포만 서버가 담당하는 방식이다. 이렇게 디바이스가 서로 나뉠 경우, 두 디바이스의 접근이 서로 원활해야한다.
 
-한 마디로, 원격 환경이 필요하다. 이 장에서는 라즈베리파이에 원격 환경을 구축한다. SSH, RDP 통신을 구축함으로써 SSH 혹은 윈도우 PC 어디에서나 라즈베리파이에 접근할 수 있도록 구성한다.
+한 마디로, 원격 환경이 필요하다. 이 장에서는 <span class="amber-600">라즈베리파이에 원격 환경을 구축</span>한다. <span class="primary">SSH</span>, <span class="primary">RDP</span> 통신을 구축함으로써 SSH 혹은 윈도우 PC 어디에서나 라즈베리파이에 접근할 수 있도록 구성한다.
 
 # SSH 환경 구축하기
 
-SSH(Secure SHell)는 네트워크에 연결된 PC에 로그인하여 원격 PC에서 해당 PC로 명령어를 실행하는 등의 Shell 통신을 수행하는 프로토콜이다.
+<span class="primary">SSH(Secure SHell)</span>는 네트워크에 연결된 PC에 로그인하여 원격 PC에서 해당 PC로 명령어를 실행하는 등의 Shell 통신을 수행하는 프로토콜이다.
 
 SSH 환경을 구축하여 원격으로 Ubuntu Shell에 접근할 수 있다. 이를 통해 원격으로 명령어를 입력하여 Ubuntu를 다룰 수 있다. Windows와 달리 Linux는 거의 모든 프로그램이 명령어 기반으로 동작하므로 어려움없이 Ubuntu를 다룰 수 있다.
 
@@ -33,8 +33,8 @@ SSH 환경을 구축하여 원격으로 Ubuntu Shell에 접근할 수 있다. �
 
 OpenSSH 패키지는 크게 두 가지가 있는데, 하나는 OpenSSH Client, 다른 하나는 OpenSSH Server다.
 
-* OpenSSH Server - 해당 OS에 SSH 서비스 환경을 구축함
-* OpenSSH Client - 타 PC의 SSH 접속 기능을 추가함
+* <span class="teal-500">OpenSSH Server</span> - 해당 OS에 SSH 서비스 환경을 구축함
+* <span class="teal-500">OpenSSH Client</span> - 타 PC의 SSH 접속 기능을 추가함
 
 OpenSSH Server를 설치하여 Ubuntu에 SSH에 접근할 수 있도록 환경을 구성하자.
 
@@ -64,6 +64,8 @@ ssh username@xxx.xxx.xxx.xxx
 
 위 명령어를 통해 입력한 IP와 계정명으로 접근을 시도할 수 있다. IP는 라즈베리파이의 IP를, 계정명은 라즈베리파이의 계정명을 입력하면 된다. IP 대신 도메인을 입력해도 된다.
 
+![image](https://user-images.githubusercontent.com/50317129/132518427-796d71c2-7331-4a99-8d7f-65eef29344bb.png)
+
 접속정보가 유효하다면 비밀번호를 입력하여 로그인을 수행해야한다. 로그인이 완료되면 Shell에 명령어를 입력할 수 있으며, 이를 통해 원격지에서도 Ubuntu를 다룰 수 있게된다.
 
 # RDP 환경 구축하기
@@ -78,11 +80,11 @@ ssh username@xxx.xxx.xxx.xxx
 
 <br />
 
-Windows에는 원격 데스크톱 연결이라는 기능이 존재한다. Windows 간 원격이 가능한 기능으로써, 팀뷰어나 AnyDesk를 생각하면 된다. 일종의 내장 원격 프로그램.
+![image](https://user-images.githubusercontent.com/50317129/132518566-fb8858ce-0b0c-4483-9a84-c3dc718f3e5f.png)
 
-말로만 들어보면 왠지 Windows 간 통신만 지원할 것 같다. 필자도 그렇게 생각했었다. 하지만 Ubuntu는 내 생각 이상으로 잡다한게 많더라.
+Windows에는 <span class="primary">원격 데스크톱 연결</span>이라는 기능이 존재한다. Windows 간 원격이 가능한 기능으로써, 팀뷰어나 AnyDesk를 생각하면 된다. 일종의 내장 원격 프로그램.
 
-xrdp 패키지를 설치하면 Windows의 RDP와 통신이 가능하다.
+말로만 들어보면 왠지 Windows 간 통신만 지원할 것 같다. 필자도 그렇게 생각했었다. 하지만 Ubuntu는 내 생각 이상으로 잡다한게 많았다. xrdp 패키지를 설치하면 Windows의 RDP와 통신이 가능하다.
 
 ## 준비물
 
@@ -109,17 +111,43 @@ ufw를 통해 3389번 포트를 개방한다.
 
 ## RDP 접속하기
 
-다른 Windows PC에서 Ubuntu로 접속해보자. 시작 프로그램에서 [원격 데스크톱 연결]을 입력하여 프로그램을 실행하자.
+다른 Windows PC에서 Ubuntu로 접속해보자. 시작 프로그램에서 <span class="blue-400">[원격 데스크톱 연결]</span>을 입력하여 프로그램을 실행하자.
+
+![image](https://user-images.githubusercontent.com/50317129/132518999-0293653c-ccef-4181-a084-71022f83fc47.png)
 
 Ubuntu IP를 입력하여 연결한다. 정상적으로 연결되면 Ubuntu의 접속정보를 통해 로그인을 수행한다.
+
+![image](https://user-images.githubusercontent.com/50317129/132519253-e4ec536d-d6a4-4fea-8905-50451a892a5b.png)
 
 접속에 성공하면 원격으로 Ununtu UI를 다룰 수 있게 된다. 하지만 여러 기술적 한계와 효용성으로 인해 성능이 그리 좋지는 않은 것 같다. 끊김 현상이 좀 심한 것으로 보인다.
 
 ## 검은 화면만 나와요!
 
-분명이 정상적으로 잘 접속했는데, 검은화면만 뜨고 안 나오는 경우가 발생하기도 한다.
+분명히 정상적으로 잘 접속했는데, <span class="red-500">검은화면만 뜨는 경우가 발생</span>하기도 한다.
 
 꽤 유명한 이슈로, 설정 몇 개만 수정하면 해결된다.
+
+``` bash
+sudo vi /etc/xrdp/startwm.sh
+
+# 파일의 맨 아랫 줄에 아래 내용 추가
+unset DBUS_SESSION_BUS_ADDRESS
+unset XDG_RUNTIME_DIR
+
+test -x /etc/X11/Xsession && exec /etc/X11/Xsession
+exec /bin/sh /etc/X11/Xsession
+
+# 파일 저장
+:wq
+```
+
+`/etc/xrdp/startwm.sh` 파일에 위 내용을 추가하고 저장하면 된다.
+
+``` bash
+service xrdp restart
+```
+
+이후 서비스를 재시작하고 시도하면 정상적으로 접속될 것이다.
 
 # 목표
 
