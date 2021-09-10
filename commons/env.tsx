@@ -15,14 +15,15 @@ interface CategoryProps {
 export const DOMAIN = 'blog.itcode.dev';
 export const BASE_URL = `https://${DOMAIN}`;
 
-export const TITLE = 'Kapoo';
-export const DESCRIPTION = '314159265359번째 알파카의 개발 낙서장';
+export const TITLE = '𝝅번째 알파카의 개발 낙서장';
+export const DESCRIPTION = '𝝅번째 알파카의 우당탕탕 개발 기록';
 export const LOGO = '/img/logo.png';
 
 export const MENU_LIST = [
 	{
 		id: 1,
-		title: 'Home',
+		title: 'Welcome',
+		desc: DESCRIPTION,
 		url: { pathname: '/' },
 		icon: <Home />
 	},
@@ -43,7 +44,7 @@ export const MENU_LIST = [
 	{
 		id: 4,
 		title: 'About',
-		desc: '자기소개를 준비하는 중...',
+		desc: '나름 멋들어진 자기소개를 준비하는 중...',
 		url: { pathname: '/about' },
 		icon: <Info />
 	}

@@ -37,7 +37,7 @@ export default function Meta({ title, description = DESCRIPTION, type = 'website
 			<meta name="description" content={description} />
 
 			<meta property="og:site_name" content={TITLE} />
-			<meta property="og:title" content={`${title} - Kapoo`} />
+			<meta property="og:title" content={`${title} - ${TITLE}`} />
 			<meta property="og:description" content={description} />
 			<meta property="og:type" content={type} />
 			<meta property="og:url" content={`${BASE_URL}${url}`} />
