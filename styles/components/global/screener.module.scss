@@ -18,6 +18,13 @@
 }
 
 .root {
+	display: grid;
+	grid-auto-rows: auto;
+	grid-row-gap: 60px;
+
+	position: relative;
+	align-content: center;
+
 	height: calc(100vh - 64px);
 	width: 100%;
 	padding: 50px;
@@ -28,6 +35,8 @@
 
 .image-wrapper {
 	clip: rect(0, auto, auto, 0);
+
+	position: absolute;
 
 	top: 0px;
 	left: 0px;
@@ -77,7 +86,7 @@
 .title-special {
 	@include text;
 
-	font-size: 128px !important;
+	font-size: 84px !important;
 	font-weight: 900 !important;
 	font-family: Blacksword, sans-serif !important;
 	transition: 0.5s;

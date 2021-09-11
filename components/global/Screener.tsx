@@ -42,8 +42,8 @@ export default function Screener({ title, lower, image, special }: Props): React
 	}, []);
 
 	return (
-		<Box className={styles.root} position="relative" display="grid" gridAutoRows="auto" gridRowGap={100} alignContent="center">
-			<Box className={styles['image-wrapper']} position="absolute">
+		<Box className={styles.root}>
+			<Box className={styles['image-wrapper']}>
 				<div ref={ref} className={styles['image-basic']}></div>
 			</Box>
 

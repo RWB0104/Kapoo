@@ -20,16 +20,26 @@
 	@include bar;
 }
 
+.inner {
+	display: grid;
+	grid-template-columns: 50px 1fr 250px;
+	align-items: center;
+
+	@media (max-width: 960px) {
+		grid-template-columns: 50px 1fr 50px;
+	}
+}
+
 .logo {
 	animation: rotate 5s linear infinite;
 	transform-origin: 50% 50%;
 }
 
 .title {
-	font-weight: bold !important;
-
 	color: white;
 	transition: 0.5s;
+
+	padding-left: 20px;
 
 	@media (max-width: 960px) {
 		font-size: 24px !important;

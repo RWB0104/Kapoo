@@ -32,7 +32,7 @@ export default function Meta({ title, description = DESCRIPTION, type = 'website
 {
 	return (
 		<Head>
-			<title>{`${title} - Kapoo`}</title>
+			<title>{`${title} - ${TITLE}`}</title>
 
 			<meta name="description" content={description} />
 

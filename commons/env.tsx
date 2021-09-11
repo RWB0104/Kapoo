@@ -51,17 +51,17 @@ export const MENU_LIST = [
 ];
 
 export const CATEGORY = {
-	'All': 'https://user-images.githubusercontent.com/50317129/131862126-a1e17796-a319-46f6-bd2f-19fe3eb78619.png',
-	'CS': 'https://user-images.githubusercontent.com/50317129/126026336-a8d8889e-4ac0-490c-88db-df6f591b7ae8.png',
-	'JAVA': 'https://user-images.githubusercontent.com/50317129/126026353-9ef49e65-8fd1-40c7-b441-7aee95e83e8e.png',
-	'Jekyll': 'https://user-images.githubusercontent.com/50317129/126026373-a7826bfc-210e-4d2c-b9f6-5a58246c9326.png',
-	'WAS': 'https://user-images.githubusercontent.com/50317129/126026419-e7c33d7d-5cae-4a4d-9c59-1d403c31ac7d.png',
-	'WEB': 'https://user-images.githubusercontent.com/50317129/126026432-0c79094c-bcf1-4adf-838a-c88e668261a7.png',
-	'알고리즘': 'https://user-images.githubusercontent.com/50317129/126026461-e1fa3a72-6699-4302-9901-9419d8bb7b81.png',
-	'잡담': 'https://user-images.githubusercontent.com/50317129/126055617-cc87a28b-206b-41b6-852f-cc4c4a1d4c45.png',
-	'React': 'https://user-images.githubusercontent.com/50317129/127342276-4745c29b-c646-4c64-b93b-5c253fa84a70.png',
-	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/131861737-d089399d-3c09-409d-a06a-28d9bbae4595.png',
-	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132038920-6de448e8-c3d2-4db8-9b26-7297a23a5d5f.png'
+	'All': 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png',
+	'CS': 'https://user-images.githubusercontent.com/50317129/132937772-73a6364f-c66c-4fc5-85da-60a0db1c58a1.png',
+	'JAVA': 'https://user-images.githubusercontent.com/50317129/132937204-99bf52ed-2cea-4530-ad5b-1cc421ebcc94.png',
+	'Jekyll': 'https://user-images.githubusercontent.com/50317129/132937228-0041b311-0d6e-4dea-a4b3-150232cc77fb.png',
+	'WAS': 'https://user-images.githubusercontent.com/50317129/132937090-b40eb63a-f391-44bc-8aa7-a319e745ba09.png',
+	'WEB': 'https://user-images.githubusercontent.com/50317129/132937120-8c5d8c34-569f-4736-af86-820cb851e9bd.png',
+	'알고리즘': 'https://user-images.githubusercontent.com/50317129/132937309-d686bf2f-8919-44b1-8919-a0711ae73031.png',
+	'잡담': 'https://user-images.githubusercontent.com/50317129/132937359-c122ff9f-e610-4087-8016-c0a5b9357260.png',
+	'React': 'https://user-images.githubusercontent.com/50317129/132937462-ff607a3f-1ccb-45f2-8762-b8697e4d63f5.png',
+	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/132937496-a2f0e74f-18c3-43c7-9d94-869690a72e4c.png',
+	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132937521-683e896e-8830-4175-9c15-d294adaf3620.png'
 } as CategoryProps;
 
 export const PIECE = [

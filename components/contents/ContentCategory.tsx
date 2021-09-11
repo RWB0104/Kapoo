@@ -38,7 +38,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 	const [ state, setState ] = useState(true);
 
 	const categories = Object.keys(list).sort().map((item, index: number): ReactElement => (
-		<Grid key={index} item md={3} xs={6} className={styles['item-wrapper']}>
+		<Grid key={index} item md={2} xs={3} className={styles['item-wrapper']}>
 			<Box height="100%" position="relative">
 				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item] || CATEGORY['All']})` }} onClick={() => item === 'All' ? router.push(`/${type}/1`) : router.push(`/${type}/category/${item}/1`)}>
 					<Box display="grid" gridGap={20}>
