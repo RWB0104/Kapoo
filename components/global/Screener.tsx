@@ -39,7 +39,7 @@ export default function Screener({ title, lower, image, special }: Props): React
 		{
 			ref.current.style.backgroundImage = `url(${image})`;
 		}
-	}, []);
+	}, [ image ]);
 
 	return (
 		<Box className={styles.root}>
