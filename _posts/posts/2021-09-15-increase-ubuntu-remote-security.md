@@ -1,13 +1,13 @@
 ---
 title: "[Ubuntu] Ubuntu 원격 프로토콜 보안 강화하기"
-excerpt: ""
-coverImage: "https://user-images.githubusercontent.com/50317129/120028591-d5ece480-c02f-11eb-88f0-e14fc647dd81.png"
-date: "2021-05-21T21:38:17"
+excerpt: "SSH, SFTP와 같은 원격 프로토콜은 서버의 접근성을 향상시켜주지만, 서버의 보안성을 극도로 훼손한다. 공격자가 특정 서버의 IP를 알아냈을 경우, 해당 IP로 SSH 접속 시도를 할 수 있다. 굳이 IP가 아니더라도 해당 IP와 연결된 도메인을 통해서도 얼마든지 가능하다. 특정 도메인의 정보를 DNS서버에 요청하여 IP는 물론 소유자 정보까지 쉽게 취득할 수 있기 때문이다. 따라서 누군가가 내가 접속하려는 서버의 IP 혹은 도메인, SSH 서비스 포트, 계정정보를 알고 있다면 얼마든지 SSH 접속 시도를 하거나 서버에 피해를 줄 수 있다. 외부에 도메인을 공개하는 순간 국내는 물론 외국에서 여러 접속 시도가 들어오기도 한다. 특히 중국에서의 공격이 많이 들어오며, 인터넷에서 이와 관련된 경험담이나 피해사례를 쉽게 찾아볼 수 있다."
+coverImage: "https://user-images.githubusercontent.com/50317129/133300948-2ee9b77a-1589-4afc-8489-fb402a13520f.png"
+date: "2021-09-15T01:53:21"
 type: "posts"
 category: "Ubuntu"
 tag: [ "Ubuntu", "SSH", "SFTP" ]
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
@@ -128,11 +128,30 @@ ssh -i [PRIVATE KEY] username@xxx.xxx.xxx.xxx
 
 아마 대부분 Ubuntu에서 RSA 키를 생성하고, 생성한 개인키를 Windows로 전송하여 SSH 접근하는데 사용할 것이다.
 
-하지만 막상 Windows에서 키 파일 사용 시, 키 파일이 너무 많은 유저에게 허용되면 보안 상의 이유로 키 파일의 사용을 제한한다. 해결책은 하나다. 해당 키 파일을 사용할 유저에게만 읽기 권한만을 부여해주면 된다.
+``` output
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions for 'C:\\id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "C:\\id_rsa": bad permissions
+```
 
-문제는 Windows의 편의성으로 인해, 파일 전송 완료 시 필요한 권한을 자동으로 부여해준다.
+하지만 막상 Windows에서 키 파일 사용 시, 키 파일이 너무 많은 유저에게 허용되면 보안 상의 이유로 키 파일의 사용을 제한한다. 해결책은 하나다. 해당 키 파일을 사용할 유저에게만  권한을 부여해주면 된다.
 
-권한 설정을 마쳤다면 다시 한 번 시도해보자.
+문제는 Windows의 편의성으로 인해, 파일 전송 완료 시 필요한 권한을 자동으로 부여해주기 때문에, 수동으로 제거해야한다.
+
+![image](https://user-images.githubusercontent.com/50317129/133301005-c4c5a2df-f878-4ff5-8dc0-63366e28b59b.png)
+
+키 파일의 [속성] - [보안] 탭에서 파일에 부여된 접근권한을 확인할 수 있다. 보다시피 현재는 너무 많은 사용자에게 접근이 허가되어 있으므로, 오직 나만 접근할 수 있도록 변경한다. 안타깝게도 파일에 상속이 적용되어있어서 그냥 삭제되지 않는다. 하단의 [고급] 탭을 누르자.
+
+![image](https://user-images.githubusercontent.com/50317129/133299523-ec1af2cc-44e2-4b39-b5ae-d7e04425500f.png)
+
+하단의 [상속 사용 안 함] 버튼을 클릭하여 상속 관계를 제거한다. 메시지 하나가 뜰텐데, [명시적 사용 권한으로 변환]을 선택한다. 제거하면 사용자를 직접 지정해야해서 번거롭다.
+
+이후 내 계정을 제외한 모든 권한 항목은 제거한다. 이후 저장하고 다시 시도하면 정상적으로 로그인을 수행할 수 있다.
+
 
 # SSH 접근 시 키 파일 방식만 허용하기
 
@@ -165,3 +184,11 @@ ssh -i [PRIVATE KEY] username@xxx.xxx.xxx.xxx
 ```
 
 일반로그인은 계정 정보를 제대로 입력했다 하더라도 로그인에 실패할 것이다.
+
+# 정리
+
+SSH와 SFTP를 반드시 개인키로만 로그인할 수 있도록 구성을 변경했다.
+
+생각보다 간단한 수준의 보안 작업이라도, 실제로 이루어지는 공격의 대다수를 무력화시킬 수 있다.
+
+키를 통해 더욱 안전하게 서버의 보안을 지킬 수 있지만, 키 파일을 분실하지 않도록 주의하자.

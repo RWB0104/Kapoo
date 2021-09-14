@@ -6,6 +6,7 @@ date: "2021-09-08T22:40:38"
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "SSH", "RDP" ]
+group: "라즈베리파이"
 comment: true
 publish: true
 ---

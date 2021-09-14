@@ -6,6 +6,7 @@ date: "2021-09-06T16:50:40"
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)", "SSL" ]
+group: "라즈베리파이"
 comment: true
 publish: true
 ---

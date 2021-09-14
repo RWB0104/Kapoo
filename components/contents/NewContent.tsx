@@ -25,5 +25,5 @@ interface Props {
  */
 export default function NewContent({ flag }: Props): ReactElement | null
 {
-	return flag ? <Box position="absolute" className={styles.root} top={10} right={10}>New</Box> : null;
+	return flag ? <Box position="absolute" className={styles.root} top={10} right={10}></Box> : null;
 }

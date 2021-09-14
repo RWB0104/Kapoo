@@ -170,7 +170,7 @@ async function seo()
  */
 function getContentSlugs(type)
 {
-	return fs.readdirSync(`${CONTENT_DIR}/${type}`);
+	return fs.readdirSync(`${CONTENT_DIR}/${type}`).filter(e => e.search(/.md$/));
 }
 
 /**

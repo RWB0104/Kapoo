@@ -41,7 +41,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 		<Grid key={index} item md={2} xs={3} className={styles['item-wrapper']}>
 			<Box height="100%" position="relative">
 				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item] || CATEGORY['All']})` }} onClick={() => item === 'All' ? router.push(`/${type}/1`) : router.push(`/${type}/category/${item}/1`)}>
-					<Box display="grid" gridGap={20}>
+					<Box className={styles.meta}>
 						<Box>{item}</Box>
 						<Box>
 							<Box component="span">{list[item].count}</Box>
@@ -58,7 +58,7 @@ export default function ContentCategory({ type, list }: Props): ReactElement
 		<Container component="article" maxWidth="md">
 			<Accordion className={styles.root} expanded={state} TransitionProps={{ unmountOnExit: true }} onClick={() => setState(!state)}>
 				<AccordionSummary className={styles.header} expandIcon={<ExpandMore />}>
-					<Typography className={styles.title} component="h4" variant="h4">📌 Category</Typography>
+					<Typography className={styles.title} component="h4" variant="h4">📚 카테고리</Typography>
 				</AccordionSummary>
 
 				<AccordionDetails className={styles.detail}>

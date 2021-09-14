@@ -9,12 +9,6 @@ $item-height: 152px;
 	margin-bottom: 50px !important;
 }
 
-.item-wrapper {
-	height: $item-height;
-
-	overflow: hidden;
-}
-
 .header {
 	padding: 0px !important;
 	height: 80px !important;
@@ -23,7 +17,6 @@ $item-height: 152px;
 }
 
 .title {
-	font-family: Blacksword, sans-serif !important;
 	font-weight: 900 !important;
 }
 
@@ -33,42 +26,80 @@ $item-height: 152px;
 	max-height: $item-height * 2 + 100;
 	overflow: auto;
 
+	&:hover button {
+		background-color: rgba($color: black, $alpha: 0.7);
+
+		div {
+			color: grey;
+
+			transition: 0.5s;
+		}
+	}
+
 	@media (max-width: 960px) {
 		max-height: $item-height + 100;
+	}
+}
+
+.item-wrapper {
+	height: $item-height;
+
+	overflow: hidden;
+
+	@media (max-width: 960px) {
+		height: $item-height * 0.6;
+	}
+
+	&:hover button {
+		background-color: rgba($color: black, $alpha: 0) !important;
+
+		div {
+			color: white;
+
+			transition: 0.5s;
+		}
 	}
 }
 
 .item {
 	width: 100%;
 	height: 100%;
-	padding: 20px;
 
-	font-size: 20px !important;
-	color: white !important;
-
-	background-color: rgba($color: #000000, $alpha: 0.4) !important;
 	background-blend-mode: multiply;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 
+	align-items: flex-end !important;
+
 	transition: 0.5s;
+}
 
-	& div span {
-		font-size: 14px;
+.meta {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 
-		border: 1px solid white;
-		border-radius: 20%;
-		padding: 7px;
+	width: 100%;
+	padding: 10px;
+
+	background-color: rgba($color: black, $alpha: 0.7);
+
+	font-family: AppleSDGothicNeo, sans-serif;
+	font-size: 16px !important;
+	color: white !important;
+
+	& div:first-child {
+		max-width: 70%;
+
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transition: 0.5s;
 	}
 
-	&:hover {
-		color: map-get($map: $lightBlue, $key: "400") !important;
-
-		background-color: rgba($color: #000000, $alpha: 0.8) !important;
-
-		& div span {
-			border-color: map-get($map: $lightBlue, $key: "400");
-		}
+	@media (max-width: 960px) {
+		font-size: 12px !important;
 	}
 }

@@ -43,7 +43,7 @@ export default function ContentMeta({ header }: Props ): ReactElement
 			</Box>
 
 			<Box display="grid" className={styles.item} alignItems="center">
-				<Typography className={styles.text}>📌 카테고리</Typography>
+				<Typography className={styles.text}>📚 카테고리</Typography>
 
 				<Box display="grid" gridTemplateColumns="40px 1fr" alignItems="center" gridColumnGap={10}>
 					<Avatar alt={header.category} src={CATEGORY[header.category]} />

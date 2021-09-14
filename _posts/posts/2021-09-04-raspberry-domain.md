@@ -6,6 +6,7 @@ date: "2021-09-04T12:09:04"
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "도메인" ]
+group: "라즈베리파이"
 comment: true
 publish: true
 ---

@@ -1,13 +1,10 @@
 @import "../../common/color.module.scss";
 
 .root {
-	font-size: 14px;
-	font-family: 'AppleSDGothicNeo, sans-serif';
+	padding: 7px;
 
-	background-color: map-get($map: $deepPurple, $key: "600");
-	color: white;
+	border-radius: 50%;
+	box-shadow: 2px 2px 8px black;
 
-	border: 1px solid white;
-	border-radius: 10%;
-	padding: 5px;
+	background-color: #29C941;
 }

@@ -6,7 +6,8 @@ date: "2021-09-14T02:04:02"
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "MariaDB", "RDBMS" ]
-comment: tru
+group: "라즈베리파이"
+comment: true
 publish: true
 ---
 
