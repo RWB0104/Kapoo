@@ -46,14 +46,14 @@ export default function ContentItem({ item }: Props): ReactElement
 			<CardActionArea onClick={() => router.push(`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>
 				<Box className={styles['image-wrapper']}>
 					<CardMedia className={styles.image} component="img" image={coverImage} />
-
-					<NewContent flag={isNew} />
 				</Box>
 
 				<CardContent className={styles.wrapper}>
 					<Box display="grid" className={styles['category-wrapper']} gridTemplateColumns="40px 1fr" alignItems="center">
 						<Avatar className={styles['category-image']} alt={category} src={CATEGORY[category]} />
 						<Typography className={styles.category} component="h4" variant="h4" gutterBottom>{category}</Typography>
+
+						<NewContent flag={isNew} />
 					</Box>
 
 					<Typography className={styles.title} component="h1" variant="h3" gutterBottom>{title}</Typography>
