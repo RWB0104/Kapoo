@@ -80,6 +80,9 @@ $item-height: 152px;
 	flex-direction: row;
 	justify-content: space-between;
 
+	position: absolute;
+	bottom: 0px;
+
 	width: 100%;
 	padding: 10px;
 
@@ -101,5 +104,6 @@ $item-height: 152px;
 
 	@media (max-width: 960px) {
 		font-size: 12px !important;
+		padding: 5px;
 	}
 }

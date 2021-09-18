@@ -112,14 +112,6 @@ $fm: 14px;
 	}
 
 	h1 {
-		font-size: 45px !important;
-
-		@media (max-width: 960px) {
-			font-size: 40px !important;
-		}
-	}
-
-	h2 {
 		font-size: 40px !important;
 
 		@media (max-width: 960px) {
@@ -127,7 +119,7 @@ $fm: 14px;
 		}
 	}
 
-	h3 {
+	h2 {
 		font-size: 35px !important;
 
 		@media (max-width: 960px) {
@@ -135,7 +127,7 @@ $fm: 14px;
 		}
 	}
 
-	h4 {
+	h3 {
 		font-size: 30px !important;
 
 		@media (max-width: 960px) {
@@ -143,11 +135,19 @@ $fm: 14px;
 		}
 	}
 
-	h5 {
+	h4 {
 		font-size: 25px !important;
 
 		@media (max-width: 960px) {
 			font-size: 20px !important;
+		}
+	}
+
+	h5 {
+		font-size: 23px !important;
+
+		@media (max-width: 960px) {
+			font-size: 18px !important;
 		}
 	}
 
