@@ -41,11 +41,23 @@ export default function Screener({ title, lower, image, special }: Props): React
 		}
 	}, [ image ]);
 
+	const media = /(.mp4|webm)$/.test(image) ? (
+		<Box className={styles['image-wrapper']}>
+			<video id="test" className={styles.media} autoPlay loop muted>
+				<source src={image} />
+			</video>
+
+			<div className={styles.plate}></div>
+		</Box>
+	) : (
+		<Box className={styles['image-wrapper']}>
+			<div ref={ref} className={styles['image-basic']}></div>
+		</Box>
+	);
+
 	return (
 		<Box className={styles.root}>
-			<Box className={styles['image-wrapper']}>
-				<div ref={ref} className={styles['image-basic']}></div>
-			</Box>
+			{media}
 
 			<Typography component="h1" className={style} align="center">{title}</Typography>
 			<Typography component="h3" className={styles.lower} align="center">{lower}</Typography>
