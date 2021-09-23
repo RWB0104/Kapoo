@@ -17,6 +17,7 @@ import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import Utterances from './Utterances';
 import { PageStaticProps } from '@commons/common';
+import ContentHits from './ContentHits';
 
 /**
  * 컨텐츠 레이아웃 ReactElement 반환 함수
@@ -31,6 +32,8 @@ export default function ContentLayout({ page, data, group }: PageStaticProps): R
 		<Box position="relative">
 			<Container maxWidth="md">
 				<ContentToc toc={data.toc} />
+
+				<ContentHits type={page.type} urls={data.url} />
 
 				<ContentViewer content={data.content} />
 

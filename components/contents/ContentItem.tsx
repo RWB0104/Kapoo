@@ -12,13 +12,13 @@ import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
 import { useRouter } from 'next/router';
 
 // 사용자 모듈
+import NewContent from './NewContent';
 import ContentMeta from './ContentMeta';
 import { CATEGORY } from '@commons/env';
 import { ContentProps, getWrittenTimes } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/contentitem.module.scss';
-import NewContent from './NewContent';
 
 interface Props {
 	item: ContentProps
@@ -26,6 +26,8 @@ interface Props {
 
 /**
  * 컨텐츠 아이템 ReactElement 반환 함수
+ *
+ * @param {Props} param0: 프로퍼티
  *
  * @returns {ReactElement} ReactElement
  */
