@@ -3,37 +3,37 @@
 	<url>
 		<loc>https://blog.itcode.dev/404.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.809Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/500.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.810Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.810Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/about.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.810Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/posts.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.810Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/projects.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-09-20T13:42:20.893Z</lastmod>
+		<lastmod>2021-09-24T04:37:00.810Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
@@ -454,6 +454,24 @@
 		<loc>https://blog.itcode.dev/posts/2021/09/15/increase-ubuntu-remote-security.html</loc>
 		<priority>1.0</priority>
 		<lastmod>2021-09-14T16:53:21.000Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/posts/2021/09/21/nextjs-reorganization-1.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-09-20T18:22:35.000Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/posts/2021/09/21/nextjs-reorganization-2.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-09-20T20:30:21.000Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/posts/2021/09/21/nextjs-reorganization-3.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-09-24T04:17:24.000Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 </urlset>

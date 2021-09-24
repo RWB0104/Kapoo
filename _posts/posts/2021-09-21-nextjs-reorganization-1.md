@@ -1,7 +1,7 @@
 ---
 title: "[NextJS] 블로그 개편기 - 1. Record One"
 excerpt: "인터넷으로 알음알음 React를 배워, 뭣도 모르고 호기롭게 블로그를 개발한지가 5월이였다. 그 때만 해도 이 재밌는 걸 가지고 뭐라도 만들어보고 싶다는 강한 열망에 사로잡혔었는데, 그 때 눈에 보였던 게 개발 블로그였다. 그 때 내가 사용하던 블로그는 Jekyll 기반의 GitHub 블로그였는데, 재밌어보여서 시작했다가 며칠 안 가 관둔지가 1년이 넘었었다. 블로그에 흥미가 떨어진 이유 중 하나가 뭐 좀 할라치면 남이 작성한 코드를 일일히 분석한다는 스트레스였다. 개발 블로그를 보자마자 떠오른 내 머릿속의 흐름은 대충 저랬다."
-coverImage: "https://user-images.githubusercontent.com/50317129/133300948-2ee9b77a-1589-4afc-8489-fb402a13520f.png"
+coverImage: "https://user-images.githubusercontent.com/50317129/134614825-e102084d-34a5-43df-a120-79d0459b411b.png"
 date: "2021-09-21T03:22:35"
 type: "posts"
 category: "NextJS"

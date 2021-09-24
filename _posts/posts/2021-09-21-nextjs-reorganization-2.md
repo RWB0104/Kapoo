@@ -1,11 +1,11 @@
 ---
 title: "[NextJS] 블로그 개편기 - 2. Typescript 입히기"
 excerpt: "내가 JavaScript를 접하고 기본 개념 정도에 익숙해졌을 때, 개발 커뮤니티에서 전설처럼 들려오던 이야기를 듣게 되었다."
-coverImage: "https://user-images.githubusercontent.com/50317129/133300948-2ee9b77a-1589-4afc-8489-fb402a13520f.png"
+coverImage: "https://user-images.githubusercontent.com/50317129/134614825-e102084d-34a5-43df-a120-79d0459b411b.png"
 date: "2021-09-21T05:30:21"
 type: "posts"
 category: "NextJS"
-tag: [ "NextJS", "React", "Typescript" ]
+tag: [ "NextJS", "React", "TypeScript" ]
 group: "블로그 개편기"
 comment: true
 publish: true
