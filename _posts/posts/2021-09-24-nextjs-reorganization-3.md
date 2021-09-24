@@ -13,9 +13,75 @@ publish: true
 
 # 개요
 
-원래 내 블로그는 JS-in-JS 스타일 방식을 사용하고 있었다. 그 이유는 Material-UI 때문. Material-UI의 공식 예제에서 대놓고 JS-in-JS 방식으로 설명하기 때문에, React 기초 수준이였던 난 당연히 이렇게 해야하는 줄 알고 있었다.
+원래 내 블로그는 JS-in-CSS 스타일 방식을 사용하고 있었다. 그 이유는 Material-UI 때문. Material-UI의 공식 예제에서 대놓고 JS-in-CSS 방식으로 설명하기 때문에, React 기초 수준이였던 난 당연히 이렇게 해야하는 줄 알고 있었다.
 
-하지만 개발을 거듭하며, 그 중 몇몇은 복잡한 스타일을 강요받기도 하며 점점 스타일 구문이 비대해지는 컴포넌트가 생겨나기 시작했다. 이에 따라 JS-in-JS의 단점이 점점 대두되기 시작했다. 대표적인 문제점으로 FOCU(Flash Of Unstyled Content). 스타일 렌더링에 시간이 소요되어, 사용자가 렌더링 이전의 페이지를 보게 되는 현상이다. 내 페이지의 경우 약 1초가 조금 안 되게 FOUC가 발생했는데, 사용자 경험을 극도로 해치는 일이였다.
+하지만 개발을 거듭하며, 그 중 몇몇은 복잡한 스타일을 강요받기도 하며 점점 스타일 구문이 비대해지는 컴포넌트가 생겨나기 시작했다. 이에 따라 JS-in-CSS의 단점이 점점 대두되기 시작했다. 대표적인 문제점으로 FOCU(Flash Of Unstyled Content). 스타일 렌더링에 시간이 소요되어, 사용자가 렌더링 이전의 페이지를 보게 되는 현상이다. 내 페이지의 경우 약 1초가 조금 안 되게 FOUC가 발생했는데, 사용자 경험을 극도로 해치는 일이였다.
+
+블로그 개편을 마음먹게 된 가장 큰 이유 역시 이 FOCU 현상 때문이였으며, 관련 정보 조사 결과 CSS-in-CSS의 성능이 월등히 뛰어나다는 점을 확인했다.
+
+``` javascript
+/**
+ * 스타일 객체 반환 함수
+ *
+ * @returns {JSON} 스타일 객체
+ */
+function getStyles()
+{
+	return makeStyles((theme) => ({
+		fab_bright: {
+			position: "fixed",
+			bottom: 50,
+			right: 50,
+			backgroundColor: grey[800],
+			color: grey[200],
+			"&:hover": {
+				backgroundColor: grey[700]
+			},
+			"& svg": {
+				color: orange[600]
+			},
+			[theme.breakpoints.up("md")]: {
+				"& span": {
+					marginLeft: theme.spacing(1)
+				}
+			},
+			[theme.breakpoints.down("sm")]: {
+				bottom: 70,
+				right: 20
+			}
+		},
+		fab_dark: {
+			position: "fixed",
+			bottom: 50,
+			right: 50,
+			backgroundColor: grey[200],
+			color: grey[900],
+			"&:hover": {
+				backgroundColor: grey[300]
+			},
+			"& svg": {
+				color: blue[600]
+			},
+			[theme.breakpoints.up("md")]: {
+				"& span": {
+					marginLeft: theme.spacing(1)
+				}
+			},
+			[theme.breakpoints.down("sm")]: {
+				bottom: 70,
+				right: 20
+			}
+		},
+		div: {
+			height: 24
+		}
+	}))();
+}
+```
+
+심지어 JS-in-CSS 시절의 스타일 구현 코드를 보면, 요소의 중첩이 적용되어있어 일반적인 CSS로는 그대로 옮기기 어려운 형태였다. 또한 CSS의 중첩을 접하게 되면서, 중첩이 주는 편의성에 익숙해진 터라 스타일만 CSS로 옳기면서 그 편의성만 그대로 유지하고 싶었다.
+
+결국 프로젝트에 CSS 전처리기를 적용하기로 결정했다.
 
 # CSS의 전처리기
 
