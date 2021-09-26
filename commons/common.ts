@@ -91,6 +91,8 @@ export interface CategoryProps {
 	}
 }
 
+export const CONTENT_DIV = 10;
+
 export const CONTENT_REGX = /^((19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-)(.*)(.md)$/;
 export const MD_REGX = /\.md$/;
 export const NAME_REGX = /^(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*)$/;
@@ -235,4 +237,19 @@ export function getWrittenTimes(date: Date): string
 	{
 		return '0분 전';
 	}
+}
+
+/**
+ * 페이지 경계 반환 함수
+ *
+ * @param {number} page: 페이지
+ *
+ * @returns {{ start: number, end: number }} 페이지 경계
+ */
+export function getContentDiv(page: number): { start: number, end: number }
+{
+	return {
+		start: (page - 1) * CONTENT_DIV,
+		end: page * CONTENT_DIV
+	};
 }

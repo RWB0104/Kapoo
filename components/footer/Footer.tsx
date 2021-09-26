@@ -15,6 +15,7 @@ import { TITLE } from '@commons/env';
 
 // 스타일
 import styles from '@styles/components/footer/footer.module.scss';
+import Hits from '@components/global/Hits';
 
 interface Props {
 	hash: string
@@ -52,6 +53,8 @@ export default function Footer({ hash }: Props): ReactElement | null
 					<RssFeed />
 				</IconButton>
 			</Box>
+
+			<Hits />
 
 			<Typography className={styles.text} align="center">Copyright ⓒ RWB 2021.05</Typography>
 			{hash && <Typography className={styles.text} align="center">{hash}</Typography>}

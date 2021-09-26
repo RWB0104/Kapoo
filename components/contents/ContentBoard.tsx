@@ -21,6 +21,7 @@ import styles from '@styles/components/contents/contentboard.module.scss';
 interface Props {
 	baseUrl: string,
 	page: number,
+	total: number,
 	list: ContentProps[]
 }
 
@@ -29,17 +30,13 @@ interface Props {
  *
  * @returns {ReactElement} ReactElement
  */
-export default function ContentBoard({ baseUrl, page, list }: Props): ReactElement
+export default function ContentBoard({ baseUrl, page, total, list }: Props): ReactElement
 {
-	const total = Math.ceil(list.length / 10);
-
-	const start = (page - 1) * 10;
-
 	const router = useRouter();
 
 	return (
 		<Container maxWidth="md" className={styles.root}>
-			<ContentList list={list.slice(start, start + 10)} />
+			<ContentList list={list} />
 
 			<Pagination className={styles.pagination} count={total} page={page} color="primary" onChange={(event: ChangeEvent<unknown>, value: number) => router.push(`${baseUrl}/${value}`)} />
 		</Container>
