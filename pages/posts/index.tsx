@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps, CategoryProps } from '@commons/common';
+import { getRandomIndex, ContentProps, CategoryProps, getContentDiv, CONTENT_DIV } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -22,6 +22,7 @@ interface Props {
 	posts: ContentProps[],
 	category: CategoryProps,
 	images: string[],
+	total: number,
 	hash?: string
 }
 
@@ -38,7 +39,7 @@ const type = 'posts';
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Posts({ posts, category, images }: Props): ReactElement
+export default function Posts({ posts, category, images, total }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
@@ -50,7 +51,7 @@ export default function Posts({ posts, category, images }: Props): ReactElement
 
 			<ContentCategory type={type} list={category} />
 
-			<ContentBoard baseUrl={`/${type}`} page={1} list={posts} />
+			<ContentBoard baseUrl={`/${type}`} page={1} total={total} list={posts} />
 		</Box>
 	);
 }
@@ -62,7 +63,13 @@ export default function Posts({ posts, category, images }: Props): ReactElement
  */
 export async function getStaticProps(): Promise<StaticProp>
 {
+	const { start, end } = getContentDiv(1);
+
 	const posts = getContentsList(type);
+
+	const subPosts = posts.slice(start, end);
+	subPosts.forEach(e => e.content = '');
+
 	const category = getContentsCategory(type);
 	const images = getScreenerImage();
 
@@ -70,9 +77,10 @@ export async function getStaticProps(): Promise<StaticProp>
 
 	return {
 		props: {
-			posts,
+			posts: subPosts,
 			category,
 			images,
+			total: Math.ceil(posts.length / CONTENT_DIV),
 			hash
 		}
 	};

@@ -52,7 +52,7 @@ export default function ContentItem({ item }: Props): ReactElement
 
 				<CardContent className={styles.wrapper}>
 					<Box display="grid" className={styles['category-wrapper']} gridTemplateColumns="40px 1fr" alignItems="center">
-						<Avatar className={styles['category-image']} alt={category} src={CATEGORY[category]} />
+						<Avatar className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
 						<Typography className={styles.category} component="h4" variant="h4" gutterBottom>{category}</Typography>
 
 						<NewContent flag={isNew} />

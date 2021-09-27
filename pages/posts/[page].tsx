@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps, RouteProps, PathProps, CategoryProps, getContentDiv } from '@commons/common';
+import { getRandomIndex, ContentProps, RouteProps, PathProps, CategoryProps, getContentDiv, CONTENT_DIV } from '@commons/common';
 import { LOGO, MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -70,7 +70,9 @@ export async function getStaticProps({ params }: RouteProps): Promise<StaticProp
 	const { start, end } = getContentDiv(page);
 
 	const posts = getContentsList(type);
-	posts.forEach(e => e.content = undefined);
+
+	const subPosts = posts.slice(start, end);
+	subPosts.forEach(e => e.content = '');
 
 	const categories = getContentsCategory(type);
 	const images = getScreenerImage();
@@ -79,11 +81,11 @@ export async function getStaticProps({ params }: RouteProps): Promise<StaticProp
 
 	return {
 		props: {
-			posts: posts.slice(start, end),
+			posts: subPosts,
 			categories,
 			images,
 			page: parseInt(params.page),
-			total: posts.length,
+			total: Math.ceil(posts.length / CONTENT_DIV),
 			hash
 		}
 	};

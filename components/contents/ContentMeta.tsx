@@ -46,7 +46,7 @@ export default function ContentMeta({ header }: Props ): ReactElement
 				<Typography className={styles.text}>📚 카테고리</Typography>
 
 				<Box display="grid" gridTemplateColumns="40px 1fr" alignItems="center" gridColumnGap={10}>
-					<Avatar alt={header.category} src={CATEGORY[header.category]} />
+					<Avatar alt={header.category} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
 
 					<Typography className={styles.link} onClick={() => router.push(`/${header.type}/category/${header.category}/1`)}>{header.category}</Typography>
 				</Box>

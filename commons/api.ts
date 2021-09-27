@@ -44,24 +44,6 @@ export function getContentsList(type: string): ContentProps[]
 }
 
 /**
- * 컨텐츠 목록 반환 함수
- *
- * @param {string} type: 컨텐츠 타입
- * @param {number} page: 페이지
- *
- * @returns {ContentProps[]} 컨텐츠 목록
- */
-export function getContentsList(type: string, page: number): ContentProps[]
-{
-	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
-
-	const start = (page - 1) * CONTENT_DIR;
-	const end = page * CONTENT_DIR;
-
-	return names.map((name): ContentProps => getContent(type, name)).slice(start, end).filter((item: ContentProps) => item.header.publish).sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
-}
-
-/**
  * 카테고리 목록 반환 함수
  *
  * @param {string} type: 컨텐츠 타입

@@ -56,7 +56,7 @@ export default function Footer({ hash }: Props): ReactElement | null
 
 			<Hits />
 
-			<Typography className={styles.text} align="center">Copyright ⓒ RWB 2021.05</Typography>
+			<Typography className={styles.text} align="center">💻 Copyright ⓒ RWB 2021.05</Typography>
 			{hash && <Typography className={styles.text} align="center">{hash}</Typography>}
 
 			<Dialog open={state} onClose={() => setState(false)}>
