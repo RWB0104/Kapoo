@@ -214,6 +214,67 @@ module.exports = withSass({
 
 이후 프로젝트에서의 사용은 CSS와 동일하다.
 
+# ScSS 톺아보기
+
+SCSS는 CSS의 전처리기로써 CSS에 없던 강력한 기능들을 제공한다. 보다보면 CSS 코딩하다 느낀 불편함을 해소해주거나, CSS에는 이런거 안 되나? 싶었던 기능들이 많다.
+
+## 변수 사용하기
+
+프로그래밍에서의 변수는 다양한 의미를 갖지만, 그 중에서도 특정 값을 하나의 변수에 할당하여 관리할 수 있다는 장점이 있다. 만약 해당 값을 바꿔야 할 경우, 변수가 없다면 해당 값을 쓰는 모든 코드를 변경했어야 한다.
+
+하지만 변수를 사용한다면 다 필요없이 변수에 할당된 값만 변경해주는 것으로 끝난다.
+
+CSS에는 본디 이런 기능이 없었으나, SCSS에선 변수의 존재로 인해 CSS를 좀 더 프로그래밍적인 측면에서 다가갈 수 있다.
+
+``` scss
+$base: 16px;
+
+.font-1 {
+	font-size: $base;
+}
+
+.font-2 {
+	font-size: $base + 2px;
+}
+
+.font-3 {
+	$color: dodgerblue;
+
+	font-size: $base + 4px;
+
+	background-color: $color;
+	border: 1px solid $color;
+}
+```
+
+``` css
+.font-1 {
+	font-size: 16px;
+}
+
+.font-2 {
+	font-size: 18px;
+}
+
+.font-3 {
+	font-size: 20px;
+	background-color: dodgerblue;
+	border: 1px solid dodgerblue;
+}
+```
+
+이와 같이 $ 기호를 통해 변수를 사용할 수 있다. 일반적인 할당은 물론, 사칙연산도 가능하다.
+
+## 리스트 사용하기
+
+일반적인 값을 대입하는 변수 이외에도, 우리가 흔히 하는 배열 형태의 변수도 선언할 수 있으며, 이를 리스트라 한다.
+
+``` scss
+$list: white, red, green, blue, black;
+```
+
+`nth()` 함수를 사용하여 리스트
+
 # 예시
 
 ``` scss
