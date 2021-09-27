@@ -79,8 +79,12 @@ async function seo()
 		sitemap.normal.pages.push(getMenuSitemap(path));
 		sitemap.html.pages.push(getMenuSitemap(pathHtml));
 
-		rss.normal.pages.push(getMenuRSS(element, element, path));
-		rss.html.pages.push(getMenuRSS(element, element, pathHtml));
+		// RSS는 channel 태그에 인덱스 페이지가 들어가므로 제외
+		if (element !== './pages/index.tsx')
+		{
+			rss.normal.pages.push(getMenuRSS(element, element, path));
+			rss.html.pages.push(getMenuRSS(element, element, pathHtml));
+		}
 	});
 
 	console.log(' - 포스트 SEO 생성');
@@ -89,11 +93,14 @@ async function seo()
 	{
 		const slugs = slugRegex.exec(element.slug);
 
-		sitemap.normal.posts.push(getSitemap(element, slugs).normal);
-		sitemap.html.posts.push(getSitemap(element, slugs).html);
+		const { sitemapNormal, sitemapHtml } = getSitemap(element, slugs);
+		const { rssNormal, rssHtml } = getRSS(element, slugs);
 
-		rss.normal.posts.push(getRSS(element, slugs).normal);
-		rss.html.posts.push(getRSS(element, slugs).html);
+		sitemap.normal.posts.push(sitemapNormal);
+		sitemap.html.posts.push(sitemapHtml);
+
+		rss.normal.posts.push(rssNormal);
+		rss.html.posts.push(rssHtml);
 	});
 
 	console.log(' - 프로젝트 SEO 생성');
@@ -102,11 +109,14 @@ async function seo()
 	{
 		const slugs = slugRegex.exec(element.slug);
 
-		sitemap.normal.projects.push(getSitemap(element, slugs).normal);
-		sitemap.html.projects.push(getSitemap(element, slugs).html);
+		const { sitemapNormal, sitemapHtml } = getSitemap(element, slugs);
+		const { rssNormal, rssHtml } = getRSS(element, slugs);
 
-		rss.normal.projects.push(getRSS(element, slugs).normal);
-		rss.html.projects.push(getRSS(element, slugs).html);
+		sitemap.normal.projects.push(sitemapNormal);
+		sitemap.html.projects.push(sitemapHtml);
+
+		rss.normal.projects.push(rssNormal);
+		rss.html.projects.push(rssHtml);
 	});
 
 	console.log(' - SEO 파일 생성');
@@ -128,6 +138,13 @@ async function seo()
 	console.log('==================================================');
 }
 
+/**
+ * 사이트맵 객체 반환 함수
+ *
+ * @param {{ normal: string, html: string }} sitemap: URL 객체
+ *
+ * @returns {{ normal: string, html: string }} 사이트맵 객체
+ */
 function makeSitemap(sitemap)
 {
 	const { normal, html } = sitemap;
@@ -152,6 +169,13 @@ function makeSitemap(sitemap)
 	};
 }
 
+/**
+ * RSS 객체 반환 함수
+ *
+ * @param {{ normal: string, html: string }} rss: URL 객체
+ *
+ * @returns {{ normal: string, html: string }} RSS 객체
+ */
 function makeRss(rss)
 {
 	const { normal, html } = rss;
@@ -329,9 +353,9 @@ function getRSSTags(item)
 /**
  * 컨텐츠 제목 리스트 반환 함수
  *
- * @param {String} type: 타입
+ * @param {string} type: 타입
  *
- * @returns {String[]} 컨텐츠 제목 리스트
+ * @returns {string[]} 컨텐츠 제목 리스트
  */
 function getContentSlugs(type)
 {
@@ -344,7 +368,7 @@ function getContentSlugs(type)
  * @param {string} type: 타입
  * @param {string} slug: 게시물 제목
  *
- * @returns {JSON} 컨텐츠 내용
+ * @returns {{ [key: string]: any }} 컨텐츠 내용
  */
 function getContentBySlug(type, slug)
 {
