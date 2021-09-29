@@ -93,8 +93,8 @@ async function seo()
 	{
 		const slugs = slugRegex.exec(element.slug);
 
-		const { sitemapNormal, sitemapHtml } = getSitemap(element, slugs);
-		const { rssNormal, rssHtml } = getRSS(element, slugs);
+		const { normal: sitemapNormal, html: sitemapHtml } = getSitemap(element, slugs);
+		const { normal: rssNormal, html: rssHtml } = getRSS(element, slugs);
 
 		sitemap.normal.posts.push(sitemapNormal);
 		sitemap.html.posts.push(sitemapHtml);
@@ -109,8 +109,8 @@ async function seo()
 	{
 		const slugs = slugRegex.exec(element.slug);
 
-		const { sitemapNormal, sitemapHtml } = getSitemap(element, slugs);
-		const { rssNormal, rssHtml } = getRSS(element, slugs);
+		const { normal: sitemapNormal, html: sitemapHtml } = getSitemap(element, slugs);
+		const { normal: rssNormal, html: rssHtml } = getRSS(element, slugs);
 
 		sitemap.normal.projects.push(sitemapNormal);
 		sitemap.html.projects.push(sitemapHtml);
