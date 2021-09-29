@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsByCategory, getContentsCategory, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps } from '@commons/common';
+import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps, CONTENT_DIV, getContentDiv } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -24,6 +24,7 @@ interface Props {
 	images: string[],
 	category: string
 	page: number,
+	total: number,
 	hash?: string
 }
 
@@ -40,7 +41,7 @@ const type = 'posts';
  *
  * @returns {ReactElement} ReactElement
  */
-export default function CategoryPosts({ posts, categories, images, category, page }: Props): ReactElement
+export default function CategoryPosts({ posts, categories, images, category, page, total }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
@@ -52,7 +53,7 @@ export default function CategoryPosts({ posts, categories, images, category, pag
 
 			<ContentCategory type={type} list={categories} />
 
-			<ContentBoard baseUrl={`/${type}/category/${category}`} page={page} list={posts} />
+			<ContentBoard baseUrl={`/${type}/category/${category}`} page={page} total={total} list={posts} />
 		</Box>
 	);
 }
@@ -67,8 +68,13 @@ export default function CategoryPosts({ posts, categories, images, category, pag
 export async function getStaticProps({ params }: RoutesProps): Promise<StaticProp>
 {
 	const [ category, page ] = params.page;
+	const { start, end } = getContentDiv(parseInt(page));
 
 	const posts = getContentsByCategory(type, category);
+
+	const subPosts = posts.slice(start, end);
+	subPosts.forEach(e => e.content = '');
+
 	const categories = getContentsCategory(type);
 	const images = getScreenerImage();
 
@@ -76,11 +82,12 @@ export async function getStaticProps({ params }: RoutesProps): Promise<StaticPro
 
 	return {
 		props: {
-			posts,
+			posts: subPosts,
 			categories,
 			images,
 			category: category,
 			page: parseInt(page),
+			total: Math.ceil(posts.length / CONTENT_DIV),
 			hash
 		}
 	};

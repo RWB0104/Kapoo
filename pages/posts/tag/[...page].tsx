@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsByTag, getContentsCategory, getContentsTag, getScreenerImage } from '@commons/api';
-import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps } from '@commons/common';
+import { getRandomIndex, ContentProps, PathsProps, RoutesProps, CategoryProps, CONTENT_DIV, getContentDiv } from '@commons/common';
 import { LOGO, MENU_LIST } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
@@ -24,6 +24,7 @@ interface Props {
 	images: string[],
 	tag: string
 	page: number,
+	total: number,
 	hash?: string
 }
 
@@ -40,7 +41,7 @@ const type = 'posts';
  *
  * @returns {ReactElement} ReactElement
  */
-export default function TagPosts({ posts, categories, images, tag, page }: Props): ReactElement
+export default function TagPosts({ posts, categories, images, tag, page, total }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
@@ -52,7 +53,7 @@ export default function TagPosts({ posts, categories, images, tag, page }: Props
 
 			<ContentCategory type={type} list={categories} />
 
-			<ContentBoard baseUrl={`/${type}/tag/${tag}`} page={page} list={posts} />
+			<ContentBoard baseUrl={`/${type}/tag/${tag}`} page={page} total={total} list={posts} />
 		</Box>
 	);
 }
@@ -67,8 +68,13 @@ export default function TagPosts({ posts, categories, images, tag, page }: Props
 export async function getStaticProps({ params }: RoutesProps): Promise<StaticProps>
 {
 	const [ tag, page ] = params.page;
+	const { start, end } = getContentDiv(parseInt(page));
 
 	const posts = getContentsByTag(type, tag);
+
+	const subPosts = posts.slice(start, end);
+	subPosts.forEach(e => e.content = '');
+
 	const categories = getContentsCategory(type);
 	const images = getScreenerImage();
 
@@ -76,11 +82,12 @@ export async function getStaticProps({ params }: RoutesProps): Promise<StaticPro
 
 	return {
 		props: {
-			posts,
+			posts: subPosts,
 			categories,
 			images,
 			tag: tag,
 			page: parseInt(page),
+			total: Math.ceil(posts.length / CONTENT_DIV),
 			hash
 		}
 	};

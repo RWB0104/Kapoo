@@ -11,7 +11,7 @@ import { Box } from '@material-ui/core';
 
 // 사용자 모듈
 import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
-import { CategoryProps, ContentProps, getRandomIndex } from '@commons/common';
+import { CategoryProps, ContentProps, CONTENT_DIV, getContentDiv, getRandomIndex } from '@commons/common';
 import { MENU_LIST } from '@commons/env';
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
@@ -22,6 +22,7 @@ interface Props {
 	projects: ContentProps[],
 	category: CategoryProps,
 	images: string[],
+	total: number,
 	hash?: string
 }
 
@@ -38,7 +39,7 @@ const type = 'projects';
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Projects({ projects, category, images }: Props): ReactElement
+export default function Projects({ projects, category, images, total }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
@@ -50,7 +51,7 @@ export default function Projects({ projects, category, images }: Props): ReactEl
 
 			<ContentCategory type={type} list={category} />
 
-			<ContentBoard baseUrl={`/${type}`} page={1} list={projects} />
+			<ContentBoard baseUrl={`/${type}`} page={1} total={total} list={projects} />
 		</Box>
 	);
 }
@@ -62,7 +63,13 @@ export default function Projects({ projects, category, images }: Props): ReactEl
  */
 export async function getStaticProps(): Promise<StaticProp>
 {
+	const { start, end } = getContentDiv(1);
+
 	const projects = getContentsList(type);
+
+	const subProjects = projects.slice(start, end);
+	subProjects.forEach(e => e.content = '');
+
 	const category = getContentsCategory(type);
 	const images = getScreenerImage();
 
@@ -70,9 +77,10 @@ export async function getStaticProps(): Promise<StaticProp>
 
 	return {
 		props: {
-			projects,
+			projects: subProjects,
 			category,
 			images,
+			total: Math.ceil(projects.length / CONTENT_DIV),
 			hash
 		}
 	};

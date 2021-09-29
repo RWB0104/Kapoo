@@ -1,7 +1,7 @@
 ---
 title: "[NextJS] 블로그 개편기 - 3. SCSS 입히기"
-excerpt: ""
-coverImage: "https://user-images.githubusercontent.com/50317129/134614825-e102084d-34a5-43df-a120-79d0459b411b.png"
+excerpt: "원래 내 블로그는 JS-in-CSS 스타일 방식을 사용하고 있었다. 그 이유는 Material-UI 때문. Material-UI의 공식 예제에서 대놓고 JS-in-CSS 방식으로 설명하기 때문에, React 기초 수준이였던 난 당연히 이렇게 해야하는 줄 알고 있었다. 하지만 개발을 거듭하며, 그 중 몇몇은 복잡한 스타일을 강요받기도 하며 점점 스타일 구문이 비대해지는 컴포넌트가 생겨나기 시작했다. 이에 따라 JS-in-CSS의 단점이 점점 대두되기 시작했다. 대표적인 문제점으로 FOCU(Flash Of Unstyled Content). 스타일 렌더링에 시간이 소요되어, 사용자가 렌더링 이전의 페이지를 보게 되는 현상이다. 내 페이지의 경우 약 1초가 조금 안 되게 FOUC가 발생했는데, 사용자 경험을 극도로 해치는 일이였다. 블로그 개편을 마음먹게 된 가장 큰 이유 역시 이 FOCU 현상 때문이였으며, 관련 정보 조사 결과 CSS-in-CSS의 성능이 월등히 뛰어나다는 점을 확인했다."
+coverImage: "https://user-images.githubusercontent.com/50317129/134931033-89954c3d-5e00-4b3b-85aa-54a1dfa29e46.png"
 date: "2021-09-24T13:17:24"
 type: "posts"
 category: "NextJS"
@@ -213,6 +213,67 @@ module.exports = withSass({
 [@zeit/next-sass NPM 저장소](https://www.npmjs.com/package/@zeit/next-sass)에서 자세한 옵션을 확인할 수 있다.
 
 이후 프로젝트에서의 사용은 CSS와 동일하다.
+
+# ScSS 톺아보기
+
+SCSS는 CSS의 전처리기로써 CSS에 없던 강력한 기능들을 제공한다. 보다보면 CSS 코딩하다 느낀 불편함을 해소해주거나, CSS에는 이런거 안 되나? 싶었던 기능들이 많다.
+
+## 변수 사용하기
+
+프로그래밍에서의 변수는 다양한 의미를 갖지만, 그 중에서도 특정 값을 하나의 변수에 할당하여 관리할 수 있다는 장점이 있다. 만약 해당 값을 바꿔야 할 경우, 변수가 없다면 해당 값을 쓰는 모든 코드를 변경했어야 한다.
+
+하지만 변수를 사용한다면 다 필요없이 변수에 할당된 값만 변경해주는 것으로 끝난다.
+
+CSS에는 본디 이런 기능이 없었으나, SCSS에선 변수의 존재로 인해 CSS를 좀 더 프로그래밍적인 측면에서 다가갈 수 있다.
+
+``` scss
+$base: 16px;
+
+.font-1 {
+	font-size: $base;
+}
+
+.font-2 {
+	font-size: $base + 2px;
+}
+
+.font-3 {
+	$color: dodgerblue;
+
+	font-size: $base + 4px;
+
+	background-color: $color;
+	border: 1px solid $color;
+}
+```
+
+``` css
+.font-1 {
+	font-size: 16px;
+}
+
+.font-2 {
+	font-size: 18px;
+}
+
+.font-3 {
+	font-size: 20px;
+	background-color: dodgerblue;
+	border: 1px solid dodgerblue;
+}
+```
+
+이와 같이 $ 기호를 통해 변수를 사용할 수 있다. 일반적인 할당은 물론, 사칙연산도 가능하다.
+
+## 리스트 사용하기
+
+일반적인 값을 대입하는 변수 이외에도, 우리가 흔히 하는 배열 형태의 변수도 선언할 수 있으며, 이를 리스트라 한다.
+
+``` scss
+$list: white, red, green, blue, black;
+```
+
+`nth()` 함수를 사용하여 리스트
 
 # 예시
 
