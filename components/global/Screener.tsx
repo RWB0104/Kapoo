@@ -30,20 +30,35 @@ export default function Screener({ title, lower, image, special }: Props): React
 {
 	const style = special ? styles['title-special'] : styles.title;
 
-	const ref = useRef<HTMLDivElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const imageRef = useRef<HTMLDivElement>(null);
 
 	useEffect((): void =>
 	{
-		// ref, ref의 HTML 노드가 null이 아닐 경우
-		if (ref && ref.current)
+		// 동영상일 경우
+		if (/(.mp4|webm)$/.test(image))
 		{
-			ref.current.style.backgroundImage = `url(${image})`;
+			// video DOM이 null이 아닐 경우
+			if (videoRef && videoRef.current)
+			{
+				videoRef.current.src = image;
+			}
+		}
+
+		// 사진일 경우
+		else
+		{
+			// img DOM이 null이 아닐 경우
+			if (imageRef && imageRef.current)
+			{
+				imageRef.current.style.backgroundImage = `url(${image})`;
+			}
 		}
 	}, [ image ]);
 
 	const media = /(.mp4|webm)$/.test(image) ? (
 		<Box className={styles['image-wrapper']}>
-			<video id="test" className={styles.media} autoPlay loop muted>
+			<video ref={videoRef} className={styles.media} autoPlay loop muted>
 				<source src={image} />
 			</video>
 
@@ -51,7 +66,7 @@ export default function Screener({ title, lower, image, special }: Props): React
 		</Box>
 	) : (
 		<Box className={styles['image-wrapper']}>
-			<div ref={ref} className={styles['image-basic']}></div>
+			<div ref={imageRef} className={styles['image-basic']}></div>
 		</Box>
 	);
 

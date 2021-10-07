@@ -15,7 +15,7 @@ import Screener from '@components/global/Screener';
 import ContentsCase from '@components/home/ContentsCase';
 import { getBuildHash, getContentsList, getScreenerImage } from '@commons/api';
 import { MENU_LIST } from '@commons/env';
-import { getRandomIndex, ContentProps } from '@commons/common';
+import { getRandomIndex, ContentProps, getContentDiv } from '@commons/common';
 import Meta from '@components/global/Meta';
 
 interface Props {
@@ -39,6 +39,8 @@ interface StaticProp {
 export default function Home({ images, posts, projects }: Props): ReactElement | null
 {
 	const index = getRandomIndex(images.length);
+
+	console.dir(index);
 
 	return (
 		<Box component="section">
@@ -64,12 +66,18 @@ export async function getStaticProps(): Promise<StaticProp>
 {
 	const images = getScreenerImage();
 
+	const { start, end } = getContentDiv(1);
+
 	const posts = getContentsList('posts');
+
+	const subPosts = posts.slice(start, end);
+	subPosts.forEach(e => e.content = '');
+
 	const projects = getContentsList('projects');
 
 	const hash = getBuildHash();
 
 	return {
-		props: { images, posts, projects, hash }
+		props: { images, posts: subPosts, projects, hash }
 	};
 }
