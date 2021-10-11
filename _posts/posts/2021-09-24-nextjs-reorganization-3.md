@@ -218,7 +218,7 @@ module.exports = withSass({
 
 SCSS는 CSS의 전처리기로써 CSS에 없던 강력한 기능들을 제공한다. 보다보면 CSS 코딩하다 느낀 불편함을 해소해주거나, CSS에는 이런거 안 되나? 싶었던 기능들이 많다.
 
-## 변수 사용하기
+## 변수 선언하기
 
 프로그래밍에서의 변수는 다양한 의미를 갖지만, 그 중에서도 특정 값을 하나의 변수에 할당하여 관리할 수 있다는 장점이 있다. 만약 해당 값을 바꿔야 할 경우, 변수가 없다면 해당 값을 쓰는 모든 코드를 변경했어야 한다.
 
@@ -263,7 +263,162 @@ $base: 16px;
 }
 ```
 
-이와 같이 $ 기호를 통해 변수를 사용할 수 있다. 일반적인 할당은 물론, 사칙연산도 가능하다.
+이와 같이 $ 기호를 통해 변수를 사용할 수 있다. 일반적인 할당은 물론, 사칙연산도 가능하다. 변수의 값은 CSS에서 사용할 수 있는 모든 값(#05A46B, skyblue, "나눔고딕", 38px 등)을 할당할 수 있다.
+
+SCSS의 `base`는 전역변수로 어디서나 호출할 수 있다. `color`는 지역변수로 `.font-3` 블럭과 중첩된 하위 블럭에서만 호출할 수 있다.
+
+> <b class="orange-400">🔍변수의 범위(scope)</b>  
+> SCSS의 변수는 자신만의 범위를 가진다. 블럭 내부에 선언된 변수는 중첩된 하위 블럭에서 호출할 수 있다. 반대로 하위 블럭에서 선언된 변수는 상위 블럭에서 호출할 수 없다. 블럭이 아닌 파일 자체에 선언될 경우 <span class="primary">전역변수</span>로 지정되어 파일에 선언된 모든 곳에서 호출할 수 있다.
+
+### 전역변수 선언하기
+
+``` scss
+.font-1 {
+    $base: 16px !global;
+	font-size: $base;
+}
+
+.font-2 {
+	font-size: $base + 2px;
+}
+
+.font-3 {
+	$color: dodgerblue;
+
+	font-size: $base + 4px;
+
+	background-color: $color;
+	border: 1px solid $color;
+}
+```
+
+파일 외부에서 쓰는 것 외에도, `!global` 지시어를 사용하면 어디서나 전역변수를 선언할 수 있다. 단, 이렇게 블럭 내부에서 `!global`로 선언된 전역변수는 <span class="red-400">해당 블럭 이후의 코드에서만 접근 가능</span>하다.
+
+만약 `base` 변수가 `.font-2`에서 전역변수로 선언되었다면, `.font-1` 블럭에서는 접근할 수 없다.
+
+## 리스트 선언하기
+
+단순 값 뿐만 아니라 리스트도 선언할 수 있다.
+
+``` scss
+$bright: #000000, #444444, #888888, #BBBBBB, #FFFFFF;
+
+$list: red, #FF00FF, "Arial", 16px;
+```
+
+리스트는 쉼표로 구분한다. 리스트 데이터의 타입이 동일할 필요는 없다.
+
+### 리스트 다루기
+
+``` scss
+$bright: #000000, #444444, #888888, #BBBBBB, #FFFFFF;
+
+// => #888888
+nth($bright, 3);
+
+// => #888888이 #777777로 교체됨
+set-nth($bright, 3, #777777);
+
+// => bright에 #EEEEEE가 추가됨
+append($bright, #EEEEEE);
+```
+
+리스트의 기초적인 문법은 위와 같다. 또한 `@each`를 통해 타 언어의 `foreach`를 구현할 수 있다.
+
+``` scss
+$color: white, red, green, blue, black;
+
+@each $item in $color {
+	.font-#{$item} {
+		color: $item;
+	}
+}
+```
+
+``` css
+.font-white {
+	color: white;
+}
+
+.font-red {
+	color: red;
+}
+
+.font-green {
+	color: green;
+}
+
+.font-blue {
+	color: blue;
+}
+
+.font-black {
+	color: black;
+}
+```
+
+`@each`를 이용하면 반복적인 구문을 쉽게 만들 수 있다.
+
+## Map 선언하기
+
+위의 리스트가 단순한 요소만으로 이루어졌다면, Map은 우리가 흔히 아는 key-value 형태의 변수다.
+
+``` scss
+$map: (shorter: 20px, short: 40px, normal: 60px, long: 80px, longer: 100px);
+
+$map: (a: 20px, b: red, c: #00DE00, d: "Arial", e: center);
+```
+
+Map의 key-value는 위와 같이 표기한다. 리스트와 마찬가지로 요소의 타입은 자유롭게 선언 가능하다.
+
+### Map 다루기
+
+## @mixin와 @include
+
+CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶다는 생각이 들 것이다.
+
+기존의 CSS는 함수 개념이 존재하지 않아, 동일한 코드를 쓰기 위해선 동일한 선택자를 사용하거나, 어쩔 수 없이 중복 코드를 사용해야만 했다.
+
+하지만 SCSS에선 `@mixin` 문법을 통해 코드의 스니펫을 저장하고 이를 적재적소에 사용할 수 있다.
+
+``` scss
+@mixin square($size, $color) {
+	width: $size;
+	height: $size;
+
+	background-color: $color;
+
+	&:hover {
+		background-color: transparent;
+
+		border: 1px solid $color;
+	}
+}
+
+.box {
+	@include square(20px, red);
+	
+	box-shadow: 1px 1px 10px grey;
+}
+```
+
+``` css
+.box {
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	box-shadow: 1px 1px 10px grey;
+}
+
+.box:hover {
+	background-color: transparent;
+	border: 1px solid red;
+}
+```
+
+위와 같이 `@mixin`으로 `square()`라는 스니펫을 선언했다. 이 스니펫은 `size`, `color`라는 인수를 받는다.
+
+원하는 블럭에서 `@include`를 통해 해당 스니펫을 호출하면 그 블럭에 호출한 스니펫이 포함된다. 코드의 중복을 효과적으로 없애주어 유지보수의 난이도를 낮출 수 있으며, 이러한 패턴은 컴포넌트별로 스타일을 관리하기에도 매우 용이하다.
 
 # 예시
 
