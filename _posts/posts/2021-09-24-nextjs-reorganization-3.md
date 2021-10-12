@@ -373,6 +373,121 @@ Map의 key-value는 위와 같이 표기한다. 리스트와 마찬가지로 요
 
 ### Map 다루기
 
+``` scss
+$map: (shorter: 20px, short: 40px, normal: 60px, long: 80px, longer: 100px);
+
+// => 20px
+map-get($map, shorter);
+
+// => longer의 100px가 120px로 교체됨
+map-set($bright, longer, 120px);
+
+// => shorter, short, ..., longer 순으로 맵의 키 리스트 배열 반환
+map-keys($bright);
+
+// => 20px, 40px, ..., 100px 순으로 맵의 값 리스트 배열 반환
+map-values($bright);
+```
+
+위와 같이 Map을 다룰 수 있다.
+
+## @if, @else if, @else 사용하기
+
+익숙한 조건문이다. SCSS는 위와 같은 지시어로 조건문을 구현할 수 있으며, 우리가 흔히 아는 방식과 매우 유사하다.
+
+``` scss
+@mixin box($size, $platform) {
+	width: $size;
+	height: $size;
+
+	@if $platform == "naver" {
+		background-color: #03C75A;
+		color: white;
+	}
+
+	@else if $platform == "kakao" {
+		background-color: #FEE500;
+		color: black;
+	}
+
+	@else {
+		background-color: white;
+		color: black;
+	}
+}
+
+$box-size: 50px;
+
+.auth[data-platform=naver] {
+	@include box($box-size, "naver");
+}
+
+.auth[data-platform=kakao] {
+	@include box($box-size, "kakao");
+}
+
+.auth[data-platform=google] {
+	@include box($box-size, "google");
+}
+```
+
+``` css
+.auth[data-platform=naver] {
+  width: 50px;
+  height: 50px;
+  background-color: #03C75A;
+  color: white;
+}
+
+.auth[data-platform=kakao] {
+  width: 50px;
+  height: 50px;
+  background-color: #FEE500;
+  color: black;
+}
+
+.auth[data-platform=google] {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  color: black;
+}
+```
+
+이와 같이 값에 따라 SCSS를 다르게 적용할 수 있다. 이를 응용하여 특정 조건에서는 추가적인 스타일을 지정하거나 제외하는 방식도 구성할 수 있다.
+
+사용법은 우리가 흔히 아는 조건문과 매우 유사하니 어렵지 않을 것이다.
+
+## @for 사용하기
+
+무릇 프로그래밍 언어라면 하나쯤은 제공하는 반복문이다. SCSS는 `@for`의 형태로 제공한다.
+
+``` scss
+$base-color: #036;
+
+@for $i from 1 through 3 {
+  ul:nth-child(3n + #{$i}) {
+    background-color: lighten($base-color, $i * 5%);
+  }
+}
+```
+
+``` css
+ul:nth-child(3n + 1) {
+  background-color: #004080;
+}
+
+ul:nth-child(3n + 2) {
+  background-color: #004d99;
+}
+
+ul:nth-child(3n + 3) {
+  background-color: #0059b3;
+}
+```
+
+위와 같이 사용 가능하다. `$i`는 임의로 지정하는 키 인덱스 변수이며, 1 부터 3까지 반복한다.
+
 ## @mixin와 @include
 
 CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶다는 생각이 들 것이다.
@@ -419,6 +534,80 @@ CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶�
 위와 같이 `@mixin`으로 `square()`라는 스니펫을 선언했다. 이 스니펫은 `size`, `color`라는 인수를 받는다.
 
 원하는 블럭에서 `@include`를 통해 해당 스니펫을 호출하면 그 블럭에 호출한 스니펫이 포함된다. 코드의 중복을 효과적으로 없애주어 유지보수의 난이도를 낮출 수 있으며, 이러한 패턴은 컴포넌트별로 스타일을 관리하기에도 매우 용이하다.
+
+`@include` 사용 시 `@mixin`이 별도의 인수를 받지 않을 경우 괄호를 생략해도 무관하다.
+
+## @import로 파일 합치기
+
+`@import`는 다른 SCSS 파일을 삽입하여 해당 파일의 내용에 덧대어 SCSS를 작성할 수 있다.
+
+공통 혹은 모듈화된 SCSS를 별도의 파일로 관리하며, 해당 모듈이 필요한 SCSS에 `@import`를 통해 삽입함으로써 SCSS의 모듈화를 구현할 수 있다.
+
+``` scss
+// box.scss
+@mixin square($size, $color) {
+	width: $size;
+	height: $size;
+
+	background-color: $color;
+
+	&:hover {
+		background-color: transparent;
+
+		border: 1px solid $color;
+	}
+}
+
+.box {
+	@include square(20px, red);
+	
+	box-shadow: 1px 1px 10px grey;
+}
+```
+
+``` scss
+@import "./box.scss";
+
+// require-box.scss
+.require-box {
+	@include square(20px, dodgerblue);
+	
+	background-color: grey;
+}
+```
+
+``` css
+/* require-box.css */
+.box {
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	box-shadow: 1px 1px 10px grey;
+}
+
+.box:hover {
+	background-color: transparent;
+	border: 1px solid red;
+}
+
+.require-box {
+	width: 20px;
+	height: 20px;
+	background-color: dodgerblue;
+	box-shadow: 1px 1px 10px grey;
+}
+
+.require-box:hover {
+	background-color: transparent;
+	border: 1px solid dodgerblue;
+}
+```
+
+`@import` 지시어 뒤에 삽입할 파일의 경로를 입력하면 된다.
+
+임의의 SCSS인 `box.scss`와 이를 삽입하여 작성한 `require-box.scss`가 있다고 가정하자. 컴파일 결과물인 `require-box.css`에는 위와 같이 `box.scss`와 `require-box.scss`의 내용이 합쳐진 결과물이 컴파일된다.
+
+`require-box.scss`는 `box.scss`를 삽입함으로써 `box.scss`에 선언된 전역 변수 혹은 스니펫 등을 사용할 수 있다. 그러나 `box.scss`에 선언된 내용으로 인해 원하지 않는 영향을 받을 가능성이 있으니 설계시 유의하자.
 
 # 예시
 
@@ -495,6 +684,8 @@ CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶�
 ```
 
 `@import`로 다른 SCSS 파일을 삽입할 수 있다. 이러한 패턴으로 SCSS을 컴포넌트별로 관리할 수 있었으며, 코드의 길이가 늘어남을 방지하여 더 나은 유지보수 용이성을 제공했다.
+
+더 자세한 정보는 [SASS 공식 Document](https://sass-lang.com/documentation)에서 자세히 확인할 수 있다.
 
 # 정리
 
