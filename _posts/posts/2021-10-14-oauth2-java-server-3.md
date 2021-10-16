@@ -1,5 +1,5 @@
 ---
-title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 3. Jersey로 RESTful API 서버 구축하기"
+title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 3. scribeJAVA로 OAuth2.0 인증 모듈 구현하기"
 excerpt: ""
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
 date: "2021-10-14T22:12:25"
@@ -8,490 +8,545 @@ category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "Jersey" ]
 group: "OAuth2.0 인증서버 구축기"
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
 
-이 장에서는 Jersey를 활용하여 RESTful API 서버를 구축한다.
+OAuth 라이브러리인 scribeJAVA를 통해 인증 모듈을 구현해보자.
 
-통상 JAVA 서버를 구축하는데 Spring 프레임워크를 많이 사용할 것이다. 그럼에도 굳이 Jersey를 선택하는 이유는 일단 내가 Spring을 잘 모른다. 그것도 그거지만, Spring에 비해 규모가 작고 설정이 간단해서 온전히 RESTful 서버를 구축하는데 집중할 수 있다. Spring 설정의 악랄함은 고사하고, 이 프로젝트의 특성 상 복잡한 로직이나 다채로운 기능을 요구하지 않는다. Spring의 방대한 규모를 온전히 쓰지 못 하므로 배 보다 배꼽이 더 크다는 뜻이다.
+요청 흐름이 controller -> process -> module 순이므로, 요청의 가장 안 쪽에 존재하는 module 부터 구현한다.
 
-제원은 이전에도 설명했듯이, `JAVA v16.0.2`를 기반으로 작성했다. 꼭 16버전일 필요는 없다. 그냥 내가 최신을 좋아해서 그런거니, 적당히 한 11 정도면 그냥저냥 사용할 수 있을 것이다.
+# OAuth 인증 모듈 구현하기
 
-빌드 툴은 `Gradle`을 사용한다. `Maven`의 pom.xml 보다 훨씬 간단해서 좋아한다. Gradle이 Maven의 후속이라 그런지 성능 상으로도 뭐 여러가지 이점이 있다고는 하는데... 둘 다 써본 입장에선 크게 체감되진 않았다.
+이전 장에서도 언급했듯이, OAuth 인증 모듈은 그 공통된 특성으로 인해 추상 객체가 적합하다.
 
-`Tomcat`은 반드시 10 이상으로 수행할 것. 이전 장에서도 누누히 얘기했지만, `Jersey 3.x`는 Servlet 5.0인 `jakarta.*`만을 사용한다. Servlet 4.x 밑으로는 지원을 안 하므로, 아무리 스펙 상 올바른 요청을 전송해도 404만 죽어라 뜬다. Tomcat은 이를 버전 10부터 제공하니 주의하자. 내가 이 문제 때문에 거진 수 시간을 날렸다.
+scribeJAVA 모듈을 사용하여 추상 객체를 구현한다.
 
-> <b class="orange-400">Servlet 5.0?</b>  
-> Servlet 5.0부터는 `jakarta.*`이라는 패키지를 사용한다. 우리가 지금까지 사용했던 Servlet 4.x 이하는 `javax.*` 패키지를 사용한다. 패키지가 달라지는 것 외에 사용 방법은 완전히 동일하다. `javax.*`을 `jakarta.*`로 변경하기만 해도 마이그레이션이 완료된다.
+## scribeJAVA 적용하기
 
-# Jersey 3 설정하기
+프로젝트에 scribeJAVA를 적용해보자.
 
-프로젝트에 Jersey 3을 설정해보자.
+``` groovy
+implementation group: 'com.github.scribejava', name: 'scribejava-apis', version: '8.3.1'
+```
 
-## 의존성 모듈 설치
+`build.gradle`의 dependencies에 위 의존성을 추가하는 것으로 scribeJAVA를 적용할 수 있다.
 
-`Gradle`을 기준으로 설명한다. `build.gradle`의 dependencies에 아래와 같이 지정한다.
+## scribeJAVA 사용하기
 
-``` txt
-dependencies {
-	// https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
-	compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '5.0.0'
+본격적으로 scribeJAVA를 사용해보자.
+
+scribeJAVA는 `OAuth20Service`라는 객체를 중심으로 동작한다. `OAuth20Service` 객체를 통해 아래의 로직을 수행할 수 있다.
+
+* 플랫폼 로그인 URL 생성
+* 인가 코드를 Access, Refresh Token으로 교환
+* Refresh Token을 통해 Access Token 갱신
+* 기타 OAuth 관련 요청 생성
+
+즉, OAuth 인증에 있어서 핵심이 되는 동작은 모두 이 `OAuth20Service` 객체를 중심으로 이루어진다.
+
+### OAuth20Service 객체 생성하기
+
+`OAuth20Service` 객체를 생성한다. 필요한 요소는 아래와 같다.
+
+|      구분      |     필수 여부     |           내용           |
+| :------------: | :---------------: | :----------------------: |
+|    API Key     |         Y         |          API 키          |
+| API Secret Key |         Y         |      API 시크릿 키       |
+|  Callback URL  |         Y         | 로그인 결과를 반환할 URL |
+|     Scope      | N (일부 플랫폼 Y) |           권한           |
+
+API Key, API Secret Key, Callback URL은 기본적으로 반드시 필요하며, 몇몇 플랫폼의 경우 Scope도 필수 사양으로 지정하는 경우가 있다. 이 프로젝트에 적용할 플랫폼들 중 Google이 그렇다. 구글은 후술할 플랫폼 로그인 URL 생성 시 Scope를 지정하지 않으면 오류를 출력한다.
+
+API Key, API Secret Key는 각 플랫폼에 OAuth 서비스 등록 시 부여해주며, Callback URL은 본인이 직접 정해서 입력하면 된다. 등록되지 않은 Callback URL로 로그인을 수행하면 오류가 출력된다. Callback URL은 여러개를 지정할 수 있다.
+
+각 플랫폼 별 OAuth 서비스를 등록하는 방법은 추후에 다루고, 일단 이런 부가적인 부분들은 준비가 됐다고 가정한다.
+
+``` java
+OAuth20Service service = new ServiceBuilder("{API_KEY}").apiSecret("{SECRET_KEY}").callback("{CALLBACK_URL}").build(this);
+```
+
+이와 같이 생성할 수 있다. `build(this)`에서 `this`는 `DefaultApi20` 객체다. 아래는 `OAuth20Service` 객체의 메서드와 그 기능들이다.
+
+|        구분         |             내용              |
+| :-----------------: | :---------------------------: |
+| getAuthorizationUrl | 플랫폼 로그인 URL 반환 메서드 |
+|   getAccessToken    | OAuth2AccessToken 반환 메서드 |
+|     signRequest     |    OAuth 요청 등록 메서드     |
+|       execute       |    등록된 요청 수행 메서드    |
+
+이 프로젝트에선 위 4가지 용도만 알아도 무방하다.
+
+## AuthModule 생성하기
+
+이제 본격적으로 모듈 객체를 구현해보자. 인증 모듈은 반드시 `DefaultApi20`을 상속받아 구현해야한다.
+
+``` java
+abstract public class AuthModule extends DefaultApi20
+{
+	// 구현 예정
+}
+```
+
+`DefaultApi20` 추상 객체는 두 개의 추상 메서드를 가지고 있다. 즉, 이를 상속하는 `AuthModule`는 이 두 메서드를 구현해야할 책임이 있다.
+
+* `getAccessTokenEndpoint` - 접근 토큰 요청 URL 반환 메서드
+* `getAuthorizationBaseUrl` - 인증 URL 반환 메서드
+
+하지만 `AuthModule` 역시 추상 객체이므로, 이를 상속받아 사용할 하위 플랫폼 인증 모듈에게 이 책임을 위임할 수 있다. 즉, `DefaultApi20`의 추상 메서드는 `AuthModule`에서 구현하지 않고 이를 상속하는 하위 플랫폼 인증 모듈에서 구현할 것이다.
+
+인증 모듈 추상 객체는 위와 같은 형태를 가진다. NAVER, Google 등 플랫폼별 인증 모듈은 위 `AuthModule`을 상속받아 사용할 것이다. 인증 모듈의 핵심 동작은 대부분 `OAuth20Service` 객체로부터 이루어지니, `AuthModule`을 상속할 때 반드시 관련 객체를 받도록 명시하는 것이 좋아보인다.
+
+``` java
+abstract public class AuthModule extends DefaultApi20
+{
+    protected OAuth20Service service;
 	
-	// https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server
-	implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '3.0.3'
+	@Getter
+	protected String unique;
+
+    protected AuthModule(ServiceBuilderOAuth20 serviceBuilder, String unique)
+	{
+		service = serviceBuilder.build(this);
+		
+		this.unique = unique;
+	}
+}
+```
+
+|      구분      |       데이터 형식       |                                  내용                                   |
+| :------------: | :---------------------: | :---------------------------------------------------------------------: |
+| serviceBuilder | `ServiceBuilderOAuth20` |                      `OAuth20Service` 객체의 빌더                       |
+|     unique     |        `String`         | 인증 모듈의 고유값. 플랫폼의 소문자 표기와 동일 (ex. NAVER -> naver 등) |
+
+생성자와 멤버 변수를 위와 같이 지정한다. 전부 `protected` 접근 제어자를 가지므로, `AuthModule`을 상속받은 객체에서만 생성자를 사용할 수 있으며, `service`, `unique` 파라미터 역시 마찬가지다.
+
+`ServiceBuilderOAuth20`를 인수로 할당받아 생성자에서 `OAuth20Service`로 빌드하여 멤버 변수 `service`에 할당한다. `AuthModule` 상속받은 객체의 어느 곳에서든 `service`와 `unique`에 접근할 수 있다.
+
+이 모듈에 기본적인 로직을 작성하고, 플랫폼마다 구현이 모두 다를 경우, 추상 메서드를 선언하여 이를 상속받는 객체가 이를 직접 구현하도록 위임한다.
+
+### 플랫폼 로그인 URL 반환 메서드
+
+scribeJAVA를 통해 플랫폼 로그인 URL 반환 메서드를 구현해보자. 예를 들어, 네이버 아이디로 로그인 버튼을 클릭하면 네이버 로그인 창이 뜰 것이다. 이 과정은 앞선 예시와 같은 플랫폼 로그인 창의 URL을 생성하는 것이다.
+
+`service`의 `getAuthorizationUrl` 메서드를 사용하는 것만으로 간단히 구현할 수 있다. `ServiceBuilderOAuth20`에 입력했던 API Key, Secret Key, Callback URL을 토대로 플랫폼 인증 URL을 생성하여 반환한다.
+
+`getAuthorizationBaseUrl`의 반환 URL을 기준으로 생성한다.
+
+인수인 `state`는 고유 상태값으로, 서버에서 임의의 UUID를 하나 생성해서 사용한다. 이는 보안을 위한 세션 체크용으로 사용하는 값이다.
+
+### OAuth2AccessToken 반환 메서드
+
+이번엔 `OAuth2AccessToken` 객체를 반환하는 메서드를 구현해보자. `OAuth2AccessToken`는 Access, Refresh Token. 토큰 종류, 유효시간을 가지는 scribeJAVA의 객체다.
+
+``` java
+public OAuth2AccessToken getAccessToken(String code) throws IOException, ExecutionException, InterruptedException
+{
+    return service.getAccessToken(code);
+}
+```
+
+마찬가지로 `service`의 `getAccessToken` 메서드를 사용하여 간단히 구현할 수 있다. 인수인 `code`를 Service Provider에 전달하면, Access, Refresh Token을 제공한다.
+
+### Access Token 갱신 메서드
+
+Access Token은 보안을 위해 만료시간이 굉장히 짧거나 세션 만료 시 같이 만료되는 것이 보통이다. 이 경우 원래대로라면 다시 인증을 받아야하고, 경우에 따라 사용자에게 플랫폼 로그인 수행을 다시 요구할 수도 있다.
+
+대부분의 OAuth 플랫폼은 인증 시 Access Token과 함께 Refresh Token을 같이 제공한다.
+
+|     구분      |   만료시간    | 인증 가능 여부 |                                               내용                                               |
+| :-----------: | :-----------: | :------------: | :----------------------------------------------------------------------------------------------: |
+| Access Token  | 짧거나 일시적 |      가능      |   인증을 담당하는 토큰. Access Token 존재 자체만으로 사용자가 인증 정보를 제공한다고 가정한다.   |
+| Refresh Token | 길거나 영구적 |     불가능     | Access Token을 재발급하는 토큰. Refresh Token 자체만으론 재발급 외의 유의미한 작업이 불가능하다. |
+
+두 토큰의 차이는 위와 같다.
+
+scribeJAVA에서 Refresh Token으로 Access Token을 재발급 받아보자.
+
+``` java
+public OAuth2AccessToken getRefreshAccessToken(String refresh) throws IOException
+{
+	HashMap<String, String> params = new HashMap<>();
+	params.put("client_id", service.getApiKey());
+	params.put("client_secret", service.getApiSecret());
+	params.put("refresh_token", refresh);
 	
-	// https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet
-	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '3.0.3'
+	StringBuilder builder = new StringBuilder();
 	
-	// https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2
-	implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '3.0.3'
+	for (Map.Entry<String, String> param : params.entrySet())
+	{
+		builder.append("&").append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode(param.getValue(), StandardCharsets.UTF_8));
+	}
 	
-	// https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson
-	implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.0.3'
-
-    // 다른 라이브러리들...
-}
-```
-
-* `jakarta.servlet-api` - Servlet 5.0
-* `jersey-server` - Jersey 서버 코어 구현체
-* `jersey-container-servlet` - Jersey의 Servlet 구현체
-* `jersey-hk2` - HK2 InjectionManager 구현체
-* `jersey-media-json-jackson` - Jersey의 응답 객체에 JSON 제공자를 Jackson과 연동하는 모듈
-
-각 라이브러리의 의미는 위와 같다. 이 중 `jersey-media-json-jackson`은 플러그인으로, JSON 형태로 응답하기 위해선 반드시 이 제공자 플러그인이 필요하다. 그 밖에도 여러 유용한 플러그인이 있지만, 이 프로젝트에선 위 4개 정도만 있으면 Jersey를 사용할 수 있다.
-
-## Jersey 요청 URL 지정하기
-
-Jersey의 요청 URL을 지정한다. 무슨 뜻이냐면, Jersey가 담당할 최상위 URL을 지정한다는 의미다.
-
-예를 들어, `/api`로 지정했다면 `https://example.com/api`로 시작하는 요청은 일반적인 Servlet이 아닌 Jersey가 위임받게 된다.
-
-전통적인 방식으로 `web.xml`에 지정하는 방법이 있지만, 다소 번거로운데다가 권장하지도 않는다. 우리는 서버 단계에서 이를 구현할 것이다.
-
-``` java
-@ApplicationPath("/api")
-public class App extends Application
-{
-    // api 접두사 요청을 jersey가 담당
-}
-```
-
-위와 같이 지정하면 된다. 클래스 하나 생성해서 `Application` 상속시키면 된다. 이후 `@ApplicationPath`에 원하는 경로 접두어를 지정하면 된다.
-
-위 설정은 `/api`로 시작하는 경로를 Jersey에게 위임한다.
-
-## RESTful API 설정하기
-
-위 설정 정도만 하면 Jersey를 사용할 준비가 끝났다. 이제 RESTful API를 설계하여 응답을 받아보자.
-
-임의의 클래스 하나를 생성하고 아래와 같이 지정하자. 클래스 이름은 임의로 지정해도 무관하다.
-
-``` java
-@Path("/userinfo")
-public class TestAPI
-{
-	// /api/userinfo API
-}
-```
-
-`@Path`에 원하는 경로를 지정하다. 위 클래스는 `/api/userinfo` 요청을 위임받아 수행하는 API 클래스가 된다.
-
-``` java
-@Path("/userinfo")
-public class TestAPI
-{
-    @GET
-    @Path("")
-	public String testResponse()
-    {
-        return "It's Worked!";
-    }
-}
-```
-
-위 처럼 메소드를 하나 생성해보자. `testResponse` 메소드에 의해 `/api/userinfo` GET 요청은 It's Worked!를 반환하여 브라우저에 출력할 것이다. `@GET` 이외에도 `@POST`, `@PUT` 등 다양한 HTTP 메서드를 지원하니, 원하는대로 설정하면 된다.
-
-`@Path`는 마찬가지로 요청을 받을 URL을 지정한다. 이 때 상위의 `@Path`를 순서대로 URL 접두어에 붙이니 유의할 것. 이 패턴으로 다양한 RESTful API를 생성할 수 있다.
-
-``` java
-@Path("/userinfo")
-public class TestAPI
-{
-    @GET
-    @Path("")
-	public String testResponse()
-    {
-        return "It's Worked!";
-    }
-
-    @GET
-    @Path("/{id}")
-	public String userinfoResponse(@PathParam("id") String id)
-    {
-        return "{ key1: \"value1\", key2: \"value2\", id: \"" + id + "\" }";
-    }
-
-    @POST
-    @Path("/{hash}")
-	public String useraddResponse(@PathParam("hash") String hash, @FormParam("key") String key)
-    {
-        return hash + key;
-    }
-
-    @GET
-    @Path("/check")
-	public boolean usercheckResponse(@QueryParam("id") String id, @QueryParam("key") String key)
-    {
-        return true;
-    }
-
-    @DELETE
-    @Path("/remove")
-	public int userremoveResponse(@CookieParam("auth") String auth)
-    {
-        return 1;
-    }
-}
-```
-
-위 처럼 다채롭게 RESTful API를 설계해보자. 다양한 반환값을 줄 수 있다.
-
-|  애노테이션  |                             내용                             |
-| :----------: | :----------------------------------------------------------: |
-|  @PathParam  | 지정한 URL의 값이 할당됨. `@Path`에서 `/{key}`와 같이 입력함 |
-| @QueryParam  |            지정한 키를 가진 URL 파라미터가 할당됨            |
-|  @FormParam  |               지정한 Body의 파라미터가 할당됨                |
-| @CookieParam |               지정한 키를 가진 Cookie가 할당됨               |
-| @HeaderParam |               지정한 키를 가진 Header가 할당됨               |
-
-위 애노테이션을 사용해서 원하는 요소를 쉽게 인수로 받아올 수 있다.
-
-|       메서드       |  HTTP  | 대상 URL                                |
-| :----------------: | :----: | :-------------------------------------- |
-|    testResponse    |  GET   | `/api/userinfo`                         |
-|  userinfoResponse  |  GET   | `/api/userinfo/{id}`                    |
-|  useraddResponse   |  POST  | `/api/userinfo/{hash}`                  |
-| usercheckResponse  |  GET   | `/api/userinfo/check?id={id}&key={key}` |
-| userremoveResponse | DELETE | `/api/userinfo/remove`                  |
-
-각 메서드에 매칭되는 URL은 위 표와 같다.
-
-그 밖에도 `@Producer`로 응답 타입이나 응답의 Header 등을 강제하는 기능도 있지만, 이 프로젝트에선 크게 중요하지 않으므로 넘어간다.
-
-자세한 내용은 [Jersey 3 공식 문서](https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest3x/index.html)를 참고하자.
-
-## Jersey Context 지정하기
-
-근데 쓰다보면 좀 이상하다. 우리가 Servlet에서 지겹게 사용하던 `HttpServletRequest`, `HttpServletResponse`는 어디로 갔을까?
-
-Jersey가 Servlet를 대신하여 요청을 위임받고 있다보니, Servlet 객체가 표면적으로 드러나지 않는다. 이 경우 `@Context` 애노테이션을 통해 Servlet 객체들에게 접근할 수 있다.
-
-### 상속으로 구현하기
-
-필자는 각 추상 객체 하나를 만들어 필요한 Context를 몰아넣고, 모든 controller API에 상속하는 방식으로 구성하고 있다.
-
-``` java
-abstract public class API
-{
-	@Context
-	protected HttpServletRequest request;
+	byte[] paramBytes = builder.toString().getBytes(StandardCharsets.UTF_8);
 	
-	@Context
-	protected HttpServletResponse response;
+	URL url = new URL(getRefreshTokenEndpoint());
 	
-	@Context
-	protected UriInfo uriInfo;
-}
-```
-
-위와 같이 API라는 추상 객체 하나를 선언한다. 이후 `HttpServletRequest`, `HttpServletResponse`를 `@Context` 애노테이션을 붙여 지정한다. `UriInfo`는 나도 크게 써본적은 없어서, 굳이 없어도 무방하다.
-
-그 밖에 공통 API 객체에 넣고 싶은 메서드가 있다면 같이 포함해도 무방하다.
-
-``` java
-@Path("/userinfo")
-public class TestAPI extends API
-{
-    @GET
-    @Path("")
-	public String testResponse()
-    {
-        return request.getContextPath();
-    }
-}
-```
-
-`TestAPI` 객체에 `API` 추상 객체를 상속시킨다. `protected`로 선언되어 있으므로, `API`를 상속받는 모든 객체에서 `HttpServletRequest`를 비롯한 다른 Context에 접근할 수 있게 된다.
-
-### 그냥 구현하기
-
-어떠한 이유로든 상속으로 구현하기 싫다면, 아래와 같이 통짜로 그냥 집어넣으면 된다.
-
-``` java
-@Path("/userinfo")
-public class TestAPI
-{
-    @Context
-	protected HttpServletRequest request;
+	HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	connection.setRequestMethod("POST");
+	connection.setDoOutput(true);
+	connection.getOutputStream().write(paramBytes);
 	
-	@Context
-	protected HttpServletResponse response;
+	BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
 	
-	@Context
-	protected UriInfo uriInfo;
+	StringBuilder responseBuilder = new StringBuilder();
+	String temp;
+	
+	while ((temp = reader.readLine()) != null)
+	{
+		responseBuilder.append(temp);
+	}
+	
+	reader.close();
+	
+	ObjectMapper mapper = new ObjectMapper();
+	
+	JsonNode node = mapper.readTree(responseBuilder.toString());
+	
+	String access_token = node.get("access_token").textValue();
+	String token_type = node.get("token_type").textValue();
+	int expires_in = node.get("expires_in").intValue();
+	
+	return new OAuth2AccessToken(access_token, token_type, expires_in, null, null, responseBuilder.toString());
+}
 
-    @GET
-    @Path("")
-	public String testResponse()
-    {
-        return request.getContextPath();
-    }
+@Override
+public String getRefreshTokenEndpoint()
+{
+	return Util.builder(getAccessTokenEndpoint(), "?grant_type=refresh_token");
 }
 ```
 
-이렇게 해도 무방하다. 단, 각 controller API 마다 동일한 코드를 넣어줘야함은 잊지 말자.
+Access Token 재발급 코드는 위와 같다. 원래 `service.refreshAccessToken()` 메서드가 있긴 한데, `getRefreshTokenEndpoint` 처리가 플랫폼별로 다른건지, 제대로 동작이 안 되는 것 같다. 필자는 그냥 `HttpURLConnection`을 활용하여 OAuth2.0 스펙에 맞게끔 요청을 설계했다.
 
-# controller 구현하기
+`getRefreshTokenEndpoint` 메서드는 Refresh Token 관련 작업을 수행할 때 베이스가 되는 URL을 반환하는 메서드다. `getAccessTokenEndpoint` URL 뒤에 `?grant_type=refresh_token` 파라미터를 붙여 반환한다.
 
-구현해야할 controller는 총 5개다.
+`getRefreshTokenEndpoint`이 반환하는 URL을 기준삼아 `client_id`, `client_secret`, `refresh_token`을 파라미터로 담아 전송하여 응답을 받고, 여기서 필요한 내용을 추출하여 `OAuth2AccessToken` 객체를 생성하여 반환한다.
 
-* **LoginAPI** (/login)
-  * 플랫폼 인증 URL API
-  * 로그인 API
-  * 자동 로그인 API
-* **LogoutAPI** (/logout)
-  * 로그아웃 API
-* **UserInfoAPI** (/userinfo)
-  * 사용자 정보 API
+### 유저 정보 호출 메서드
 
-## LoginAPI 구현하기
-
-LoginAPI가 담당하는 API는 3개다. 즉, 3개의 메서드가 생성되어야한다.
+Access Token을 성공적으로 받아왔다면, 이를 통해 사용자 정보를 불러올 수 있다.
 
 ``` java
-@Path("/login")
-public class LoginAPI extends API
+public Response getUserInfo(String access) throws IOException, ExecutionException, InterruptedException
 {
-	// /api/login
+	OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, getUserInfoEndPoint());
+	service.signRequest(access, oAuthRequest);
+	
+	return service.execute(oAuthRequest);
 }
+
+abstract protected String getUserInfoEndPoint();
+	
+abstract public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException;
 ```
 
-controller 객체는 위와 같이 구현하면 된다.
+총 세 가지 메서드를 정의해야하는데, 하나는 직접 구현이고 나머지 두 개는 추상 메서드다.
 
-### 플랫폼 인증 URL API
+`getUserInfo` 메서드는 Access Token을 활용하여 해당 플랫폼의 UserInfo API로 요청을 보내 응답을 반환한다.
 
-플랫폼별로 인증 객체가 다르므로, 플랫폼을 구별할 필요가 있다.
+`OAuthRequest` 객체를 선언하여 요청 메서드와 대상 URL을 지정한다. 이후 `service.signRequest`를 통해 `service`에 요청을 등록하고, `service.execute`로 해당 요청을 수행한다.
 
-`@PathParam`을 통해 플랫폼을 구분한다.
+`getUserInfoEndPoint` 메서드는 각 플랫폼의 UserInfo API URL을 반환하는 추상 메서드로, 플랫폼마다 URL이 다르기 때문에 추상 객체로 선언하여 하위 플랫폼 인증 모듈에게 구현 책임을 위임한다.
+
+`getUserInfoBean`는 `getUserInfo`의 응답을 받아 `UserInfoBean` DTO로 변환하여 이를 반환하는 추상 메서드다. 참고로 `UserInfoBean`은 scribeJAVA에 포함된 것이 아니라, 직접 작성한 DTO 객체다.
+
+플랫폼마다 사용자 정보의 응답값이 다르기 때문에, 이를 적절히 대응하고 값을 반환하고자 설계된 메서드다. 이 역시 하위 플랫폼 인증 모듈에게 구현을 위임한다.
+
+### API 객체 반환 메서드
+
+마지막으로 scribeJAVA와 직접적인 관련은 없지만, API 관련 요소를 불러오기위한 메서드가 필요하다.
+
+OAuth2.0을 사용하기 위해 필요한 3가지 요소는 API Key, API Secret Key, Callback URL이 필요하다. 이를 하드코딩해서 코드 안에 녹이는 건 그리 좋은 방법은 아니다.
+
+플랫폼별 API 요소를 `.properties` 파일로 관리하여 `WEB-INF/` 아래에서 관리할 것이다.
+
+> <b class="orange-400">WEB-INF의 특별함</b>  
+> Tomcat의 `WEB-INF`는 조금 특별하다. 기본적으로 대상 경로 아래의 모든 폴더 및 파일은 웹 형태로 접근이 가능하지만, `WEB-INF` 아래에 위치하는 폴더 및 파일은 배포 대상에서 제외되므로 접근할 수 없다. 하지만 파일 시스템엔 여전히 존재하고 있으므로, 이에 구애받지 않는 JAVA 등 Backend에서의 접근엔 지장이 없다.  
+> API 키, 암호화 키 등 보안에 웹 서버 운영에 필요하면서도 각별한 보안이 요구되는 파일은 `WEB-INF` 아래에 관리하는 것이 좋다.
+
+이렇게 관리하고 `gitignore`에서 각 플랫폼의 설정파일을 제외하면 GitHub에 올려도 해당 파일을 제외하고 올린다. 따라서 이렇게 코드를 오픈해도 API 유출을 막을 수 있다.
+
+코드는 아래와 같다.
 
 ``` java
-@GET
-@Path("/{platform}")
-public Response authorizationUrlResponse(@PathParam("platform") String platform)
+protected static ApiKeyBean getApiKeyBean(String platform)
 {
-    return null;
+	ApiKeyBean apiKeyBean;
+	apiKeyBean = new ApiKeyBean();
+	
+	// API 키 획득 시도
+	try
+	{
+		HashMap<String, String> map = Util.getProperties(platform);
+		
+		apiKeyBean.setApi(map.get("api"));
+		apiKeyBean.setSecret(map.get("secret"));
+		apiKeyBean.setCallback(map.get("callback"));
+	}
+	
+	// 예외
+	catch (Exception e)
+	{
+		e.printStackTrace();
+	}
+	
+	return apiKeyBean;
 }
 ```
-
-GET `/api/login/{platform}` 요청은 `authorizationUrlResponse()`가 담당할 것이다.
-
-`@PathParam`인 platform이 인수로 할당된다.
-
-#### 요청
-
-``` txt
-GET https://api.itcode.dev/api/login/{platform}
-```
-
-|   구분   | 파라미터 형태 | 데이터 형식 |    내용     |
-| :------: | :-----------: | :---------: | :---------: |
-| platform |     Path      |  `String`   | 플랫폼 이름 |
-
-플랫폼 이름은 플랫폼의 소문자 표기와 동일하다.
-
-| 플랫폼 |   값   | URL                     |
-| :----: | :----: | :---------------------- |
-| NAVER  | naver  | GET `/api/login/naver`  |
-| Google | google | GET `/api/login/google` |
-| KAKAO  | kakao  | GET `/api/login/kakao`  |
-| GitHub | github | GET `/api/login/github` |
-
-#### 응답
-
-``` json
-{
-    "flag": true,
-    "title": "success",
-    "message": "naver authrorization url response success",
-    "body": "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=czCaqAOB1aAjNRk6N_Oq&redirect_uri=https%3A%2F%2Fproject.itcode.dev%2Foauth2%2Fcallback%3Fplatform%3Dnaver&state=24ca41d9-f432-4e0d-9b48-e5fd4ba49e6e"
-}
-```
-
-| 파라미터 | 데이터 형식 |      내용       |
-| :------: | :---------: | :-------------: |
-|   flag   |  `boolean`  | 응답 정상 여부  |
-|  title   |  `String`   |    응답 제목    |
-| message  |  `String`   |   응답 메세지   |
-|   body   |  `String`   | 플랫폼 인증 URL |
-
-위 요청은 NAVER 플랫폼으로 지정한 응답의 예시다.
-
-### 로그인 API
-
-마찬가지로 인증 토큰을 발급받기 위해 플랫폼을 구별한다.
 
 ``` java
-@POST
-@Path("/{platform}")
-public Response loginResponse(@PathParam("platform") String platform, LoginResponseBean loginResponseBean)
+@Getter
+@Setter
+public class ApiKeyBean
 {
-    return null;
+	// API 키
+	private String api;
+	
+	// API SECRET 키
+	private String secret;
+	
+	// 콜백 URL
+	private String callback;
 }
 ```
 
-플랫폼 로그인 후 반환되는 `code`, `state`를 통해 접근 토큰으로 교환하는 API다.
+`ApiKeyBean`은 직접 설계한 객체로, 위 코드와 같다. `lombok`이 적용되어 있다.
 
-`LoginResponseBean` 객체는 POST body에 담겨오는 JSON 객체를 매핑하기 위한 객체로, `code`, `state`의 Getter, Setter로 구성된다.
+JAVA는 `.properties` 파일을 읽어 key-value 형태의 HashMap으로 변환해주는 기능이 있다.
 
-POST `/api/login/{platform}` 요청은 `loginResponse()`가 담당할 것이다.
-
-#### 요청
-
-``` txt
-POST https://api.itcode.dev/api/login/{platform}
-
-{
-    "code": {code},
-    "state": "24ca41d9-f432-4e0d-9b48-e5fd4ba49e6e"
-}
+``` properties
+api={API_KEY}
+secret={SECRET_KEY}
+callback={CALLBACK_URL}
 ```
 
-|   구분   | 파라미터 형태 | 데이터 형식 |    내용     |
-| :------: | :-----------: | :---------: | :---------: |
-| platform |     Path      |  `String`   | 플랫폼 이름 |
-|   code   |     Form      |  `String`   |  인가 코드  |
-|  state   |     Form      |  `String`   | 고유 상태값 |
+설정 파일은 위와 같다.
 
-플랫폼 이름은 플랫폼의 소문자 표기와 동일하다.
-
-| 플랫폼 |   값   | URL                      |
-| :----: | :----: | :----------------------- |
-| NAVER  | naver  | POST `/api/login/naver`  |
-| Google | google | POST `/api/login/google` |
-| KAKAO  | kakao  | POST `/api/login/kakao`  |
-| GitHub | github | POST `/api/login/github` |
-
-#### 응답
-
-``` txt
-Set-Cookie: access={access}
-Set-Cookie: refresh={refresh}
-
-{
-    "flag": true,
-    "title": "success",
-    "message": "authorized success",
-    "body": null
-}
-```
-
-| 파라미터 | 데이터 형식 |      내용      |
-| :------: | :---------: | :------------: |
-|   flag   |  `boolean`  | 응답 정상 여부 |
-|  title   |  `String`   |   응답 제목    |
-| message  |  `String`   |  응답 메세지   |
-|   body   |   `null`    |      null      |
-
-`Set-Cookie` 헤더를 통해 자동으로 인증 정보가 담긴 토큰을 추가한다.
-
-### 자동 로그인 API
-
-자동로그인은 쿠키에 저장된 access 쿠키와 refresh 쿠키를 통해 이루어진다.
+## AuthModule 전체 코드
 
 ``` java
-@POST
-@Path("/auto")
-public Response autoLoginResponse(@CookieParam("access") String accessCookie, @CookieParam("refresh") String refreshCookie)
+package oauth.account.module;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.scribejava.core.builder.ServiceBuilderOAuth20;
+import com.github.scribejava.core.builder.api.DefaultApi20;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.AccessTokenRequestParams;
+import com.github.scribejava.core.oauth.OAuth20Service;
+import global.module.Util;
+import lombok.Getter;
+import oauth.account.bean.ApiKeyBean;
+import oauth.account.bean.UserInfoBean;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * 인증 모듈 추상 클래스
+ *
+ * @author RWB
+ * @since 2021.09.29 Wed 23:30:47
+ */
+abstract public class AuthModule extends DefaultApi20
 {
-    return null;
+	protected OAuth20Service service;
+	
+	@Getter
+	protected String unique;
+	
+	/**
+	 * 생성자 메서드
+	 *
+	 * @param serviceBuilder: [ServiceBuilderOAuth20] API 서비스 빌더
+	 * @param unique: [String] 유니크 키
+	 */
+	protected AuthModule(ServiceBuilderOAuth20 serviceBuilder, String unique)
+	{
+		service = serviceBuilder.build(this);
+		
+		this.unique = unique;
+	}
+	
+	abstract protected String getUserInfoEndPoint();
+	
+	abstract public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException;
+	
+	/**
+	 * 인증 URL 반환 메서드
+	 *
+	 * @param state: [String] 고유 상태값
+	 *
+	 * @return [String] 인증 URL
+	 */
+	public String getAuthorizationUrl(String state)
+	{
+		return service.getAuthorizationUrl(state);
+	}
+	
+	/**
+	 * 접근 토큰 반환 메서드
+	 *
+	 * @param code: [String] 인증 코드
+	 *
+	 * @return [OAuth2AccessToken] 접근 토큰
+	 *
+	 * @throws IOException 데이터 입출력 예외
+	 * @throws ExecutionException 실행 예외
+	 * @throws InterruptedException 인터럽트 예외
+	 */
+	public OAuth2AccessToken getAccessToken(String code) throws IOException, ExecutionException, InterruptedException
+	{
+		return service.getAccessToken(code);
+	}
+	
+	/**
+	 * 접근 토큰 반환 메서드
+	 *
+	 * @param params: [AccessTokenRequestParams] AccessTokenRequestParams 객체
+	 *
+	 * @return [OAuth2AccessToken] 접근 토큰
+	 *
+	 * @throws IOException 데이터 입출력 예외
+	 * @throws ExecutionException 실행 예외
+	 * @throws InterruptedException 인터럽트 예외
+	 */
+	public OAuth2AccessToken getAccessToken(AccessTokenRequestParams params) throws IOException, ExecutionException, InterruptedException
+	{
+		return service.getAccessToken(params);
+	}
+	
+	/**
+	 * 접근 토큰 갱신 및 반환 메서드
+	 *
+	 * @param refresh: [String] 리프레쉬 토큰
+	 *
+	 * @return [OAuth2AccessToken] 접근 토큰
+	 *
+	 * @throws IOException 데이터 입출력 예외
+	 */
+	public OAuth2AccessToken getRefreshAccessToken(String refresh) throws IOException
+	{
+		HashMap<String, String> params = new HashMap<>();
+		params.put("client_id", service.getApiKey());
+		params.put("client_secret", service.getApiSecret());
+		params.put("refresh_token", refresh);
+		
+		StringBuilder builder = new StringBuilder();
+		
+		for (Map.Entry<String, String> param : params.entrySet())
+		{
+			builder.append("&").append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode(param.getValue(), StandardCharsets.UTF_8));
+		}
+		
+		byte[] paramBytes = builder.toString().getBytes(StandardCharsets.UTF_8);
+		
+		URL url = new URL(getRefreshTokenEndpoint());
+		
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("POST");
+		connection.setDoOutput(true);
+		connection.getOutputStream().write(paramBytes);
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+		
+		StringBuilder responseBuilder = new StringBuilder();
+		String temp;
+		
+		while ((temp = reader.readLine()) != null)
+		{
+			responseBuilder.append(temp);
+		}
+		
+		reader.close();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		JsonNode node = mapper.readTree(responseBuilder.toString());
+		
+		String access_token = node.get("access_token").textValue();
+		String token_type = node.get("token_type").textValue();
+		int expires_in = node.get("expires_in").intValue();
+		
+		return new OAuth2AccessToken(access_token, token_type, expires_in, refresh, null, responseBuilder.toString());
+	}
+	
+	/**
+	 * 사용자 정보 응답 반환 메서드
+	 *
+	 * @param access: [String] 접근 토큰
+	 *
+	 * @return [Response] 사용자 정보 응답
+	 *
+	 * @throws IOException 데이터 입출력 예외
+	 * @throws ExecutionException 실행 예외
+	 * @throws InterruptedException 인터럽트 예외
+	 */
+	public Response getUserInfo(String access) throws IOException, ExecutionException, InterruptedException
+	{
+		OAuthRequest oAuthRequest = new OAuthRequest(Verb.GET, getUserInfoEndPoint());
+		service.signRequest(access, oAuthRequest);
+		
+		return service.execute(oAuthRequest);
+	}
+	
+	/**
+	 * 접근 토큰 재발급 요청 URL 반환 메서드
+	 *
+	 * @return [String] 접근 토큰 재발급 요청 URL
+	 */
+	@Override
+	public String getRefreshTokenEndpoint()
+	{
+		return Util.builder(getAccessTokenEndpoint(), "?grant_type=refresh_token");
+	}
+	
+	/**
+	 * API 키 객체 반환 메서드
+	 *
+	 * @param platform: [String] 플랫폼
+	 *
+	 * @return [ApiKeyBean] API 키 객체
+	 */
+	protected static ApiKeyBean getApiKeyBean(String platform)
+	{
+		ApiKeyBean apiKeyBean;
+		apiKeyBean = new ApiKeyBean();
+		
+		// API 키 획득 시도
+		try
+		{
+			HashMap<String, String> map = Util.getProperties(platform);
+			
+			apiKeyBean.setApi(map.get("api"));
+			apiKeyBean.setSecret(map.get("secret"));
+			apiKeyBean.setCallback(map.get("callback"));
+		}
+		
+		// 예외
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return apiKeyBean;
+	}
 }
 ```
 
-access 쿠키와 refresh 쿠키를 검증하여 이상이 없을 경우 쿠키 정보 확인 혹은 Access Token 재발급을 통해 로그인을 자동으로 수행한다.
+중간에 한 번씩 사용되는 `Util` 객체는 해당 프로젝트에서 범용적으로 사용되는 메서드를 모아놓은 공통 모듈이다.
 
-이미 쿠키 내부에 플랫폼 정보가 포함되어 있으므로, 플랫폼 구분은 필요 없다.
-
-POST `/api/login/auto` 요청은 `autoLoginResponse()`가 담당할 것이다.
-
-#### 요청
-
-``` txt
-POST https://api.itcode.dev/api/login/auto
-Cookie: access={access}; refresh={refresh};
-```
-
-|  구분   | 파라미터 형태 | 데이터 형식 |     내용      |
-| :-----: | :-----------: | :---------: | :-----------: |
-| access  |    Cookie     |  `String`   |   접근 토큰   |
-| refresh |    Cookie     |  `String`   | 리프레쉬 토큰 |
-
-#### 응답
-
-``` txt
-Set-Cookie: access={access}
-Set-Cookie: refresh={refresh}
-
-{
-    "flag": true,
-    "title": "success",
-    "message": "auto authorized success",
-    "body": null
-}
-```
-
-| 파라미터 | 데이터 형식 |      내용      |
-| :------: | :---------: | :------------: |
-|   flag   |  `boolean`  | 응답 정상 여부 |
-|  title   |  `String`   |   응답 제목    |
-| message  |  `String`   |  응답 메세지   |
-|   body   |   `null`    |      null      |
-
-`Set-Cookie` 헤더를 통해 자동으로 인증 정보가 담긴 토큰을 추가한다.
-
-만약 아직 access 쿠키가 살아있다면, 별도의 쿠키를 생성하지 않아도 되므로 `Set-Cookie` 헤더는 전송되지 않는다.
-
-## LogoutAPI 구현하기
-
-LogoutAPI가 담당하는 API는 1개다.
-
-``` java
-@Path("/logout")
-public class LogoutAPI extends API
-{
-	// /api/logout
-}
-```
-
-controller 객체는 위와 같이 구현하면 된다.
-
-### 로그아웃 API
-
-로그아웃은 단순히 access와 refresh 쿠키를 삭제하는 것으로 처리한다.
-
-``` java
-@POST
-@Path("")
-public Response logoutResponse()
-{
-    return null;
-}
-```
-
-이 두 쿠키는 `OnlyHttp` 속성을 적용할 예정이므로, JavaScript에선 삭제가 불가능하다.
-
-반드시 Backend 영역에서 쿠키를 삭제한 응답을 보내야만 한다.
-
-POST `/api/login/auto` 요청은 `autoLoginResponse()`가 담당할 것이다.
