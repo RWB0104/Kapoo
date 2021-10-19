@@ -1,8 +1,8 @@
 ---
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 3. scribeJAVA로 OAuth2.0 인증 모듈 구현하기"
-excerpt: ""
+excerpt: "OAuth 라이브러리인 scribeJAVA를 통해 인증 모듈을 구현해보자."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-14T22:12:25"
+date: "2021-10-20T01:26:40"
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "Jersey" ]
@@ -15,13 +15,17 @@ publish: true
 
 OAuth 라이브러리인 scribeJAVA를 통해 인증 모듈을 구현해보자.
 
-요청 흐름이 controller -> process -> module 순이므로, 요청의 가장 안 쪽에 존재하는 module 부터 구현한다.
+
+
+
 
 # OAuth 인증 모듈 구현하기
 
 이전 장에서도 언급했듯이, OAuth 인증 모듈은 그 공통된 특성으로 인해 추상 객체가 적합하다.
 
 scribeJAVA 모듈을 사용하여 추상 객체를 구현한다.
+
+
 
 ## scribeJAVA 적용하기
 
@@ -32,6 +36,8 @@ implementation group: 'com.github.scribejava', name: 'scribejava-apis', version:
 ```
 
 `build.gradle`의 dependencies에 위 의존성을 추가하는 것으로 scribeJAVA를 적용할 수 있다.
+
+
 
 ## scribeJAVA 사용하기
 
@@ -45,6 +51,7 @@ scribeJAVA는 `OAuth20Service`라는 객체를 중심으로 동작한다. `OAuth
 * 기타 OAuth 관련 요청 생성
 
 즉, OAuth 인증에 있어서 핵심이 되는 동작은 모두 이 `OAuth20Service` 객체를 중심으로 이루어진다.
+
 
 ### OAuth20Service 객체 생성하기
 
@@ -69,14 +76,17 @@ OAuth20Service service = new ServiceBuilder("{API_KEY}").apiSecret("{SECRET_KEY}
 
 이와 같이 생성할 수 있다. `build(this)`에서 `this`는 `DefaultApi20` 객체다. 아래는 `OAuth20Service` 객체의 메서드와 그 기능들이다.
 
-|        구분         |             내용              |
-| :-----------------: | :---------------------------: |
-| getAuthorizationUrl | 플랫폼 로그인 URL 반환 메서드 |
-|   getAccessToken    | OAuth2AccessToken 반환 메서드 |
-|     signRequest     |    OAuth 요청 등록 메서드     |
-|       execute       |    등록된 요청 수행 메서드    |
+|         구분          |             내용              |
+| :-------------------: | :---------------------------: |
+| `getAuthorizationUrl` | 플랫폼 로그인 URL 반환 메서드 |
+|   `getAccessToken`    | OAuth2AccessToken 반환 메서드 |
+|     `signRequest`     |    OAuth 요청 등록 메서드     |
+|       `execute`       |    등록된 요청 수행 메서드    |
 
 이 프로젝트에선 위 4가지 용도만 알아도 무방하다.
+
+
+
 
 ## AuthModule 생성하기
 
@@ -126,15 +136,24 @@ abstract public class AuthModule extends DefaultApi20
 
 이 모듈에 기본적인 로직을 작성하고, 플랫폼마다 구현이 모두 다를 경우, 추상 메서드를 선언하여 이를 상속받는 객체가 이를 직접 구현하도록 위임한다.
 
+
 ### 플랫폼 로그인 URL 반환 메서드
 
 scribeJAVA를 통해 플랫폼 로그인 URL 반환 메서드를 구현해보자. 예를 들어, 네이버 아이디로 로그인 버튼을 클릭하면 네이버 로그인 창이 뜰 것이다. 이 과정은 앞선 예시와 같은 플랫폼 로그인 창의 URL을 생성하는 것이다.
 
 `service`의 `getAuthorizationUrl` 메서드를 사용하는 것만으로 간단히 구현할 수 있다. `ServiceBuilderOAuth20`에 입력했던 API Key, Secret Key, Callback URL을 토대로 플랫폼 인증 URL을 생성하여 반환한다.
 
+``` java
+public String getAuthorizationUrl(String state)
+{
+	return service.getAuthorizationUrl(state);
+}
+```
+
 `getAuthorizationBaseUrl`의 반환 URL을 기준으로 생성한다.
 
 인수인 `state`는 고유 상태값으로, 서버에서 임의의 UUID를 하나 생성해서 사용한다. 이는 보안을 위한 세션 체크용으로 사용하는 값이다.
+
 
 ### OAuth2AccessToken 반환 메서드
 
@@ -148,6 +167,7 @@ public OAuth2AccessToken getAccessToken(String code) throws IOException, Executi
 ```
 
 마찬가지로 `service`의 `getAccessToken` 메서드를 사용하여 간단히 구현할 수 있다. 인수인 `code`를 Service Provider에 전달하면, Access, Refresh Token을 제공한다.
+
 
 ### Access Token 갱신 메서드
 
@@ -224,6 +244,7 @@ Access Token 재발급 코드는 위와 같다. 원래 `service.refreshAccessTok
 
 `getRefreshTokenEndpoint`이 반환하는 URL을 기준삼아 `client_id`, `client_secret`, `refresh_token`을 파라미터로 담아 전송하여 응답을 받고, 여기서 필요한 내용을 추출하여 `OAuth2AccessToken` 객체를 생성하여 반환한다.
 
+
 ### 유저 정보 호출 메서드
 
 Access Token을 성공적으로 받아왔다면, 이를 통해 사용자 정보를 불러올 수 있다.
@@ -253,6 +274,37 @@ abstract public UserInfoBean getUserInfoBean(String body) throws JsonProcessingE
 `getUserInfoBean`는 `getUserInfo`의 응답을 받아 `UserInfoBean` DTO로 변환하여 이를 반환하는 추상 메서드다. 참고로 `UserInfoBean`은 scribeJAVA에 포함된 것이 아니라, 직접 작성한 DTO 객체다.
 
 플랫폼마다 사용자 정보의 응답값이 다르기 때문에, 이를 적절히 대응하고 값을 반환하고자 설계된 메서드다. 이 역시 하위 플랫폼 인증 모듈에게 구현을 위임한다.
+
+
+### 연동 해제 메서드
+
+플랫폼으로부터 완전히 연동을 해제하는 메서드가 필요하다.
+
+이는 단순히 로그아웃이 아니라, 플랫폼과 해당 사용자의 연결을 완전히 파기한다. 이 과정에서 사용자의 관련 데이터 및 정보 제공 동의 이력 역시 같이 파기된다.
+
+연동 해제 후 다시 로그인을 하게 되면, 처음 로그인을 수행하는 것 처럼 약관과 정보 제공 동의를 다시 선택해야한다.
+
+``` java
+abstract public boolean deleteInfo(String access) throws IOException, ExecutionException, InterruptedException;
+```
+
+연동 해제의 경우 OAuth의 범주에선 살짝 벗어나있어서, 이 역시도 동일한 인터페이스를 가지진 않는다. 각 플랫폼마다의 구현이 천차만별이므로 추상 메서드로 정의한다.
+
+
+### 정보 제공 동의 갱신 URL 반환 메서드
+
+서비스를 운영하다보면 사용자에게 요구할 정보가 변경되기도 한다.
+
+만약 한참 잘 운영하다가 사용자에게 추가적인 정보를 받아야만 한다면? 정보를 호출해도 동의 내역 자체가 없으니 관련 정보는 얻을 수조차 없다.
+
+이러한 상황에 대비해 정보 제공 동의를 갱신하는 기능이 필요하다.
+
+``` java
+abstract public String getUpdateAuthorizationUrl(String state);
+```
+
+정보 제공 동의 갱신 역시 플랫폼마다 천차만별로 조금씩 다른 것 같다. 마찬가지로 추상 메서드로 정의하자.
+
 
 ### API 객체 반환 메서드
 
@@ -324,6 +376,8 @@ callback={CALLBACK_URL}
 
 설정 파일은 위와 같다. 이 메서드를 활용하여 각 플랫폼별 API 설정파일을 불러오도록 구성한다.
 
+
+
 ## AuthModule 전체 코드
 
 ``` java
@@ -385,6 +439,10 @@ abstract public class AuthModule extends DefaultApi20
 	abstract protected String getUserInfoEndPoint();
 	
 	abstract public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException;
+	
+	abstract public boolean deleteInfo(String access) throws IOException, ExecutionException, InterruptedException;
+	
+	abstract public String getUpdateAuthorizationUrl(String state);
 	
 	/**
 	 * 인증 URL 반환 메서드
@@ -551,6 +609,10 @@ abstract public class AuthModule extends DefaultApi20
 전체 소스는 위와 같다.
 
 중간에 한 번씩 사용되는 `Util` 객체는 해당 프로젝트에서 범용적으로 사용되는 메서드를 모아놓은 공통 모듈이다.
+
+
+
+
 
 # 정리
 

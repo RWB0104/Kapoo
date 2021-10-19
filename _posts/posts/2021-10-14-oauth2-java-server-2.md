@@ -92,11 +92,20 @@ RESTful API를 효과적으로 설계하기 위해 Jersey 프레임워크를 사
 
 controller는 <span class="primary">정의된 process로 요청을 전달하고, process가 반환하는 응답을 요청자에게 다시 전달</span>한다.
 
-* GET `/login/:platform` - 플랫폼별 인증 URL 반환 API
-* POST `/login/:platform` - 플랫폼별 로그인 API
-* POST `/login/auto` - 자동 로그인 API
-* POST `/logout` - 로그아웃 API
-* GET `/userinfo` - 유저 정보 반환 API
+* `/login`
+  * GET `/:platform` - 플랫폼별 인증 URL 반환 API
+  * PUT `/put` - 정보 제공 동의 갱신 URL 반환 API
+  * POST `/:platform` - 플랫폼별 로그인 API
+  * POST `/auto` - 자동 로그인 API
+
+* `/logout`
+  * POST `/` - 로그아웃 API
+
+* `/revoke`
+  * POST `/` - 연동 해제 API
+
+* `/userinfo`
+  * POST `/` - 사용자 정보 API
 
 해당 프로젝트에선 위 `controller`들이 구현될 것이다.
 
@@ -176,10 +185,12 @@ OAuth는 객체라기보단 일종의 개념에 더 가깝다. 이렇게 추상�
 구현해야할 기능은 아래와 같다.
 
 * 플랫폼 로그인 URL 생성 로직
+* 정보 제공 동의 갱신 URL 생성 로직
 * 서비스 로그인 로직 (인가코드 -> Access Token)
 * 자동 로그인 로직
 * 로그아웃 로직
 * 사용자 정보 호출 로직
+* 연동 해제 로직
 
 최소한 위 기능이 구현되어야한다.
 
@@ -202,3 +213,5 @@ Jersey가 URL을 캐치하여 정해진 process로 전달한다. process는 인�
 지금까지 인증 서버에 대한 설계를 진행했다. 다음 장엔 위 설계를 토대로 인증 서버를 본격적으로 구축해본다. 그 중에서도 scribeJAVA와 OAuth 인증 모듈에 대해 다룰 예정이다.
 
 구축 순서는 module -> process -> controller 순이다.
+
+가장 안쪽에 위치한 프로세스가 module이므로, module에서부터 바깥쪽으로 순차적으로 구현할 예정이다.
