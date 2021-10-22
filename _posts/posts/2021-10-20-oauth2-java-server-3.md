@@ -68,6 +68,9 @@ API Key, API Secret Key, Callback URL은 기본적으로 반드시 필요하며,
 
 API Key, API Secret Key는 각 플랫폼에 OAuth 서비스 등록 시 부여해주며, Callback URL은 본인이 직접 정해서 입력하면 된다. 등록되지 않은 Callback URL로 로그인을 수행하면 오류가 출력된다. Callback URL은 여러개를 지정할 수 있다.
 
+> <b class="orange-600">Callback URL의 등록 이유</b>  
+> Callback URL이 사전에 등록된 URL이 아닐경우 오류가 뜨는 이유는 보안 때문이다. 플랫폼 로그인 URL은 Callback URL이 URL 파라미터 형태로 입력되어있어서 탈취 및 변조가 매우 간단하다. 이러한 상황에서 Callback URL의 적절한 검증을 수행하지 않는다면 Callback URL을 임의 URL로 변경하여 code 혹은 Access Token을 탈취할 수 있게 된다.
+
 각 플랫폼 별 OAuth 서비스를 등록하는 방법은 추후에 다루고, 일단 이런 부가적인 부분들은 준비가 됐다고 가정한다.
 
 ``` java
@@ -137,9 +140,9 @@ abstract public class AuthModule extends DefaultApi20
 이 모듈에 기본적인 로직을 작성하고, 플랫폼마다 구현이 모두 다를 경우, 추상 메서드를 선언하여 이를 상속받는 객체가 이를 직접 구현하도록 위임한다.
 
 
-### 플랫폼 로그인 URL 반환 메서드
+### 인증 URL 반환 메서드
 
-scribeJAVA를 통해 플랫폼 로그인 URL 반환 메서드를 구현해보자. 예를 들어, 네이버 아이디로 로그인 버튼을 클릭하면 네이버 로그인 창이 뜰 것이다. 이 과정은 앞선 예시와 같은 플랫폼 로그인 창의 URL을 생성하는 것이다.
+scribeJAVA를 통해 인증 URL 반환 메서드를 구현해보자. 예를 들어, 네이버 아이디로 로그인 버튼을 클릭하면 네이버 로그인 창이 뜰 것이다. 이 과정은 앞선 예시와 같은 플랫폼 로그인 창의 URL을 생성하는 것이다.
 
 `service`의 `getAuthorizationUrl` 메서드를 사용하는 것만으로 간단히 구현할 수 있다. `ServiceBuilderOAuth20`에 입력했던 API Key, Secret Key, Callback URL을 토대로 플랫폼 인증 URL을 생성하여 반환한다.
 
@@ -155,9 +158,9 @@ public String getAuthorizationUrl(String state)
 인수인 `state`는 고유 상태값으로, 서버에서 임의의 UUID를 하나 생성해서 사용한다. 이는 보안을 위한 세션 체크용으로 사용하는 값이다.
 
 
-### OAuth2AccessToken 반환 메서드
+### 접근 토큰 반환 메서드
 
-이번엔 `OAuth2AccessToken` 객체를 반환하는 메서드를 구현해보자. `OAuth2AccessToken`는 Access, Refresh Token. 토큰 종류, 유효시간을 가지는 scribeJAVA의 객체다.
+이번엔 `OAuth2AccessToken` 접근 토큰 객체를 반환하는 메서드를 구현해보자. `OAuth2AccessToken`는 Access, Refresh Token. 토큰 종류, 유효시간을 가지는 scribeJAVA의 객체다.
 
 ``` java
 public OAuth2AccessToken getAccessToken(String code) throws IOException, ExecutionException, InterruptedException
@@ -169,7 +172,7 @@ public OAuth2AccessToken getAccessToken(String code) throws IOException, Executi
 마찬가지로 `service`의 `getAccessToken` 메서드를 사용하여 간단히 구현할 수 있다. 인수인 `code`를 Service Provider에 전달하면, Access, Refresh Token을 제공한다.
 
 
-### Access Token 갱신 메서드
+### 접근 토큰 갱신 및 반환 메서드
 
 Access Token은 보안을 위해 만료시간이 굉장히 짧거나 세션 만료 시 같이 만료되는 것이 보통이다. 이 경우 원래대로라면 다시 인증을 받아야하고, 경우에 따라 사용자에게 플랫폼 로그인 수행을 다시 요구할 수도 있다.
 
@@ -245,7 +248,7 @@ Access Token 재발급 코드는 위와 같다. 원래 `service.refreshAccessTok
 `getRefreshTokenEndpoint`이 반환하는 URL을 기준삼아 `client_id`, `client_secret`, `refresh_token`을 파라미터로 담아 전송하여 응답을 받고, 여기서 필요한 내용을 추출하여 `OAuth2AccessToken` 객체를 생성하여 반환한다.
 
 
-### 유저 정보 호출 메서드
+### 사용자 정보 응답 반환 메서드
 
 Access Token을 성공적으로 받아왔다면, 이를 통해 사용자 정보를 불러올 수 있다.
 
@@ -276,7 +279,7 @@ abstract public UserInfoBean getUserInfoBean(String body) throws JsonProcessingE
 플랫폼마다 사용자 정보의 응답값이 다르기 때문에, 이를 적절히 대응하고 값을 반환하고자 설계된 메서드다. 이 역시 하위 플랫폼 인증 모듈에게 구현을 위임한다.
 
 
-### 연동 해제 메서드
+### 연동 해제 결과 반환 메서드
 
 플랫폼으로부터 완전히 연동을 해제하는 메서드가 필요하다.
 

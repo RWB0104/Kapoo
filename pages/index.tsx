@@ -40,8 +40,6 @@ export default function Home({ images, posts, projects }: Props): ReactElement |
 {
 	const index = getRandomIndex(images.length);
 
-	console.dir(index);
-
 	return (
 		<Box component="section">
 			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={`/img/screener/${images[index]}`} url="" />
