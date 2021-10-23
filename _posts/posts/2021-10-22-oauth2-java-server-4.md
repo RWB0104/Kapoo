@@ -1,11 +1,11 @@
 ---
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 4. NAVER OAuth 서비스 신청 및 모듈 구현하기"
-excerpt: ""
+excerpt: "첫 번째 플랫폼으로, NAVER에 OAuth 서비스를 신청하고 인증 모듈을 구현한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
 date: "2021-10-22T22:25:16"
 type: "posts"
 category: "JAVA"
-tag: [ "JAVA", "OAuth2.0", "Jersey" ]
+tag: [ "JAVA", "OAuth2.0", "scribeJAVA" ]
 group: "OAuth2.0 인증서버 구축기"
 comment: true
 publish: true
@@ -35,7 +35,7 @@ NAVER의 OAuth는 네이버 아이디로 로그인. 속칭 네아로라는 명�
 
 <br />
 
-상단 헤더의 [Application - 애플리케이션 등록] 메뉴로 접속하자.
+상단 헤더의 [<span class="lightBlue-600">Application</span> - <span class="lightBlue-600">애플리케이션 등록</span>] 메뉴로 접속하자.
 
 
 
@@ -61,7 +61,7 @@ OAuth 정보를 관리하게 될 애플리케이션을 등록하자.
 
 사용할 API를 선택한다.
 
-네이버와 관련된 여러 API를 제공하지만, 지금은 프로젝트의 목적에 맞게 네아로 서비스를 선택한다.
+네이버와 관련된 여러 API를 제공하지만, 지금은 프로젝트의 목적에 맞게 <span class="primary">네아로 서비스</span>를 선택한다.
 
 <br />
 
@@ -199,7 +199,7 @@ public static NaverAuthModule getInstance()
 | `SERVICE_BUILDER` | `ServiceBuilderOAuth20` | OAuth2.0 서비스 빌더 |
 |    `INSTANCE`     |    `NaverAuthModule`    |       인스턴스       |
 
-정의된 변수는 전부 `static final`로 선언되어 있어서, 인스턴스 생성 시 한 번만 선언되며 재할당이 불가능하도록 관리한다.
+정의된 변수는 전부 `static final`로 선언되어 있어서, <span class="red-400">인스턴스 생성 시 한 번만 선언되며 재할당이 불가능</span>하도록 관리한다.
 
 `static{ }` 구문을 통해 인스턴스 생성 시 API 정보를 할당하도록 구성했다.
 
@@ -243,7 +243,7 @@ OAuth2.0 서비스를 수행함에 있어서 필요한 URL은 위와 같다. 이
 
 ## 인증 URL 반환 메서드
 
-네이버 플랫폼 로그인 URL을 반환하는 기능을 구현한다.
+<span class="blue-500">네이버 플랫폼 로그인 URL을 반환하는 기능</span>을 구현한다.
 
 우선 API를 살펴보자.
 
@@ -275,13 +275,13 @@ GET/POST https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id={
 
 문자열 연산으로 URL을 직접 설계할 수도 있지만, `service.getAuthorizationUrl()` 메서드를 통해 URL을 간편하게 생성할 수 있다.
 
-이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, 따로 구현하지 않아도 된다.
+이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, <span class="red-400">따로 구현하지 않아도 된다.</span>
 
 
 
 ## 접근 토큰 반환 메서드
 
-로그인 결과로 Code를 전달받으므로 Access Token으로 교환하는 기능을 구현한다.
+로그인 결과로 Code를 전달받으므로 <span class="blue-500">Access Token으로 교환하는 기능</span>을 구현한다.
 
 네이버 API는 아래와 같다.
 
@@ -325,13 +325,13 @@ GET/POST https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&clie
 
 `service.getAccessToken()` 메서드의 응답으로 위 JSON 응답의 DTO 객체인 `OAuth2AccessToken`를 얻을 수 있다.
 
-마찬가지로 `AuthModule`에 선언된 공통 메서드를 활용하면 되므로, 굳이 구현할 필요 없다.
+마찬가지로 `AuthModule`에 선언된 공통 메서드를 활용하면 되므로, 굳이 <span class="red-400">구현할 필요 없다.</span>
 
 
 
 ## 접근 토큰 갱신 및 반환 메서드
 
-Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 Access Token을 재발급 받을 수 있다.
+Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 <span class="blue-500">Access Token을 재발급</span> 받을 수 있다.
 
 이 Refresh Token은 인증 권한은 없지만, Access Token을 재발급받는 권한을 가진다.
 
@@ -372,13 +372,13 @@ GET/POST https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id
 
 <br />
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 사용자 정보 응답 반환 메서드
 
-Access Token으로 유저 정보를 호출하는 기능을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
+<span class="blue-500">Access Token으로 유저 정보를 호출하는 기능</span>을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
 
 네이버 API는 아래와 같다.
 
@@ -437,15 +437,15 @@ Authorization: Bearer {:access_token}
 
 id는 우리가 생각하는 `xxx@naver.com` 형태의 아이디가 아니라 아이디별로 부여받는 고유 해쉬값이다.
 
-네이버 아이디는 `response.email`로 얻을 수 있지만, 제한적이다. 만약 [내 정보 - 연락처 이메일]을 다른 메일로 변경했다면 네이버 메일이 아닌 해당 메일이 표시된다. 공식적으로 프로필 API에서 네이버 메일을 확정적으로 얻을 수 있는 방법은 없다.
+네이버 아이디는 `response.email`로 얻을 수 있지만, 제한적이다. 만약 [<span class="lightBlue-600">내 정보</span> - <span class="lightBlue-600">연락처 이메일</span>]을 다른 메일로 변경했다면 네이버 메일이 아닌 해당 메일이 표시된다. <span class="red-400">공식적으로 프로필 API에서 네이버 메일을 확정적으로 얻을 수 있는 방법은 없다.</span>
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 유저 정보 객체 반환 메서드
 
-네이버의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
+<span class="blue-500">네이버의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱</span>하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
 
 이 프로젝트에선 이름, 이메일, 프로필사진 URL만을 사용하므로, 응답에서 해당 값을 빼내어 객체에 담는다.
 
@@ -471,13 +471,13 @@ public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException
 
 <br />
 
-응답 형식에 맞추어 필요한 값을 추출한다. 만약, 사용자가 정보 제공에 동의하지 않았을 경우 대상 객체가 `null`을 반환한다. 네이버는 필수/추가에 상관없이 동의/거부를 할 수 있기 때문에 데이터에 대한 `null` 처리를 반드시 해야한다.
+응답 형식에 맞추어 필요한 값을 추출한다. 만약, 사용자가 정보 제공에 동의하지 않았을 경우 대상 객체가 `null`을 반환한다. <span class="red-600">네이버는 필수/추가에 상관없이 동의/거부를 할 수 있기 때문</span>에 데이터에 대한 `null` 처리를 반드시 해야한다.
 
 
 
 ## 연동 해제 결과 반환 메서드
 
-네이버 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 네이버와의 연동을 해제하여 정보를 완전히 삭제할 필요가 있다.
+네이버 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 <span class="blue-500">네이버와의 연동을 해제하여 정보를 완전히 삭제</span>할 필요가 있다.
 
 네이버 API는 아래와 같다.
 
@@ -544,7 +544,7 @@ public boolean deleteInfo(String access) throws IOException, ExecutionException,
 
 ## 정보 제공 동의 갱신 URL 반환 메서드
 
-서비스 운영 중 추가적인 사용자 정보가 필요하거나 필요 없을 때, 사용자 정보 동의 갱신을 통해 동의 정보를 다시 지정할 수 있다.
+서비스 운영 중 추가적인 사용자 정보가 필요하거나 필요 없을 때, <span class="blue-500">사용자 정보 동의 갱신을 통해 동의 정보를 다시 지정</span>할 수 있다.
 
 API는 아래와 같다.
 
@@ -748,6 +748,8 @@ public class NaverAuthModule extends AuthModule
 ```
 
 정리한 전체 코드는 위와 같다.
+
+
 
 
 

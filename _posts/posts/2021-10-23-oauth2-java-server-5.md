@@ -1,11 +1,11 @@
 ---
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 5. Google OAuth 서비스 신청 및 모듈 구현하기"
-excerpt: ""
+excerpt: "두 번째 플랫폼으로, Google에 OAuth 서비스를 신청하고 인증 모듈을 구현한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
 date: "2021-10-23T01:51:53"
 type: "posts"
 category: "JAVA"
-tag: [ "JAVA", "OAuth2.0", "Jersey" ]
+tag: [ "JAVA", "OAuth2.0", "scribeJAVA" ]
 group: "OAuth2.0 인증서버 구축기"
 comment: true
 publish: true
@@ -29,11 +29,11 @@ API 정보를 얻기 위해 Google OAuth 서비스를 신청하자.
 
 로그인 후 [Google Cloud Platform](https://console.cloud.google.com/home/dashboard)에 접속하자.
 
-Google은 Google Cloud Platform(GCP)에서 OAuth 서비스를 신청할 수 있다.
+Google은 <span class="lightBlue-600">Google Cloud Platform(GCP)</span>에서 OAuth 서비스를 신청할 수 있다.
 
 <br />
 
-좌측 사이드바의 [API 및 서비스]를 클릭하여 관련 메뉴에 접근할 수 있다.
+좌측 사이드바의 [<span class="lightBlue-600">API 및 서비스</span>]를 클릭하여 관련 메뉴에 접근할 수 있다.
 
 
 
@@ -49,16 +49,16 @@ OAuth 정보를 관리하게 될 프로젝트를 생성하자. 이름은 아무�
 
 OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 정보 제공 동의 그거 맞다.
 
-좌측 사이드바의 [OAuth 동의 화면] 메뉴에서 구성 가능하다.
+좌측 사이드바의 [<span class="lightBlue-600">OAuth 동의 화면</span>] 메뉴에서 구성 가능하다.
 
 
 
 ### 3-1. UserType 설정
 
-* 내부 - 정해진 그룹에서만 사용 가능. 폐쇄적이므로 앱 심사 과정을 생략할 수 있음.
-* 외부 - 모든 사용자가 사용 가능. 개방적이므로 앱 심사 과정이 필요함.
+* 내부 - <span class="teal-500">정해진 그룹에서만 사용</span> 가능. 폐쇄적이므로 앱 심사 과정을 생략할 수 있음.
+* 외부 - <span class="teal-500">모든 사용자가 사용</span> 가능. 개방적이므로 앱 심사 과정이 필요함.
 
-원하는 타입으로 선택한다. 이 프로젝트에선 [외부]로 선택한다.
+원하는 타입으로 선택한다. 이 프로젝트에선 [<span class="lightBlue-600">외부</span>]로 선택한다.
 
 
 
@@ -78,7 +78,7 @@ Access Token이 가지는 범위를 지정한다.
 
 이 프로젝트에선 프로필 정보 정도만 사용할 계획이므로 `/auth/userinfo.email`, `/auth/userinfo.profile`을 선택한다.
 
-위 두 정보는 매우 기본적인 정보라 [민감하지 않은 범위]로 표시된다. 다른 범위를 추가할 수도 있지만, [민감한 범위] 혹은 [제한된 범위]를 선택할 경우 앱 심사 시 추가 자료를 제출해야할 수도 있다는 점을 감안하자.
+위 두 정보는 매우 기본적인 정보라 [<span class="red-300">민감하지 않은 범위</span>]로 표시된다. 다른 범위를 추가할 수도 있지만, [<span class="red-500">민감한 범위</span>] 혹은 [<span class="red-700">제한된 범위</span>]를 선택할 경우 앱 심사 시 추가 자료를 제출해야할 수도 있다는 점을 감안하자.
 
 
 
@@ -96,11 +96,11 @@ Access Token이 가지는 범위를 지정한다.
 
 ## 4. API 생성하기
 
-좌측 사이드바에서 [사용자 인증 정보] 메뉴로 들어가자.
+좌측 사이드바에서 [<span class="lightBlue-600">사용자 인증 정보</span>] 메뉴로 들어가자.
 
 ![image](https://user-images.githubusercontent.com/50317129/138471904-75045dc5-9a8b-4323-8af9-01c41d1292f0.png)
 
-[OAuth 클라이언트 ID]를 선택하여 API키를 하나 생성하자.
+[<span class="lightBlue-600">OAuth 클라이언트 ID</span>]를 선택하여 API키를 하나 생성하자.
 
 <br />
 
@@ -108,10 +108,10 @@ Access Token이 가지는 범위를 지정한다.
 
 이름은 원하는대로 입력한다.
 
-* 승인된 자바스크립트 원본 - `Implicit Grant` 전용. Google API SDK로 JavaScript에서 API를 직접 호출할 경우, 호출을 수행하는 URL을 입력한다.
-* 승인된 리디렉션 URI - `Authorization Code Grant` 전용. 인증 후 리다이렉션할 URI를 입력한다.
+* <span class="teal-500">승인된 자바스크립트 원본</span> - `Implicit Grant` 전용. Google API SDK로 JavaScript에서 API를 직접 호출할 경우, 호출을 수행하는 URL을 입력한다.
+* <span class="teal-500">승인된 리디렉션 URI</span> - `Authorization Code Grant` 전용. 인증 후 리다이렉션할 URI를 입력한다.
 
-이 프로젝트는 `Authorization Code Grant`를 차용하므로 [승인된 리디렉션 URI]를 선택하고 리다이렉션할 URI를 지정한다.
+이 프로젝트는 `Authorization Code Grant`를 차용하므로 [<span class="lightBlue-600">승인된 리디렉션 URI</span>]를 선택하고 리다이렉션할 URI를 지정한다.
 
 플랫폼 로그인 창 호출 시 등록된 URI가 아니라면 오류를 표시하니 정확하게 입력할 것.
 
@@ -125,7 +125,7 @@ Access Token이 가지는 범위를 지정한다.
 
 ![image](https://user-images.githubusercontent.com/50317129/138473426-3429bf2b-0c5b-49a2-a7cc-b209cf9f126f.png)
 
-상단의 [보안 비밀 재설정]을 통해 클라이언트 보안 비밀키를 갱신할 수 있다.
+상단의 [<span class="lightBlue-600">보안 비밀 재설정</span>]을 통해 클라이언트 보안 비밀키를 갱신할 수 있다.
 
 
 
@@ -267,7 +267,7 @@ OAuth2.0 서비스를 수행함에 있어서 필요한 URL은 위와 같다. 이
 
 ## 인증 URL 반환 메서드
 
-Google 플랫폼 로그인 URL을 반환하는 기능을 구현한다.
+<span class="blue-500">Google 플랫폼 로그인 URL을 반환하는 기능</span>을 구현한다.
 
 우선 API를 살펴보자.
 
@@ -309,17 +309,17 @@ Google은 일반적인 URL로 로그인을 수행하면 첫 로그인 시에만 
 
 이 정보는 손실되면 안 되므로 쿠키나 로컬 스토리지가 아닌 DB에 저장하는 것이 적합하다. 하지만 이 프로젝트는 사용자의 정보를 따로 저장하지 않는다.
 
-이 때 로그인 URL에 위 파라미터를 붙이면 항상 새로 인증을 수행하므로 Refresh Token을 로그인 시마다 제공한다.
+이 때 <span class="orange-500">로그인 URL에 위 파라미터를 붙이면 항상 새로 인증을 수행하므로 Refresh Token을 로그인 시마다 제공</span>한다.
 
 <br />
 
-이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, 따로 구현하지 않아도 된다.
+이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, <span class="red-400">따로 구현하지 않아도 된다.</span>
 
 
 
 ## 접근 토큰 반환 메서드
 
-로그인 결과로 Code를 전달받으므로 Access Token으로 교환하는 기능을 구현한다.
+로그인 결과로 Code를 전달받으므로 <span class="blue-500">Access Token으로 교환하는 기능</span>을 구현한다.
 
 Google API는 아래와 같다.
 
@@ -365,13 +365,13 @@ POST https://oauth2.googleapis.com/token?grant_type=authorization_code&client_id
 
 `service.getAccessToken()` 메서드의 응답으로 위 JSON 응답의 DTO 객체인 `OAuth2AccessToken`를 얻을 수 있다.
 
-마찬가지로 `AuthModule`에 선언된 공통 메서드를 활용하면 되므로, 굳이 구현할 필요 없다.
+마찬가지로 `AuthModule`에 선언된 공통 메서드를 활용하면 되므로, 굳이 <span class="red-400">구현할 필요 없다.</span>
 
 
 
 ## 접근 토큰 갱신 및 반환 메서드
 
-Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 Access Token을 재발급 받을 수 있다.
+Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 <span class="blue-500">Access Token을 재발급</span> 받을 수 있다.
 
 이 Refresh Token은 인증 권한은 없지만, Access Token을 재발급받는 권한을 가진다.
 
@@ -414,13 +414,13 @@ POST https://oauth2.googleapis.com/token?grant_type=refresh_token&client_id={:cl
 
 <br />
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 사용자 정보 응답 반환 메서드
 
-Access Token으로 유저 정보를 호출하는 기능을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
+<span class="blue-500">Access Token으로 유저 정보를 호출하는 기능</span>을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
 
 Google API는 아래와 같다.
 
@@ -471,13 +471,13 @@ Authorization: Bearer {:access_token}
 
 id는 우리가 생각하는 `xxx@google.com` 형태의 아이디가 아니라 아이디별로 부여받는 고유 해쉬값이다.
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 유저 정보 객체 반환 메서드
 
-Google의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
+<span class="blue-500">Google의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱</span>하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
 
 이 프로젝트에선 이름, 이메일, 프로필사진 URL만을 사용하므로, 응답에서 해당 값을 빼내어 객체에 담는다.
 
@@ -509,7 +509,7 @@ public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException
 
 ## 연동 해제 결과 반환 메서드
 
-Google 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 Google과의 연동을 해제하여 정보를 완전히 삭제할 필요가 있다.
+Google 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 <span class="blue-500">Google과의 연동을 해제하여 정보를 완전히 삭제</span>할 필요가 있다.
 
 Google API는 아래와 같다.
 
@@ -558,7 +558,7 @@ public boolean deleteInfo(String access) throws IOException, ExecutionException,
 
 ## 정보 제공 동의 갱신 URL 반환 메서드
 
-Google의 경우, 프로필 정보는 별도의 동의를 요구하지 않는다. 따라서 해당 기능은 구현에서 제외한다.
+Google의 경우, 프로필 정보는 별도의 동의를 요구하지 않는다. 따라서 해당 기능은 <span class="red-400">구현에서 제외</span>한다.
 
 <br />
 

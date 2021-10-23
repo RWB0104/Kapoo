@@ -1,11 +1,11 @@
 ---
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 6. KAKAO OAuth 서비스 신청 및 모듈 구현하기"
-excerpt: ""
+excerpt: "세 번째 플랫폼으로, KAKAO에 OAuth 서비스를 신청하고 인증 모듈을 구현한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
 date: "2021-10-23T03:51:04"
 type: "posts"
 category: "JAVA"
-tag: [ "JAVA", "OAuth2.0", "Jersey" ]
+tag: [ "JAVA", "OAuth2.0", "scribeJAVA" ]
 group: "OAuth2.0 인증서버 구축기"
 comment: true
 publish: true
@@ -47,12 +47,12 @@ OAuth 정보를 관리하게 될 애플리케이션을 생성하자. 이름은 �
 
 OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 정보 제공 동의 그거 맞다.
 
-좌측 사이드바의 [카카오 로그인 - 동의항목] 메뉴에서 구성 가능하다. 설정 가능한 상태는 아래와 같다.
+좌측 사이드바의 [<span class="lightBlue-600">카카오 로그인</span> - <span class="lightBlue-600">동의항목</span>] 메뉴에서 구성 가능하다. 설정 가능한 상태는 아래와 같다.
 
-* 필수 동의 - 반드시 동의해야하는 항목. 해당 항목을 동의하지 않으면 로그인 불가능.
-* 선택 동의 - 사용자의 선택에 따라 동의하는 항목. 동의 여부가 로그인에 영향을 미치지 않음
-* 이용 중 동의 - 로그인 시에는 표출되지 않음. 추후 API를 통해 필요할 때 별도로 동의 요청
-* 사용 안함 - 사용하지 않음
+* <span class="teal-500">필수 동의</span> - 반드시 동의해야하는 항목. 해당 항목을 동의하지 않으면 로그인 불가능.
+* <span class="teal-500">선택 동의</span> - 사용자의 선택에 따라 동의하는 항목. 동의 여부가 로그인에 영향을 미치지 않음
+* <span class="teal-500">이용 중 동의</span> - 로그인 시에는 표출되지 않음. 추후 API를 통해 필요할 때 별도로 동의 요청
+* <span class="teal-500">사용 안함</span> - 사용하지 않음
 
 사용자에게 어떤 항목도 동의를 강제하지 않는 네이버와 달리, 카카오는 필수 사항에 대해선 반드시 동의를 받아야만 로그인이 가능하도록 구성되어있다.
 
@@ -67,7 +67,7 @@ OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 
 
 로그인 후 `code`를 전달할 리다이렉트 URI를 지정한다.
 
-좌측 사이드바의 [카카오 로그인] 메뉴에서 구성 가능하다.
+좌측 사이드바의 [<span class="lightBlue-600">카카오 로그인</span>] 메뉴에서 구성 가능하다.
 
 줄바꿈으로 구분하여 여러 URL을 등록할 수 있다.
 
@@ -75,7 +75,7 @@ OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 
 
 ## 5. 보안 활성화
 
-좌측 사이드바의 [카카오 로그인 - 보안] 메뉴에서 Client Secret를 활성화한다.
+좌측 사이드바의 [<span class="lightBlue-600">카카오 로그인</span> - <span class="lightBlue-600">보안</span>] 메뉴에서 Client Secret를 활성화한다.
 
 이를 활성화해야 Secret키를 사용할 수 있다.
 
@@ -83,13 +83,13 @@ OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 
 
 ## 6. 카카오 로그인 활성화
 
-좌측 사이드바의 [카카오 로그인] 메뉴에서 활성화로 체크하여 애플리케이션을 활성화할 수 있다.
+좌측 사이드바의 [<span class="lightBlue-600">카카오 로그인</span>] 메뉴에서 활성화로 체크하여 애플리케이션을 활성화할 수 있다.
 
 
 
 ## 7. API 키 확인
 
-애플리케이션 메인인 [요약 정보]에서 바로 확인할 수 있다.
+애플리케이션 메인인 [<span class="lightBlue-600">요약 정보</span>]에서 바로 확인할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/50317129/138510821-9bfd446e-3912-4f17-8bc3-8e746818cce7.png)
 
@@ -238,7 +238,7 @@ OAuth2.0 서비스를 수행함에 있어서 필요한 URL은 위와 같다. 이
 
 ## 인증 URL 반환 메서드
 
-카카오 플랫폼 로그인 URL을 반환하는 기능을 구현한다.
+<span class="blue-500">카카오 플랫폼 로그인 URL을 반환하는 기능</span>을 구현한다.
 
 우선 API를 살펴보자.
 
@@ -271,15 +271,15 @@ GET https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={:clien
 
 <br />
 
-이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, 따로 구현하지 않아도 된다.
+이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, <span class="red-400">따로 구현하지 않아도 된다.</span>
 
 
 
 ## 접근 토큰 반환 메서드
 
-로그인 결과로 Code를 전달받으므로 Access Token으로 교환하는 기능을 구현한다.
+로그인 결과로 Code를 전달받으므로 <span class="blue-500">Access Token으로 교환하는 기능</span>을 구현한다.
 
-카카오 API는 아래와 같다. scribeJAVA가 카카오에 대한 처리를 잘 못 하는건지, 동일한 인터페이스를 사용하면 파라미터를 제대로 입력하지 않아 오류가 뜬다. 때문에 어쩔 수 없이 직접 요청을 생성하여 사용해야한다.
+카카오 API는 아래와 같다. scribeJAVA가 카카오에 대한 처리를 잘 못 하는건지, 동일한 인터페이스를 사용하면 파라미터를 제대로 입력하지 않아 오류가 뜬다. 때문에 어쩔 수 없이 <span class="red-400">직접 요청을 생성하여 사용</span>해야한다.
 
 <br />
 
@@ -325,13 +325,13 @@ POST https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id
 
 `AccessTokenRequestParams` 객체로 요청을 생성하여 `service.getAccessToken`으로 응답을 받는다.
 
-라이브러리의 처리 문제로 `AuthModule`의 공통 메서드가 아닌, 별도로 오버라이딩한 메서드를 사용해야한다.
+라이브러리의 처리 문제로 `AuthModule`의 공통 메서드가 아닌, <span class="red-600">별도로 오버라이딩한 메서드를 사용</span>해야한다.
 
 
 
 ## 접근 토큰 갱신 및 반환 메서드
 
-Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 Access Token을 재발급 받을 수 있다.
+Access Token은 만료시간이 한시간 정도로 매우 짧다. Access Token이 만료될 경우, 사용자에게 플랫폼 로그인을 통해 인증 정보를 다시 요구해야하지만 Refresh Token이 있다면 별도의 절차 없이 서비스 내부에서 <span class="blue-500">Access Token을 재발급</span> 받을 수 있다.
 
 이 Refresh Token은 인증 권한은 없지만, Access Token을 재발급받는 권한을 가진다.
 
@@ -376,13 +376,13 @@ POST https://kauth.kakao.com/oauth/token?grant_type=refresh_token&client_id={:cl
 
 <br />
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 사용자 정보 응답 반환 메서드
 
-Access Token으로 유저 정보를 호출하는 기능을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
+<span class="blue-500">Access Token으로 유저 정보를 호출하는 기능</span>을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
 
 카카오 API는 아래와 같다.
 
@@ -441,13 +441,13 @@ Authorization: Bearer {:access_token}
 
 id는 우리가 생각하는 `xxx@google.com` 형태의 아이디가 아니라 아이디별로 부여받는 고유 해쉬값이다.
 
-`AuthModule`의 공통 메서드로 대체 가능하므로 별도로 구현하지 않는다.
+`AuthModule`의 공통 메서드로 대체 가능하므로 <span class="red-400">별도로 구현하지 않는다.</span>
 
 
 
 ## 유저 정보 객체 반환 메서드
 
-카카오의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
+<span class="blue-500">카카오의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱</span>하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
 
 이 프로젝트에선 이름, 이메일, 프로필사진 URL만을 사용하므로, 응답에서 해당 값을 빼내어 객체에 담는다.
 
@@ -479,7 +479,7 @@ public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException
 
 ## 연동 해제 결과 반환 메서드
 
-카카오 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 카카오와의 연동을 해제하여 정보를 완전히 삭제할 필요가 있다.
+카카오 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 <span class="blue-500">카카오와의 연동을 해제하여 정보를 완전히 삭제</span>할 필요가 있다.
 
 카카오 API는 아래와 같다.
 
@@ -534,6 +534,8 @@ public boolean deleteInfo(String access) throws IOException, ExecutionException,
 
 
 ## 정보 제공 동의 갱신 URL 반환 메서드
+
+서비스 운영 중 추가적인 사용자 정보가 필요하거나 필요 없을 때, <span class="blue-500">사용자 정보 동의 갱신을 통해 동의 정보를 다시 지정</span>할 수 있다.
 
 카카오의 경우, 동의하지않은 선택 정보에 대해서만 동의가 가능하며, 이미 동의한 데이터는 별도의 API로 해제해야한다.
 

@@ -1,11 +1,11 @@
 ---
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 7. GitHub OAuth 서비스 신청 및 모듈 구현하기"
-excerpt: ""
+excerpt: "마지막 플랫폼으로, GitHub에 OAuth 서비스를 신청하고 인증 모듈을 구현한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
 date: "2021-10-23T05:08:46"
 type: "posts"
 category: "JAVA"
-tag: [ "JAVA", "OAuth2.0", "Jersey" ]
+tag: [ "JAVA", "OAuth2.0", "scribeJAVA" ]
 group: "OAuth2.0 인증서버 구축기"
 comment: true
 publish: true
@@ -29,9 +29,9 @@ API 정보를 얻기 위해 GitHub OAuth 서비스를 신청하자.
 
 로그인 후 [GitHub Developer Settings](https://github.com/settings/developers)에 접속하자.
 
-상단 프로필 메뉴에서 [Setting - Developer Settings - OAuth Apps]를 클릭하여 접속할 수도 있다.
+상단 프로필 메뉴에서 [<span class="lightBlue-600">Setting</span> - <span class="lightBlue-600">Developer Settings</span> - <span class="lightBlue-600">OAuth Apps</span>]를 클릭하여 접속할 수도 있다.
 
-[New OAuth App]을 클릭하여 새로운 애플리케이션을 생성하자.
+[<span class="lightBlue-600">New OAuth App</span>]을 클릭하여 새로운 애플리케이션을 생성하자.
 
 <br />
 
@@ -41,7 +41,7 @@ API 정보를 얻기 위해 GitHub OAuth 서비스를 신청하자.
 
 ## 2. Client Secret 생성하기
 
-생성한 애플리케이션을 클릭한다. [Generate a new client secret]을 클릭하여 새로운 Client Secret을 발급받는다. 암호 확인 과정이 필요하다.
+생성한 애플리케이션을 클릭한다. [<span class="lightBlue-600">Generate a new client secret</span>]을 클릭하여 새로운 Client Secret을 발급받는다. 암호 확인 과정이 필요하다.
 
 생성 직후 키를 보여주며, 창을 닫게 되면 해당 키는 다시 확인할 수 없으므로 적당한 곳에 임시로 기록해두던지 하자.
 
@@ -51,13 +51,13 @@ API 정보를 얻기 위해 GitHub OAuth 서비스를 신청하자.
 
 ## 3. API 키 확인
 
-메인 화면인 [General]에서 확인할 수 있다.
+메인 화면인 [<span class="lightBlue-600">General</span>]에서 확인할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/50317129/138511105-63c370c1-2131-4ab7-871d-9eb023ea1374.png)
 
-Client ID는 상시 확인 가능하고, Client Secret은 발급 직후에만 일시적으로 확인 가능하다는 점을 주의하자
+<span class="primary">Client ID</span>는 상시 확인 가능하고, <span class="primary">Client Secret</span>은 발급 직후에만 일시적으로 확인 가능하다는 점을 주의하자
 
-GitHub OAuth는 이게 끝이다. 별도의 정보 동의 과정도 요구하지 않는다. 그도 그럴 것이, GitHub의 OAuth 키는 프로필 정보만 불러올 수 있기 때문.
+GitHub OAuth는 이게 끝이다. <span class="red-400">별도의 정보 동의 과정도 요구하지 않는다.</span> 그도 그럴 것이, GitHub의 OAuth 키는 프로필 정보만 불러올 수 있기 때문.
 
 
 
@@ -195,7 +195,7 @@ OAuth2.0 서비스를 수행함에 있어서 필요한 URL은 위와 같다. 이
 
 ## 인증 URL 반환 메서드
 
-GitHub 플랫폼 로그인 URL을 반환하는 기능을 구현한다.
+<span class="blue-500">GitHub 플랫폼 로그인 URL을 반환하는 기능</span>을 구현한다.
 
 우선 API를 살펴보자.
 
@@ -228,17 +228,17 @@ GitHub 플랫폼 로그인 API는 위와 같다. 메서드가 요청의 URL을 �
 
 <br />
 
-이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, 따로 구현하지 않아도 된다.
+이미 `AuthModule`에 공통 메서드로 선언된 게 있으므로, <span class="red-400">따로 구현하지 않아도 된다.</span>
 
 
 
 ## 접근 토큰 반환 메서드
 
-로그인 결과로 Code를 전달받으므로 Access Token으로 교환하는 기능을 구현한다.
+로그인 결과로 Code를 전달받으므로 <span class="blue-500">Access Token으로 교환하는 기능</span>을 구현한다.
 
 GitHub는 `Accept` 헤더로 JSON MIME를 지정해야하는데, 아쉽게도 scribeJAVA에는 임의 헤더를 넣어 인증 URL을 생성하는 API는 존재하지 않는다.
 
-Access Token도 없으므로 HttpURLConnection으로 직접 구현해야한다.
+Access Token도 없으므로 <span class="red-400">HttpURLConnection으로 직접 구현</span>해야한다.
 
 <br />
 
@@ -279,13 +279,13 @@ Accept: application/json
 
 `AccessTokenRequestParams` 객체로 요청을 생성하여 `service.getAccessToken`으로 응답을 받는다.
 
-특이하게 응답 헤더를 반드시 지정해야하므로, 별도로 오버라이딩해서 사용한다.
+특이하게 응답 헤더를 반드시 지정해야하므로, <span class="red-600">별도로 오버라이딩해서 사용</span>한다.
 
 
 
 ## 접근 토큰 갱신 및 반환 메서드
 
-위 응답을 보면 알 수 있듯이, GitHub는 Refresh Token이 따로 존재하지 않는다. Access Token의 만료시간도 없다. GitHub는 그냥 Access Token 하나만 다루게 된다.
+위 응답을 보면 알 수 있듯이, <span class="orange-600">GitHub는 Refresh Token이 따로 존재하지 않는다.</span> Access Token의 만료시간도 없다. GitHub는 그냥 Access Token 하나만 다루게 된다.
 
 Refresh Token이 없으므로 기능 자체가 쓸모가 없다. 따라서 Github에선 건들지 않는다.
 
@@ -293,7 +293,7 @@ Refresh Token이 없으므로 기능 자체가 쓸모가 없다. 따라서 Githu
 
 ## 사용자 정보 응답 반환 메서드
 
-Access Token으로 유저 정보를 호출하는 기능을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
+<span class="blue-500">Access Token으로 유저 정보를 호출하는 기능</span>을 구현한다. 발급받은 Access Token을 실제로 유의미하게 쓰는 부분이다.
 
 GitHub API는 아래와 같다.
 
@@ -369,7 +369,7 @@ Authorization: token {:access_token}
 
 ## 유저 정보 객체 반환 메서드
 
-GitHub의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
+<span class="blue-500">GitHub의 유저 정보 호출 API 응답 형식에 맞게끔 응답을 파싱</span>하여 `UserInfoBean`로 반환하는 메서드를 구현한다.
 
 이 프로젝트에선 이름, 이메일, 프로필사진 URL만을 사용하므로, 응답에서 해당 값을 빼내어 객체에 담는다.
 
@@ -401,9 +401,9 @@ public UserInfoBean getUserInfoBean(String body) throws JsonProcessingException
 
 ## 연동 해제 결과 반환 메서드
 
-카카오 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 카카오와의 연동을 해제하여 정보를 완전히 삭제할 필요가 있다.
+카카오 아이디로 처음 로그인을 하면 정보 제공 동의를 수행하는데, 나중에 다시 로그인을 하면 이러한 동의 과정이 생략된다. 즉, 플랫폼에서 첫 로그인 시 정보 제공 동의를 받아 어딘가로부터 저장한다는 뜻이다. 만약 사용자가 서비스로부터 회원 탈퇴를 수행한다면 <span class="blue-500">GitHub와의 연동을 해제하여 정보를 완전히 삭제</span>할 필요가 있다.
 
-카카오 API는 아래와 같다.
+GitHub API는 아래와 같다.
 
 <br />
 
@@ -469,7 +469,7 @@ public boolean deleteInfo(String access) throws IOException, ExecutionException,
 
 ## 정보 제공 동의 갱신 URL 반환 메서드
 
-GitHub는 별도의 동의가 이루어지지 않으므로 무시한다.
+<span class="red-400">GitHub는 별도의 동의가 이루어지지 않으므로 무시</span>한다.
 
 
 
@@ -748,4 +748,6 @@ public class GithubAuthModule extends AuthModule
 
 # 정리
 
-이로써 모든 플랫폼에 대한 인증 모듈 구현이 끝났다. 다음 장에서는 모듈 위 쪽의 프로세스를 구현할 예정이다.
+이로써 모든 플랫폼에 대한 인증 모듈 구현이 끝났다. `AuthModule`를 활용함으로써 최소한의 코드로 각 플랫폼에 대응하는 모듈을 구현했다. 만약 추후 다른 OAuth를 붙일 경우, 위와 같은 방식으로 모듈을 추가 구성하면 된다.
+
+다음 장에서는 모듈을 호출해서 사용하는 영역인 프로세스를 구현할 예정이다.
