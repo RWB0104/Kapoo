@@ -2,7 +2,7 @@
 title: "[React] 𝝅번째 알파카의 개발 낙서장 프로젝트"
 excerpt: "어쩌다 독학하게 된 React를 유의미하게 써먹기위해 직접 만든 개발 블로그. 정적 블로그를 위한 NextJS를 활용하여 개발했다. Typescript를 사용하고 있으며, SCSS를 통한 CSS-in-CSS 방식으로 디자인을 렌더링한다. 라즈베리파이를 구매하면서 서버 구축을 위해 같이 구입한 도메인 itcode.dev를 적용했다. blog.itcode.dev로, 서브도메인 blog를 사용했다."
 coverImage: "https://user-images.githubusercontent.com/50317129/138741601-2bca31f3-d08a-4789-9c99-6a835883fbe4.png"
-date: "2021-10-25T22:41:21"
+date: "2021-10-26T02:37:30"
 type: "projects"
 category: "React"
 tag: [ "NextJS", "React", "Typescript", "SCSS" ]
