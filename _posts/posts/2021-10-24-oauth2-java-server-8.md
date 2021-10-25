@@ -56,7 +56,7 @@ publish: true
 
 ## Process 추상 클래스 구현
 
-여러 프로세스에 공통 로직을 적용하기 위해, 모든 프로세스 객체에 상속한 Process 추상 클래스를 구현한다.
+여러 프로세스에 공통 로직을 적용하기 위해, 모든 프로세스 객체에 상속할 Process 추상 클래스를 구현한다.
 
 ``` java
 package global.module;
@@ -64,10 +64,10 @@ package global.module;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import oauth.account.module.AuthModule;
-import oauth.platform.module.GithubAuthModule;
-import oauth.platform.module.GoogleAuthModule;
-import oauth.platform.module.KakaoAuthModule;
-import oauth.platform.module.NaverAuthModule;
+import oauth.account.module.GithubAuthModule;
+import oauth.account.module.GoogleAuthModule;
+import oauth.account.module.KakaoAuthModule;
+import oauth.account.module.NaverAuthModule;
 
 /**
  * 프로세스 추상 클래스
@@ -123,7 +123,7 @@ abstract public class Process
 
 <br />
 
-`getAuthModule`은 각 플랫폼 이름에 따라 해당하는 인스턴스를 반환하는 메서드다. 인증 모듈은 주로 프로세스에서 많이 사용하게 되므로, `Process`에 선언하여 이를 상속하는 모든 프로세스 클래스가 해당 메서드에 접근할 수 있도록 구성한다.
+`getAuthModule`은 <span class="primary">각 플랫폼 이름에 따라 해당하는 인스턴스를 반환</span>하는 메서드다. 인증 모듈은 주로 프로세스에서 많이 사용하게 되므로, `Process`에 선언하여 이를 상속하는 모든 프로세스 클래스가 해당 메서드에 접근할 수 있도록 구성한다.
 
 이러한 구성으로 동일한 프로세스에서 플랫폼별로 `AuthModule` 객체를 호출하여 플랫폼별로 선언한 메서드를 사용할 수 있다.
 
@@ -144,7 +144,7 @@ abstract public class Process
 
 ### 인증 URL 응답 반환 메서드
 
-플랫폼 로그인을 위한 인증 URL을 반환하는 메서드다.
+<span class="primary">플랫폼 로그인을 위한 인증 URL을 반환</span>하는 메서드다.
 
 `AuthModule`의 `getAuthorizationUrl` 메서드를 통해 URL를 얻고, 이 내용을 담아 응답 객체로 만들어 반환한다.
 
@@ -193,9 +193,7 @@ public Response getAuthorizationUrlResponse(String platform)
 
 해당 `state`를 세션 애트리뷰트에도 등록한다.
 
--- 사진 --
-
-플랫폼 로그인은 여러 창을 거치기 때문에, 요청 하이재킹이 매우 쉽다. 이 `state`를 통해 로그인 과정 전체가 동일한 세션에서 이루어지고 있는지 검증할 수 있다.
+플랫폼 로그인은 여러 창을 거치기 때문에, 요청 하이재킹이 매우 쉽다. 이 과정에서 세션 정보가 손상되기 쉬우므로 `state`를 통해 로그인 과정 전체가 동일한 세션에서 이루어지고 있는지 검증할 수 있다.
 
 만약 URL의 `state`와 세션의 `state`가 일치하지 않거나, 세션 정보가 아예 없다면 정상적인 로그인 절차가 아니라고 판단할 수 있다.
 
@@ -205,7 +203,7 @@ public Response getAuthorizationUrlResponse(String platform)
 
 ### 사용자 정보 응답 반환 메서드
 
-Access Token을 통해 사용자 응답을 받는 메서드다.
+<span class="primary">Access Token을 통해 사용자 응답</span>을 받는 메서드다.
 
 `AuthModule`의 `getUserInfoBean` 메서드를 통해 `UserInfoBean` 객체를 얻고, 이 내용을 담아 응답 객체로 만들어 반환한다.
 
@@ -259,7 +257,7 @@ public Response getUserInfoResponse(String accessCookie)
 }
 ```
 
-추후 설명하겠지만, 로그인 시 Access Token과 Refresh Token을 각각 플랫폼과 함께 JWT로 생성하여 access, refresh 쿠키로 저장한다.
+추후 설명하겠지만, <span class="green-600">로그인 시 Access Token과 Refresh Token을 각각 플랫폼과 함께 JWT로 생성</span>하여 access, refresh 쿠키로 저장한다.
 
 각 JWT 쿠키에 플랫폼 정보가 있으므로, access 쿠키만 있어도 Access Token와 그 플랫폼을 찾을 수 있다.
 
@@ -426,7 +424,7 @@ public class AccountGetProcess extends Process
 
 ### 로그인 응답 반환 메서드
 
-플랫폼 로그인 이후 발급되는 `code`를 통해 Access Token으로 교환하여 로그인을 수행하는 메서드다.
+플랫폼 로그인 이후 발급되는 `code`를 통해 <span class="primary">Access Token으로 교환하여 로그인을 수행</span>하는 메서드다.
 
 `AuthModule`의 `getAccessToken` 메서드를 통해 `OAuth2AccessToken` 객체를 반환받아 Access Token, Refresh Token을 추출한다.
 
@@ -504,7 +502,7 @@ public Response postLoginResponse(String platform, String code, String state)
 }
 ```
 
-`AccountGetProcess`의 `getAuthorizationUrlResponse` 동작 중 세션 애트리뷰트에 `state`를 입력했었는데, 여기서 그 세션값을 통해 검증을 수행한다.
+`AccountGetProcess`의 `getAuthorizationUrlResponse` 동작 중 세션 애트리뷰트에 `state`를 입력했었는데, 여기서 그 <span class="orange-500">세션값을 통해 검증을 수행</span>한다.
 
 URL을 통해 인수로 받은 `state`와 세션의 `state`를 추출하여 비교하고, 동일하지 않을 경우 예외를 발생시킨다. 중간에 URL을 탈취해서 전혀 다른 `code`를 삽입하여 요청을 보내도 이를 방지할 수 있는 보안책인 셈이다.
 
@@ -546,7 +544,7 @@ Access Token과 Refresh Token을 전달받아 JWT 쿠키로 만든다.
 
 <br />
 
-JWT의 내용은 위와 같다. 쿠키에 해당 JWT를 담아 생성한다. access 쿠키는 세션 쿠키로 생성하여 브라우저 종료 시 즉시 쿠키가 즉시 소멸되도록 구성하고, refresh 쿠키는 어느 정도 보관기간을 두어 추후 다시 사용할 수 있도록 구성한다.
+JWT의 내용은 위와 같다. 쿠키에 해당 JWT를 담아 생성한다. <span class="green-400">access 쿠키는 세션 쿠키로 생성하여 브라우저 종료 시 즉시 쿠키가 즉시 소멸</span>되도록 구성하고, <span class="green-400">refresh 쿠키는 어느 정도 보관기간을 두어 추후 다시 사용할 수 있도록 구성</span>한다.
 
 쿠키 도메인은 `.itcode.dev`로 지정되어있는데, 그 이유는 프론트엔드와 백엔드가 전혀 다른 환경에서 동작하기 때문이다.
 
@@ -561,7 +559,7 @@ JWT의 내용은 위와 같다. 쿠키에 해당 JWT를 담아 생성한다. acc
 
 ### 자동 로그인 응답 반환 메서드
 
-만약 이전에 로그인을 수행한 이력이 있어, access, refresh 쿠키를 이미 가지고 있을 경우 이를 활용하여 자동 로그인을 수행하는 메서드다.
+만약 이전에 로그인을 수행한 이력이 있어, <span class="primary">access, refresh 쿠키를 이미 가지고 있을 경우 이를 활용하여 자동 로그인을 수행</span>하는 메서드다.
 
 ``` java
 public Response postAutoLoginResponse(String accessCookie, String refreshCookie)
@@ -656,7 +654,7 @@ public Response postAutoLoginResponse(String accessCookie, String refreshCookie)
 
 access 쿠키가 이미 있을 경우, 이미 인증 정보가 있기 때문에 별다른 동작을 취하지 않고 넘어간다.
 
-만약 access 쿠키는 없고 refresh 쿠키만 있다면, 이를 통해 Access Token을 재발급받아 인증 정보를 갱신하여 자동으로 로그인을 수행한다.
+만약 access 쿠키는 없고 <span class="orange-400">refresh 쿠키만 있다면, 이를 통해 Access Token을 재발급받아 인증 정보를 갱신</span>하여 자동으로 로그인을 수행한다.
 
 로그인 로직 자체는 기존 로그인 메서드와 동일하며, Access Token만 Refresh Token을 통해 갱신하여 사용한다.
 
@@ -664,7 +662,7 @@ access 쿠키가 이미 있을 경우, 이미 인증 정보가 있기 때문에 
 
 ### 로그아웃 응답 반환 메서드
 
-인증 정보를 제거하여 로그아웃을 수행하는 메서드.
+<span class="primary">인증 정보를 제거</span>하여 로그아웃을 수행하는 메서드.
 
 ``` java
 public Response postLogoutResponse()
@@ -988,7 +986,7 @@ public class AccountPostProcess extends Process
 
 ### 정보 제공 동의 갱신 URL 응답 반환 메서드
 
-정보 제공 동의를 새로 갱신하는 URL을 반환하는 메서드다.
+<span class="primary">정보 제공 동의를 새로 갱신하는 URL을 반환</span>하는 메서드다.
 
 ``` java
 public Response putUpdateAuthorizationUrl(String accessCookie)
@@ -1058,7 +1056,7 @@ public Response putUpdateAuthorizationUrl(String accessCookie)
 
 <br />
 
-즉, 정보 제공 동의는 새로운 정보를 갱신하여 로그인을 다시 수행하는 것과 동일하다.
+즉, <span class="blue-400">정보 제공 동의는 새로운 정보를 갱신하여 로그인을 다시 수행하는 것과 동일</span>하다.
 
 
 
@@ -1183,7 +1181,7 @@ public class AccountPutProcess extends Process
 
 ### 연동 해제 응답 반환 메서드
 
-플랫폼과의 연동을 완전히 해제하고 로그아웃을 수행하는 메서드다.
+<span class="primary">플랫폼과의 연동을 완전히 해제하고 로그아웃을 수행</span>하는 메서드다.
 
 ``` java
 public Response deleteInfoResponse(String accessCookie)
@@ -1344,3 +1342,5 @@ public class AccountDeleteProcess extends Process
 이로써 프로젝트 구현을 완료했다. `NaverAuthModule`, `GoogleAuthModule` 같은 각기 다른 인증모듈을 `AuthModule`이라는 상위 객체로 반환받은 덕분에 복잡한 분기나 중복 코드를 막을 수 있었다.
 
 파이프라인이 나눠지는 순간, 이와 연결된 하위 파이프라인까지 강제로 분리되는 경향이 있다. 가장 밑단인 모듈을 적절히 설계한 덕분에, 그 상위 파이프라인들은 하나로 관리할 수 있음을 확인할 수 있다.
+
+다음 장에서는 Jersey를 통한 컨트롤러 구성 방법에 대해 다룬다.

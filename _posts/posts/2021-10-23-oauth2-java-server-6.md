@@ -581,7 +581,7 @@ null을 반환하여 동작을 수행하지 않도록 처리한다. 추후 프�
 ## 전체 코드
 
 ``` java
-package oauth.platform.module;
+package oauth.account.module;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -595,7 +595,6 @@ import com.github.scribejava.core.oauth.AccessTokenRequestParams;
 import global.module.Util;
 import oauth.account.bean.ApiKeyBean;
 import oauth.account.bean.UserInfoBean;
-import oauth.account.module.AuthModule;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -624,7 +623,7 @@ public class KakaoAuthModule extends AuthModule
 		CALLBACK_URL = apiKeyBean.getCallback();
 	}
 	
-	private static final ServiceBuilderOAuth20 SERVICE_BUILDER = new ServiceBuilder(API_KEY).apiSecret(SECRET_KEY).callback(CALLBACK_URL).debug();
+	private static final ServiceBuilderOAuth20 SERVICE_BUILDER = new ServiceBuilder(API_KEY).apiSecret(SECRET_KEY).callback(CALLBACK_URL);
 	
 	private static final KakaoAuthModule INSTANCE = new KakaoAuthModule(SERVICE_BUILDER);
 	

@@ -41,7 +41,7 @@ Jersey에 대해 자세히 알아보고 싶다면 [이전 글](/2021/10/25/oauth
 
 ## Jersey 요청용 URL 지정
 
-이전 글에서도 다룬 내용이다. Jersey를 적용했다고 모든 요청을 Jersey가 받는 건 아니고, 직접 Jersey가 요청을 위임받도록 지정해야한다.
+이전 글에서도 다룬 내용이다. Jersey를 적용했다고 모든 요청을 Jersey가 받는 건 아니고, 직접 <span class="primary">Jersey가 요청을 위임받도록 지정</span>해야한다.
 
 임의의 패키지에 클래스를 하나 생성한다. 이름은 상관없다. 이 프로젝트에선 `main.java.global.module` 패키지에 `App.java`로 생성했다.
 
@@ -85,7 +85,7 @@ URL 설정은 위 코드 하나면 끝난다.
 
 보다시피, 요청자/응답자 간의 도메인이 달라서, 그냥 보냈다간 십중팔구 CORS의 늪에 빠지게 된다.
 
-이를 해결하기 위해 서버에 CORS 설정을 지정하여 원하는 도메인에 요청을 보낼 수 있도록 설정한다.
+이를 해결하기 위해 <span class="primary">서버에 CORS 설정을 지정하여 원하는 도메인에 요청을 보낼 수 있도록 설정</span>한다.
 
 <br />
 
@@ -242,7 +242,7 @@ public class LoginAPI extends API
 
 ### 플랫폼 인증 URL API
 
-플랫폼 로그인을 수행하기 위한 플랫폼별 인증 URL을 반환하는 API.
+플랫폼 로그인을 수행하기 위한 <span class="primary">플랫폼별 인증 URL을 반환</span>하는 API.
 
 플랫폼별로 인증 객체가 다르므로, 플랫폼을 구별할 필요가 있다.
 
@@ -308,7 +308,7 @@ GET https://api.itcode.dev/oauth2/api/login/{platform}
 
 ### 정보 제공 동의 갱신 URL API
 
-정보 제공 동의 갱신을 위한 URL을 반환하는 API.
+<span class="primary">정보 제공 동의 갱신을 위한 URL을 반환</span>하는 API.
 
 ``` java
 @PUT
@@ -364,7 +364,7 @@ access 쿠키의 인증정보 내부에 플랫폼이 이미 포함되어 있으�
 
 ### 로그인 API
 
-로그인을 수행하는 API.
+<span class="primary">로그인을 수행</span>하는 API.
 
 플랫폼을 구분한다.
 
@@ -395,8 +395,8 @@ POST https://api.itcode.dev/oauth2/api/login/{:platform}
 |  parameter  | type  |   data   | required |     description      |
 | :---------: | :---: | :------: | :------: | :------------------: |
 | {:platform} | path  | `String` |    Y     | 플랫폼 (소문자 표기) |
-| {:code} | body  | `String` |    Y     | 접근 코드 |
-| {:state} | body  | `String` |    Y     | 고유 상태값 |
+|   {:code}   | body  | `String` |    Y     |      접근 코드       |
+|  {:state}   | body  | `String` |    Y     |     고유 상태값      |
 
 플랫폼 이름은 플랫폼의 소문자 표기와 동일하다.
 
@@ -406,6 +406,8 @@ POST https://api.itcode.dev/oauth2/api/login/{:platform}
 | Google | google | POST `/api/login/google` |
 | KAKAO  | kakao  | POST `/api/login/kakao`  |
 | GitHub | github | POST `/api/login/github` |
+
+
 
 #### 응답
 
@@ -434,7 +436,7 @@ Set-Cookie: refresh={refresh}
 
 ### 자동 로그인 API
 
-기존에 남아있던 인증정보를 활용하여 상호작용 없이 로그인을 자동으로 수행하는 API.
+기존에 남아있던 인증정보를 활용하여 <span class="primary">상호작용 없이 로그인을 자동으로 수행</span>하는 API.
 
 ``` java
 @POST
@@ -609,7 +611,7 @@ public class LogoutAPI extends API
 
 ### 로그아웃 API
 
-로그아웃을 수행하는 API.
+<span class="primary">로그아웃을 수행</span>하는 API.
 
 쿠키에 저장된 인증 정보를 삭제한다.
 
@@ -724,7 +726,7 @@ public class RevokeAPI extends API
 
 ### 연동 해제 API
 
-플랫폼과의 연동을 완전히 해제하는 API.
+<span class="primary">플랫폼과의 연동을 완전히 해제</span>하는 API.
 
 ``` java
 @DELETE
@@ -842,7 +844,7 @@ public class UserInfoAPI extends API
 
 ### 사용자 정보 API
 
-Access Token을 토대로 사용자 정보를 반환하는 API.
+Access Token을 토대로 <span class="primary">사용자 정보를 반환</span>하는 API.
 
 ``` java
 @GET

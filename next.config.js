@@ -10,7 +10,8 @@ module.exports = {
 	productionBrowserSourceMaps: false,
 	images: {
 		loader: 'imgix'
-	}
+	},
+	compress: false
 };
 
 module.exports = withPWA({

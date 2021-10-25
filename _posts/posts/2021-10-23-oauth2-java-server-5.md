@@ -582,7 +582,7 @@ null을 반환하여 동작을 수행하지 않도록 처리한다. 추후 프�
 ## 전체 코드
 
 ``` java
-package oauth.platform.module;
+package oauth.account.module;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -593,7 +593,6 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Verb;
 import oauth.account.bean.ApiKeyBean;
 import oauth.account.bean.UserInfoBean;
-import oauth.account.module.AuthModule;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;

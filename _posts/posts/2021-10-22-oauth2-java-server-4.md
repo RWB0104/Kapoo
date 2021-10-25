@@ -579,7 +579,7 @@ GET/POST https://nid.naver.com/oauth2.0/authorize?auth_type=reprompt&state=${:st
 ## 전체 코드
 
 ``` java
-package oauth.platform.module;
+package oauth.account.module;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -591,7 +591,6 @@ import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import oauth.account.bean.ApiKeyBean;
 import oauth.account.bean.UserInfoBean;
-import oauth.account.module.AuthModule;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -477,7 +477,7 @@ public boolean deleteInfo(String access) throws IOException, ExecutionException,
 ## 전체 코드
 
 ``` java
-package oauth.platform.module;
+package oauth.account.module;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -491,7 +491,6 @@ import com.github.scribejava.core.model.Verb;
 import global.module.Util;
 import oauth.account.bean.ApiKeyBean;
 import oauth.account.bean.UserInfoBean;
-import oauth.account.module.AuthModule;
 
 import java.io.BufferedReader;
 import java.io.IOException;
