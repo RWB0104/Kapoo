@@ -1,8 +1,8 @@
 /**
- * 포스트 동적 페이지 컴포넌트
+ * 프로젝트 동적 페이지 컴포넌트
  *
  * @author RWB
- * @since 2021.07.17 Sat 18:10:25
+ * @since 2021.10.26 Tue 02:09:51
  */
 
 // 라이브러리 모듈
@@ -19,7 +19,7 @@ import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
 
 interface Props {
-	posts: ContentProps[],
+	projects: ContentProps[],
 	categories: CategoryProps,
 	images: string[],
 	page: number,
@@ -31,28 +31,28 @@ interface StaticProp {
 	props: Props
 }
 
-const type = 'posts';
+const type = 'projects';
 
 /**
- * 포스트 동적 페이지 ReactElement 반환 함수
+ * 프로젝트 동적 페이지 ReactElement 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Posts({ posts, categories, images, page, total }: Props): ReactElement
+export default function Projects({ projects, categories, images, page, total }: Props): ReactElement
 {
 	const index = getRandomIndex(images.length);
 
 	return (
 		<Box component="section">
-			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={LOGO} />
+			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} image={LOGO} />
 
-			<Screener title={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={`/img/screener/${images[index]}`} special />
+			<Screener title={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={`/img/screener/${images[index]}`} special />
 
 			<ContentCategory type={type} list={categories} />
 
-			<ContentBoard baseUrl={`/${type}`} page={page} total={total} list={posts} />
+			<ContentBoard baseUrl={`/${type}`} page={page} total={total} list={projects} />
 		</Box>
 	);
 }
@@ -69,10 +69,10 @@ export async function getStaticProps({ params }: RouteProps): Promise<StaticProp
 	const page = parseInt(params.page);
 	const { start, end } = getContentDiv(page);
 
-	const posts = getContentsList(type);
+	const projects = getContentsList(type);
 
-	const subPosts = posts.slice(start, end);
-	subPosts.forEach(e => e.content = '');
+	const subProjects = projects.slice(start, end);
+	subProjects.forEach(e => e.content = '');
 
 	const categories = getContentsCategory(type);
 	const images = getScreenerImage();
@@ -81,11 +81,11 @@ export async function getStaticProps({ params }: RouteProps): Promise<StaticProp
 
 	return {
 		props: {
-			posts: subPosts,
+			projects: subProjects,
 			categories,
 			images,
 			page: parseInt(params.page),
-			total: Math.ceil(posts.length / CONTENT_DIV),
+			total: Math.ceil(projects.length / CONTENT_DIV),
 			hash
 		}
 	};
@@ -98,9 +98,9 @@ export async function getStaticProps({ params }: RouteProps): Promise<StaticProp
  */
 export async function getStaticPaths(): Promise<PathProps>
 {
-	const posts = getContentsList(type);
+	const projects = getContentsList(type);
 
-	const total = Math.ceil(posts.length / 10);
+	const total = Math.ceil(projects.length / 10);
 
 	const arr = [];
 
