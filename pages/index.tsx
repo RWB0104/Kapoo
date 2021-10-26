@@ -73,9 +73,12 @@ export async function getStaticProps(): Promise<StaticProp>
 
 	const projects = getContentsList('projects');
 
+	const subProjects = projects.slice(start, end);
+	subProjects.forEach(e => e.content = '');
+
 	const hash = getBuildHash();
 
 	return {
-		props: { images, posts: subPosts, projects, hash }
+		props: { images, posts: subPosts, projects: subProjects, hash }
 	};
 }

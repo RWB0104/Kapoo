@@ -10,39 +10,39 @@
 		<webMaster>psj2716@gmail.com</webMaster>
 		<generator>Kapoo's next-seo.js</generator>
 		<pubDate>Wed, 26 May 2021 14:36:57 GMT</pubDate>
-		<lastBuildDate>Mon, 25 Oct 2021 17:32:04 GMT</lastBuildDate>
+		<lastBuildDate>Tue, 26 Oct 2021 12:42:13 GMT</lastBuildDate>
 		<item>
 			<title>./pages/404.tsx</title>
 			<description>./pages/404.tsx</description>
-			<pubDate>Mon, 25 Oct 2021 17:32:04 GMT</pubDate>
+			<pubDate>Tue, 26 Oct 2021 12:42:13 GMT</pubDate>
 			<link>https://blog.itcode.dev/404</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/404</guid>
 		</item>
 		<item>
 			<title>./pages/500.tsx</title>
 			<description>./pages/500.tsx</description>
-			<pubDate>Mon, 25 Oct 2021 17:32:04 GMT</pubDate>
+			<pubDate>Tue, 26 Oct 2021 12:42:13 GMT</pubDate>
 			<link>https://blog.itcode.dev/500</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/500</guid>
 		</item>
 		<item>
 			<title>./pages/about/index.tsx</title>
 			<description>./pages/about/index.tsx</description>
-			<pubDate>Mon, 25 Oct 2021 17:32:04 GMT</pubDate>
+			<pubDate>Tue, 26 Oct 2021 12:42:13 GMT</pubDate>
 			<link>https://blog.itcode.dev/about</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/about</guid>
 		</item>
 		<item>
 			<title>./pages/posts/index.tsx</title>
 			<description>./pages/posts/index.tsx</description>
-			<pubDate>Mon, 25 Oct 2021 17:32:04 GMT</pubDate>
+			<pubDate>Tue, 26 Oct 2021 12:42:13 GMT</pubDate>
 			<link>https://blog.itcode.dev/posts</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/posts</guid>
 		</item>
 		<item>
 			<title>./pages/projects/index.tsx</title>
 			<description>./pages/projects/index.tsx</description>
-			<pubDate>Mon, 25 Oct 2021 17:32:04 GMT</pubDate>
+			<pubDate>Tue, 26 Oct 2021 12:42:13 GMT</pubDate>
 			<link>https://blog.itcode.dev/projects</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/projects</guid>
 		</item>
@@ -1009,7 +1009,7 @@
 		<item>
 			<title>[React] 𝝅번째 알파카의 개발 낙서장 프로젝트</title>
 			<description>어쩌다 독학하게 된 React를 유의미하게 써먹기위해 직접 만든 개발 블로그. 정적 블로그를 위한 NextJS를 활용하여 개발했다. Typescript를 사용하고 있으며, SCSS를 통한 CSS-in-CSS 방식으로 디자인을 렌더링한다. 라즈베리파이를 구매하면서 서버 구축을 위해 같이 구입한 도메인 itcode.dev를 적용했다. blog.itcode.dev로, 서브도메인 blog를 사용했다.</description>
-			<pubDate>Mon, 25 Oct 2021 13:41:21 GMT</pubDate>
+			<pubDate>Mon, 25 Oct 2021 17:37:30 GMT</pubDate>
 			<link>https://blog.itcode.dev/projects/2021/10/26/github-react-blog</link>
 			<guid isPermaLink="true">https://blog.itcode.dev/projects/2021/10/26/github-react-blog</guid>
 			<category>React</category>
