@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/134931033-89954c
 date: "2021-11-07T21:13:57"
 type: "posts"
 category: "NextJS"
-tag: [ "NextJS", "React", "Markdown", "HTML", "SCSS", "Typescript" ]
+tag: [ "NextJS", "React", "Markdown", "HTML", "SCSS", "TypeScript" ]
 group: "블로그 개편기"
 comment: true
 publish: true
@@ -95,7 +95,7 @@ alert(test);
 
 원랜 직접 보면서 디자인하려 했는데, 막상 찾으려고 하니 나오질 않아서 기억속에 어렴풋이 남아있는 디자인을 되짚어보며 구상했다.
 
--- 사진 --
+![image](https://user-images.githubusercontent.com/50317129/140773168-5d03d708-dfd1-4f96-8aaa-0da1c0ab1a84.png)
 
 위와 같이 창 형태의 디자인을 취하며, 좌측 상단에 매킨토시의 창 컨텍스트가 달려있다.
 
@@ -103,27 +103,193 @@ alert(test);
 
 -- 사진 --
 
-적용할 레이아웃은 위와 같다. 이를 토대로 HTML화하면 아래와 같이 나타낼 수 있다.
+적용할 레이아웃은 위와 같다. 이를 HTML로 나타내면 아래와 같다.
 
 ``` html
+<div>
+	<!-- 헤더 -->
+	<div>
+		<div><!-- 적색 버튼 --></div>
+		<div><!-- 황색 버튼 --></div>
+		<div><!-- 녹색 버튼 --></div>
+	</div>
 
+	<pre>
+		<!-- 코드 내용 -->
+	</pre>
+</div>
 ```
 
-태그가 알맞은 위치와 색상을 갖기 위해 스타일코드를 적용하자.
+렌더러가 코드블럭을 위와 같은 디자인으로 렌더링하도록 변경하자.
 
-``` scss
+`marked`에서 블럭형 코드 블럭의 렌더러는 `renderer.code`로 정의된다. 해당 객체의 함수를 오버라이딩하면 된다.
 
-```
+| 파라미터 |   형식   | 필수  | 내용  |
+| :------: | :------: | :---: | :---: |
+|  `code`  | `string` |   Y   | 코드  |
+|  `lang`  | `string` |   N   | 언어  |
 
-렌더러가 코드블럭을 위와 같이 렌더링하도록 변경하자.
+|   형식   |    내용     |
+| :------: | :---------: |
+| `string` | 렌더링 결과 |
 
-인라인형과 블럭형을 구분하는 방법은 의외로 간단한데, 블럭형의 경우 인라인형과 다르게 렌더러에서 언어를 반환한다. 언어가 있을 경우 블럭형, 없을 경우 인라인형이다. 언어가 있는 경우에만 해당 HTML로 렌더링하도록 오버라이딩한다.
+`renderer.code`의 파라미터와 반환값의 정의는 위 표와 같다. 위 정의에 부합하는 함수를 작성하면 된다.
 
 ``` typescript
+loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash' ]);
 
+const renderer = new marked.Renderer();
+
+// 코드블럭 렌더링
+renderer.code = (code: string, lang: string | undefined): string =>
+{
+	// 유효한 언어가 있을 경우
+	if (lang && renderer?.options?.highlight)
+	{
+		code = renderer.options.highlight(code, lang as string) as string;
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+
+	// 없을 경우
+	else
+	{
+		lang = 'unknown';
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+};
 ```
 
-이후 블럭형 코드블럭은 개선된 디자인이 적용될 것이다.
+위와 같이 함수를 오버라이딩해서 블럭형 코드 블럭의 렌더링 결과를 변경한다.
+
+만약 언어가 같이 표기될 경우 `PrismJS`로 하이라이팅을 적용하고, 언어가 미표기될 경우 텍스트 그대로 코드 블럭에 지정하는 방식이다.
+
+각 태그가 레이아웃대로 위치하도록 스타일 코드를 지정한다.
+
+``` scss
+$fd: 18px;
+$fm: 14px;
+
+pre[class*="language-"],
+code[class*="language-"] {
+	@include gutter;
+
+	background-color: #161d2c;
+	padding: 55px 20px 20px 20px !important;
+
+	border-radius: 10px;
+
+	font-family: Hack, AppleSDGothicNeo, sans-serif;
+	color: white;
+
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+
+	overflow: auto;
+}
+
+code:not([class*="language-"]) {
+	color: white;
+
+	font-family: Hack, AppleSDGothicNeo, sans-serif;
+	font-size: $fd - 4px;
+
+	display: inline-block;
+
+	padding: 0px 4px;
+	margin: 0px 3px;
+
+	border-radius: 5px;
+
+	@media (max-width: 960px) {
+		font-size: $fm - 4px;
+	}
+}
+
+.codeblock {
+	position: relative;
+
+	.top {
+		position: absolute;
+
+		top: 0px;
+		left: 0px;
+
+		width: 100%;
+		padding: 5px 20px;
+
+		background-color: #2b3445;
+
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+
+		display: flex;
+		flex-direction: row;
+
+		align-items: center;
+
+		div {
+			width: 15px;
+			height: 15px;
+
+			border-radius: 50%;
+
+			margin: 0px 5px;
+
+			&:nth-child(2) {
+				background-color: #fe5f57;
+			}
+
+			&:nth-child(3) {
+				background-color: #ffbd2e;
+			}
+
+			&:nth-child(4) {
+				background-color: #29c941;
+			}
+		}
+	}
+}
+```
+
+레이아웃에 지정된 스타일은 위와 같다.
 
 
 
@@ -131,15 +297,107 @@ alert(test);
 
 ## 사용된 언어 표시하기
 
-블럭형 코드블럭은 사용하는 언어를 표시한다. 이를 받아서 적절한 위치에 표시해주면 될 것이다.
+사용된 언어를 표시해주면 사용자가 코드 블럭의 언어를 더욱 쉽게 파악할 수 있을 것이며, 작성자가 일일히 별도로 코드를 안내해주는 수고도 덜 수 있을 것이다.
+
+블럭형 코드 블럭의 렌더러 함수인 `renderer.code`에서 `lang` 파라미터에 사용된 언어가 할당된다. 우리는 이 파라미터를 통해 사용된 언어를 파악하고, 이를 적절히 사용할 수 있다.
 
 위 디자인 기준으로, 헤더 부분에 언어를 표시해주는 것이 좋아보인다.
 
 ``` typescript
+loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash' ]);
 
+const renderer = new marked.Renderer();
+
+// 코드블럭 렌더링
+renderer.code = (code: string, lang: string | undefined): string =>
+{
+	// 유효한 언어가 있을 경우
+	if (lang && renderer?.options?.highlight)
+	{
+		code = renderer.options.highlight(code, lang as string) as string;
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+
+	// 없을 경우
+	else
+	{
+		lang = 'unknown';
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+};
 ```
 
+`div.top` 영역에 사용된 언어를 대문자로 표시하도록 구성한다.
+
 필요하다면 디자인을 수정해줄 수도 있다. 필자의 경우 폰트 색상 정도만 변경했다.
+
+``` scss
+.top {
+	/* top scss 생략됨 */
+
+	div {
+		width: 15px;
+		height: 15px;
+
+		border-radius: 50%;
+
+		margin: 0px 5px;
+
+		p {
+			margin: 0px;
+			flex-grow: 1;
+
+			color: map-get($yellow, "400");
+		}
+
+		&:nth-child(2) {
+			background-color: #fe5f57;
+		}
+
+		&:nth-child(3) {
+			background-color: #ffbd2e;
+		}
+
+		&:nth-child(4) {
+			background-color: #29c941;
+		}
+	}
+}
+```
+
+`p` 태그의 스타일을 추가한다.
 
 
 
@@ -152,22 +410,135 @@ alert(test);
 블럭형 코드블럭 렌더링 시 버튼을 추가하고, 클릭 이벤트에 코드블럭의 내용을 복사하도록 지정하는 스크립트를 추가하면 될 것이다.
 
 ``` html
-
+<button onclick="copyCode(this);">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard">
+		<path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
+	</svg>
+</button>
 ```
 
 레이아웃은 위와 같다. 버튼 하나가 추가된다. 버튼 클릭 시, 버튼 레이아웃에 포함된 코드 블럭을 찾아 해당 내용을 클립보드에 저장하는 스크립트가 포함되어있다.
 
-``` scss
+버튼의 아이콘은 SVG로 사용했다.
 
+``` javascript
+/**
+ * 코드 복사 함수
+ *
+ * @param {DOMElement} dom: HTML DOM
+ */
+function copyCode(dom)
+{
+	window.getSelection().selectAllChildren(dom.parentElement.querySelector('pre'));
+	document.execCommand('copy');
+
+	const origin = dom.innerHTML;
+	dom.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-icon="check" class="i-check"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>';
+
+	setTimeout(() => dom.innerHTML = origin, 1000);
+}
 ```
 
-스타일 코드는 이와 같다.
+코드 복사 메서드인 `copyCode`는 위와 같이 구성했다. 복사 버튼 상위의 가장 가까운 `pre` 태그를 찾아서, 해당 내용을 복사한다. 또한 약 1초 간 버튼의 SVG를 체크 아이콘으로 변경한다.
+
+``` scss
+button {
+	position: absolute;
+
+	top: 50px;
+	right: 20px;
+	width: 40px;
+	height: 40px;
+
+	background-color: #1e2739;
+	cursor: pointer;
+
+	border: 1px solid map-get($grey, "600");
+	border-radius: 10px;
+
+	opacity: 0;
+
+	transition: 0.5s;
+
+	&:hover {
+		transition: 0.5s;
+	}
+}
+```
+
+스타일 코드는 이와 같다. 항상 고정적인 위치에 나타나도록 absolute 기반의 레이아웃을 채택했다.
 
 이를 바탕으로 렌더러가 코드 블럭의 렌더링 과정에 추가하자.
 
 ``` typescript
+loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash' ]);
 
+const renderer = new marked.Renderer();
+
+// 코드블럭 렌더링
+renderer.code = (code: string, lang: string | undefined): string =>
+{
+	// 유효한 언어가 있을 경우
+	if (lang && renderer?.options?.highlight)
+	{
+		code = renderer.options.highlight(code, lang as string) as string;
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<button onclick="copyCode(this);">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard">
+						<path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
+					</svg>
+				</button>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+
+	// 없을 경우
+	else
+	{
+		lang = 'unknown';
+
+		const langClass = 'language-' + lang;
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<button onclick="copyCode(this);">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard">
+						<path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
+					</svg>
+				</button>
+
+				<pre class="${langClass}">
+					${code}
+				</pre>
+			</div>
+		`;
+	}
+};
 ```
+
+코드블럭에 버튼이 추가된다.
 
 
 
@@ -180,7 +551,29 @@ alert(test);
 사용자가 코드를 읽는데 좀 더 도움을 줄 수 있도록, 라인 숫자를 표시해보자.
 
 ``` html
+<table>
+	<tbody>
+		<tr>
+			<td><!-- 라인 넘버 --></td>
+			<td><!-- 코드 --></td>
+		</tr>
 
+		<tr>
+			<td><!-- 라인 넘버 --></td>
+			<td><!-- 코드 --></td>
+		</tr>
+
+		<tr>
+			<td><!-- 라인 넘버 --></td>
+			<td><!-- 코드 --></td>
+		</tr>
+
+		<tr>
+			<td><!-- 라인 넘버 --></td>
+			<td><!-- 코드 --></td>
+		</tr>
+	</tbody>
+</table>
 ```
 
 라인 숫자는 코드 라인과 동일한 크기를 가져야한다. 만약 조금이라도 픽셀 차이가 날 경우, 코드 라인이 많아지면 많아질 수록 이격이 발생하게 될 것이다.
@@ -188,16 +581,125 @@ alert(test);
 이러한 차이를 맞추기 위해서, 테이블 형태의 레이아웃을 채택했다. `tr` 태그를 하나의 라인으로, 아래 두 `td` 태그를 통해 하나는 라인 숫자, 다른 하나는 코드 영역으로 분리한다. 동일한 `tr` 내부의 `td`는 같은 줄에 위치하는 테이블의 특성을 적극 활용하면 레이아웃 CSS에 그리 많은 힘을 들이지 않아도 될 것이다.
 
 ``` scss
+table {
+	border-collapse: collapse;
 
+	& td {
+		line-height: $fd + 4px;
+
+		@media (max-width: 960px) {
+			line-height: $fm + 4px;
+		}
+	}
+
+	& td:nth-child(1) {
+		color: #455983;
+		padding-right: 10px;
+
+		border-right: 1px solid #455983;
+
+		text-align: right;
+
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+	}
+
+	& td:nth-child(2) {
+		width: 100%;
+
+		padding: 0px 20px 0px 10px;
+	}
+}
 ```
 
-디자인은 위와 같다. 이를 토대로 코드 블럭 렌더러를 변경하자.
+디자인은 위와 같다. 첫 번째 `td`에 숫자를 표시하고, `border-right` 속성을 통해 구분선을 표시한다. 이를 토대로 코드 블럭 렌더러를 변경하자.
 
 ``` typescript
+loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash' ]);
 
+const renderer = new marked.Renderer();
+
+// 코드블럭 렌더링
+renderer.code = (code: string, lang: string | undefined): string =>
+{
+	// 유효한 언어가 있을 경우
+	if (lang && renderer?.options?.highlight)
+	{
+		code = renderer.options.highlight(code, lang as string) as string;
+
+		const langClass = 'language-' + lang;
+
+		const line = code.split('\n').map((item, index) => `
+			<tr data-line=${index + 1}>
+				<td class="line-number" data-number="${index + 1}">${index + 1}</td>
+				<td class="line-code" data-number=${index + 1}>${item}</td>
+			</tr>`).join('\n').replace(/\t|\\n/, '');
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<button onclick="copyCode(this);">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard">
+						<path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
+					</svg>
+				</button>
+
+				<pre class="${langClass}">
+					<table>
+						<tbody>${line}</tbody>
+					</table>
+				</pre>
+			</div>
+		`;
+	}
+
+	// 없을 경우
+	else
+	{
+		lang = 'unknown';
+
+		const langClass = 'language-' + lang;
+
+		const line = code.split('\n').map((item, index) => `
+			<tr data-line=${index + 1}>
+				<td class="line-number" data-number="${index + 1}">${index + 1}</td>
+				<td class="line-code" data-number=${index + 1}>${item}</td>
+			</tr>`).join('\n').replace(/\t|\\n/, '');
+
+		return `
+			<div class="codeblock">
+				<div class="top">
+					<p>${lang.toUpperCase()}</p>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+
+				<button onclick="copyCode(this);">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard">
+						<path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
+					</svg>
+				</button>
+
+				<pre class="${langClass}">
+					<table>
+						<tbody>${line}</tbody>
+					</table>
+				</pre>
+			</div>
+		`;
+	}
+};
 ```
 
-`for`문을 통해 하나하나 `tr` 태그를 붙이므로, 이 과정에서 라인 숫자의 수를 파악할 수 있다. 첫 번째 `td`에 `for`문의 인덱스 `i`가 지정되도록 구성했다. 태그의 의미론적인 측면을 강화하기 위해서 각 `tr`과 `td`의 `data-number` 속성으로 인덱스를 같이 지정한다.
+`map`을 통해 하나하나 `tr` 태그를 붙이므로, 이 과정에서 라인 숫자의 수를 파악할 수 있다. 첫 번째 `td`에 `map`의 인덱스 `index`가 지정되도록 구성했다. 태그의 의미론적인 측면을 강화하기 위해서 각 `tr`과 `td`의 `data-number` 속성으로 인덱스를 같이 지정한다. 인덱스의 시작이 0임에 주의하자.
 
 예를 들어, 126번 째 줄은 아래와 같이 렌더링될 것이다.
 
@@ -221,7 +723,11 @@ alert(test);
 다행히도, 우리는 라인 숫자를 표시하기 위해 하나의 라인을 `tr` 태그로 관리하고 있다. 즉, 홀수 `tr`과 짝수 `tr`의 색상을 다르게 지정해주면 된다. `CSS`의 `nth-child` 선택자를 사용하면 매우 간단하게 해결할 수 있을 것이다.
 
 ``` scss
-
+table {
+	& tr:nth-child(2n) {
+		background-color: #1c2335;
+	}
+}
 ```
 
 색상은 기존의 코드 블럭의 디자인에 적절히 어울릴 수 있도록, 기존의 배경색에서 살짝 옅은 색을 지정했다. 짝수 라인의 색상이 살짝 옅어지도록 지정될 것이다.
@@ -237,7 +743,15 @@ alert(test);
 위와 마찬가지로, `:hover` 선택자를 통해 순수 `CSS` 영역에서 해결할 수 있다.
 
 ``` scss
+table {
+	& tr:hover {
+		background-color: #546687;
 
+		& td:first-child {
+			color: white;
+		}
+	}
+}
 ```
 
 이 정도면 될 것이다. `tr` 태그에 호버링을 할 경우, 해당 라인의 배경색과 라인 숫자를 밝은 색으로 변경한다. `transition` 속성을 주어 부드러운 시각효과를 기대할 수 있을 것이다.

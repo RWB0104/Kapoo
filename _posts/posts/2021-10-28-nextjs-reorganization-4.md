@@ -188,7 +188,7 @@ console.log(marked('$ latex code $\n\n` other code `'));
 
 위 코드는 codespan 토큰을 재정의하는 것이다. codespan은 `이 문법`으로, 주로 코드를 표시할 때 사용한다.
 
-수학 수식을 표현하는 LaTeX는 $를 wrapper로 사용하는데, 이는 마크다운의 공식 문법이 아니다. LaTeX를 사용하기 위해 $로 감싸진 인라인 텍스트를 감지하여 codespan 토큰으로 지정한다. 이를 통해 $a\root{b^2}$와 같이 수식을 표시할 수 있다.
+수학 수식을 표현하는 LaTeX는 달러를 wrapper로 사용하는데, 이는 마크다운의 공식 문법이 아니다. LaTeX를 사용하기 위해 달러로 감싸진 인라인 텍스트를 감지하여 codespan 토큰으로 지정한다. 이를 통해 $a\sqrt{b^2}$와 같이 수식을 표시할 수 있다.
 
 `codespan(src)`에서 인수 `src`에 마크다운 텍스트가 들어온다. 정규식을 설계해서 원하는 문법의 패턴을 지정하고, 일치할 경우 원하는 토큰으로 재정의하면 된다. 만약 `false`를 반환할 경우, 기본 tokenizer 설정에 따른다.
 
@@ -233,7 +233,7 @@ marked.use({ renderer });
 console.log(marked('# heading+'));
 ```
 
-``` output
+``` html
 <h1>
   <a name="heading-" class="anchor" href="#heading-">
     <span class="header-link"></span>

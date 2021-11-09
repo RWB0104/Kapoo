@@ -3,37 +3,37 @@
 	<url>
 		<loc>https://blog.itcode.dev/404.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/500.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
-		<changefreq>always</changefreq>
-	</url>
-	<url>
-		<loc>https://blog.itcode.dev/about.html</loc>
-		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/posts.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/about.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
 		<loc>https://blog.itcode.dev/projects.html</loc>
 		<priority>1.0</priority>
-		<lastmod>2021-10-27T13:54:26.987Z</lastmod>
+		<lastmod>2021-11-09T15:04:13.279Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
@@ -544,6 +544,18 @@
 		<loc>https://blog.itcode.dev/posts/2021/10/25/oauth2-java-server-12.html</loc>
 		<priority>1.0</priority>
 		<lastmod>2021-10-25T13:41:21.000Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/posts/2021/10/28/nextjs-reorganization-4.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-10-28T05:36:46.000Z</lastmod>
+		<changefreq>always</changefreq>
+	</url>
+	<url>
+		<loc>https://blog.itcode.dev/posts/2021/11/07/nextjs-reorganization-5.html</loc>
+		<priority>1.0</priority>
+		<lastmod>2021-11-07T12:13:57.000Z</lastmod>
 		<changefreq>always</changefreq>
 	</url>
 	<url>
