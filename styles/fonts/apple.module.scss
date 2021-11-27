@@ -7,7 +7,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 900;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "H.woff2") format("woff2"),
 		url($font-url + "H.woff") format("woff")
 }
@@ -16,7 +15,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 800;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "EB.woff2") format("woff2"),
 		url($font-url + "EB.woff") format("woff")
 }
@@ -25,7 +23,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 700;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "B.woff2") format("woff2"),
 		url($font-url + "B.woff") format("woff")
 }
@@ -34,7 +31,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 600;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "SB.woff2") format("woff2"),
 		url($font-url + "SB.woff") format("woff")
 }
@@ -43,7 +39,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 500;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "M.woff2") format("woff2"),
 		url($font-url + "M.woff") format("woff")
 }
@@ -52,7 +47,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 400;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "M.woff2") format("woff2"),
 		url($font-url + "M.woff") format("woff")
 }
@@ -61,7 +55,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 300;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "L.woff2") format("woff2"),
 		url($font-url + "L.woff") format("woff")
 }
@@ -70,7 +63,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 200;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "UL.woff2") format("woff2"),
 		url($font-url + "UL.woff") format("woff")
 }
@@ -79,7 +71,6 @@ $font-url: $base-url+$name;
 	font-family: "AppleSDGothicNeo";
 	font-weight: 100;
 	font-display: swap;
-	unicode-range: U+AC00-U+D7A3, U+0030-0039, U+0041-005A, U+0061-007A, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
 	src: url($font-url + "T.woff2") format("woff2"),
 		url($font-url + "T.woff") format("woff")
 }
