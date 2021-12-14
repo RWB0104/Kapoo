@@ -55,6 +55,8 @@ export const CATEGORY = {
 	'CS': 'https://user-images.githubusercontent.com/50317129/132937772-73a6364f-c66c-4fc5-85da-60a0db1c58a1.png',
 	'JAVA': 'https://user-images.githubusercontent.com/50317129/132937204-99bf52ed-2cea-4530-ad5b-1cc421ebcc94.png',
 	'Jekyll': 'https://user-images.githubusercontent.com/50317129/132937228-0041b311-0d6e-4dea-a4b3-150232cc77fb.png',
+	'NextJS': 'https://user-images.githubusercontent.com/50317129/146045656-caf9e4c0-0ff6-455b-b667-d1c6aca4fd95.png',
+	'Programmers': 'https://user-images.githubusercontent.com/50317129/146045855-3cac4845-1d15-47db-9261-5843b9122228.png',
 	'WAS': 'https://user-images.githubusercontent.com/50317129/132937090-b40eb63a-f391-44bc-8aa7-a319e745ba09.png',
 	'WEB': 'https://user-images.githubusercontent.com/50317129/132937120-8c5d8c34-569f-4736-af86-820cb851e9bd.png',
 	'알고리즘': 'https://user-images.githubusercontent.com/50317129/132937309-d686bf2f-8919-44b1-8919-a0711ae73031.png',
