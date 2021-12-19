@@ -106,7 +106,7 @@ DBMS는 Linux와 같이 명령어 기반으로 동작한다. 하지만 모든 �
 
 이러한 특징으로 DBMS는 서버에서 돌리더라도 그 관리는 Window같은 GUI 환경에서 관리 툴을 사용하는 것이 보편적이다. 적어도 위와 같은 꼴은 보기 싫다면 더더욱.
 
-MariaDB 전용 관리 툴은 대표적으로 두 가지가 존재하는데, <span class="lightBlue-600">MySQL Workbench</span>와 <span class="lightBlue-600">SQLyog</span>다. 둘 중 어느 툴을 사용해도 상관없으나, 이 장에서는 MySQL Workbench를 기준으로 설명한다. 이름은 MySQL이라고 명시되어있지만, 앞서 언급했듯이 <span class="green-600">MariaDB가 MySQL 기반이므로 잡속 인터페이스가 동일한 모양인지 지장없이 사용</span>할 수 있다.
+MariaDB 전용 관리 툴은 대표적으로 두 가지가 존재하는데, <span class="lightBlue-600">MySQL Workbench</span>와 <span class="lightBlue-600">SQLyog</span>다. 둘 중 어느 툴을 사용해도 상관없으나, 이 장에서는 MySQL Workbench를 기준으로 설명한다. 이름은 MySQL이라고 명시되어있지만, 앞서 언급했듯이 <span class="green-600">MariaDB가 MySQL 기반이므로 접속 인터페이스가 동일한 모양인지 지장없이 사용</span>할 수 있다.
 
 SQLyog는 커뮤니티 버전과 Ultimate 버전이 나누어져 있으며, 커뮤니티 버전에선 일부 심화기능이 제한된다. 데이터베이스의 간편 백업이나 다른 데이터베이스로 연결하여 복사하는 등의 심화적인 기능같은 것들이 대부분이다. DBMS의 기능을 제한하는 것이 아니라 관리 도구 단계에서 제공하는 디테일한 편의기능이므로, 일반적인 DBMS 사용에는 전혀 영향이 없으니 걱정하지 않아도 된다.
 
