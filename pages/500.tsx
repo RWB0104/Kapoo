@@ -36,9 +36,9 @@ export default function Error404({ images }: Props): ReactElement
 
 	return (
 		<Box component="section">
-			<Meta title="500" description="문제가 생겼어요!" image={`/img/screener/${images[index]}`} url="" />
+			<Meta title="500" description="문제가 생겼어요!" image={images[index]} url="" />
 
-			<Screener title={TITLE} menu="500" lower="문제가 생겼어요!" image={`/img/screener/${images[index]}`} />
+			<Screener title={TITLE} menu="500" lower="문제가 생겼어요!" image={images[index]} />
 		</Box>
 	);
 }

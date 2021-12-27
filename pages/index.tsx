@@ -42,9 +42,9 @@ export default function Home({ images, posts, projects }: Props): ReactElement |
 
 	return (
 		<Box component="section">
-			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={`/img/screener/${images[index]}`} url="" />
+			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={images[index]} url="" />
 
-			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={`/img/screener/${images[index]}`} />
+			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={images[index]} />
 
 			<ContentsCase num={5} title={MENU_LIST[1].title} url={MENU_LIST[1].url} list={posts} />
 

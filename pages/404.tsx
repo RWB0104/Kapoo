@@ -36,9 +36,9 @@ export default function Error404({ images }: Props): ReactElement
 
 	return (
 		<Box component="section">
-			<Meta title="404" description="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={`/img/screener/${images[index]}`} url="" />
+			<Meta title="404" description="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={images[index]} url="" />
 
-			<Screener title={TITLE} menu="404" lower="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={`/img/screener/${images[index]}`} />
+			<Screener title={TITLE} menu="404" lower="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={images[index]} />
 		</Box>
 	);
 }
