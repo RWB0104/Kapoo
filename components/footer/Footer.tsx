@@ -6,9 +6,9 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useState } from 'react';
-import { Avatar, Box, Dialog, DialogTitle, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
-import { AccountTree, GitHub, Mail, RssFeed } from '@material-ui/icons';
+import { ReactElement } from 'react';
+import { Avatar, Box, Divider, IconButton, Typography } from '@material-ui/core';
+import { GitHub, Language, ListAlt, Mail, RssFeed } from '@material-ui/icons';
 
 // 사용자 모듈
 import { TITLE } from '@commons/env';
@@ -28,8 +28,6 @@ interface Props {
  */
 export default function Footer({ hash }: Props): ReactElement | null
 {
-	const [ state, setState ] = useState(false);
-
 	return (
 		<Box component="footer" className={styles.root}>
 			<Box className={styles.line}>
@@ -41,57 +39,32 @@ export default function Footer({ hash }: Props): ReactElement | null
 			</Box>
 
 			<Box className={styles.buttons}>
-				<IconButton className={styles.github} onClick={() => open('https://github.com/RWB0104')}>
+				<IconButton className={styles.button} title='GitHub' onClick={() => open('https://github.com/RWB0104')}>
 					<GitHub />
 				</IconButton>
 
-				<IconButton className={styles.mail} onClick={() => location.href = 'mailto:psj2716@gmail.com'}>
+				<IconButton className={styles.button} title='Mail' onClick={() => location.href = 'mailto:psj2716@gmail.com'}>
 					<Mail />
 				</IconButton>
 
-				<IconButton className={styles.rss} onClick={() => setState(true)}>
+				<IconButton className={styles.button} title='Project Page' onClick={() => open('https://itcode.dev')}>
+					<Language />
+				</IconButton>
+
+				<IconButton className={styles.button} title='Sitemap' onClick={() => open('/sitemap')}>
+					<ListAlt />
+				</IconButton>
+
+				<IconButton className={styles.button} title='RSS' onClick={() => open('/rss')}>
 					<RssFeed />
 				</IconButton>
 			</Box>
 
-			<Hits />
-
 			<Typography className={styles.text} align="center">💻 Copyright ⓒ RWB 2021.05</Typography>
+
 			{hash && <Typography className={styles.text} align="center">{hash}</Typography>}
 
-			<Dialog open={state} onClose={() => setState(false)}>
-				<DialogTitle>SEO</DialogTitle>
-
-				<List>
-					<ListItem button onClick={() =>
-					{
-						open('/sitemap');
-						setState(false);
-					}}>
-						<ListItemAvatar>
-							<Avatar className={styles['sitemap-mini']}>
-								<AccountTree />
-							</Avatar>
-						</ListItemAvatar>
-
-						<ListItemText>Sitemap</ListItemText>
-					</ListItem>
-
-					<ListItem button onClick={() =>
-					{
-						open('/rss');
-						setState(false);
-					}}>
-						<ListItemAvatar>
-							<Avatar className={styles['rss-mini']}>
-								<RssFeed />
-							</Avatar>
-						</ListItemAvatar>
-
-						<ListItemText>RSS Feed</ListItemText>
-					</ListItem>
-				</List>
-			</Dialog>
+			<Hits />
 		</Box>
 	);
 }

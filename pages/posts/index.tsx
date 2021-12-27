@@ -13,7 +13,7 @@ import { Box } from '@material-ui/core';
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
 import { getRandomIndex, ContentProps, CategoryProps, getContentDiv, CONTENT_DIV } from '@commons/common';
-import { MENU_LIST } from '@commons/env';
+import { MENU_LIST, TITLE } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
@@ -47,7 +47,7 @@ export default function Posts({ posts, category, images, total }: Props): ReactE
 		<Box component="section">
 			<Meta title={MENU_LIST[1].title} description={MENU_LIST[1].desc} url={MENU_LIST[1].url.pathname} image={`/img/screener/${images[index]}`} />
 
-			<Screener title={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={`/img/screener/${images[index]}`} special />
+			<Screener title={TITLE} menu={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={`/img/screener/${images[index]}`} />
 
 			<ContentCategory type={type} list={category} />
 

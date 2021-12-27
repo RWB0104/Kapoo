@@ -14,7 +14,7 @@ import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
 import { getBuildHash, getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
-import { MENU_LIST } from '@commons/env';
+import { MENU_LIST, TITLE } from '@commons/env';
 import Artbox from '@components/global/Artbox';
 
 interface Props {
@@ -41,7 +41,7 @@ export default function Posts({ images }: Props): ReactElement
 		<Box component="section">
 			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} image={`/img/screener/${images[index]}`} />
 
-			<Screener title={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={`/img/screener/${images[index]}`} special />
+			<Screener title={TITLE} menu={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={`/img/screener/${images[index]}`} />
 
 			<Artbox />
 		</Box>

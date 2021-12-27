@@ -12,7 +12,7 @@ import { Box } from '@material-ui/core';
 // 사용자 모듈
 import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
 import { CategoryProps, ContentProps, CONTENT_DIV, getContentDiv, getRandomIndex } from '@commons/common';
-import { MENU_LIST } from '@commons/env';
+import { MENU_LIST, TITLE } from '@commons/env';
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
 import ContentCategory from '@components/contents/ContentCategory';
@@ -47,7 +47,7 @@ export default function Projects({ projects, category, images, total }: Props): 
 		<Box component="section">
 			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} image={`/img/screener/${images[index]}`} />
 
-			<Screener title={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={`/img/screener/${images[index]}`} special />
+			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={`/img/screener/${images[index]}`} />
 
 			<ContentCategory type={type} list={category} />
 

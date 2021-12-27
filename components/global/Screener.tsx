@@ -14,9 +14,9 @@ import styles from '@styles/components/global/screener.module.scss';
 
 interface Props {
 	title: string,
+	menu: string,
 	lower?: string,
 	image: string
-	special?: boolean
 }
 
 /**
@@ -26,10 +26,8 @@ interface Props {
  *
  * @returns {ReactElement} ReactElement
  */
-export default function Screener({ title, lower, image, special }: Props): ReactElement | null
+export default function Screener({ title, menu, lower, image }: Props): ReactElement | null
 {
-	const style = special ? styles['title-special'] : styles.title;
-
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const imageRef = useRef<HTMLDivElement>(null);
 
@@ -74,8 +72,11 @@ export default function Screener({ title, lower, image, special }: Props): React
 		<Box className={styles.root}>
 			{media}
 
-			<Typography component="h1" className={style} align="center">{title}</Typography>
-			<Typography component="h3" className={styles.lower} align="center">{lower}</Typography>
+			<div className={styles['title-wrapper']}>
+				<Typography component="h1" className={styles.title}>{title}</Typography>
+				<Typography component="h3" className={styles.menu}>{menu}</Typography>
+				<Typography component="h3" className={styles.lower}>{lower}</Typography>
+			</div>
 		</Box>
 	);
 }

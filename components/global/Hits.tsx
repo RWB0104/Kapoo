@@ -35,5 +35,5 @@ export default function Hits({ urls }: Props): ReactElement
 		urls.forEach(e => url += `/${e}`);
 	}
 
-	return <img className={styles.counter} src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(url)}&count_bg=%2379C83D&title_bg=%23555555&icon=react.svg&icon_color=%2348CAF7&title=hits&edge_flat=false`} />;
+	return <img className={styles.counter} src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(url)}&count_bg=%23555555&title_bg=%23555555&icon=react.svg&icon_color=%2348CAF7&title=hits&edge_flat=false`} />;
 }

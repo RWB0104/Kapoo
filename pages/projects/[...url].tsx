@@ -36,7 +36,7 @@ export default function Project({ page, group, data }: PageStaticProps): ReactEl
 
 			<Meta title={data.header.title} description={data.header.excerpt} url={`/${data.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`} image={data.header.coverImage} />
 
-			<Screener title={data.header.title} lower={data.header.category} image={data.header.coverImage} />
+			<Screener title={data.header.title} menu={type} lower={data.header.category} image={data.header.coverImage} />
 
 			<Box>
 				<ContentLayout page={page} group={group} data={data} />

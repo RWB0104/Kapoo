@@ -14,6 +14,7 @@ import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
 import { getBuildHash, getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
+import { TITLE } from '@commons/env';
 
 interface Props {
 	images: string[],
@@ -37,7 +38,7 @@ export default function Error404({ images }: Props): ReactElement
 		<Box component="section">
 			<Meta title="500" description="문제가 생겼어요!" image={`/img/screener/${images[index]}`} url="" />
 
-			<Screener title="500" lower="문제가 생겼어요!" image={`/img/screener/${images[index]}`} special />
+			<Screener title={TITLE} menu="500" lower="문제가 생겼어요!" image={`/img/screener/${images[index]}`} />
 		</Box>
 	);
 }

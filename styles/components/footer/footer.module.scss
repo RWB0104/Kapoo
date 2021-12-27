@@ -18,15 +18,14 @@
 }
 
 .buttons {
-	width: 500px;
-
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
+	gap: 20px;
 
 	margin: 0px auto;
 
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 
 	@media (max-width: 960px) {
 		margin-top: 50px;
@@ -36,56 +35,20 @@
 	}
 }
 
+.button {
+	color: #AAAAAA !important;
+
+	svg {
+		width: 25px;
+		height: 25px;
+	}
+}
+
 .logo {
 	width: 72px !important;
 	height: 72px !important;
 
 	margin: 0px auto;
-}
-
-@mixin button {
-	svg {
-		width: 50px;
-		height: 50px;
-	}
-
-	@media (max-width: 960px) {
-		svg {
-			width: 25px;
-			height: 25px;
-		}
-	}
-}
-
-.github {
-	@include button();
-
-	background: linear-gradient(to right, #8E2DE2, #4A00E0) !important;
-	color: white !important;
-}
-
-.mail {
-	@include button();
-
-	background: linear-gradient(to right, #00C6FF, #0072FF) !important;
-	color: white !important;
-}
-
-.rss {
-	@include button();
-
-	background: linear-gradient(to right, #ec9f05, #ff4e00) !important;
-	color: white !important;
-}
-
-.sitemap-mini {
-	background: linear-gradient(to right, #5f72be, #9921e8) !important;
-	color: white !important;
-}
-
-.rss-mini {
-	background: linear-gradient(to right, #ec9f05, #ff4e00) !important;
-	color: white !important;
 }
 
 .text {
