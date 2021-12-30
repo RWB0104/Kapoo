@@ -34,6 +34,7 @@ async function getImage()
 {
 	const response = await fetch('https://api.github.com/repos/RWB0104/blog.itcode.dev/issues/43');
 
+	// 응답이 유효할 경우
 	if (response.ok)
 	{
 		const json = await response.json();
@@ -48,6 +49,7 @@ async function getImage()
 		fs.writeFileSync('./public/image.txt', images.replaceAll(/(\r\n|\n|\r)+/g, '\n'));
 	}
 
+	// 아닐 경우
 	else
 	{
 		console.log('\n==================================================');

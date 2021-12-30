@@ -98,6 +98,14 @@
 				"unused-imports/no-unused-imports": "error",
 				"unused-imports/no-unused-vars": "error"
 			}
+		},
+		{
+			"files": [
+				"*.js"
+			],
+			"rules": {
+				"@typescript-eslint/no-var-requires": "off"
+			}
 		}
 	]
 }
