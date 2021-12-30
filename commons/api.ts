@@ -26,7 +26,7 @@ const CONTENT_DIR = join(process.cwd(), '_posts');
  */
 export function getScreenerImage(): string[]
 {
-	return fs.readFileSync(join(process.cwd(), 'public', 'image.txt')).toString().split('\r\n');
+	return fs.readFileSync(join(process.cwd(), 'public', 'image.txt')).toString().split('\n');
 }
 
 /**
