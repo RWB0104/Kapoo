@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad
 date: "2022-03-03T23:05:35+09:00"
 type: "posts"
 category: "GIS"
-tag: [ "GIS", "GeoServer", "OpenLayers", "React(리액트)", "TypeScript" ]
+tag: [ "GIS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
 publish: true
@@ -28,7 +28,7 @@ GIS(Global Information System)는 GPS와 같이 공간정보를 다루는 모든
 시청각의 디지털화는 시청각을 마음대로 다룰 수 있다는 뜻이나 다름없다. 정적 데이터인 사진의 합성은 이젠 애들 장난 수준이다. 발전된 영상 편집 기술은 물론 논란의 중심인 딥 페이크 기술을 보고 있자면 인식의 개념을 부정당하는 느낌이 들기도 한다.
 
 <br />
-<p align="large center" class="grey-400"><i>고도로 발달한 기술은 마법과 구별할 수 없다.</i></p>
+<p align="center" class="large grey-400"><i>고도로 발달한 기술은 마법과 구별할 수 없다.</i></p>
 <br />
 
 동영상, 사진이 시청각을 다룬다면, GIS는 현실에서의 공간을 디지털화하고, 이를 다룰 수 있는 매우 멋진 기술이다. 지금은 지도나 위치정보 같은 데이터류를 다루는 것이 일반적이지만, 현재 각광받고 있는 메타버스 기술, 가상현실과 같이 '공간'이 주가 되는 기술에서 GIS는 그 핵심이 될 것이다.
@@ -50,7 +50,7 @@ GIS(Global Information System)는 GPS와 같이 공간정보를 다루는 모든
 사람들은 여행을 떠날 때 GIS로 이루어진 지도라는 걸 보고 여행하겠지만, 막상 GIS를 여행하려는 사람들은 한국에서 볼 게 적은 것이 현실이다. 남들은 여행길이 고생길이라고 할 때, GIS 여행자들은 여행 준비부터가 고생인 셈이다.
 
 <br />
-<p align="large center" class="grey-400"><i>우리 모두는 한 때 초심자였다.</i></p>
+<p align="center" class="large grey-400"><i>우리 모두는 한 때 초심자였다.</i></p>
 <br />
 
 "수학을 잘하고 싶어요!"라고 말하는 초등학생에게 다짜고짜 수학의 정석을 풀라고 할 수 없다.

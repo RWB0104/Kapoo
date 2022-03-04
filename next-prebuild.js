@@ -40,7 +40,6 @@ async function getImage()
 		const json = await response.json();
 
 		const images = json.body;
-		console.dir(images);
 
 		console.log('\n==================================================');
 		console.log('이미지 리스트 생성');
