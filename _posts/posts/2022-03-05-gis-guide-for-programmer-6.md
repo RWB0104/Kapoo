@@ -1,11 +1,11 @@
 ---
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 6. 공간정보의 DB화"
-excerpt: "OpenLayers는 웹 브라우저에서 지도나 GIS 서비스를 제공하기 위한 JavaScript Library다. GIS 라이브러리 중 진입 장벽은 가장 높지만, 그에 상응하는 강력한 기능을 제공한다."
+excerpt: "데이터의 CRUD 소요가 있는 서비스는 DB를 사용한다. 서비스 운영에 필요한 데이터를 DB에 저장하고, 이를 적절히 관리, 조작함으로써 서비스의 기능을 제공한다. GIS의 경우, 그 특성상 대용량 데이터를 자주 접하게 된다. 일례로, 전국의 건물 수는 몇백만을 우습게 상회하기 때문. 단순 row가 백만 단위인 것도 문제지만, 건물 정보의 특성 상 column의 갯수 또한 수십 개 정도다. 때문의 데이터의 용량이 매우 커진다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
 date: "2022-03-05T04:35:41+09:00"
 type: "posts"
 category: "GIS"
-tag: [ "GIS", "GeoServer" ]
+tag: [ "GIS", "MariaDB", "QGIS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
 publish: true
@@ -53,6 +53,15 @@ ogr2ogr -f MySQL MySQL:{DB명}, host={DB 호스트}, user={DB 계정명}, passwo
 
 위 두 테이블은 개발자가 직접 사용할 일은 거의 없으니 그냥 이런 게 있다고 알고만 있으면 된다. 이 점을 모를 경우, 내가 의도한 테이블 외에 다른 테이블이 생김에 혼란을 일으킬 수 있기 때문.
 
+> <b class="yellow-500">DB는 꼭 MariaDB가 아니여도 상관없어요!</b>  
+> 이 문서에서는 MariaDB를 기준으로 설명했지만, 이건 어디까지나 내 서버에 MariaDB를 운용하고 있기 때문이지, 다른 이유가 있는 건 아니다.  
+> GIS를 전문으로 취급하는 데이터베이스를 구축할 심산이라면, PostgreSQL이 훨씬 나은 선택지다. PostgreSQL은 GIS 관련 기능이 매우 강력하기 때문이다.  
+> 많은 GIS 툴에서 PostgreSQL과의 직접적인 Connection Pool을 기본으로 제공한다.
+
 <br />
 
 SHP 데이터를 입력하다보면, 잘못된 도형으로 인해 삽입이 되지 않는 현상을 종종 목격한다. 명령어 마지막에 `--skipfailure` 옵션을 붙여주면 오류가 난 행은 제외하고 삽입하니 참고할 것.
+
+![image](https://user-images.githubusercontent.com/50317129/156867178-87770a5a-e24f-4beb-b21b-fc081d67e5aa.png)
+
+SHP를 MariaDB에 삽입한 예시. DBeaver로 데이터베이스를 확인하면 무려 OSM으로 좌표의 위치까지 보여준다. 이는 PostgreSQL에도 제공하는 기능.
