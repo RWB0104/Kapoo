@@ -53,9 +53,9 @@ ogr2ogr -f MySQL MySQL:{DB명}, host={DB 호스트}, user={DB 계정명}, passwo
 
 위 두 테이블은 개발자가 직접 사용할 일은 거의 없으니 그냥 이런 게 있다고 알고만 있으면 된다. 이 점을 모를 경우, 내가 의도한 테이블 외에 다른 테이블이 생김에 혼란을 일으킬 수 있기 때문.
 
-> <b class="yellow-500">DB는 꼭 MariaDB가 아니여도 상관없어요!</b>  
+> <b class="yellow-500">🙋‍♂️ DB는 꼭 MariaDB가 아니여도 상관없어요!</b>  
 > 이 문서에서는 MariaDB를 기준으로 설명했지만, 이건 어디까지나 내 서버에 MariaDB를 운용하고 있기 때문이지, 다른 이유가 있는 건 아니다.  
-> GIS를 전문으로 취급하는 데이터베이스를 구축할 심산이라면, PostgreSQL이 훨씬 나은 선택지다. PostgreSQL은 GIS 관련 기능이 매우 강력하기 때문이다.  
+> GIS를 전문으로 취급하는 데이터베이스를 구축할 심산이라면, PostgreSQL이 훨씬 나은 선택지다. PostgreSQL은 GIS 관련 기능이 매우 강력하기 때문에, DB 자체적으로 많은 편의기능을 제공한다.  
 > 많은 GIS 툴에서 PostgreSQL과의 직접적인 Connection Pool을 기본으로 제공한다.
 
 <br />
@@ -64,4 +64,4 @@ SHP 데이터를 입력하다보면, 잘못된 도형으로 인해 삽입이 되
 
 ![image](https://user-images.githubusercontent.com/50317129/156867178-87770a5a-e24f-4beb-b21b-fc081d67e5aa.png)
 
-SHP를 MariaDB에 삽입한 예시. DBeaver로 데이터베이스를 확인하면 무려 OSM으로 좌표의 위치까지 보여준다. 이는 PostgreSQL에도 제공하는 기능.
+SHP를 MariaDB에 삽입한 예시. DBeaver로 데이터베이스를 확인하면 무려 OSM을 기반으로 데이터의 형태까지 보여준다. 하단의 메뉴에서 EPSG 코드를 설정할 수 있으니 참고할 것.

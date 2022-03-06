@@ -242,6 +242,15 @@ export async function converter(body: string): Promise<ConvertProps>
 		}
 	};
 
+	renderer.image = (href, title, text) =>
+	{
+		return `
+		<a href="${href}" target="_blank" data-title="${title}">
+			<img src="${href}" alt="${text}" />
+		</a>
+		`;
+	};
+
 	// 코드라인 렌더링
 	renderer.codespan = (code) =>
 	{

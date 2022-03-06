@@ -63,7 +63,6 @@ export default function Home({ images, posts, projects }: Props): ReactElement |
 export async function getStaticProps(): Promise<StaticProp>
 {
 	const images = getScreenerImage();
-	console.dir(images);
 
 	const { start, end } = getContentDiv(1);
 
