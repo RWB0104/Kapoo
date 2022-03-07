@@ -7,9 +7,9 @@
 
 // 라이브러리 모듈
 import { ReactElement, useEffect } from 'react';
-import { Box, useTheme } from '@material-ui/core';
+import { useTheme } from '@material-ui/core';
 
-// 스타일
+
 import styles from '@styles/components/contents/utterances.module.scss';
 
 interface Props {
@@ -33,27 +33,10 @@ export default function Utterances({ flag }: Props): ReactElement | null
 		// 댓글을 사용할 경우
 		if (flag)
 		{
-			// 댓글 DOM이 없을 경우
-			if (document.querySelectorAll('#utterances > div').length === 0)
-			{
-				const wrapper = document.createElement('div');
-
-				const script = document.createElement('script');
-				script.src = 'https://utteranc.es/client.js';
-				script.async = true,
-				script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
-				script.setAttribute('issue-term', 'pathname');
-				script.setAttribute('theme', `github-${type}`);
-				script.setAttribute('crossOrigin', 'anonymous');
-
-				wrapper.appendChild(script);
-				document.getElementById('utterances')?.appendChild(wrapper);
-			}
-
 			// 댓글 DOM이 있을 경우
-			else
+			if (document.querySelectorAll('#utterances > div').length !== 0)
 			{
-				const frame = document.querySelector('#utterances iframe') as HTMLFrameElement;
+				const frame = document.querySelector('#utterances iframe') as HTMLIFrameElement | null;
 
 				if (frame !== null)
 				{
@@ -67,7 +50,50 @@ export default function Utterances({ flag }: Props): ReactElement | null
 	if (flag)
 	{
 		return (
-			<Box className={styles.root} component="article" id="utterances" />
+			<article className={styles.root} id="utterances" ref={(ref) =>
+			{
+				if (ref)
+				{
+					// 댓글을 사용할 경우
+					if (flag)
+					{
+						// 댓글 DOM이 없을 경우
+						if (document.querySelectorAll('#utterances > div').length === 0)
+						{
+							const wrapper = document.createElement('div');
+
+							const script = document.createElement('script');
+							script.src = 'https://utteranc.es/client.js';
+							script.async = true,
+							script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
+							script.setAttribute('issue-term', 'pathname');
+							script.setAttribute('theme', `github-${type}`);
+							script.setAttribute('crossOrigin', 'anonymous');
+
+							wrapper.appendChild(script);
+							ref.appendChild(wrapper);
+						}
+
+						else
+						{
+							ref.innerHTML = '';
+
+							const wrapper = document.createElement('div');
+
+							const script = document.createElement('script');
+							script.src = 'https://utteranc.es/client.js';
+							script.async = true,
+							script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
+							script.setAttribute('issue-term', 'pathname');
+							script.setAttribute('theme', `github-${type}`);
+							script.setAttribute('crossOrigin', 'anonymous');
+
+							wrapper.appendChild(script);
+							ref.appendChild(wrapper);
+						}
+					}
+				}
+			}} />
 		);
 	}
 

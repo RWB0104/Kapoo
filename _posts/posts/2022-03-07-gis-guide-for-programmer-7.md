@@ -8,7 +8,7 @@ category: "GIS"
 tag: [ "GIS", "GeoServer" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: false
+publish: true
 ---
 
 # Without GeoServer
