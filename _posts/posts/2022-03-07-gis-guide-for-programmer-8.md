@@ -60,20 +60,23 @@ WFS의 주요 명령어를 기술한다.
 
 레이어의 속성정보를 호출한다. DB로 따지자면 테이블의 데이터를 호출하는 것과 동일하다.
 
+지도의 속성 정보가 필요할 때 사용한다.
+
 GeoServer의 `GetFeature`에 필요한 파라미터는 아래와 같다.
 
 ``` txt
 GET http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
 ```
 
-|  Parameter   |                   Default                   | Require |                         Description                         |
+|  Parameter   |                   Example                   | Require |                         Description                         |
 | :----------: | :-----------------------------------------: | :-----: | :---------------------------------------------------------: |
-|   service    |                     WFS                     |    Y    |                          서비스명                           |
-|   version    |                    2.0.0                    |    Y    |                            버전                             |
-|   request    |                 GetFeature                  |    Y    |                           요청명                            |
+|   service    |                 WFS (고정)                  |    Y    |                          서비스명                           |
+|   version    |         2.0.0 (기본), 1.1.0, 1.0.0          |    Y    |                            버전                             |
+|   request    |              GetFeature (고정)              |    Y    |                           요청명                            |
 |   typename   |               {repo}:{layer}                |    Y    |                레이어명 (다수는 쉼표로 구분)                |
 |   srsName    |           레이어의 기본 EPSG 코드           |         | 기준 좌표계. 입력하지 않을 경우 레이어의 기본 좌표계로 표시 |
-| outputFormat |             application/gml+xml             |         |                          응답 형식                          |
+| outputFormat |         application/gml+xml (기본)          |         |                          응답 형식                          |
+|  exceptions  |         application/gml+xml (기본)          |         |                       예외 응답 형식                        |
 | propertyName |                  전체 컬럼                  |         |       응답에 포함할 컬럼명 (다수의 경우 쉼표로 구분)        |
 |     bbox     | $x_{min},y_{min},x_{max},y_{max}$,EPSG:0000 |         |                         제한할 범위                         |
 |  featureID   |                    {id}                     |         |                         Feature ID                          |
@@ -101,6 +104,100 @@ JSON 방식을 원할 경우, `application/json`을 `outputFormat`에 지정하�
 `featureID`는 특정 아이디를 가진 데이터 하나만을 타깃하여 반환해준다. 기본적으로 모든 데이터에는 ID가 붙는데, `{layer}.{number}`와 같은 식이다. 예를 들어, 레이어 이름이 `test_layer`라면, `test_layer.354`와 같은 식.
 
 `featureID=354`을 포함하여 요청하면 해당 데이터 하나만을 반환한다.
+
+``` txt
+/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=TEST:buld_sejong&srsName=EPSG:3857&outputFormat=application/json&exceptions=application/json&featureID=11645
+```
+
+``` json
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "buld_sejong.11645",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            1.418136757571567E7,
+                            4370012.19281353
+                        ],
+                        [
+                            1.418136633370244E7,
+                            4370021.40639941
+                        ],
+                        [
+                            1.418138830051506E7,
+                            4370022.60152291
+                        ],
+                        [
+                            1.418138868963238E7,
+                            4370013.39142052
+                        ],
+                        [
+                            1.418136757571567E7,
+                            4370012.19281353
+                        ]
+                    ]
+                ]
+            },
+            "geometry_name": "SHAPE",
+            "properties": {
+                "bdtyp_cd": "17005",
+                "bd_mgt_sn": "3611033027102590003000005",
+                "bsi_int_sn": 67897,
+                "bsi_zon_no": "30078",
+                "buld_mnnm": 35,
+                "buld_nm": null,
+                "buld_nm_dc": "4동",
+                "buld_se_cd": "0",
+                "buld_slno": 35,
+                "bul_dpn_se": "M",
+                "bul_eng_nm": null,
+                "bul_man_no": 55809,
+                "emd_cd": "330",
+                "eqb_man_sn": 0,
+                "gro_flo_co": 1,
+                "li_cd": "27",
+                "lnbr_mnnm": 259,
+                "lnbr_slno": 6,
+                "mntn_yn": "0",
+                "mvmn_de": "20210308",
+                "mvmn_resn": "건물번호 변경신청(노호리 259-6)에 따른 건물군 분리",
+                "mvm_res_cd": "35",
+                "ntfc_de": "20210308",
+                "opert_de": "20210308130538",
+                "pos_bul_nm": null,
+                "rds_man_no": 3020,
+                "rds_sig_cd": "36110",
+                "rn_cd": "3258065",
+                "sig_cd": "36110",
+                "und_flo_co": 0
+            }
+        }
+    ],
+    "totalFeatures": 1,
+    "numberMatched": 1,
+    "numberReturned": 1,
+    "timeStamp": "2022-03-10T16:05:54.511Z",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:EPSG::3857"
+        }
+    }
+}
+```
+
+위 응답은 세종시 건물 중 아이디가 `11645`인 데이터를 `GetFeature`로 호출한 결과이다. `outputFormat`을 `application/json`으로 지정하여 GeoJSON이 응답된다. 만약 응답 형식을 따로 지정하지 않는다면 XML 형태로 응답한다.
+
+만약 `propertyName=bdtyp_cd,bd_mgt_sn` 파라미터를 추가했다면, `properties`에서 `bdtyp_cd`, `bd_mgt_sn`만 포함될 것이다.
+
+> <b>공간정보를 가진 XML. GML</b>  
+> 공간정보를 가진 JSON을 GeoJSON이라고 부르듯이, XML 또한 GML이라는 별도의 명칭으로 부르기도 한다.  
+> GeoServer는 별도의 응답 형식을 지정하지 않으면, 대부분의 응답을 GML이나 XML로 처리하니, API 통신에서의 원활한 사용을 위해 가급적 JSON으로 지정해주자.
 
 <br />
 
@@ -190,7 +287,7 @@ POST http://localhost:8080/geoserver/wfs
 			<column2>value2</column2>
 			<column3>value3</column3>
 			<geo_column>
-				<gml:Polygon srsName="EPSG:0000">
+				<gml:Polygon srsName="EPSG:4326">
 					<gml:outerBoundaryIs>
 						<gml:LinearRing>
 							<gml:coordinates>x1,y1 x2,y2 x3,y3 x4,y4 x1,y1</gml:coordinates>
@@ -203,14 +300,43 @@ POST http://localhost:8080/geoserver/wfs
 </wfs:Transaction>
 ```
 
-| Parameter  |   Description   |
-| :--------: | :-------------: |
-| layer_name |    레이어명     |
-|   column   |     컬럼명      |
-|   value    |     컬럼값      |
-| geo_column | 공간정보 컬럼명 |
+위 XML은 Polygon을 추가하는 XML이다. 이 XML을 해석하면 아래와 같다.
 
-위 XML은 Polygon을 추가하는 XML이다.
+* 대상 테이블은 `layer_name`이다.
+* 컬럼 `column1`, `column2`, `column3`에 각각 `value1`, `value2`, `value3`을 삽입한다.
+  * Schema엔 있으나, 삽입 시 컬럼을 명시하지 않았을 경우, 해당 컬럼은 `null`로 삽입된다.
+* 공간정보 컬럼명은 `geo_column`이다.
+* 좌표 `x1,y1 x2,y2 x3,y3 x4,y4 x1,y1`의 폴리곤이다.
+  * 좌표계는 `EPSG:4326`이다.
+
+용도에 맞게 테이블명, 컬럼 등을 변경하면 된다.
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_TransactionResponse
+	xmlns:wfs="http://www.opengis.net/wfs"
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.0.0"
+	xsi:schemaLocation="http://www.opengis.net/wfs https://api.itcode.dev/geoserver/schemas/wfs/1.0.0/WFS-transaction.xsd">
+	<wfs:InsertResult>
+		<ogc:FeatureId fid="buld_test.71"/>
+	</wfs:InsertResult>
+	<wfs:TransactionResult>
+		<wfs:Status>
+			<wfs:SUCCESS/>
+		</wfs:Status>
+	</wfs:TransactionResult>
+</wfs:WFS_TransactionResponse>
+```
+
+정상응답은 위와 같다. `Transaction`의 응답은 아쉽게도 XML만 지원한다.
+
+위 응답에서 얻을 수 있는 정보는 아래와 같다.
+
+* 데이터를 삽입함
+* 응답 결과가 `SUCCESS`로 정상
+* 생성된 객체의 아이디는 `buld_test.71`
 
 <br />
 
@@ -257,25 +383,56 @@ POST http://localhost:8080/geoserver/wfs
 			</wfs:Value>
 		</wfs:Property>
 
-		<gml:Filter>
-			<gml:FeatureId fid="layer_name.32" />
-		</gml:Filter>
+		<ogc:Filter>
+			<ogc:FeatureId fid="layer_name.32" />
+		</ogc:Filter>
 	</wfs:Update>
 </wfs:Transaction>
 ```
 
-| Parameter  |   Description   |
-| :--------: | :-------------: |
-|  typeName  |    레이어명     |
-|   column   |     컬럼명      |
-|   value    |     컬럼값      |
-| geo_column | 공간정보 컬럼명 |
+위 XML은 Polygon을 수정하는 XML이다. 이 XML을 해석하면 아래와 같다.
 
-`gml:Filter`는 OGC Filter의 양식을 따른다.
+* 대상 테이블은 `layer_name`이다.
+* 컬럼 `column1`, `column2`에 각각 `value1`, `value2`으로 변경한다.
+  * 각 컬럼은 `wfs:Property`로 묶인다.
+  * 명시된 컬럼만 변경한다.
+* 공간정보 컬럼명은 `geo_column`이다.
+* 좌표 `x1,y1 x2,y2 x3,y3 x4,y4 x1,y1`의 폴리곤으로 변경한다.
+  * 좌표계는 `EPSG:4326`이다.
+* 변경 대상 객체는 아이디가 `layer_name.32`인 객체다.
 
-`gml:FeatureId` 입력한 FeatureID를 반환한다. 즉, 위 XML은 FeatureID가 32인 데이터를 수정하는 것. 속성값 이외에도 좌표의 수정 또한 가능하다.
+용도에 맞게 테이블명, 컬럼 등을 변경하면 된다.
 
-필터의 조건에 따라 다수의 데이터를 한 번에 수정할 수도 있다. CQL Filter는 후술.
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_TransactionResponse
+	xmlns:wfs="http://www.opengis.net/wfs"
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.0.0"
+	xsi:schemaLocation="http://www.opengis.net/wfs https://api.itcode.dev/geoserver/schemas/wfs/1.0.0/WFS-transaction.xsd">
+	<wfs:InsertResult>
+		<ogc:FeatureId fid="none"/>
+	</wfs:InsertResult>
+	<wfs:TransactionResult>
+		<wfs:Status>
+			<wfs:SUCCESS/>
+		</wfs:Status>
+	</wfs:TransactionResult>
+</wfs:WFS_TransactionResponse>
+```
+
+정상응답은 위와 같다. 위 응답에서 얻을 수 있는 정보는 아래와 같다.
+
+* 데이터를 갱신함
+  * `InsertResult`로 삽입과 형태가 동일하지만, 새로 생성된게 없으므로 아이디가 `none`이다.
+* 응답 결과가 `SUCCESS`로 정상
+
+`ogc:Filter`는 OGC Filter의 양식을 따른다.
+
+위 XML은 아이디가 `layer_name.32`인 데이터 하나만을 대상으로 변경했지만, 필터의 구성에 따라 다수의 데이터를 전부 변경할 수도 있다.
+
+이와 관련된 OGC 필터는 후술.
 
 <br />
 
@@ -294,25 +451,98 @@ POST http://localhost:8080/geoserver/wfs
 ``` xml
 <wfs:Transaction
 	xmlns:wfs="http://www.opengis.net/wfs"
-	xmlns:gml="http://www.opengis.net/gml"
+	xmlns:ogc="http://www.opengis.net/ogc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	service="WFS"
 	version="1.0.0"
 	xsi:schemaLocation="http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-transaction.xsd">
 	<wfs:Delete typeName="layer_name">
-		<gml:Filter>
-			<gml:FeatureId fid="layer_name.66" />
-		</gml:Filter>
+		<ogc:Filter>
+			<ogc:FeatureId fid="layer_name.66" />
+		</ogc:Filter>
 	</wfs:Delete>
 </wfs:Transaction>
 ```
 
-| Parameter | Description |
-| :-------: | :---------: |
-| typeName  |  레이어명   |
+위 XML은 Polygon을 삭제하는 XML이다. 이 XML을 해석하면 아래와 같다.
 
-`gml:Filter`는 OGC Filter의 양식을 따른다.
+* 대상 테이블은 `layer_name`이다.
+* 삭제 대상 객체는 아이디가 `layer_name.66`인 객체다.
 
-`gml:FeatureId` 입력한 FeatureID를 반환한다. 즉, 위 XML은 FeatureID가 66인 데이터를 삭제하는 것.
+데이터를 삭제하기만 하면 되므로, XML이 다른 API보다 훨씬 간단하다. 삭제할 객체가 어떤 객체인지 타깃만 하면 되기 때문.
 
-필터의 조건에 따라 다수의 데이터를 한 번에 삭제할 수도 있다. CQL Filter는 후술.
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:WFS_TransactionResponse
+	xmlns:wfs="http://www.opengis.net/wfs"
+	xmlns:ogc="http://www.opengis.net/ogc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.0.0"
+	xsi:schemaLocation="http://www.opengis.net/wfs https://api.itcode.dev/geoserver/schemas/wfs/1.0.0/WFS-transaction.xsd">
+	<wfs:InsertResult>
+		<ogc:FeatureId fid="none"/>
+	</wfs:InsertResult>
+	<wfs:TransactionResult>
+		<wfs:Status>
+			<wfs:SUCCESS/>
+		</wfs:Status>
+	</wfs:TransactionResult>
+</wfs:WFS_TransactionResponse>
+```
+
+정상응답은 위와 같다. 위 응답에서 얻을 수 있는 정보는 아래와 같다.
+
+* 데이터를 삭제함
+  * `InsertResult`로 삽입과 형태가 동일하지만, 새로 삭제된게 없으므로 아이디가 `none`이다.
+  * 갱신과 삭제는 구분하기 어렵다.
+* 응답 결과가 `SUCCESS`로 정상
+
+마찬가지로, 필터의 구성에 따라 다수의 데이터를 전부 삭제할 수도 있다.
+
+이와 관련된 OGC 필터는 후술.
+
+<br />
+<br />
+
+
+
+
+
+## WMS
+
+WMS의 주요 명령어를 기술한다.
+
+* GetMap
+* GetFeatureInfo
+
+기본 URL은 `http://localhost:8080/geoserver/wms`와 같다.
+
+<br />
+
+
+
+### 1. GetMap
+
+레이어의 데이터 및 선언된 스타일을 토대로 렌더링된 지도를 제공한다. 즉, JSON 같은 텍스트 기반 데이터가 아닌, PNG 같은 이미지를 제공한다.
+
+보유한 데이터를 토대로, 자신이 직접 디자인한 지도를 제공할 수도 있다.
+
+GeoServer의 `GetMap`에 필요한 파라미터는 아래와 같다.
+
+``` txt
+GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=test:building&tiled=true&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14168673.311053414%2C4366083.0556492675%2C14168979.059166554%2C4366388.803762408
+```
+
+|  Parameter  |              Default              | Require |                         Description                         |
+| :---------: | :-------------------------------: | :-----: | :---------------------------------------------------------: |
+|   service   |                WMS                |    Y    |                          서비스명                           |
+|   version   |               1.3.0               |    Y    |                            버전                             |
+|   request   |              GetMap               |    Y    |                           요청명                            |
+|   format    |             image/png             |    Y    |                           요청명                            |
+| transparent |               true                |         |                       배경 투명 여부                        |
+|   layers    |          {repo}:{layer}           |    Y    |                레이어명 (다수는 쉼표로 구분)                |
+|    width    |                256                |    Y    |                         이미지 넓이                         |
+|   height    |                256                |    Y    |                         이미지 높이                         |
+|     crs     |      레이어의 기본 EPSG 코드      |         | 기준 좌표계. 입력하지 않을 경우 레이어의 기본 좌표계로 표시 |
+|   styles    |                                   |         |      적용할 스타일명 (없으면 레이어별로 설정한 스타일)      |
+|    bbox     | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                      이미지 영역 좌표                       |

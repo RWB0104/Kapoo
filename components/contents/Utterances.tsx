@@ -74,10 +74,9 @@ export default function Utterances({ flag }: Props): ReactElement | null
 							ref.appendChild(wrapper);
 						}
 
+						// 댓글 DOM이 있을 경우
 						else
 						{
-							ref.innerHTML = '';
-
 							const wrapper = document.createElement('div');
 
 							const script = document.createElement('script');
@@ -89,6 +88,8 @@ export default function Utterances({ flag }: Props): ReactElement | null
 							script.setAttribute('crossOrigin', 'anonymous');
 
 							wrapper.appendChild(script);
+
+							ref.innerHTML = '';
 							ref.appendChild(wrapper);
 						}
 					}
