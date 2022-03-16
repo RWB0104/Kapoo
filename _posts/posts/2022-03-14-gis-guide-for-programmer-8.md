@@ -2,13 +2,13 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 8. 공간정보 데이터를 주문하는 법. OGC"
 excerpt: "OpenLayers는 웹 브라우저에서 지도나 GIS 서비스를 제공하기 위한 JavaScript Library다. GIS 라이브러리 중 진입 장벽은 가장 높지만, 그에 상응하는 강력한 기능을 제공한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-07T01:12:33+09:00"
+date: "2022-03-14T23:37:32+09:00"
 type: "posts"
 category: "GIS"
 tag: [ "GIS", "GeoServer" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: false
+publish: true
 ---
 
 # OGC 표준
@@ -68,18 +68,18 @@ GeoServer의 `GetFeature`에 필요한 파라미터는 아래와 같다.
 GET http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
 ```
 
-|  Parameter   |                   Example                   | Require |                         Description                         |
-| :----------: | :-----------------------------------------: | :-----: | :---------------------------------------------------------: |
-|   service    |                 WFS (고정)                  |    Y    |                          서비스명                           |
-|   version    |         2.0.0 (기본), 1.1.0, 1.0.0          |    Y    |                            버전                             |
-|   request    |              GetFeature (고정)              |    Y    |                           요청명                            |
-|   typename   |               {repo}:{layer}                |    Y    |                레이어명 (다수는 쉼표로 구분)                |
-|   srsName    |           레이어의 기본 EPSG 코드           |         | 기준 좌표계. 입력하지 않을 경우 레이어의 기본 좌표계로 표시 |
-| outputFormat |         application/gml+xml (기본)          |         |                          응답 형식                          |
-|  exceptions  |         application/gml+xml (기본)          |         |                       예외 응답 형식                        |
-| propertyName |                  전체 컬럼                  |         |       응답에 포함할 컬럼명 (다수의 경우 쉼표로 구분)        |
-|     bbox     | $x_{min},y_{min},x_{max},y_{max}$,EPSG:0000 |         |                         제한할 범위                         |
-|  featureID   |                    {id}                     |         |                         Feature ID                          |
+|  Parameter   |                   Example                   | Require |                     Description                     |
+| :----------: | :-----------------------------------------: | :-----: | :-------------------------------------------------: |
+|   service    |                 WFS (고정)                  |    Y    |                      서비스명                       |
+|   version    |         2.0.0 (기본), 1.1.0, 1.0.0          |    Y    |                        버전                         |
+|   request    |              GetFeature (고정)              |    Y    |                       요청명                        |
+|   typename   |            repo_name:layer_name             |    Y    |            레이어명 (다수는 쉼표로 구분)            |
+|   srsName    |                  EPSG:4326                  |         | 기준 좌표계 (비울 경우 레이어의 기본 좌표계로 표시) |
+| outputFormat |      application/vnd.ogc.se_xml (기본)      |         |                      응답 형식                      |
+|  exceptions  |      application/vnd.ogc.se_xml (기본)      |         |                   예외 응답 형식                    |
+| propertyName |                  전체 컬럼                  |         |   응답에 포함할 컬럼명 (다수의 경우 쉼표로 구분)    |
+|     bbox     | $x_{min},y_{min},x_{max},y_{max}$,EPSG:0000 |         |                     제한할 범위                     |
+|  featureID   |                    {id}                     |         |                     Feature ID                      |
 
 필수 파라미터만 입력하면 해당 레이어의 모든 데이터에 대한 속성정보를 불러온다.
 
@@ -403,6 +403,12 @@ POST http://localhost:8080/geoserver/wfs
 
 용도에 맞게 테이블명, 컬럼 등을 변경하면 된다.
 
+`ogc:Filter`는 OGC Filter의 양식을 따른다.
+
+위 XML은 아이디가 `layer_name.32`인 데이터 하나만을 대상으로 변경했지만, 필터의 구성에 따라 다수의 데이터를 전부 변경할 수도 있다.
+
+이와 관련된 OGC 필터는 후술.
+
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <wfs:WFS_TransactionResponse
@@ -427,12 +433,6 @@ POST http://localhost:8080/geoserver/wfs
 * 데이터를 갱신함
   * `InsertResult`로 삽입과 형태가 동일하지만, 새로 생성된게 없으므로 아이디가 `none`이다.
 * 응답 결과가 `SUCCESS`로 정상
-
-`ogc:Filter`는 OGC Filter의 양식을 따른다.
-
-위 XML은 아이디가 `layer_name.32`인 데이터 하나만을 대상으로 변경했지만, 필터의 구성에 따라 다수의 데이터를 전부 변경할 수도 있다.
-
-이와 관련된 OGC 필터는 후술.
 
 <br />
 
@@ -469,7 +469,11 @@ POST http://localhost:8080/geoserver/wfs
 * 대상 테이블은 `layer_name`이다.
 * 삭제 대상 객체는 아이디가 `layer_name.66`인 객체다.
 
-데이터를 삭제하기만 하면 되므로, XML이 다른 API보다 훨씬 간단하다. 삭제할 객체가 어떤 객체인지 타깃만 하면 되기 때문.
+데이터를 삭제하기만 하면 되므로, XML이 다른 API보다 훨씬 간단하다. 삭제할 객체가 어떤 객체인지 타깃만 하면 되기 때문.+
+
+마찬가지로, 필터의 구성에 따라 다수의 데이터를 전부 삭제할 수도 있다.
+
+이와 관련된 OGC 필터는 후술.
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -496,10 +500,6 @@ POST http://localhost:8080/geoserver/wfs
   * `InsertResult`로 삽입과 형태가 동일하지만, 새로 삭제된게 없으므로 아이디가 `none`이다.
   * 갱신과 삭제는 구분하기 어렵다.
 * 응답 결과가 `SUCCESS`로 정상
-
-마찬가지로, 필터의 구성에 따라 다수의 데이터를 전부 삭제할 수도 있다.
-
-이와 관련된 OGC 필터는 후술.
 
 <br />
 <br />
@@ -530,19 +530,126 @@ WMS의 주요 명령어를 기술한다.
 GeoServer의 `GetMap`에 필요한 파라미터는 아래와 같다.
 
 ``` txt
-GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=test:building&tiled=true&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14168673.311053414%2C4366083.0556492675%2C14168979.059166554%2C4366388.803762408
+GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=buld_sejong&exceptions=application%2Fjson&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14167144.570487704%2C4365471.559422987%2C14167756.066713985%2C4366083.055649268
 ```
 
-|  Parameter  |              Default              | Require |                         Description                         |
-| :---------: | :-------------------------------: | :-----: | :---------------------------------------------------------: |
-|   service   |                WMS                |    Y    |                          서비스명                           |
-|   version   |               1.3.0               |    Y    |                            버전                             |
-|   request   |              GetMap               |    Y    |                           요청명                            |
-|   format    |             image/png             |    Y    |                           요청명                            |
-| transparent |               true                |         |                       배경 투명 여부                        |
-|   layers    |          {repo}:{layer}           |    Y    |                레이어명 (다수는 쉼표로 구분)                |
-|    width    |                256                |    Y    |                         이미지 넓이                         |
-|   height    |                256                |    Y    |                         이미지 높이                         |
-|     crs     |      레이어의 기본 EPSG 코드      |         | 기준 좌표계. 입력하지 않을 경우 레이어의 기본 좌표계로 표시 |
-|   styles    |                                   |         |      적용할 스타일명 (없으면 레이어별로 설정한 스타일)      |
-|    bbox     | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                      이미지 영역 좌표                       |
+|  Parameter  |              Example              | Require |                                      Description                                      |
+| :---------: | :-------------------------------: | :-----: | :-----------------------------------------------------------------------------------: |
+|   service   |            WMS (고정)             |    Y    |                                       서비스명                                        |
+|   version   | 1.3.0 (고정), 1.1.1, 1.1.0, 1.0.0 |    Y    |                                         버전                                          |
+|   request   |           GetMap (고정)           |    Y    |                                        요청명                                         |
+|   layers    |       repo_name:layer_name        |    Y    |                             레이어명 (다수는 쉼표로 구분)                             |
+|   styles    |              style1               |         | 적용할 스타일명 (비울 경우 GeoServer에서 설정한 기본 스타일 적용, 다수는 쉼표로 구분) |
+| srs(or crs) |             EPSG:4326             |         |                  기준 좌표계 (비울 경우 레이어의 기본 좌표계로 인식)                  |
+|    bbox     | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                                   이미지 영역 좌표                                    |
+|    width    |                256                |    Y    |                                      이미지 넓이                                      |
+|   height    |                256                |    Y    |                                      이미지 높이                                      |
+|   format    |             image/png             |    Y    |                                        요청명                                         |
+| transparent |           false (기본)            |         |                                    배경 투명 여부                                     |
+|   bgcolor   |           FFFFFF (기본)           |         |                                RRGGBB 형태의 배경 색상                                |
+| exceptions  | application/vnd.ogc.se_xml (기본) |         |                                    예외 응답 형식                                     |
+|    time     |   2022-03-14T22:30.27.520+09:00   |         |                 시계열 데이터를 위한 시간 (yyyy-MM-ddThh:mm:ss.SSSZ)                  |
+|     sld     |    https://example.com/sld.xml    |         |                                     XML 파일 경로                                     |
+|  sld_body   |            <sld></sld>            |         |                                        SLD XML                                        |
+
+WMS는 OGC 표준 명령어 중에서 특이하게 이미지를 반환하는 명령어다. `format` 역시 이미지 MIME 타입인 것을 확인할 수 있다. 이를 통해서 자신이 직접 디자인한 지도를 서비스할 수도 있다.
+
+단, 레이어가 너무 많거나, SLD가 복잡해질수록 렌더링 시간이 길어질 수 있다.
+
+<br />
+
+`srs`는 기준 좌표계다. `bbox`의 EPSG 코드를 입력하면 되며, 비울 경우 레이어의 기본 EPSG 코드로 인식한다.
+
+`version`이 1.3.0일 경우, `crs`로 사용한다.
+
+<br />
+
+WMS는 반드시 `bbox`를 통해 영역을 입력해야한다.
+
+<br />
+
+`styles`는 사용할 SLD의 이름이다. GeoServer에서 해당 레이어에 사용할 SLD를 지정할 수 있는데, 이 때 지정한 SLD의 이름을 입력하는 것이다.
+
+쉼표로 구분하여 하나 이상의 SLD를 입력할 수 있으며, 비울 경우 기본으로 지정한 SLD가 자동으로 선택된다.
+
+<br />
+
+`time`은 시계열 데이터를 위한 파라미터. 시간별로 구분된 데이터가 있다면, 해당 파라미터를 통해 호출할 수 있다.
+
+<br />
+
+`sld`는 외부 SLD를 지정하기 위한 파라미터로, URL을 입력한다.
+
+`sld_body`는 SLD XML을 직접 파라미터에 입력하는 것이다.
+
+![image](https://user-images.githubusercontent.com/50317129/158647221-814d9d12-a03e-47fd-acb9-487ca6c5da8d.png)
+
+`GetMap`의 응답 예시다.
+
+<br />
+
+
+
+### 2. GetFeatureInfo
+
+GetMap으로 출력된 지도는 모든 객체들이 이미지로 바뀌므로, 객체를 선택하거나 판별하는 것이 불가능해보인다.
+
+하지만, `GetFeatureInfo`를 사용하면, 이미지를 클릭했을 때 해당 객체의 정보를 확인할 수 있다.
+
+GeoServer의 `GetFeatureInfo`에 필요한 파라미터는 아래와 같다.
+
+``` txt
+GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=buld_sejong&layers=buld_sejong&exceptions=application%2Fjson&INFO_FORMAT=application%2Fjson&I=221&J=178&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14169590.555392835%2C4366694.551875548%2C14169896.303505976%2C4367000.299988689
+```
+
+|   Parameter   |              Example              | Require |                     Description                     |
+| :-----------: | :-------------------------------: | :-----: | :-------------------------------------------------: |
+|    service    |            WMS (고정)             |    Y    |                      서비스명                       |
+|    version    | 1.3.0 (고정), 1.1.1, 1.1.0, 1.0.0 |    Y    |                        버전                         |
+|    request    |       GetFeatureInfo (고정)       |    Y    |                       요청명                        |
+|    layers     |       repo_name:layer_name        |    Y    |            레이어명 (다수는 쉼표로 구분)            |
+|    styles     |              style1               |         |  적용할 스타일명 (`GetFeatureInfo`에선 의미 없음)   |
+|  crs(or srs)  |             EPSG:4326             |         | 기준 좌표계 (비울 경우 레이어의 기본 좌표계로 인식) |
+|     bbox      | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                  이미지 영역 좌표                   |
+|     width     |                256                |    Y    |                     이미지 넓이                     |
+|    height     |                256                |    Y    |                     이미지 높이                     |
+| query_layers  |       repo_name:layer_name        |    Y    |       추가 요청 레이어명 (다수는 쉼표로 구분)       |
+|  info_format  | application/vnd.ogc.se_xml (기본) |         |                      응답 형식                      |
+| feature_count |             1 (기본)              |         |                  최대 객체 호출 수                  |
+|    x(or i)    |                225                |    Y    |                   지도의 x 픽셀값                   |
+|    y(or j)    |                156                |    Y    |                   지도의 y 픽셀값                   |
+|  exceptions   | application/vnd.ogc.se_xml (기본) |         |                   예외 응답 형식                    |
+
+`layers`와 `query_layers`가 비슷해서 헷갈릴 수 있는데, 이는 `GetMap`에서의 확장을 염두에 두었기 때문이다.
+
+`GetMap`의 요청에 `GetFeatureInfo`가 추가로 요구하는 몇몇 파라미터만 이어붙여 사용하기 위해 별도로 둔 것이다. `layers`와 `query_layers`의 차이는 아래와 같다.
+
+* `layers`: `GetMap`시 해당 레이어가 지도에 출력됨
+* `query_layers`: `GetMap`에는 출력되지 않으나, `GetFeatureInfo`에선 포함되어 검색됨
+
+지금까지 소개한 명령어들의 응답 형식이 `format`인데 비해, `GetFeatureInfo`만 `info_format`으로 상이한 이유 또한 여기에 있다.
+
+<br />
+
+`GetFeatureInfo`은 클릭한 위치를 계산하여 해당하는 객체의 정보를 출력하는 명령어이므로, `info_format`에 입력하는 값은 `GetFeature`와 같이 텍스트 MIME를 사용한다.
+
+<br />
+
+`x`, `y`는 지도 상에서 마우스가 클릭한 픽셀 값이다. 좌표가 아님에 주의하자. 좌표는 `bbox`에 입력한다.
+
+`version`이 1.3.0일 경우, `x`, `y`가 아닌 `i`, `j`로 사용해야한다.
+
+<br />
+<br />
+
+
+
+
+
+## 마치며
+
+위에서 소개한 명령어는 OGC 표준 중 가장 빈번하게 사용하는 명령어로, 이외에도 당신에게 꼭 필요할 수도 있는 다채로운 명령어들이 존재한다.
+
+앞으로 설명할 예제들도 그렇고, 기본적인 기능의 지도는 위 기능들만 적절히 활용해도 충분히 서비스할 수 있다.
+
+더 많은 내용이 궁금하다면, 여기를 확인하길 바란다.
