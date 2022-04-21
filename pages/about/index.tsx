@@ -16,6 +16,7 @@ import { getBuildHash, getScreenerImage } from '@commons/api';
 import { getRandomIndex } from '@commons/common';
 import { MENU_LIST, TITLE } from '@commons/env';
 import Artbox from '@components/global/Artbox';
+import CommitList from '@components/about/CommitList';
 
 interface Props {
 	images: string[],
@@ -42,6 +43,8 @@ export default function Posts({ images }: Props): ReactElement
 			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} image={images[index]} />
 
 			<Screener title={TITLE} menu={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={images[index]} />
+
+			<CommitList />
 
 			<Artbox />
 		</Box>

@@ -5,7 +5,7 @@ coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad
 date: "2022-04-04T01:56:03+09:00"
 type: "posts"
 category: "GIS"
-tag: [ "GIS", "GeoServer" ]
+tag: [ "GIS", "OpenLayers" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
 publish: true
