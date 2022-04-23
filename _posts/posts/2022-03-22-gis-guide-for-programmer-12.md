@@ -751,6 +751,8 @@ map.on('pointermove', (e) => setPosition(e.coordinate));
 
 # 예제 확인하기
 
+![image](https://user-images.githubusercontent.com/50317129/164761404-8611d7a9-17ab-4201-8258-b4467e27ec8b.png)
+
 [OpenLayers6 Sandbox - MapInfo](https://project.itcode.dev/gis-dev/map-info)에서 이를 구현한 예제를 확인할 수 있다.
 
 우측 하단의 패널에서 지도와 관련된 정보 및 레이어 관리가 가능하다.

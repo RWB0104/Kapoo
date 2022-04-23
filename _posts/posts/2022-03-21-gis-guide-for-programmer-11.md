@@ -277,8 +277,7 @@ import View from 'ol/View';
 const view = new View({
 	projection: 'EPSG:3857',
 	center: [ 14135490.777017945, 4518386.883679577 ],
-	zoom: 17,
-	constrainResolution: true
+	zoom: 17
 });
 ```
 
@@ -354,8 +353,7 @@ const vworldHybridLayer = new TileLayer({
 const view = new View({
 	projection: 'EPSG:3857',
 	center: [ 14135490.777017945, 4518386.883679577 ],
-	zoom: 17,
-	constrainResolution: true
+	zoom: 17
 });
 
 const map = new Map({
@@ -396,6 +394,8 @@ const map = new Map({
 
 
 # 예제 확인하기
+
+![image](https://user-images.githubusercontent.com/50317129/164761239-e80c77e5-1948-43fa-8640-4abc566a90e5.png)
 
 [OpenLayers6 Sandbox - VWorld](https://project.itcode.dev/gis-dev/vworld)에서 이를 구현한 예제를 확인할 수 있다.
 

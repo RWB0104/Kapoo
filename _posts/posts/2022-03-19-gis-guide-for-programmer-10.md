@@ -168,8 +168,7 @@ import View from 'ol/View';
 const view = new View({
 	projection: 'EPSG:3857',
 	center: [ 14135490.777017945, 4518386.883679577 ],
-	zoom: 17,
-	constrainResolution: true
+	zoom: 17
 });
 ```
 
@@ -234,8 +233,7 @@ const layer = new TileLayer({
 const view = new View({
 	projection: 'EPSG:3857',
 	center: [ 14135490.777017945, 4518386.883679577 ],
-	zoom: 17,
-	constrainResolution: true
+	zoom: 17
 });
 
 const map = new Map({
@@ -276,6 +274,8 @@ const map = new Map({
 
 
 # 예제 확인하기
+
+![image](https://user-images.githubusercontent.com/50317129/164761027-283f384b-82b9-4be3-aedb-fb92788eb3ec.png)
 
 [OpenLayers6 Sandbox - OSM](https://project.itcode.dev/gis-dev/osm)에서 이를 구현한 예제를 확인할 수 있다.
 

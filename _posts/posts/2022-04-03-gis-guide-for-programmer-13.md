@@ -170,6 +170,8 @@ export function Location({ map }: SubProps)
 
 # 예제 확인하기
 
+![image](https://user-images.githubusercontent.com/50317129/164761620-8d521f09-59c0-47bc-a2cc-4ac2a2dd8042.png)
+
 [OpenLayers6 Sandbox - Geolocation](https://project.itcode.dev/gis-dev/geolocation)에서 이를 구현한 예제를 확인할 수 있다.
 
 좌측 하단의 녹색 버튼을 클릭하여 사용자의 위치로 이동할 수 있다.

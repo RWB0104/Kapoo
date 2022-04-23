@@ -185,6 +185,8 @@ map.getAllLayers().filter(layer => layer.get('name') === 'location')[0].getSourc
 
 Geolocation을 통해 수집한 위치 정보로 `Feature`를 생성하여 추가한다.
 
+<br />
+
 ``` tsx
 <LocationWithMarker map={mapState} />
 ```
@@ -210,9 +212,11 @@ Geolocation을 통해 수집한 위치 정보로 `Feature`를 생성하여 추�
 
 # 예제 확인하기
 
+![image](https://user-images.githubusercontent.com/50317129/164761803-940e951e-3ae7-448a-af94-b4857f68c368.png)
+
 [OpenLayers6 Sandbox - Feature](https://project.itcode.dev/gis-dev/feature)에서 이를 구현한 예제를 확인할 수 있다.
 
-좌측 하단의 녹색 버튼을 클릭하여 사용자의 위치로 이동할 수 있다.
+좌측 하단의 녹색 버튼을 클릭하여 사용자의 위치로 이동되며, 위치를 파란색 원으로 표시해준다.
 
 인터넷 회선 구성에 따라, 사용자의 실제 위치가 아닌 회선 서버의 물리적 위치가 뜨는 경우도 있으니 참고할 것.
 
