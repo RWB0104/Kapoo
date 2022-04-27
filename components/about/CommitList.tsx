@@ -5,7 +5,12 @@
  * @since 2022.04.10 Sun 19:17:35
  */
 
+import { Container } from '@material-ui/core';
 import { useEffect, useState } from 'react';
+
+// 스타일
+import styles from '@styles/components/about/commitlist.module.scss';
+import { AccountTree } from '@material-ui/icons';
 
 /**
  * 커밋 리스트 JSX 반환 메서드
@@ -24,7 +29,13 @@ export default function CommitList(): JSX.Element | null
 
 			if (response.ok)
 			{
-				const json = await response.json();
+				let json = await response.json();
+
+				// 커밋 이력이 10개보다 많을 경우
+				if (json.length > 10)
+				{
+					json = json.slice(0, 10);
+				}
 
 				setCommits(json);
 			}
@@ -32,14 +43,20 @@ export default function CommitList(): JSX.Element | null
 	}, []);
 
 	return commits.length > 0 ? (
-		<article id='commits'>
+		<Container maxWidth="md" className={styles.root}>
 			{commits.map((commit, index) => (
-				<div key={index} className='item' data-index={index} data-sha={commit.sha}>
-					<h4>{commit.sha}</h4>
+				<div key={index} className={styles.item} data-index={index} data-sha={commit.sha}>
+					<div>
+						<AccountTree htmlColor="limegreen" />
+					</div>
 
-					{commit.commit.message.split('\\n').map((spt, index) => <p>{spt}</p>)}
+					<div className={styles.content}>
+						<p>{commit.sha}</p>
+
+						{commit.commit.message.split('\\n').map((spt, index1) => <p key={index1}>{spt}</p>)}
+					</div>
 				</div>
 			))}
-		</article>
+		</Container>
 	) : null;
 }
