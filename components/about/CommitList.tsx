@@ -10,13 +10,12 @@ import { useEffect, useState } from 'react';
 
 // 스타일
 import styles from '@styles/components/about/commitlist.module.scss';
-import { AccountTree } from '@material-ui/icons';
 
-/**
- * 커밋 리스트 JSX 반환 메서드
- *
- * @returns {JSX.Element | null} JSX
- */
+
+
+
+
+
 export default function CommitList(): JSX.Element | null
 {
 	const [ commits, setCommits ] = useState([]);
@@ -32,10 +31,13 @@ export default function CommitList(): JSX.Element | null
 				let json = await response.json();
 
 				// 커밋 이력이 10개보다 많을 경우
-				if (json.length > 10)
+				if (json.length > 20)
 				{
-					json = json.slice(0, 10);
+					json = json.slice(0, 20);
 				}
+
+				console.dir(json);
+				console.dir(json[13].commit.message);
 
 				setCommits(json);
 			}
@@ -46,14 +48,23 @@ export default function CommitList(): JSX.Element | null
 		<Container maxWidth="md" className={styles.root}>
 			{commits.map((commit, index) => (
 				<div key={index} className={styles.item} data-index={index} data-sha={commit.sha}>
-					<div>
-						<AccountTree htmlColor="limegreen" />
+					<div className={styles.header}>
+						<a href={commit.author.html_url} target="_blank"><img src={commit.author.avatar_url} /></a>
+						<p><b><a href={commit.author.html_url} target="_blank">{commit.author.login}</a></b> has commits <small>at {commit.commit.author.date}</small></p>
 					</div>
 
 					<div className={styles.content}>
-						<p>{commit.sha}</p>
+						<div>
+							<h4><a href={commit.html_url} target="_blank">{commit.commit.message.split('\n')[0]}</a></h4>
+						</div>
 
-						{commit.commit.message.split('\\n').map((spt, index1) => <p key={index1}>{spt}</p>)}
+						<div>
+							{commit.commit.message.split('\n').map((spt, index1) => index1 > 0 && <p key={index1}>{spt}</p>)}
+						</div>
+
+						<div>
+							<p><small>{commit.sha}</small></p>
+						</div>
 					</div>
 				</div>
 			))}
