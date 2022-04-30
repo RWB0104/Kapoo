@@ -1,50 +1,77 @@
 @import "../../common/animation.module.scss";
+@import "../../common/env.scss";
 
-@mixin bar {
-	height: 64px !important;
-}
-
-.bar-light {
-	@include bar;
-
-	background: linear-gradient(45deg, #FC466B, #3F5EFB);
-}
-
-.bar-dark {
-	@include bar;
-
-	background: linear-gradient(45deg, #161d2c, #020D1D);
-}
-
-.toolbar {
-	@include bar;
-}
-
-.inner {
-	display: grid;
-	grid-template-columns: 50px 1fr 250px;
+@mixin root() {
+	display: flex;
+	justify-content: center;
 	align-items: center;
 
-	@media (max-width: 960px) {
-		grid-template-columns: 50px 1fr 50px;
+	position: fixed;
+
+	width: 100%;
+	height: 64px;
+
+	z-index: 10;
+
+	@media (max-width: $ref) {
+		height: 48px;
 	}
+}
+
+@mixin data-top() {
+	&[data-top=true] {
+		background-color: transparent;
+		border-bottom: 2px solid hsla(0, 0%, 100%, .3);
+
+		color: white;
+
+		transition: 0.3s;
+	}
+}
+
+.root-light {
+	background-color: white;
+	transition: 0.3s;
+
+	@include root;
+	@include data-top;
+}
+
+.root-dark {
+	background-color: black;
+	color: white;
+	transition: 0.3s;
+
+	@include root;
+	@include data-top;
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	width: 100%;
+	max-width: $ref;
+	padding: 0px 20px;
 }
 
 .logo {
 	height: 32px;
-	animation: rotate 5s linear infinite;
-	transform-origin: 50% 50%;
+
+	@include rotate-animation;
+
+	@media (max-width: $ref) {
+		height: 24px;
+	}
 }
 
 .title {
-	color: white;
-	transition: 0.5s;
+	font-size: 1.5rem;
 
-	padding-left: 10px;
-	font-size: 24px !important;
+	flex: 1;
 
-	@media (max-width: 960px) {
-		font-size: 16px !important;
-		transition: 0.5s;
+	@media (max-width: $ref) {
+		font-size: 1.2rem;
 	}
 }

@@ -59,11 +59,11 @@ export default function CommitList(): JSX.Element | null
 						</div>
 
 						<div>
-							{commit.commit.message.split('\n').map((spt, index1) => index1 > 0 && <p key={index1}>{spt}</p>)}
+							{commit.commit.message.split('\n').map((spt, index1) => index1 > 0 && <p key={index1}><small>{spt}</small></p>)}
 						</div>
 
 						<div>
-							<p><small>{commit.sha}</small></p>
+							<p><small></small><small>{commit.sha}</small></p>
 						</div>
 					</div>
 				</div>

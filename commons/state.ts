@@ -17,3 +17,8 @@ export const menuAtom = atom({
 	key: 'menuState',
 	default: false
 });
+
+export const loadingAtom = atom({
+	key: 'loadingState',
+	default: false
+});

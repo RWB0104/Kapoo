@@ -1,9 +1,9 @@
 @mixin image {
-	height: calc(100vh - 64px);
+	height: 100vh;
 	width: 100%;
 
 	position: fixed;
-	top: 64px;
+	top: 0px;
 	left: 0px;
 
 	background-color: rgba(0, 0, 0, 0.6);
@@ -22,7 +22,6 @@
 	align-content: center;
 
 	height: calc(100vh - 64px);
-	width: 100%;
 	padding: 50px;
 	margin-bottom: 100px;
 
@@ -63,7 +62,7 @@
 	width: 100%;
 
 	position: fixed;
-	top: 64px;
+	top: 0px;
 	left: 0px;
 
 	object-fit: cover;

@@ -6,41 +6,35 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
-import { AppBar, Box, Container, Toolbar, Typography, useTheme } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import MenuList from './MenuList';
 import { TITLE } from '@commons/env';
 import { React } from '@commons/icons';
+import { darkAtom } from '@commons/state';
 
 // 스타일
-import styles from '@styles/components/header/header.module.scss';
+import styles from '@styles/components/header/Header.module.scss';
 
 /**
- * 헤더 ReactNode 반환 함수
+ * 헤더 JSX 반환 함수
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element | null} JSX
  */
-export default function Header(): ReactElement | null
+export default function Header(): JSX.Element | null
 {
-	const theme = useTheme();
+	const darkState = useRecoilValue(darkAtom);
 
 	return (
-		<Box component="header">
-			<AppBar className={styles[`bar-${theme.palette.type}`]}>
-				<Toolbar className={styles.toolbar}>
-					<Container maxWidth="lg">
-						<Box className={styles.inner}>
-							<React className={styles.logo} width={48} height={48} />
+		<header className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-top="true">
+			<div className={styles.wrapper}>
+				<React className={styles.logo} width={48} height={48} />
 
-							<Typography className={styles.title} variant="h4">{TITLE}</Typography>
+				<h4 className={styles.title}>{TITLE}</h4>
 
-							<MenuList />
-						</Box>
-					</Container>
-				</Toolbar>
-			</AppBar>
-		</Box>
+				<MenuList />
+			</div>
+		</header>
 	);
 }

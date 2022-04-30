@@ -7,14 +7,13 @@
 
 // 라이브러리 모듈
 import { ReactElement, useEffect, useRef } from 'react';
-import { Box, Typography } from '@material-ui/core';
 
-// 사용자 모듈
+
 import { getRandomIndex } from '@commons/common';
 import { PIECE } from '@commons/env';
 
 // 스타일
-import styles from '@styles/components/global/artbox.module.scss';
+import styles from '@styles/components/global/ArtBox.module.scss';
 
 /**
  * 아트박스 ReactElement 반환 함수
@@ -53,15 +52,15 @@ export default function Artbox(): ReactElement
 	});
 
 	return (
-		<Box className={styles.root} component="article" position="relative" display="flex" flexDirection="column" justifyContent="center">
-			<Box className={styles.wrapper} position="absolute">
+		<article className={styles.root}>
+			<div className={styles['image-wrapper']}>
 				<div ref={imageRef} className={styles.image}></div>
-			</Box>
+			</div>
 
-			<Box display="grid">
-				<Typography ref={titleRef} component="h1" className={styles.title} gutterBottom></Typography>
-				<Typography ref={subRef} component="h3" className={styles.sub}></Typography>
-			</Box>
-		</Box>
+			<div className={styles['text-wrapper']}>
+				<h1 ref={titleRef} className={styles.title}></h1>
+				<h3 ref={subRef} className={styles.sub}></h3>
+			</div>
+		</article>
 	);
 }

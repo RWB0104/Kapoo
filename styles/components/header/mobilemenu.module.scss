@@ -1,14 +1,47 @@
+@import "../../common/animation.module.scss";
 @import "../../common/color.module.scss";
+@import "../../common/env.scss";
 
-.root {
-	background-color: rgba($color: black, $alpha: 0.8);
-	backdrop-filter: blur(5px) saturate(180%);
+$width: 200px;
 
-	& > div:not(:last-child) {
-		margin-bottom: 30px !important;
+@mixin root {
+	position: fixed;
+
+	top: 48px;
+	right: -200px;
+
+	width: $width;
+	height: 100%;
+
+	padding: 10px;
+
+	box-sizing: border-box;
+
+	z-index: 20;
+
+	@media (min-width: $ref) {
+		display: none;
 	}
 
-	padding: 0px 40px;
+	&[data-show=true] {
+		@include slide-in-animation();
+	}
+
+	&[data-show=false] {
+		@include slide-out-animation();
+	}
+}
+
+.root-light {
+	@include root;
+
+	background-color: white;
+}
+
+.root-dark {
+	@include root;
+
+	background-color: black;
 }
 
 .button {
@@ -38,7 +71,7 @@
 }
 
 .switch {
-	& > span:last-child {
+	&>span:last-child {
 		background-color: white !important;
 	}
 }

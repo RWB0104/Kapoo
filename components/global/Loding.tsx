@@ -6,29 +6,30 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Box, useTheme } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
+import { darkAtom, loadingAtom } from '@commons/state';
 import { React } from '@commons/icons';
 
 // 스타일
-import styles from '@styles/components/global/loading.module.scss';
+import styles from '@styles/components/global/Loading.module.scss';
 
 /**
- * 로딩 ReactElement 반환 함수
+ * 로딩 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Loading(): ReactElement
+export default function Loading(): JSX.Element | null
 {
-	const theme = useTheme();
+	const darkState = useRecoilValue(darkAtom);
+	const loadingState = useRecoilValue(loadingAtom);
 
-	return (
-		<Box id="loading" className={styles[`root-${theme.palette.type}`]} component="article">
-			<Box className={styles['logo-wrap']}>
+	return loadingState ? (
+		<article id="loading" className={styles[`root-${darkState ? 'dark' : 'light'}`]}>
+			<div className={styles['logo-wrap']}>
 				<React className={styles.logo} />
-			</Box>
-		</Box>
-	);
+			</div>
+		</article>
+	) : null;
 }

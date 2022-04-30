@@ -1,12 +1,57 @@
 @keyframes rotate {
 	from {
-		-webkit-transform: rotate(0deg);
-		-o-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
+
 	to {
-		-webkit-transform: rotate(360deg);
-		-o-transform: rotate(360deg);
 		transform: rotate(360deg);
 	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(720deg);
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translate(0px, 0px);
+	}
+
+	to {
+		transform: translate(-200px, 0px);
+	}
+}
+
+@keyframes slide-out {
+	from {
+		transform: translate(-200px, 0px);
+	}
+
+	to {
+		transform: translate(0px, 0px);
+	}
+}
+
+@mixin rotate-animation() {
+	animation: rotate 5s linear infinite;
+	transform-origin: 50% 50%;
+}
+
+@mixin spin-animation() {
+	animation: spin 3s ease infinite;
+	transform-origin: 50% 50%;
+}
+
+@mixin slide-in-animation() {
+	animation: slide-in 0.5s ease forwards;
+}
+
+@mixin slide-out-animation() {
+	animation: slide-out 0.5s ease forwards;
 }

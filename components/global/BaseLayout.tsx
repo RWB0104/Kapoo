@@ -7,9 +7,7 @@
 
 // 라이브러리 모듈
 import { ReactElement, useEffect } from 'react';
-import { Box, createTheme, CssBaseline, MuiThemeProvider, Theme } from '@material-ui/core';
-import { indigo, orange } from '@material-ui/core/colors';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { Router } from 'next/router';
 import { useCookies } from 'react-cookie';
 
@@ -17,12 +15,12 @@ import { useCookies } from 'react-cookie';
 import ThemeSwitch from './ThemeSwitch';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
-import { darkAtom } from '@commons/state';
+import { darkAtom, loadingAtom } from '@commons/state';
 import MobileMenu from '@components/header/MobileMenu';
 import Loading from './Loding';
 
 // 스타일
-import styles from '@styles/components/global/base-layout.module.scss';
+import styles from '@styles/components/global/BaseLayout.module.scss';
 
 interface Props {
 	children: ReactElement,
@@ -38,104 +36,60 @@ interface Props {
  */
 export default function BaseLayout({ children, hash }: Props): ReactElement | null
 {
-	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
-	const cookies = useCookies([ 'theme' ])[0];
+	const setDarkState = useSetRecoilState(darkAtom);
+	const setLoadingState = useSetRecoilState(loadingAtom);
+	const cookies = useCookies(['theme'])[0];
 
-	Router.events.on('routeChangeStart', () =>
-	{
-		const tag = document.getElementById('loading')?.style;
-
-		// 스타일 객체가 유효할 경우
-		if (tag != null)
-		{
-			tag.opacity = '1';
-			tag.zIndex = '20';
-		}
-	});
+	Router.events.on('routeChangeStart', () => setLoadingState(true));
 
 	useEffect(() =>
 	{
 		document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-		const tag = document.getElementById('loading')?.style;
-
-		// 스타일 객체가 유효할 경우
-		if (tag != null)
+		document.addEventListener('scroll', () =>
 		{
-			tag.opacity = '0';
-			tag.zIndex = '-1';
-		}
+			const header = document.getElementsByTagName('header')[0];
+
+			// 헤더 태그가 유효할 경우
+			if (header)
+			{
+				const isTop = header.getAttribute('data-top') === 'true';
+
+				// 스크롤이 맨 위고, isTop이 false일 경우
+				if (window.scrollY === 0 && !isTop)
+				{
+					header.setAttribute('data-top', 'true');
+				}
+
+				// 스크롤이 맨 위고, isTop이 true일 경우
+				else if (window.scrollY !== 0 && isTop)
+				{
+					header.setAttribute('data-top', 'false');
+				}
+			}
+		});
 
 		// 이전에 다크 모드를 해제했었을 경우
 		if (cookies.theme === 'false')
 		{
 			setDarkState(false);
 		}
+
+		setLoadingState(false);
 	});
 
 	return (
-		<MuiThemeProvider theme={getTheme(darkState)}>
-			<Box className={styles.root}>
-				<CssBaseline />
+		<main className={styles.root}>
+			<Header />
 
-				<Header />
+			{children}
 
-				<Box className={styles.main}>
-					{children}
+			<MobileMenu />
 
-					<MobileMenu />
+			<Loading />
 
-					<Loading />
+			<ThemeSwitch />
 
-					<ThemeSwitch />
-
-					<Footer hash={hash} />
-				</Box>
-			</Box>
-		</MuiThemeProvider>
+			<Footer hash={hash} />
+		</main>
 	);
-}
-
-/**
- * 테마 반환 함수
- *
- * @param {boolean} isDark: 다크모드 사용 여부
- *
- * @returns {Theme} Theme
- */
-function getTheme(isDark: boolean): Theme
-{
-	return createTheme({
-		palette: {
-			type: isDark ? 'dark' : 'light',
-			background: {
-				default: isDark ? '#020D1D' : '#FFFFFF'
-			},
-			primary: orange,
-			secondary: indigo
-		},
-		typography: {
-			fontFamily: 'AppleSDGothicNeo, sans-serif'
-		},
-		overrides: {
-			MuiCssBaseline: {
-				'@global': {
-					'*::-webkit-scrollbar, *::-webkit-scrollbar-thumb': {
-						width: 6,
-						height: 6,
-						borderRadius: 6,
-						backgroundClip: 'padding-box',
-						border: '1px solid transparent',
-						'@media (max-width: 960px)': {
-							width: 0
-						}
-					},
-					'*::-webkit-scrollbar-thumb': {
-						boxShadow: 'inset 0 0 0 10px',
-						color: isDark ? '#404040' : '#C0C0C0'
-					}
-				}
-			}
-		}
-	});
 }

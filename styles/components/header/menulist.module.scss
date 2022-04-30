@@ -1,19 +1,41 @@
+@import "../../common/env.scss";
+
 .root {
-	@media (max-width: 960px) {
-		display: none !important;
+	display: flex;
+	gap: 30px;
+
+	@media (max-width: $ref) {
+		display: none;
 	}
 }
 
 .button {
-	color: white !important;
+	color: inherit;
+
+	svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	@media (min-width: $ref) {
+		display: none;
+	}
 }
 
-.item {
-	color: white !important;
-	transition: 0.5s;
+.link {
+	transition: 0.3s;
+
+	svg {
+		width: 24px;
+		height: 24px;
+	}
 
 	&:hover {
-		color: gold !important;
-		transition: 0.5s;
+		color: dodgerblue;
+		transition: 0.3s;
+	}
+
+	&:active {
+		opacity: 0.5;
 	}
 }
