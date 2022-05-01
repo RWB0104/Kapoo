@@ -13,8 +13,6 @@ $width: 200px;
 	width: $width;
 	height: 100%;
 
-	padding: 10px;
-
 	box-sizing: border-box;
 
 	z-index: 20;
@@ -42,6 +40,26 @@ $width: 200px;
 	@include root;
 
 	background-color: black;
+	color: white;
+}
+
+.list {
+	list-style-type: none;
+
+	li {
+		padding: 10px 20px;
+		border-top: 1px solid grey;
+
+		&:last-child {
+			border-bottom: 1px solid grey;
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			gap: 20px;
+		}
+	}
 }
 
 .button {

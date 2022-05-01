@@ -8,7 +8,7 @@
 // 라이브러리 모듈
 import { ReactElement, useEffect, useRef } from 'react';
 
-
+// 사용자 모듈
 import { getRandomIndex } from '@commons/common';
 import { PIECE } from '@commons/env';
 

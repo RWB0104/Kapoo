@@ -12,7 +12,7 @@ import { useRecoilValue } from 'recoil';
 import MenuList from './MenuList';
 import { TITLE } from '@commons/env';
 import { React } from '@commons/icons';
-import { darkAtom } from '@commons/state';
+import { darkAtom, topAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/header/Header.module.scss';
@@ -25,9 +25,10 @@ import styles from '@styles/components/header/Header.module.scss';
 export default function Header(): JSX.Element | null
 {
 	const darkState = useRecoilValue(darkAtom);
+	const topState = useRecoilValue(topAtom);
 
 	return (
-		<header className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-top="true">
+		<header className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-top={topState}>
 			<div className={styles.wrapper}>
 				<React className={styles.logo} width={48} height={48} />
 

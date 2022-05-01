@@ -13,12 +13,22 @@ export const darkAtom = atom({
 	default: true
 });
 
+export const topAtom = atom({
+	key: 'topState',
+	default: true
+});
+
 export const menuAtom = atom({
 	key: 'menuState',
-	default: false
+	default: undefined as boolean | undefined
 });
 
 export const loadingAtom = atom({
 	key: 'loadingState',
 	default: false
+});
+
+export const semanticAtom = atom({
+	key: 'semanticState',
+	default: true
 });

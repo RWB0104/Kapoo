@@ -7,7 +7,7 @@
 
 // 라이브러리 모듈
 import { ReactElement, useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Router } from 'next/router';
 import { useCookies } from 'react-cookie';
 
@@ -15,7 +15,7 @@ import { useCookies } from 'react-cookie';
 import ThemeSwitch from './ThemeSwitch';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
-import { darkAtom, loadingAtom } from '@commons/state';
+import { darkAtom, loadingAtom, menuAtom, semanticAtom, topAtom } from '@commons/state';
 import MobileMenu from '@components/header/MobileMenu';
 import Loading from './Loding';
 
@@ -38,33 +38,50 @@ export default function BaseLayout({ children, hash }: Props): ReactElement | nu
 {
 	const setDarkState = useSetRecoilState(darkAtom);
 	const setLoadingState = useSetRecoilState(loadingAtom);
+
+	const [ semanticState, setSemanticState ] = useRecoilState(semanticAtom);
+	const [ topState, setTopState ] = useRecoilState(topAtom);
+	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
+
 	const cookies = useCookies(['theme'])[0];
 
 	Router.events.on('routeChangeStart', () => setLoadingState(true));
 
 	useEffect(() =>
 	{
+		window.addEventListener('resize', () =>
+		{
+			if (window.innerWidth >= 960 && !semanticState)
+			{
+				setSemanticState(true);
+			}
+
+			else if (window.innerWidth < 960 && semanticState)
+			{
+				setSemanticState(false);
+			}
+		});
 		document.addEventListener('contextmenu', (e) => e.preventDefault());
 		document.addEventListener('scroll', () =>
 		{
-			const header = document.getElementsByTagName('header')[0];
-
-			// 헤더 태그가 유효할 경우
-			if (header)
+			// 메뉴가 켜져있을 경우
+			if (menuState)
 			{
-				const isTop = header.getAttribute('data-top') === 'true';
+				setMenuState(false);
+			}
 
-				// 스크롤이 맨 위고, isTop이 false일 경우
-				if (window.scrollY === 0 && !isTop)
-				{
-					header.setAttribute('data-top', 'true');
-				}
+			// 스크롤이 맨 위고, topState가 false일 경우
+			if (window.scrollY === 0 && !topState)
+			{
+				setTopState(true);
+				console.dir(topState);
+			}
 
-				// 스크롤이 맨 위고, isTop이 true일 경우
-				else if (window.scrollY !== 0 && isTop)
-				{
-					header.setAttribute('data-top', 'false');
-				}
+			// 스크롤이 맨 위, topState가 true일 경우
+			else if (window.scrollY !== 0 && topState)
+			{
+				setTopState(false);
+				console.dir(topState);
 			}
 		});
 

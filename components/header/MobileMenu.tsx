@@ -28,14 +28,18 @@ export default function MobileMenu(): JSX.Element | null
 	const setCookie = useCookies(['theme'])[1];
 
 	const router = useRouter();
+
 	Router.events.on('routeChangeComplete', () => setMenuState(false));
 
 	return (
 		<nav className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-show={menuState}>
-			<ul>
+			<ul className={styles.list}>
 				{MENU_LIST.map((element) => (
 					<li key={element.id}>
-						<a title={element.title} href="#" onClick={() => router.push(element.url)}>{element.title}</a>
+						<a title={element.title} href="#" onClick={() => router.push(element.url)}>
+							{element.icon}
+							{element.title}
+						</a>
 					</li>
 				))}
 			</ul>
