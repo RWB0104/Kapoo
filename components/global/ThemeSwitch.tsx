@@ -7,12 +7,11 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import ThemeSwitchDark from './ThemeSwitchDark';
 import ThemeSwitchLight from './ThemeSwitchLight';
-import { darkAtom } from '@commons/state';
+import { useThemeHook } from '@commons/hook';
 
 /**
  * 테마 스위치 ReactElement 반환 함수
@@ -21,7 +20,7 @@ import { darkAtom } from '@commons/state';
  */
 export default function ThemeSwitch(): ReactElement
 {
-	const isDark = useRecoilValue(darkAtom);
+	const themeState = useThemeHook()[0];
 
-	return isDark ? (<ThemeSwitchLight />) : (<ThemeSwitchDark />);
+	return themeState ? <ThemeSwitchLight /> : <ThemeSwitchDark />;
 }

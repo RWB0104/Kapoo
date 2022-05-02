@@ -12,7 +12,8 @@ import { IoClose, IoMenu } from 'react-icons/io5';
 
 // 사용자 모듈
 import { MENU_LIST } from '@commons/env';
-import { menuAtom, topAtom } from '@commons/state';
+import { menuAtom } from '@commons/state';
+import { useSemanticHook } from '@commons/hook';
 
 // 스타일
 import styles from '@styles/components/header/MenuList.module.scss';
@@ -25,33 +26,20 @@ import styles from '@styles/components/header/MenuList.module.scss';
 export default function MenuList(): JSX.Element | null
 {
 	const router = useRouter();
+	const semantic = useSemanticHook();
+
 	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
-	const [ topState, setTopState ] = useRecoilState(topAtom);
 
-	return (
-		<>
-			<button className={styles.button} onClick={() =>
-			{
-				setMenuState(menuState ? !menuState : true);
-
-				// topState가 true일 경우
-				if (topState)
-				{
-					setTopState(false);
-				}
-
-				// topState가 true가 아니지만, 스크롤이 맨 위일 경우
-				else if (!topState && window.scrollY === 0)
-				{
-					setTopState(true);
-				}
-			}}>
-				{menuState ? <IoClose /> : <IoMenu />}
-			</button>
-
-			<nav className={styles.root}>
-				{MENU_LIST.map((element) => <a key={element.id} className={styles.link} title={element.title} href="#" onClick={() => router.push(element.url)}>{element.icon}</a>)}
-			</nav>
-		</>
+	return semantic ? (
+		<nav className={styles.root}>
+			{MENU_LIST.map((element) => <a key={element.id} className={styles.link} title={element.title} href="#" onClick={() => router.push(element.url)}>{element.icon}</a>)}
+		</nav>
+	) : (
+		<button className={styles.button} onClick={() =>
+		{
+			setMenuState(menuState ? !menuState : true);
+		}}>
+			{menuState ? <IoClose /> : <IoMenu />}
+		</button>
 	);
 }

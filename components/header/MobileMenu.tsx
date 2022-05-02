@@ -7,31 +7,31 @@
 
 // 라이브러리 모듈
 import React from 'react';
-import { Switch, Typography } from '@material-ui/core';
-import { Router, useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useCookies } from 'react-cookie';
+import { IoMoon, IoSunny } from 'react-icons/io5';
+import { BsArrowRepeat } from 'react-icons/bs';
 
 // 사용자 모듈
 import { MENU_LIST } from '@commons/env';
 import { darkAtom, menuAtom } from '@commons/state';
-import { NightsStay, WbSunny } from '@material-ui/icons';
 
-// 스타일
 import styles from '@styles/components/header/MobileMenu.module.scss';
+import { useSemanticHook } from '@commons/hook';
 
 export default function MobileMenu(): JSX.Element | null
 {
+	const semanticState = useSemanticHook();
+
 	const [ darkState, setDarkState ] = useRecoilState(darkAtom);
-	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
+	const menuState = useRecoilValue(menuAtom);
 
 	const setCookie = useCookies(['theme'])[1];
 
 	const router = useRouter();
 
-	Router.events.on('routeChangeComplete', () => setMenuState(false));
-
-	return (
+	return !semanticState && (
 		<nav className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-show={menuState}>
 			<ul className={styles.list}>
 				{MENU_LIST.map((element) => (
@@ -44,21 +44,15 @@ export default function MobileMenu(): JSX.Element | null
 				))}
 			</ul>
 
-			<div>
-				<Typography>
-					<WbSunny />
-				</Typography>
-
-				<Switch checked={darkState} onChange={(event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void =>
-				{
-					setDarkState(checked);
-					setCookie('theme', checked, { maxAge: 86400 * 30 });
-				}} name="theme" />
-
-				<Typography>
-					<NightsStay />
-				</Typography>
-			</div>
+			<button className={styles[`switch-${darkState ? 'dark' : 'light'}`]} onClick={() =>
+			{
+				setDarkState(!darkState);
+				setCookie('theme', !darkState, { maxAge: 86400 * 30 });
+			}}>
+				<IoSunny data-status={!darkState} />
+				<BsArrowRepeat />
+				<IoMoon data-status={darkState} />
+			</button>
 		</nav>
 	);
 }

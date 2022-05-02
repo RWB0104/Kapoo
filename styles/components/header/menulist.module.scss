@@ -1,24 +1,15 @@
-@import "../../common/env.scss";
-
 .root {
 	display: flex;
 	gap: 30px;
-
-	@media (max-width: $ref) {
-		display: none;
-	}
 }
 
 .button {
 	color: inherit;
+	cursor: pointer;
 
 	svg {
 		width: 24px;
 		height: 24px;
-	}
-
-	@media (min-width: $ref) {
-		display: none;
 	}
 }
 

@@ -1,6 +1,11 @@
-.root {
+@mixin root {
 	margin: 0px;
 	padding: 0px;
 
 	min-width: 360px;
+}
+
+.root-dark {
+	color: white;
+	background-color: #010409;
 }

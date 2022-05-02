@@ -6,13 +6,12 @@
  */
 
 // 라이브러리 모듈
-import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import MenuList from './MenuList';
 import { TITLE } from '@commons/env';
 import { React } from '@commons/icons';
-import { darkAtom, topAtom } from '@commons/state';
+import { useScrollTopHook, useThemeHook } from '@commons/hook';
 
 // 스타일
 import styles from '@styles/components/header/Header.module.scss';
@@ -24,11 +23,11 @@ import styles from '@styles/components/header/Header.module.scss';
  */
 export default function Header(): JSX.Element | null
 {
-	const darkState = useRecoilValue(darkAtom);
-	const topState = useRecoilValue(topAtom);
+	const [ themeState, setThemeState ] = useThemeHook();
+	const scrollState = useScrollTopHook()[0];
 
 	return (
-		<header className={styles[`root-${darkState ? 'dark' : 'light'}`]} data-top={topState}>
+		<header className={styles[`root-${themeState}`]} data-top={scrollState} onClick={() => setThemeState('light')}>
 			<div className={styles.wrapper}>
 				<React className={styles.logo} width={48} height={48} />
 

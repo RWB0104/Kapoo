@@ -7,6 +7,12 @@ $width: 200px;
 @mixin root {
 	position: fixed;
 
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+
 	top: 48px;
 	right: -200px;
 
@@ -15,7 +21,7 @@ $width: 200px;
 
 	box-sizing: border-box;
 
-	z-index: 20;
+	z-index: 9;
 
 	@media (min-width: $ref) {
 		display: none;
@@ -30,81 +36,67 @@ $width: 200px;
 	}
 }
 
+@mixin switch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	border-radius: 20px;
+
+	padding: 10px;
+
+	cursor: pointer;
+
+	color: grey;
+
+	svg {
+		fill: map-get($map: $deepOrange, $key: 500) !important;
+	}
+}
+
 .root-light {
 	@include root;
 
 	background-color: white;
+
+	border-left: 1px solid gainsboro;
 }
 
 .root-dark {
 	@include root;
 
-	background-color: black;
+	background-color: #0D1117;
 	color: white;
+
+	border-left: 1px solid #21262D;
 }
 
 .list {
+	width: 100%;
 	list-style-type: none;
 
 	li {
 		padding: 10px 20px;
-		border-top: 1px solid grey;
-
-		&:last-child {
-			border-bottom: 1px solid grey;
-		}
+		border-bottom: 1px solid #21262D;
 
 		a {
 			display: inline-flex;
 			align-items: center;
-			gap: 20px;
+			gap: 10px;
 		}
 	}
 }
 
-.button {
-	margin: 0px auto !important;
-	width: 100%;
+.switch-light {
+	@include switch;
 
-	font-size: 30px !important;
-	color: map-get($map: $blue, $key: "700") !important;
-
-	border: 1px solid map-get($map: $blue, $key: "700") !important;
-	border-radius: 20px !important;
-
-	svg {
-		width: 30px;
-		height: 100%;
-	}
-
-	&:not(:last-child) {
-		margin-bottom: 20px !important;
-	}
-
-	&:hover {
-		border: 1px solid map-get($map: $blue, $key: "700") !important;
-		color: white !important;
-		background-color: map-get($map: $blue, $key: "700") !important;
-	}
+	background-color: whitesmoke;
 }
 
-.switch {
-	&>span:last-child {
-		background-color: white !important;
-	}
-}
+.switch-dark {
+	@include switch;
 
-.icon {
-	color: white;
-	font-size: 30px !important;
-}
-
-.dark-select {
-	color: map-get($deepPurple, "400");
-	font-size: 30px !important;
-}
-
-.light-select {
-	color: map-get($orange, "400");
-	font-size: 30px !important;
+	background-color: #161B22;
+	border: 1px solid #21262D;
 }
