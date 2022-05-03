@@ -9,7 +9,7 @@
 import { BASE_URL } from '@commons/env';
 
 // 스타일
-import styles from '@styles/components/global/hits.module.scss';
+import styles from '@styles/components/global/Hits.module.scss';
 
 interface Props
 {

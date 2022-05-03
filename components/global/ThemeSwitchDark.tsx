@@ -6,17 +6,17 @@
  */
 
 // 라이브러리 모듈
-import { Fab } from '@material-ui/core';
-import { NightsStay } from '@material-ui/icons';
+import { useSetRecoilState } from 'recoil';
+import { useCookies } from 'react-cookie';
+import { IoMoon } from 'react-icons/io5';
 
 // 사용자 모듈
 import { useSemanticHook } from '@commons/hook';
-
-// 스타일
-import styles from '@styles/components/global/theme-switch.module.scss';
-import { useSetRecoilState } from 'recoil';
 import { themeAtom } from '@commons/state';
 import { Theme } from '@commons/common';
+
+// 스타일
+import styles from '@styles/components/global/ThemeSwitch.module.scss';
 
 /**
  * 다크 테마 스위치 JSX 반환 함수
@@ -25,14 +25,21 @@ import { Theme } from '@commons/common';
  */
 export default function ThemeSwitchDark(): JSX.Element | null
 {
+	const setCookie = useCookies([ 'theme' ])[1];
 	const semanticState = useSemanticHook();
 
 	const setThemeState = useSetRecoilState(themeAtom);
 
 	return semanticState ? (
-		<Fab className={styles['switch-dark']} variant="extended" aria-label="to Dark" onClick={() => setThemeState(Theme.DARK)}>
-			<NightsStay className={styles['icon-dark']} />
-			<span className={styles['switch-text']}>다크 모드로 보기</span>
-		</Fab>
+		<div className={styles['switch-dark']} onClick={() =>
+		{
+			const theme = Theme.DARK;
+
+			setThemeState(theme);
+			setCookie('theme', theme, { maxAge: 86400 * 30 });
+		}}>
+			<IoMoon className={styles['icon-dark']} />
+			<p className={styles['switch-text']}>다크 모드로 보기</p>
+		</div>
 	) : null;
 }

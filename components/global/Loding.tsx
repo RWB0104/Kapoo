@@ -9,7 +9,7 @@
 import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
-import { darkAtom, loadingAtom } from '@commons/state';
+import { loadingAtom, themeAtom } from '@commons/state';
 import { React } from '@commons/icons';
 
 // 스타일
@@ -22,11 +22,11 @@ import styles from '@styles/components/global/Loading.module.scss';
  */
 export default function Loading(): JSX.Element | null
 {
-	const themeState = useRecoilValue(darkAtom);
+	const themeState = useRecoilValue(themeAtom);
 	const loadingState = useRecoilValue(loadingAtom);
 
 	return loadingState ? (
-		<article id="loading" className={styles[`root-${themeState}`]}>
+		<article className={styles[`root-${themeState}`]}>
 			<div className={styles['logo-wrap']}>
 				<React className={styles.logo} />
 			</div>

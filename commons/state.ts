@@ -11,7 +11,7 @@ import { Theme } from './common';
 
 export const themeAtom = atom({
 	key: 'themeState',
-	default: true
+	default: Theme.DARK
 });
 
 export const menuAtom = atom({
@@ -21,5 +21,5 @@ export const menuAtom = atom({
 
 export const loadingAtom = atom({
 	key: 'loadingState',
-	default: Theme.DARK
+	default: false
 });

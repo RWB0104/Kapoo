@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import { IoClose, IoMenu } from 'react-icons/io5';
 
@@ -25,20 +25,20 @@ import styles from '@styles/components/header/MenuList.module.scss';
  */
 export default function MenuList(): JSX.Element | null
 {
-	const router = useRouter();
 	const semantic = useSemanticHook();
 
 	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
 
 	return semantic ? (
 		<nav className={styles.root}>
-			{MENU_LIST.map((element) => <a key={element.id} className={styles.link} title={element.title} href="#" onClick={() => router.push(element.url)}>{element.icon}</a>)}
+			{MENU_LIST.map((element) => (
+				<Link key={element.id} href={element.url}>
+					<a className={styles.link} title={element.title}>{element.icon}</a>
+				</Link>
+			))}
 		</nav>
 	) : (
-		<button className={styles.button} onClick={() =>
-		{
-			setMenuState(menuState ? !menuState : true);
-		}}>
+		<button className={styles.button} onClick={() => setMenuState(!menuState)}>
 			{menuState ? <IoClose /> : <IoMenu />}
 		</button>
 	);

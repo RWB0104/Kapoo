@@ -29,5 +29,9 @@ export default function ContentTags({ type, tags }: Props): JSX.Element | null
 {
 	const router = useRouter();
 
-	return tags.map((item, index) => <Chip key={index} className={styles.root} label={item} clickable onClick={() => router.push(`/${type}/tag/${item}/1`)} />);
+	return (
+		<>
+			{tags.map((item, index) => <Chip key={index} className={styles.root} label={item} clickable onClick={() => router.push(`/${type}/tag/${item}/1`)} />)}
+		</>
+	);
 }

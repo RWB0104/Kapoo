@@ -1,14 +1,8 @@
 @import "../../common/color.module.scss";
 
-.root {
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-
-.line {
+@mixin line {
 	display: grid;
 	grid-template-columns: 1fr 100px 1fr;
-	grid-column-gap: 20;
 
 	align-items: center;
 	text-align: center;
@@ -17,15 +11,36 @@
 	margin-bottom: 50px;
 }
 
+.root {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.line-light {
+	@include line;
+
+	hr {
+		border: 1px solid gainsboro;
+	}
+}
+
+.line-dark {
+	@include line;
+
+	hr {
+		border: 1px solid #161B22;
+	}
+}
+
 .buttons {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
+	gap: 40px;
 
 	margin: 0px auto;
 
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 
 	@media (max-width: 960px) {
 		margin-top: 50px;
@@ -35,18 +50,37 @@
 	}
 }
 
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 30px;
+}
+
 .button {
-	color: #AAAAAA !important;
+	color: #AAAAAA;
+
+	transition: 0.3s;
 
 	svg {
 		width: 25px;
 		height: 25px;
 	}
+
+	&:hover {
+		color: dodgerblue;
+
+		transition: 0.3s;
+	}
 }
 
 .logo {
-	width: 72px !important;
-	height: 72px !important;
+	border-radius: 50%;
+
+	width: 72px;
+	height: 72px;
 
 	margin: 0px auto;
 }

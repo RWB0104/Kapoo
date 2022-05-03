@@ -6,17 +6,17 @@
  */
 
 // 라이브러리 모듈
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import MenuList from './MenuList';
 import { TITLE } from '@commons/env';
 import { React } from '@commons/icons';
 import { useScrollTopHook } from '@commons/hook';
+import { themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/header/Header.module.scss';
-import { useRecoilValue } from 'recoil';
-import { themeAtom } from '@commons/state';
 
 /**
  * 헤더 JSX 반환 함수
@@ -26,7 +26,7 @@ import { themeAtom } from '@commons/state';
 export default function Header(): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
-	const scrollState = useScrollTopHook()[0];
+	const scrollState = useScrollTopHook();
 
 	return (
 		<header className={styles[`root-${themeState}`]} data-top={scrollState}>

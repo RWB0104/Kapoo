@@ -5,11 +5,9 @@
  * @since 2022.04.10 Sun 19:17:35
  */
 
-import { Container } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
 // 스타일
-import styles from '@styles/components/about/commitlist.module.scss';
 
 
 
@@ -36,14 +34,14 @@ export default function CommitList(): JSX.Element | null
 					json = json.slice(0, 20);
 				}
 
-				console.dir(json);
-				console.dir(json[13].commit.message);
+				console.dir(commits);
 
 				setCommits(json);
 			}
 		})();
 	}, []);
 
+	/*
 	return commits.length > 0 ? (
 		<Container maxWidth="md" className={styles.root}>
 			{commits.map((commit, index) => (
@@ -70,4 +68,6 @@ export default function CommitList(): JSX.Element | null
 			))}
 		</Container>
 	) : null;
+	*/
+	return null;
 }

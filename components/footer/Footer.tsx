@@ -6,15 +6,18 @@
  */
 
 // 라이브러리 모듈
-import { Avatar, Box, Divider, IconButton, Typography } from '@material-ui/core';
-import { GitHub, Language, ListAlt, Mail, RssFeed } from '@material-ui/icons';
+import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
+import { SiGmail } from 'react-icons/si';
 
 // 사용자 모듈
 import { TITLE } from '@commons/env';
+import Hits from '@components/global/Hits';
 
 // 스타일
-import styles from '@styles/components/footer/footer.module.scss';
-import Hits from '@components/global/Hits';
+import styles from '@styles/components/footer/Footer.module.scss';
+import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';
+import { useRecoilValue } from 'recoil';
+import { themeAtom } from '@commons/state';
 
 interface Props
 {
@@ -28,43 +31,53 @@ interface Props
  */
 export default function Footer({ hash }: Props): JSX.Element | null
 {
+	const themeState = useRecoilValue(themeAtom);
+
 	return (
-		<Box component="footer" className={styles.root}>
-			<Box className={styles.line}>
-				<Divider />
+		<footer className={styles.root}>
+			<div className={styles[`line-${themeState}`]}>
+				<hr />
 
-				<Avatar className={styles.logo} alt={TITLE} src="/img/profile.jpg" />
+				<img className={styles.logo} alt={TITLE} src="/img/profile.jpg" />
 
-				<Divider />
-			</Box>
+				<hr />
+			</div>
 
-			<Box className={styles.buttons}>
-				<IconButton className={styles.button} title='GitHub' onClick={() => open('https://github.com/RWB0104')}>
-					<GitHub />
-				</IconButton>
+			<div className={styles.buttons}>
+				<a className={styles.button} target="_blank" href="https://github.com/RWB0104" title='GitHub'>
+					<IoLogoGithub />
+				</a>
 
-				<IconButton className={styles.button} title='Mail' onClick={() => location.href = 'mailto:psj2716@gmail.com'}>
-					<Mail />
-				</IconButton>
+				<a className={styles.button} target="_blank" href="https://www.linkedin.com/in/itcode/" title='Linkedin'>
+					<IoLogoLinkedin />
+				</a>
 
-				<IconButton className={styles.button} title='Project Page' onClick={() => open('https://itcode.dev')}>
-					<Language />
-				</IconButton>
+				<a className={styles.button} target="_blank" href="mailto:psj2716@gmail.com" title='Mail'>
+					<SiGmail />
+				</a>
+			</div>
 
-				<IconButton className={styles.button} title='Sitemap' onClick={() => open('/sitemap')}>
-					<ListAlt />
-				</IconButton>
+			<div className={styles.buttons}>
+				<a className={styles.button} target="_blank" href="https://itcode.dev" title='Project Page'>
+					<IoLogoReact />
+				</a>
 
-				<IconButton className={styles.button} title='RSS' onClick={() => open('/rss')}>
-					<RssFeed />
-				</IconButton>
-			</Box>
+				<a className={styles.button} target="_blank" href="/sitemap.xml" title='Sitemap'>
+					<FaSitemap />
+				</a>
 
-			<Typography className={styles.text} align="center">💻 Copyright ⓒ RWB 2021.05</Typography>
+				<a className={styles.button} target="_blank" href="/rss.xml" title='RSS'>
+					<FaRss />
+				</a>
+			</div>
 
-			{hash && <Typography className={styles.text} align="center">{hash}</Typography>}
+			<div className={styles.info}>
+				<p className={styles.text}><FaCopyright /> Copyright RWB 2021.05</p>
 
-			<Hits />
-		</Box>
+				{hash && <p className={styles.text}><FaHashtag /> {hash}</p>}
+
+				<Hits />
+			</div>
+		</footer>
 	);
 }

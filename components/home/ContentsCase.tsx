@@ -7,8 +7,7 @@
 
 // 라이브러리 모듈
 import { ReactElement } from 'react';
-import { Button, Container, Typography } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // 사용자 모듈
 import ContentList from '@components/contents/ContentList';
@@ -33,15 +32,15 @@ interface Props {
  */
 export default function ContentsCase({ num, title, url, list }: Props): ReactElement
 {
-	const router = useRouter();
-
 	return (
-		<Container maxWidth="md" className={styles.root}>
-			<Typography component="h1" className={styles.title} gutterBottom align="center">{title}</Typography>
+		<article className={styles.root}>
+			<h1 className={styles.title}>{title}</h1>
 
 			<ContentList list={list.slice(0, num)} />
 
-			<Button className={styles.more} onClick={() => router.push(url)}>M O R E</Button>
-		</Container>
+			<Link href={url}>
+				<a className={styles.more} title="more">M O R E</a>
+			</Link>
+		</article>
 	);
 }

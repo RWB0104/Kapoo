@@ -8,8 +8,8 @@
 // 라이브러리 모듈
 import { useEffect, useRef } from 'react';
 
-
-import styles from '@styles/components/global/screener.module.scss';
+// 스타일
+import styles from '@styles/components/global/Screener.module.scss';
 
 interface Props
 {

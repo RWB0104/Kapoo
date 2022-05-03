@@ -9,13 +9,12 @@
 import { ReactElement, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import { Router } from 'next/router';
 import { CookiesProvider } from 'react-cookie';
 
 // 사용자 모듈
 import BaseLayout from '@components/global/BaseLayout';
 
-
+// 스타일
 import '@styles/index.scss';
 
 /**
@@ -43,11 +42,6 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
 					console.warn('service worker registration failed', err.message);
 				});
 		}
-	});
-
-	Router.events.on('routeChangeComplete', () =>
-	{
-		document.getElementsByTagName('section')[0].scrollIntoView();
 	});
 
 	return (

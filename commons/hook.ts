@@ -5,7 +5,9 @@
  * @since 2022.05.02 Mon 22:53:48
  */
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { menuAtom } from './state';
 
 /**
  * 반응형 훅 메서드
@@ -35,8 +37,9 @@ export function useSemanticHook(): boolean
  *
  * @returns {boolean} 스크롤 상단 위치 여부
  */
-export function useScrollTopHook(): [ boolean, Dispatch<SetStateAction<boolean>> ]
+export function useScrollTopHook(): boolean
 {
+	const menuState = useRecoilValue(menuAtom);
 	const [ scrollState, setScrollState ] = useState(true);
 
 	useEffect(() =>
@@ -50,5 +53,13 @@ export function useScrollTopHook(): [ boolean, Dispatch<SetStateAction<boolean>>
 		return () => window.removeEventListener('scroll', handle);
 	}, []);
 
-	return [ scrollState, setScrollState ];
+	useEffect(() =>
+	{
+		if (window.scrollY === 0)
+		{
+			setScrollState(!menuState);
+		}
+	}, [ menuState ]);
+
+	return scrollState;
 }

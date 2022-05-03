@@ -48,6 +48,8 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 	Router.events.on('routeChangeStart', () => setLoadingState(true));
 	Router.events.on('routeChangeComplete', () =>
 	{
+		window.scrollTo(0, 0);
+
 		setLoadingState(false);
 
 		if (menuState)
@@ -58,7 +60,7 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 
 	useEffect(() =>
 	{
-		const handleContextMenu = (e) => e.preventDefault();
+		const handleContextMenu = (e: MouseEvent) => e.preventDefault();
 
 		const handleScroll = () =>
 		{
@@ -71,9 +73,9 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 		setLoadingState(false);
 
 		// 쿠키값이 dark 혹은 light 둘 중 하나일 경우
-		if (cookie === Theme.DARK || cookie === Theme.LIGHT)
+		if (cookie.theme === Theme.DARK || cookie.theme === Theme.LIGHT)
 		{
-			setThemeState(cookie);
+			setThemeState(cookie.theme === Theme.DARK ? Theme.DARK : Theme.LIGHT);
 		}
 
 		return () =>
@@ -81,7 +83,7 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 			document.removeEventListener('contextmenu', handleContextMenu);
 			document.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
+	});
 
 	return (
 		<main className={styles[`root-${themeState}`]}>
