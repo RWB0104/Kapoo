@@ -22,11 +22,11 @@ import styles from '@styles/components/global/Loading.module.scss';
  */
 export default function Loading(): JSX.Element | null
 {
-	const darkState = useRecoilValue(darkAtom);
+	const themeState = useRecoilValue(darkAtom);
 	const loadingState = useRecoilValue(loadingAtom);
 
 	return loadingState ? (
-		<article id="loading" className={styles[`root-${darkState ? 'dark' : 'light'}`]}>
+		<article id="loading" className={styles[`root-${themeState}`]}>
 			<div className={styles['logo-wrap']}>
 				<React className={styles.logo} />
 			</div>

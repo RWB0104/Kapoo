@@ -6,14 +6,17 @@
  */
 
 // 라이브러리 모듈
-import { Box, Fab } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import { WbSunny } from '@material-ui/icons';
 
 // 사용자 모듈
-import { useSemanticHook, useThemeHook } from '@commons/hook';
+import { useSemanticHook } from '@commons/hook';
 
 // 스타일
 import styles from '@styles/components/global/theme-switch.module.scss';
+import { useSetRecoilState } from 'recoil';
+import { themeAtom } from '@commons/state';
+import { Theme } from '@commons/common';
 
 /**
  * 라이트 테마 스위치 JSX 반환 함수
@@ -23,12 +26,12 @@ import styles from '@styles/components/global/theme-switch.module.scss';
 export default function ThemeSwitchLight(): JSX.Element | null
 {
 	const semanticState = useSemanticHook();
-	const setThemeState = useThemeHook()[1];
+	const setThemeState = useSetRecoilState(themeAtom);
 
 	return semanticState ? (
-		<Fab className={styles['switch-light']} variant="extended" aria-label="to Light" onClick={() => setThemeState('light')}>
+		<Fab className={styles['switch-light']} variant="extended" aria-label="to Light" onClick={() => setThemeState(Theme.LIGHT)}>
 			<WbSunny className={styles['icon-light']} />
-			<Box component="span" className={styles['switch-text']}>라이트 모드로 보기</Box>
+			<span className={styles['switch-text']}>라이트 모드로 보기</span>
 		</Fab>
 	) : null;
 }

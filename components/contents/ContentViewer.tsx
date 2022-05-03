@@ -6,22 +6,22 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { useTheme } from '@material-ui/core';
 import Head from 'next/head';
 
-interface Props {
+interface Props
+{
 	content: string
 }
 
 /**
- * 컨텐츠 뷰어 ReactElement 반환 함수
+ * 컨텐츠 뷰어 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentViewer({ content }: Props): ReactElement
+export default function ContentViewer({ content }: Props): JSX.Element | null
 {
 	const theme = useTheme();
 

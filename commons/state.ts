@@ -7,9 +7,10 @@
 
 // 라이브러리 모듈
 import { atom } from 'recoil';
+import { Theme } from './common';
 
-export const darkAtom = atom({
-	key: 'darkState',
+export const themeAtom = atom({
+	key: 'themeState',
 	default: true
 });
 
@@ -20,5 +21,5 @@ export const menuAtom = atom({
 
 export const loadingAtom = atom({
 	key: 'loadingState',
-	default: false
+	default: Theme.DARK
 });

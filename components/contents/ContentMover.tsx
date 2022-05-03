@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Box, Button, ButtonBase, Divider, useTheme } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { useRouter } from 'next/router';
@@ -17,7 +16,8 @@ import { ContentProps } from '@commons/common';
 // 스타일
 import styles from '@styles/components/contents/contentmover.module.scss';
 
-interface Props {
+interface Props
+{
 	page: {
 		type: string;
 		prev: null | ContentProps,
@@ -25,18 +25,19 @@ interface Props {
 	}
 }
 
-interface SubProps {
+interface SubProps
+{
 	data: null | ContentProps
 }
 
 /**
- * 컨텐츠 무버 ReactElement 반환 함수
+ * 컨텐츠 무버 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentMover({ page }: Props): ReactElement
+export default function ContentMover({ page }: Props): JSX.Element | null
 {
 	const router = useRouter();
 
@@ -59,13 +60,13 @@ export default function ContentMover({ page }: Props): ReactElement
 }
 
 /**
- * 사이드 버튼 ReactElement 반환 함수
+ * 사이드 버튼 JSX 반환 함수
  *
  * @param {SubProps} param0: 프로퍼티
  *
- * @returns {ReactElement | null} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-function SideButton({ data }: SubProps): ReactElement | null
+function SideButton({ data }: SubProps): JSX.Element | null
 {
 	const router = useRouter();
 

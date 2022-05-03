@@ -6,40 +6,44 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Router } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 // 사용자 모듈
 import ThemeSwitch from './ThemeSwitch';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
-import { loadingAtom, menuAtom } from '@commons/state';
+import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
 import MobileMenu from '@components/header/MobileMenu';
 import Loading from './Loding';
+import { Theme } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/global/BaseLayout.module.scss';
-import { useThemeHook } from '@commons/hook';
 
-interface Props {
-	children: ReactElement,
+interface Props
+{
+	children: JSX.Element,
 	hash: string
 }
 
 /**
- * 기초 레이아웃 ReactNode 반환 함수
+ * 기초 레이아웃 JSX 반환 함수
  *
  * @param {Props} annoyparam0: 프로퍼티
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element | null} JSX
  */
-export default function BaseLayout({ children, hash }: Props): ReactElement | null
+export default function BaseLayout({ children, hash }: Props): JSX.Element | null
 {
 	const setLoadingState = useSetRecoilState(loadingAtom);
-	const themeState = useThemeHook()[0];
 
+	const [ themeState, setThemeState ] = useRecoilState(themeAtom);
 	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
+
+	const cookie = useCookies([ 'theme' ])[0];
 
 	Router.events.on('routeChangeStart', () => setLoadingState(true));
 	Router.events.on('routeChangeComplete', () =>
@@ -65,6 +69,12 @@ export default function BaseLayout({ children, hash }: Props): ReactElement | nu
 		document.addEventListener('scroll', handleScroll);
 
 		setLoadingState(false);
+
+		// 쿠키값이 dark 혹은 light 둘 중 하나일 경우
+		if (cookie === Theme.DARK || cookie === Theme.LIGHT)
+		{
+			setThemeState(cookie);
+		}
 
 		return () =>
 		{

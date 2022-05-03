@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 // 사용자 모듈
 import { getRandomIndex } from '@commons/common';
@@ -16,11 +16,11 @@ import { PIECE } from '@commons/env';
 import styles from '@styles/components/global/ArtBox.module.scss';
 
 /**
- * 아트박스 ReactElement 반환 함수
+ * 아트박스 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Artbox(): ReactElement
+export default function Artbox(): JSX.Element | null
 {
 	const imageRef = useRef<HTMLDivElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);

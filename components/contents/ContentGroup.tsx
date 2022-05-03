@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Box, ButtonBase, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 
@@ -16,18 +15,19 @@ import { ContentProps } from '@commons/common';
 // 스타일
 import styles from '@styles/components/contents/contentgroup.module.scss';
 
-interface Props {
+interface Props
+{
 	group: ContentProps[] | undefined
 }
 
 /**
- * 컨텐츠 그룹 ReactElement 반환 함수
+ * 컨텐츠 그룹 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement | null} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentGroup({ group }: Props): ReactElement | null
+export default function ContentGroup({ group }: Props): JSX.Element | null
 {
 	const router = useRouter();
 

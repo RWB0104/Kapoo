@@ -6,13 +6,13 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useEffect, useRef } from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { useEffect, useRef } from 'react';
 
-// 스타일
+
 import styles from '@styles/components/global/screener.module.scss';
 
-interface Props {
+interface Props
+{
 	title: string,
 	menu: string,
 	lower?: string,
@@ -20,13 +20,13 @@ interface Props {
 }
 
 /**
- * 스크리너 ReactElement 반환 함수
+ * 스크리너 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Screener({ title, menu, lower, image }: Props): ReactElement | null
+export default function Screener({ title, menu, lower, image }: Props): JSX.Element | null
 {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const imageRef = useRef<HTMLDivElement>(null);
@@ -55,28 +55,28 @@ export default function Screener({ title, menu, lower, image }: Props): ReactEle
 	}, [ image ]);
 
 	const media = /(.mp4|webm)$/.test(image) ? (
-		<Box className={styles['image-wrapper']}>
+		<div className={styles['image-wrapper']}>
 			<video ref={videoRef} className={styles.media} autoPlay loop muted>
 				<source src={image} />
 			</video>
 
 			<div className={styles.plate}></div>
-		</Box>
+		</div>
 	) : (
-		<Box className={styles['image-wrapper']}>
+		<div className={styles['image-wrapper']}>
 			<div ref={imageRef} className={styles['image-basic']}></div>
-		</Box>
+		</div>
 	);
 
 	return (
-		<Box className={styles.root}>
+		<div className={styles.root}>
 			{media}
 
 			<div className={styles['title-wrapper']}>
-				<Typography component="h1" className={styles.title}>{title}</Typography>
-				<Typography component="h3" className={styles.menu}>{menu}</Typography>
-				<Typography component="h3" className={styles.lower}>{lower}</Typography>
+				<h1 className={styles.title}>{title}</h1>
+				<h3 className={styles.menu}>{menu}</h3>
+				<h3 className={styles.lower}>{lower}</h3>
 			</div>
-		</Box>
+		</div>
 	);
 }

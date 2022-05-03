@@ -5,27 +5,25 @@
  * @since 2021.09.23 Thu 16:37:47
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-
 // 사용자 모듈
 import { BASE_URL } from '@commons/env';
 
 // 스타일
 import styles from '@styles/components/global/hits.module.scss';
 
-interface Props {
+interface Props
+{
 	urls?: string[]
 }
 
 /**
- * 조회수 ReactElement 반환 함수
+ * 조회수 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Hits({ urls }: Props): ReactElement
+export default function Hits({ urls }: Props): JSX.Element | null
 {
 	let url = BASE_URL;
 

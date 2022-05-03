@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ChangeEvent, ReactElement } from 'react';
+import { ChangeEvent } from 'react';
 import { Container } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import { useRouter } from 'next/router';
@@ -18,7 +18,8 @@ import { ContentProps } from '@commons/common';
 // 스타일
 import styles from '@styles/components/contents/contentboard.module.scss';
 
-interface Props {
+interface Props
+{
 	baseUrl: string,
 	page: number,
 	total: number,
@@ -26,11 +27,11 @@ interface Props {
 }
 
 /**
- * 컨텐츠 보드 ReactElement 반환 함수
+ * 컨텐츠 보드 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentBoard({ baseUrl, page, total, list }: Props): ReactElement
+export default function ContentBoard({ baseUrl, page, total, list }: Props): JSX.Element | null
 {
 	const router = useRouter();
 

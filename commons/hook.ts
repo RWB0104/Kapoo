@@ -5,28 +5,7 @@
  * @since 2022.05.02 Mon 22:53:48
  */
 
-import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
-
-export enum Theme { LIGHT = 'light', DARK = 'dark' }
-
-export function useThemeHook()
-{
-	const [ themeState, setThemeState ] = useState(Theme.DARK);
-	const [ cookie, setCookie ] = useCookies(['theme']);
-
-	useEffect(() =>
-	{
-		const handle = () =>
-		{
-			// setThemeState(Theme.DARK);
-		};
-
-		handle();
-	}, []);
-
-	return [ themeState, setThemeState ];
-}
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 /**
  * 반응형 훅 메서드
@@ -56,7 +35,7 @@ export function useSemanticHook(): boolean
  *
  * @returns {boolean} 스크롤 상단 위치 여부
  */
-export function useScrollTopHook()
+export function useScrollTopHook(): [ boolean, Dispatch<SetStateAction<boolean>> ]
 {
 	const [ scrollState, setScrollState ] = useState(true);
 

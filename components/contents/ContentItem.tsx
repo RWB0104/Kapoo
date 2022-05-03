@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import { Avatar, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Collapse, IconButton, Typography } from '@material-ui/core';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
 import { useRouter } from 'next/router';
@@ -20,18 +20,19 @@ import { ContentProps, getWrittenTimes } from '@commons/common';
 // 스타일
 import styles from '@styles/components/contents/contentitem.module.scss';
 
-interface Props {
+interface Props
+{
 	item: ContentProps
 }
 
 /**
- * 컨텐츠 아이템 ReactElement 반환 함수
+ * 컨텐츠 아이템 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentItem({ item }: Props): ReactElement
+export default function ContentItem({ item }: Props): JSX.Element | null
 {
 	const { title, excerpt, coverImage, type, category, date } = item.header;
 

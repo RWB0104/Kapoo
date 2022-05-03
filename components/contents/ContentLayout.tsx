@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Box, Container } from '@material-ui/core';
 
 // 사용자 모듈
@@ -20,13 +19,13 @@ import { PageStaticProps } from '@commons/common';
 import Hits from '../global/Hits';
 
 /**
- * 컨텐츠 레이아웃 ReactElement 반환 함수
+ * 컨텐츠 레이아웃 JSX 반환 함수
  *
  * @param {PageStaticProps} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentLayout({ page, data, group }: PageStaticProps): ReactElement
+export default function ContentLayout({ page, data, group }: PageStaticProps): JSX.Element | null
 {
 	const urls = [ page.type ].concat(data.url);
 

@@ -6,24 +6,25 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '@material-ui/core';
 
-
+// 스타일
 import styles from '@styles/components/contents/utterances.module.scss';
 
-interface Props {
+interface Props
+{
 	flag: boolean
 }
 
 /**
- * Utterances ReactElement 반환 함수
+ * Utterances JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement | null} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Utterances({ flag }: Props): ReactElement | null
+export default function Utterances({ flag }: Props): JSX.Element | null
 {
 	const theme = useTheme();
 	const type = theme.palette.type;
@@ -46,61 +47,51 @@ export default function Utterances({ flag }: Props): ReactElement | null
 		}
 	});
 
-	// 댓글을 사용할 경우
-	if (flag)
-	{
-		return (
-			<article className={styles.root} id="utterances" ref={(ref) =>
+	return flag ? (
+		<article className={styles.root} id="utterances" ref={(ref) =>
+		{
+			if (ref)
 			{
-				if (ref)
+				// 댓글을 사용할 경우
+				if (flag)
 				{
-					// 댓글을 사용할 경우
-					if (flag)
+					// 댓글 DOM이 없을 경우
+					if (document.querySelectorAll('#utterances > div').length === 0)
 					{
-						// 댓글 DOM이 없을 경우
-						if (document.querySelectorAll('#utterances > div').length === 0)
-						{
-							const wrapper = document.createElement('div');
+						const wrapper = document.createElement('div');
 
-							const script = document.createElement('script');
-							script.src = 'https://utteranc.es/client.js';
-							script.async = true,
-							script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
-							script.setAttribute('issue-term', 'pathname');
-							script.setAttribute('theme', `github-${type}`);
-							script.setAttribute('crossOrigin', 'anonymous');
+						const script = document.createElement('script');
+						script.src = 'https://utteranc.es/client.js';
+						script.async = true,
+						script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
+						script.setAttribute('issue-term', 'pathname');
+						script.setAttribute('theme', `github-${type}`);
+						script.setAttribute('crossOrigin', 'anonymous');
 
-							wrapper.appendChild(script);
-							ref.appendChild(wrapper);
-						}
+						wrapper.appendChild(script);
+						ref.appendChild(wrapper);
+					}
 
-						// 댓글 DOM이 있을 경우
-						else
-						{
-							const wrapper = document.createElement('div');
+					// 댓글 DOM이 있을 경우
+					else
+					{
+						const wrapper = document.createElement('div');
 
-							const script = document.createElement('script');
-							script.src = 'https://utteranc.es/client.js';
-							script.async = true,
-							script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
-							script.setAttribute('issue-term', 'pathname');
-							script.setAttribute('theme', `github-${type}`);
-							script.setAttribute('crossOrigin', 'anonymous');
+						const script = document.createElement('script');
+						script.src = 'https://utteranc.es/client.js';
+						script.async = true,
+						script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
+						script.setAttribute('issue-term', 'pathname');
+						script.setAttribute('theme', `github-${type}`);
+						script.setAttribute('crossOrigin', 'anonymous');
 
-							wrapper.appendChild(script);
+						wrapper.appendChild(script);
 
-							ref.innerHTML = '';
-							ref.appendChild(wrapper);
-						}
+						ref.innerHTML = '';
+						ref.appendChild(wrapper);
 					}
 				}
-			}} />
-		);
-	}
-
-	// 아닐 경우
-	else
-	{
-		return null;
-	}
+			}
+		}} />
+	) : null;
 }

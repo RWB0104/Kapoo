@@ -5,20 +5,16 @@
  * @since 2021.07.18 Sun 16:48:52
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Box } from '@material-ui/core';
-
 /**
- * 빈 컨텐츠 ReactElement 반환 함수
+ * 빈 컨텐츠 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function NoContents(): ReactElement
+export default function NoContents(): JSX.Element | null
 {
 	return (
-		<Box>
+		<div>
 
-		</Box>
+		</div>
 	);
 }

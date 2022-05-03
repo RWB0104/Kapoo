@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Grid } from '@material-ui/core';
 
 // 사용자 모듈
@@ -16,18 +15,19 @@ import { ContentProps } from '@commons/common';
 // 스타일
 import styles from '@styles/components/contents/contentlist.module.scss';
 
-interface Props {
+interface Props
+{
 	list: ContentProps[]
 }
 
 /**
- * 컨텐츠 리스트 ReactElement 반환 함수
+ * 컨텐츠 리스트 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentList({ list }: Props): ReactElement
+export default function ContentList({ list }: Props): JSX.Element | null
 {
 	const map = list.map((item, index) => (
 		<Grid item key={index} className={styles.item}>

@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Avatar, Box, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 
@@ -17,18 +16,19 @@ import { CATEGORY } from '@commons/env';
 
 import styles from '@styles/components/contents/contentmeta.module.scss';
 
-interface Props {
+interface Props
+{
 	header: ContentHeaderProps
 }
 
 /**
- * 컨텐츠 메타 ReactElement 반환 함수
+ * 컨텐츠 메타 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentMeta({ header }: Props ): ReactElement
+export default function ContentMeta({ header }: Props ): JSX.Element | null
 {
 	const router = useRouter();
 

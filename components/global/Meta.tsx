@@ -6,13 +6,13 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import Head from 'next/head';
 
 // 사용자 모듈
 import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
 
-interface Props {
+interface Props
+{
 	title: string,
 	description?: string,
 	type?: string,
@@ -22,13 +22,13 @@ interface Props {
 }
 
 /**
- * 메타 ReactElement 반환 함수
+ * 메타 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = '/favicon.ico', locale = 'ko_KR' }: Props): ReactElement
+export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = '/favicon.ico', locale = 'ko_KR' }: Props): JSX.Element | null
 {
 	return (
 		<Head>

@@ -5,8 +5,14 @@
  * @since 2021.07.12 Mon 15:52:40
  */
 
+export enum Theme
+{
+	DARK = 'dark',
+	LIGHT = 'light'
+}
 
-export interface DateProps {
+export interface DateProps
+{
 	year: string,
 	month: string,
 	day: string,
@@ -16,7 +22,8 @@ export interface DateProps {
 	second: string
 }
 
-export interface ContentHeaderProps {
+export interface ContentHeaderProps
+{
 	title: string,
 	excerpt: string,
 	coverImage: string,
@@ -29,7 +36,8 @@ export interface ContentHeaderProps {
 	publish: boolean
 }
 
-export interface ContentProps {
+export interface ContentProps
+{
 	header: ContentHeaderProps,
 	name: string,
 	content: string,
@@ -37,11 +45,13 @@ export interface ContentProps {
 	toc?: TocProps[]
 }
 
-export interface ContentPageProps {
+export interface ContentPageProps
+{
 	props: PageStaticProps
 }
 
-export interface PageStaticProps {
+export interface PageStaticProps
+{
 	page: {
 		type: string;
 		prev: null | ContentProps,
@@ -52,40 +62,47 @@ export interface PageStaticProps {
 	hash?: string
 }
 
-export interface PathsProps {
+export interface PathsProps
+{
 	paths: RoutesProps[],
 	fallback: boolean
 }
 
-export interface PathProps {
+export interface PathProps
+{
 	paths: RouteProps[],
 	fallback: boolean
 }
 
-export interface RoutesProps {
+export interface RoutesProps
+{
 	params: {
 		[ key: string ]: string[]
 	}
 }
 
-export interface RouteProps {
+export interface RouteProps
+{
 	params: {
 		[ key: string ]: string
 	}
 }
 
-export interface ConvertProps {
+export interface ConvertProps
+{
 	toc: TocProps[],
 	content: string
 }
 
-export interface TocProps {
+export interface TocProps
+{
 	text: string,
 	tag: string,
 	depth: number
 }
 
-export interface CategoryProps {
+export interface CategoryProps
+{
 	[ key: string ]: {
 		count: number,
 		flag: boolean | undefined

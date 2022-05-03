@@ -6,30 +6,28 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Chip } from '@material-ui/core';
 import { useRouter } from 'next/router';
 
 // 스타일
 import styles from '@styles/components/contents/contenttags.module.scss';
 
-interface Props {
+interface Props
+{
 	type: string
 	tags: string[]
 }
 
 /**
- * 컨텐츠 태그 반환 함수
+ * 컨텐츠 태그 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentTags({ type, tags }: Props): ReactElement
+export default function ContentTags({ type, tags }: Props): JSX.Element | null
 {
 	const router = useRouter();
 
-	const list = tags.map((item, index) => <Chip key={index} className={styles.root} label={item} clickable onClick={() => router.push(`/${type}/tag/${item}/1`)} />);
-
-	return <>{list}</>;
+	return tags.map((item, index) => <Chip key={index} className={styles.root} label={item} clickable onClick={() => router.push(`/${type}/tag/${item}/1`)} />);
 }

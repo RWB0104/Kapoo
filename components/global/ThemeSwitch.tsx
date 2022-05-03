@@ -5,22 +5,20 @@
  * @since 2021.07.12 Mon 00:53:20
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-
 // 사용자 모듈
 import ThemeSwitchDark from './ThemeSwitchDark';
 import ThemeSwitchLight from './ThemeSwitchLight';
-import { useThemeHook } from '@commons/hook';
+import { useRecoilValue } from 'recoil';
+import { themeAtom } from '@commons/state';
 
 /**
- * 테마 스위치 ReactElement 반환 함수
+ * 테마 스위치 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ThemeSwitch(): ReactElement
+export default function ThemeSwitch(): JSX.Element | null
 {
-	const themeState = useThemeHook()[0];
+	const themeState = useRecoilValue(themeAtom);
 
 	return themeState ? <ThemeSwitchLight /> : <ThemeSwitchDark />;
 }

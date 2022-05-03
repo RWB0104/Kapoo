@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import { Avatar, Box, Divider, IconButton, Typography } from '@material-ui/core';
 import { GitHub, Language, ListAlt, Mail, RssFeed } from '@material-ui/icons';
 
@@ -17,16 +16,17 @@ import { TITLE } from '@commons/env';
 import styles from '@styles/components/footer/footer.module.scss';
 import Hits from '@components/global/Hits';
 
-interface Props {
+interface Props
+{
 	hash: string
 }
 
 /**
- * 푸터 ReactNode 반환 함수
+ * 푸터 JSX 반환 함수
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element | null} JSX
  */
-export default function Footer({ hash }: Props): ReactElement | null
+export default function Footer({ hash }: Props): JSX.Element | null
 {
 	return (
 		<Box component="footer" className={styles.root}>
