@@ -1,4 +1,8 @@
+@import "../../common/env.scss";
+
 .root {
+	padding: 20px;
+	max-width: $ref;
 	margin-bottom: 100px;
 }
 

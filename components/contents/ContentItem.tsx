@@ -7,18 +7,18 @@
 
 // 라이브러리 모듈
 import { useState } from 'react';
-import { Avatar, Box, Card, CardActionArea, CardActions, CardContent, CardMedia, Collapse, IconButton, Typography } from '@material-ui/core';
+import Link from 'next/link';
+import { Box } from '@material-ui/core';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
-import { useRouter } from 'next/router';
 
 // 사용자 모듈
-import NewContent from './NewContent';
 import ContentMeta from './ContentMeta';
 import { CATEGORY } from '@commons/env';
 import { ContentProps, getWrittenTimes } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/contentitem.module.scss';
+import { FaHotjar } from 'react-icons/fa';
 
 interface Props
 {
@@ -38,45 +38,45 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 
 	const urls = item.url;
 
-	const router = useRouter();
-
 	const [ state, setState ] = useState(false);
 
 	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 7;
 
 	return (
-		<Card className={styles.root}>
-			<CardActionArea onClick={() => router.push(`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>
-				<Box className={styles['image-wrapper']}>
-					<CardMedia className={styles.image} component="img" image={coverImage} />
-				</Box>
+		<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
+			<a className={styles.root}>
+				<div>
+					<div className={styles['image-wrapper']}>
+						<img className={styles.image} src={coverImage} />
+					</div>
 
-				<CardContent className={styles.wrapper}>
-					<Box display="grid" className={styles['category-wrapper']} gridTemplateColumns="40px 1fr" alignItems="center">
-						<Avatar className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
-						<Typography className={styles.category} component="h4" variant="h4" gutterBottom>{category}</Typography>
+					<div className={styles.wrapper}>
+						<Box display="grid" className={styles['category-wrapper']} gridTemplateColumns="40px 1fr" alignItems="center">
+							<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+							<h4 className={styles.category}>{category}</h4>
 
-						<NewContent flag={isNew} />
-					</Box>
+							{true && <FaHotjar color="orange" />}
+						</Box>
 
-					<Typography className={styles.title} component="h1" variant="h3" gutterBottom>{title}</Typography>
-					<Typography className={styles.excerpt}>{excerpt}</Typography>
-				</CardContent>
-			</CardActionArea>
+						<h3 className={styles.title}>{title}</h3>
+						<p className={styles.excerpt}>{excerpt}</p>
+					</div>
+				</div>
 
-			<CardActions className={styles.footer}>
-				<Typography>🕔 {getWrittenTimes(new Date(date))}</Typography>
+				<div className={styles.footer}>
+					<p>🕔 {getWrittenTimes(new Date(date))}</p>
 
-				<IconButton onClick={() => setState(!state)}>
-					{state ? <ArrowUpward /> : <ArrowDownward />}
-				</IconButton>
-			</CardActions>
+					<button onClick={() => setState(!state)}>
+						{state ? <ArrowUpward /> : <ArrowDownward />}
+					</button>
+				</div>
 
-			<Collapse in={state} unmountOnExit>
-				<CardContent className={styles['footer-detail']}>
-					<ContentMeta header={item.header} />
-				</CardContent>
-			</Collapse>
-		</Card>
+				<div data-show={state}>
+					<div className={styles['footer-detail']}>
+						<ContentMeta header={item.header} />
+					</div>
+				</div>
+			</a>
+		</Link>
 	);
 }

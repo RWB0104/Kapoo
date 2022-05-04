@@ -7,7 +7,6 @@
 
 // 라이브러리 모듈
 import { ChangeEvent } from 'react';
-import { Container } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import { useRouter } from 'next/router';
 
@@ -16,7 +15,7 @@ import ContentList from './ContentList';
 import { ContentProps } from '@commons/common';
 
 // 스타일
-import styles from '@styles/components/contents/contentboard.module.scss';
+import styles from '@styles/components/contents/ContentBoard.module.scss';
 
 interface Props
 {
@@ -36,10 +35,10 @@ export default function ContentBoard({ baseUrl, page, total, list }: Props): JSX
 	const router = useRouter();
 
 	return (
-		<Container maxWidth="md" className={styles.root}>
+		<article className={styles.root}>
 			<ContentList list={list} />
 
 			<Pagination className={styles.pagination} count={total} page={page} color="primary" onChange={(event: ChangeEvent<unknown>, value: number) => router.push(`${baseUrl}/${value}`)} />
-		</Container>
+		</article>
 	);
 }

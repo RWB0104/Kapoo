@@ -1,6 +1,5 @@
 @import "../../common/animation.module.scss";
 @import "../../common/color.module.scss";
-@import "../../common/env.scss";
 
 $width: 200px;
 
@@ -22,10 +21,6 @@ $width: 200px;
 	box-sizing: border-box;
 
 	z-index: 9;
-
-	@media (min-width: $ref) {
-		display: none;
-	}
 
 	&[data-show=true] {
 		@include slide-in-animation();
