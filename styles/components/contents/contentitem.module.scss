@@ -1,4 +1,5 @@
 @import "../../common/color.module.scss";
+@import "../../common/env.scss";
 
 @mixin oneline {
 	display: block;
@@ -18,40 +19,71 @@
 	-webkit-box-orient: vertical;
 }
 
-.root {
-	&:hover {
-		.image {
-			transform: scale(1.2);
-		}
-	}
+@mixin root {
+	width: 100%;
+
+	border-radius: 10px;
+
+	overflow: hidden;
+}
+
+.root-light {
+	@include root;
+
+	$color: gainsboro;
+
+	border: 1px solid $color;
+	box-shadow: 3px 3px 5px $color;
+}
+
+.root-dark {
+	@include root;
+
+	$color: #161B22;
+
+	border: 1px solid $color;
+	box-shadow: 3px 3px 5px $color;
+}
+
+.body-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	padding: 20px;
 }
 
 .wrapper {
-	$padding: 30px;
-	padding-left: $padding;
-	padding-right: $padding;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 .footer {
-	$padding: 30px;
-	padding-left: $padding;
-	padding-right: $padding;
-
+	display: flex;
 	justify-content: space-between;
 
-	@media (max-width: 960px) {
-		display: none;
+	p {
+		font-size: 0.85rem;
 	}
 }
 
 .footer-detail {
-	@media (max-width: 960px) {
-		display: none;
+	display: none;
+
+	&[data-show=true] {
+		display: initial;
 	}
 }
 
 .image-wrapper {
 	overflow: hidden;
+
+	height: 280px;
+
+	@media (max-width: $ref) {
+		height: 180px;
+	}
 }
 
 .image {
@@ -60,43 +92,51 @@
 
 	width: 100%;
 	height: 280px;
+
 	transition: 0.3s;
 
-	@media (max-width: 960px) {
+	&:hover {
+		transform: scale(1.2);
+	}
+
+	@media (max-width: $ref) {
 		height: 180px;
 		transition: 0.3s;
 	}
 }
 
 .category-wrapper {
-	margin-top: 15px;
-	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
 	position: relative;
+
+	&>a:nth-child(2) {
+		flex: 1;
+	}
 }
 
 .category-image {
-	$size: 30px !important;
+	$size: 30px;
 
 	width: $size;
 	height: $size;
+
+	border-radius: 50%;
 }
 
 .category {
 	@include oneline;
 
 	width: 50%;
-	font-size: 20px;
-	margin-bottom: 0px;
 
-	transition: 0.5s;
+	transition: 0.3s;
 
 	color: map-get($map: $amber, $key: "700");
 
-	@media (max-width: 960px) {
-		font-size: 16px;
-
-		transition: 0.5s;
+	@media (max-width: $ref) {
+		transition: 0.3s;
 	}
 }
 
@@ -104,26 +144,23 @@
 	@include multiline(2);
 
 	font-weight: 900;
-	font-size: 30px;
+	font-size: 1.5rem;
 
-	margin-bottom: 30px;
+	transition: 0.3s;
+
+	&:hover {
+		color: dodgerblue;
+	}
 
 	@media (max-width: 960px) {
-		font-size: 20px;
 		margin-bottom: 10px;
 
-		transition: 0.5s;
+		transition: 0.3s;
+
+		font-size: 1.2rem;
 	}
 }
 
 .excerpt {
 	@include multiline(3);
-
-	font-size: 16px;
-
-	@media (max-width: 960px) {
-		display: none;
-
-		transition: 0.5s;
-	}
 }

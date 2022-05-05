@@ -6,14 +6,13 @@
  */
 
 // 라이브러리 모듈
-import { Grid } from '@material-ui/core';
 
-// 사용자 모듈
+
 import ContentItem from '@components/contents/ContentItem';
 import { ContentProps } from '@commons/common';
 
 // 스타일
-import styles from '@styles/components/contents/contentlist.module.scss';
+import styles from '@styles/components/contents/ContentList.module.scss';
 
 interface Props
 {
@@ -30,12 +29,10 @@ interface Props
 export default function ContentList({ list }: Props): JSX.Element | null
 {
 	const map = list.map((item, index) => (
-		<Grid item key={index} className={styles.item}>
-			<ContentItem item={item} />
-		</Grid>
+		<ContentItem key={index} item={item} data-index={index} />
 	));
 
 	return (
-		<Grid container className={styles.root}>{map}</Grid>
+		<div className={styles.root}>{map}</div>
 	);
 }

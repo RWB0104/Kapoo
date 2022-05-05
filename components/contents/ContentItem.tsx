@@ -8,7 +8,6 @@
 // 라이브러리 모듈
 import { useState } from 'react';
 import Link from 'next/link';
-import { Box } from '@material-ui/core';
 import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
 
 // 사용자 모듈
@@ -17,8 +16,11 @@ import { CATEGORY } from '@commons/env';
 import { ContentProps, getWrittenTimes } from '@commons/common';
 
 // 스타일
-import styles from '@styles/components/contents/contentitem.module.scss';
+import styles from '@styles/components/contents/ContentItem.module.scss';
 import { FaHotjar } from 'react-icons/fa';
+import { useSemanticHook } from '@commons/hook';
+import { useRecoilValue } from 'recoil';
+import { themeAtom } from '@commons/state';
 
 interface Props
 {
@@ -38,45 +40,66 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 
 	const urls = item.url;
 
-	const [ state, setState ] = useState(false);
+	const semanticState = useSemanticHook();
+	const [ state, setState ] = useState(undefined);
 
-	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 7;
+	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 60;
+
+	const themeState = useRecoilValue(themeAtom);
 
 	return (
-		<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
-			<a className={styles.root}>
-				<div>
-					<div className={styles['image-wrapper']}>
+		<div className={styles[`root-${themeState}`]}>
+			<div className={styles['image-wrapper']}>
+				<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
+					<a>
 						<img className={styles.image} src={coverImage} />
+					</a>
+				</Link>
+			</div>
+
+			<div className={styles['body-wrapper']}>
+				<div className={styles.wrapper}>
+					<div className={styles['category-wrapper']}>
+						<Link href={`/${type}/category/${category}/1`}>
+							<a>
+								<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+							</a>
+						</Link>
+
+						<Link href={`/${type}/category/${category}/1`}>
+							<a>
+								<h4 className={styles.category}>{category}</h4>
+							</a>
+						</Link>
+
+						{isNew && <FaHotjar color="orange" />}
 					</div>
 
-					<div className={styles.wrapper}>
-						<Box display="grid" className={styles['category-wrapper']} gridTemplateColumns="40px 1fr" alignItems="center">
-							<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
-							<h4 className={styles.category}>{category}</h4>
+					<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
+						<a>
+							<h3 className={styles.title}>{title}</h3>
+						</a>
+					</Link>
 
-							{true && <FaHotjar color="orange" />}
-						</Box>
-
-						<h3 className={styles.title}>{title}</h3>
-						<p className={styles.excerpt}>{excerpt}</p>
-					</div>
+					{semanticState && <p className={styles.excerpt}>{excerpt}</p>}
 				</div>
 
 				<div className={styles.footer}>
 					<p>🕔 {getWrittenTimes(new Date(date))}</p>
 
-					<button onClick={() => setState(!state)}>
-						{state ? <ArrowUpward /> : <ArrowDownward />}
-					</button>
+					{semanticState && (
+						<button onClick={() => setState(state === undefined ? true : !state)}>
+							{state ? <ArrowUpward /> : <ArrowDownward />}
+						</button>
+					)}
 				</div>
 
-				<div data-show={state}>
-					<div className={styles['footer-detail']}>
+				{semanticState && (
+					<div className={styles['footer-detail']} data-show={state}>
 						<ContentMeta header={item.header} />
 					</div>
-				</div>
-			</a>
-		</Link>
+				)}
+			</div>
+		</div>
 	);
 }

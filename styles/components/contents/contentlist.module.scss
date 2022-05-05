@@ -1,11 +1,15 @@
+@import "../../common/env.scss";
+
 .root {
-	margin-bottom: 100px;
-}
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
 
-.item {
-	width: 100%;
+	padding: 20px;
 
-	$margin: 30px !important;
-	margin-top: $margin;
-	margin-bottom: $margin;
+	@media (max-width: $ref) {
+		gap: 30px;
+	}
 }

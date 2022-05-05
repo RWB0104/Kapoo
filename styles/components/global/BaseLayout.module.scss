@@ -3,9 +3,19 @@
 	padding: 0px;
 
 	min-width: 360px;
+
+	transition: 0.3s;
+
+	z-index: -1;
+}
+
+.root-light {
+	@include root;
 }
 
 .root-dark {
+	@include root;
+
 	color: white;
 	background-color: #010409;
 }
