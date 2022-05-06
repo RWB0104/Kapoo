@@ -677,7 +677,7 @@ CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶�
 @import "./fonts/apple.module.scss";
 @import "./fonts/blacksword.module.scss";
 
-@import "./common/color.module.scss";
+@import "./common/color.scss";
 @import "./common/icons.scss";
 
 @import "./components/global/markdown.scss";

@@ -7,10 +7,13 @@
 
 // 라이브러리 모듈
 import { useEffect } from 'react';
-import { useTheme } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
+
+// 사용자 모듈
+import { themeAtom } from '@commons/state';
 
 // 스타일
-import styles from '@styles/components/contents/utterances.module.scss';
+import styles from '@styles/components/contents/Utterances.module.scss';
 
 interface Props
 {
@@ -26,8 +29,7 @@ interface Props
  */
 export default function Utterances({ flag }: Props): JSX.Element | null
 {
-	const theme = useTheme();
-	const type = theme.palette.type;
+	const themeState = useRecoilValue(themeAtom);
 
 	useEffect(() =>
 	{
@@ -41,11 +43,11 @@ export default function Utterances({ flag }: Props): JSX.Element | null
 
 				if (frame !== null)
 				{
-					frame.contentWindow?.postMessage({ type: 'set-theme', theme: `github-${type}` }, 'https://utteranc.es/');
+					frame.contentWindow?.postMessage({ type: 'set-theme', theme: `github-${themeState}` }, 'https://utteranc.es/');
 				}
 			}
 		}
-	});
+	}, [ themeState ]);
 
 	return flag ? (
 		<article className={styles.root} id="utterances" ref={(ref) =>
@@ -65,7 +67,7 @@ export default function Utterances({ flag }: Props): JSX.Element | null
 						script.async = true,
 						script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
 						script.setAttribute('issue-term', 'pathname');
-						script.setAttribute('theme', `github-${type}`);
+						script.setAttribute('theme', `github-${themeState}`);
 						script.setAttribute('crossOrigin', 'anonymous');
 
 						wrapper.appendChild(script);
@@ -82,7 +84,7 @@ export default function Utterances({ flag }: Props): JSX.Element | null
 						script.async = true,
 						script.setAttribute('repo', 'RWB0104/RWB0104.github.io-comments');
 						script.setAttribute('issue-term', 'pathname');
-						script.setAttribute('theme', `github-${type}`);
+						script.setAttribute('theme', `github-${themeState}`);
 						script.setAttribute('crossOrigin', 'anonymous');
 
 						wrapper.appendChild(script);

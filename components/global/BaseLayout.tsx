@@ -12,7 +12,9 @@ import { Router } from 'next/router';
 import { useCookies } from 'react-cookie';
 
 // 사용자 모듈
-import ThemeSwitch from './ThemeSwitch';
+import FabPannel from './FabPannel';
+import ThemeFab from './ThemeFab';
+import TopFab from './TopFab';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
 import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
@@ -94,7 +96,10 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 
 			<Loading />
 
-			<ThemeSwitch />
+			<FabPannel>
+				<ThemeFab />
+				<TopFab />
+			</FabPannel>
 
 			<Footer hash={hash} />
 		</main>

@@ -1,21 +1,18 @@
 .root {
-	margin: 5px !important;
+	transition: 0.3s;
 
-	background: linear-gradient(45deg, #4776E6, #8E54E9);
-
-	color: white !important;
-
-	transition: 0.5s;
+	padding: 5px 15px;
 
 	max-width: 600px;
 
-	@media (max-width: 960px) {
-		max-width: 80vw;
-	}
+	font-size: 0.85rem;
+
+	color: dodgerblue;
+	border: 1px solid dodgerblue;
+	border-radius: 20px;
 
 	&:hover {
-		transform: scale(1.1);
-
-		transition: 0.5s;
+		color: white;
+		background-color: dodgerblue;
 	}
 }

@@ -1,7 +1,7 @@
 @import "./fonts/apple.scss";
 @import "./fonts/blacksword.scss";
 
-@import "./common/color.module.scss";
+@import "./common/color.scss";
 @import "./common/icons.scss";
 
 @import "./components/global/markdown.scss";
@@ -51,6 +51,8 @@ button {
 
 	background-color: transparent;
 	border: transparent;
+
+	cursor: pointer;
 }
 
 @include genColor($red, red);

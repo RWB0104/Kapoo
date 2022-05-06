@@ -6,13 +6,14 @@
  */
 
 // 라이브러리 모듈
-import { Box, Typography, useTheme } from '@material-ui/core';
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import { tableOfContents, TocProps } from '@commons/common';
+import { themeAtom } from '@commons/state';
 
 // 스타일
-import styles from '@styles/components/contents/contenttoc.module.scss';
+import styles from '@styles/components/contents/ContentToc.module.scss';
 
 interface Props
 {
@@ -28,13 +29,13 @@ interface Props
  */
 export default function ContentToc({ toc }: Props): JSX.Element | null
 {
-	const theme = useTheme();
+	const themeState = useRecoilValue(themeAtom);
 
 	return toc && toc.length > 0 ? (
-		<Box className={styles[`toc-${theme.palette.type}`]}>
-			<Typography component="h2" variant="h2" align="center">Table of Contents</Typography>
+		<div className={styles[`toc-${themeState}`]}>
+			<h2>Table of Contents</h2>
 
 			<div dangerouslySetInnerHTML={{ __html: tableOfContents(toc) }}></div>
-		</Box>
+		</div>
 	) : null;
 }

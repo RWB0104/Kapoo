@@ -1,109 +1,124 @@
-@import "../../common/color.module.scss";
+@import "../../common/animation.scss";
+@import "../../common/color.scss";
+@import "../../common/env.scss";
 
 $item-height: 152px;
 
-.root {
-	background-color: transparent !important;
-	box-shadow: 0px 0px 0px transparent !important;
+@mixin root {
+	max-width: $ref;
 
-	margin-bottom: 50px !important;
+	border-radius: 10px;
+	box-sizing: border-box;
+
+	margin: 40px;
+
+	overflow: hidden;
+}
+
+.root-light {
+	@include root;
+	border: 1px solid gainsboro;
+}
+
+.root-dark {
+	@include root;
+	border: 1px solid #475160;
 }
 
 .header {
-	padding: 0px !important;
-	height: 80px !important;
+	display: flex;
+	align-items: center;
 
-	color: map-get($map: $amber, $key: "700") !important;
+	font-size: 1.5rem;
+
+	padding: 10px 30px;
+
+	cursor: pointer;
+
+	&[data-show=true] {
+		svg {
+			@include rotate-180-animaition;
+		}
+	}
+
+	&[data-show=false] {
+		svg {
+			@include rotate-360-animaition;
+		}
+	}
 }
 
 .title {
-	font-weight: 900 !important;
+	flex: 1;
+
+	font-size: inherit;
+	font-weight: 900;
 }
 
-.detail {
-	padding: 0px !important;
+.body {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
 
-	max-height: $item-height * 2 + 100;
-	overflow: auto;
+	max-height: 0px;
 
-	&:hover button {
-		background-color: rgba($color: black, $alpha: 0.7);
-
-		div {
-			color: grey;
-
-			transition: 0.5s;
-		}
+	@media (max-width: $ref) {
+		grid-template-columns: repeat(3, 1fr);
 	}
 
-	@media (max-width: 960px) {
-		max-height: $item-height + 100;
-	}
-}
-
-.item-wrapper {
-	height: $item-height;
-
-	overflow: hidden;
-
-	@media (max-width: 960px) {
-		height: $item-height * 0.6;
+	&[data-show=true] {
+		@include slide-down-true-animation;
 	}
 
-	&:hover button {
-		background-color: rgba($color: black, $alpha: 0) !important;
-
-		div {
-			color: white;
-
-			transition: 0.5s;
-		}
+	&[data-show=false] {
+		@include slide-down-false-animation;
 	}
 }
 
 .item {
-	width: 100%;
-	height: 100%;
+	position: relative;
 
-	background-blend-mode: multiply;
-	background-size: cover;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-size: contain;
 
-	align-items: flex-end !important;
+	transition: 0.3s;
 
-	transition: 0.5s;
+	cursor: pointer;
+
+	&:after {
+		content: "";
+
+		display: block;
+		padding-bottom: 100%;
+	}
+
+	&:hover {
+		background-size: 120%;
+	}
 }
 
 .meta {
 	display: flex;
-	flex-direction: row;
 	justify-content: space-between;
+
+	padding: 10px;
+
+	box-sizing: border-box;
 
 	position: absolute;
 	bottom: 0px;
+	left: 0px;
 
 	width: 100%;
-	padding: 10px;
 
-	background-color: rgba($color: black, $alpha: 0.7);
+	background-color: #000000AA;
 
-	font-family: AppleSDGothicNeo, sans-serif;
-	font-size: 16px !important;
-	color: white !important;
-
-	& div:first-child {
-		max-width: 70%;
-
-		display: block;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		transition: 0.5s;
+	p {
+		font-size: 0.8rem;
 	}
+}
 
-	@media (max-width: 960px) {
-		font-size: 12px !important;
-		padding: 5px;
-	}
+.flag {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

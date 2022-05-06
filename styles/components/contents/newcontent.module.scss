@@ -1,10 +1,11 @@
-@import "../../common/color.module.scss";
+@import "../../common/color.scss";
 
 .root {
-	padding: 7px;
-
 	border-radius: 50%;
-	box-shadow: 2px 2px 8px black;
+	font-size: 0.7rem;
 
-	background-color: #29C941;
+	$color: red;
+
+	color: $color;
+	box-shadow: 0px 0px 10px $color;
 }

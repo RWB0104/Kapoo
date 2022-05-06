@@ -7,9 +7,8 @@
 
 // 라이브러리 모듈
 import { useState } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Box, ButtonBase, Container, Grid, Typography } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { IoIosArrowDown } from 'react-icons/io';
 
 // 사용자 모듈
 import { CATEGORY } from '@commons/env';
@@ -17,7 +16,9 @@ import { CategoryProps } from '@commons/common';
 import NewContent from './NewContent';
 
 // 스타일
-import styles from '@styles/components/contents/contentcategory.module.scss';
+import styles from '@styles/components/contents/ContentCategory.module.scss';
+import { useRecoilValue } from 'recoil';
+import { themeAtom } from '@commons/state';
 
 interface Props
 {
@@ -34,40 +35,36 @@ interface Props
  */
 export default function ContentCategory({ type, list }: Props): JSX.Element | null
 {
-	const router = useRouter();
+	const themeState = useRecoilValue(themeAtom);
 
-	const [ state, setState ] = useState(true);
+	const [ state, setState ] = useState(undefined);
 
 	const categories = Object.keys(list).sort().map((item, index: number): JSX.Element => (
-		<Grid key={index} item md={2} xs={3} className={styles['item-wrapper']}>
-			<Box height="100%" position="relative">
-				<ButtonBase className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item] || CATEGORY['All']})` }} onClick={() => item === 'All' ? router.push(`/${type}/1`) : router.push(`/${type}/category/${item}/1`)}>
-					<Box className={styles.meta}>
-						<Box>{item}</Box>
-						<Box>
-							<Box component="span">{list[item].count}</Box>
-						</Box>
-					</Box>
-				</ButtonBase>
+		<Link key={index} href={item === 'All' ? `/${type}/1` : `/${type}/category/${item}/1`}>
+			<a className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item] || CATEGORY['All']})` }}>
+				<div className={styles.meta}>
+					<p>{item}</p>
+					<p>( {list[item].count} )</p>
+				</div>
 
-				<NewContent flag={list[item].flag as boolean} />
-			</Box>
-		</Grid>
+				<div className={styles.flag}>
+					<NewContent flag={list[item].flag} />
+				</div>
+			</a>
+		</Link>
 	));
 
 	return (
-		<Container component="article" maxWidth="md">
-			<Accordion className={styles.root} expanded={state} TransitionProps={{ unmountOnExit: true }} onClick={() => setState(!state)}>
-				<AccordionSummary className={styles.header} expandIcon={<ExpandMore />}>
-					<Typography className={styles.title} component="h4" variant="h4">📚 카테고리</Typography>
-				</AccordionSummary>
+		<article className={styles[`root-${themeState}`]}>
+			<div className={styles.header} onClick={() => setState(state === undefined ? true : !state)} data-show={state}>
+				<h4 className={styles.title}>📚 카테고리</h4>
 
-				<AccordionDetails className={styles.detail}>
-					<Grid container>
-						{categories}
-					</Grid>
-				</AccordionDetails>
-			</Accordion>
-		</Container>
+				<IoIosArrowDown />
+			</div>
+
+			<div className={styles.body} data-show={state}>
+				{categories}
+			</div>
+		</article>
 	);
 }

@@ -1,12 +1,5 @@
-@import "../../common/color.module.scss";
-
-@mixin text {
-	font-size: 20px !important;
-
-	@media (max-width: 960px) {
-		font-size: 16px !important;
-	}
-}
+@import "../../common/color.scss";
+@import "../../common/env.scss";
 
 @mixin oneline {
 	display: block;
@@ -17,38 +10,57 @@
 }
 
 .root {
-	& > div:not(:last-child) {
+	margin-top: 40px;
+
+	&>div:not(:last-child) {
 		margin-bottom: 20px;
 	}
 }
 
 .item {
-	@media (min-width: 960px) {
-		grid-template-columns: 200px 1fr;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	&>p:first-child {
+		min-width: 150px;
 	}
 
-	@media (max-width: 960px) {
-		grid-auto-rows: auto;
+	@media (max-width: $ref) {
+		&>p:first-child {
+			min-width: 100px
+		}
 	}
+}
+
+.category-wrapper {
+	display: flex;
+	gap: 10px;
+}
+
+.category-image {
+	border-radius: 50%;
+
+	$size: 24px;
+	width: $size;
+	height: $size;
+}
+
+.tags {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .text {
 	@include oneline();
-	@include text();
-
-	@media (max-width: 960px) {
-		margin-bottom: 20px !important;
-	}
 }
 
 .link {
 	@include oneline();
-	@include text();
 
 	color: map-get($map: $amber, $key: "700");
-	cursor: pointer;
 
-	&:hover {
-		text-decoration: underline;
-	}
+	cursor: pointer;
 }

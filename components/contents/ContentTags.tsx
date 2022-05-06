@@ -6,11 +6,10 @@
  */
 
 // 라이브러리 모듈
-import { Chip } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // 스타일
-import styles from '@styles/components/contents/contenttags.module.scss';
+import styles from '@styles/components/contents/ContentTags.module.scss';
 
 interface Props
 {
@@ -27,11 +26,9 @@ interface Props
  */
 export default function ContentTags({ type, tags }: Props): JSX.Element | null
 {
-	const router = useRouter();
-
-	return (
-		<>
-			{tags.map((item, index) => <Chip key={index} className={styles.root} label={item} clickable onClick={() => router.push(`/${type}/tag/${item}/1`)} />)}
-		</>
-	);
+	return tags.map((item, index) => (
+		<Link href={`/${type}/tag/${item}/1`}>
+			<a key={index} className={styles.root} title={item}>{item}</a>
+		</Link>
+	));
 }

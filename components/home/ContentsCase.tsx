@@ -14,7 +14,7 @@ import ContentList from '@components/contents/ContentList';
 import { ContentProps } from '@commons/common';
 
 // 스타일
-import styles from '@styles/components/home/contentscase.module.scss';
+import styles from '@styles/components/home/ContentsCase.module.scss';
 
 interface Props {
 	num: number,

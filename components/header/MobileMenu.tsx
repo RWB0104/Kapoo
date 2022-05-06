@@ -56,7 +56,7 @@ export default function MobileMenu(): JSX.Element | null
 				setCookie('theme', theme, { maxAge: 86400 * 30 });
 			}}>
 				<IoSunny data-status={themeState === Theme.LIGHT} />
-				<BsArrowRepeat />
+				<BsArrowRepeat size={10} />
 				<IoMoon data-status={themeState === Theme.DARK} />
 			</button>
 		</nav>

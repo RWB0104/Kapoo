@@ -1,4 +1,5 @@
-@import "../../common/color.module.scss";
+@import "../../common/animation.scss";
+@import "../../common/color.scss";
 @import "../../common/env.scss";
 
 @mixin oneline {
@@ -48,9 +49,12 @@
 .body-wrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
 
-	padding: 20px;
+	padding: 40px;
+
+	@media (max-width: $ref) {
+		padding: 20px;
+	}
 }
 
 .wrapper {
@@ -63,17 +67,47 @@
 	display: flex;
 	justify-content: space-between;
 
+	margin-top: 20px;
+
 	p {
 		font-size: 0.85rem;
 	}
 }
 
 .footer-detail {
-	display: none;
+	overflow: hidden;
+	max-height: 0px;
 
 	&[data-show=true] {
-		display: initial;
+		@include slide-down-true-animation;
 	}
+
+	&[data-show=false] {
+		@include slide-down-false-animation;
+	}
+}
+
+@mixin footer-active {
+	color: inherit;
+	transition: 0.3s;
+
+	&[data-status=true] {
+		@include rotate-180-animaition;
+	}
+
+	&[data-status=false] {
+		@include rotate-360-animaition;
+	}
+}
+
+.footer-active-light {
+	@include footer-active;
+}
+
+.footer-active-dark {
+	@include footer-active;
+
+	color: white;
 }
 
 .image-wrapper {
@@ -118,7 +152,7 @@
 }
 
 .category-image {
-	$size: 30px;
+	$size: 24px;
 
 	width: $size;
 	height: $size;

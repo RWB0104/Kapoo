@@ -1,5 +1,5 @@
-@import "../../common/animation.module.scss";
-@import "../../common/color.module.scss";
+@import "../../common/animation.scss";
+@import "../../common/color.scss";
 
 $width: 200px;
 
@@ -21,6 +21,8 @@ $width: 200px;
 	box-sizing: border-box;
 
 	z-index: 9;
+
+	transition: 0.3s;
 
 	&[data-show=true] {
 		@include slide-in-animation();
@@ -61,8 +63,6 @@ $width: 200px;
 	padding: 10px;
 
 	cursor: pointer;
-
-	color: grey;
 
 	svg {
 		&:first-child[data-status=true] {
@@ -119,12 +119,14 @@ $width: 200px;
 .switch-light {
 	@include switch;
 
-	background-color: whitesmoke;
+	color: dimgrey;
+	background-color: gainsboro;
 }
 
 .switch-dark {
 	@include switch;
 
+	color: grey;
 	background-color: #161B22;
 	border: 1px solid #21262D;
 }

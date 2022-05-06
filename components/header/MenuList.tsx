@@ -38,7 +38,7 @@ export default function MenuList(): JSX.Element | null
 			))}
 		</nav>
 	) : (
-		<button className={styles.button} onClick={() => setMenuState(!menuState)}>
+		<button className={styles.button} onClick={() => setMenuState(menuState === undefined ? true : !menuState)}>
 			{menuState ? <IoClose /> : <IoMenu />}
 		</button>
 	);

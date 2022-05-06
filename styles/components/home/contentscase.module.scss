@@ -1,32 +1,44 @@
-@import "../../common/animation.module.scss";
+@import "../../common/animation.scss";
+@import "../../common/env.scss";
 
 .root {
-	margin-top: 100px;
-	margin-bottom: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+
+	max-width: $ref;
+
+	padding: 40px;
+	margin: 0px auto;
+	margin-bottom: 50px;
 }
 
 .title {
-	font-size: 64px !important;
-	font-weight: 900 !important;
-	font-family: Blacksword, sans-serif !important;
-	transition: 0.5s;
-
-	@media (max-width: 960px) {
-		font-size: 32px !important;
-		transition: 0.5s;
-	}
+	font-size: 4rem;
+	font-weight: 900;
+	font-family: Blacksword, sans-serif;
 }
 
 .more {
-	display: block !important;
-	width: 200px;
-	height: 50px;
-	margin: 0px auto !important;
+	display: block;
+	padding: 15px 40px;
 
-	background: linear-gradient(to right, #4776E6, #8E54E9);
+	font-size: 1.25rem;
+	font-weight: bold;
 
-	font-size: 24px !important;
-	color: white !important;
+	border-radius: 10px;
 
-	word-spacing: 5px;
+	border: 1px solid dodgerblue;
+	color: dodgerblue;
+
+	transition: 0.3s;
+
+	word-spacing: 10px;
+
+	&:hover {
+		background-color: dodgerblue;
+		color: white;
+	}
 }

@@ -5,9 +5,6 @@
  * @since 2021.07.17 Sat 04:09:04
  */
 
-// 라이브러리 모듈
-import { Box, Container } from '@material-ui/core';
-
 // 사용자 모듈
 import ContentViewer from './ContentViewer';
 import ContentToc from './ContentToc';
@@ -17,6 +14,9 @@ import ContentMover from './ContentMover';
 import Utterances from './Utterances';
 import { PageStaticProps } from '@commons/common';
 import Hits from '../global/Hits';
+
+// 스타일
+import styles from '@styles/components/contents/ContentLayout.module.scss';
 
 /**
  * 컨텐츠 레이아웃 JSX 반환 함수
@@ -30,22 +30,20 @@ export default function ContentLayout({ page, data, group }: PageStaticProps): J
 	const urls = [ page.type ].concat(data.url);
 
 	return (
-		<Box position="relative">
-			<Container maxWidth="md">
-				<ContentToc toc={data.toc} />
+		<article className={styles.root}>
+			<ContentToc toc={data.toc} />
 
-				<Hits urls={urls} />
+			<Hits urls={urls} />
 
-				<ContentViewer content={data.content} />
+			<ContentViewer content={data.content} />
 
-				<ContentGroup group={group} />
+			<ContentGroup group={group} />
 
-				<ContentMeta header={data.header} />
+			<ContentMeta header={data.header} />
 
-				<ContentMover page={page} />
+			<ContentMover page={page} />
 
-				<Utterances flag={data.header.comment} />
-			</Container>
-		</Box>
+			<Utterances flag={data.header.comment} />
+		</article>
 	);
 }

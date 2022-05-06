@@ -6,15 +6,14 @@
  */
 
 // 라이브러리 모듈
-import { Avatar, Box, Typography } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // 사용자 모듈
 import ContentTags from './ContentTags';
 import { ContentHeaderProps, getDateDetail } from '@commons/common';
 import { CATEGORY } from '@commons/env';
 
-import styles from '@styles/components/contents/contentmeta.module.scss';
+import styles from '@styles/components/contents/ContentMeta.module.scss';
 
 interface Props
 {
@@ -30,35 +29,39 @@ interface Props
  */
 export default function ContentMeta({ header }: Props ): JSX.Element | null
 {
-	const router = useRouter();
-
 	const dateDetail = getDateDetail(header.date);
 
 	return (
-		<Box component="article" className={styles.root}>
-			<Box display="grid" className={styles.item} alignItems="center">
-				<Typography className={styles.text}>📆 작성일</Typography>
+		<article className={styles.root}>
+			<div className={styles.item}>
+				<p className={styles.text}>📆 작성일</p>
 
-				<Typography className={styles.text}>{`${dateDetail.year}-${dateDetail.month}-${dateDetail.day} ${dateDetail.week} ${dateDetail.hour}:${dateDetail.minute}:${dateDetail.second}`}</Typography>
-			</Box>
+				<p className={styles.text}>{`${dateDetail.year}-${dateDetail.month}-${dateDetail.day} ${dateDetail.week} ${dateDetail.hour}:${dateDetail.minute}:${dateDetail.second}`}</p>
+			</div>
 
-			<Box display="grid" className={styles.item} alignItems="center">
-				<Typography className={styles.text}>📚 카테고리</Typography>
+			<div className={styles.item}>
+				<p className={styles.text}>📚 카테고리</p>
 
-				<Box display="grid" gridTemplateColumns="40px 1fr" alignItems="center" gridColumnGap={10}>
-					<Avatar alt={header.category} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+				<div className={styles['category-wrapper']}>
+					<Link href={`/${header.type}/category/${header.category}/1`}>
+						<a>
+							<img className={styles['category-image']} alt={header.category} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+						</a>
+					</Link>
 
-					<Typography className={styles.link} onClick={() => router.push(`/${header.type}/category/${header.category}/1`)}>{header.category}</Typography>
-				</Box>
-			</Box>
+					<Link href={`/${header.type}/category/${header.category}/1`}>
+						<a className={styles.link}>{header.category}</a>
+					</Link>
+				</div>
+			</div>
 
-			<Box display="grid" className={styles.item} alignItems="center">
-				<Typography className={styles.text}>🏷️ 태그</Typography>
+			<duv className={styles.item}>
+				<p className={styles.text}>🏷️ 태그</p>
 
-				<Box>
+				<div className={styles.tags}>
 					<ContentTags type={header.type} tags={header.tag} />
-				</Box>
-			</Box>
-		</Box>
+				</div>
+			</duv>
+		</article>
 	);
 }

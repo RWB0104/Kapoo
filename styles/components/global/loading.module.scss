@@ -1,4 +1,4 @@
-@import "../../common/animation.module.scss";
+@import "../../common/animation.scss";
 
 @mixin root {
 	display: grid;
@@ -13,6 +13,8 @@
 	z-index: 20;
 
 	transition: 0.3s;
+
+	cursor: wait;
 }
 
 .root-light {

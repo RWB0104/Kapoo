@@ -5,9 +5,7 @@
  * @since 2021.07.15 Thu 22:32:57
  */
 
-// 라이브러리 모듈
-
-
+// 사용자 모듈
 import ContentItem from '@components/contents/ContentItem';
 import { ContentProps } from '@commons/common';
 
@@ -28,9 +26,7 @@ interface Props
  */
 export default function ContentList({ list }: Props): JSX.Element | null
 {
-	const map = list.map((item, index) => (
-		<ContentItem key={index} item={item} data-index={index} />
-	));
+	const map = list.map((item, index) => <ContentItem key={index} item={item} data-index={index} />);
 
 	return (
 		<div className={styles.root}>{map}</div>

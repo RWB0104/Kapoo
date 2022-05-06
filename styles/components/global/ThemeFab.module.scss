@@ -1,13 +1,9 @@
-@import "../../common/color.module.scss";
+@import "../../common/color.scss";
 
 $sun: map-get($orange, "500");
 $moon: map-get($yellow, "500");
 
 @mixin switch {
-	position: fixed !important;
-	right: 50px;
-	bottom: 50px;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;

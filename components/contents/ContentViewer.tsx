@@ -6,8 +6,11 @@
  */
 
 // 라이브러리 모듈
-import { useTheme } from '@material-ui/core';
 import Head from 'next/head';
+import { useRecoilValue } from 'recoil';
+
+// 사용자 모듈
+import { themeAtom } from '@commons/state';
 
 interface Props
 {
@@ -23,7 +26,7 @@ interface Props
  */
 export default function ContentViewer({ content }: Props): JSX.Element | null
 {
-	const theme = useTheme();
+	const themeState = useRecoilValue(themeAtom);
 
 	return (
 		<>
@@ -31,7 +34,7 @@ export default function ContentViewer({ content }: Props): JSX.Element | null
 				<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
 			</Head>
 
-			<div className={`markdown ${theme.palette.type}`} dangerouslySetInnerHTML={{ __html: content }} />
+			<div className={`markdown ${themeState}`} dangerouslySetInnerHTML={{ __html: content }} />
 		</>
 	);
 }

@@ -8,19 +8,19 @@
 // 라이브러리 모듈
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowDownward, ArrowUpward } from '@material-ui/icons';
+import { useRecoilValue } from 'recoil';
+import { IoIosArrowDown } from 'react-icons/io';
 
 // 사용자 모듈
+import NewContent from './NewContent';
 import ContentMeta from './ContentMeta';
 import { CATEGORY } from '@commons/env';
 import { ContentProps, getWrittenTimes } from '@commons/common';
+import { useSemanticHook } from '@commons/hook';
+import { themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/contents/ContentItem.module.scss';
-import { FaHotjar } from 'react-icons/fa';
-import { useSemanticHook } from '@commons/hook';
-import { useRecoilValue } from 'recoil';
-import { themeAtom } from '@commons/state';
 
 interface Props
 {
@@ -72,7 +72,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 							</a>
 						</Link>
 
-						{isNew && <FaHotjar color="orange" />}
+						<NewContent flag={isNew} />
 					</div>
 
 					<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
@@ -89,7 +89,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 
 					{semanticState && (
 						<button onClick={() => setState(state === undefined ? true : !state)}>
-							{state ? <ArrowUpward /> : <ArrowDownward />}
+							<IoIosArrowDown className={styles[`footer-active-${themeState}`]} data-status={state} />
 						</button>
 					)}
 				</div>

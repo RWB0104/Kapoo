@@ -6,10 +6,10 @@
  */
 
 // 라이브러리 모듈
-import { Box } from '@material-ui/core';
+import { BsCircleFill } from 'react-icons/bs';
 
 // 스타일
-import styles from '@styles/components/contents/newcontent.module.scss';
+import styles from '@styles/components/contents/NewContent.module.scss';
 
 interface Props
 {
@@ -25,5 +25,5 @@ interface Props
  */
 export default function NewContent({ flag }: Props): JSX.Element | null
 {
-	return flag ? <Box position="absolute" className={styles.root} top={10} right={10}></Box> : null;
+	return flag ? <BsCircleFill className={styles.root} /> : null;
 }
