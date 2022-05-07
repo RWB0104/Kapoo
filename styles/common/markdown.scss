@@ -1,12 +1,9 @@
-@import "../../fonts/hack.module.scss";
-@import "../../common/color.scss";
-
-$fd: 18px;
-$fm: 14px;
+@import "../fonts/hack.scss";
+@import "../common/color.scss";
 
 @mixin gutter() {
-	margin-top: 70px;
-	margin-bottom: 70px;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 @mixin table() {
@@ -22,10 +19,10 @@ $fm: 14px;
 			margin: 0px;
 			padding: 0px;
 
-			transition: 0.5s;
+			transition: 0.3s;
 
 			&:hover {
-				transition: 0.5s;
+				transition: 0.3s;
 			}
 
 			&:first-child {
@@ -72,14 +69,9 @@ $fm: 14px;
 }
 
 .markdown {
-	font-size: $fd !important;
 	line-height: 1.75;
 
 	margin-bottom: 200px;
-
-	@media (max-width: 960px) {
-		font-size: $fm !important;
-	}
 
 	h1,
 	h2,
@@ -112,51 +104,27 @@ $fm: 14px;
 	}
 
 	h1 {
-		font-size: 40px !important;
-
-		@media (max-width: 960px) {
-			font-size: 35px !important;
-		}
+		font-size: 1.5rem;
 	}
 
 	h2 {
-		font-size: 35px !important;
-
-		@media (max-width: 960px) {
-			font-size: 30px !important;
-		}
+		font-size: 1.3rem;
 	}
 
 	h3 {
-		font-size: 30px !important;
-
-		@media (max-width: 960px) {
-			font-size: 25px !important;
-		}
+		font-size: 1.2rem;
 	}
 
 	h4 {
-		font-size: 25px !important;
-
-		@media (max-width: 960px) {
-			font-size: 20px !important;
-		}
+		font-size: 1.15rem;
 	}
 
 	h5 {
-		font-size: 23px !important;
-
-		@media (max-width: 960px) {
-			font-size: 18px !important;
-		}
+		font-size: 1.1rem;
 	}
 
 	h6 {
-		font-size: 20px !important;
-
-		@media (max-width: 960px) {
-			font-size: 15px !important;
-		}
+		font-size: 1.05rem;
 	}
 
 	span {
@@ -166,9 +134,10 @@ $fm: 14px;
 	img {
 		display: block;
 		margin: auto;
-		@include gutter;
 
 		max-width: 100%;
+
+		@include gutter;
 	}
 
 	pre,
@@ -214,7 +183,7 @@ $fm: 14px;
 		.token.prolog,
 		.token.doctype,
 		.token.cdata {
-			color: map-get($green, "600") !important;
+			color: map-get($green, "600");
 		}
 
 		.token.annotation.punctuation {
@@ -294,7 +263,6 @@ $fm: 14px;
 		color: white;
 
 		font-family: Hack, AppleSDGothicNeo, sans-serif;
-		font-size: $fd - 4px;
 
 		display: inline-block;
 
@@ -302,10 +270,6 @@ $fm: 14px;
 		margin: 0px 3px;
 
 		border-radius: 5px;
-
-		@media (max-width: 960px) {
-			font-size: $fm - 4px;
-		}
 	}
 
 	.codeblock {
@@ -329,14 +293,6 @@ $fm: 14px;
 
 				& td:first-child {
 					color: white;
-				}
-			}
-
-			& td {
-				line-height: $fd + 4px;
-
-				@media (max-width: 960px) {
-					line-height: $fm + 4px;
 				}
 			}
 
@@ -424,21 +380,16 @@ $fm: 14px;
 
 			opacity: 0;
 
-			transition: 0.5s;
-
-			&:hover {
-				transition: 0.5s;
-			}
+			transition: 0.3s;
 		}
 	}
 
 	a {
 		color: map-get($lightBlue, "A400");
-		transition: 0.5s;
+		transition: 0.3s;
 
 		&:hover {
 			color: map-get($lightBlue, "A100");
-			transition: 0.5s;
 		}
 	}
 
@@ -475,13 +426,7 @@ $fm: 14px;
 
 		padding: 0px;
 
-		font-size: $fd;
-
-		@media (max-width: 960px) {
-			font-size: $fm;
-		}
-
-		.vlist>span {
+		.vlist > span {
 			display: flow-root
 		}
 	}
@@ -495,26 +440,14 @@ $fm: 14px;
 		text-align: center;
 
 		overflow-x: auto;
-
-		@media (max-width: 960px) {
-			font-size: $fm;
-		}
 	}
 
 	.large {
-		font-size: $fd + 4px;
-
-		@media (max-width: 960px) {
-			font-size: $fm + 4px;
-		}
+		font-size: 1.05rem;
 	}
 
 	.small {
-		font-size: $fd - 4px;
-
-		@media (max-width: 960px) {
-			font-size: $fm - 4px;
-		}
+		font-size: 0.9rem
 	}
 
 	.i-clipboard {
@@ -564,7 +497,7 @@ $fm: 14px;
 				}
 
 				&:hover {
-					background-color: dodgerblue !important;
+					background-color: dodgerblue;
 				}
 			}
 		}

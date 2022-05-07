@@ -6,7 +6,6 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import Link from 'next/link';
 
 // 사용자 모듈
@@ -16,7 +15,8 @@ import { ContentProps } from '@commons/common';
 // 스타일
 import styles from '@styles/components/home/ContentsCase.module.scss';
 
-interface Props {
+interface Props
+{
 	num: number,
 	title: string,
 	url: { pathname: string },
@@ -24,13 +24,13 @@ interface Props {
 }
 
 /**
- * 컨텐츠 케이스 ReactElement 반환 함수
+ * 컨텐츠 케이스 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function ContentsCase({ num, title, url, list }: Props): ReactElement
+export default function ContentsCase({ num, title, url, list }: Props): JSX.Element | null
 {
 	return (
 		<article className={styles.root}>

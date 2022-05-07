@@ -8,7 +8,8 @@
 // 라이브러리 모듈
 import { FaAt, FaBook, FaHome, FaRocket } from 'react-icons/fa';
 
-interface CategoryProps {
+interface CategoryProps
+{
 	[ key: string ]: string
 }
 

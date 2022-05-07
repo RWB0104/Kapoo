@@ -5,10 +5,6 @@
  * @since 2021.07.17 Sat 18:10:25
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Box } from '@material-ui/core';
-
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import { getBuildHash, getContentsByTag, getContentsCategory, getContentsTag, getScreenerImage } from '@commons/api';
@@ -18,7 +14,8 @@ import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
 
-interface Props {
+interface Props
+{
 	projects: ContentProps[],
 	categories: CategoryProps,
 	images: string[],
@@ -28,25 +25,26 @@ interface Props {
 	hash?: string
 }
 
-interface StaticProps {
+interface StaticProps
+{
 	props: Props
 }
 
 const type = 'projects';
 
 /**
- * 태그별 프로젝트 동적 페이지 ReactElement 반환 함수
+ * 태그별 프로젝트 동적 페이지 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function TagProjects({ projects, categories, images, tag, page, total }: Props): ReactElement
+export default function TagProjects({ projects, categories, images, tag, page, total }: Props): JSX.Element | null
 {
 	const index = getRandomIndex(images.length);
 
 	return (
-		<Box component="section">
+		<section>
 			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} image={LOGO} />
 
 			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={images[index]} />
@@ -54,7 +52,7 @@ export default function TagProjects({ projects, categories, images, tag, page, t
 			<ContentCategory type={type} list={categories} />
 
 			<ContentBoard baseUrl={`/${type}/tag/${tag}`} page={page} total={total} list={projects} />
-		</Box>
+		</section>
 	);
 }
 

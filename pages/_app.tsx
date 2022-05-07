@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { CookiesProvider } from 'react-cookie';
@@ -18,13 +18,13 @@ import BaseLayout from '@components/global/BaseLayout';
 import '@styles/index.scss';
 
 /**
- * 웹 애플리케이션 ReactNode 반환 함수
+ * 웹 애플리케이션 JSX 반환 함수
  *
  * @param {AppProps} param0: 애플리케이션 프로퍼티
  *
- * @returns {ReactElement | null} ReactNode
+ * @returns {JSX.Element | null} JSX
  */
-export default function MyApp({ Component, pageProps }: AppProps): ReactElement | null
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element | null
 {
 	useEffect(() =>
 	{

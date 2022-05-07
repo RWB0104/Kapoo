@@ -5,10 +5,6 @@
  * @since 2021.07.12 Mon 00:01:37
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Box } from '@material-ui/core';
-
 // 사용자 모듈
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
@@ -18,28 +14,30 @@ import { MENU_LIST, TITLE } from '@commons/env';
 import Artbox from '@components/global/Artbox';
 import CommitList from '@components/about/CommitList';
 
-interface Props {
+interface Props
+{
 	images: string[],
 	hash?: string
 }
 
-interface StaticProp {
+interface StaticProp
+{
 	props: Props
 }
 
 /**
- * 소개 페이지 ReactElement 반환 함수
+ * 소개 페이지 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Posts({ images }: Props): ReactElement
+export default function Posts({ images }: Props): JSX.Element | null
 {
 	const index = getRandomIndex(images.length);
 
 	return (
-		<Box component="section">
+		<section>
 			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} image={images[index]} />
 
 			<Screener title={TITLE} menu={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={images[index]} />
@@ -47,7 +45,7 @@ export default function Posts({ images }: Props): ReactElement
 			<CommitList />
 
 			<Artbox />
-		</Box>
+		</section>
 	);
 }
 

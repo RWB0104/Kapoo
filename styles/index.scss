@@ -1,11 +1,8 @@
 @import "./fonts/apple.scss";
-@import "./fonts/blacksword.scss";
 
 @import "./common/color.scss";
 @import "./common/icons.scss";
-
-@import "./components/global/markdown.scss";
-
+@import "./common/markdown.scss";
 @import "./common/env.scss";
 
 @mixin genColor($map, $str) {
@@ -20,14 +17,11 @@
 
 * {
 	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
 
 	padding: 0px;
 	margin: 0px;
 
 	font-size: 16px;
-
 	font-family: -apple-system, "AppleSDGothicNeo", sans-serif;
 
 	@media (max-width: $ref) {

@@ -674,13 +674,11 @@ CSS를 쓰다보면 한 번 쯤 타 언어의 함수 개념을 적용하고 싶�
 `@mixin`은 타 언어의 메소드와 개념이 매우 유사하여, 코드의 중복을 효과적으로 방지할 수 있는 매력적인 예약어다.
 
 ``` scss
-@import "./fonts/apple.module.scss";
-@import "./fonts/blacksword.module.scss";
+@import "./fonts/apple.scss";
+@import "./fonts/blacksword.scss";
 
 @import "./common/color.scss";
 @import "./common/icons.scss";
-
-@import "./components/global/markdown.scss";
 ```
 
 `@import`로 다른 SCSS 파일을 삽입할 수 있다. 이러한 패턴으로 SCSS을 컴포넌트별로 관리할 수 있었으며, 코드의 길이가 늘어남을 방지하여 더 나은 유지보수 용이성을 제공했다.

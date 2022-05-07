@@ -5,16 +5,14 @@
  * @since 2021.08.13 Fri 09:36:52
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-
-interface Props {
+interface Props
+{
 	className?: string,
 	width?: number,
 	height?: number,
 }
 
-export function React({ className, width, height }: Props): ReactElement
+export function React({ className, width, height }: Props): JSX.Element
 {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" className={`react ${className === undefined ? '' : className}`} viewBox="0 0 3618.6 3618.6" width={width === undefined ? '' : width} height={height === undefined ? '' : height}>

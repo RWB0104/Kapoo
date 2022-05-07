@@ -5,10 +5,6 @@
  * @since 2021.07.12 Mon 14:19:40
  */
 
-// 라이브러리 모듈
-import { ReactElement } from 'react';
-import { Box } from '@material-ui/core';
-
 // 사용자 모듈
 import Artbox from '@components/global/Artbox';
 import Screener from '@components/global/Screener';
@@ -18,30 +14,32 @@ import { MENU_LIST, TITLE } from '@commons/env';
 import { getRandomIndex, ContentProps, getContentDiv } from '@commons/common';
 import Meta from '@components/global/Meta';
 
-interface Props {
+interface Props
+{
 	images: string[],
 	posts: ContentProps[],
 	projects: ContentProps[],
 	hash?: string
 }
 
-interface StaticProp {
+interface StaticProp
+{
 	props: Props
 }
 
 /**
- * 홈 페이지 ReactElement 반환 함수
+ * 홈 페이지 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Home({ images, posts, projects }: Props): ReactElement | null
+export default function Home({ images, posts, projects }: Props): JSX.Element | null
 {
 	const index = getRandomIndex(images.length);
 
 	return (
-		<Box component="section">
+		<section>
 			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={images[index]} url="" />
 
 			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={images[index]} />
@@ -51,7 +49,7 @@ export default function Home({ images, posts, projects }: Props): ReactElement |
 			<Artbox />
 
 			<ContentsCase num={5} title={MENU_LIST[2].title} url={MENU_LIST[2].url} list={projects} />
-		</Box>
+		</section>
 	);
 }
 

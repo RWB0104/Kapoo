@@ -6,9 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { ReactElement } from 'react';
 import Head from 'next/head';
-import { Box } from '@material-ui/core';
 
 // 사용자 모듈
 import ContentLayout from '@components/contents/ContentLayout';
@@ -20,16 +18,16 @@ import { ContentPageProps, PageStaticProps, PathsProps, RoutesProps } from '@com
 const type = 'posts';
 
 /**
- * 포스트 내용 동적 페이지 ReactElement 반환 함수
+ * 포스트 내용 동적 페이지 JSX 반환 함수
  *
- * @returns {ReactElement} ReactElement
+ * @returns {JSX.Element | null} JSX
  */
-export default function Post({ page, group, data }: PageStaticProps): ReactElement
+export default function Post({ page, group, data }: PageStaticProps): JSX.Element | null
 {
 	const urls = data.url;
 
 	return (
-		<Box component="section">
+		<section>
 			<Head>
 				<script src="/js/content.js"></script>
 			</Head>
@@ -38,10 +36,8 @@ export default function Post({ page, group, data }: PageStaticProps): ReactEleme
 
 			<Screener title={data.header.title} menu={type} lower={data.header.category} image={data.header.coverImage} />
 
-			<Box>
-				<ContentLayout page={page} group={group} data={data} />
-			</Box>
-		</Box>
+			<ContentLayout page={page} group={group} data={data} />
+		</section>
 	);
 }
 
