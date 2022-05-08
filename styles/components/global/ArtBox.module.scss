@@ -4,11 +4,10 @@
 	z-index: 5;
 	color: white;
 
-	transition: 0.5s;
+	text-shadow: 3px 3px 3px black;
+	font-style: italic;
 
-	@media (max-width: 960px) {
-		transition: 0.5s;
-	}
+	transition: 0.3s;
 }
 
 .root {
@@ -18,14 +17,13 @@
 	flex-direction: column;
 	justify-content: center;
 
+	width: 100%;
 	height: calc(100vw * 0.5625);
 	text-align: center;
 
-	padding: 20px;
+	box-sizing: border-box;
 
-	@media (max-width: 960px) {
-		height: calc(100vw * 0.5625);
-	}
+	padding: 20px;
 }
 
 .image-wrapper {
@@ -60,22 +58,12 @@
 .title {
 	@include text;
 
-	font-weight: 900 !important;
-	font-size: 60px !important;
-	font-style: italic;
-
-	@media (max-width: 960px) {
-		font-size: 20px !important;
-	}
+	font-weight: 900;
+	font-size: 2rem;
 }
 
 .sub {
 	@include text;
 
-	font-size: 30px !important;
-	font-style: italic;
-
-	@media (max-width: 960px) {
-		font-size: 16px !important;
-	}
+	font-size: 1.5rem;
 }

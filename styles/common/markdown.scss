@@ -11,6 +11,8 @@
 
 	overflow: auto;
 
+	border-radius: 10px;
+
 	table {
 		margin: auto;
 		border-collapse: collapse;
@@ -21,33 +23,8 @@
 
 			transition: 0.3s;
 
-			&:hover {
-				transition: 0.3s;
-			}
-
-			&:first-child {
-				th:first-child {
-					border-top-left-radius: 10px;
-				}
-
-				th:last-child {
-					border-top-right-radius: 10px;
-				}
-			}
-
-			&:last-child {
-				td:first-child {
-					border-bottom-left-radius: 10px;
-				}
-
-				td:last-child {
-					border-bottom-right-radius: 10px;
-				}
-			}
-
 			th {
-				background-color: #1e2739;
-				color: map-get($teal, "600");
+				color: white;
 
 				padding: 8px 20px;
 				text-align: center;
@@ -56,13 +33,25 @@
 			}
 
 			td {
-				padding: 8px 20px;
+				text-align: start;
+				font-size: 0.9rem;
+				padding: 5px 15px;
 
 				white-space: nowrap;
 			}
 
 			td img {
 				margin: initial;
+			}
+
+			&:hover {
+				a {
+					color: white;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
 			}
 		}
 	}
@@ -104,27 +93,27 @@
 	}
 
 	h1 {
-		font-size: 1.5rem;
+		font-size: 2rem;
 	}
 
 	h2 {
-		font-size: 1.3rem;
+		font-size: 1.8rem;
 	}
 
 	h3 {
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 
 	h4 {
-		font-size: 1.15rem;
+		font-size: 1.3rem;
 	}
 
 	h5 {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 	}
 
 	h6 {
-		font-size: 1.05rem;
+		font-size: 1.1rem;
 	}
 
 	span {
@@ -142,25 +131,24 @@
 
 	pre,
 	code {
+		font-size: 0.8rem;
+
+		cursor: text;
+
 		user-select: text;
-		-moz-user-select: text;
-		-webkit-user-select: text;
 
 		* {
 			user-select: text;
-			-moz-user-select: text;
-			-webkit-user-select: text;
 		}
 	}
 
 	pre[class*="language-"],
 	code[class*="language-"] {
-		@include gutter;
-
 		background-color: #161d2c;
-		padding: 55px 20px 20px 20px !important;
+		padding: 20px;
 
-		border-radius: 10px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
 
 		font-family: Hack, AppleSDGothicNeo, sans-serif;
 		color: white;
@@ -260,19 +248,22 @@
 	}
 
 	code:not([class*="language-"]) {
-		color: white;
-
 		font-family: Hack, AppleSDGothicNeo, sans-serif;
 
 		display: inline-block;
 
-		padding: 0px 4px;
+		padding: 0px 6px;
 		margin: 0px 3px;
 
 		border-radius: 5px;
 	}
 
 	.codeblock {
+		@include gutter;
+
+		display: flex;
+		flex-direction: column;
+
 		position: relative;
 
 		&:hover {
@@ -282,47 +273,46 @@
 		}
 
 		table {
+			line-height: 1.5;
 			border-collapse: collapse;
 
-			& tr:nth-child(2n) {
-				background-color: #1c2335;
-			}
+			& tr {
+				&:nth-child(2n) {
+					background-color: #1c2335;
+				}
 
-			& tr:hover {
-				background-color: #546687;
+				&:hover {
+					background-color: #546687;
 
-				& td:first-child {
-					color: white;
+					& td:first-child {
+						color: white;
+					}
 				}
 			}
 
-			& td:nth-child(1) {
-				color: #455983;
-				padding-right: 10px;
+			& td {
+				&:nth-child(1) {
+					color: #455983;
+					padding-right: 10px;
 
-				border-right: 1px solid #455983;
+					border-right: 1px solid #455983;
 
-				text-align: right;
+					text-align: right;
 
-				user-select: none;
-				-moz-user-select: none;
-				-webkit-user-select: none;
-			}
+					user-select: none;
+					-moz-user-select: none;
+					-webkit-user-select: none;
+				}
 
-			& td:nth-child(2) {
-				width: 100%;
+				&:nth-child(2) {
+					width: 100%;
 
-				padding: 0px 20px 0px 10px;
+					padding: 0px 20px 0px 10px;
+				}
 			}
 		}
 
 		.top {
-			position: absolute;
-
-			top: 0px;
-			left: 0px;
-
-			width: 100%;
 			padding: 5px 20px;
 
 			background-color: #2b3445;
@@ -343,8 +333,8 @@
 			}
 
 			div {
-				width: 15px;
-				height: 15px;
+				width: 10px;
+				height: 10px;
 
 				border-radius: 50%;
 
@@ -386,10 +376,9 @@
 
 	a {
 		color: map-get($lightBlue, "A400");
-		transition: 0.3s;
 
 		&:hover {
-			color: map-get($lightBlue, "A100");
+			text-decoration: underline;
 		}
 	}
 
@@ -462,6 +451,7 @@
 }
 
 .markdown.dark {
+	$color: map-get($map: $blue, $key: "400");
 
 	h1,
 	h2,
@@ -469,13 +459,13 @@
 	h4,
 	h5,
 	h6 {
-		$header-color: map-get($map: $indigo, $key: "700");
-		border-left: 10px solid $header-color;
-		border-bottom: 3px solid $header-color;
+		border-left: 10px solid $color;
+		border-bottom: 3px solid $color;
 	}
 
 	code:not([class*="language-"]) {
-		background-color: map-get($map: $indigo, $key: "700");
+		border: 1px solid $color;
+		color: $color;
 	}
 
 	blockquote {
@@ -488,6 +478,15 @@
 
 		table {
 			$border: #323c50;
+
+			th {
+				background-color: #111b2b;
+
+				padding: 8px 20px;
+				text-align: center;
+
+				white-space: nowrap;
+			}
 
 			tr {
 				background-color: #2b3445;
@@ -505,6 +504,7 @@
 }
 
 .markdown.light {
+	$color: map-get($map: $pink, $key: "400");
 
 	h1,
 	h2,
@@ -512,13 +512,13 @@
 	h4,
 	h5,
 	h6 {
-		$header-color: map-get($map: $pink, $key: "200");
-		border-left: 10px solid $header-color;
-		border-bottom: 3px solid $header-color;
+		border-left: 10px solid $color;
+		border-bottom: 3px solid $color;
 	}
 
 	code:not([class*="language-"]) {
-		background-color: map-get($map: $pink, $key: "400");
+		border: 1px solid $color;
+		color: $color;
 	}
 
 	blockquote {
@@ -532,6 +532,10 @@
 		table {
 			$border: gainsboro;
 
+			th {
+				background-color: grey;
+			}
+
 			tr {
 				background-color: whitesmoke;
 
@@ -540,7 +544,7 @@
 				}
 
 				&:hover {
-					background-color: skyblue !important;
+					background-color: skyblue;
 				}
 			}
 		}

@@ -37,7 +37,7 @@ export default function ContentLayout({ page, data, group }: PageStaticProps): J
 
 			<ContentViewer content={data.content} />
 
-			<ContentGroup group={group} />
+			<ContentGroup urls={urls} group={group} />
 
 			<ContentMeta header={data.header} />
 

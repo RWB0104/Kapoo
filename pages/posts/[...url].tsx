@@ -54,7 +54,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
 	const post = getContent(type, params.url.join('-'));
 
 	const index = posts.findIndex(element => element.name === post.name);
-	const group = post.header.group ? posts.filter(element => (element.header.group === post.header.group && element.name !== post.name)) : [];
+	const group = post.header.group ? posts.filter(element => (element.header.group === post.header.group)) : undefined;
 
 	const { content, toc } = await converter(post.content);
 

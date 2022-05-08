@@ -1,36 +1,16 @@
-@mixin multiline($num) {
-	display: -webkit-box;
-	white-space: normal;
-	overflow: hidden;
-	transition: 0.5s;
-
-	-webkit-line-clamp: $num;
-	-webkit-box-orient: vertical;
-}
-
 @mixin button {
-	width: 400px;
-	padding: 10px 15px !important;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
 
-	font-family: AppleSDGothicNeo, sans-serif;
-	font-size: 16px;
+	padding: 5px 10px;
 
-	border-radius: 4px !important;
+	border-radius: 5px;
 
-	&:first-child {
-		margin-right: 20px;
-	}
+	transition: 0.3s;
 
-	&:last-child {
-		margin-left: 20px;
-	}
-
-	& > div {
-		@include multiline(3);
-	}
-
-	@media (max-width: 960px) {
-		width: 50%;
+	&:not([data-prev=true]) {
+		justify-content: end;
 	}
 }
 
@@ -38,30 +18,39 @@
 	margin-top: 100px;
 }
 
+.mover-wrapper {
+	display: flex;
+	gap: 20px;
+
+	a {
+		svg {
+			width: 32px;
+		}
+	}
+}
+
 .divider {
-	margin: 10px 0px !important;
+	margin: 10px 0px;
 }
 
 .button-dark {
 	@include button();
 
-	border: 1px solid rgba(255, 255, 255, 0.23) !important;
+	border: 1px solid white;
 
 	&:hover {
-		background-color: rgba(255, 255, 255, 0.08);
+		background-color: white;
+		color: black;
 	}
 }
 
 .button-light {
 	@include button();
 
-	border: 1px solid rgba(0, 0, 0, 0.23) !important;
+	border: 1px solid black;
 
 	&:hover {
-		background-color: rgba(0, 0, 0, 0.04);
+		background-color: black;
+		color: white;
 	}
-}
-
-.menu {
-	font-size: 16px !important;
 }

@@ -41,7 +41,9 @@ export default function ContentCategory({ type, list }: Props): JSX.Element | nu
 
 	const categories = Object.keys(list).sort().map((item, index: number): JSX.Element => (
 		<Link key={index} href={item === 'All' ? `/${type}/1` : `/${type}/category/${item}/1`}>
-			<a className={styles.item} style={{ backgroundImage: `url(${CATEGORY[item] || CATEGORY['All']})` }}>
+			<a className={styles.item} title={item}>
+				<img className={styles.image} alt={item} src={`${CATEGORY[item] || CATEGORY['All']}`} />
+
 				<div className={styles.meta}>
 					<p>{item}</p>
 					<p>( {list[item].count} )</p>
@@ -55,15 +57,17 @@ export default function ContentCategory({ type, list }: Props): JSX.Element | nu
 	));
 
 	return (
-		<article className={styles[`root-${themeState}`]}>
-			<div className={styles.header} onClick={() => setState(state === undefined ? true : !state)} data-show={state}>
-				<h4 className={styles.title}>📚 카테고리</h4>
+		<article className={styles['root-wrapper']}>
+			<div className={styles[`root-${themeState}`]}>
+				<div className={styles.header} onClick={() => setState(state === undefined ? true : !state)} data-show={state}>
+					<h4 className={styles.title}>📚 카테고리</h4>
 
-				<IoIosArrowDown />
-			</div>
+					<IoIosArrowDown />
+				</div>
 
-			<div className={styles.body} data-show={state}>
-				{categories}
+				<div className={styles.body} data-show={state}>
+					{categories}
+				</div>
 			</div>
 		</article>
 	);

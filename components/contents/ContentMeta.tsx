@@ -55,13 +55,13 @@ export default function ContentMeta({ header }: Props ): JSX.Element | null
 				</div>
 			</div>
 
-			<duv className={styles.item}>
+			<div className={styles.item}>
 				<p className={styles.text}>🏷️ 태그</p>
 
 				<div className={styles.tags}>
 					<ContentTags type={header.type} tags={header.tag} />
 				</div>
-			</duv>
+			</div>
 		</article>
 	);
 }

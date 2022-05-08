@@ -6,28 +6,31 @@
  */
 
 // 라이브러리 모듈
-import { Box, Button, ButtonBase, Divider, useTheme } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { IoArrowBack, IoArrowForward, IoMenu } from 'react-icons/io5';
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
 import { ContentProps } from '@commons/common';
+import { themeAtom } from '@commons/state';
 
 // 스타일
-import styles from '@styles/components/contents/contentmover.module.scss';
+import styles from '@styles/components/contents/ContentMover.module.scss';
 
 interface Props
 {
 	page: {
 		type: string;
-		prev: null | ContentProps,
-		next: null | ContentProps,
+		prev?: ContentProps,
+		next?: ContentProps,
 	}
 }
 
 interface SubProps
 {
-	data: null | ContentProps
+	className?: string,
+	data?: ContentProps,
+	isPrev: boolean
 }
 
 /**
@@ -39,23 +42,28 @@ interface SubProps
  */
 export default function ContentMover({ page }: Props): JSX.Element | null
 {
-	const router = useRouter();
-
 	const { prev, next } = page;
 
+	const themeState = useRecoilValue(themeAtom);
+
 	return (
-		<Box component="article" className={styles.root}>
-			<Box display="flex" justifyContent="space-between">
-				<SideButton data={prev} />
-				<SideButton data={next} />
-			</Box>
+		<article className={styles.root}>
+			<div className={styles['mover-wrapper']}>
+				<SideButton className={styles[`button-${themeState}`]} data={prev} isPrev />
+				<SideButton className={styles[`button-${themeState}`]} data={next} />
+			</div>
 
-			<Divider className={styles.divider} />
+			<hr className={styles.divider} />
 
-			<Box>
-				<Button className={styles.menu} variant="outlined" startIcon={<Menu />} onClick={() => router.push(`/${page.type}`)}>목록</Button>
-			</Box>
-		</Box>
+			<div>
+				<Link href={`/${page.type}`}>
+					<a title={`/${page.type}`} className={styles[`button-${themeState}`]}>
+						<IoMenu />
+						<p>목록</p>
+					</a>
+				</Link>
+			</div>
+		</article>
 	);
 }
 
@@ -66,30 +74,15 @@ export default function ContentMover({ page }: Props): JSX.Element | null
  *
  * @returns {JSX.Element | null} JSX
  */
-function SideButton({ data }: SubProps): JSX.Element | null
+function SideButton({ className, data, isPrev }: SubProps): JSX.Element | null
 {
-	const router = useRouter();
-
-	const theme = useTheme();
-	const type = theme.palette.type;
-
-	// 데이터가 유효하지 않을 경우
-	if (data === null)
-	{
-		return null;
-	}
-
-	// 유효할 경우
-	else
-	{
-		const urls = data?.url;
-
-		return (
-			<ButtonBase className={styles[`button-${type}`]} onClick={() => router.push(`/${data?.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`)}>
-				<Box>
-					{data.header.title}
-				</Box>
-			</ButtonBase>
-		);
-	}
+	return data ? (
+		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`}>
+			<a className={className} title={data.header.title} data-prev={isPrev}>
+				{isPrev && <IoArrowBack />}
+				<p>{data.header.title}</p>
+				{!isPrev && <IoArrowForward />}
+			</a>
+		</Link>
+	) : null;
 }

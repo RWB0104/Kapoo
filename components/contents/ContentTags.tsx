@@ -27,8 +27,8 @@ interface Props
 export default function ContentTags({ type, tags }: Props): JSX.Element | null
 {
 	return tags.map((item, index) => (
-		<Link href={`/${type}/tag/${item}/1`}>
-			<a key={index} className={styles.root} title={item}>{item}</a>
+		<Link key={index} href={`/${type}/tag/${item}/1`}>
+			<a className={styles.root} title={item}>{item}</a>
 		</Link>
 	));
 }

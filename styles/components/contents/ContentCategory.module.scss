@@ -5,14 +5,16 @@
 $item-height: 152px;
 
 @mixin root {
-	max-width: $ref;
-
 	border-radius: 10px;
-	box-sizing: border-box;
-
-	margin: 40px;
 
 	overflow: hidden;
+}
+
+.root-wrapper {
+	padding: 20px 40px;
+
+	width: 100%;
+	max-width: $ref;
 }
 
 .root-light {
@@ -80,7 +82,7 @@ $item-height: 152px;
 	background-position: center;
 	background-size: contain;
 
-	transition: 0.3s;
+	overflow: hidden;
 
 	cursor: pointer;
 
@@ -90,9 +92,24 @@ $item-height: 152px;
 		display: block;
 		padding-bottom: 100%;
 	}
+}
+
+.image {
+	position: absolute;
+
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+	object-position: center;
+
+	transition: 0.3s;
 
 	&:hover {
-		background-size: 120%;
+		transform: scale(1.2);
 	}
 }
 
@@ -113,6 +130,7 @@ $item-height: 152px;
 	background-color: #000000AA;
 
 	p {
+		color: white;
 		font-size: 0.8rem;
 	}
 }

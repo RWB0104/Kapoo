@@ -6,18 +6,18 @@
  */
 
 // 라이브러리 모듈
-import { Box, ButtonBase, Typography } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // 사용자 모듈
 import { ContentProps } from '@commons/common';
 
 // 스타일
-import styles from '@styles/components/contents/contentgroup.module.scss';
+import styles from '@styles/components/contents/ContentGroup.module.scss';
 
 interface Props
 {
-	group: ContentProps[] | undefined
+	urls: string[],
+	group?: ContentProps[]
 }
 
 /**
@@ -27,35 +27,51 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function ContentGroup({ group }: Props): JSX.Element | null
+export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 {
-	const router = useRouter();
+	urls.splice(1, 1);
+
+	const current = `/${urls.join('/')}`;
 
 	// 유효한 그룹 객체가 있을 경우
 	if (group && group.length > 0)
 	{
-		group = group.length > 20 ? group.slice(0, 20) : group;
+		const groups = group.map((item, index) =>
+		{
+			const title = item.header.title;
+			const url = `/${item.header.type}/${item.url.slice(1, 5).join('/')}`;
 
-		const groups = group.map((item, index) => (
-			<Box key={index} className={styles.item}>
-				<ButtonBase className={styles.button} onClick={() => router.push(`/${item.header.type}/${item.url[1]}/${item.url[2]}/${item.url[3]}/${item.url[4]}`)}>
-					<img src={item.header.coverImage} />
+			return (
+				<li key={index}>
+					{current === url ? (
+						<p title={title}>👀 <b>{title}</b></p>
+					) : (
+						<Link href={url}>
+							<a title={title}>{title}</a>
+						</Link>
+					)}
+				</li>
 
-					<Box className={styles['label-wrapper']}>
-						<Typography className={styles.label}>{item.header.title}</Typography>
-					</Box>
-				</ButtonBase>
-			</Box>
-		));
+			);
+		});
+
+		const groupTitle = group[0].header.group;
 
 		return (
-			<Box component="article" className={styles.root}>
-				<Typography component="h4" variant="h4" className={styles.title}>🧲 연관 게시물 - {group[0].header.group as string}</Typography>
+			<article className={styles.root}>
+				<div className={styles.meta}>
+					<div className={styles.dimmer}>
+						<div className={styles.prompt}>
+							<h3 className={styles.title}>시리즈 톺아보기</h3>
+							<p>{groupTitle}</p>
+						</div>
+					</div>
 
-				<Box className={styles.list}>
-					{groups}
-				</Box>
-			</Box>
+					<img className={styles.image} title={groupTitle} src={group[0].header.coverImage} />
+				</div>
+
+				<ul className={styles.list}>{groups}</ul>
+			</article>
 		);
 	}
 

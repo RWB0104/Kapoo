@@ -13,8 +13,6 @@
 	max-width: $ref;
 
 	padding: 40px;
-	margin: 0px auto;
-	margin-bottom: 50px;
 }
 
 .title {
@@ -26,6 +24,8 @@
 .more {
 	display: block;
 	padding: 15px 40px;
+
+	margin-top: 20px;
 
 	font-size: 1.25rem;
 	font-weight: bold;
