@@ -44,7 +44,7 @@ export default function ContentMeta({ header }: Props ): JSX.Element | null
 
 				<div className={styles['category-wrapper']}>
 					<Link href={`/${header.type}/category/${header.category}/1`}>
-						<a>
+						<a title={header.category}>
 							<img className={styles['category-image']} alt={header.category} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
 						</a>
 					</Link>

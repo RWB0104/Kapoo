@@ -17,7 +17,7 @@ import styles from '@styles/components/contents/ContentGroup.module.scss';
 interface Props
 {
 	urls: string[],
-	group?: ContentProps[]
+	group?: ContentProps[] | null
 }
 
 /**

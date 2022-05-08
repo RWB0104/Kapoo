@@ -41,7 +41,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 	const urls = item.url;
 
 	const semanticState = useSemanticHook();
-	const [ state, setState ] = useState(undefined);
+	const [ state, setState ] = useState(undefined as boolean | undefined);
 
 	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 60;
 

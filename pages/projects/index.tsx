@@ -6,21 +6,20 @@
  */
 
 // 사용자 모듈
-import { getBuildHash, getContentsCategory, getContentsList, getScreenerImage } from '@commons/api';
+import { getContentsCategory, getContentsList } from '@commons/api';
 import { CategoryProps, ContentProps, CONTENT_DIV, getContentDiv, getRandomIndex } from '@commons/common';
 import { MENU_LIST, TITLE } from '@commons/env';
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
 import ContentCategory from '@components/contents/ContentCategory';
 import ContentBoard from '@components/contents/ContentBoard';
+import { useEffect, useState } from 'react';
 
 interface Props
 {
 	projects: ContentProps[],
 	category: CategoryProps,
-	images: string[],
-	total: number,
-	hash?: string
+	total: number
 }
 
 interface StaticProp
@@ -37,19 +36,54 @@ const type = 'projects';
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function Projects({ projects, category, images, total }: Props): JSX.Element | null
+export default function Projects({ projects, category, total }: Props): JSX.Element | null
 {
-	const index = getRandomIndex(images.length);
+	const [ pageState, setPageState ] = useState(1);
+	const [ categoryState, setCategoryState ] = useState([] as string[]);
+
+	const [ imageState, setImageState ] = useState('');
+
+	useEffect(() =>
+	{
+		const handleScroll = () =>
+		{
+			if (pageState < total && window.scrollY > window.document.documentElement.scrollHeight - 1500)
+			{
+				setPageState(pageState + 1);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => window.removeEventListener('scroll', handleScroll);
+	});
+
+	useEffect(() => setPageState(1), [ categoryState ]);
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const a = await fetch('/image.json');
+			const json = await a.json();
+
+			const index = getRandomIndex(json.list.length);
+
+			console.dir(json.list);
+
+			setImageState(json.list[index]);
+		})();
+	}, []);
 
 	return (
 		<section>
-			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} image={images[index]} />
+			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} image={imageState} />
 
-			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={images[index]} />
+			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={imageState} />
 
-			<ContentCategory type={type} list={category} />
+			<ContentCategory type={type} list={category} categoryState={categoryState} setCategoryState={setCategoryState} />
 
-			<ContentBoard baseUrl={`/${type}`} page={1} total={total} list={projects} />
+			<ContentBoard list={categoryState.length > 0 ? projects.filter(item => categoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : projects.slice(1, 10 * pageState)} />
 		</section>
 	);
 }
@@ -69,17 +103,12 @@ export async function getStaticProps(): Promise<StaticProp>
 	subProjects.forEach(e => e.content = '');
 
 	const category = getContentsCategory(type);
-	const images = getScreenerImage();
-
-	const hash = getBuildHash();
 
 	return {
 		props: {
 			projects: subProjects,
 			category,
-			images,
-			total: Math.ceil(projects.length / CONTENT_DIV),
-			hash
+			total: Math.ceil(projects.length / CONTENT_DIV)
 		}
 	};
 }

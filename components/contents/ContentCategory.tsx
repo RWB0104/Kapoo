@@ -6,8 +6,7 @@
  */
 
 // 라이브러리 모듈
-import { useState } from 'react';
-import Link from 'next/link';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
 // 사용자 모듈
@@ -23,7 +22,9 @@ import { themeAtom } from '@commons/state';
 interface Props
 {
 	type: string,
-	list: CategoryProps
+	list: CategoryProps,
+	categoryState: string[],
+	setCategoryState: Dispatch<SetStateAction<string[]>>
 }
 
 /**
@@ -33,27 +34,51 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function ContentCategory({ type, list }: Props): JSX.Element | null
+export default function ContentCategory({ type, list, categoryState, setCategoryState }: Props): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
 
-	const [ state, setState ] = useState(undefined);
+	const [ state, setState ] = useState(undefined as boolean | undefined);
+
+	const toggleCategory = (item: string) =>
+	{
+		if (item === 'All')
+		{
+			setCategoryState([]);
+		}
+
+		else
+		{
+			const temp = categoryState.slice();
+			const key = categoryState.indexOf(item);
+
+			if (key > -1)
+			{
+				temp.splice(key, 1);
+				setCategoryState(temp);
+			}
+
+			else
+			{
+				temp.push(item);
+				setCategoryState(temp);
+			}
+		}
+	};
 
 	const categories = Object.keys(list).sort().map((item, index: number): JSX.Element => (
-		<Link key={index} href={item === 'All' ? `/${type}/1` : `/${type}/category/${item}/1`}>
-			<a className={styles.item} title={item}>
-				<img className={styles.image} alt={item} src={`${CATEGORY[item] || CATEGORY['All']}`} />
+		<button key={index} className={styles.item} data-type={type} onClick={() => toggleCategory(item)}>
+			<img className={styles.image} alt={item} src={`${CATEGORY[item] || CATEGORY['All']}`} />
 
-				<div className={styles.meta}>
-					<p>{item}</p>
-					<p>( {list[item].count} )</p>
-				</div>
+			<div className={styles.meta}>
+				<p>{item}</p>
+				<p>( {list[item].count} )</p>
+			</div>
 
-				<div className={styles.flag}>
-					<NewContent flag={list[item].flag} />
-				</div>
-			</a>
-		</Link>
+			<div className={styles.flag}>
+				<NewContent flag={categoryState.indexOf(item) > -1} />
+			</div>
+		</button>
 	));
 
 	return (

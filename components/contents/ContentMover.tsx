@@ -21,16 +21,16 @@ interface Props
 {
 	page: {
 		type: string;
-		prev?: ContentProps,
-		next?: ContentProps,
+		prev?: ContentProps | null,
+		next?: ContentProps | null,
 	}
 }
 
 interface SubProps
 {
 	className?: string,
-	data?: ContentProps,
-	isPrev: boolean
+	data?: ContentProps | null,
+	isPrev?: boolean
 }
 
 /**

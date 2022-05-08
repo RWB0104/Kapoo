@@ -54,10 +54,10 @@ export interface PageStaticProps
 {
 	page: {
 		type: string;
-		prev: null | ContentProps,
-		next: null | ContentProps,
+		prev?: ContentProps | null,
+		next?: ContentProps | null,
 	},
-	group?: ContentProps[],
+	group?: ContentProps[] | null,
 	data: ContentProps,
 	hash?: string
 }

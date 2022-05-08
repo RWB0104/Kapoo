@@ -45,7 +45,11 @@ async function getImage()
 		console.log('이미지 리스트 생성');
 		console.log('==================================================\n');
 
-		fs.writeFileSync('./public/image.txt', images.replaceAll(/(\r\n|\n|\r)+/g, '\n'));
+		const result = { list: [] };
+
+		images.replaceAll(/(\r\n|\n|\r)+/g, '\n').split('\n').forEach(e => result.list.push(e));
+
+		fs.writeFileSync('./public/image.json', JSON.stringify(result));
 	}
 
 	// 아닐 경우

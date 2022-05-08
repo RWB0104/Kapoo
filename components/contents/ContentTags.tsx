@@ -6,9 +6,8 @@
  */
 
 // 라이브러리 모듈
-import Link from 'next/link';
 
-// 스타일
+
 import styles from '@styles/components/contents/ContentTags.module.scss';
 
 interface Props
@@ -26,9 +25,5 @@ interface Props
  */
 export default function ContentTags({ type, tags }: Props): JSX.Element | null
 {
-	return tags.map((item, index) => (
-		<Link key={index} href={`/${type}/tag/${item}/1`}>
-			<a className={styles.root} title={item}>{item}</a>
-		</Link>
-	));
+	return <>{tags.map((item, index) => <p key={index} className={styles.root} data-type={type}>{item}</p>)}</>;
 }

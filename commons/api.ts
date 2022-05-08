@@ -40,7 +40,9 @@ export function getContentsList(type: string): ContentProps[]
 {
 	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
 
-	return names.map((name): ContentProps => getContent(type, name)).filter((item: ContentProps) => item.header.publish).sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
+	return names.map((name): ContentProps => getContent(type, name))
+		.filter((item: ContentProps) => item.header.publish)
+		.sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
 }
 
 /**
@@ -76,52 +78,6 @@ export function getContentsCategory(type: string): CategoryProps
 			flag: false
 		}
 	} as CategoryProps);
-}
-
-/**
- * 태그 목록 반환 함수
- *
- * @param {string} type: 컨텐츠 타입
- *
- * @returns {string[]} 태그 목록
- */
-export function getContentsTag(type: string): string[]
-{
-	const tags = [] as string[];
-
-	getContentsList(type).forEach(content => content.header.tag.forEach(tag => tags.push(tag)));
-
-	return [ ...new Set(tags) ];
-}
-
-/**
- * 카테고리별 컨텐츠 목록 반환 함수
- *
- * @param {string} type: 컨텐츠 타입
- * @param {string} category: 카테고리
- *
- * @returns {ContentProps[]} ContentProps 배열
- */
-export function getContentsByCategory(type: string, category: string): ContentProps[]
-{
-	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
-
-	return names.map((name): ContentProps => getContent(type, name)).filter((item: ContentProps) => item.header.publish && item.header.category === category).sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
-}
-
-/**
- * 태그별 컨텐츠 목록 반환 함수
- *
- * @param {string} type: 컨텐츠 타입
- * @param {string} tag: 태그
- *
- * @returns {ContentProps[]} ContentProps 배열
- */
-export function getContentsByTag(type: string, tag: string): ContentProps[]
-{
-	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
-
-	return names.map((name): ContentProps => getContent(type, name)).filter((item: ContentProps) => item.header.publish && item.header.tag.indexOf(tag) > -1).sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
 }
 
 /**

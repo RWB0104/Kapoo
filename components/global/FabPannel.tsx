@@ -10,7 +10,7 @@ import styles from '@styles/components/global/FabPannel.module.scss';
 
 interface Props
 {
-	children: JSX.Element | null
+	children: JSX.Element | JSX.Element[] | null
 }
 
 /**
