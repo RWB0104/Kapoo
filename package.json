@@ -1,15 +1,17 @@
 {
 	"name": "blog.itcode.dev",
-	"version": "0.1.0",
+	"version": "3.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
+		"prebuild": "yarn datagen && yarn seo",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"seo": "node ./next-seo.js",
+		"datagen": "ts-node -r tsconfig-paths/register ./next-prebuild.ts",
+		"seo": "ts-node -r tsconfig-paths/register ./next-seo.ts",
 		"export": "next export",
-		"dist": "ts-node -r tsconfig-paths/register ./next-prebuild.ts && node ./next-seo.js && next build && next export -o ../blog.itcode.dev/docs"
+		"dist": "yarn build && yarn export -o ../blog.itcode.dev/docs"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.12.1",
@@ -42,6 +44,7 @@
 		"node-fetch": "2.3.0",
 		"react-icons": "^4.3.1",
 		"sass": "^1.43.4",
+		"ts-node": "^10.7.0",
 		"typescript": "4.3.5",
 		"xml-formatter": "^2.4.0"
 	}

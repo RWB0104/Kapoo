@@ -8,23 +8,24 @@
 // 라이브러리 모듈
 import { Dispatch, SetStateAction, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
+import NewContent from './NewContent';
 import { CATEGORY } from '@commons/env';
 import { CategoryProps } from '@commons/common';
-import NewContent from './NewContent';
+import { themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/contents/ContentCategory.module.scss';
-import { useRecoilValue } from 'recoil';
-import { themeAtom } from '@commons/state';
 
 interface Props
 {
 	type: string,
 	list: CategoryProps[],
 	select: string[],
-	setSelect: Dispatch<SetStateAction<string[]>>
+	setSelect: Dispatch<SetStateAction<string[]>>,
+	setPage: Dispatch<SetStateAction<number>>
 }
 
 /**
@@ -34,7 +35,7 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function ContentCategory({ type, list, select, setSelect }: Props): JSX.Element | null
+export default function ContentCategory({ type, list, select, setSelect, setPage }: Props): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
 
@@ -42,22 +43,26 @@ export default function ContentCategory({ type, list, select, setSelect }: Props
 
 	const toggleCategory = (item: string) =>
 	{
+		// 전체 카테고리일 경우
 		if (item === 'All')
 		{
 			setSelect([]);
 		}
 
+		// 나머지 카테고리일 경우
 		else
 		{
 			const temp = select.slice();
 			const key = select.indexOf(item);
 
+			// 선택하지 않은 카테고리일 경우
 			if (key > -1)
 			{
 				temp.splice(key, 1);
 				setSelect(temp);
 			}
 
+			// 이미 선택한 카테고리일 경우
 			else
 			{
 				temp.push(item);
@@ -84,7 +89,11 @@ export default function ContentCategory({ type, list, select, setSelect }: Props
 	return (
 		<article className={styles['root-wrapper']}>
 			<div className={styles[`root-${themeState}`]}>
-				<div className={styles.header} onClick={() => setState(state === undefined ? true : !state)} data-show={state}>
+				<div className={styles.header} onClick={() =>
+				{
+					setState(state === undefined ? true : !state);
+					setPage(1);
+				}} data-show={state}>
 					<h4 className={styles.title}>📚 카테고리</h4>
 
 					<IoIosArrowDown />

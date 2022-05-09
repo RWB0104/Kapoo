@@ -22,9 +22,18 @@
 	display: flex;
 	gap: 20px;
 
-	a {
-		svg {
-			width: 32px;
+	div {
+		width: 50%;
+
+		a {
+			box-sizing: border-box;
+
+			width: 100%;
+			height: 100%;
+
+			svg {
+				width: 32px;
+			}
 		}
 	}
 }

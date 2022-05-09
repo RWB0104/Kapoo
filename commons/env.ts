@@ -5,51 +5,12 @@
  * @since 2021.07.11 Sun 15:12:27
  */
 
-// 라이브러리 모듈
-import { FaAt, FaBook, FaHome, FaRocket } from 'react-icons/fa';
-
-interface CategoryProps
-{
-	[ key: string ]: string
-}
-
 export const DOMAIN = 'blog.itcode.dev';
 export const BASE_URL = `https://${DOMAIN}`;
 
 export const TITLE = '𝝅번째 알파카의 개발 낙서장';
 export const DESCRIPTION = '𝝅번째 알파카의 우당탕탕 개발 기록';
 export const LOGO = '/img/logo.png';
-
-export const MENU_LIST = [
-	{
-		id: 1,
-		title: 'Welcome',
-		desc: DESCRIPTION,
-		url: { pathname: '/' },
-		icon: <FaHome />
-	},
-	{
-		id: 2,
-		title: 'Posts',
-		desc: '무언가 끄적끄적 쓰는 중...',
-		url: { pathname: '/posts' },
-		icon: <FaBook />
-	},
-	{
-		id: 3,
-		title: 'Projects',
-		desc: '무언가 뚝딱뚝딱 하는 중...',
-		url: { pathname: '/projects' },
-		icon: <FaRocket />
-	},
-	{
-		id: 4,
-		title: 'About',
-		desc: '나름 멋들어진 자기소개를 준비하는 중...',
-		url: { pathname: '/about' },
-		icon: <FaAt />
-	}
-];
 
 export const CATEGORY = {
 	'All': 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png',
@@ -65,7 +26,7 @@ export const CATEGORY = {
 	'React': 'https://user-images.githubusercontent.com/50317129/132937462-ff607a3f-1ccb-45f2-8762-b8697e4d63f5.png',
 	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/132937496-a2f0e74f-18c3-43c7-9d94-869690a72e4c.png',
 	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132937521-683e896e-8830-4175-9c15-d294adaf3620.png'
-} as CategoryProps;
+} as { [ key: string ]: string };
 
 export const PIECE = [
 	{

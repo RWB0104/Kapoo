@@ -62,6 +62,4 @@
 	@include oneline();
 
 	color: map-get($map: $amber, $key: "700");
-
-	cursor: pointer;
 }

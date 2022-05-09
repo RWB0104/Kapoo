@@ -1,8 +1,8 @@
 /**
- * 빌드 해쉬 JavaScript
+ * 사전 빌드 모듈
  *
  * @author RWB
- * @since 2021.08.29 Sun 15:29:51
+ * @since 2022.05.09 Mon 19:56:59
  */
 
 // 라이브러리 모듈
@@ -13,6 +13,9 @@ import { getBuildHash, getContentList, getCategoryList, getImageList } from '@co
 
 run();
 
+/**
+ * 동작 메서드
+ */
 async function run()
 {
 	console.log('\n==================================================');
@@ -71,18 +74,17 @@ async function genImageList()
 
 		console.log(`    - ${path}`);
 		console.log('    - ✅ 이미지 리스트 생성 성공');
+		console.log();
 	}
 
 	// 예외
 	catch (e)
 	{
 		console.log('    - ❌ 이미지 리스트 생성 실패');
-	}
-
-	// 후처리
-	finally
-	{
 		console.log();
+		console.dir(e);
+
+		process.exit(1);
 	}
 }
 
@@ -108,19 +110,17 @@ async function genContentList(type: 'posts' | 'projects')
 
 		console.log(`    - ${path}`);
 		console.log(`    - ✅ ${type} 리스트 생성 성공`);
+		console.log();
 	}
 
 	// 예외
 	catch (e)
 	{
-		console.dir(e);
 		console.log(`    - ❌ ${type} 리스트 생성 실패`);
-	}
-
-	// 후처리
-	finally
-	{
 		console.log();
+		console.dir(e);
+
+		process.exit(1);
 	}
 }
 
@@ -146,17 +146,16 @@ async function genCategoryList(type: 'posts' | 'projects')
 
 		console.log(`    - ${path}`);
 		console.log(`    - ✅ ${type} 카테고리 리스트 생성 성공`);
+		console.log();
 	}
 
 	// 예외
 	catch (e)
 	{
 		console.log(`    - ❌ ${type} 카테고리 리스트 생성 실패`);
-	}
-
-	// 후처리
-	finally
-	{
 		console.log();
+		console.dir(e);
+
+		process.exit(1);
 	}
 }

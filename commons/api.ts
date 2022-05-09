@@ -160,6 +160,8 @@ export async function getContent(type: 'posts' | 'projects', name: string, isFul
 
 	const { data, content } = matter(file);
 
+	const header = data as ContentHeaderProps;
+
 	const result: ContentProps = {
 		header: data as ContentHeaderProps,
 		name: name,
@@ -169,11 +171,19 @@ export async function getContent(type: 'posts' | 'projects', name: string, isFul
 	// 컨텐츠를 포함할 경우
 	if (isFull)
 	{
+		const list = await getContentList(type, false);
 		const { toc, html } = await converter(content);
+
+		const current = list.findIndex(item => item.name === name);
+		const group = list.filter(item => item.header.group === header.group);
 
 		result.toc = toc;
 		result.content = html;
-
+		result.meta = {
+			prev: current === 0 ? null : list[current - 1],
+			next: current === list.length - 1 ? null : list[current + 1],
+			group: group
+		};
 	}
 
 	return result;
@@ -188,7 +198,8 @@ export async function getContent(type: 'posts' | 'projects', name: string, isFul
  */
 export async function converter(body: string): Promise<ConvertProps>
 {
-	loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash' ]);
+
+	loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash', 'tsx' ]);
 
 	const renderer = new marked.Renderer();
 
@@ -400,7 +411,55 @@ export async function converter(body: string): Promise<ConvertProps>
 	const result = marked(body);
 
 	return {
-		toc: toc,
+		toc: tableOfContents(toc),
 		html: result.toString()
 	};
+}
+
+/**
+ * 컨텐츠 테이블 HTML 문자열 반환 함수
+ *
+ * @param {TocProps[]} toc TocProps 배열
+ *
+ * @returns {string} HTML 문자열
+ */
+export function tableOfContents(toc : TocProps[] | undefined): string
+{
+	// toc 객체가 유효할 경우
+	if (toc)
+	{
+		let count = 0;
+
+		return toc.reduce((acc: string, item: TocProps): string =>
+		{
+			const { text, tag, depth } = item;
+
+			// toc의 깊이가 현재 깊이보다 깊을 경우
+			if (depth > count)
+			{
+				count++;
+				acc += `<ul><li><a href="#${tag}">${text}</a></li>`;
+			}
+
+			// toc의 깊이가 현재 깊이보다 얕을 경우
+			else if (depth < count)
+			{
+				count--;
+				acc += `</ul><li><a href="#${tag}">${text}</a></li>`;
+			}
+
+			// toc의 깊이가 현재 깊이와 동일할 경우
+			else
+			{
+				acc += `<li><a href="#${tag}">${text}</a></li>`;
+			}
+
+			return acc;
+		}, '') + '</ul>';
+	}
+
+	else
+	{
+		return '';
+	}
 }

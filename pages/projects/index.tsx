@@ -7,14 +7,18 @@
 
 // 라이브러리 모듈
 import { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 // 사용자 모듈
-import { CategoryProps, ContentProps, CONTENT_DIV, getRandomIndex } from '@commons/common';
-import { MENU_LIST, TITLE } from '@commons/env';
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
 import ContentCategory from '@components/contents/ContentCategory';
 import ContentBoard from '@components/contents/ContentBoard';
+import ContentSearch from '@components/contents/ContentSearch';
+import { CategoryProps, ContentProps, CONTENT_DIV, getRandomIndex } from '@commons/common';
+import { TITLE } from '@commons/env';
+import { MENU_LIST } from '@commons/menulist';
+import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom } from '@commons/state';
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
@@ -25,9 +29,16 @@ export default function Projects(): JSX.Element | null
 {
 	const type = 'projects';
 
-	const [ pageState, setPageState ] = useState(1);
+	const [ projectsPageState, setProjectsPageState ] = useRecoilState(projectsPageAtom);
+	const setPostsPageState = useSetRecoilState(postsPageAtom);
+
 	const [ categoryState, setCategoryState ] = useState([] as CategoryProps[]);
-	const [ selectCategoryState, setSelectCategoryState ] = useState([] as string[]);
+
+	const [ selectProjectsCategoryState, setSelectProjectsCategoryState ] = useRecoilState(projectsCategoryAtom);
+	const setSelectPostsCategoryState = useSetRecoilState(postsCategoryAtom);
+
+	const [ projectsSearchState, setProjectsSearchState ] = useRecoilState(projectsSearchAtom);
+	const setPostsSearchState = useSetRecoilState(postsSearchAtom);
 
 	const [ imageState, setImageState ] = useState('');
 	const [ projectsState, setProjectsState ] = useState([] as ContentProps[]);
@@ -36,9 +47,9 @@ export default function Projects(): JSX.Element | null
 	{
 		const handleScroll = () =>
 		{
-			if (pageState < Math.ceil(projectsState.length / CONTENT_DIV) && window.scrollY > window.document.documentElement.scrollHeight - 1500)
+			if (projectsPageState < Math.ceil(projectsState.length / CONTENT_DIV) && window.scrollY > window.document.documentElement.scrollHeight - 1500)
 			{
-				setPageState(pageState + 1);
+				setProjectsPageState(projectsPageState + 1);
 			}
 		};
 
@@ -47,7 +58,12 @@ export default function Projects(): JSX.Element | null
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
-	useEffect(() => setPageState(1), [ categoryState ]);
+	useEffect(() =>
+	{
+		setPostsPageState(1);
+		setSelectPostsCategoryState([]);
+		setPostsSearchState('');
+	}, []);
 
 	useEffect(() =>
 	{
@@ -84,9 +100,18 @@ export default function Projects(): JSX.Element | null
 
 			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={imageState} />
 
-			<ContentCategory type={type} list={categoryState} select={selectCategoryState} setSelect={setSelectCategoryState} />
+			<ContentSearch search={projectsSearchState} setSearch={setProjectsSearchState} setPage={setProjectsPageState} setCategory={setSelectProjectsCategoryState} />
+			<ContentCategory type={type} list={categoryState} select={selectProjectsCategoryState} setSelect={setSelectProjectsCategoryState} setPage={setProjectsPageState} />
+			<ContentBoard list={projectsSearchState.length > 1 ? projectsState.filter(item =>
+			{
+				let { title, excerpt } = item.header;
+				title = title.replaceAll(/ /g, '').toLowerCase();
+				excerpt = excerpt.replaceAll(/ /g, '').toLowerCase();
 
-			<ContentBoard list={selectCategoryState.length > 0 ? projectsState.filter(item => selectCategoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : projectsState.slice(0, 10 * pageState)} />
+				const target = projectsSearchState.replaceAll(/ /g, '').toLowerCase();
+
+				return title.includes(target) || excerpt.includes(target);
+			}).slice(0, 10 * projectsPageState) : selectProjectsCategoryState.length > 0 ? projectsState.filter(item => selectProjectsCategoryState.indexOf(item.header.category) > -1).slice(0, 10 * projectsPageState) : projectsState.slice(0, 10 * projectsPageState)} />
 		</section>
 	);
 }

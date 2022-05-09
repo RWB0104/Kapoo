@@ -41,6 +41,7 @@ export default function Utterances({ flag }: Props): JSX.Element | null
 			{
 				const frame = document.querySelector('#utterances iframe') as HTMLIFrameElement | null;
 
+				// 태그가 유효할 경우
 				if (frame !== null)
 				{
 					frame.contentWindow?.postMessage({ type: 'set-theme', theme: `github-${themeState}` }, 'https://utteranc.es/');

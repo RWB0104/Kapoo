@@ -30,7 +30,7 @@ interface SubProps
 {
 	className?: string,
 	data?: ContentProps | null,
-	isPrev?: boolean
+	isNext?: boolean
 }
 
 /**
@@ -49,8 +49,13 @@ export default function ContentMover({ page }: Props): JSX.Element | null
 	return (
 		<article className={styles.root}>
 			<div className={styles['mover-wrapper']}>
-				<SideButton className={styles[`button-${themeState}`]} data={prev} isPrev />
-				<SideButton className={styles[`button-${themeState}`]} data={next} />
+				<div>
+					<SideButton className={styles[`button-${themeState}`]} data={next} isNext />
+				</div>
+
+				<div>
+					<SideButton className={styles[`button-${themeState}`]} data={prev}  />
+				</div>
 			</div>
 
 			<hr className={styles.divider} />
@@ -74,14 +79,14 @@ export default function ContentMover({ page }: Props): JSX.Element | null
  *
  * @returns {JSX.Element | null} JSX
  */
-function SideButton({ className, data, isPrev }: SubProps): JSX.Element | null
+function SideButton({ className, data, isNext }: SubProps): JSX.Element | null
 {
 	return data ? (
 		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`}>
-			<a className={className} title={data.header.title} data-prev={isPrev}>
-				{isPrev && <IoArrowBack />}
+			<a className={className} title={data.header.title} data-prev={isNext}>
+				{isNext && <IoArrowBack />}
 				<p>{data.header.title}</p>
-				{!isPrev && <IoArrowForward />}
+				{!isNext && <IoArrowForward />}
 			</a>
 		</Link>
 	) : null;

@@ -15,12 +15,12 @@ import { useCookies } from 'react-cookie';
 import FabPannel from './FabPannel';
 import ThemeFab from './ThemeFab';
 import TopFab from './TopFab';
+import Loading from './Loding';
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
-import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
 import MobileMenu from '@components/header/MobileMenu';
-import Loading from './Loding';
 import { Theme } from '@commons/common';
+import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/global/BaseLayout.module.scss';
@@ -53,6 +53,7 @@ export default function BaseLayout({ children }: Props): JSX.Element | null
 
 		setLoadingState(false);
 
+		// 메뉴가 열려있을 경우
 		if (menuState)
 		{
 			setMenuState(false);
@@ -85,6 +86,11 @@ export default function BaseLayout({ children }: Props): JSX.Element | null
 			document.removeEventListener('scroll', handleScroll);
 		};
 	});
+
+	useEffect(() =>
+	{
+		document.body.style.backgroundColor = themeState === Theme.DARK ? '#010409' : 'white';
+	}, [ themeState ]);
 
 	return (
 		<main className={styles[`root-${themeState}`]}>

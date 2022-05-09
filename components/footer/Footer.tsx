@@ -6,19 +6,19 @@
  */
 
 // 라이브러리 모듈
+import { useEffect, useState } from 'react';
 import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
 import { SiGmail } from 'react-icons/si';
 import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 
 // 사용자 모듈
-import { TITLE } from '@commons/env';
 import Hits from '@components/global/Hits';
+import { TITLE } from '@commons/env';
 import { themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/footer/Footer.module.scss';
-import { useEffect, useState } from 'react';
 
 /**
  * 푸터 JSX 반환 함수

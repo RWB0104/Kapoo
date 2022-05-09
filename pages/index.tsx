@@ -5,14 +5,19 @@
  * @since 2021.07.12 Mon 14:19:40
  */
 
+// 라이브러리 모듈
+import { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+
 // 사용자 모듈
 import Artbox from '@components/global/Artbox';
 import Screener from '@components/global/Screener';
-import ContentsCase from '@components/home/ContentsCase';
-import { MENU_LIST, TITLE } from '@commons/env';
-import { ContentProps, getRandomIndex } from '@commons/common';
 import Meta from '@components/global/Meta';
-import { useEffect, useState } from 'react';
+import ContentsCase from '@components/home/ContentsCase';
+import { MENU_LIST } from '@commons/menulist';
+import { ContentProps, getRandomIndex } from '@commons/common';
+import { TITLE } from '@commons/env';
+import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom } from '@commons/state';
 
 /**
  * 홈 페이지 JSX 반환 함수
@@ -24,6 +29,15 @@ export default function Home(): JSX.Element | null
 	const [ imageState, setImageState ] = useState('');
 	const [ postsState, setPostsState ] = useState([] as ContentProps[]);
 	const [ projectsState, setProjectsState ] = useState([] as ContentProps[]);
+
+	const setPostsPageState = useSetRecoilState(postsPageAtom);
+	const setProjectsPageState = useSetRecoilState(projectsPageAtom);
+
+	const setSelectPostsCategoryState = useSetRecoilState(postsCategoryAtom);
+	const setSelectProjectsCategoryState = useSetRecoilState(projectsCategoryAtom);
+
+	const setPostsSearchState = useSetRecoilState(postsSearchAtom);
+	const setProjectsSearchState = useSetRecoilState(projectsSearchAtom);
 
 	useEffect(() =>
 	{
@@ -52,6 +66,15 @@ export default function Home(): JSX.Element | null
 
 			setProjectsState(json.list as ContentProps[]);
 		})();
+
+		setPostsPageState(1);
+		setProjectsPageState(1);
+
+		setSelectPostsCategoryState([]);
+		setSelectProjectsCategoryState([]);
+
+		setPostsSearchState('');
+		setProjectsSearchState('');
 	}, []);
 
 	return (

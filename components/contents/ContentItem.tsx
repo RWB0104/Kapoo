@@ -60,17 +60,8 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 			<div className={styles['body-wrapper']}>
 				<div className={styles.wrapper}>
 					<div className={styles['category-wrapper']}>
-						<Link href={`/${type}/category/${category}/1`}>
-							<a>
-								<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
-							</a>
-						</Link>
-
-						<Link href={`/${type}/category/${category}/1`}>
-							<a>
-								<h4 className={styles.category}>{category}</h4>
-							</a>
-						</Link>
+						<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+						<h4 className={styles.category}>{category}</h4>
 
 						<NewContent flag={isNew} />
 					</div>

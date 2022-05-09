@@ -14,7 +14,7 @@ import { IoMoon, IoSunny } from 'react-icons/io5';
 import { BsArrowRepeat } from 'react-icons/bs';
 
 // 사용자 모듈
-import { MENU_LIST } from '@commons/env';
+import { MENU_LIST } from '@commons/menulist';
 import { menuAtom, themeAtom } from '@commons/state';
 import { useSemanticHook } from '@commons/hook';
 import { Theme } from '@commons/common';

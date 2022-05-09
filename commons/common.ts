@@ -43,10 +43,10 @@ export interface ContentProps
 	name: string,
 	content?: string,
 	url: string[],
-	toc?: TocProps[],
+	toc?: string,
 	meta?: {
-		prev?: ContentProps,
-		next?: ContentProps,
+		prev?: ContentProps | null,
+		next?: ContentProps | null,
 		group?: ContentProps[]
 	}
 }
@@ -56,27 +56,9 @@ export interface ContentPageProps
 	props: ContentProps
 }
 
-export interface PageStaticProps
-{
-	page: {
-		type: string;
-		prev?: ContentProps | null,
-		next?: ContentProps | null,
-	},
-	group?: ContentProps[] | null,
-	data: ContentProps,
-	hash?: string
-}
-
 export interface PathsProps
 {
 	paths: RoutesProps[],
-	fallback: boolean
-}
-
-export interface PathProps
-{
-	paths: RouteProps[],
 	fallback: boolean
 }
 
@@ -87,16 +69,9 @@ export interface RoutesProps
 	}
 }
 
-export interface RouteProps
-{
-	params: {
-		[ key: string ]: string
-	}
-}
-
 export interface ConvertProps
 {
-	toc: TocProps[],
+	toc: string,
 	html: string
 }
 
@@ -112,6 +87,13 @@ export interface CategoryProps
 	name: string,
 	count: number,
 	flag?: boolean | null
+}
+
+export interface SeoProps
+{
+	pages: string[],
+	posts: string[],
+	projects: string[]
 }
 
 export const CONTENT_DIV = 10;
@@ -154,53 +136,6 @@ export function getDateDetail(raw: string | undefined): DateProps
 		minute: date.getMinutes() > 9 ? date.getMinutes().toString() : `0${date.getMinutes()}`,
 		second: date.getSeconds() > 9 ? date.getSeconds().toString() : `0${date.getSeconds()}`
 	};
-}
-
-/**
-* 컨텐츠 테이블 HTML 문자열 반환 함수
-*
-* @param {TocProps[]} toc TocProps 배열
-*
-* @returns {string} HTML 문자열
-*/
-export function tableOfContents(toc : TocProps[] | undefined): string
-{
-	if (toc)
-	{
-		let count = 0;
-
-		return toc.reduce((acc: string, item: TocProps): string =>
-		{
-		   const { text, tag, depth } = item;
-
-		   // toc의 깊이가 현재 깊이보다 깊을 경우
-		   if (depth > count)
-		   {
-			   count++;
-			   acc += `<ul><li><a href="#${tag}">${text}</a></li>`;
-		   }
-
-		   // toc의 깊이가 현재 깊이보다 얕을 경우
-		   else if (depth < count)
-		   {
-			   count--;
-			   acc += `</ul><li><a href="#${tag}">${text}</a></li>`;
-		   }
-
-		   // toc의 깊이가 현재 깊이와 동일할 경우
-		   else
-		   {
-			   acc += `<li><a href="#${tag}">${text}</a></li>`;
-		   }
-
-		   return acc;
-		}, '') + '</ul>';
-	}
-
-	else
-	{
-		return '';
-	}
 }
 
 /**
@@ -262,6 +197,13 @@ export function getWrittenTimes(date: Date): string
 	}
 }
 
+/**
+ * 새 컨텐츠 여부 반환 메서드
+ *
+ * @param {string} date: 날짜 문자열
+ *
+ * @returns {boolean} 새 컨텐츠 여부
+ */
 export function isNewContent(date: string): boolean
 {
 	return new Date().getTime() - new Date(date).getTime() < 86400000 * 7;

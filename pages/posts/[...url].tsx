@@ -64,7 +64,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
  */
 export async function getStaticPaths(): Promise<PathsProps>
 {
-	const posts = await getContentList(type);
+	const posts = await getContentList(type, false);
 
 	return {
 		paths: posts.map((post) =>

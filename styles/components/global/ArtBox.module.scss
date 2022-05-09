@@ -1,4 +1,5 @@
 @import "../../common/color.scss";
+@import "../../common/env.scss";
 
 @mixin text {
 	z-index: 5;
@@ -59,11 +60,19 @@
 	@include text;
 
 	font-weight: 900;
-	font-size: 2rem;
+	font-size: 4rem;
+
+	@media (max-width: 960px) {
+		font-size: 2rem;
+	}
 }
 
 .sub {
 	@include text;
 
-	font-size: 1.5rem;
+	font-size: 2rem;
+
+	@media (max-width: 960px) {
+		font-size: 1.25rem;
+	}
 }

@@ -12,8 +12,8 @@ import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import Utterances from './Utterances';
-import { ContentProps } from '@commons/common';
 import Hits from '../global/Hits';
+import { ContentProps } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/ContentLayout.module.scss';
@@ -26,7 +26,7 @@ interface Props
 /**
  * 컨텐츠 레이아웃 JSX 반환 함수
  *
- * @param {ContentProps} param0: 프로퍼티
+ * @param {Props} param0: 프로퍼티
  *
  * @returns {JSX.Element | null} JSX
  */

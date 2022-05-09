@@ -5,9 +5,7 @@
  * @since 2021.07.16 Fri 00:42:43
  */
 
-// 라이브러리 모듈
-
-
+// 스타일
 import styles from '@styles/components/contents/ContentTags.module.scss';
 
 interface Props

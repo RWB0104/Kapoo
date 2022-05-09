@@ -38,6 +38,20 @@ a {
 	text-decoration: none;
 }
 
+*::-webkit-scrollbar {
+	width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: rgba($color: grey, $alpha: 0.5);
+	border-radius: 20px;
+}
+
+*::-webkit-scrollbar-track {
+	background-color: transparent;
+	border-radius: 20px;
+}
+
 button {
 	display: flex;
 	justify-content: center;
