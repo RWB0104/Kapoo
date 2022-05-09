@@ -12,31 +12,31 @@ import Head from 'next/head';
 import ContentLayout from '@components/contents/ContentLayout';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
-import { converter, getBuildHash, getContent, getContentsList } from '@commons/api';
-import { ContentPageProps, PageStaticProps, PathsProps, RoutesProps } from '@commons/common';
+import { getContent, getContentList } from '@commons/api';
+import { ContentPageProps, ContentProps, PathsProps, RoutesProps } from '@commons/common';
 
 const type = 'projects';
 
 /**
  * 프로젝트 내용 동적 페이지 JSX 반환 함수
  *
+ * @param {ContentProps} content: 컨텐츠
+ *
  * @returns {JSX.Element | null} JSX
  */
-export default function Project({ page, group, data }: PageStaticProps): JSX.Element | null
+export default function Project(content: ContentProps): JSX.Element | null
 {
-	const urls = data.url;
-
 	return (
 		<section>
 			<Head>
 				<script src="/js/content.js"></script>
 			</Head>
 
-			<Meta title={data.header.title} description={data.header.excerpt} url={`/${data.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`} image={data.header.coverImage} />
+			<Meta title={content.header.title} description={content.header.excerpt} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} image={content.header.coverImage} />
 
-			<Screener title={data.header.title} menu={type} lower={data.header.category} image={data.header.coverImage} />
+			<Screener title={content.header.title} menu={type} lower={content.header.category} image={content.header.coverImage} />
 
-			<ContentLayout page={page} group={group} data={data} />
+			<ContentLayout data={content} />
 		</section>
 	);
 }
@@ -50,31 +50,10 @@ export default function Project({ page, group, data }: PageStaticProps): JSX.Ele
  */
 export async function getStaticProps({ params }: RoutesProps): Promise<ContentPageProps>
 {
-	const projects = getContentsList(type);
-	const project = getContent(type, params.url.join('-'));
-
-	const index = projects.findIndex(element => element.name === project.name);
-	const group = project.header.group ? projects.filter(element => (element.header.group === project.header.group)) : null;
-
-	const { content, toc } = await converter(project.content);
-
-	const hash = getBuildHash();
+	const project = await getContent(type, params.url.join('-'), true);
 
 	return {
-		props: {
-			page: {
-				type: type,
-				prev: index + 1 > projects.length - 1 ? null : projects[index + 1],
-				next: index - 1 > -1 ? projects[index - 1] : null
-			},
-			group: group,
-			data: {
-				...project,
-				content,
-				toc
-			},
-			hash: hash
-		}
+		props: project
 	};
 }
 
@@ -85,7 +64,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
  */
 export async function getStaticPaths(): Promise<PathsProps>
 {
-	const projects = getContentsList(type);
+	const projects = await getContentList(type, false);
 
 	return {
 		paths: projects.map((project) =>

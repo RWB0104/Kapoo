@@ -47,7 +47,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element |
 	return (
 		<RecoilRoot>
 			<CookiesProvider>
-				<BaseLayout hash={pageProps.hash}>
+				<BaseLayout>
 					<Component {...pageProps} />
 				</BaseLayout>
 			</CookiesProvider>

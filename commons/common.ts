@@ -33,21 +33,27 @@ export interface ContentHeaderProps
 	tag: string[],
 	group?: string,
 	comment: boolean,
-	publish: boolean
+	publish: boolean,
+	isNew: boolean
 }
 
 export interface ContentProps
 {
 	header: ContentHeaderProps,
 	name: string,
-	content: string,
+	content?: string,
 	url: string[],
-	toc?: TocProps[]
+	toc?: TocProps[],
+	meta?: {
+		prev?: ContentProps,
+		next?: ContentProps,
+		group?: ContentProps[]
+	}
 }
 
 export interface ContentPageProps
 {
-	props: PageStaticProps
+	props: ContentProps
 }
 
 export interface PageStaticProps
@@ -91,7 +97,7 @@ export interface RouteProps
 export interface ConvertProps
 {
 	toc: TocProps[],
-	content: string
+	html: string
 }
 
 export interface TocProps
@@ -103,10 +109,9 @@ export interface TocProps
 
 export interface CategoryProps
 {
-	[ key: string ]: {
-		count: number,
-		flag: boolean | undefined
-	}
+	name: string,
+	count: number,
+	flag?: boolean | null
 }
 
 export const CONTENT_DIV = 10;
@@ -257,17 +262,7 @@ export function getWrittenTimes(date: Date): string
 	}
 }
 
-/**
- * 페이지 경계 반환 함수
- *
- * @param {number} page: 페이지
- *
- * @returns {{ start: number, end: number }} 페이지 경계
- */
-export function getContentDiv(page: number): { start: number, end: number }
+export function isNewContent(date: string): boolean
 {
-	return {
-		start: (page - 1) * CONTENT_DIV,
-		end: page * CONTENT_DIV
-	};
+	return new Date().getTime() - new Date(date).getTime() < 86400000 * 7;
 }

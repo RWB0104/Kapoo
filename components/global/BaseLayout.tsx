@@ -27,8 +27,7 @@ import styles from '@styles/components/global/BaseLayout.module.scss';
 
 interface Props
 {
-	children: JSX.Element,
-	hash: string
+	children: JSX.Element
 }
 
 /**
@@ -38,7 +37,7 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function BaseLayout({ children, hash }: Props): JSX.Element | null
+export default function BaseLayout({ children }: Props): JSX.Element | null
 {
 	const setLoadingState = useSetRecoilState(loadingAtom);
 
@@ -101,7 +100,7 @@ export default function BaseLayout({ children, hash }: Props): JSX.Element | nul
 				<TopFab />
 			</FabPannel>
 
-			<Footer hash={hash} />
+			<Footer />
 		</main>
 	);
 }

@@ -15,7 +15,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import NewContent from './NewContent';
 import ContentMeta from './ContentMeta';
 import { CATEGORY } from '@commons/env';
-import { ContentProps, getWrittenTimes } from '@commons/common';
+import { ContentProps, getWrittenTimes, isNewContent } from '@commons/common';
 import { useSemanticHook } from '@commons/hook';
 import { themeAtom } from '@commons/state';
 
@@ -43,7 +43,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 	const semanticState = useSemanticHook();
 	const [ state, setState ] = useState(undefined as boolean | undefined);
 
-	const isNew = new Date().getTime() - new Date(item.header.date).getTime() < 86400000 * 60;
+	const isNew = isNewContent(item.header.date);
 
 	const themeState = useRecoilValue(themeAtom);
 

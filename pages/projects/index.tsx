@@ -5,49 +5,38 @@
  * @since 2021.07.12 Mon 00:01:58
  */
 
+// 라이브러리 모듈
+import { useEffect, useState } from 'react';
+
 // 사용자 모듈
-import { getContentsCategory, getContentsList } from '@commons/api';
-import { CategoryProps, ContentProps, CONTENT_DIV, getContentDiv, getRandomIndex } from '@commons/common';
+import { CategoryProps, ContentProps, CONTENT_DIV, getRandomIndex } from '@commons/common';
 import { MENU_LIST, TITLE } from '@commons/env';
 import Screener from '@components/global/Screener';
 import Meta from '@components/global/Meta';
 import ContentCategory from '@components/contents/ContentCategory';
 import ContentBoard from '@components/contents/ContentBoard';
-import { useEffect, useState } from 'react';
-
-interface Props
-{
-	projects: ContentProps[],
-	category: CategoryProps,
-	total: number
-}
-
-interface StaticProp
-{
-	props: Props
-}
-
-const type = 'projects';
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
  *
- * @param {Props} param0: 프로퍼티
- *
  * @returns {JSX.Element | null} JSX
  */
-export default function Projects({ projects, category, total }: Props): JSX.Element | null
+export default function Projects(): JSX.Element | null
 {
+	const type = 'projects';
+
 	const [ pageState, setPageState ] = useState(1);
-	const [ categoryState, setCategoryState ] = useState([] as string[]);
+	const [ categoryState, setCategoryState ] = useState([] as CategoryProps[]);
+	const [ selectCategoryState, setSelectCategoryState ] = useState([] as string[]);
 
 	const [ imageState, setImageState ] = useState('');
+	const [ projectsState, setProjectsState ] = useState([] as ContentProps[]);
 
 	useEffect(() =>
 	{
 		const handleScroll = () =>
 		{
-			if (pageState < total && window.scrollY > window.document.documentElement.scrollHeight - 1500)
+			if (pageState < Math.ceil(projectsState.length / CONTENT_DIV) && window.scrollY > window.document.documentElement.scrollHeight - 1500)
 			{
 				setPageState(pageState + 1);
 			}
@@ -64,14 +53,28 @@ export default function Projects({ projects, category, total }: Props): JSX.Elem
 	{
 		(async () =>
 		{
-			const a = await fetch('/image.json');
-			const json = await a.json();
+			const list = await fetch('/image.json');
+			const json = await list.json();
 
 			const index = getRandomIndex(json.list.length);
 
-			console.dir(json.list);
-
 			setImageState(json.list[index]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch(`/${type}.json`);
+			const json = await list.json();
+
+			setProjectsState(json.list as ContentProps[]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch(`/${type}-category.json`);
+			const json = await list.json();
+
+			setCategoryState(json.list as CategoryProps[]);
 		})();
 	}, []);
 
@@ -81,34 +84,9 @@ export default function Projects({ projects, category, total }: Props): JSX.Elem
 
 			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={imageState} />
 
-			<ContentCategory type={type} list={category} categoryState={categoryState} setCategoryState={setCategoryState} />
+			<ContentCategory type={type} list={categoryState} select={selectCategoryState} setSelect={setSelectCategoryState} />
 
-			<ContentBoard list={categoryState.length > 0 ? projects.filter(item => categoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : projects.slice(1, 10 * pageState)} />
+			<ContentBoard list={selectCategoryState.length > 0 ? projectsState.filter(item => selectCategoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : projectsState.slice(0, 10 * pageState)} />
 		</section>
 	);
-}
-
-/**
- * 정적 프로퍼티 반환 함수
- *
- * @return {Promise<StaticProp>} Promise 객체
- */
-export async function getStaticProps(): Promise<StaticProp>
-{
-	const { start, end } = getContentDiv(1);
-
-	const projects = getContentsList(type);
-
-	const subProjects = projects.slice(start, end);
-	subProjects.forEach(e => e.content = '');
-
-	const category = getContentsCategory(type);
-
-	return {
-		props: {
-			projects: subProjects,
-			category,
-			total: Math.ceil(projects.length / CONTENT_DIV)
-		}
-	};
 }

@@ -9,74 +9,62 @@
 import Artbox from '@components/global/Artbox';
 import Screener from '@components/global/Screener';
 import ContentsCase from '@components/home/ContentsCase';
-import { getBuildHash, getContentsList, getScreenerImage } from '@commons/api';
 import { MENU_LIST, TITLE } from '@commons/env';
-import { getRandomIndex, ContentProps, getContentDiv } from '@commons/common';
+import { ContentProps, getRandomIndex } from '@commons/common';
 import Meta from '@components/global/Meta';
-
-interface Props
-{
-	images: string[],
-	posts: ContentProps[],
-	projects: ContentProps[],
-	hash?: string
-}
-
-interface StaticProp
-{
-	props: Props
-}
+import { useEffect, useState } from 'react';
 
 /**
  * 홈 페이지 JSX 반환 함수
  *
- * @param {Props} param0: 프로퍼티
- *
  * @returns {JSX.Element | null} JSX
  */
-export default function Home({ images, posts, projects }: Props): JSX.Element | null
+export default function Home(): JSX.Element | null
 {
-	const index = getRandomIndex(images.length);
+	const [ imageState, setImageState ] = useState('');
+	const [ postsState, setPostsState ] = useState([] as ContentProps[]);
+	const [ projectsState, setProjectsState ] = useState([] as ContentProps[]);
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const list = await fetch('/image.json');
+			const json = await list.json();
+
+			const index = getRandomIndex(json.list.length);
+
+			setImageState(json.list[index]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch('/posts.json');
+			const json = await list.json();
+
+			setPostsState(json.list as ContentProps[]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch('/projects.json');
+			const json = await list.json();
+
+			setProjectsState(json.list as ContentProps[]);
+		})();
+	}, []);
 
 	return (
 		<section>
-			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={images[index]} url="" />
+			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={imageState} url="" />
 
-			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={images[index]} />
+			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={imageState} />
 
-			<ContentsCase num={5} title={MENU_LIST[1].title} url={MENU_LIST[1].url} list={posts} />
+			<ContentsCase num={5} title={MENU_LIST[1].title} url={MENU_LIST[1].url} list={postsState} />
 
 			<Artbox />
 
-			<ContentsCase num={5} title={MENU_LIST[2].title} url={MENU_LIST[2].url} list={projects} />
+			<ContentsCase num={5} title={MENU_LIST[2].title} url={MENU_LIST[2].url} list={projectsState} />
 		</section>
 	);
-}
-
-/**
- * 정적 프로퍼티 반환 함수
- *
- * @return {Promise<StaticProp>} Promise 객체
- */
-export async function getStaticProps(): Promise<StaticProp>
-{
-	const images = getScreenerImage();
-
-	const { start, end } = getContentDiv(1);
-
-	const posts = getContentsList('posts');
-
-	const subPosts = posts.slice(start, end);
-	subPosts.forEach(e => e.content = '');
-
-	const projects = getContentsList('projects');
-
-	const subProjects = projects.slice(start, end);
-	subProjects.forEach(e => e.content = '');
-
-	const hash = getBuildHash();
-
-	return {
-		props: { images, posts: subPosts, projects: subProjects, hash }
-	};
 }

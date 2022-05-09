@@ -7,6 +7,7 @@
 
 // 라이브러리 모듈
 import fs from 'fs';
+import fetch from 'node-fetch';
 import { join } from 'path';
 import matter from 'gray-matter';
 import marked from 'marked';
@@ -20,75 +21,132 @@ import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, Con
 const CONTENT_DIR = join(process.cwd(), '_posts');
 
 /**
- * 스크리너 기본 이미지 목록 반환 함수
+ * 빌드 해쉬 반환 메서드
  *
- * @returns {string[]} 스크리너 기본 이미지 목록
+ * @returns {string} 빌드 해쉬
  */
-export function getScreenerImage(): string[]
+export function getBuildHash(): string
 {
-	return fs.readFileSync(join(process.cwd(), 'public', 'image.txt')).toString().split('\n');
+	return Math.random().toString(16).substr(2, 11);
+}
+
+/**
+ * 이미지 리스트 반환 비동기 메서드
+ *
+ * @returns {Promise<string[]>} 이미지 리스트 Promise
+ */
+export async function getImageList(): Promise<string[]>
+{
+	const response = await fetch('https://api.github.com/repos/RWB0104/blog.itcode.dev/issues/43');
+
+	// 응답이 유효할 경우
+	if (response.ok)
+	{
+		const json = await response.json();
+
+		const images = json.body as string;
+
+		return images.replaceAll(/(\r\n|\n|\r)+/g, '\n').split('\n');
+	}
+
+	// 아닐 경우
+	else
+	{
+		return [];
+	}
 }
 
 /**
  * 컨텐츠 목록 반환 함수
  *
- * @param {string} type: 컨텐츠 타입
+ * @param {'posts' | 'projects'} type: 컨텐츠 타입
+ * @param {boolean} isFull: 전체 테이터 사용 여부
  *
  * @returns {ContentProps[]} 컨텐츠 목록
  */
-export function getContentsList(type: string): ContentProps[]
+export async function getContentList(type: 'posts' | 'projects', isFull: boolean): Promise<ContentProps[]>
 {
 	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
 
-	return names.map((name): ContentProps => getContent(type, name))
-		.filter((item: ContentProps) => item.header.publish)
+	const result: ContentProps[] = [];
+
+	for (const i in names)
+	{
+		const item = await getContent(type, names[i], isFull);
+
+		result.push(item);
+	}
+
+	return result.filter((item: ContentProps) => item.header.publish)
 		.sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
 }
 
 /**
  * 카테고리 목록 반환 함수
  *
- * @param {string} type: 컨텐츠 타입
+ * @param {'posts' | 'projects'} type: 컨텐츠 타입
  *
- * @returns {CategoryProps} 카테고리 목록
+ * @returns {CategoryProps[]} 카테고리 목록
  */
-export function getContentsCategory(type: string): CategoryProps
+export async function getCategoryList(type: 'posts' | 'projects'): Promise<CategoryProps[]>
 {
-	return getContentsList(type).reduce((acc, content) =>
+	const list = await getContentList(type, false);
+
+	return list.reduce((acc, content) =>
 	{
-		acc[content.header.category] === undefined ? acc[content.header.category] = { count: 1, flag: undefined } : acc[content.header.category].count += 1;
+		const target = acc.filter(item => item.name === content.header.category);
 
-		// 카테고리의 최신글 여부가 확인되지 않을 경우
-		if (acc[content.header.category].flag === undefined)
+		// 새 카테고리일 경우
+		if (target.length === 0)
 		{
-			acc[content.header.category].flag = new Date().getTime() - new Date(content.header.date).getTime() < 86400000 * 7 ? true : false;
+			const current: CategoryProps = {
+				name: content.header.category,
+				count: 1
+			};
+
+			acc.push(current);
 		}
 
-		if (!acc['All'].flag && acc[content.header.category].flag)
+		// 이미 확인된 카테고리일 경우
+		else
 		{
-			acc['All'].flag = true;
+			target[0].count++;
 		}
 
-		acc['All'].count += 1;
+		acc[0].count += 1;
 
 		return acc;
-	}, {
-		'All': {
-			count: 0,
-			flag: false
+	}, [
+		{
+			name: 'All',
+			count: 0
 		}
-	} as CategoryProps);
+	] as CategoryProps[]).sort((a, b) =>
+	{
+		// All일 경우 무조건 1순위 정렬
+		if (b.name === 'All')
+		{
+			return 1;
+		}
+
+		// 아닐 경우
+		else
+		{
+			return a.name.localeCompare(b.name);
+		}
+	});
 }
 
 /**
  * 컨텐츠 반환 함수
  *
- * @param {string} type: 타입
+ * @param {'posts' | 'projects'} type: 타입
  * @param {string} name: 이름
+ * @param {boolean} isFull: 전체 테이터 사용 여부
  *
  * @returns {ContentProps} ContentProps
  */
-export function getContent(type: string, name: string): ContentProps
+export async function getContent(type: 'posts' | 'projects', name: string, isFull: boolean): Promise<ContentProps>
 {
 	// md 확장자가 없을 경우
 	if (!MD_REGX.test(name))
@@ -102,12 +160,23 @@ export function getContent(type: string, name: string): ContentProps
 
 	const { data, content } = matter(file);
 
-	return {
+	const result: ContentProps = {
 		header: data as ContentHeaderProps,
 		name: name,
-		content: content,
 		url: urls
 	};
+
+	// 컨텐츠를 포함할 경우
+	if (isFull)
+	{
+		const { toc, html } = await converter(content);
+
+		result.toc = toc;
+		result.content = html;
+
+	}
+
+	return result;
 }
 
 /**
@@ -224,7 +293,7 @@ export async function converter(body: string): Promise<ConvertProps>
 	};
 
 	// 헤더 렌더링
-	renderer.heading = (text: string, level: 1 | 2 | 3 | 4 | 5 | 6): string =>
+	renderer.heading = (text: string, level: 1 | 2 | 3): string =>
 	{
 		const tag = text.replace(/(<([^>]+)>)/ig, '').replace(' ', '-');
 
@@ -332,16 +401,6 @@ export async function converter(body: string): Promise<ConvertProps>
 
 	return {
 		toc: toc,
-		content: result.toString()
+		html: result.toString()
 	};
-}
-
-/**
- * 빌드 해쉬 반환 함수
- *
- * @returns {string} 빌드 해쉬값
- */
-export function getBuildHash(): string
-{
-	return fs.readFileSync(join(process.cwd(), 'public', 'build.txt')).toString();
 }

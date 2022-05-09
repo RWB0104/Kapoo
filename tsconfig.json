@@ -1,7 +1,12 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
-		"lib": [ "dom", "dom.iterable", "esnext", "ES2021" ],
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext",
+			"ES2021"
+		],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -15,12 +20,31 @@
 		"jsx": "preserve",
 		"baseUrl": ".",
 		"paths": {
-			"@commons/*": [ "commons/*" ],
-			"@components/*": [ "components/*" ],
-			"@pages/*": [ "pages/*" ],
-			"@styles/*": [ "styles/*" ]
+			"@commons/*": [
+				"commons/*"
+			],
+			"@components/*": [
+				"components/*"
+			],
+			"@pages/*": [
+				"pages/*"
+			],
+			"@styles/*": [
+				"styles/*"
+			]
 		}
 	},
-	"include": [ "next-env.d.ts", "**/*.ts", "**/*.tsx" ],
-	"exclude": [ "node_modules" ]
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx"
+	],
+	"exclude": [
+		"node_modules"
+	],
+	"ts-node": {
+		"compilerOptions": {
+			"module": "commonjs"
+		}
+	}
 }

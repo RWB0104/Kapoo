@@ -382,12 +382,16 @@
 		}
 	}
 
-	li {
-		word-break: break-all;
+	ul {
+		padding-left: 20px;
 
-		img {
-			display: initial;
-			margin: initial;
+		li {
+			word-break: break-all;
+
+			img {
+				display: initial;
+				margin: initial;
+			}
 		}
 	}
 
@@ -415,7 +419,7 @@
 
 		padding: 0px;
 
-		.vlist > span {
+		.vlist>span {
 			display: flow-root
 		}
 	}

@@ -24,6 +24,7 @@ interface Props
  */
 export default function ContentBoard({ list }: Props): JSX.Element | null
 {
+	console.dir(list);
 	return (
 		<article className={styles.root}>
 			<ContentList list={list} />

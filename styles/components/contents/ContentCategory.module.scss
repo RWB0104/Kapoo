@@ -12,6 +12,7 @@ $item-height: 152px;
 
 .root-wrapper {
 	padding: 20px 40px;
+	box-sizing: border-box;
 
 	width: 100%;
 	max-width: $ref;

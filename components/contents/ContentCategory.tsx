@@ -22,9 +22,9 @@ import { themeAtom } from '@commons/state';
 interface Props
 {
 	type: string,
-	list: CategoryProps,
-	categoryState: string[],
-	setCategoryState: Dispatch<SetStateAction<string[]>>
+	list: CategoryProps[],
+	select: string[],
+	setSelect: Dispatch<SetStateAction<string[]>>
 }
 
 /**
@@ -34,7 +34,7 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function ContentCategory({ type, list, categoryState, setCategoryState }: Props): JSX.Element | null
+export default function ContentCategory({ type, list, select, setSelect }: Props): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
 
@@ -44,39 +44,39 @@ export default function ContentCategory({ type, list, categoryState, setCategory
 	{
 		if (item === 'All')
 		{
-			setCategoryState([]);
+			setSelect([]);
 		}
 
 		else
 		{
-			const temp = categoryState.slice();
-			const key = categoryState.indexOf(item);
+			const temp = select.slice();
+			const key = select.indexOf(item);
 
 			if (key > -1)
 			{
 				temp.splice(key, 1);
-				setCategoryState(temp);
+				setSelect(temp);
 			}
 
 			else
 			{
 				temp.push(item);
-				setCategoryState(temp);
+				setSelect(temp);
 			}
 		}
 	};
 
-	const categories = Object.keys(list).sort().map((item, index: number): JSX.Element => (
-		<button key={index} className={styles.item} data-type={type} onClick={() => toggleCategory(item)}>
-			<img className={styles.image} alt={item} src={`${CATEGORY[item] || CATEGORY['All']}`} />
+	const categories = list.map((item, index: number): JSX.Element => (
+		<button key={index} className={styles.item} data-type={type} onClick={() => toggleCategory(item.name)}>
+			<img className={styles.image} alt={item.name} src={`${CATEGORY[item.name] || CATEGORY['All']}`} />
 
 			<div className={styles.meta}>
-				<p>{item}</p>
-				<p>( {list[item].count} )</p>
+				<p>{item.name}</p>
+				<p>( {item.count} )</p>
 			</div>
 
 			<div className={styles.flag}>
-				<NewContent flag={categoryState.indexOf(item) > -1} />
+				<NewContent flag={select.indexOf(item.name) > -1} />
 			</div>
 		</button>
 	));

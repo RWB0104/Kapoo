@@ -1,9 +1,6 @@
 // 라이브러리 모듈
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-// 사용자 모듈
-import { getBuildHash } from '@commons/api';
-
 /**
  * 문서 클래스
  *
@@ -19,13 +16,9 @@ export default class KapooDocument extends Document
 	 */
 	render(): JSX.Element
 	{
-		const hash = getBuildHash();
-
 		return (
 			<Html lang="ko">
 				<Head>
-					<meta name="hash" content={hash} />
-
 					<link rel="manifest" href="/manifest.json" />
 
 					<link rel="icon" href="/favicon.ico" />

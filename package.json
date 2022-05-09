@@ -7,10 +7,9 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"hash": "node ./buildhash.js",
 		"seo": "node ./next-seo.js",
 		"export": "next export",
-		"dist": "node ./next-prebuild.js && node ./next-seo.js && next build && next export -o ../blog.itcode.dev/docs"
+		"dist": "ts-node -r tsconfig-paths/register ./next-prebuild.ts && node ./next-seo.js && next build && next export -o ../blog.itcode.dev/docs"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.12.1",
@@ -28,6 +27,7 @@
 	"devDependencies": {
 		"@types/katex": "^0.11.1",
 		"@types/marked": "^2.0.4",
+		"@types/node-fetch": "^2.6.1",
 		"@types/prismjs": "^1.16.6",
 		"@types/react": "17.0.14",
 		"@typescript-eslint/eslint-plugin": "^4.28.2",

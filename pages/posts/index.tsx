@@ -7,47 +7,34 @@
 
 // 사용자 모듈
 import Screener from '@components/global/Screener';
-import { getContentsCategory, getContentsList } from '@commons/api';
-import { getRandomIndex, ContentProps, CategoryProps, CONTENT_DIV } from '@commons/common';
+import { CategoryProps, CONTENT_DIV, getRandomIndex } from '@commons/common';
 import { MENU_LIST, TITLE } from '@commons/env';
 import Meta from '@components/global/Meta';
 import ContentBoard from '@components/contents/ContentBoard';
 import ContentCategory from '@components/contents/ContentCategory';
 import { useEffect, useState } from 'react';
 
-interface Props
-{
-	posts: ContentProps[],
-	category: CategoryProps,
-	total: number
-}
-
-interface StaticProp
-{
-	props: Props
-}
-
-const type = 'posts';
-
 /**
  * 게시글 페이지 JSX 반환 함수
  *
- * @param {Props} param0: 프로퍼티
- *
  * @returns {JSX.Element | null} JSX
  */
-export default function Posts({ posts, category, total }: Props): JSX.Element | null
+export default function Posts(): JSX.Element | null
 {
+	const type = 'posts';
+
 	const [ pageState, setPageState ] = useState(1);
-	const [ categoryState, setCategoryState ] = useState([] as string[]);
+	const [ categoryState, setCategoryState ] = useState([] as CategoryProps[]);
+	const [ selectCategoryState, setSelectCategoryState ] = useState([] as string[]);
 
 	const [ imageState, setImageState ] = useState('');
+	const [ postsState, setPostsState ] = useState([] as ContentProps[]);
 
 	useEffect(() =>
 	{
 		const handleScroll = () =>
 		{
-			if (pageState < total && window.scrollY > window.document.documentElement.scrollHeight - 1500)
+			if (pageState < Math.ceil(postsState.length, CONTENT_DIV) && window.scrollY > window.document.documentElement.scrollHeight - 1500)
 			{
 				setPageState(pageState + 1);
 			}
@@ -64,14 +51,28 @@ export default function Posts({ posts, category, total }: Props): JSX.Element | 
 	{
 		(async () =>
 		{
-			const a = await fetch('/image.json');
-			const json = await a.json();
+			const list = await fetch('/image.json');
+			const json = await list.json();
 
 			const index = getRandomIndex(json.list.length);
 
-			console.dir(json.list);
-
 			setImageState(json.list[index]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch(`/${type}.json`);
+			const json = await list.json();
+
+			setPostsState(json.list as ContentProps[]);
+		})();
+
+		(async () =>
+		{
+			const list = await fetch(`/${type}-category.json`);
+			const json = await list.json();
+
+			setCategoryState(json.list as CategoryProps[]);
 		})();
 	}, []);
 
@@ -81,29 +82,9 @@ export default function Posts({ posts, category, total }: Props): JSX.Element | 
 
 			<Screener title={TITLE} menu={MENU_LIST[1].title} lower={MENU_LIST[1].desc} image={imageState} />
 
-			<ContentCategory type={type} list={category} categoryState={categoryState} setCategoryState={setCategoryState} />
+			<ContentCategory type={type} list={categoryState} select={selectCategoryState} setSelect={setSelectCategoryState} />
 
-			<ContentBoard list={categoryState.length > 0 ? posts.filter(item => categoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : posts.slice(1, 10 * pageState)} />
+			<ContentBoard list={selectCategoryState.length > 0 ? postsState.filter(item => selectCategoryState.indexOf(item.header.category) > -1).slice(0, 10 * pageState) : postsState.slice(0, 10 * pageState)} />
 		</section>
 	);
-}
-
-/**
- * 사용자 Props 반환 함수
- *
- * @returns {Promise<StaticProp>} 사용자 Props
- */
-export async function getStaticProps(): Promise<StaticProp>
-{
-	const posts = getContentsList(type);
-
-	const category = getContentsCategory(type);
-
-	return {
-		props: {
-			posts,
-			category,
-			total: Math.ceil(posts.length / CONTENT_DIV)
-		}
-	};
 }

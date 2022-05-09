@@ -18,20 +18,29 @@ import { themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/footer/Footer.module.scss';
-
-interface Props
-{
-	hash: string
-}
+import { useEffect, useState } from 'react';
 
 /**
  * 푸터 JSX 반환 함수
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function Footer({ hash }: Props): JSX.Element | null
+export default function Footer(): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
+
+	const [ hashState, setHashState ] = useState(undefined as string | undefined);
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const list = await fetch('/build.txt');
+			const text = await list.text();
+
+			setHashState(text);
+		})();
+	});
 
 	return (
 		<footer className={styles.root}>
@@ -74,7 +83,7 @@ export default function Footer({ hash }: Props): JSX.Element | null
 			<div className={styles.info}>
 				<p className={styles.text}><FaCopyright /> Copyright RWB 2021.05</p>
 
-				{hash && <p className={styles.text}><FaHashtag /> {hash}</p>}
+				{hashState && <p className={styles.text}><FaHashtag /> {hashState}</p>}
 
 				<Hits />
 			</div>

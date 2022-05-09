@@ -9,7 +9,7 @@
 
 	@each $key,
 	$val in $map {
-		.#{$str}-#{$key} {
+		.#{"" + $str}-#{"" + $key} {
 			color: $val;
 		}
 	}

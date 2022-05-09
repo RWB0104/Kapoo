@@ -12,31 +12,31 @@ import Head from 'next/head';
 import ContentLayout from '@components/contents/ContentLayout';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
-import { converter, getBuildHash, getContent, getContentsList } from '@commons/api';
-import { ContentPageProps, PageStaticProps, PathsProps, RoutesProps } from '@commons/common';
+import { getContent, getContentList } from '@commons/api';
+import { ContentPageProps, ContentProps, PathsProps, RoutesProps } from '@commons/common';
 
 const type = 'posts';
 
 /**
  * 포스트 내용 동적 페이지 JSX 반환 함수
  *
+ * @param {ContentProps} content: 컨텐츠
+ *
  * @returns {JSX.Element | null} JSX
  */
-export default function Post({ page, group, data }: PageStaticProps): JSX.Element | null
+export default function Post(content: ContentProps): JSX.Element | null
 {
-	const urls = data.url;
-
 	return (
 		<section>
 			<Head>
 				<script src="/js/content.js"></script>
 			</Head>
 
-			<Meta title={data.header.title} description={data.header.excerpt} url={`/${data.header.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`} image={data.header.coverImage} />
+			<Meta title={content.header.title} description={content.header.excerpt} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} image={content.header.coverImage} />
 
-			<Screener title={data.header.title} menu={type} lower={data.header.category} image={data.header.coverImage} />
+			<Screener title={content.header.title} menu={type} lower={content.header.category} image={content.header.coverImage} />
 
-			<ContentLayout page={page} group={group} data={data} />
+			<ContentLayout data={content} />
 		</section>
 	);
 }
@@ -50,31 +50,10 @@ export default function Post({ page, group, data }: PageStaticProps): JSX.Elemen
  */
 export async function getStaticProps({ params }: RoutesProps): Promise<ContentPageProps>
 {
-	const posts = getContentsList(type);
-	const post = getContent(type, params.url.join('-'));
-
-	const index = posts.findIndex(element => element.name === post.name);
-	const group = post.header.group ? posts.filter(element => (element.header.group === post.header.group)) : null;
-
-	const { content, toc } = await converter(post.content);
-
-	const hash = getBuildHash();
+	const posts = await getContent(type, params.url.join('-'), true);
 
 	return {
-		props: {
-			page: {
-				type: type,
-				prev: index + 1 > posts.length - 1 ? null : posts[index + 1],
-				next: index - 1 > -1 ? posts[index - 1] : null
-			},
-			group: group,
-			data: {
-				...post,
-				content,
-				toc
-			},
-			hash: hash
-		}
+		props: posts
 	};
 }
 
@@ -85,7 +64,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
  */
 export async function getStaticPaths(): Promise<PathsProps>
 {
-	const posts = getContentsList(type);
+	const posts = await getContentList(type);
 
 	return {
 		paths: posts.map((post) =>
