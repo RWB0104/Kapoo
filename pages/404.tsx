@@ -38,7 +38,7 @@ export default function Error404(): JSX.Element | null
 
 	return (
 		<section>
-			<Meta title="404" description="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={imageState} url="" />
+			<Meta title="404" description="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" url="" />
 
 			<Screener title={TITLE} menu="404" lower="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" image={imageState} />
 		</section>

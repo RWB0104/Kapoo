@@ -28,7 +28,7 @@ interface Props
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = '/favicon.ico', locale = 'ko_KR' }: Props): JSX.Element | null
+export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://user-images.githubusercontent.com/50317129/167476335-17cd861c-1d56-4384-b0ae-8c3680d9de29.png', locale = 'ko_KR' }: Props): JSX.Element | null
 {
 	return (
 		<Head>

@@ -61,7 +61,7 @@ export default function Posts(): JSX.Element | null
 
 	return (
 		<section>
-			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} image={imageState} />
+			<Meta title={MENU_LIST[3].title} description={MENU_LIST[3].desc} url={MENU_LIST[3].url.pathname} />
 
 			<Screener title={TITLE} menu={MENU_LIST[3].title} lower={MENU_LIST[3].desc} image={imageState} />
 

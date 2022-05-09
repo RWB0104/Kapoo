@@ -79,7 +79,7 @@ export default function Home(): JSX.Element | null
 
 	return (
 		<section>
-			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} image={imageState} url="" />
+			<Meta title={MENU_LIST[0].title} description={MENU_LIST[0].desc} url="" />
 
 			<Screener title={TITLE} menu={MENU_LIST[0].title} lower={MENU_LIST[0].desc} image={imageState} />
 
