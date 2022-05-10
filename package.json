@@ -4,14 +4,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"prebuild": "yarn datagen && yarn seo",
+		"prebuild": "npm run datagen && npm run seo",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
 		"datagen": "ts-node -r tsconfig-paths/register ./next-prebuild.ts",
 		"seo": "ts-node -r tsconfig-paths/register ./next-seo.ts",
-		"export": "next export",
-		"dist": "yarn build && yarn export -o ../blog.itcode.dev/docs"
+		"preexport": "npm run build",
+		"export": "next export -o ../blog.itcode.dev/docs"
 	},
 	"dependencies": {
 		"next": "^12.1.6",
@@ -19,7 +19,7 @@
 		"react": "^18.1.0",
 		"react-cookie": "^4.0.3",
 		"react-dom": "^18.1.0",
-		"recoil": "^0.3.1"
+		"recoil": "^0.7.3-alpha.2"
 	},
 	"devDependencies": {
 		"@types/katex": "^0.11.1",
