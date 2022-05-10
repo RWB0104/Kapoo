@@ -6,7 +6,7 @@
  */
 
 // 라이브러리 모듈
-import Head from 'next/head';
+import Script from 'next/script';
 
 // 사용자 모듈
 import ContentLayout from '@components/contents/ContentLayout';
@@ -28,9 +28,7 @@ export default function Project(content: ContentProps): JSX.Element | null
 {
 	return (
 		<section>
-			<Head>
-				<script src="/js/content.js"></script>
-			</Head>
+			<Script src="/js/content.js"></Script>
 
 			<Meta title={content.header.title} description={content.header.excerpt} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} image={content.header.coverImage} />
 
