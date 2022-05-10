@@ -7,7 +7,6 @@
 
 // 라이브러리 모듈
 import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 
 // 사용자 모듈
 import Screener from '@components/global/Screener';
@@ -17,7 +16,7 @@ import CommitList from '@components/about/CommitList';
 import { getRandomIndex } from '@commons/common';
 import {  TITLE } from '@commons/env';
 import { MENU_LIST } from '@commons/menulist';
-import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom } from '@commons/state';
+import { useResetHook } from '@commons/hook';
 
 /**
  * 소개 페이지 JSX 반환 함수
@@ -28,14 +27,7 @@ export default function Posts(): JSX.Element | null
 {
 	const [ imageState, setImageState ] = useState('');
 
-	const setPostsPageState = useSetRecoilState(postsPageAtom);
-	const setProjectsPageState = useSetRecoilState(projectsPageAtom);
-
-	const setSelectPostsCategoryState = useSetRecoilState(postsCategoryAtom);
-	const setSelectProjectsCategoryState = useSetRecoilState(projectsCategoryAtom);
-
-	const setPostsSearchState = useSetRecoilState(postsSearchAtom);
-	const setProjectsSearchState = useSetRecoilState(projectsSearchAtom);
+	useResetHook();
 
 	useEffect(() =>
 	{
@@ -48,15 +40,6 @@ export default function Posts(): JSX.Element | null
 
 			setImageState(json.list[index]);
 		})();
-
-		setPostsPageState(1);
-		setProjectsPageState(1);
-
-		setSelectPostsCategoryState([]);
-		setSelectProjectsCategoryState([]);
-
-		setPostsSearchState('');
-		setProjectsSearchState('');
 	}, []);
 
 	return (

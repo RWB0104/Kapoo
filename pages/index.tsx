@@ -7,7 +7,6 @@
 
 // 라이브러리 모듈
 import { useEffect, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 
 // 사용자 모듈
 import Artbox from '@components/global/Artbox';
@@ -17,7 +16,7 @@ import ContentsCase from '@components/home/ContentsCase';
 import { MENU_LIST } from '@commons/menulist';
 import { ContentProps, getRandomIndex } from '@commons/common';
 import { TITLE } from '@commons/env';
-import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom } from '@commons/state';
+import { useResetHook } from '@commons/hook';
 
 /**
  * 홈 페이지 JSX 반환 함수
@@ -30,14 +29,7 @@ export default function Home(): JSX.Element | null
 	const [ postsState, setPostsState ] = useState([] as ContentProps[]);
 	const [ projectsState, setProjectsState ] = useState([] as ContentProps[]);
 
-	const setPostsPageState = useSetRecoilState(postsPageAtom);
-	const setProjectsPageState = useSetRecoilState(projectsPageAtom);
-
-	const setSelectPostsCategoryState = useSetRecoilState(postsCategoryAtom);
-	const setSelectProjectsCategoryState = useSetRecoilState(projectsCategoryAtom);
-
-	const setPostsSearchState = useSetRecoilState(postsSearchAtom);
-	const setProjectsSearchState = useSetRecoilState(projectsSearchAtom);
+	useResetHook();
 
 	useEffect(() =>
 	{
@@ -66,15 +58,6 @@ export default function Home(): JSX.Element | null
 
 			setProjectsState(json.list as ContentProps[]);
 		})();
-
-		setPostsPageState(1);
-		setProjectsPageState(1);
-
-		setSelectPostsCategoryState([]);
-		setSelectProjectsCategoryState([]);
-
-		setPostsSearchState('');
-		setProjectsSearchState('');
 	}, []);
 
 	return (

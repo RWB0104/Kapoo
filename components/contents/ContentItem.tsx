@@ -8,16 +8,16 @@
 // 라이브러리 모듈
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { IoIosArrowDown } from 'react-icons/io';
 
 // 사용자 모듈
 import NewContent from './NewContent';
 import ContentMeta from './ContentMeta';
 import { CATEGORY } from '@commons/env';
-import { ContentProps, getWrittenTimes, isNewContent } from '@commons/common';
+import { ContentProps, ContentTypeEnum, getWrittenTimes, isNewContent } from '@commons/common';
 import { useSemanticHook } from '@commons/hook';
-import { themeAtom } from '@commons/state';
+import { postsScrollAtom, projectsScrollAtom, themeAtom } from '@commons/state';
 
 // 스타일
 import styles from '@styles/components/contents/ContentItem.module.scss';
@@ -45,13 +45,18 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 
 	const isNew = isNewContent(item.header.date);
 
+	const setPostsScrollState = useSetRecoilState(postsScrollAtom);
+	const setProjectsScrollState = useSetRecoilState(projectsScrollAtom);
+
+	const setScrollState = item.header.type === ContentTypeEnum.POSTS ? setPostsScrollState : setProjectsScrollState;
+
 	const themeState = useRecoilValue(themeAtom);
 
 	return (
 		<div className={styles[`root-${themeState}`]}>
 			<div className={styles['image-wrapper']}>
 				<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
-					<a>
+					<a onClick={() => setScrollState(window.scrollY)}>
 						<img className={styles.image} src={coverImage} />
 					</a>
 				</Link>
@@ -67,7 +72,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 					</div>
 
 					<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
-						<a>
+						<a onClick={() => setScrollState(window.scrollY)}>
 							<h3 className={styles.title}>{title}</h3>
 						</a>
 					</Link>

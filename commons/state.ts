@@ -9,7 +9,7 @@
 import { atom } from 'recoil';
 
 // 사용자 모듈
-import { Theme } from './common';
+import { ContentProps, Theme } from './common';
 
 export const themeAtom = atom({
 	key: 'themeState',
@@ -54,4 +54,24 @@ export const postsSearchAtom = atom({
 export const projectsSearchAtom = atom({
 	key: 'projectsSearchState',
 	default: ''
+});
+
+export const postsAtom = atom({
+	key: 'postsState',
+	default: [] as ContentProps[]
+});
+
+export const projectsAtom = atom({
+	key: 'projectsState',
+	default: [] as ContentProps[]
+});
+
+export const postsScrollAtom = atom({
+	key: 'postsScrollState',
+	default: 0
+});
+
+export const projectsScrollAtom = atom({
+	key: 'projectsScrollState',
+	default: 0
 });

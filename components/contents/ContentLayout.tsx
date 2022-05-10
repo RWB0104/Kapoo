@@ -13,7 +13,7 @@ import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import Utterances from './Utterances';
 import Hits from '../global/Hits';
-import { ContentProps } from '@commons/common';
+import { ContentProps, ContentTypeEnum } from '@commons/common';
 
 // 스타일
 import styles from '@styles/components/contents/ContentLayout.module.scss';
@@ -32,7 +32,8 @@ interface Props
  */
 export default function ContentLayout({ data }: Props): JSX.Element | null
 {
-	const urls = [ data.header.type ].concat(data.url);
+	const type = data.header.type === ContentTypeEnum.POSTS ? 'posts' : 'projects';
+	const urls = [ type ].concat(data.url);
 
 	const page = {
 		type: data.header.type,

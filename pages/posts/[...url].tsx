@@ -13,9 +13,9 @@ import ContentLayout from '@components/contents/ContentLayout';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
 import { getContent, getContentList } from '@commons/api';
-import { ContentPageProps, ContentProps, PathsProps, RoutesProps } from '@commons/common';
+import { ContentPageProps, ContentProps, ContentTypeEnum, PathsProps, RoutesProps } from '@commons/common';
 
-const type = 'posts';
+const type = ContentTypeEnum.POSTS;
 
 /**
  * 포스트 내용 동적 페이지 JSX 반환 함수

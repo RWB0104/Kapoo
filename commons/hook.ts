@@ -4,10 +4,13 @@
  * @author RWB
  * @since 2022.05.02 Mon 22:53:48
  */
-
+// 라이브러리 모듈
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { menuAtom } from './state';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+
+// 사용자 모듈
+import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, menuAtom, postsScrollAtom, projectsScrollAtom } from './state';
+import { ContentType, ContentTypeEnum } from './common';
 
 /**
  * 반응형 훅 메서드
@@ -62,4 +65,59 @@ export function useScrollTopHook(): boolean
 	}, [ menuState ]);
 
 	return scrollState;
+}
+
+/**
+ * 리셋 훅 메서드
+ *
+ * @param {ContentType} type: 컨텐츠 타입
+ */
+export function useResetHook(type?: ContentType): void
+{
+	const setPostsPageState = useSetRecoilState(postsPageAtom);
+	const setProjectsPageState = useSetRecoilState(projectsPageAtom);
+
+	const setPostsCategoryState = useSetRecoilState(postsCategoryAtom);
+	const setProjectsCategoryState = useSetRecoilState(projectsCategoryAtom);
+
+	const setPostsSearchState = useSetRecoilState(postsSearchAtom);
+	const setProjectsSearchState = useSetRecoilState(projectsSearchAtom);
+
+	const setPostsScrollState = useSetRecoilState(postsScrollAtom);
+	const setProjectsScrollState = useSetRecoilState(projectsScrollAtom);
+
+	useEffect(() =>
+	{
+		// posts일 경우
+		if (type === ContentTypeEnum.POSTS)
+		{
+			setPostsPageState(1);
+			setPostsCategoryState([]);
+			setPostsSearchState('');
+			setPostsScrollState(0);
+		}
+
+		// projects일 경우
+		else if (type === ContentTypeEnum.PROJECTS)
+		{
+			setProjectsPageState(1);
+			setProjectsCategoryState([]);
+			setProjectsSearchState('');
+			setProjectsScrollState(0);
+		}
+
+		// 파라미터가 없을 경우
+		else
+		{
+			setPostsPageState(1);
+			setPostsCategoryState([]);
+			setPostsSearchState('');
+			setPostsScrollState(0);
+
+			setProjectsPageState(1);
+			setProjectsCategoryState([]);
+			setProjectsSearchState('');
+			setProjectsScrollState(0);
+		}
+	}, []);
 }

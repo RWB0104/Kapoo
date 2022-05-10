@@ -6,7 +6,7 @@
  */
 
 import { getContentList } from '@commons/api';
-import { ContentProps, SeoProps } from '@commons/common';
+import { ContentProps, ContentTypeEnum, SeoProps } from '@commons/common';
 import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
 
 // 라이브러리 모듈
@@ -41,10 +41,10 @@ async function seo()
 
 	console.log(`    - ${pages.length}개 메뉴 페이지 수집`);
 
-	const posts = await getContentList('posts', false);
+	const posts = await getContentList(ContentTypeEnum.POSTS, false);
 	console.log(`    - ${posts.length}개 posts 페이지 수집`);
 
-	const projects = await getContentList('projects', false);
+	const projects = await getContentList(ContentTypeEnum.PROJECTS, false);
 	console.log(`    - ${projects.length}개 projects 페이지 수집`);
 
 	console.log('    - ✅ 페이지 정보 수집 완료');

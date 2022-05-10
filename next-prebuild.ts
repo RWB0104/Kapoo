@@ -10,6 +10,7 @@ import fs from 'fs';
 
 // 사용자 모듈
 import { getBuildHash, getContentList, getCategoryList, getImageList } from '@commons/api';
+import { ContentType, ContentTypeEnum } from '@commons/common';
 
 run();
 
@@ -26,11 +27,11 @@ async function run()
 
 	await genImageList();
 
-	await genContentList('posts');
-	await genContentList('projects');
+	await genContentList(ContentTypeEnum.POSTS);
+	await genContentList(ContentTypeEnum.PROJECTS);
 
-	await genCategoryList('posts');
-	await genCategoryList('projects');
+	await genCategoryList(ContentTypeEnum.POSTS);
+	await genCategoryList(ContentTypeEnum.PROJECTS);
 
 	console.log('빌드 전처리 작업 종료');
 	console.log('==================================================\n\n\n');
@@ -91,9 +92,9 @@ async function genImageList()
 /**
  * 컨텐츠 리스트 생성 메서드
  *
- * @param {'posts' | 'projects'} type: 타입
+ * @param {ContentType} type: 타입
  */
-async function genContentList(type: 'posts' | 'projects')
+async function genContentList(type: ContentType)
 {
 	console.log(`  - ${type} 리스트 생성`);
 
@@ -127,9 +128,9 @@ async function genContentList(type: 'posts' | 'projects')
 /**
  * 컨텐츠 카테고리 리스트 생성 메서드
  *
- * @param {'posts' | 'projects'} type: 타입
+ * @param {ContentType} type: 타입
  */
-async function genCategoryList(type: 'posts' | 'projects')
+async function genCategoryList(type: ContentType)
 {
 	console.log(`  - ${type} 카테고리 리스트 생성`);
 

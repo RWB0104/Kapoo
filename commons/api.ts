@@ -16,7 +16,7 @@ import katex from 'katex';
 import loadLanguage from 'prismjs/components/';
 
 // 사용자 모듈
-import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps } from './common';
+import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps, ContentType } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
 
@@ -59,12 +59,12 @@ export async function getImageList(): Promise<string[]>
 /**
  * 컨텐츠 목록 반환 함수
  *
- * @param {'posts' | 'projects'} type: 컨텐츠 타입
+ * @param {ContentType} type: 컨텐츠 타입
  * @param {boolean} isFull: 전체 테이터 사용 여부
  *
  * @returns {ContentProps[]} 컨텐츠 목록
  */
-export async function getContentList(type: 'posts' | 'projects', isFull: boolean): Promise<ContentProps[]>
+export async function getContentList(type: ContentType, isFull: boolean): Promise<ContentProps[]>
 {
 	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
 
@@ -84,11 +84,11 @@ export async function getContentList(type: 'posts' | 'projects', isFull: boolean
 /**
  * 카테고리 목록 반환 함수
  *
- * @param {'posts' | 'projects'} type: 컨텐츠 타입
+ * @param {ContentType} type: 컨텐츠 타입
  *
  * @returns {CategoryProps[]} 카테고리 목록
  */
-export async function getCategoryList(type: 'posts' | 'projects'): Promise<CategoryProps[]>
+export async function getCategoryList(type: ContentType): Promise<CategoryProps[]>
 {
 	const list = await getContentList(type, false);
 
@@ -140,13 +140,13 @@ export async function getCategoryList(type: 'posts' | 'projects'): Promise<Categ
 /**
  * 컨텐츠 반환 함수
  *
- * @param {'posts' | 'projects'} type: 타입
+ * @param {ContentType} type: 타입
  * @param {string} name: 이름
  * @param {boolean} isFull: 전체 테이터 사용 여부
  *
  * @returns {ContentProps} ContentProps
  */
-export async function getContent(type: 'posts' | 'projects', name: string, isFull: boolean): Promise<ContentProps>
+export async function getContent(type: ContentType, name: string, isFull: boolean): Promise<ContentProps>
 {
 	// md 확장자가 없을 경우
 	if (!MD_REGX.test(name))

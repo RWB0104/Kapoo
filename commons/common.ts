@@ -11,6 +11,14 @@ export enum Theme
 	LIGHT = 'light'
 }
 
+export enum ContentTypeEnum
+{
+	POSTS = 'posts',
+	PROJECTS = 'projects'
+}
+
+export type ContentType = ContentTypeEnum.POSTS | ContentTypeEnum.PROJECTS
+
 export interface DateProps
 {
 	year: string,
@@ -28,13 +36,12 @@ export interface ContentHeaderProps
 	excerpt: string,
 	coverImage: string,
 	date: string,
-	type: string,
+	type: ContentType,
 	category: string,
 	tag: string[],
 	group?: string,
 	comment: boolean,
-	publish: boolean,
-	isNew: boolean
+	publish: boolean
 }
 
 export interface ContentProps
@@ -207,4 +214,19 @@ export function getWrittenTimes(date: Date): string
 export function isNewContent(date: string): boolean
 {
 	return new Date().getTime() - new Date(date).getTime() < 86400000 * 7;
+}
+
+export function getUrlQuery(location: Location): { key: string, value: string }[]
+{
+	const { href } = location;
+
+	return href.split('?').length === 1 ? [] : href.split('?')[1].split('&').map(e =>
+	{
+		const [ key, value ] = e.split('=');
+
+		return {
+			key,
+			value: decodeURIComponent(value)
+		};
+	});
 }
