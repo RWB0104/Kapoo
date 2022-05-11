@@ -33,6 +33,11 @@ interface CommitProps
 	html_url: string
 }
 
+/**
+ * 커밋 리스트 JSX 반환 메서드
+ *
+ * @returns {JSX.Element | null} JSX
+ */
 export default function CommitList(): JSX.Element | null
 {
 	const [ commits, setCommits ] = useState([] as CommitProps[]);
@@ -54,8 +59,6 @@ export default function CommitList(): JSX.Element | null
 				{
 					json = json.slice(0, 20);
 				}
-
-				console.dir(commits);
 
 				setCommits(json);
 			}

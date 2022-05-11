@@ -190,8 +190,6 @@ export default function Posts(): JSX.Element | null
 
 				return title.includes(target) || excerpt.includes(target) || tag.join(' ').includes(target);
 			});
-
-			console.log(111);
 		}
 
 		// 카테고리를 하나 이상 선택했을 경우

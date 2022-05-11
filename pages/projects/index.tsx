@@ -127,7 +127,6 @@ export default function Projects(): JSX.Element | null
 
 	useEffect(() =>
 	{
-		console.dir(projectsSearchState.length);
 		// 검색 키워드가 있을 경우
 		if (projectsSearchState.length > 0)
 		{
@@ -147,7 +146,6 @@ export default function Projects(): JSX.Element | null
 		// 검색 키워드가 없을 경우
 		else
 		{
-			console.dir(projectsCategoryState);
 			// 페이지가 한 번 이상 넘어가고, 카테고리가 하나 이상 선택된 경우
 			if (projectsPageState > 1 && projectsCategoryState.length > 0)
 			{

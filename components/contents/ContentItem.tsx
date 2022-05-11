@@ -52,10 +52,13 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 
 	const themeState = useRecoilValue(themeAtom);
 
+	const postUrl = `/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`;
+	const categoryUrl = `/${type}?category=${category}`;
+
 	return (
 		<div className={styles[`root-${themeState}`]}>
 			<div className={styles['image-wrapper']}>
-				<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
+				<Link href={postUrl}>
 					<a onClick={() => setScrollState(window.scrollY)}>
 						<img className={styles.image} src={coverImage} />
 					</a>
@@ -65,13 +68,23 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 			<div className={styles['body-wrapper']}>
 				<div className={styles.wrapper}>
 					<div className={styles['category-wrapper']}>
-						<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
-						<h4 className={styles.category}>{category}</h4>
+						<Link href={categoryUrl}>
+							<a>
+								<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+							</a>
+						</Link>
+
+						<Link href={categoryUrl}>
+							<a>
+								<h4 className={styles.category}>{category}</h4>
+							</a>
+						</Link>
+
 
 						<NewContent flag={isNew} />
 					</div>
 
-					<Link href={`/${type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`}>
+					<Link href={postUrl}>
 						<a onClick={() => setScrollState(window.scrollY)}>
 							<h3 className={styles.title}>{title}</h3>
 						</a>
