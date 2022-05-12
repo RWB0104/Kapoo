@@ -126,6 +126,8 @@
 
 		max-width: 100%;
 
+		box-shadow: 3px 3px 10px grey;
+
 		@include gutter;
 	}
 
@@ -144,13 +146,12 @@
 
 	pre[class*="language-"],
 	code[class*="language-"] {
-		background-color: #161d2c;
+		background-color: #0D1117;
 		padding: 20px;
 
 		border-bottom-left-radius: 10px;
 		border-bottom-right-radius: 10px;
 
-		font-family: Hack, AppleSDGothicNeo, sans-serif;
 		color: white;
 
 		text-align: left;
@@ -278,11 +279,11 @@
 
 			& tr {
 				&:nth-child(2n) {
-					background-color: #1c2335;
+					background-color: #161B22;
 				}
 
 				&:hover {
-					background-color: #546687;
+					background-color: #2b3442;
 
 					& td:first-child {
 						color: white;
@@ -308,6 +309,12 @@
 					width: 100%;
 
 					padding: 0px 20px 0px 10px;
+
+					font-family: Hack, AppleSDGothicNeo, sans-serif;
+
+					span {
+						font-family: inherit;
+					}
 				}
 			}
 		}
@@ -376,9 +383,10 @@
 
 	a {
 		color: map-get($lightBlue, "A400");
+		text-decoration: underline;
 
 		&:hover {
-			text-decoration: underline;
+			text-decoration: none;
 		}
 	}
 
@@ -457,16 +465,6 @@
 .markdown.dark {
 	$color: map-get($map: $blue, $key: "400");
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		border-left: 10px solid $color;
-		border-bottom: 3px solid $color;
-	}
-
 	code:not([class*="language-"]) {
 		border: 1px solid $color;
 		color: $color;
@@ -485,11 +483,6 @@
 
 			th {
 				background-color: #111b2b;
-
-				padding: 8px 20px;
-				text-align: center;
-
-				white-space: nowrap;
 			}
 
 			tr {
@@ -509,16 +502,6 @@
 
 .markdown.light {
 	$color: map-get($map: $pink, $key: "400");
-
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		border-left: 10px solid $color;
-		border-bottom: 3px solid $color;
-	}
 
 	code:not([class*="language-"]) {
 		border: 1px solid $color;

@@ -83,6 +83,11 @@
 	transform-origin: 50% 50%;
 }
 
+@mixin rotate2-animation() {
+	animation: rotate 1.5s ease infinite;
+	transform-origin: 50% 50%;
+}
+
 @mixin spin-animation() {
 	animation: spin 3s ease infinite;
 	transform-origin: 50% 50%;

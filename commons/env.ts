@@ -35,7 +35,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118843488-126c6200-b905-11eb-9324-9ea96ea833dd.png'
 	},
 	{
-		title: 'That\'s not the hard part. It\'s letting go.',
+		title: 'That\'s not the hard part.\nIt\'s letting go.',
 		author: 'Sierra Madre Casino',
 		images: 'https://user-images.githubusercontent.com/50317129/118843635-35971180-b905-11eb-874f-e7929f9f9664.png'
 	},
@@ -45,7 +45,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118843791-595a5780-b905-11eb-88f8-781bbf897ef5.png'
 	},
 	{
-		title: 'A man chooses, A slave obeys.',
+		title: 'A man chooses,\nA slave obeys.',
 		author: 'a Golfer',
 		images: 'https://user-images.githubusercontent.com/50317129/118843919-77c05300-b905-11eb-8213-6f9caaa58829.png'
 	},
@@ -75,7 +75,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118844589-08972e80-b906-11eb-8b69-a32c9a29a329.png'
 	},
 	{
-		title: 'War... War never changes. Men do.',
+		title: 'War... War never changes.\nbut Men do.',
 		author: 'Ulysses',
 		images: 'https://user-images.githubusercontent.com/50317129/118844943-514ee780-b906-11eb-92fc-306cb4ad2174.png'
 	},
@@ -95,7 +95,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118846014-4052a600-b907-11eb-880c-0dd5708123ed.png'
 	},
 	{
-		title: 'Remember. We get dirty, World be stay clean. That\'s the mission.',
+		title: 'Remember. We get dirty,\nWorld be stay clean.\nThat\'s the mission.',
 		author: 'Cpt. Price',
 		images: 'https://user-images.githubusercontent.com/50317129/118846231-7b54d980-b907-11eb-87b0-6354b55c3b5c.png'
 	},
@@ -115,12 +115,12 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118846645-e7374200-b907-11eb-9d64-8d11b955d219.png'
 	},
 	{
-		title: '그 여자가 그만한 가치가 있길 바라겠어, 지미...',
+		title: '그 여자가 그만한 가치가 있길 바라겠어,\n지미...',
 		author: 'Tychus J. Findlay...?',
 		images: 'https://user-images.githubusercontent.com/50317129/118846876-1e0d5800-b908-11eb-836c-697e3eb1cdc2.png'
 	},
 	{
-		title: '진짤루에여 가짤루에여??? 네????',
+		title: '진짤루에여 가짤루에여???\n네????',
 		author: '하빵',
 		images: 'https://user-images.githubusercontent.com/50317129/118972620-b4468a00-b9ab-11eb-8751-e22b63075321.png'
 	},
@@ -130,12 +130,7 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/118972896-08ea0500-b9ac-11eb-9923-a40717be81b8.png'
 	},
 	{
-		title: 'I think we\'ll be OK, Leon.',
-		author: 'Matilda',
-		images: 'https://user-images.githubusercontent.com/50317129/118973091-477fbf80-b9ac-11eb-8b7a-c1275d2bf97b.png'
-	},
-	{
-		title: 'I think we\'ll be OK, Leon.',
+		title: 'I think we\'ll be OK,\nLeon.',
 		author: 'Matilda',
 		images: 'https://user-images.githubusercontent.com/50317129/118973091-477fbf80-b9ac-11eb-8b7a-c1275d2bf97b.png'
 	},
@@ -155,12 +150,12 @@ export const PIECE = [
 		images: 'https://user-images.githubusercontent.com/50317129/119292046-936f8480-bc8a-11eb-9400-33f06d901878.gif'
 	},
 	{
-		title: 'If no one else can help, and if you can find them, maybe you can hire',
+		title: 'If no one else can help,\nand if you can find them,\nmaybe you can hire',
 		author: 'the A-Team',
 		images: 'https://user-images.githubusercontent.com/50317129/119294369-4510b480-bc8f-11eb-9a20-f64a071a2110.png'
 	},
 	{
-		title: 'Living in the Sunlight, Loving in the Moonlight',
+		title: 'Living in the Sunlight,\nLoving in the Moonlight',
 		author: '&new',
 		images: 'https://user-images.githubusercontent.com/50317129/119343456-714d2500-bcd1-11eb-9b6a-3c9921da7959.png'
 	},
@@ -178,5 +173,10 @@ export const PIECE = [
 		title: '*--- *- -*-* -*-',
 		author: 'Are you in there BT?',
 		images: 'https://user-images.githubusercontent.com/50317129/129361016-a5329b8a-b96d-4102-9b9e-ef37b44e025f.gif'
+	},
+	{
+		title: '미운 사람만 가득한 나도 이상한가요?',
+		author: '미운 사람만 가득한 이 도시에도',
+		images: 'https://user-images.githubusercontent.com/50317129/168111923-1f8202fd-bd0f-4536-8b57-4cf670c3eec4.mp4'
 	}
 ];
