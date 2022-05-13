@@ -5,17 +5,12 @@
  * @since 2021.07.25 Sun 17:37:32
  */
 
-// 라이브러리 모듈
+import { ContentProps } from '@commons/common';
+import { themeAtom } from '@commons/state';
+import styles from '@styles/components/contents/ContentMover.module.scss';
 import Link from 'next/link';
 import { IoArrowBack, IoArrowForward, IoMenu } from 'react-icons/io5';
 import { useRecoilValue } from 'recoil';
-
-// 사용자 모듈
-import { ContentProps } from '@commons/common';
-import { themeAtom } from '@commons/state';
-
-// 스타일
-import styles from '@styles/components/contents/ContentMover.module.scss';
 
 interface Props
 {
@@ -38,9 +33,9 @@ interface SubProps
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentMover({ page }: Props): JSX.Element | null
+export default function ContentMover({ page }: Props): JSX.Element
 {
 	const { prev, next } = page;
 
@@ -62,7 +57,7 @@ export default function ContentMover({ page }: Props): JSX.Element | null
 
 			<div>
 				<Link href={`/${page.type}`}>
-					<a title={`/${page.type}`} className={styles[`button-${themeState}`]}>
+					<a className={styles[`button-${themeState}`]} title={`/${page.type}`}>
 						<IoMenu />
 						<p>목록</p>
 					</a>
@@ -83,7 +78,7 @@ function SideButton({ className, data, isNext }: SubProps): JSX.Element | null
 {
 	return data ? (
 		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`}>
-			<a className={className} title={data.header.title} data-prev={isNext}>
+			<a className={className} data-prev={isNext} title={data.header.title}>
 				{isNext && <IoArrowBack />}
 				<p>{data.header.title}</p>
 				{!isNext && <IoArrowForward />}

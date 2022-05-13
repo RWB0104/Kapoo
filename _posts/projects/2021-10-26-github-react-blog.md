@@ -85,7 +85,6 @@ publish: true
 * ![@typescript-eslint/eslint-plugin](https://img.shields.io/badge/@typescript--eslint\/eslint--plugin-^4.28.2-lightgrey)
 * ![@typescript-eslint/parser](https://img.shields.io/badge/@typescript--eslint\/parser-^4.28.2-lightgrey)
 * ![@zeit/next-sass](https://img.shields.io/badge/@zeit\/next--sass-^1.0.1-lightgrey)
-* ![babel-plugin-styled-components](https://img.shields.io/badge/babel--plugin--styled--components-^1.13.2-lightgrey)
 * ![eslint](https://img.shields.io/badge/eslint-7.30.0-lightgrey)
 * ![eslint-config-next](https://img.shields.io/badge/eslint--config--next-^11.0.1-lightgrey)
 * ![eslint-plugin-unused-imports](https://img.shields.io/badge/eslint--plugin--unused--imports-^1.1.2-lightgrey)

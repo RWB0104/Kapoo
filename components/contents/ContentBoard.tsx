@@ -5,12 +5,10 @@
  * @since 2021.07.17 Sat 09:57:28
  */
 
-// 사용자 모듈
-import ContentList from './ContentList';
 import { ContentProps } from '@commons/common';
-
-// 스타일
 import styles from '@styles/components/contents/ContentBoard.module.scss';
+
+import ContentList from './ContentList';
 
 interface Props
 {
@@ -20,9 +18,9 @@ interface Props
 /**
  * 컨텐츠 보드 JSX 반환 함수
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentBoard({ list }: Props): JSX.Element | null
+export default function ContentBoard({ list }: Props): JSX.Element
 {
 	return (
 		<article className={styles.root}>

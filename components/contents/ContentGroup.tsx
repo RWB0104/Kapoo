@@ -5,14 +5,11 @@
  * @since 2021.07.24 Sat 10:01:18
  */
 
-// 라이브러리 모듈
-import Link from 'next/link';
-
-// 사용자 모듈
 import { ContentProps } from '@commons/common';
-
-// 스타일
+import { themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentGroup.module.scss';
+import Link from 'next/link';
+import { useRecoilValue } from 'recoil';
 
 interface Props
 {
@@ -29,17 +26,19 @@ interface Props
  */
 export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 {
-	urls.splice(1, 1);
-
-	const current = `/${urls.join('/')}`;
+	const themeState = useRecoilValue(themeAtom);
 
 	// 유효한 그룹 객체가 있을 경우
 	if (group && group.length > 0)
 	{
+		const current = `/${group[0].header.type}/${urls.slice(2, 6).join('/')}`;
+
 		const groups = group.map((item, index) =>
 		{
 			const title = item.header.title;
 			const url = `/${item.header.type}/${item.url.slice(1, 5).join('/')}`;
+
+			console.dir(`${current} ${url}`);
 
 			return (
 				<li key={index}>
@@ -51,14 +50,13 @@ export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 						</Link>
 					)}
 				</li>
-
 			);
 		});
 
 		const groupTitle = group[0].header.group;
 
 		return (
-			<article className={styles.root}>
+			<article className={styles[`root-${themeState}`]}>
 				<div className={styles.meta}>
 					<div className={styles.dimmer}>
 						<div className={styles.prompt}>
@@ -67,10 +65,12 @@ export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 						</div>
 					</div>
 
-					<img className={styles.image} title={groupTitle} src={group[0].header.coverImage} />
+					<img className={styles.image} src={group[0].header.coverImage} title={groupTitle} />
 				</div>
 
-				<ul className={styles.list}>{groups}</ul>
+				<div className={styles.body}>
+					<ul className={styles.list}>{groups}</ul>
+				</div>
 			</article>
 		);
 	}

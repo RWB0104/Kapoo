@@ -5,18 +5,13 @@
  * @since 2022.05.10 Tue 01:01:15
  */
 
-// 라이브러리 모듈
+import { ContentType, ContentTypeEnum } from '@commons/common';
+import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, themeAtom } from '@commons/state';
+import styles from '@styles/components/contents/ContentSearch.module.scss';
 import React, { useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { useRecoilState, useRecoilValue } from 'recoil';
 import { IoClose } from 'react-icons/io5';
-
-// 사용자 모듈
-import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, themeAtom } from '@commons/state';
-import { ContentType, ContentTypeEnum } from '@commons/common';
-
-// 스타일
-import styles from '@styles/components/contents/ContentSearch.module.scss';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface Props
 {
@@ -59,7 +54,7 @@ export default function ContentSearch({ type }: Props): JSX.Element
 			<div className={styles[`root-${themeState}`]}>
 				<FaSearch />
 
-				<input type="text" className={styles.text} ref={ref} value={searchState} onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+				<input className={styles.text} ref={ref} type="text" value={searchState} onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 				{
 					setSearchState(e.target.value);
 
@@ -76,7 +71,7 @@ export default function ContentSearch({ type }: Props): JSX.Element
 					}
 				}} />
 
-				<button onClick={() =>
+				<button data-show={searchState.length > 0} onClick={() =>
 				{
 					setSearchState('');
 

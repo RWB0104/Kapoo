@@ -5,18 +5,13 @@
  * @since 2021.07.12 Mon 00:53:20
  */
 
-// 라이브러리 모듈
-import { useSetRecoilState } from 'recoil';
-import { useCookies } from 'react-cookie';
-import { IoMoon } from 'react-icons/io5';
-
-// 사용자 모듈
+import { Theme } from '@commons/common';
 import { useSemanticHook } from '@commons/hook';
 import { themeAtom } from '@commons/state';
-import { Theme } from '@commons/common';
-
-// 스타일
 import styles from '@styles/components/global/ThemeFab.module.scss';
+import { useCookies } from 'react-cookie';
+import { IoMoon } from 'react-icons/io5';
+import { useSetRecoilState } from 'recoil';
 
 /**
  * 다크 테마 Fab JSX 반환 함수

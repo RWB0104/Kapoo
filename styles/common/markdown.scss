@@ -116,6 +116,10 @@
 		font-size: 1.1rem;
 	}
 
+	p {
+		padding: 10px 0px;
+	}
+
 	span {
 		display: inline;
 	}
@@ -125,8 +129,6 @@
 		margin: auto;
 
 		max-width: 100%;
-
-		box-shadow: 3px 3px 10px grey;
 
 		@include gutter;
 	}
@@ -390,7 +392,8 @@
 		}
 	}
 
-	ul {
+	ul,
+	ol {
 		padding-left: 20px;
 
 		li {

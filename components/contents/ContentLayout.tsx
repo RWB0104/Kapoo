@@ -5,18 +5,16 @@
  * @since 2021.07.17 Sat 04:09:04
  */
 
-// 사용자 모듈
-import ContentViewer from './ContentViewer';
-import ContentToc from './ContentToc';
+import { ContentProps, ContentTypeEnum } from '@commons/common';
+import Hits from '@components/global/Hits';
+import Utterances from '@components/global/Utterances';
+import styles from '@styles/components/contents/ContentLayout.module.scss';
+
 import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
-import Utterances from './Utterances';
-import Hits from '../global/Hits';
-import { ContentProps, ContentTypeEnum } from '@commons/common';
-
-// 스타일
-import styles from '@styles/components/contents/ContentLayout.module.scss';
+import ContentToc from './ContentToc';
+import ContentViewer from './ContentViewer';
 
 interface Props
 {
@@ -28,28 +26,28 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentLayout({ data }: Props): JSX.Element | null
+export default function ContentLayout({ data }: Props): JSX.Element
 {
 	const type = data.header.type === ContentTypeEnum.POSTS ? 'posts' : 'projects';
 	const urls = [ type ].concat(data.url);
 
 	const page = {
-		type: data.header.type,
+		next: data.meta?.next,
 		prev: data.meta?.prev,
-		next: data.meta?.next
+		type: data.header.type
 	};
 
 	return (
 		<article className={styles.root}>
+			<ContentGroup group={data.meta?.group} urls={urls} />
+
 			<ContentToc toc={data.toc} />
 
 			<Hits urls={urls} />
 
 			<ContentViewer content={data.content as string} />
-
-			<ContentGroup urls={urls} group={data.meta?.group} />
 
 			<ContentMeta header={data.header} />
 

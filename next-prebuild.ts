@@ -5,12 +5,10 @@
  * @since 2022.05.09 Mon 19:56:59
  */
 
-// 라이브러리 모듈
-import fs from 'fs';
-
-// 사용자 모듈
 import { getBuildHash, getContentList, getCategoryList, getImageList } from '@commons/api';
 import { ContentType, ContentTypeEnum } from '@commons/common';
+
+import fs from 'fs';
 
 run();
 

@@ -5,34 +5,29 @@
  * @since 2021.07.12 Mon 00:01:58
  */
 
-// 라이브러리 모듈
-import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-
-// 사용자 모듈
-import Screener from '@components/global/Screener';
-import Meta from '@components/global/Meta';
-import ContentCategory from '@components/contents/ContentCategory';
-import ContentBoard from '@components/contents/ContentBoard';
-import ContentSearch from '@components/contents/ContentSearch';
-import { CategoryProps, ContentProps, ContentTypeEnum, CONTENT_DIV, getRandomIndex, getUrlQuery } from '@commons/common';
+import { ContentTypeEnum, CONTENT_DIV, getUrlQuery } from '@commons/common';
 import { TITLE } from '@commons/env';
+import { useCategories, useContents, useResetHook, useScreenImage } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import { projectsAtom, projectsCategoryAtom, projectsPageAtom, projectsScrollAtom, projectsSearchAtom } from '@commons/state';
-import { useResetHook } from '@commons/hook';
+import ContentBoard from '@components/contents/ContentBoard';
+import ContentCategory from '@components/contents/ContentCategory';
+import ContentSearch from '@components/contents/ContentSearch';
+import Meta from '@components/global/Meta';
+import Screener from '@components/global/Screener';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 /**
  * 프로젝트 페이지 JSX 반환 함수
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Projects(): JSX.Element | null
+export default function Projects(): JSX.Element
 {
-	const type = ContentTypeEnum.PROJECTS;
+	useResetHook(ContentTypeEnum.POSTS);
 
-	const [ imageState, setImageState ] = useState('');
-	const [ categoryState, setCategoryState ] = useState([] as CategoryProps[]);
-	const [ refProjectsState, setRefProjectsState ] = useState([] as ContentProps[]);
+	const type = ContentTypeEnum.PROJECTS;
 
 	const [ projectsState, setProjectsState ] = useRecoilState(projectsAtom);
 	const [ projectsPageState, setProjectsPageState ] = useRecoilState(projectsPageAtom);
@@ -41,7 +36,9 @@ export default function Projects(): JSX.Element | null
 
 	const projectsScrollState = useRecoilValue(projectsScrollAtom);
 
-	useResetHook(ContentTypeEnum.POSTS);
+	const imageState = useScreenImage();
+	const refProjectsState = useContents(type);
+	const categoryState = useCategories(type);
 
 	useEffect(() =>
 	{
@@ -58,36 +55,6 @@ export default function Projects(): JSX.Element | null
 
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
-
-	useEffect(() =>
-	{
-		(async () =>
-		{
-			const list = await fetch('/image.json');
-			const json = await list.json();
-
-			const index = getRandomIndex(json.list.length);
-
-			setImageState(json.list[index]);
-		})();
-
-		(async () =>
-		{
-			const list = await fetch(`/${type}.json`);
-			const json = await list.json();
-
-			setRefProjectsState(json.list as ContentProps[]);
-			setProjectsState(json.list as ContentProps[]);
-		})();
-
-		(async () =>
-		{
-			const list = await fetch(`/${type}-category.json`);
-			const json = await list.json();
-
-			setCategoryState(json.list as CategoryProps[]);
-		})();
-	}, []);
 
 	useEffect(() =>
 	{
@@ -203,12 +170,12 @@ export default function Projects(): JSX.Element | null
 
 	return (
 		<section>
-			<Meta title={MENU_LIST[2].title} description={MENU_LIST[2].desc} url={MENU_LIST[2].url.pathname} />
+			<Meta description={MENU_LIST[2].desc} title={MENU_LIST[2].title} url={MENU_LIST[2].url.pathname} />
 
-			<Screener title={TITLE} menu={MENU_LIST[2].title} lower={MENU_LIST[2].desc} image={imageState} />
+			<Screener image={imageState} lower={MENU_LIST[2].desc} menu={MENU_LIST[2].title} title={TITLE} />
 
 			<ContentSearch type={type} />
-			<ContentCategory type={type} list={categoryState} />
+			<ContentCategory list={categoryState} type={type} />
 			<ContentBoard list={projectsState.slice(0, projectsPageState * CONTENT_DIV)} />
 		</section>
 	);

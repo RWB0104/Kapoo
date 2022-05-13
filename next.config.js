@@ -6,11 +6,11 @@ module.exports = withSass({
 });
 
 module.exports = {
-	reactStrictMode: false,
-	productionBrowserSourceMaps: false,
 	images: {
 		loader: 'imgix'
-	}
+	},
+	productionBrowserSourceMaps: false,
+	reactStrictMode: false
 };
 
 module.exports = withPWA({

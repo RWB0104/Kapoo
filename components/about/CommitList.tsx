@@ -5,16 +5,11 @@
  * @since 2022.04.10 Sun 19:17:35
  */
 
-// 라이브러리 모듈
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-
-// 사용자 모듈
 import { getDateDetail } from '@commons/common';
 import { themeAtom } from '@commons/state';
-
-// 스타일
 import styles from '@styles/components/about/CommitList.module.scss';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 interface CommitProps
 {
@@ -75,15 +70,15 @@ export default function CommitList(): JSX.Element | null
 				const date = `${year}-${month}-${day} ${week} ${hour}:${minute}:${second}`;
 
 				return (
-					<div key={index} className={styles[`item-${themeState}`]} data-index={index} data-sha={commit.sha}>
+					<div className={styles[`item-${themeState}`]} data-index={index} data-sha={commit.sha} key={index}>
 						<div className={styles.header}>
-							<a href={commit.author.html_url} target="_blank"><img src={commit.author.avatar_url} /></a>
-							<p><b><a href={commit.author.html_url} target="_blank">{commit.author.login}</a></b> has commits <small>at {date}</small></p>
+							<a href={commit.author.html_url} rel="noreferrer" target="_blank"><img src={commit.author.avatar_url} /></a>
+							<p><b><a href={commit.author.html_url} rel="noreferrer" target="_blank">{commit.author.login}</a></b> has commits <small>at {date}</small></p>
 						</div>
 
 						<div className={styles[`content-${themeState}`]}>
 							<div>
-								<h4><a href={commit.html_url} target="_blank">{commit.commit.message.split('\n')[0]}</a></h4>
+								<h4><a href={commit.html_url} rel="noreferrer" target="_blank">{commit.commit.message.split('\n')[0]}</a></h4>
 							</div>
 
 							<div>

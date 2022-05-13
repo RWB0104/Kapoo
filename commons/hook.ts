@@ -4,13 +4,12 @@
  * @author RWB
  * @since 2022.05.02 Mon 22:53:48
  */
-// 라이브러리 모듈
+
 import { useEffect, useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 
-// 사용자 모듈
+import { CategoryProps, ContentProps, ContentType, ContentTypeEnum, getRandomIndex } from './common';
 import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, menuAtom, postsScrollAtom, projectsScrollAtom } from './state';
-import { ContentType, ContentTypeEnum } from './common';
 
 /**
  * 반응형 훅 메서드
@@ -120,4 +119,79 @@ export function useResetHook(type?: ContentType): void
 			setProjectsScrollState(0);
 		}
 	}, []);
+}
+
+/**
+ * 스크린 이미지 훅 메서드
+ *
+ * @returns {string} 스크린 이미지
+ */
+export function useScreenImage(): string
+{
+	const [ state, setState ] = useState('');
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const list = await fetch('/image.json');
+			const json = await list.json();
+
+			const index = getRandomIndex(json.list.length);
+
+			setState(json.list[index]);
+		})();
+	}, []);
+
+	return state;
+}
+
+/**
+ * 컨텐츠 훅 메서드
+ *
+ * @param {ContentType} type: 컨텐츠 타입
+ *
+ * @returns {ContentProps[]} 컨텐츠 객체 배열
+ */
+export function useContents(type: ContentType): ContentProps[]
+{
+	const [ state, setState ] = useState([] as ContentProps[]);
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const list = await fetch(`/${type}.json`);
+			const json = await list.json();
+
+			setState(json.list as ContentProps[]);
+		})();
+	}, []);
+
+	return state;
+}
+
+/**
+ * 컨텐츠 카테고리 훅 메서드
+ *
+ * @param {ContentType} type: 컨텐츠 카테고리
+ *
+ * @returns {ContentProps[]} 컨텐츠 카테고리 객체 배열
+ */
+export function useCategories(type: ContentType): CategoryProps[]
+{
+	const [ state, setState ] = useState([] as CategoryProps[]);
+
+	useEffect(() =>
+	{
+		(async () =>
+		{
+			const list = await fetch(`/${type}-category.json`);
+			const json = await list.json();
+
+			setState(json.list as CategoryProps[]);
+		})();
+	}, []);
+
+	return state;
 }

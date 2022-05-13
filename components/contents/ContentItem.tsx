@@ -5,22 +5,18 @@
  * @since 2021.07.13 Tue 00:00:40
  */
 
-// 라이브러리 모듈
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { IoIosArrowDown } from 'react-icons/io';
-
-// 사용자 모듈
-import NewContent from './NewContent';
-import ContentMeta from './ContentMeta';
-import { CATEGORY } from '@commons/env';
 import { ContentProps, ContentTypeEnum, getWrittenTimes, isNewContent } from '@commons/common';
+import { CATEGORY } from '@commons/env';
 import { useSemanticHook } from '@commons/hook';
 import { postsScrollAtom, projectsScrollAtom, themeAtom } from '@commons/state';
-
-// 스타일
 import styles from '@styles/components/contents/ContentItem.module.scss';
+import Link from 'next/link';
+import { useState } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import ContentMeta from './ContentMeta';
+import NewContent from './NewContent';
 
 interface Props
 {
@@ -32,9 +28,9 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentItem({ item }: Props): JSX.Element | null
+export default function ContentItem({ item }: Props): JSX.Element
 {
 	const { title, excerpt, coverImage, type, category, date } = item.header;
 
@@ -70,7 +66,7 @@ export default function ContentItem({ item }: Props): JSX.Element | null
 					<div className={styles['category-wrapper']}>
 						<Link href={categoryUrl}>
 							<a>
-								<img className={styles['category-image']} alt={category} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+								<img alt={category} className={styles['category-image']} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
 							</a>
 						</Link>
 

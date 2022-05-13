@@ -1,6 +1,7 @@
 @import "../../fonts/blacksword.scss";
 
 @import "../../common/animation.scss";
+@import "../../common/env.scss";
 
 @mixin root {
 	display: grid;
@@ -40,6 +41,8 @@
 }
 
 .logo {
+	color: #00D8FF;
+
 	width: 70px;
 	height: 70px;
 
@@ -55,7 +58,7 @@
 
 	color: white;
 
-	@media (max-width: 960px) {
+	@media (max-width: $ref) {
 		font-size: 4rem;
 	}
 }

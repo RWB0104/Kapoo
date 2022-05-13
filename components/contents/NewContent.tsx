@@ -5,11 +5,8 @@
  * @since 2021.08.17 Tue 11:57:51
  */
 
-// 라이브러리 모듈
-import { BsCircleFill } from 'react-icons/bs';
-
-// 스타일
 import styles from '@styles/components/contents/NewContent.module.scss';
+import { BsCircleFill } from 'react-icons/bs';
 
 interface Props
 {

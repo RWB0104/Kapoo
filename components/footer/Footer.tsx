@@ -5,27 +5,22 @@
  * @since 2021.07.11 Sun 16:52:22
  */
 
-// 라이브러리 모듈
-import { useEffect, useState } from 'react';
-import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
-import { SiGmail } from 'react-icons/si';
-import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';
-import { useRecoilValue } from 'recoil';
-
-// 사용자 모듈
-import Hits from '@components/global/Hits';
 import { TITLE } from '@commons/env';
 import { themeAtom } from '@commons/state';
-
-// 스타일
+import Hits from '@components/global/Hits';
 import styles from '@styles/components/footer/Footer.module.scss';
+import { useEffect, useState } from 'react';
+import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';
+import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
+import { SiGmail } from 'react-icons/si';
+import { useRecoilValue } from 'recoil';
 
 /**
  * 푸터 JSX 반환 함수
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Footer(): JSX.Element | null
+export default function Footer(): JSX.Element
 {
 	const themeState = useRecoilValue(themeAtom);
 
@@ -47,35 +42,35 @@ export default function Footer(): JSX.Element | null
 			<div className={styles[`line-${themeState}`]}>
 				<hr />
 
-				<img className={styles.logo} alt={TITLE} src="/img/profile.jpg" />
+				<img alt={TITLE} className={styles.logo} src="/img/profile.jpg" />
 
 				<hr />
 			</div>
 
 			<div className={styles.buttons}>
-				<a className={styles.button} target="_blank" href="https://github.com/RWB0104" title='GitHub'>
+				<a className={styles.button} href="https://github.com/RWB0104" target="_blank" title='GitHub'>
 					<IoLogoGithub />
 				</a>
 
-				<a className={styles.button} target="_blank" href="https://www.linkedin.com/in/itcode/" title='Linkedin'>
+				<a className={styles.button} href="https://www.linkedin.com/in/itcode/" target="_blank" title='Linkedin'>
 					<IoLogoLinkedin />
 				</a>
 
-				<a className={styles.button} target="_blank" href="mailto:psj2716@gmail.com" title='Mail'>
+				<a className={styles.button} href="mailto:psj2716@gmail.com" target="_blank" title='Mail'>
 					<SiGmail />
 				</a>
 			</div>
 
 			<div className={styles.buttons}>
-				<a className={styles.button} target="_blank" href="https://itcode.dev" title='Project Page'>
+				<a className={styles.button} href="https://itcode.dev" target="_blank" title='Project Page'>
 					<IoLogoReact />
 				</a>
 
-				<a className={styles.button} target="_blank" href="/sitemap.xml" title='Sitemap'>
+				<a className={styles.button} href="/sitemap.xml" target="_blank" title='Sitemap'>
 					<FaSitemap />
 				</a>
 
-				<a className={styles.button} target="_blank" href="/rss.xml" title='RSS'>
+				<a className={styles.button} href="/rss.xml" target="_blank" title='RSS'>
 					<FaRss />
 				</a>
 			</div>

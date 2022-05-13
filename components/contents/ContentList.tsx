@@ -5,11 +5,8 @@
  * @since 2021.07.15 Thu 22:32:57
  */
 
-// 사용자 모듈
-import ContentItem from '@components/contents/ContentItem';
 import { ContentProps } from '@commons/common';
-
-// 스타일
+import ContentItem from '@components/contents/ContentItem';
 import styles from '@styles/components/contents/ContentList.module.scss';
 
 interface Props
@@ -22,11 +19,11 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentList({ list }: Props): JSX.Element | null
+export default function ContentList({ list }: Props): JSX.Element
 {
-	const map = list.map((item, index) => <ContentItem key={index} item={item} data-index={index} />);
+	const map = list.map((item, index) => <ContentItem data-index={index} item={item} key={index} />);
 
 	return (
 		<div className={styles.root}>{map}</div>

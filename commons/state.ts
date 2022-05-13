@@ -5,73 +5,71 @@
  * @since 2021.07.11 Sun 21:15:32
  */
 
-// 라이브러리 모듈
 import { atom } from 'recoil';
 
-// 사용자 모듈
 import { ContentProps, Theme } from './common';
 
 export const themeAtom = atom({
-	key: 'themeState',
-	default: Theme.DARK
+	default: Theme.DARK,
+	key: 'themeState'
 });
 
 export const menuAtom = atom({
-	key: 'menuState',
-	default: undefined as boolean | undefined
+	default: undefined as boolean | undefined,
+	key: 'menuState'
 });
 
 export const loadingAtom = atom({
-	key: 'loadingState',
-	default: false
+	default: false,
+	key: 'loadingState'
 });
 
 export const postsPageAtom = atom({
-	key: 'postsPageState',
-	default: 1
+	default: 1,
+	key: 'postsPageState'
 });
 
 export const projectsPageAtom = atom({
-	key: 'projectsPageState',
-	default: 1
+	default: 1,
+	key: 'projectsPageState'
 });
 
 export const postsCategoryAtom = atom({
-	key: 'postsCategoryState',
-	default: [] as string[]
+	default: [] as string[],
+	key: 'postsCategoryState'
 });
 
 export const projectsCategoryAtom = atom({
-	key: 'projectsCategoryState',
-	default: [] as string[]
+	default: [] as string[],
+	key: 'projectsCategoryState'
 });
 
 export const postsSearchAtom = atom({
-	key: 'postsSearchState',
-	default: ''
+	default: '',
+	key: 'postsSearchState'
 });
 
 export const projectsSearchAtom = atom({
-	key: 'projectsSearchState',
-	default: ''
+	default: '',
+	key: 'projectsSearchState'
 });
 
 export const postsAtom = atom({
-	key: 'postsState',
-	default: [] as ContentProps[]
+	default: [] as ContentProps[],
+	key: 'postsState'
 });
 
 export const projectsAtom = atom({
-	key: 'projectsState',
-	default: [] as ContentProps[]
+	default: [] as ContentProps[],
+	key: 'projectsState'
 });
 
 export const postsScrollAtom = atom({
-	key: 'postsScrollState',
-	default: 0
+	default: 0,
+	key: 'postsScrollState'
 });
 
 export const projectsScrollAtom = atom({
-	key: 'projectsScrollState',
-	default: 0
+	default: 0,
+	key: 'projectsScrollState'
 });

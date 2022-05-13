@@ -135,13 +135,13 @@ export function getDateDetail(raw: string | undefined): DateProps
 	const weeks = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 
 	return {
-		year: date.getFullYear().toString(),
-		month: (date.getMonth() + 1) > 9 ? (date.getMonth() + 1).toString() : `0${(date.getMonth() + 1)}`,
 		day: (date.getDate() + 1) > 9 ? date.getDate().toString() : `0${date.getDate()}`,
-		week: weeks[date.getDay()],
 		hour: date.getHours() > 9 ? date.getHours().toString() : `0${date.getHours()}`,
 		minute: date.getMinutes() > 9 ? date.getMinutes().toString() : `0${date.getMinutes()}`,
-		second: date.getSeconds() > 9 ? date.getSeconds().toString() : `0${date.getSeconds()}`
+		month: (date.getMonth() + 1) > 9 ? (date.getMonth() + 1).toString() : `0${(date.getMonth() + 1)}`,
+		second: date.getSeconds() > 9 ? date.getSeconds().toString() : `0${date.getSeconds()}`,
+		week: weeks[date.getDay()],
+		year: date.getFullYear().toString()
 	};
 }
 

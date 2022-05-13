@@ -5,11 +5,8 @@
  * @since 2021.07.17 Sat 03:38:21
  */
 
-// 라이브러리 모듈
-import Head from 'next/head';
-
-// 사용자 모듈
 import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
+import Head from 'next/head';
 
 interface Props
 {
@@ -26,25 +23,25 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://user-images.githubusercontent.com/50317129/167476335-17cd861c-1d56-4384-b0ae-8c3680d9de29.png', locale = 'ko_KR' }: Props): JSX.Element | null
+export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://user-images.githubusercontent.com/50317129/167476335-17cd861c-1d56-4384-b0ae-8c3680d9de29.png', locale = 'ko_KR' }: Props): JSX.Element
 {
 	return (
 		<Head>
 			<title>{`${title} - ${TITLE}`}</title>
 
-			<meta name="description" content={description} />
+			<meta content={description} name="description" />
 
-			<meta property="og:site_name" content={TITLE} />
-			<meta property="og:title" content={`${title} - ${TITLE}`} />
-			<meta property="og:description" content={description} />
-			<meta property="og:type" content={type} />
-			<meta property="og:url" content={`${BASE_URL}${url}`} />
-			<meta property="og:image" content={image} />
-			<meta property="og:locale" content={locale} />
+			<meta content={TITLE} property="og:site_name" />
+			<meta content={`${title} - ${TITLE}`} property="og:title" />
+			<meta content={description} property="og:description" />
+			<meta content={type} property="og:type" />
+			<meta content={`${BASE_URL}${url}`} property="og:url" />
+			<meta content={image} property="og:image" />
+			<meta content={locale} property="og:locale" />
 
-			<link rel="canonical" href={`${BASE_URL}${url}`}></link>
+			<link href={`${BASE_URL}${url}`} rel="canonical"></link>
 		</Head>
 	);
 }

@@ -5,25 +5,21 @@
  * @since 2021.07.11 Sun 13:28:18
  */
 
-// 라이브러리 모듈
-import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { Router } from 'next/router';
-import { useCookies } from 'react-cookie';
-
-// 사용자 모듈
-import FabPannel from './FabPannel';
-import ThemeFab from './ThemeFab';
-import TopFab from './TopFab';
-import Loading from './Loding';
-import Header from '@components/header/Header';
-import Footer from '@components/footer/Footer';
-import MobileMenu from '@components/header/MobileMenu';
 import { Theme } from '@commons/common';
 import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
-
-// 스타일
+import Footer from '@components/footer/Footer';
+import Header from '@components/header/Header';
+import MobileMenu from '@components/header/MobileMenu';
 import styles from '@styles/components/global/BaseLayout.module.scss';
+import { Router } from 'next/router';
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+
+import FabPannel from './FabPannel';
+import Loading from './Loding';
+import ThemeFab from './ThemeFab';
+import TopFab from './TopFab';
 
 interface Props
 {
@@ -35,9 +31,9 @@ interface Props
  *
  * @param {Props} annoyparam0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function BaseLayout({ children }: Props): JSX.Element | null
+export default function BaseLayout({ children }: Props): JSX.Element
 {
 	const setLoadingState = useSetRecoilState(loadingAtom);
 

@@ -5,11 +5,8 @@
  * @since 2021.07.11 Sun 19:44:15
  */
 
-// 라이브러리 모듈
-import { useEffect, useRef } from 'react';
-
-// 스타일
 import styles from '@styles/components/global/Screener.module.scss';
+import { useEffect, useRef } from 'react';
 
 interface Props
 {
@@ -24,12 +21,12 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Screener({ title, menu, lower, image }: Props): JSX.Element | null
+export default function Screener({ title, menu, lower, image }: Props): JSX.Element
 {
 	const videoRef = useRef<HTMLVideoElement>(null);
-	const imageRef = useRef<HTMLDivElement>(null);
+	const imageRef = useRef<HTMLImageElement>(null);
 
 	useEffect((): void =>
 	{
@@ -37,7 +34,7 @@ export default function Screener({ title, menu, lower, image }: Props): JSX.Elem
 		if (/(.mp4|webm)$/.test(image))
 		{
 			// video DOM이 null이 아닐 경우
-			if (videoRef && videoRef.current)
+			if (videoRef.current)
 			{
 				videoRef.current.src = image;
 			}
@@ -47,30 +44,20 @@ export default function Screener({ title, menu, lower, image }: Props): JSX.Elem
 		else
 		{
 			// img DOM이 null이 아닐 경우
-			if (imageRef && imageRef.current)
+			if (imageRef.current)
 			{
-				imageRef.current.style.backgroundImage = `url(${image})`;
+				imageRef.current.src = image;
 			}
 		}
 	}, [ image ]);
 
-	const media = /(.mp4|webm)$/.test(image) ? (
-		<div className={styles['image-wrapper']}>
-			<video ref={videoRef} className={styles.media} autoPlay loop muted>
-				<source src={image} />
-			</video>
-
-			<div className={styles.plate}></div>
-		</div>
-	) : (
-		<div className={styles['image-wrapper']}>
-			<div ref={imageRef} className={styles['image-basic']}></div>
-		</div>
-	);
-
 	return (
 		<div className={styles.root}>
-			{media}
+			<div className={styles['image-wrapper']}>
+				{/(.mp4|webm)$/.test(image) ? <video className={styles.media} ref={videoRef} autoPlay loop muted /> : <img className={styles['image-basic']} ref={imageRef} />}
+
+				<div className={styles.plate}></div>
+			</div>
 
 			<div className={styles['title-wrapper']}>
 				<h1 className={styles.title}>{title}</h1>

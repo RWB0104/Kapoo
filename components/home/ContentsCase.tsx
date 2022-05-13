@@ -5,15 +5,10 @@
  * @since 2021.07.15 Thu 19:56:14
  */
 
-// 라이브러리 모듈
-import Link from 'next/link';
-
-// 사용자 모듈
-import ContentList from '@components/contents/ContentList';
 import { ContentProps } from '@commons/common';
-
-// 스타일
+import ContentList from '@components/contents/ContentList';
 import styles from '@styles/components/home/ContentsCase.module.scss';
+import Link from 'next/link';
 
 interface Props
 {
@@ -28,9 +23,9 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentsCase({ num, title, url, list }: Props): JSX.Element | null
+export default function ContentsCase({ num, title, url, list }: Props): JSX.Element
 {
 	return (
 		<article className={styles.root}>

@@ -5,17 +5,17 @@
  * @since 2021.07.12 Mon 13:48:50
  */
 
-// 라이브러리 모듈
-import fs from 'fs';
-import fetch from 'node-fetch';
-import { join } from 'path';
 import matter from 'gray-matter';
-import marked from 'marked';
-import Prism from 'prismjs';
 import katex from 'katex';
+import marked from 'marked';
+import fetch from 'node-fetch';
+import Prism from 'prismjs';
 import loadLanguage from 'prismjs/components/';
 
-// 사용자 모듈
+import fs from 'fs';
+import { join } from 'path';
+
+
 import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps, ContentType } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
@@ -100,8 +100,8 @@ export async function getCategoryList(type: ContentType): Promise<CategoryProps[
 		if (target.length === 0)
 		{
 			const current: CategoryProps = {
-				name: content.header.category,
-				count: 1
+				count: 1,
+				name: content.header.category
 			};
 
 			acc.push(current);
@@ -118,8 +118,8 @@ export async function getCategoryList(type: ContentType): Promise<CategoryProps[
 		return acc;
 	}, [
 		{
-			name: 'All',
-			count: 0
+			count: 0,
+			name: 'All'
 		}
 	] as CategoryProps[]).sort((a, b) =>
 	{
@@ -180,9 +180,9 @@ export async function getContent(type: ContentType, name: string, isFull: boolea
 		result.toc = toc;
 		result.content = html;
 		result.meta = {
-			prev: current === 0 ? null : list[current - 1],
+			group: group,
 			next: current === list.length - 1 ? null : list[current + 1],
-			group: group
+			prev: current === 0 ? null : list[current - 1]
 		};
 	}
 
@@ -214,7 +214,7 @@ export async function converter(body: string): Promise<ConvertProps>
 			// 블록 수식일 경우
 			if (lang === 'latex-block')
 			{
-				return `<div class="katex-block">${katex.renderToString(code, { throwOnError: true, output: 'html' })}</div>`;
+				return `<div class="katex-block">${katex.renderToString(code, { output: 'html', throwOnError: true })}</div>`;
 			}
 
 			// 아닐 경우
@@ -293,7 +293,7 @@ export async function converter(body: string): Promise<ConvertProps>
 		// 수식일 경우
 		if (code[0] === '$')
 		{
-			return katex.renderToString(code.slice(1), { throwOnError: true, output: 'html' });
+			return katex.renderToString(code.slice(1), { output: 'html', throwOnError: true });
 		}
 
 		// 코드일 경우
@@ -309,9 +309,9 @@ export async function converter(body: string): Promise<ConvertProps>
 		const tag = text.replace(/(<([^>]+)>)/ig, '').replace(' ', '-');
 
 		toc.push({
-			text: text,
+			depth: level,
 			tag: tag,
-			depth: level
+			text: text
 		});
 
 		return `<h${level} id="${tag}">${text} <a href="#${tag}">🔗</a></h${level}>`;
@@ -346,24 +346,9 @@ export async function converter(body: string): Promise<ConvertProps>
 			if (match)
 			{
 				return {
-					type: 'codespan',
 					raw: match[0],
-					text: match[1] === '$' ? `$${match[2].trim()}` : match[2].trim()
-				};
-			}
-
-			return false;
-		},
-		inlineText(src: string)
-		{
-			const cap = src.match(/^([`$]+|[^`$])(?:[\s\S]*?(?:(?=[\\<!\[`$*]|\b_|$)|[^ ](?= {2,}\n))|(?= {2,}\n))/);
-
-			if (cap)
-			{
-				return {
-					type: 'text',
-					raw: cap[0],
-					text: cap[0]
+					text: match[1] === '$' ? `$${match[2].trim()}` : match[2].trim(),
+					type: 'codespan'
 				};
 			}
 
@@ -376,11 +361,26 @@ export async function converter(body: string): Promise<ConvertProps>
 			if (cap)
 			{
 				return {
-					type: 'code',
-					raw: cap[0],
 					codeBlockStyle: 'indented',
 					lang: cap[1] === '$$' ? 'latex-block' : cap[2].trim(),
-					text: cap[3]
+					raw: cap[0],
+					text: cap[3],
+					type: 'code'
+				};
+			}
+
+			return false;
+		},
+		inlineText(src: string)
+		{
+			const cap = src.match(/^([`$]+|[^`$])(?:[\s\S]*?(?:(?=[\\<!\[`$*]|\b_|$)|[^ ](?= {2,}\n))|(?= {2,}\n))/);
+
+			if (cap)
+			{
+				return {
+					raw: cap[0],
+					text: cap[0],
+					type: 'text'
 				};
 			}
 
@@ -391,7 +391,6 @@ export async function converter(body: string): Promise<ConvertProps>
 	marked.use({ tokenizer });
 
 	marked.setOptions({
-		renderer,
 		highlight: (code: string, language: string) =>
 		{
 			// Prism에 로딩된 언어일 경우
@@ -405,14 +404,15 @@ export async function converter(body: string): Promise<ConvertProps>
 			{
 				return code;
 			}
-		}
+		},
+		renderer
 	});
 
 	const result = marked(body);
 
 	return {
-		toc: tableOfContents(toc),
-		html: result.toString()
+		html: result.toString(),
+		toc: tableOfContents(toc)
 	};
 }
 

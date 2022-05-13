@@ -15,7 +15,9 @@
 	"parser": "@typescript-eslint/parser",
 	"plugins": [
 		"@typescript-eslint",
-		"unused-imports"
+		"sort-keys-fix",
+		"import",
+		"react"
 	],
 	"extends": [
 		"plugin:@typescript-eslint/recommended"
@@ -52,6 +54,31 @@
 			"error",
 			"never"
 		],
+		"import/extensions": "off",
+		"import/named": "off",
+		"import/no-anonymous-default-export": "error",
+		"import/no-cycle": "off",
+		"import/no-extraneous-dependencies": "off",
+		"import/no-named-as-default": "off",
+		"import/no-unresolved": "off",
+		"import/order": [
+			"error",
+			{
+				"alphabetize": {
+					"caseInsensitive": true,
+					"order": "asc"
+				},
+				"groups": [
+					"external",
+					"builtin",
+					"internal",
+					"sibling",
+					"parent",
+					"index"
+				],
+				"newlines-between": "always"
+			}
+		],
 		"indent": [
 			"error",
 			"tab",
@@ -71,6 +98,18 @@
 			"error",
 			"single"
 		],
+		"react/jsx-sort-props": [
+			"error",
+			{
+				"callbacksLast": true,
+				"ignoreCase": true,
+				"multiline": "last",
+				"noSortAlphabetically": false,
+				"reservedFirst": false,
+				"shorthandFirst": false,
+				"shorthandLast": true
+			}
+		],
 		"semi": [
 			"error",
 			"always"
@@ -81,8 +120,7 @@
 				"int32Hint": false
 			}
 		],
-		"unused-imports/no-unused-imports": "error",
-		"unused-imports/no-unused-vars": "error",
+		"sort-keys-fix/sort-keys-fix": "error",
 		"prefer-rest-params": "off"
 	},
 	"overrides": [
@@ -94,9 +132,7 @@
 			"rules": {
 				"@typescript-eslint/no-var-requires": "error",
 				"@typescript-eslint/no-explicit-any": "error",
-				"@typescript-eslint/no-unused-vars": "error",
-				"unused-imports/no-unused-imports": "error",
-				"unused-imports/no-unused-vars": "error"
+				"@typescript-eslint/no-unused-vars": "error"
 			}
 		},
 		{

@@ -5,14 +5,9 @@
  * @since 2021.07.21 Wed 22:48:28
  */
 
-// 라이브러리 모듈
-import { useRecoilValue } from 'recoil';
-
-// 사용자 모듈
 import { themeAtom } from '@commons/state';
-
-// 스타일
 import styles from '@styles/components/contents/ContentToc.module.scss';
+import { useRecoilValue } from 'recoil';
 
 interface Props
 {

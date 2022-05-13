@@ -5,13 +5,11 @@
  * @since 2021.07.25 Sun 16:07:52
  */
 
-// 사용자 모듈
-import ContentTags from './ContentTags';
 import { ContentHeaderProps, getDateDetail } from '@commons/common';
 import { CATEGORY } from '@commons/env';
-
-// 스타일
 import styles from '@styles/components/contents/ContentMeta.module.scss';
+
+import ContentTags from './ContentTags';
 
 interface Props
 {
@@ -23,9 +21,9 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentMeta({ header }: Props): JSX.Element | null
+export default function ContentMeta({ header }: Props): JSX.Element
 {
 	const dateDetail = getDateDetail(header.date);
 
@@ -41,7 +39,7 @@ export default function ContentMeta({ header }: Props): JSX.Element | null
 				<p className={styles.text}>📚 카테고리</p>
 
 				<div className={styles['category-wrapper']}>
-					<img className={styles['category-image']} alt={header.category} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+					<img alt={header.category} className={styles['category-image']} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
 					<p className={styles.link}>{header.category}</p>
 				</div>
 			</div>
@@ -50,7 +48,7 @@ export default function ContentMeta({ header }: Props): JSX.Element | null
 				<p className={styles.text}>🏷️ 태그</p>
 
 				<div className={styles.tags}>
-					<ContentTags type={header.type} tags={header.tag} />
+					<ContentTags tags={header.tag} type={header.type} />
 				</div>
 			</div>
 		</article>

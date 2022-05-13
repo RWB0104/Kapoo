@@ -5,18 +5,13 @@
  * @since 2021.07.11 Sun 20:07:12
  */
 
-// 라이브러리 모듈
-import Link from 'next/link';
-import { useRecoilState } from 'recoil';
-import { IoClose, IoMenu } from 'react-icons/io5';
-
-// 사용자 모듈
+import { useSemanticHook } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import { menuAtom } from '@commons/state';
-import { useSemanticHook } from '@commons/hook';
-
-// 스타일
 import styles from '@styles/components/header/MenuList.module.scss';
+import Link from 'next/link';
+import { IoClose, IoMenu } from 'react-icons/io5';
+import { useRecoilState } from 'recoil';
 
 /**
  * 메뉴 리스트 JSX 반환 함수
@@ -32,7 +27,7 @@ export default function MenuList(): JSX.Element | null
 	return semantic ? (
 		<nav className={styles.root}>
 			{MENU_LIST.map((element) => (
-				<Link key={element.id} href={element.url}>
+				<Link href={element.url} key={element.id}>
 					<a className={styles.link} title={element.title}>{element.icon}</a>
 				</Link>
 			))}

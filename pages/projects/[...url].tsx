@@ -5,15 +5,12 @@
  * @since 2021.10.26 Tue 02:11:21
  */
 
-// 라이브러리 모듈
-import Script from 'next/script';
-
-// 사용자 모듈
+import { getContent, getContentList } from '@commons/api';
+import { ContentPageProps, ContentProps, ContentTypeEnum, PathsProps, RoutesProps } from '@commons/common';
 import ContentLayout from '@components/contents/ContentLayout';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
-import { getContent, getContentList } from '@commons/api';
-import { ContentPageProps, ContentProps, ContentTypeEnum, PathsProps, RoutesProps } from '@commons/common';
+import Script from 'next/script';
 
 const type = ContentTypeEnum.PROJECTS;
 
@@ -24,15 +21,15 @@ const type = ContentTypeEnum.PROJECTS;
  *
  * @returns {JSX.Element | null} JSX
  */
-export default function Project(content: ContentProps): JSX.Element | null
+export default function Project(content: ContentProps): JSX.Element
 {
 	return (
 		<section>
 			<Script src="/js/content.js"></Script>
 
-			<Meta title={content.header.title} description={content.header.excerpt} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} image={content.header.coverImage} />
+			<Meta description={content.header.excerpt} image={content.header.coverImage} title={content.header.title} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} />
 
-			<Screener title={content.header.title} menu={type} lower={content.header.category} image={content.header.coverImage} />
+			<Screener image={content.header.coverImage} lower={content.header.category} menu={type} title={content.header.title} />
 
 			<ContentLayout data={content} />
 		</section>
@@ -65,6 +62,7 @@ export async function getStaticPaths(): Promise<PathsProps>
 	const projects = await getContentList(type, false);
 
 	return {
+		fallback: false,
 		paths: projects.map((project) =>
 		{
 			const urls = project.url;
@@ -74,7 +72,6 @@ export async function getStaticPaths(): Promise<PathsProps>
 					url: [ urls[1], urls[2], urls[3], urls[4] ]
 				}
 			};
-		}),
-		fallback: false
+		})
 	};
 }

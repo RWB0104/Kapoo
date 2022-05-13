@@ -1,4 +1,4 @@
-// 라이브러리 모듈
+
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 /**
@@ -19,12 +19,12 @@ export default class KapooDocument extends Document
 		return (
 			<Html lang="ko">
 				<Head>
-					<link rel="manifest" href="/manifest.json" />
+					<link href="/manifest.json" rel="manifest" />
 
-					<link rel="icon" href="/favicon.ico" />
-					<link rel="shortcut icon" href="/favicon.ico" />
+					<link href="/favicon.ico" rel="icon" />
+					<link href="/favicon.ico" rel="shortcut icon" />
 
-					<script async src="https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R"></script>
+					<script src="https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R" async></script>
 					<script src="/js/ga.js"></script>
 				</Head>
 

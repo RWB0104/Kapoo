@@ -5,23 +5,18 @@
  * @since 2021.07.14 Wed 23:52:50
  */
 
-// 라이브러리 모듈
-import { useEffect, useRef, useState } from 'react';
-
-// 사용자 모듈
 import { getRandomIndex } from '@commons/common';
 import { PIECE } from '@commons/env';
-
-// 스타일
 import styles from '@styles/components/global/ArtBox.module.scss';
+import { useEffect, useRef, useState } from 'react';
 import { IoMdRefresh } from 'react-icons/io';
 
 /**
  * 아트박스 JSX 반환 함수
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Artbox(): JSX.Element | null
+export default function Artbox(): JSX.Element
 {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const imageRef = useRef<HTMLImageElement>(null);
@@ -72,13 +67,13 @@ export default function Artbox(): JSX.Element | null
 	return (
 		<article className={styles.root}>
 			<div className={styles['image-wrapper']}>
-				<img ref={imageRef} className={styles.image} />
-				<video ref={videoRef} className={styles.image} autoPlay loop muted />
+				<img className={styles.image} ref={imageRef} />
+				<video className={styles.image} ref={videoRef} autoPlay loop muted />
 			</div>
 
 			<div className={styles['text-wrapper']}>
-				<h1 ref={titleRef} className={styles.title}></h1>
-				<h3 ref={subRef} className={styles.sub}></h3>
+				<h1 className={styles.title} ref={titleRef}></h1>
+				<h3 className={styles.sub} ref={subRef}></h3>
 			</div>
 
 			<div className={styles['button-wrapper']} onClick={() => setState(!state)}>

@@ -5,19 +5,15 @@
  * @since 2021.07.17 Sat 10:32:45
  */
 
-// 라이브러리 모듈
-import { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { IoIosArrowDown } from 'react-icons/io';
-
-// 사용자 모듈
-import NewContent from './NewContent';
-import { CATEGORY } from '@commons/env';
 import { CategoryProps, ContentTypeEnum } from '@commons/common';
+import { CATEGORY } from '@commons/env';
 import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAtom, themeAtom } from '@commons/state';
-
-// 스타일
 import styles from '@styles/components/contents/ContentCategory.module.scss';
+import { useState } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
+import NewContent from './NewContent';
 
 interface Props
 {
@@ -30,9 +26,9 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function ContentCategory({ type, list }: Props): JSX.Element | null
+export default function ContentCategory({ type, list }: Props): JSX.Element
 {
 	const themeState = useRecoilValue(themeAtom);
 
@@ -81,8 +77,8 @@ export default function ContentCategory({ type, list }: Props): JSX.Element | nu
 	};
 
 	const categories = list.map((item, index: number): JSX.Element => (
-		<button key={index} className={styles.item} data-type={type} onClick={() => toggleCategory(item.name)}>
-			<img className={styles.image} alt={item.name} src={`${CATEGORY[item.name] || CATEGORY['All']}`} />
+		<button className={styles.item} data-type={type} key={index} onClick={() => toggleCategory(item.name)}>
+			<img alt={item.name} className={styles.image} src={`${CATEGORY[item.name] || CATEGORY['All']}`} />
 
 			<div className={styles.meta}>
 				<p>{item.name}</p>
@@ -98,7 +94,7 @@ export default function ContentCategory({ type, list }: Props): JSX.Element | nu
 	return (
 		<article className={styles['root-wrapper']}>
 			<div className={styles[`root-${themeState}`]}>
-				<div className={styles.header} onClick={() =>
+				<div className={styles.header} data-show={state} onClick={() =>
 				{
 					setState(state === undefined ? true : !state);
 
@@ -107,7 +103,7 @@ export default function ContentCategory({ type, list }: Props): JSX.Element | nu
 					{
 						setPageState(1);
 					}
-				}} data-show={state}>
+				}}>
 					<h4 className={styles.title}>📚 카테고리</h4>
 
 					<IoIosArrowDown />

@@ -8,15 +8,14 @@
 import { getContentList } from '@commons/api';
 import { ContentProps, ContentTypeEnum, SeoProps } from '@commons/common';
 import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
-
-// 라이브러리 모듈
-import fs from 'fs';
 import globby from 'globby';
 import format from 'xml-formatter';
 
+import fs from 'fs';
+
 const FORMAT = {
-	indentation: '	',
 	collapseContent: true,
+	indentation: '	',
 	lineSeparator: '\n'
 };
 

@@ -5,10 +5,7 @@
  * @since 2021.09.23 Thu 16:37:47
  */
 
-// 사용자 모듈
 import { BASE_URL } from '@commons/env';
-
-// 스타일
 import styles from '@styles/components/global/Hits.module.scss';
 
 interface Props
@@ -21,9 +18,9 @@ interface Props
  *
  * @param {Props} param0: 프로퍼티
  *
- * @returns {JSX.Element | null} JSX
+ * @returns {JSX.Element} JSX
  */
-export default function Hits({ urls }: Props): JSX.Element | null
+export default function Hits({ urls }: Props): JSX.Element
 {
 	let url = BASE_URL;
 
