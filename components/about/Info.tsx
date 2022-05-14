@@ -56,7 +56,7 @@ export default function Info(): JSX.Element
 						<FaSass color="hotpink" />
 					</a>
 
-					<a data-brand="scss" href="https://sass-lang.com/" target="_blank" title="SCSS">
+					<a data-brand="scss" href="https://www.markdownguide.org/" target="_blank" title="Markdown">
 						<FaMarkdown />
 					</a>
 				</div>

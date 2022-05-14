@@ -3,7 +3,7 @@ title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 9. 데이터 
 excerpt: "WFS나 WMS를 호출할 때, 좀 더 다채로운 필터링이 필요한 경우가 존재할 수 있다. 특정 영역 밖의 객체를 호출한다거나, 특정 영역에 걸치는 데이터만 호출하는 것, 혹은 다양한 조건을 조합하여 데이터를 조회해야 할 수도 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
 date: "2022-03-15T01:11:19+09:00"
-type: "posts"
+type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"

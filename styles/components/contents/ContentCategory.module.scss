@@ -21,11 +21,13 @@ $item-height: 152px;
 .root-light {
 	@include root;
 	border: 1px solid gainsboro;
+	background-color: whitesmoke
 }
 
 .root-dark {
 	@include root;
 	border: 1px solid #475160;
+	background-color: #0D1117;
 }
 
 .header {
@@ -65,7 +67,7 @@ $item-height: 152px;
 	max-height: 0px;
 
 	@media (max-width: $ref) {
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 
 	&[data-show=true] {

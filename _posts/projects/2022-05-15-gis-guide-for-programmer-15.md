@@ -1,9 +1,9 @@
 ---
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 15. WFS를 사용하여 지도에 객체 표시하기"
-excerpt: ""
+excerpt: "지금까지는 온전히 OpenLayers만의 기능이였다면, 이 장부터 슬슬 GeoServer와의 연동을 다루게 된다. 그 중 첫 번째로 다룰 기능은, WFS다. GeoServer에서 WFS는 지정한 요소의 정보를 GeoJSON의 형태로 반환해준다. 이 정보를 적절히 활용하여 지도에 표시할 수 있다. 이러한 기능을 통해 직접 관리하거나 가공한 데이터를 지도에 표시할 수 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-04-04T01:56:03+09:00"
-type: "posts"
+date: "2022-05-15T02:48:50+09:00"
+type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
@@ -52,7 +52,7 @@ GeoServer를 통해 데이터를 구축했으므로, GeoServer가 해당 레이�
 WFS 중에서도, 속성정보를 제공하는 `GetFeature`를 사용한다. `GetFeature`의 요청방법은 아래와 같다.
 
 ``` txt
-GET http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
+GET https://example.com/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
 ```
 
 |  Parameter   |                   Example                   | Require |                     Description                     |
@@ -90,7 +90,7 @@ import { bbox } from 'ol/loadingstrategy';
 
 const wfs = new VectorSource({
 	format: new GeoJSON(),
-	url: (extent) => `http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`,
+	url: (extent) => `https://example.com/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`,
 	strategy: bbox
 });
 ```
@@ -128,7 +128,7 @@ const wfs = new VectorSource({
 ## 2-1. WFS URL 직관적으로 생성하기
 
 ``` typescript
-const url = `http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`
+const url = `https://example.com/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`
 ```
 
 URL이 위와 같이 구성될 경우, URL의 구성 결과를 확인하기 용이하지만 각 데이터가 한 눈에 들어오지는 않는다. 이런 형태는 오타같은 작은 실수를 놓치기 쉽고, URL을 직접 구성하는 것 또한 피곤하다.
@@ -151,8 +151,8 @@ export function urlBuilder(host: string, query: { [ key: string ]: string | numb
 	return `${host}?${param}`;
 }
 
-// https://example.com/wfs?name=steve&age=18&actived=true
-urlBuilder('https://example.com/wfs', {
+// https://example.com/geoserver/wfs?name=steve&age=18&actived=true
+urlBuilder('https://example.com/geoserver/wfs', {
 	name: 'steve',
 	age: 18,
 	actived: true
@@ -168,9 +168,9 @@ urlBuilder('https://example.com/wfs', {
 위 메서드를 사용하면, WFS의 `url` 부분을 아래와 같이 변경할 수 있다.
 
 ``` typescript
-const url = (extent) => `http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`;
+const url = (extent) => `https://example.com/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG%3A3857&outputFormat=application%2Fjson&exceptions=application%2Fjson&bbox=${extent[0]}%2C${extent[1]}%2C${extent[2]}%2C${extent[3]}%2CEPSG%3A3857`;
 
-const advanced = (extent) => urlBuilder('http://localhost:8080/geoserver/wfs', {
+const advanced = (extent) => urlBuilder('https://example.com/geoserver/wfs', {
 	service: 'WFS',
 	version: '2.0.0',
 	request: 'GetFeature',
@@ -200,7 +200,6 @@ import { Vector as VectorLayer } from 'ol/layer';
 
 const wfsLayer = new VectorLayer({
 	source: wfs,
-	style: feature => basicStyle(feature, 'buld_nm'),
 	minZoom: 15,
 	zIndex: 5,
 	properties: { name: 'wfs' }
@@ -281,7 +280,7 @@ const view = new View({
 
 
 
-## 3-1. 좌표 변환하기
+### 4-1. 좌표 변환하기
 
 `[ 127.28923267492068, 36.48024986578043 ]`는 세종시청의 경위도(EPSG:4326) 좌표다. 하지만 이 문서에서 다루는 좌표는 Google 좌표계(EPSG:3857)이다. 좌표체계가 다르므로 이에 맞춰 변환이 필요하다.
 
@@ -291,8 +290,316 @@ const view = new View({
 import proj4 from 'proj4';
 
 // 경위도 좌표를 EPSG:5179로 변환
-const xy: number[] = proj4('EPSG:5179', 'EPSG:4326', [ x, y ]);
+const xy: number[] = proj4('EPSG:4326', 'EPSG:5179', [ 127.28923267492068, 36.48024986578043 ]);
 ```
 
-위 코드는 EPSG:4326 경위도 좌표를 EPSG:5179로 변환하는 코드다.
+위 코드는 세종시청 EPSG:4326 경위도 좌표를 EPSG:5179로 변환하는 코드다. 이와 같은 방식으로 기존의 좌표계를 다른 좌표계로 변환할 수 있다.
 
+<br />
+<br />
+
+
+
+
+
+## 5. Style 정의하기
+
+지도에 객체를 표시할 때, 원하는 모양으로 객체가 렌더링되게끔 지정할 수 있다.
+
+공간정보 데이터 형식에 따라 기술되는 형태가 조금씩 다르다.
+
+`Layer` 객체에 지정하여 레이어에 포함된 모든 객체에 일괄로 적용하거나, `Feature` 마다 스타일을 지정할 수도 있다.
+
+``` typescript
+// 벡터 레이어 객체
+const wfsLayer = new VectorLayer({
+	source: wfs,
+	// 스타일 지정 가능
+	style: {},
+	minZoom: 15,
+	zIndex: 5,
+	properties: { name: 'wfs' }
+});
+```
+
+`VectorLayer`의 경우 옵션에서 스타일 객체를 할당할 수 있다. `Object` 형태로 바로 적용하거나, `(feature) => {}`와 같이 콜백 메서드 형태로 사용할 수도 있다.
+
+`Object` 형태와 다르게 콜백 메서드 형태를 사용하면, `Feature`의 데이터를 토대로 스타일을 가변적으로 작성할 수 있다. 마커에 각 `Feature`의 이름 혹은 주소를 표시한다던가, 값별로 스타일을 나눠 표시할 수 있다.
+
+단, 스타일 분기 처리의 경우, `filter` 옵션을 활용하여 해당되는 `Feature`만 간추리는 것이 더 쉽고 빠르다.
+
+<br />
+
+`Point` 데이터의 경우, 기본적으로 아래와 같이 작성할 수 있다.
+
+``` typescript
+import { Feature } from 'ol';
+import Geometry from 'ol/geom/Geometry';
+import RenderFeature from 'ol/render/Feature';
+import Circle from 'ol/style/Circle';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
+
+/**
+ * 스타일 반환 메서드
+ *
+ * @param {RenderFeature | Feature<Geometry>} feature: Feature
+ *
+ * @returns {Style} 스타일
+ */
+function getStyle(feature: RenderFeature | Feature<Geometry>)
+{
+	return new Style({
+		image: new Circle({
+			stroke: new Stroke({
+				color: 'rgba(3, 102, 53, 1)',
+				width: 2
+			}),
+			fill: new Fill({
+				color: 'rgba(3, 102, 53, 0.6)'
+			}),
+			radius: 20
+		}),
+		text: new Text({
+			font: '0.8rem sans-serif',
+			fill: new Fill({ color: 'white' }),
+			stroke: new Stroke({
+				color: 'rgba(0, 0, 0, 1)',
+				width: 4
+			}),
+			text: feature.get('address')
+		})
+	});
+}
+```
+
+* `image`: 포인트 스타일
+  * `stroke`: 포인트 테두리
+  * `fill`: 포인트 배경색
+  * `radius`: 반지름
+* `text`: 텍스트 스타일
+  * `font`: 텍스트 폰트
+  * `stroke`: 텍스트 테두리
+  * `fill`: 텍스트 색
+  * `text`: 텍스트 값
+
+`getStyle` 메서드는 `Feature`를 인자로 받아 스타일을 반환한다. `Layer` 옵션에서 `style: (feature) => getStyle(feature)`와 같이 사용할 수 있다.
+
+<br />
+
+``` typescript
+import { Feature } from 'ol';
+import Geometry from 'ol/geom/Geometry';
+import RenderFeature from 'ol/render/Feature';
+import { Icon } from 'ol/style';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
+
+/**
+ * 스타일 반환 메서드
+ *
+ * @param {RenderFeature | Feature<Geometry>} feature: Feature
+ *
+ * @returns {Style} 스타일
+ */
+function getStyle(feature: RenderFeature | Feature<Geometry>)
+{
+	return new Style({
+		image: new Icon({
+			src: 'https://t1.daumcdn.net/cfile/tistory/99857F4F5E738F472F',
+			scale: 0.05
+		}),
+		text: new Text({
+			font: '0.8rem sans-serif',
+			fill: new Fill({ color: 'white' }),
+			stroke: new Stroke({
+				color: 'rgba(0, 0, 0, 1)',
+				width: 4
+			}),
+			text: feature.get('address')
+		})
+	});
+}
+```
+
+반대로 `Icon` 객체를 활용하여 단색이 아닌 외부 이미지를 활용할 수도 있다.
+
+<br />
+
+`Polygon` 데이터는 아래와 같이 기술한다.
+
+``` typescript
+import { Feature } from 'ol';
+import Geometry from 'ol/geom/Geometry';
+import RenderFeature from 'ol/render/Feature';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
+
+/**
+ * 스타일 반환 메서드
+ *
+ * @param {RenderFeature | Feature<Geometry>} feature: Feature
+ *
+ * @returns {Style} 스타일
+ */
+function getStyle(feature: RenderFeature | Feature<Geometry>)
+{
+	return new Style({
+		stroke: new Stroke({
+			color: 'rgba(100, 149, 237, 1)',
+			width: 2
+		}),
+		fill: new Fill({
+			color: 'rgba(100, 149, 237, 0.6)'
+		}),
+		text: new Text({
+			font: '0.8rem sans-serif',
+			fill: new Fill({ color: 'white' }),
+			stroke: new Stroke({
+				color: 'rgba(0, 0, 0, 1)',
+				width: 4
+			}),
+			text: feature.get('address')
+		})
+	});
+}
+```
+
+`image` 옵션이 제외되고, `stroke`와 `fill` 옵션을 사용하여 도형의 스타일을 구성할 수 있다.
+
+<br />
+<br />
+
+
+
+
+
+## 6. Map 만들기
+
+모든 정보를 종합하여 지도를 만드는 Map 객체를 생성한다.
+
+``` typescript
+import { Vector as VectorSource } from 'ol/source';
+import { GeoJSON } from 'ol/format';
+import { bbox } from 'ol/loadingstrategy';
+import { Vector as VectorLayer } from 'ol/layer';
+import View from 'ol/View';
+import proj4 from 'proj4';
+import { Feature } from 'ol';
+import Geometry from 'ol/geom/Geometry';
+import RenderFeature from 'ol/render/Feature';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
+
+// WFS 벡터 소스
+const wfs = new VectorSource({
+	format: new GeoJSON(),
+	url: (extent) => urlBuilder('https://example.com/geoserver/wfs', {
+		service: 'WFS',
+		version: '2.0.0',
+		request: 'GetFeature',
+		typename: 'TEST:buld_sejong',
+		srsName: 'EPSG:3857',
+		outputFormat: 'application/json',
+		exceptions: 'application/json',
+		bbox: `${extent.join(',')},EPSG:3857`
+	}),
+	strategy: bbox
+});
+
+// 벡터 레이어 객체
+const wfsLayer = new VectorLayer({
+	source: wfs,
+	style: feature => new Style({
+		stroke: new Stroke({
+			color: 'rgba(100, 149, 237, 1)',
+			width: 2
+		}),
+		fill: new Fill({
+			color: 'rgba(100, 149, 237, 0.6)'
+		}),
+		text: new Text({
+			font: '0.8rem sans-serif',
+			fill: new Fill({ color: 'white' }),
+			stroke: new Stroke({
+				color: 'rgba(0, 0, 0, 1)',
+				width: 4
+			}),
+			text: feature.get('address')
+		})
+	}),
+	minZoom: 15,
+	zIndex: 5,
+	properties: { name: 'wfs' }
+});
+
+// 뷰 객체
+const view = new View({
+	projection: 'EPSG:3857',
+	center: proj4('EPSG:4326', 'EPSG:3857', [ 127.28923267492068, 36.48024986578043 ]),
+	zoom: 17
+});
+
+// 맵 객체
+const map = new Map({
+	layers: [ vworldBaseLayer, vworldHybridLayer, wfsLayer ],
+	target: 'map',
+	view: new View({
+		projection: 'EPSG:3857',
+		center: proj4('EPSG:4326', 'EPSG:3857', sejongPosition),
+		zoom: 17
+	})
+});
+```
+
+|        Name         |                                                                                                                                                                                                                                    Type                                                                                                                                                                                                                                    |                                             Default                                             |                          Description                           |
+| :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: | :------------------------------------------------------------: |
+|      controls       |                                                    [ol/Collection-Collection](https://openlayers.org/en/latest/apidoc/module-ol_Collection-Collection.html)<[ol/control/Control-Control](https://openlayers.org/en/latest/apidoc/module-ol_control_Control-Control.html)> &#124; Array<[ol/control/Control-Control](https://openlayers.org/en/latest/apidoc/module-ol_control_Control-Control.html)> &#124; `undefined`                                                    | [ol/control/defaults](https://openlayers.org/en/latest/apidoc/module-ol_control.html#.defaults) |                        지도 컨트롤 객체                        |
+|     pixelRatio      |                                                                                                                                                                                                                                  `number`                                                                                                                                                                                                                                  |                                    `window.devicePixelRatio`                                    |                         기기 픽셀 비율                         |
+|    interactions     |                            [ol/Collection-Collection](https://openlayers.org/en/latest/apidoc/module-ol_Collection-Collection.html)<[ol/interaction/Interaction-Interaction](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Interaction-Interaction.html)> &#124; Array<[ol/interaction/Interaction-Interaction](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Interaction-Interaction.html)> &#124; `undefined`                            |                                                                                                 |                                                                |
+| keyboardEventTarget |                                                                                                                                                                                                     `HTMLElement` &#124; `Document` &#124; `string` &#124; `undefined`                                                                                                                                                                                                     |                                                                                                 |                    키보드 이벤트 대상 요소                     |
+|       layers        | Array<[ol/layer/Base-BaseLayer](https://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html)> &#124; [ol/Collection-Collection](https://openlayers.org/en/latest/apidoc/module-ol_Collection-Collection.html)<[ol/layer/Base-BaseLayer](https://openlayers.org/en/latest/apidoc/module-ol_layer_Base-BaseLayer.html)> &#124; [ol/layer/Group-LayerGroup](https://openlayers.org/en/latest/apidoc/module-ol_layer_Group-LayerGroup.html) &#124; `undefined` |                                                                                                 |       레이어 목록. 배열 뒤에 있을 수록 우선순위가 높아짐       |
+|   maxTilesLoading   |                                                                                                                                                                                                                                  `number`                                                                                                                                                                                                                                  |                                              `16`                                               |                 동시 로드 가능한 최대 타일 수                  |
+|    moveTolerance    |                                                                                                                                                                                                                                  `number`                                                                                                                                                                                                                                  |                                               `1`                                               | 지도 이동 이벤트로 인식하기 위해 마우스가 움직여야할 최소 픽셀 |
+|      overlays       |                                                                    [ol/Collection-Collection](https://openlayers.org/en/latest/apidoc/module-ol_Collection-Collection.html)<[ol/Overlay-Overlay](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html)> &#124; Array<[ol/Overlay-Overlay](https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html)> &#124; `undefined`                                                                    |                                                                                                 |                       지도 오버레이 객체                       |
+|       target        |                                                                                                                                                                                                              `HTMLElement` &#124; `string` &#124; `undefined`                                                                                                                                                                                                              |                                                                                                 |               지도를 표시할 DOM 혹은 DOM 아이디                |
+|        view         |                                                                                                                                    [ol/View-View](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) &#124; Promise<[ol/View-View](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html)> &#124; `undefined`                                                                                                                                    |                                                                                                 |                          지도 뷰 객체                          |
+
+`Map` 객체에 지금까지 선언한 객체들을 할당한다. `target`에 지정된 DOM에 선언된 지도가 표시된다.
+
+`target: map`은 아이디가 `map`인 DOM에 지도를 표시한다는 뜻이다. 꼭 아이디가 아니더라도 `HTMLElement`를 할당할 수도 있다.
+
+<br />
+
+WFS로 호출한 데이터가 기술한 스타일대로 출력되는 것을 확인할 수 있다.
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+# 예제 확인하기
+
+![image](https://user-images.githubusercontent.com/50317129/168443001-896de833-4eb9-4a95-8033-29143760e3b5.png)
+
+[OpenLayers6 Sandbox - WFS](https://project.itcode.dev/gis-dev/wfs)에서 이를 구현한 예제를 확인할 수 있다.
+
+<br />
+
+GeoServer를 통해 공간정보 데이터를 호출하여, OpenLayers가 지도에 렌더링하는 걸 확인할 수 있다.
