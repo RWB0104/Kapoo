@@ -11,9 +11,8 @@ import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAto
 import styles from '@styles/components/contents/ContentCategory.module.scss';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { IoHeart } from 'react-icons/io5';
 import { useRecoilState, useRecoilValue } from 'recoil';
-
-import NewContent from './NewContent';
 
 interface Props
 {
@@ -85,9 +84,9 @@ export default function ContentCategory({ type, list }: Props): JSX.Element
 				<p>( {item.count} )</p>
 			</div>
 
-			<div className={styles.flag}>
-				<NewContent flag={categoryState.indexOf(item.name) > -1} />
-			</div>
+			{categoryState.indexOf(item.name) > -1 && <div className={styles.flag}>
+				<IoHeart color="white" />
+			</div>}
 		</button>
 	));
 

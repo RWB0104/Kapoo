@@ -9,6 +9,7 @@ import {  TITLE } from '@commons/env';
 import { useResetHook, useScreenImage } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import CommitList from '@components/about/CommitList';
+import Info from '@components/about/Info';
 import { NameCard } from '@components/about/NameCard';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
@@ -30,6 +31,7 @@ export default function Posts(): JSX.Element
 
 			<Screener image={imageState} lower={MENU_LIST[3].desc} menu={MENU_LIST[3].title} title={TITLE} />
 
+			<Info />
 			<NameCard />
 			<CommitList />
 		</section>

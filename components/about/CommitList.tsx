@@ -86,7 +86,7 @@ export default function CommitList(): JSX.Element | null
 							</div>
 
 							<div>
-								<p><small></small><small>{commit.sha}</small></p>
+								<p><small>{commit.sha}</small></p>
 							</div>
 						</div>
 					</div>

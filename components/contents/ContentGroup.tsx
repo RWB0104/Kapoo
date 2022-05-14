@@ -38,8 +38,6 @@ export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 			const title = item.header.title;
 			const url = `/${item.header.type}/${item.url.slice(1, 5).join('/')}`;
 
-			console.dir(`${current} ${url}`);
-
 			return (
 				<li key={index}>
 					{current === url ? (

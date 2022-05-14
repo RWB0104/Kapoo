@@ -66,7 +66,7 @@ export default function ContentItem({ item }: Props): JSX.Element
 					<div className={styles['category-wrapper']}>
 						<Link href={categoryUrl}>
 							<a>
-								<img alt={category} className={styles['category-image']} src={CATEGORY[category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+								<img alt={category} className={styles['category-image']} src={CATEGORY[category] || CATEGORY['All']} />
 							</a>
 						</Link>
 

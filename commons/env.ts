@@ -13,14 +13,15 @@ export const DESCRIPTION = '𝝅번째 알파카의 우당탕탕 개발 기록';
 export const LOGO = '/img/logo.png';
 
 export const CATEGORY = {
-	'All': 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png',
+	'All': 'https://user-images.githubusercontent.com/50317129/168414052-ca399b9e-11f3-417b-bf0e-b68b2eb69182.png',
 	'CS': 'https://user-images.githubusercontent.com/50317129/132937772-73a6364f-c66c-4fc5-85da-60a0db1c58a1.png',
-	'JAVA': 'https://user-images.githubusercontent.com/50317129/132937204-99bf52ed-2cea-4530-ad5b-1cc421ebcc94.png',
+	'GIS': 'https://user-images.githubusercontent.com/50317129/168413759-e709e9cb-814a-4f67-93be-2abb5df6059d.png',
+	'JAVA': 'https://user-images.githubusercontent.com/50317129/168414204-aa70eb00-0395-42fe-8164-0bed32ca7e61.png',
 	'Jekyll': 'https://user-images.githubusercontent.com/50317129/132937228-0041b311-0d6e-4dea-a4b3-150232cc77fb.png',
 	'NextJS': 'https://user-images.githubusercontent.com/50317129/146045656-caf9e4c0-0ff6-455b-b667-d1c6aca4fd95.png',
 	'Programmers': 'https://user-images.githubusercontent.com/50317129/146045855-3cac4845-1d15-47db-9261-5843b9122228.png',
 	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/132937496-a2f0e74f-18c3-43c7-9d94-869690a72e4c.png',
-	'React': 'https://user-images.githubusercontent.com/50317129/132937462-ff607a3f-1ccb-45f2-8762-b8697e4d63f5.png',
+	'React': 'https://user-images.githubusercontent.com/50317129/168414289-f7965056-0cd5-4041-b610-c941421ec590.png',
 	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132937521-683e896e-8830-4175-9c15-d294adaf3620.png',
 	'WAS': 'https://user-images.githubusercontent.com/50317129/132937090-b40eb63a-f391-44bc-8aa7-a319e745ba09.png',
 	'WEB': 'https://user-images.githubusercontent.com/50317129/132937120-8c5d8c34-569f-4736-af86-820cb851e9bd.png',
@@ -178,5 +179,10 @@ export const PIECE = [
 		author: '미운 사람만 가득한 이 도시에도',
 		images: 'https://user-images.githubusercontent.com/50317129/168111923-1f8202fd-bd0f-4536-8b57-4cf670c3eec4.mp4',
 		title: '미운 사람만 가득한 나도 이상한가요?'
+	},
+	{
+		author: '서울의 밤',
+		images: 'https://user-images.githubusercontent.com/50317129/168413361-6cb42f92-8f2c-4cf1-a00e-4a7edc57992c.mp4',
+		title: '도망치는 거야\n저 멀리 먼곳에 그대여 멀리로'
 	}
 ];

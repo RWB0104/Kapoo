@@ -1,0 +1,103 @@
+@import "../../fonts/blacksword.scss";
+@import "../../common/animation.scss";
+@import "../../common/env.scss";
+
+.root {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 100px;
+
+	width: 100%;
+	max-width: $ref;
+
+	padding: 40px;
+	box-sizing: border-box;
+}
+
+.head {
+	display: flex;
+	gap: 40px;
+
+	@media (max-width: $ref) {
+		gap: 20px;
+	}
+}
+
+.icon {
+	svg {
+		color: #00D8FF;
+		width: 150px;
+		height: 150px;
+
+		@include rotate-animation;
+
+		@media (max-width: $ref) {
+			width: 100px;
+			height: 100px;
+		}
+	}
+}
+
+.prompt {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	h3 {
+		font-size: 2rem;
+		font-weight: 900;
+
+		color: dodgerblue;
+
+		@media (max-width: $ref) {
+			font-size: 1.5rem;
+		}
+	}
+
+	p {
+		font-size: 1.25rem;
+
+		@media (max-width: $ref) {
+			font-size: 1rem;
+		}
+	}
+}
+
+.associate {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+
+	width: 100%;
+
+	h3 {
+		font-size: 3rem;
+		font-family: Blacksword, sans-serif;
+	}
+}
+
+.brands {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+
+	width: 100%;
+
+	margin-bottom: 60px;
+
+	a {
+		padding: 20px;
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	@media (max-width: $ref) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

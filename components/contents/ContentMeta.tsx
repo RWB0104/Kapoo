@@ -39,7 +39,7 @@ export default function ContentMeta({ header }: Props): JSX.Element
 				<p className={styles.text}>📚 카테고리</p>
 
 				<div className={styles['category-wrapper']}>
-					<img alt={header.category} className={styles['category-image']} src={CATEGORY[header.category] || 'https://user-images.githubusercontent.com/50317129/132937376-276bf532-841b-4f80-9ba7-d05063ee6e92.png'} />
+					<img alt={header.category} className={styles['category-image']} src={CATEGORY[header.category] || CATEGORY['All']} />
 					<p className={styles.link}>{header.category}</p>
 				</div>
 			</div>
