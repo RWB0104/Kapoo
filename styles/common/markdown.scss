@@ -33,7 +33,6 @@
 			}
 
 			td {
-				text-align: start;
 				font-size: 0.9rem;
 				padding: 5px 15px;
 
@@ -116,7 +115,7 @@
 		font-size: 1.1rem;
 	}
 
-	p {
+	&>p {
 		padding: 10px 0px;
 	}
 

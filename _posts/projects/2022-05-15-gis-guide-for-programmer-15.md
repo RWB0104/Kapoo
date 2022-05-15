@@ -5,10 +5,10 @@ coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad
 date: "2022-05-15T02:48:50+09:00"
 type: "projects"
 category: "GIS"
-tag: [ "GIS", "GeoServer", "OpenLayers" ]
+tag: [ "GIS", "GeoServer", "OpenLayers", "OGC", "WFS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: false
+publish: true
 ---
 
 # WFS
@@ -34,9 +34,9 @@ publish: false
 
 # WFS를 활용하여 지도에 표시하기
 
-WFS를 표시하기 위해, 총 4개 객체가 필요하다. 각각 WFS의 결과인 GeoJSON을 담을 `VectorSource`, `VectorSource`를 활용하여 지도를 렌더링하는 `VectorLayer`, 나머지 `View`와 `Map` 객체가 그것이다.
+WFS를 표시하기 위해, 총 5개 객체가 필요하다. 각각 WFS의 결과인 GeoJSON을 담을 `VectorSource`, `VectorSource`를 활용하여 지도를 렌더링하는 `VectorLayer`, 나머지 `View`와 `Map` 객체가 그것이다. 추가로 `Style` 객체의 표현 방식을 기술할 수 있다.
 
-즉 이 4가지 요소를 구현하는 방법을 차례로 설명하여, 최종적으로 WFS를 활용한 지도를 만든다.
+이 5가지 요소를 구현하는 방법을 차례로 설명하여, 최종적으로 WFS를 활용한 지도를 만든다.
 
 <br />
 <br />
@@ -485,6 +485,7 @@ function getStyle(feature: RenderFeature | Feature<Geometry>)
 모든 정보를 종합하여 지도를 만드는 Map 객체를 생성한다.
 
 ``` typescript
+import Map from 'ol/Map';
 import { Vector as VectorSource } from 'ol/source';
 import { GeoJSON } from 'ol/format';
 import { bbox } from 'ol/loadingstrategy';
@@ -552,11 +553,7 @@ const view = new View({
 const map = new Map({
 	layers: [ vworldBaseLayer, vworldHybridLayer, wfsLayer ],
 	target: 'map',
-	view: new View({
-		projection: 'EPSG:3857',
-		center: proj4('EPSG:4326', 'EPSG:3857', sejongPosition),
-		zoom: 17
-	})
+	view: view
 });
 ```
 
