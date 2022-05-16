@@ -33,7 +33,7 @@ export function NameCard(): JSX.Element
 					</div>
 
 					<div className={styles.body}>
-						<p>To be FullStack Develpoer</p>
+						<p>To be FullStack Developer</p>
 						<p>2019.03 ~ now</p>
 
 						<img src="https://itcode.dev/images/signature.png" />

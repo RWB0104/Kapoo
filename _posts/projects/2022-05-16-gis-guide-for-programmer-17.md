@@ -1,23 +1,27 @@
 ---
-title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 16. WMS를 사용하여 지도에 이미지 표시하기"
+title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 17. WFS 객체에 상호작용 추가하기"
 excerpt: "이 장에선 WFS를 통해 지도에 이미지를 표시하는 방법에 대해 다룬다. 이전 장의 WFS는 공간정보 데이터를 GeoJSON으로 받아 직접 객체로 표시하지만, WMS는 객체를 GeoServer에서 이미지로 렌더링한 이미지를 받아 표시한다. 즉, GeoServer로 부터 직접 Tile Map을 받아 표현한다고 생각하면 된다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
 date: "2022-05-16T02:13:10+09:00"
 type: "projects"
 category: "GIS"
-tag: [ "GIS", "GeoServer", "OpenLayers", "OGC", "WMS" ]
+tag: [ "GIS", "GeoServer", "OpenLayers" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: true
+publish: false
 ---
 
-# WMS
+# 이미지와 객체의 차이점은 만질 수 있다는 것이다
 
-이 장에선 <span class="primary">WFS</span>를 통해 지도에 이미지를 표시하는 방법에 대해 다룬다.
+WFS와 WMS의 가장 큰 특징은 데이터의 결과물이다. WFS는 GeoJSON으로 공간정보 요소를 반환해주는 반면, WMS는 공간정보 요소를 토대로 직접 지도를 렌더링하여 제공해준다.
 
-이전 장의 WFS는 공간정보 데이터를 GeoJSON으로 받아 직접 객체로 표시하지만, WMS는 객체를 GeoServer에서 이미지로 렌더링한 이미지를 받아 표시한다.
+OpenLayers는 WFS의 데이터를 토대로 `canvas`에 객체를 렌더링한다. 공간정보를 토대로 일종의 도형을 그린다고 생각하면 쉽다.
 
-즉, GeoServer로 부터 직접 Tile Map을 받아 표현한다고 생각하면 된다.
+이미지와 다르게 웹 상에서 직접 그려지는 객체이므로, 웹은 이를 인식하거나 조작할 수 있다는 큰 장점이 있다.
+
+<br />
+
+이 문서에서는 일전에 구현한 WFS 지도에서 상호작용을 추가해본다.
 
 <br />
 <br />
@@ -32,11 +36,11 @@ publish: true
 
 
 
-# WMS를 활용하여 지도에 표시하기
+# 상호작용 추가하기
 
-WMS를 표시하기 위해, 총 4개 객체가 필요하다. WMS는 이미지를 받아 표시하므로, 이 이미지를 담을 `ImageWMS`, 이를 활용하여 지도에 렌더링하는 `ImageLayer`. 나머지 `View`와 `Map` 객체가 필요하다
+[15장](/projects/2022/05/15/gis-guide-for-programmer-15)에서 다룬 WFS 지도를 그대로 사용한다. `Select` 객체를 통해 각 상호작용 별 스타일을 추가할 수 있다.
 
-이 4가지 요소를 구현하는 방법을 차례로 설명하여, 최종적으로 WMS를 활용한 지도를 만든다.
+객체의 마우스 호버, 클릭 등의 상태에 따라 원하는 스타일을 부여하여 객체와의 상호작용을 시각적으로 표현할 수 있다.
 
 <br />
 <br />
@@ -45,34 +49,23 @@ WMS를 표시하기 위해, 총 4개 객체가 필요하다. WMS는 이미지를
 
 
 
-## 1. WMS URL 구성하기
+## 1. Select 객체 구성하기
 
-GeoServer를 통해 데이터를 구축했던 데이터를 통해 WMS 이미지를 호출한다.
+상호작용 디자인을 표현할 땐 `Select` 객체를 사용하면 쉽게 구현할 수 있다.
 
-WMS 중에서도, 속성정보를 제공하는 `GetImage`를 사용한다. `GetImage`의 요청방법은 아래와 같다.
 
-``` txt
-GET https://example.com/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=test:building&exceptions=application%2Fjson&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14168061.814827133%2C4367306.048101831%2C14168367.562940273%2C4367611.796214972
-```
-
-|  Parameter  |              Example              | Require |                                      Description                                      |
-| :---------: | :-------------------------------: | :-----: | :-----------------------------------------------------------------------------------: |
-|   service   |            WMS (고정)             |    Y    |                                       서비스명                                        |
-|   version   | 1.3.0 (고정), 1.1.1, 1.1.0, 1.0.0 |    Y    |                                         버전                                          |
-|   request   |           GetMap (고정)           |    Y    |                                        요청명                                         |
-|   layers    |       repo_name:layer_name        |    Y    |                             레이어명 (다수는 쉼표로 구분)                             |
-|   styles    |              style1               |         | 적용할 스타일명 (비울 경우 GeoServer에서 설정한 기본 스타일 적용, 다수는 쉼표로 구분) |
-| srs(or crs) |             EPSG:4326             |         |                  기준 좌표계 (비울 경우 레이어의 기본 좌표계로 인식)                  |
-|    bbox     | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                                   이미지 영역 좌표                                    |
-|    width    |                256                |    Y    |                                      이미지 넓이                                      |
-|   height    |                256                |    Y    |                                      이미지 높이                                      |
-|   format    |             image/png             |    Y    |                                        요청명                                         |
-| transparent |           false (기본)            |         |                                    배경 투명 여부                                     |
-|   bgcolor   |           FFFFFF (기본)           |         |                                RRGGBB 형태의 배경 색상                                |
-| exceptions  | application/vnd.ogc.se_xml (기본) |         |                                    예외 응답 형식                                     |
-|    time     |   2022-03-14T22:30.27.520+09:00   |         |                 시계열 데이터를 위한 시간 (yyyy-MM-ddThh:mm:ss.SSSZ)                  |
-|     sld     |    https://example.com/sld.xml    |         |                                     XML 파일 경로                                     |
-|  sld_body   |            <sld></sld>            |         |                                        SLD XML                                        |
+|    Parameter    |                                                                                                           Type                                                                                                            | Default |                                                                                          Description                                                                                          |
+| :-------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  addCondition   |                                          [ol/events/condition-Condition](https://openlayers.org/en/latest/apidoc/module-ol_events_condition.html#~Condition) &#124; `undefined`                                           |         |                                                                                                                                                                                               |
+|    condition    |                                          [ol/events/condition-Condition](https://openlayers.org/en/latest/apidoc/module-ol_events_condition.html#~Condition) &#124; `undefined`                                           |         |                                                                                                                                                                                               |
+|     layers      |                                       Array<[ol/layer/Layer-Layer](https://openlayers.org/en/latest/apidoc/module-ol_layer_Layer-Layer.html)> &#124; `function` &#124; `undefined`                                        |         |                                                                                                                                                                                               |
+|      style      |                                        [ol/style/Style-StyleLike](https://openlayers.org/en/latest/apidoc/module-ol_style_Style.html#~StyleLike) &#124; `null` &#124; `undefined`                                         |         | 레이어 스타일. `null`일 경우 고유 스타일을 가진 `Feature`만 렌더링됨<br />기본 스타일은 [ol/style/Style-Style](https://openlayers.org/en/latest/apidoc/module-ol_style_Style-Style.html) 참조 |
+| removeCondition |                                          [ol/events/condition-Condition](https://openlayers.org/en/latest/apidoc/module-ol_events_condition.html#~Condition) &#124; `undefined`                                           |         |                                                                                                                                                                                               |
+| toggleCondition |                                          [ol/events/condition-Condition](https://openlayers.org/en/latest/apidoc/module-ol_events_condition.html#~Condition) &#124; `undefined`                                           |         |                                                                                                                                                                                               |
+|      multi      |                                                                                                         `boolean`                                                                                                         | `false` |                                                                                                                                                                                               |
+|    features     | [ol/Collection-Collection](https://openlayers.org/en/latest/apidoc/module-ol_Collection-Collection.html)<[ol/Feature-Feature](https://openlayers.org/en/latest/apidoc/module-ol_Feature-Feature.html)> &#124; `undefined` |         |                                                                                                                                                                                               |
+|     filter      |                                   [ol/interaction/Select-FilterFunction](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Select.html#~FilterFunction) &#124; `undefined`                                    |         |                                                                                                                                                                                               |
+|  hitTolerance   |                                                                                                         `number`                                                                                                          |   `0`   |                                                                                                                                                                                               |
 
 하지만 WMS의 URL, WFS에 비해 요구하는 파라미터의 갯수가 많아 다소 복잡하다. WFS에선, `VectorSource`에 직접 URL을 입력했지만, WMS의 소스 객체인 `ImageWMS`의 경우 몇 가지 필요한 값을 입력하면 알아서 URL을 만들어 호출해준다.
 
