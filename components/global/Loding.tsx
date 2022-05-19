@@ -7,6 +7,7 @@
 
 import { loadingAtom, themeAtom } from '@commons/state';
 import styles from '@styles/components/global/Loading.module.scss';
+import classNames from 'classnames/bind';
 import { FaReact } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 
@@ -20,10 +21,12 @@ export default function Loading(): JSX.Element | null
 	const themeState = useRecoilValue(themeAtom);
 	const loadingState = useRecoilValue(loadingAtom);
 
+	const cn = classNames.bind(styles);
+
 	return loadingState ? (
-		<article className={styles[`root-${themeState}`]}>
-			<div className={styles['logo-wrap']}>
-				<FaReact className={styles.logo} />
+		<article className={cn('root', themeState)}>
+			<div className={cn('logo-wrapper')}>
+				<FaReact className={cn('logo')} />
 			</div>
 		</article>
 	) : null;

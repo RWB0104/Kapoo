@@ -8,6 +8,7 @@
 import { ContentProps } from '@commons/common';
 import ContentList from '@components/contents/ContentList';
 import styles from '@styles/components/home/ContentsCase.module.scss';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
 
 interface Props
@@ -27,14 +28,16 @@ interface Props
  */
 export default function ContentsCase({ num, title, url, list }: Props): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles.root}>
-			<h1 className={styles.title}>{title}</h1>
+		<article className={cn('root')}>
+			<h1 className={cn('title')}>{title}</h1>
 
 			<ContentList list={list.slice(0, num)} />
 
-			<Link href={url}>
-				<a className={styles.more} title="more">M O R E</a>
+			<Link href={url} passHref>
+				<a className={cn('more')} href='#replace' title='more'>M O R E</a>
 			</Link>
 		</article>
 	);

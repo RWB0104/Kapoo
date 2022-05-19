@@ -9,6 +9,7 @@ import { Theme } from '@commons/common';
 import { useSemanticHook } from '@commons/hook';
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/global/ThemeFab.module.scss';
+import classNames from 'classnames/bind';
 import { useCookies } from 'react-cookie';
 import { IoMoon } from 'react-icons/io5';
 import { useSetRecoilState } from 'recoil';
@@ -25,16 +26,21 @@ export default function ThemeDarkFab(): JSX.Element | null
 
 	const setThemeState = useSetRecoilState(themeAtom);
 
-	return semanticState ? (
-		<button className={styles['switch-dark']} onClick={() =>
-		{
-			const theme = Theme.DARK;
+	const cn = classNames.bind(styles);
 
-			setThemeState(theme);
-			setCookie('theme', theme, { maxAge: 86400 * 30 });
-		}}>
-			<IoMoon className={styles['icon-dark']} />
-			<p className={styles['switch-text']}>다크 모드로 보기</p>
+	return semanticState ? (
+		<button
+			className={cn('switch-dark')}
+			onClick={() =>
+			{
+				const theme = Theme.DARK;
+
+				setThemeState(theme);
+				setCookie('theme', theme, { maxAge: 86400 * 30 });
+			}}
+		>
+			<IoMoon className={cn('icon-dark')} />
+			<p className={cn('switch-text')}>다크 모드로 보기</p>
 		</button>
 	) : null;
 }

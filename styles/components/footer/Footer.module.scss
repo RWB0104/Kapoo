@@ -1,7 +1,7 @@
 @import "../../common/color.scss";
 @import "../../common/env.scss";
 
-@mixin line {
+.line {
 	display: grid;
 	grid-template-columns: 1fr 100px 1fr;
 
@@ -10,26 +10,22 @@
 
 	margin-top: 50px;
 	margin-bottom: 50px;
+
+	&.dark {
+		hr {
+			border: 1px solid #161B22;
+		}
+	}
+
+	&.light {
+		hr {
+			border: 1px solid gainsboro;
+		}
+	}
 }
 
 .root {
 	padding-bottom: 50px;
-}
-
-.line-light {
-	@include line;
-
-	hr {
-		border: 1px solid gainsboro;
-	}
-}
-
-.line-dark {
-	@include line;
-
-	hr {
-		border: 1px solid #161B22;
-	}
 }
 
 .buttons {

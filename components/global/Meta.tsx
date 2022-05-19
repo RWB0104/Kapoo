@@ -31,17 +31,17 @@ export default function Meta({ title, description = DESCRIPTION, type = 'website
 		<Head>
 			<title>{`${title} - ${TITLE}`}</title>
 
-			<meta content={description} name="description" />
+			<meta content={description} name='description' />
 
-			<meta content={TITLE} property="og:site_name" />
-			<meta content={`${title} - ${TITLE}`} property="og:title" />
-			<meta content={description} property="og:description" />
-			<meta content={type} property="og:type" />
-			<meta content={`${BASE_URL}${url}`} property="og:url" />
-			<meta content={image} property="og:image" />
-			<meta content={locale} property="og:locale" />
+			<meta content={TITLE} property='og:site_name' />
+			<meta content={`${title} - ${TITLE}`} property='og:title' />
+			<meta content={description} property='og:description' />
+			<meta content={type} property='og:type' />
+			<meta content={`${BASE_URL}${url}`} property='og:url' />
+			<meta content={image} property='og:image' />
+			<meta content={locale} property='og:locale' />
 
-			<link href={`${BASE_URL}${url}`} rel="canonical"></link>
+			<link href={`${BASE_URL}${url}`} rel='canonical' />
 		</Head>
 	);
 }

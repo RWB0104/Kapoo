@@ -6,6 +6,7 @@
  */
 
 import styles from '@styles/components/global/FabPannel.module.scss';
+import classNames from 'classnames/bind';
 
 interface Props
 {
@@ -19,5 +20,7 @@ interface Props
  */
 export default function FabPannel({ children }: Props): JSX.Element
 {
-	return <div className={styles.root}>{children}</div>;
+	const cn = classNames.bind(styles);
+
+	return <div className={cn('root')}>{children}</div>;
 }

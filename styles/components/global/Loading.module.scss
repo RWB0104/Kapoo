@@ -3,7 +3,7 @@
 @import "../../common/animation.scss";
 @import "../../common/env.scss";
 
-@mixin root {
+.root {
 	display: grid;
 	align-content: center;
 
@@ -18,21 +18,17 @@
 	transition: 0.3s;
 
 	cursor: wait;
+
+	&.dark {
+		background-color: #161D2CCC;
+	}
+
+	&.light {
+		background-color: #F5F5F5CC;
+	}
 }
 
-.root-light {
-	@include root;
-
-	background-color: #F5F5F5CC;
-}
-
-.root-dark {
-	@include root;
-
-	background-color: #161D2CCC;
-}
-
-.logo-wrap {
+.logo-wrapper {
 	padding: 15px;
 	margin: 0px auto;
 
@@ -49,16 +45,4 @@
 	transition: 0.3s;
 
 	@include spin-animation;
-}
-
-.title {
-	font-family: Blacksword, sans-serif;
-	font-weight: 900;
-	font-size: 8rem;
-
-	color: white;
-
-	@media (max-width: $ref) {
-		font-size: 4rem;
-	}
 }

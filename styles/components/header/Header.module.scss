@@ -1,7 +1,7 @@
 @import "../../common/animation.scss";
 @import "../../common/env.scss";
 
-@mixin root() {
+.root {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -11,14 +11,20 @@
 	width: 100%;
 	height: 64px;
 
+	transition: 0.3s;
+
 	z-index: 10;
 
-	@media (max-width: $ref) {
-		height: 48px;
+	&.light {
+		background-color: white;
+		border-bottom: 1px solid gainsboro;
 	}
-}
 
-@mixin data-top() {
+	&.dark {
+		background-color: #161B22;
+		color: white;
+	}
+
 	&[data-top=true] {
 		background-color: transparent;
 		border-bottom: 1px solid hsla(0, 0%, 100%, .3);
@@ -27,25 +33,10 @@
 
 		transition: 0.3s;
 	}
-}
 
-.root-light {
-	background-color: white;
-	transition: 0.3s;
-
-	border-bottom: 1px solid gainsboro;
-
-	@include root;
-	@include data-top;
-}
-
-.root-dark {
-	background-color: #161B22;
-	color: white;
-	transition: 0.3s;
-
-	@include root;
-	@include data-top;
+	@media (max-width: $ref) {
+		height: 48px;
+	}
 }
 
 .wrapper {

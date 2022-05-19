@@ -3,7 +3,7 @@
 
 $width: 200px;
 
-@mixin root {
+.root {
 	position: fixed;
 
 	display: flex;
@@ -24,6 +24,19 @@ $width: 200px;
 
 	transition: 0.3s;
 
+	&.dark {
+		background-color: #0D1117;
+		color: white;
+
+		border-left: 1px solid #21262D;
+	}
+
+	&.light {
+		background-color: white;
+
+		border-left: 1px solid gainsboro;
+	}
+
 	&[data-show=true] {
 		@include slide-in-animation();
 	}
@@ -33,7 +46,7 @@ $width: 200px;
 	}
 }
 
-@mixin list {
+.list {
 	width: 100%;
 	list-style-type: none;
 
@@ -50,9 +63,30 @@ $width: 200px;
 			box-sizing: border-box;
 		}
 	}
+
+	&.dark {
+		li {
+			border-bottom: 1px solid #21262D;
+
+			a:active {
+				background-color: #21262D;
+			}
+		}
+
+	}
+
+	&.light {
+		li {
+			border-bottom: 1px solid gainsboro;
+
+			a:active {
+				background-color: gainsboro;
+			}
+		}
+	}
 }
 
-@mixin switch {
+.switch {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -73,60 +107,15 @@ $width: 200px;
 			fill: map-get($map: $yellow, $key: "500");
 		}
 	}
-}
 
-.root-light {
-	@include root;
-
-	background-color: white;
-
-	border-left: 1px solid gainsboro;
-}
-
-.root-dark {
-	@include root;
-
-	background-color: #0D1117;
-	color: white;
-
-	border-left: 1px solid #21262D;
-}
-
-.list-light {
-	@include list;
-
-	li {
-		border-bottom: 1px solid gainsboro;
-
-		a:active {
-			background-color: gainsboro;
-		}
+	&.light {
+		color: dimgrey;
+		background-color: gainsboro;
 	}
-}
 
-.list-dark {
-	@include list;
-
-	li {
-		border-bottom: 1px solid #21262D;
-
-		a:active {
-			background-color: #21262D;
-		}
+	&.dark {
+		color: grey;
+		background-color: #161B22;
+		border: 1px solid #21262D;
 	}
-}
-
-.switch-light {
-	@include switch;
-
-	color: dimgrey;
-	background-color: gainsboro;
-}
-
-.switch-dark {
-	@include switch;
-
-	color: grey;
-	background-color: #161B22;
-	border: 1px solid #21262D;
 }

@@ -7,6 +7,7 @@
 
 import { BASE_URL } from '@commons/env';
 import styles from '@styles/components/global/Hits.module.scss';
+import classNames from 'classnames/bind';
 
 interface Props
 {
@@ -22,13 +23,15 @@ interface Props
  */
 export default function Hits({ urls }: Props): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	let url = BASE_URL;
 
 	// url이 배열일 경우
 	if (Array.isArray(urls))
 	{
-		urls.forEach(e => url += `/${e}`);
+		urls.forEach((e) => url += `/${e}`);
 	}
 
-	return <img className={styles.counter} src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(url)}&count_bg=%23555555&title_bg=%23555555&icon=react.svg&icon_color=%2348CAF7&title=hits&edge_flat=false`} />;
+	return <img alt='count' className={cn('counter')} src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=${encodeURIComponent(url)}&count_bg=%23555555&title_bg=%23555555&icon=react.svg&icon_color=%2348CAF7&title=hits&edge_flat=false`} />;
 }

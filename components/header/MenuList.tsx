@@ -9,6 +9,7 @@ import { useSemanticHook } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import { menuAtom } from '@commons/state';
 import styles from '@styles/components/header/MenuList.module.scss';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { IoClose, IoMenu } from 'react-icons/io5';
 import { useRecoilState } from 'recoil';
@@ -20,20 +21,22 @@ import { useRecoilState } from 'recoil';
  */
 export default function MenuList(): JSX.Element | null
 {
+	const cn = classNames.bind(styles);
+
 	const semantic = useSemanticHook();
 
 	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
 
 	return semantic ? (
-		<nav className={styles.root}>
+		<nav className={cn('root')}>
 			{MENU_LIST.map((element) => (
-				<Link href={element.url} key={element.id}>
-					<a className={styles.link} title={element.title}>{element.icon}</a>
+				<Link href={element.url} key={element.id} passHref>
+					<a className={cn('link')} href='#replace' title={element.title}>{element.icon}</a>
 				</Link>
 			))}
 		</nav>
 	) : (
-		<button className={styles.button} onClick={() => setMenuState(menuState === undefined ? true : !menuState)}>
+		<button className={cn('button')} onClick={() => setMenuState(menuState === undefined ? true : !menuState)}>
 			{menuState ? <IoClose /> : <IoMenu />}
 		</button>
 	);

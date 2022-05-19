@@ -1,4 +1,4 @@
-@mixin root {
+.root {
 	padding: 15px;
 
 	border-radius: 50%;
@@ -7,35 +7,27 @@
 
 	cursor: pointer;
 
-	&:hover {
-		transition: 0.3s;
+	&.dark {
+		background-color: #161B22;
+		color: white;
+
+		border: 1px solid #21262D;
+		box-shadow: 3px 3px 5px #21262D;
+
+		&:hover {
+			background-color: #262d35;
+		}
 	}
-}
 
-.root-dark {
-	@include root;
+	&.light {
+		background-color: white;
+		color: black;
 
-	background-color: #161B22;
-	color: white;
+		border: 1px solid gainsboro;
+		box-shadow: 3px 3px 5px gainsboro;
 
-	border: 1px solid #21262D;
-	box-shadow: 3px 3px 5px #21262D;
-
-	&:hover {
-		background-color: #262d35;
-	}
-}
-
-.root-light {
-	@include root;
-
-	background-color: white;
-	color: black;
-
-	border: 1px solid gainsboro;
-	box-shadow: 3px 3px 5px gainsboro;
-
-	&:hover {
-		background-color: whitesmoke;
+		&:hover {
+			background-color: whitesmoke;
+		}
 	}
 }

@@ -8,6 +8,7 @@
 import { getRandomIndex } from '@commons/common';
 import { PIECE } from '@commons/env';
 import styles from '@styles/components/global/ArtBox.module.scss';
+import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { IoMdRefresh } from 'react-icons/io';
 
@@ -18,6 +19,8 @@ import { IoMdRefresh } from 'react-icons/io';
  */
 export default function Artbox(): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const imageRef = useRef<HTMLImageElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
@@ -65,19 +68,19 @@ export default function Artbox(): JSX.Element
 	}, [ state ]);
 
 	return (
-		<article className={styles.root}>
-			<div className={styles['image-wrapper']}>
-				<img className={styles.image} ref={imageRef} />
-				<video className={styles.image} ref={videoRef} autoPlay loop muted />
+		<article className={cn('root')}>
+			<div className={cn('image-wrapper')}>
+				<img alt='background' className={cn('image')} ref={imageRef} />
+				<video className={cn('image')} ref={videoRef} autoPlay loop muted />
 			</div>
 
-			<div className={styles['text-wrapper']}>
-				<h1 className={styles.title} ref={titleRef}></h1>
-				<h3 className={styles.sub} ref={subRef}></h3>
+			<div className={cn('text-wrapper')}>
+				<h1 className={cn('title')} ref={titleRef}>-</h1>
+				<h3 className={cn('sub')} ref={subRef}>-</h3>
 			</div>
 
-			<div className={styles['button-wrapper']} onClick={() => setState(!state)}>
-				<button className={styles.button}><IoMdRefresh /></button>
+			<div className={cn('button-wrapper')}>
+				<button aria-label='refresh' className={cn('button')} onClick={() => setState(!state)}><IoMdRefresh /></button>
 			</div>
 		</article>
 	);

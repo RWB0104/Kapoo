@@ -8,6 +8,7 @@
 import { useScrollTopHook } from '@commons/hook';
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/global/TopFab.module.scss';
+import classNames from 'classnames/bind';
 import { IoArrowUp } from 'react-icons/io5';
 import { useRecoilValue } from 'recoil';
 
@@ -22,8 +23,10 @@ export default function TopFab(): JSX.Element | null
 
 	const themeState = useRecoilValue(themeAtom);
 
+	const cn = classNames.bind(styles);
+
 	return scrollState ? null : (
-		<button className={styles[`root-${themeState}`]} onClick={() => window.scrollTo(0, 0)}>
+		<button className={cn('root', themeState)} onClick={() => window.scrollTo(0, 0)}>
 			<IoArrowUp />
 		</button>
 	);

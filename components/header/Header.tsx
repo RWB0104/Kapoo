@@ -9,6 +9,7 @@ import { TITLE } from '@commons/env';
 import { useScrollTopHook } from '@commons/hook';
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/header/Header.module.scss';
+import classNames from 'classnames/bind';
 import { FaReact } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 
@@ -21,15 +22,17 @@ import MenuList from './MenuList';
  */
 export default function Header(): JSX.Element | null
 {
+	const cn = classNames.bind(styles);
+
 	const themeState = useRecoilValue(themeAtom);
 	const scrollState = useScrollTopHook();
 
 	return (
-		<header className={styles[`root-${themeState}`]} data-top={scrollState}>
-			<div className={styles.wrapper}>
-				<FaReact className={styles.logo} height={48} width={48} />
+		<header className={cn('root', themeState)} data-top={scrollState}>
+			<div className={cn('wrapper')}>
+				<FaReact className={cn('logo')} height={48} width={48} />
 
-				<h4 className={styles.title}>{TITLE}</h4>
+				<h4 className={cn('title')}>{TITLE}</h4>
 
 				<MenuList />
 			</div>

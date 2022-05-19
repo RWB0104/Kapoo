@@ -1,4 +1,4 @@
-@mixin root {
+.root {
 	margin: 0px;
 	padding: 0px;
 
@@ -8,21 +8,15 @@
 
 	z-index: -1;
 
-	& > section {
+	&>section {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 20px;
 	}
-}
 
-.root-light {
-	@include root;
-}
-
-.root-dark {
-	@include root;
-
-	color: white;
-	background-color: #010409;
+	&.dark {
+		color: white;
+		background-color: #010409;
+	}
 }

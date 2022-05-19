@@ -11,6 +11,7 @@ import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import MobileMenu from '@components/header/MobileMenu';
 import styles from '@styles/components/global/BaseLayout.module.scss';
+import classNames from 'classnames/bind';
 import { Router } from 'next/router';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
@@ -39,6 +40,8 @@ export default function BaseLayout({ children }: Props): JSX.Element
 
 	const [ themeState, setThemeState ] = useRecoilState(themeAtom);
 	const [ menuState, setMenuState ] = useRecoilState(menuAtom);
+
+	const cn = classNames.bind(styles);
 
 	const cookie = useCookies([ 'theme' ])[0];
 
@@ -89,7 +92,7 @@ export default function BaseLayout({ children }: Props): JSX.Element
 	}, [ themeState ]);
 
 	return (
-		<main className={styles[`root-${themeState}`]}>
+		<main className={cn('root', themeState)}>
 			<Header />
 			<MobileMenu />
 

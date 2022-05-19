@@ -9,6 +9,7 @@ import { TITLE } from '@commons/env';
 import { themeAtom } from '@commons/state';
 import Hits from '@components/global/Hits';
 import styles from '@styles/components/footer/Footer.module.scss';
+import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';
 import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
@@ -26,6 +27,8 @@ export default function Footer(): JSX.Element
 
 	const [ hashState, setHashState ] = useState(undefined as string | undefined);
 
+	const cn = classNames.bind(styles);
+
 	useEffect(() =>
 	{
 		(async () =>
@@ -35,50 +38,60 @@ export default function Footer(): JSX.Element
 
 			setHashState(text);
 		})();
-	});
+	}, []);
 
 	return (
-		<footer className={styles.root}>
-			<div className={styles[`line-${themeState}`]}>
+		<footer className={cn('root')}>
+			<div className={cn('line', themeState)}>
 				<hr />
 
-				<img alt={TITLE} className={styles.logo} src="/img/profile.jpg" />
+				<img alt={TITLE} className={cn('logo')} src='/img/profile.jpg' />
 
 				<hr />
 			</div>
 
-			<div className={styles.buttons}>
-				<a className={styles.button} href="https://github.com/RWB0104" target="_blank" title='GitHub'>
+			<div className={cn('buttons')}>
+				<a className={cn('button')} href='https://github.com/RWB0104' rel='noreferrer' target='_blank' title='GitHub'>
 					<IoLogoGithub />
 				</a>
 
-				<a className={styles.button} href="https://www.linkedin.com/in/itcode/" target="_blank" title='Linkedin'>
+				<a className={cn('button')} href='https://www.linkedin.com/in/itcode/' rel='noreferrer' target='_blank' title='Linkedin'>
 					<IoLogoLinkedin />
 				</a>
 
-				<a className={styles.button} href="mailto:psj2716@gmail.com" target="_blank" title='Mail'>
+				<a className={cn('button')} href='mailto:psj2716@gmail.com' rel='noreferrer' target='_blank' title='Mail'>
 					<SiGmail />
 				</a>
 			</div>
 
-			<div className={styles.buttons}>
-				<a className={styles.button} href="https://itcode.dev" target="_blank" title='Project Page'>
+			<div className={cn('buttons')}>
+				<a className={cn('button')} href='https://itcode.dev' rel='noreferrer' target='_blank' title='Project Page'>
 					<IoLogoReact />
 				</a>
 
-				<a className={styles.button} href="/sitemap.xml" target="_blank" title='Sitemap'>
+				<a className={cn('button')} href='/sitemap.xml' target='_blank' title='Sitemap'>
 					<FaSitemap />
 				</a>
 
-				<a className={styles.button} href="/rss.xml" target="_blank" title='RSS'>
+				<a className={cn('button')} href='/rss.xml' target='_blank' title='RSS'>
 					<FaRss />
 				</a>
 			</div>
 
-			<div className={styles.info}>
-				<p className={styles.text}><FaCopyright /> Copyright RWB 2021.05</p>
+			<div className={cn('info')}>
+				<p className={cn('text')}>
+					<FaCopyright />
+					{' '}
+					Copyright RWB 2021.05
+				</p>
 
-				{hashState && <p className={styles.text}><FaHashtag /> {hashState}</p>}
+				{hashState && (
+					<p className={cn('text')}>
+						<FaHashtag />
+						{' '}
+						{hashState}
+					</p>
+				)}
 
 				<Hits />
 			</div>

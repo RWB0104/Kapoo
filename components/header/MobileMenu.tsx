@@ -10,6 +10,7 @@ import { useSemanticHook } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import { menuAtom, themeAtom } from '@commons/state';
 import styles from '@styles/components/header/MobileMenu.module.scss';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
 import React from 'react';
 import { useCookies } from 'react-cookie';
@@ -29,27 +30,35 @@ export default function MobileMenu(): JSX.Element | null
 	const [ themeState, setThemeState ] = useRecoilState(themeAtom);
 	const menuState = useRecoilValue(menuAtom);
 
-	const setCookie = useCookies(['theme'])[1];
+	const setCookie = useCookies([ 'theme' ])[1];
 
 	const theme = themeState === Theme.DARK ? Theme.LIGHT : Theme.DARK;
 
+	const cn = classNames.bind(styles);
+
 	return !semanticState ? (
-		<nav className={styles[`root-${themeState}`]} data-show={menuState}>
-			<ul className={styles[`list-${themeState}`]}>
+		<nav className={cn('root', themeState)} data-show={menuState}>
+			<ul className={cn('list', themeState)}>
 				{MENU_LIST.map((element) => (
 					<li key={element.id}>
-						<Link href={element.url}>
-							<a title={element.title}>{element.icon} {element.title}</a>
+						<Link href={element.url} passHref>
+							<a href='#replace' title={element.title}>
+								{element.icon}
+								{element.title}
+							</a>
 						</Link>
 					</li>
 				))}
 			</ul>
 
-			<button className={styles[`switch-${themeState}`]} onClick={() =>
-			{
-				setThemeState(theme);
-				setCookie('theme', theme, { maxAge: 86400 * 30 });
-			}}>
+			<button
+				className={cn('switch', themeState)}
+				onClick={() =>
+				{
+					setThemeState(theme);
+					setCookie('theme', theme, { maxAge: 86400 * 30 });
+				}}
+			>
 				<IoSunny data-status={themeState === Theme.LIGHT} />
 				<BsArrowRepeat size={10} />
 				<IoMoon data-status={themeState === Theme.DARK} />
