@@ -8,6 +8,7 @@
 import { ContentType, ContentTypeEnum } from '@commons/common';
 import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentSearch.module.scss';
+import classNames from 'classnames/bind';
 import React, { useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
@@ -49,46 +50,58 @@ export default function ContentSearch({ type }: Props): JSX.Element
 	const categoryState = type === ContentTypeEnum.POSTS ? postsCategoryState : projectsCategoryState;
 	const setCategoryState = type === ContentTypeEnum.POSTS ? setPostsCategoryState : setProjectsCategoryState;
 
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles['root-wrapper']}>
-			<div className={styles[`root-${themeState}`]}>
+		<article className={cn('root-wrapper')}>
+			<div className={cn('root', themeState)}>
 				<FaSearch />
 
-				<input className={styles.text} ref={ref} type="text" value={searchState} onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-				{
-					setSearchState(e.target.value);
-
-					// 선택된 카테고리가 있을 경우
-					if (categoryState.length > 0)
+				<input
+					className={cn('text')}
+					ref={ref}
+					type='text'
+					value={searchState}
+					onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
 					{
-						setCategoryState([]);
-					}
+						setSearchState(e.target.value);
 
-					// 페이지가 한 차례 이상 넘어간 경우
-					if (pageState > 1)
+						// 선택된 카테고리가 있을 경우
+						if (categoryState.length > 0)
+						{
+							setCategoryState([]);
+						}
+
+						// 페이지가 한 차례 이상 넘어간 경우
+						if (pageState > 1)
+						{
+							setPageState(1);
+						}
+					}}
+				/>
+
+				<button
+					data-show={searchState.length > 0}
+					onClick={() =>
 					{
-						setPageState(1);
-					}
-				}} />
+						setSearchState('');
 
-				<button data-show={searchState.length > 0} onClick={() =>
-				{
-					setSearchState('');
+						// 선택된 카테고리가 있을 경우
+						if (categoryState.length > 0)
+						{
+							setCategoryState([]);
+						}
 
-					// 선택된 카테고리가 있을 경우
-					if (categoryState.length > 0)
-					{
-						setCategoryState([]);
-					}
+						// 페이지가 한 차례 이상 넘어간 경우
+						if (pageState > 1)
+						{
+							setPageState(1);
+						}
 
-					// 페이지가 한 차례 이상 넘어간 경우
-					if (pageState > 1)
-					{
-						setPageState(1);
-					}
-
-					ref.current?.focus();
-				}}><IoClose /></button>
+						ref.current?.focus();
+					}}
+				><IoClose />
+				</button>
 			</div>
 		</article>
 	);

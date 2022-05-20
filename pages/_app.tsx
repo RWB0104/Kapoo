@@ -31,9 +31,8 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element
 				.then(() =>
 				{
 					console.log('service worker registration successful');
-
 				})
-				.catch(err =>
+				.catch((err) =>
 				{
 					console.warn('service worker registration failed', err.message);
 				});

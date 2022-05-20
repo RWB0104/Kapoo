@@ -28,7 +28,7 @@ export default function ContentViewer({ content }: Props): JSX.Element
 	return (
 		<>
 			<Head>
-				<link href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" rel="stylesheet" />
+				<link href='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css' rel='stylesheet' />
 			</Head>
 
 			<div className={`markdown ${themeState}`} dangerouslySetInnerHTML={{ __html: content }} />

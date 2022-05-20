@@ -6,6 +6,7 @@
  */
 
 import styles from '@styles/components/contents/NewContent.module.scss';
+import classNames from 'classnames/bind';
 import { BsCircleFill } from 'react-icons/bs';
 
 interface Props
@@ -22,5 +23,7 @@ interface Props
  */
 export default function NewContent({ flag }: Props): JSX.Element | null
 {
-	return flag ? <BsCircleFill className={styles.root} /> : null;
+	const cn = classNames.bind(styles);
+
+	return flag ? <BsCircleFill className={cn('root')} /> : null;
 }

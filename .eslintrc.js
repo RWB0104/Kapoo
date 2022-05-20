@@ -50,15 +50,23 @@ module.exports = {
 				'newlines-between': 'always'
 			}
 		],
+		'import/prefer-default-export': 'off',
 		indent: [ 'error', 'tab' ],
+		'jsx-a11y/click-events-have-key-events': 'off',
+		'jsx-a11y/no-static-element-interactions': 'off',
 		'jsx-quotes': [ 'error', 'prefer-single' ],
 		'linebreak-style': 'off',
 		'max-len': 'off',
+		'no-console': 'off',
+		'no-lonely-if': 'off',
 		'no-param-reassign': 'off',
+		'no-plusplus': 'off',
 		'no-restricted-exports': 'off',
 		'no-return-assign': 'off',
+		'no-shadow': 'off',
 		'no-tabs': [ 'error', { allowIndentationTabs: true }],
 		'no-unused-vars': 'off',
+		'no-use-before-define': 'off',
 		'object-curly-newline': [ 'error', {
 			ExportDeclaration: 'never',
 			ImportDeclaration: 'never',
@@ -68,7 +76,7 @@ module.exports = {
 			},
 			ObjectPattern: 'never'
 		}],
-		'react-hooks/exhaustive-deps': 'warn',
+		'react-hooks/exhaustive-deps': 'off',
 		'react/button-has-type': 'off',
 		'react/destructuring-assignment': 'off',
 		'react/function-component-definition': 'off',
@@ -82,6 +90,7 @@ module.exports = {
 		'react/jsx-filename-extension': 'off',
 		'react/jsx-indent': [ 'error', 'tab' ],
 		'react/jsx-indent-props': [ 2, 'tab' ],
+		'react/jsx-one-expression-per-line': 'off',
 		'react/jsx-props-no-spreading': 'off',
 		'react/jsx-sort-props': [
 			'error',
@@ -95,6 +104,8 @@ module.exports = {
 				shorthandLast: true
 			}
 		],
+		'react/no-array-index-key': 'off',
+		'react/no-danger': 'off',
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'react/require-default-props': 'off',

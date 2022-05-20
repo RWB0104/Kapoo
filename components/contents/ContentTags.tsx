@@ -6,6 +6,7 @@
  */
 
 import styles from '@styles/components/contents/ContentTags.module.scss';
+import classNames from 'classnames/bind';
 
 interface Props
 {
@@ -22,5 +23,7 @@ interface Props
  */
 export default function ContentTags({ type, tags }: Props): JSX.Element
 {
-	return <>{tags.map((item, index) => <p className={styles.root} data-type={type} key={index}>{item}</p>)}</>;
+	const cn = classNames.bind(styles);
+
+	return <>{tags.map((item, index) => <p className={cn('root')} data-type={type} key={index}>{item}</p>)}</>;
 }

@@ -58,18 +58,18 @@ export default function Projects(): JSX.Element
 
 	useEffect(() =>
 	{
-		const query = getUrlQuery(location);
+		const query = getUrlQuery(window.location);
 
-		const page = query.filter(e => e.key === 'page');
+		const page = query.filter((e) => e.key === 'page');
 
 		// 페이지가 있을 경우
 		if (page.length > 0)
 		{
-			const pageNum = parseInt(page[0].value);
-			setProjectsPageState(isNaN(pageNum) ? 1 : pageNum);
+			const pageNum = parseInt(page[0].value, 10);
+			setProjectsPageState(Number.isNaN(pageNum) ? 1 : pageNum);
 		}
 
-		const search = query.filter(e => e.key === 'search');
+		const search = query.filter((e) => e.key === 'search');
 
 		// 검색 키워드가 있을 경우
 		if (search.length > 0)
@@ -80,12 +80,12 @@ export default function Projects(): JSX.Element
 		// 검색 키워드가 없을 경우
 		else
 		{
-			const categories = query.filter(e => e.key === 'category');
+			const categories = query.filter((e) => e.key === 'category');
 
 			// 카테고리가 있을 경우
 			if (categories.length > 0)
 			{
-				setProjectsCategoryState(categories.map(e => e.value));
+				setProjectsCategoryState(categories.map((e) => e.value));
 			}
 		}
 
@@ -116,7 +116,7 @@ export default function Projects(): JSX.Element
 			// 페이지가 한 번 이상 넘어가고, 카테고리가 하나 이상 선택된 경우
 			if (projectsPageState > 1 && projectsCategoryState.length > 0)
 			{
-				window.history.replaceState(window.history.state, '', `${window.location.pathname}?page=${projectsPageState}&${projectsCategoryState.map(e => 'category=' + e).join('&')}`);
+				window.history.replaceState(window.history.state, '', `${window.location.pathname}?page=${projectsPageState}&${projectsCategoryState.map((e) => `category=${e}`).join('&')}`);
 			}
 
 			// 페이지가 한 번 이상 넘어간 경우
@@ -128,7 +128,7 @@ export default function Projects(): JSX.Element
 			// 카테고리가 하나 이상 선택된 경우
 			else if (projectsCategoryState.length > 0)
 			{
-				window.history.replaceState(window.history.state, '', `${window.location.pathname}?${projectsCategoryState.map(e => 'category=' + e).join('&')}`);
+				window.history.replaceState(window.history.state, '', `${window.location.pathname}?${projectsCategoryState.map((e) => `category=${e}`).join('&')}`);
 			}
 
 			// 기본 URL일 경우
@@ -146,12 +146,12 @@ export default function Projects(): JSX.Element
 		// 검색 중일 경우
 		if (projectsSearchState.length > 1)
 		{
-			temp = temp.filter(item =>
+			temp = temp.filter((item) =>
 			{
 				let { title, excerpt, tag } = item.header;
 				title = title.replaceAll(/ /g, '').toLowerCase();
 				excerpt = excerpt.replaceAll(/ /g, '').toLowerCase();
-				tag = tag.map(item => item.replaceAll(/ /g, '').toLowerCase());
+				tag = tag.map((t) => t.replaceAll(/ /g, '').toLowerCase());
 
 				const target = projectsSearchState.replaceAll(/ /g, '').toLowerCase();
 
@@ -162,7 +162,7 @@ export default function Projects(): JSX.Element
 		// 카테고리를 하나 이상 선택했을 경우
 		else if (projectsCategoryState.length > 0)
 		{
-			temp = temp.filter(item => projectsCategoryState.indexOf(item.header.category) > -1);
+			temp = temp.filter((item) => projectsCategoryState.indexOf(item.header.category) > -1);
 		}
 
 		setProjectsState(temp);

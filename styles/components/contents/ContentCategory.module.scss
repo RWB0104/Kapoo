@@ -4,10 +4,19 @@
 
 $item-height: 152px;
 
-@mixin root {
+.root {
 	border-radius: 10px;
-
 	overflow: hidden;
+
+	&.dark {
+		border: 1px solid #475160;
+		background-color: #0D1117;
+	}
+
+	&.light {
+		border: 1px solid gainsboro;
+		background-color: whitesmoke
+	}
 }
 
 .root-wrapper {
@@ -16,18 +25,6 @@ $item-height: 152px;
 
 	width: 100%;
 	max-width: $ref;
-}
-
-.root-light {
-	@include root;
-	border: 1px solid gainsboro;
-	background-color: whitesmoke
-}
-
-.root-dark {
-	@include root;
-	border: 1px solid #475160;
-	background-color: #0D1117;
 }
 
 .header {

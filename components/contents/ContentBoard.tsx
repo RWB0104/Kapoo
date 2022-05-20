@@ -7,6 +7,7 @@
 
 import { ContentProps } from '@commons/common';
 import styles from '@styles/components/contents/ContentBoard.module.scss';
+import classNames from 'classnames/bind';
 
 import ContentList from './ContentList';
 
@@ -22,8 +23,10 @@ interface Props
  */
 export default function ContentBoard({ list }: Props): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles.root}>
+		<article className={cn('root')}>
 			<ContentList list={list} />
 		</article>
 	);

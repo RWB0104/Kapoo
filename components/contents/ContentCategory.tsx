@@ -9,6 +9,7 @@ import { CategoryProps, ContentTypeEnum } from '@commons/common';
 import { CATEGORY } from '@commons/env';
 import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAtom, themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentCategory.module.scss';
+import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoHeart } from 'react-icons/io5';
@@ -45,6 +46,8 @@ export default function ContentCategory({ type, list }: Props): JSX.Element
 	const categoryState = type === ContentTypeEnum.POSTS ? postsCategoryState : projectsCategoryState;
 	const setCategoryState = type === ContentTypeEnum.POSTS ? setPostsCategoryState : setProjectsCategoryState;
 
+	const cn = classNames.bind(styles);
+
 	const toggleCategory = (item: string) =>
 	{
 		// 전체 카테고리일 경우
@@ -76,39 +79,45 @@ export default function ContentCategory({ type, list }: Props): JSX.Element
 	};
 
 	const categories = list.map((item, index: number): JSX.Element => (
-		<button className={styles.item} data-type={type} key={index} onClick={() => toggleCategory(item.name)}>
-			<img alt={item.name} className={styles.image} src={`${CATEGORY[item.name] || CATEGORY['All']}`} />
+		<button className={cn('item')} data-type={type} key={index} onClick={() => toggleCategory(item.name)}>
+			<img alt={item.name} className={cn('image')} src={`${CATEGORY[item.name] || CATEGORY.All}`} />
 
-			<div className={styles.meta}>
+			<div className={cn('meta')}>
 				<p>{item.name}</p>
 				<p>( {item.count} )</p>
 			</div>
 
-			{categoryState.indexOf(item.name) > -1 && <div className={styles.flag}>
-				<IoHeart color="white" />
-			</div>}
+			{categoryState.indexOf(item.name) > -1 && (
+				<div className={cn('flag')}>
+					<IoHeart color='white' />
+				</div>
+			)}
 		</button>
 	));
 
 	return (
-		<article className={styles['root-wrapper']}>
-			<div className={styles[`root-${themeState}`]}>
-				<div className={styles.header} data-show={state} onClick={() =>
-				{
-					setState(state === undefined ? true : !state);
-
-					// 페이지가 한 차례 이상 넘어간 경우
-					if (pageState > 1)
+		<article className={cn('root-wrapper')}>
+			<div className={cn('root', themeState)}>
+				<div
+					className={cn('header')}
+					data-show={state}
+					onClick={() =>
 					{
-						setPageState(1);
-					}
-				}}>
-					<h4 className={styles.title}>📚 카테고리</h4>
+						setState(state === undefined ? true : !state);
+
+						// 페이지가 한 차례 이상 넘어간 경우
+						if (pageState > 1)
+						{
+							setPageState(1);
+						}
+					}}
+				>
+					<h4 className={cn('title')}>📚 카테고리</h4>
 
 					<IoIosArrowDown />
 				</div>
 
-				<div className={styles.body} data-show={state}>
+				<div className={cn('body')} data-show={state}>
 					{categories}
 				</div>
 			</div>

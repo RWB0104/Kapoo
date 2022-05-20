@@ -8,6 +8,7 @@
 import { ContentProps } from '@commons/common';
 import ContentItem from '@components/contents/ContentItem';
 import styles from '@styles/components/contents/ContentList.module.scss';
+import classNames from 'classnames/bind';
 
 interface Props
 {
@@ -25,7 +26,9 @@ export default function ContentList({ list }: Props): JSX.Element
 {
 	const map = list.map((item, index) => <ContentItem data-index={index} item={item} key={index} />);
 
+	const cn = classNames.bind(styles);
+
 	return (
-		<div className={styles.root}>{map}</div>
+		<div className={cn('root')}>{map}</div>
 	);
 }

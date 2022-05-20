@@ -1,27 +1,6 @@
 @import "../../fonts/blacksword.scss";
 @import "../../common/env.scss";
 
-@mixin item {
-	display: flex;
-	flex-direction: column;
-
-	width: 100%;
-
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-@mixin content {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	border-radius: 5px;
-
-	padding: 15px;
-	margin-left: 40px;
-	margin-top: -5px;
-}
-
 .root {
 	display: flex;
 	flex-direction: column;
@@ -69,26 +48,6 @@
 	}
 }
 
-.item-light {
-	@include item;
-
-	border-top: 1px solid gainsboro;
-
-	&:last-child {
-		border-bottom: 1px solid gainsboro;
-	}
-}
-
-.item-dark {
-	@include item;
-
-	border-top: 1px solid #21262D;
-
-	&:last-child {
-		border-bottom: 1px solid #21262D;
-	}
-}
-
 .header {
 	display: flex;
 	gap: 10px;
@@ -103,22 +62,55 @@
 	}
 }
 
-.content-light {
-	@include content;
+.item {
+	display: flex;
+	flex-direction: column;
 
-	border: 1px solid gainsboro;
+	width: 100%;
 
-	&:hover {
-		background-color: rgba($color: gainsboro, $alpha: 0.3);
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	&.dark {
+		border-top: 1px solid #21262D;
+
+		&:last-child {
+			border-bottom: 1px solid #21262D;
+		}
+	}
+
+	&.light {
+		border-top: 1px solid gainsboro;
+
+		&:last-child {
+			border-bottom: 1px solid gainsboro;
+		}
 	}
 }
 
-.content-dark {
-	@include content;
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	border-radius: 5px;
 
-	border: 1px solid #21262D;
+	padding: 15px;
+	margin-left: 40px;
+	margin-top: -5px;
 
-	&:hover {
-		background-color: rgba($color: #21262D, $alpha: 0.3);
+	&.dark {
+		border: 1px solid #21262D;
+
+		&:hover {
+			background-color: rgba($color: #21262D, $alpha: 0.3);
+		}
+	}
+
+	&.light {
+		border: 1px solid gainsboro;
+
+		&:hover {
+			background-color: rgba($color: gainsboro, $alpha: 0.3);
+		}
 	}
 }

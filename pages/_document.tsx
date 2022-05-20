@@ -1,4 +1,3 @@
-
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 /**
@@ -17,15 +16,15 @@ export default class KapooDocument extends Document
 	render(): JSX.Element
 	{
 		return (
-			<Html lang="ko">
+			<Html lang='ko'>
 				<Head>
-					<link href="/manifest.json" rel="manifest" />
+					<link href='/manifest.json' rel='manifest' />
 
-					<link href="/favicon.ico" rel="icon" />
-					<link href="/favicon.ico" rel="shortcut icon" />
+					<link href='/favicon.ico' rel='icon' />
+					<link href='/favicon.ico' rel='shortcut icon' />
 
-					<script src="https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R" async></script>
-					<script src="/js/ga.js"></script>
+					<script src='https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R' async />
+					<script src='/js/ga.js' />
 				</Head>
 
 				<body>

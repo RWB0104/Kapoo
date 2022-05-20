@@ -2,7 +2,7 @@
 
 @import "../../common/color.scss";
 
-@mixin toc() {
+.toc {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -41,26 +41,22 @@
 			color: map-get($lightBlue, "A400");
 		}
 	}
-}
 
-.toc-dark {
-	@include toc();
+	&.dark {
+		background-color: #0D1117;
+		border: 1px solid #21262D;
 
-	background-color: #0D1117;
-	border: 1px solid #21262D;
-
-	a {
-		color: white;
+		a {
+			color: white;
+		}
 	}
-}
 
-.toc-light {
-	@include toc();
+	&.light {
+		background-color: whitesmoke;
+		border: 1px solid gainsboro;
 
-	background-color: whitesmoke;
-	border: 1px solid gainsboro;
-
-	a {
-		color: black;
+		a {
+			color: black;
+		}
 	}
 }

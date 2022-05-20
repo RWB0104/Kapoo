@@ -8,6 +8,7 @@
 import { ContentProps } from '@commons/common';
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentMover.module.scss';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { IoArrowBack, IoArrowForward, IoMenu } from 'react-icons/io5';
 import { useRecoilValue } from 'recoil';
@@ -29,6 +30,26 @@ interface SubProps
 }
 
 /**
+ * 사이드 버튼 JSX 반환 함수
+ *
+ * @param {SubProps} param0: 프로퍼티
+ *
+ * @returns {JSX.Element | null} JSX
+ */
+function SideButton({ className, data, isNext }: SubProps): JSX.Element | null
+{
+	return data ? (
+		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`} passHref>
+			<a className={className} data-prev={isNext} href='#replace' title={data.header.title}>
+				{isNext && <IoArrowBack />}
+				<p>{data.header.title}</p>
+				{!isNext && <IoArrowForward />}
+			</a>
+		</Link>
+	) : null;
+}
+
+/**
  * 컨텐츠 무버 JSX 반환 함수
  *
  * @param {Props} param0: 프로퍼티
@@ -41,23 +62,25 @@ export default function ContentMover({ page }: Props): JSX.Element
 
 	const themeState = useRecoilValue(themeAtom);
 
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles.root}>
-			<div className={styles['mover-wrapper']}>
+		<article className={cn('root')}>
+			<div className={cn('mover-wrapper')}>
 				<div>
-					<SideButton className={styles[`button-${themeState}`]} data={next} isNext />
+					<SideButton className={cn('button', themeState)} data={next} isNext />
 				</div>
 
 				<div>
-					<SideButton className={styles[`button-${themeState}`]} data={prev}  />
+					<SideButton className={cn('button', themeState)} data={prev} />
 				</div>
 			</div>
 
-			<hr className={styles.divider} />
+			<hr className={cn('divider')} />
 
 			<div>
-				<Link href={`/${page.type}`}>
-					<a className={styles[`button-${themeState}`]} title={`/${page.type}`}>
+				<Link href={`/${page.type}`} passHref>
+					<a className={cn('button', themeState)} href='#replace' title={`/${page.type}`}>
 						<IoMenu />
 						<p>목록</p>
 					</a>
@@ -65,24 +88,4 @@ export default function ContentMover({ page }: Props): JSX.Element
 			</div>
 		</article>
 	);
-}
-
-/**
- * 사이드 버튼 JSX 반환 함수
- *
- * @param {SubProps} param0: 프로퍼티
- *
- * @returns {JSX.Element | null} JSX
- */
-function SideButton({ className, data, isNext }: SubProps): JSX.Element | null
-{
-	return data ? (
-		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`}>
-			<a className={className} data-prev={isNext} title={data.header.title}>
-				{isNext && <IoArrowBack />}
-				<p>{data.header.title}</p>
-				{!isNext && <IoArrowForward />}
-			</a>
-		</Link>
-	) : null;
 }

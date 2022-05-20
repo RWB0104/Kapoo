@@ -15,7 +15,6 @@ import loadLanguage from 'prismjs/components/';
 import fs from 'fs';
 import { join } from 'path';
 
-
 import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps, ContentType } from './common';
 
 const CONTENT_DIR = join(process.cwd(), '_posts');
@@ -50,10 +49,8 @@ export async function getImageList(): Promise<string[]>
 	}
 
 	// 아닐 경우
-	else
-	{
-		return [];
-	}
+
+	return [];
 }
 
 /**
@@ -66,16 +63,16 @@ export async function getImageList(): Promise<string[]>
  */
 export async function getContentList(type: ContentType, isFull: boolean): Promise<ContentProps[]>
 {
-	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter(item => CONTENT_REGX.test(item));
+	const names = fs.readdirSync(join(CONTENT_DIR, type)).filter((item) => CONTENT_REGX.test(item));
 
 	const result: ContentProps[] = [];
 
-	for (const i in names)
+	Object.values(names).forEach((name) =>
 	{
-		const item = await getContent(type, names[i], isFull);
+		const item = await getContent(type, name, isFull);
 
 		result.push(item);
-	}
+	});
 
 	return result.filter((item: ContentProps) => item.header.publish)
 		.sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));
@@ -94,7 +91,7 @@ export async function getCategoryList(type: ContentType): Promise<CategoryProps[
 
 	return list.reduce((acc, content) =>
 	{
-		const target = acc.filter(item => item.name === content.header.category);
+		const target = acc.filter((item) => item.name === content.header.category);
 
 		// 새 카테고리일 경우
 		if (target.length === 0)
@@ -130,10 +127,8 @@ export async function getCategoryList(type: ContentType): Promise<CategoryProps[
 		}
 
 		// 아닐 경우
-		else
-		{
-			return a.name.localeCompare(b.name);
-		}
+
+		return a.name.localeCompare(b.name);
 	});
 }
 
@@ -164,7 +159,7 @@ export async function getContent(type: ContentType, name: string, isFull: boolea
 
 	const result: ContentProps = {
 		header: data as ContentHeaderProps,
-		name: name,
+		name,
 		url: urls
 	};
 
@@ -174,13 +169,13 @@ export async function getContent(type: ContentType, name: string, isFull: boolea
 		const list = await getContentList(type, false);
 		const { toc, html } = await converter(content);
 
-		const current = list.findIndex(item => item.name === name);
-		const group = list.filter(item => item.header.group === header.group);
+		const current = list.findIndex((item) => item.name === name);
+		const group = list.filter((item) => item.header.group === header.group);
 
 		result.toc = toc;
 		result.content = html;
 		result.meta = {
-			group: group,
+			group,
 			next: current === list.length - 1 ? null : list[current + 1],
 			prev: current === 0 ? null : list[current - 1]
 		};
@@ -198,7 +193,6 @@ export async function getContent(type: ContentType, name: string, isFull: boolea
  */
 export async function converter(body: string): Promise<ConvertProps>
 {
-
 	loadLanguage([ 'javascript', 'typescript', 'java', 'html', 'css', 'json', 'scss', 'sass', 'sql', 'batch', 'bash', 'tsx' ]);
 
 	const renderer = new marked.Renderer();
@@ -218,24 +212,23 @@ export async function converter(body: string): Promise<ConvertProps>
 			}
 
 			// 아닐 경우
-			else
+
+			code = renderer.options.highlight(code, lang as string) as string;
+
+			const langClass = `language-${lang}`;
+
+			while (COMMENT_REGX.test(code))
 			{
-				code = renderer.options.highlight(code, lang as string) as string;
+				const [ origin, target ] = COMMENT_REGX.exec(code) as string[];
 
-				const langClass = 'language-' + lang;
+				const newer = target.split('\n').map((item) => `<span class="token comment" data-tag="new">${item}</span>`).join('\n');
 
-				while (COMMENT_REGX.test(code))
-				{
-					const [ origin, target ] = COMMENT_REGX.exec(code) as string[];
+				code = code.replace(origin, newer);
+			}
 
-					const newer = target.split('\n').map(item => `<span class="token comment" data-tag="new">${item}</span>`).join('\n');
+			const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
 
-					code = code.replace(origin, newer);
-				}
-
-				const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
-
-				return `
+			return `
 					<div class="codeblock">
 						<div class="top">
 							<p>${lang.toUpperCase()}</p>
@@ -249,19 +242,17 @@ export async function converter(body: string): Promise<ConvertProps>
 						<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 					</div>
 				`;
-			}
 		}
 
 		// 없을 경우
-		else
-		{
-			lang = 'unknown';
 
-			const langClass = 'language-' + lang;
+		lang = 'unknown';
 
-			const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+		const langClass = `language-${lang}`;
 
-			return `
+		const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
+
+		return `
 				<div class="codeblock">
 					<div class="top">
 						<p>${lang.toUpperCase()}</p>
@@ -275,17 +266,13 @@ export async function converter(body: string): Promise<ConvertProps>
 					<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 				</div>
 			`;
-		}
 	};
 
-	renderer.image = (href, title, text) =>
-	{
-		return `
+	renderer.image = (href, title, text) => `
 		<a href="${href}" target="_blank" data-title="${title}">
 			<img src="${href}" alt="${text}" />
 		</a>
 		`;
-	};
 
 	// 코드라인 렌더링
 	renderer.codespan = (code) =>
@@ -297,10 +284,8 @@ export async function converter(body: string): Promise<ConvertProps>
 		}
 
 		// 코드일 경우
-		else
-		{
-			return `<code class="inline-code">${code}</code>`;
-		}
+
+		return `<code class="inline-code">${code}</code>`;
 	};
 
 	// 헤더 렌더링
@@ -310,17 +295,15 @@ export async function converter(body: string): Promise<ConvertProps>
 
 		toc.push({
 			depth: level,
-			tag: tag,
-			text: text
+			tag,
+			text
 		});
 
 		return `<h${level} id="${tag}">${text} <a href="#${tag}">🔗</a></h${level}>`;
 	};
 
 	// 테이블 렌더링
-	renderer.table = (header: string, body: string): string =>
-	{
-		return `
+	renderer.table = (header: string, content: string): string => `
 			<div class="table-wrapper">
 				<table>
 					<thead>
@@ -328,12 +311,11 @@ export async function converter(body: string): Promise<ConvertProps>
 					</thead>
 
 					<tbody>
-						${body}
+						${content}
 					</tbody>
 				</table>
 			</div>
 		`;
-	};
 
 	// 링크 렌더링
 	renderer.link = (href: string, title: string, text: string): string => `<a href="${href}" target="_blank">${text}</a>`;
@@ -356,7 +338,7 @@ export async function converter(body: string): Promise<ConvertProps>
 		},
 		fences(src: string)
 		{
-			const cap = src.match(/^ {0,3}(`{3,}|\${2,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`\$]* *(?:\n+|$)|$)/);
+			const cap = src.match(/^ {0,3}(`{3,}|\${2,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`$]* *(?:\n+|$)|$)/);
 
 			if (cap)
 			{
@@ -373,7 +355,7 @@ export async function converter(body: string): Promise<ConvertProps>
 		},
 		inlineText(src: string)
 		{
-			const cap = src.match(/^([`$]+|[^`$])(?:[\s\S]*?(?:(?=[\\<!\[`$*]|\b_|$)|[^ ](?= {2,}\n))|(?= {2,}\n))/);
+			const cap = src.match(/^([`$]+|[^`$])(?:[\s\S]*?(?:(?=[\\<![`$*]|\b_|$)|[^ ](?= {2,}\n))|(?= {2,}\n))/);
 
 			if (cap)
 			{
@@ -400,10 +382,8 @@ export async function converter(body: string): Promise<ConvertProps>
 			}
 
 			// 아닐 경우
-			else
-			{
-				return code;
-			}
+
+			return code;
 		},
 		renderer
 	});
@@ -430,7 +410,7 @@ export function tableOfContents(toc : TocProps[] | undefined): string
 	{
 		let count = 0;
 
-		return toc.reduce((acc: string, item: TocProps): string =>
+		return `${toc.reduce((acc: string, item: TocProps): string =>
 		{
 			const { text, tag, depth } = item;
 
@@ -455,11 +435,8 @@ export function tableOfContents(toc : TocProps[] | undefined): string
 			}
 
 			return acc;
-		}, '') + '</ul>';
+		}, '')}</ul>`;
 	}
 
-	else
-	{
-		return '';
-	}
+	return '';
 }

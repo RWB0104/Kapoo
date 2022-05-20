@@ -7,6 +7,7 @@
 
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentToc.module.scss';
+import classNames from 'classnames/bind';
 import { useRecoilValue } from 'recoil';
 
 interface Props
@@ -25,11 +26,13 @@ export default function ContentToc({ toc }: Props): JSX.Element | null
 {
 	const themeState = useRecoilValue(themeAtom);
 
+	const cn = classNames.bind(styles);
+
 	return toc ? (
-		<div className={styles[`toc-${themeState}`]}>
+		<div className={cn('toc', themeState)}>
 			<h2>Table of Contents</h2>
 
-			<div dangerouslySetInnerHTML={{ __html: toc }}></div>
+			<div dangerouslySetInnerHTML={{ __html: toc }} />
 		</div>
 	) : null;
 }

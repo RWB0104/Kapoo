@@ -8,6 +8,7 @@
 import { getDateDetail } from '@commons/common';
 import { themeAtom } from '@commons/state';
 import styles from '@styles/components/about/CommitList.module.scss';
+import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -38,6 +39,8 @@ export default function CommitList(): JSX.Element | null
 	const [ commits, setCommits ] = useState([] as CommitProps[]);
 	const themeState = useRecoilValue(themeAtom);
 
+	const cn = classNames.bind(styles);
+
 	useEffect(() =>
 	{
 		(async () =>
@@ -61,7 +64,7 @@ export default function CommitList(): JSX.Element | null
 	}, []);
 
 	return commits.length > 0 ? (
-		<article className={styles.root}>
+		<article className={cn('root')}>
 			<h3>History of Repository</h3>
 
 			{commits.map((commit, index) =>
@@ -70,15 +73,15 @@ export default function CommitList(): JSX.Element | null
 				const date = `${year}-${month}-${day} ${week} ${hour}:${minute}:${second}`;
 
 				return (
-					<div className={styles[`item-${themeState}`]} data-index={index} data-sha={commit.sha} key={index}>
-						<div className={styles.header}>
-							<a href={commit.author.html_url} rel="noreferrer" target="_blank"><img src={commit.author.avatar_url} /></a>
-							<p><b><a href={commit.author.html_url} rel="noreferrer" target="_blank">{commit.author.login}</a></b> has commits <small>at {date}</small></p>
+					<div className={cn('item', themeState)} data-index={index} data-sha={commit.sha} key={index}>
+						<div className={cn('header')}>
+							<a aria-label='github' href={commit.author.html_url} rel='noreferrer' target='_blank'><img alt='github' src={commit.author.avatar_url} /></a>
+							<p><b><a href={commit.author.html_url} rel='noreferrer' target='_blank'>{commit.author.login}</a></b> has commits <small>at {date}</small></p>
 						</div>
 
-						<div className={styles[`content-${themeState}`]}>
+						<div className={cn('content', themeState)}>
 							<div>
-								<h4><a href={commit.html_url} rel="noreferrer" target="_blank">{commit.commit.message.split('\n')[0]}</a></h4>
+								<h4><a href={commit.html_url} rel='noreferrer' target='_blank'>{commit.commit.message.split('\n')[0]}</a></h4>
 							</div>
 
 							<div>

@@ -25,7 +25,7 @@ export default function Project(content: ContentProps): JSX.Element
 {
 	return (
 		<section>
-			<Script src="/js/content.js"></Script>
+			<Script src='/js/content.js' />
 
 			<Meta description={content.header.excerpt} image={content.header.coverImage} title={content.header.title} url={`/${type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}`} />
 
@@ -47,9 +47,7 @@ export async function getStaticProps({ params }: RoutesProps): Promise<ContentPa
 {
 	const project = await getContent(type, params.url.join('-'), true);
 
-	return {
-		props: project
-	};
+	return { props: project };
 }
 
 /**
@@ -67,11 +65,7 @@ export async function getStaticPaths(): Promise<PathsProps>
 		{
 			const urls = project.url;
 
-			return {
-				params: {
-					url: [ urls[1], urls[2], urls[3], urls[4] ]
-				}
-			};
+			return { params: { url: [ urls[1], urls[2], urls[3], urls[4] ] } };
 		})
 	};
 }

@@ -20,30 +20,26 @@
 	-webkit-box-orient: vertical;
 }
 
-@mixin root {
+.root {
 	width: 100%;
 
 	border-radius: 10px;
 
 	overflow: hidden;
-}
 
-.root-light {
-	@include root;
+	&.dark {
+		$color: #161B22;
 
-	$color: gainsboro;
+		border: 1px solid $color;
+		box-shadow: 3px 3px 5px $color;
+	}
 
-	border: 1px solid $color;
-	box-shadow: 3px 3px 5px $color;
-}
+	&.light {
+		$color: gainsboro;
 
-.root-dark {
-	@include root;
-
-	$color: #161B22;
-
-	border: 1px solid $color;
-	box-shadow: 3px 3px 5px $color;
+		border: 1px solid $color;
+		box-shadow: 3px 3px 5px $color;
+	}
 }
 
 .body-wrapper {
@@ -87,7 +83,7 @@
 	}
 }
 
-@mixin footer-active {
+.footer-active {
 	color: inherit;
 	transition: 0.3s;
 
@@ -98,16 +94,10 @@
 	&[data-status=false] {
 		@include rotate-360-animaition;
 	}
-}
 
-.footer-active-light {
-	@include footer-active;
-}
-
-.footer-active-dark {
-	@include footer-active;
-
-	color: white;
+	&.dark {
+		color: white;
+	}
 }
 
 .image-wrapper {

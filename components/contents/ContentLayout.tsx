@@ -9,6 +9,7 @@ import { ContentProps, ContentTypeEnum } from '@commons/common';
 import Hits from '@components/global/Hits';
 import Utterances from '@components/global/Utterances';
 import styles from '@styles/components/contents/ContentLayout.module.scss';
+import classNames from 'classnames/bind';
 
 import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
@@ -33,6 +34,8 @@ export default function ContentLayout({ data }: Props): JSX.Element
 	const type = data.header.type === ContentTypeEnum.POSTS ? 'posts' : 'projects';
 	const urls = [ type ].concat(data.url);
 
+	const cn = classNames.bind(styles);
+
 	const page = {
 		next: data.meta?.next,
 		prev: data.meta?.prev,
@@ -40,7 +43,7 @@ export default function ContentLayout({ data }: Props): JSX.Element
 	};
 
 	return (
-		<article className={styles.root}>
+		<article className={cn('root')}>
 			<ContentGroup group={data.meta?.group} urls={urls} />
 
 			<ContentToc toc={data.toc} />

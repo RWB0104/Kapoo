@@ -21,9 +21,9 @@ export default function Error404(): JSX.Element
 
 	return (
 		<section>
-			<Meta description="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" title="404" url="" />
+			<Meta description='놀라울 만큼 아무 일도 일어나지 않았다' title='404' url='' />
 
-			<Screener image={imageState} lower="여긴 아무것도 없네요... URL 마지막의 /라도 빼보시겠어요?" menu="404" title={TITLE} />
+			<Screener image={imageState} lower='놀라울 만큼 아무 일도 일어나지 않았다' menu='404' title={TITLE} />
 		</section>
 	);
 }

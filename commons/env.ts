@@ -13,20 +13,20 @@ export const DESCRIPTION = '𝝅번째 알파카의 우당탕탕 개발 기록';
 export const LOGO = '/img/logo.png';
 
 export const CATEGORY = {
-	'All': 'https://user-images.githubusercontent.com/50317129/168414052-ca399b9e-11f3-417b-bf0e-b68b2eb69182.png',
-	'CS': 'https://user-images.githubusercontent.com/50317129/132937772-73a6364f-c66c-4fc5-85da-60a0db1c58a1.png',
-	'GIS': 'https://user-images.githubusercontent.com/50317129/168413759-e709e9cb-814a-4f67-93be-2abb5df6059d.png',
-	'JAVA': 'https://user-images.githubusercontent.com/50317129/168414204-aa70eb00-0395-42fe-8164-0bed32ca7e61.png',
-	'Jekyll': 'https://user-images.githubusercontent.com/50317129/132937228-0041b311-0d6e-4dea-a4b3-150232cc77fb.png',
-	'NextJS': 'https://user-images.githubusercontent.com/50317129/146045656-caf9e4c0-0ff6-455b-b667-d1c6aca4fd95.png',
-	'Programmers': 'https://user-images.githubusercontent.com/50317129/146045855-3cac4845-1d15-47db-9261-5843b9122228.png',
-	'RaspberryPi': 'https://user-images.githubusercontent.com/50317129/132937496-a2f0e74f-18c3-43c7-9d94-869690a72e4c.png',
-	'React': 'https://user-images.githubusercontent.com/50317129/168414289-f7965056-0cd5-4041-b610-c941421ec590.png',
-	'Ubuntu': 'https://user-images.githubusercontent.com/50317129/132937521-683e896e-8830-4175-9c15-d294adaf3620.png',
-	'WAS': 'https://user-images.githubusercontent.com/50317129/132937090-b40eb63a-f391-44bc-8aa7-a319e745ba09.png',
-	'WEB': 'https://user-images.githubusercontent.com/50317129/132937120-8c5d8c34-569f-4736-af86-820cb851e9bd.png',
-	'알고리즘': 'https://user-images.githubusercontent.com/50317129/132937309-d686bf2f-8919-44b1-8919-a0711ae73031.png',
-	'잡담': 'https://user-images.githubusercontent.com/50317129/132937359-c122ff9f-e610-4087-8016-c0a5b9357260.png'
+	All: 'https://user-images.githubusercontent.com/50317129/168414052-ca399b9e-11f3-417b-bf0e-b68b2eb69182.png',
+	CS: 'https://user-images.githubusercontent.com/50317129/132937772-73a6364f-c66c-4fc5-85da-60a0db1c58a1.png',
+	GIS: 'https://user-images.githubusercontent.com/50317129/168413759-e709e9cb-814a-4f67-93be-2abb5df6059d.png',
+	JAVA: 'https://user-images.githubusercontent.com/50317129/168414204-aa70eb00-0395-42fe-8164-0bed32ca7e61.png',
+	Jekyll: 'https://user-images.githubusercontent.com/50317129/132937228-0041b311-0d6e-4dea-a4b3-150232cc77fb.png',
+	NextJS: 'https://user-images.githubusercontent.com/50317129/146045656-caf9e4c0-0ff6-455b-b667-d1c6aca4fd95.png',
+	Programmers: 'https://user-images.githubusercontent.com/50317129/146045855-3cac4845-1d15-47db-9261-5843b9122228.png',
+	RaspberryPi: 'https://user-images.githubusercontent.com/50317129/132937496-a2f0e74f-18c3-43c7-9d94-869690a72e4c.png',
+	React: 'https://user-images.githubusercontent.com/50317129/168414289-f7965056-0cd5-4041-b610-c941421ec590.png',
+	Ubuntu: 'https://user-images.githubusercontent.com/50317129/132937521-683e896e-8830-4175-9c15-d294adaf3620.png',
+	WAS: 'https://user-images.githubusercontent.com/50317129/132937090-b40eb63a-f391-44bc-8aa7-a319e745ba09.png',
+	WEB: 'https://user-images.githubusercontent.com/50317129/132937120-8c5d8c34-569f-4736-af86-820cb851e9bd.png',
+	알고리즘: 'https://user-images.githubusercontent.com/50317129/132937309-d686bf2f-8919-44b1-8919-a0711ae73031.png',
+	잡담: 'https://user-images.githubusercontent.com/50317129/132937359-c122ff9f-e610-4087-8016-c0a5b9357260.png'
 } as { [ key: string ]: string };
 
 export const PIECE = [

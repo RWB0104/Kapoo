@@ -166,7 +166,7 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 월 단위일 경우
-	else if (stamp > 2592000000)
+	if (stamp > 2592000000)
 	{
 		const time = Math.floor(stamp / 2592000000);
 
@@ -174,7 +174,7 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 일 단위일 경우
-	else if (stamp > 86400000)
+	if (stamp > 86400000)
 	{
 		const time = Math.floor(stamp / 86400000);
 
@@ -182,7 +182,7 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 시 단위일 경우
-	else if (stamp > 3600000)
+	if (stamp > 3600000)
 	{
 		const time = Math.floor(stamp / 3600000);
 
@@ -190,7 +190,7 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 분 단위일 경우
-	else if (stamp > 60000)
+	if (stamp > 60000)
 	{
 		const time = Math.floor(stamp / 60000);
 
@@ -198,10 +198,8 @@ export function getWrittenTimes(date: Date): string
 	}
 
 	// 해당되지 않을 경우
-	else
-	{
-		return '0분 전';
-	}
+
+	return '0분 전';
 }
 
 /**
@@ -220,7 +218,7 @@ export function getUrlQuery(location: Location): { key: string, value: string }[
 {
 	const { href } = location;
 
-	return href.split('?').length === 1 ? [] : href.split('?')[1].split('&').map(e =>
+	return href.split('?').length === 1 ? [] : href.split('?')[1].split('&').map((e) =>
 	{
 		const [ key, value ] = e.split('=');
 

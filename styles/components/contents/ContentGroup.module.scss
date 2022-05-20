@@ -1,7 +1,7 @@
 @import "../../common/color.scss";
 @import "../../common/env.scss";
 
-@mixin root {
+.root {
 	display: flex;
 	flex-direction: column;
 
@@ -10,20 +10,16 @@
 	border-radius: 10px;
 
 	overflow: hidden;
-}
 
-.root-dark {
-	@include root();
+	&.dark {
+		border: 1px solid #21262D;
+		background-color: #0D1117;
+	}
 
-	border: 1px solid #21262D;
-	background-color: #0D1117;
-}
-
-.root-light {
-	@include root();
-
-	border: 1px solid gainsboro;
-	background-color: whitesmoke;
+	&.light {
+		border: 1px solid gainsboro;
+		background-color: whitesmoke;
+	}
 }
 
 .meta {

@@ -7,6 +7,7 @@
 
 import Utterances from '@components/global/Utterances';
 import styles from '@styles/components/comments/CommentLayout.module.scss';
+import classNames from 'classnames/bind';
 
 /**
  * 코멘트 레이아웃 JSX 반환 메서드
@@ -15,9 +16,11 @@ import styles from '@styles/components/comments/CommentLayout.module.scss';
  */
 export default function CommentLayout(): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles.root}>
-			<div className={styles.prompt}>
+		<article className={cn('root')}>
+			<div className={cn('prompt')}>
 				<h3>Comments</h3>
 
 				<p>💬 여러분들의 생각을 자유롭게 남겨보세요!</p>

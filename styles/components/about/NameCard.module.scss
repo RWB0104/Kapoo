@@ -1,7 +1,7 @@
 @import "../../fonts/blacksword.scss";
 @import "../../common/env.scss";
 
-@mixin root {
+.root {
 	display: flex;
 	justify-content: center;
 	gap: 40px;
@@ -11,22 +11,18 @@
 	width: 100%;
 
 	box-sizing: border-box;
-}
 
-.root-dark {
-	@include root;
+	&.dark {
+		border-top: 1px solid #21262D;
+		border-bottom: 1px solid #21262D;
+		background-color: #0D1117;
+	}
 
-	border-top: 1px solid #21262D;
-	border-bottom: 1px solid #21262D;
-	background-color: #0D1117;
-}
-
-.root-light {
-	@include root;
-
-	border-top: 1px solid gainsboro;
-	border-bottom: 1px solid gainsboro;
-	background-color: whitesmoke;
+	&.light {
+		border-top: 1px solid gainsboro;
+		border-bottom: 1px solid gainsboro;
+		background-color: whitesmoke;
+	}
 }
 
 .wrapper {

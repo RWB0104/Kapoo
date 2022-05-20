@@ -1,4 +1,4 @@
-@mixin button {
+.button {
 	display: inline-flex;
 	align-items: center;
 	gap: 10px;
@@ -11,6 +11,24 @@
 
 	&:not([data-prev=true]) {
 		justify-content: end;
+	}
+
+	&.dark {
+		border: 1px solid white;
+
+		&:hover {
+			background-color: white;
+			color: black;
+		}
+	}
+
+	&.light {
+		border: 1px solid black;
+
+		&:hover {
+			background-color: black;
+			color: white;
+		}
 	}
 }
 
@@ -40,26 +58,4 @@
 
 .divider {
 	margin: 10px 0px;
-}
-
-.button-dark {
-	@include button();
-
-	border: 1px solid white;
-
-	&:hover {
-		background-color: white;
-		color: black;
-	}
-}
-
-.button-light {
-	@include button();
-
-	border: 1px solid black;
-
-	&:hover {
-		background-color: black;
-		color: white;
-	}
 }

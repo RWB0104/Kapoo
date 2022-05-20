@@ -1,7 +1,7 @@
 @import "../../common/color.scss";
 @import "../../common/env.scss";
 
-@mixin root {
+.root {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -20,6 +20,16 @@
 			display: none;
 		}
 	}
+
+	&.dark {
+		border: 1px solid #161B22;
+		background-color: #0D1117;
+	}
+
+	&.light {
+		border: 1px solid gainsboro;
+		background-color: whitesmoke;
+	}
 }
 
 .root-wrapper {
@@ -28,20 +38,6 @@
 
 	padding: 40px;
 	box-sizing: border-box;
-}
-
-.root-light {
-	@include root;
-
-	border: 1px solid gainsboro;
-	background-color: whitesmoke;
-}
-
-.root-dark {
-	@include root;
-
-	border: 1px solid #161B22;
-	background-color: #0D1117;
 }
 
 .text {

@@ -7,6 +7,7 @@
 
 import { DESCRIPTION, TITLE } from '@commons/env';
 import styles from '@styles/components/about/Info.module.scss';
+import classNames from 'classnames/bind';
 import { FaGithub, FaMarkdown, FaReact, FaSass } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript } from 'react-icons/si';
 
@@ -17,46 +18,48 @@ import { SiNextdotjs, SiTypescript } from 'react-icons/si';
  */
 export default function Info(): JSX.Element
 {
+	const cn = classNames.bind(styles);
+
 	return (
-		<article className={styles.root}>
-			<div className={styles.head}>
-				<div className={styles.icon}>
+		<article className={cn('root')}>
+			<div className={cn('head')}>
+				<div className={cn('icon')}>
 					<FaReact />
 				</div>
 
-				<div className={styles.prompt}>
+				<div className={cn('prompt')}>
 					<h3>{TITLE}</h3>
 					<p>{DESCRIPTION}</p>
 				</div>
 			</div>
 
-			<div className={styles.associate}>
+			<div className={cn('associate')}>
 				<div>
 					<h3>Associated with</h3>
 				</div>
 
-				<div className={styles.brands}>
-					<a href="https://ko.reactjs.org/" target="_blank" title="React">
+				<div className={cn('brands')}>
+					<a href='https://ko.reactjs.org/' rel='noreferrer' target='_blank' title='React'>
 						<FaReact color='#00D8FF' />
 					</a>
 
-					<a data-brand="nextjs" href="https://nextjs.org/" target="_blank" title="Next.js">
+					<a data-brand='nextjs' href='https://nextjs.org/' rel='noreferrer' target='_blank' title='Next.js'>
 						<SiNextdotjs />
 					</a>
 
-					<a data-brand="github" href="https://pages.github.com/" target="_blank" title="GitHub Pages">
+					<a data-brand='github' href='https://pages.github.com/' rel='noreferrer' target='_blank' title='GitHub Pages'>
 						<FaGithub />
 					</a>
 
-					<a data-brand="typescript" href="https://www.typescriptlang.org/" target="_blank" title="TypeScript">
-						<SiTypescript color="dodgerblue" />
+					<a data-brand='typescript' href='https://www.typescriptlang.org/' rel='noreferrer' target='_blank' title='TypeScript'>
+						<SiTypescript color='dodgerblue' />
 					</a>
 
-					<a data-brand="scss" href="https://sass-lang.com/" target="_blank" title="SCSS">
-						<FaSass color="hotpink" />
+					<a data-brand='scss' href='https://sass-lang.com/' rel='noreferrer' target='_blank' title='SCSS'>
+						<FaSass color='hotpink' />
 					</a>
 
-					<a data-brand="scss" href="https://www.markdownguide.org/" target="_blank" title="Markdown">
+					<a data-brand='scss' href='https://www.markdownguide.org/' rel='noreferrer' target='_blank' title='Markdown'>
 						<FaMarkdown />
 					</a>
 				</div>

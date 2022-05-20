@@ -5,12 +5,12 @@
  * @since 2021.07.12 Mon 00:01:37
  */
 
-import {  TITLE } from '@commons/env';
+import { TITLE } from '@commons/env';
 import { useResetHook, useScreenImage } from '@commons/hook';
 import { MENU_LIST } from '@commons/menulist';
 import CommitList from '@components/about/CommitList';
 import Info from '@components/about/Info';
-import { NameCard } from '@components/about/NameCard';
+import NameCard from '@components/about/NameCard';
 import Meta from '@components/global/Meta';
 import Screener from '@components/global/Screener';
 
