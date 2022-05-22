@@ -67,12 +67,12 @@ export async function getContentList(type: ContentType, isFull: boolean): Promis
 
 	const result: ContentProps[] = [];
 
-	Object.values(names).forEach((name) =>
+	for (let i = 0; i < names.length; i++)
 	{
-		const item = await getContent(type, name, isFull);
+		const item = await getContent(type, names[i], isFull);
 
 		result.push(item);
-	});
+	}
 
 	return result.filter((item: ContentProps) => item.header.publish)
 		.sort((left, right): number => (new Date(right.header.date) > new Date(left.header.date) ? 1 : -1));

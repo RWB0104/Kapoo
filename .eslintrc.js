@@ -57,6 +57,7 @@ module.exports = {
 		'jsx-quotes': [ 'error', 'prefer-single' ],
 		'linebreak-style': 'off',
 		'max-len': 'off',
+		'no-await-in-loop': 'off',
 		'no-console': 'off',
 		'no-lonely-if': 'off',
 		'no-param-reassign': 'off',

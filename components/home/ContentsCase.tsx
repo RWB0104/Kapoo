@@ -10,8 +10,9 @@ import ContentList from '@components/contents/ContentList';
 import styles from '@styles/components/home/ContentsCase.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import React from 'react';
 
-interface Props
+interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 {
 	num: number,
 	title: string,
@@ -26,12 +27,12 @@ interface Props
  *
  * @returns {JSX.Element} JSX
  */
-export default function ContentsCase({ num, title, url, list }: Props): JSX.Element
+export default function ContentsCase({ num, title, url, list, className, ...props }: Props): JSX.Element
 {
 	const cn = classNames.bind(styles);
 
 	return (
-		<article className={cn('root')}>
+		<article className={cn('root', className)} {...props}>
 			<h1 className={cn('title')}>{title}</h1>
 
 			<ContentList list={list.slice(0, num)} />
