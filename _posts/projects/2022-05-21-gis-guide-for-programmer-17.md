@@ -118,6 +118,19 @@ const map = new Map({
 
 이런 확장 없이 상호작용을 그냥 할당하게 되면 다른 상호작용이 먹히지 않는다. 여기엔 **지도 이동**과 **확대** 같은 기본적인 상호작용도 포함된다!
 
+``` typescript
+// 상호작용 추가
+map.addInteraction();
+
+// 상호작용 리스트 반환
+map.getInteractions();
+
+// 상호작용 제거
+map.removeInteraction();
+```
+
+관련 메서드는 위와 같다. 생성된 `Map` 객체에서 호출 가능하다. `map.addInteraction()`을 활용할 경우, 상호작용을 추가하는 동작이므로 위에서 언급한 `defaults().extend()`를 사용하지 않아도 된다.
+
 <br />
 <br />
 <br />
