@@ -1,19 +1,28 @@
 ---
-title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 18. WFS에 팝업 붙이기"
-excerpt: "WFS와 WMS의 가장 큰 특징은 데이터의 결과물이다. WFS는 GeoJSON으로 공간정보 요소를 반환해주는 반면, WMS는 공간정보 요소를 토대로 직접 지도를 렌더링하여 제공해준다. OpenLayers는 WFS의 데이터를 토대로 `canvas`에 객체를 렌더링한다. 공간정보를 토대로 일종의 도형을 그린다고 생각하면 쉽다. 이미지와 다르게 웹 상에서 직접 그려지는 객체이므로, 웹은 이를 인식하거나 조작할 수 있다는 큰 장점이 있다."
+title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 19. WMS에 팝업 붙이기"
+excerpt: "지도에 표시된 마커 혹은 객체를 클릭하면, 팝업을 통해 해당 객체의 자세한 정보를 보여준다. 이 장에서는 WFS 지도에 팝업을 출력하여 마커의 세부 정보를 표현해본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-21T03:04:59+09:00"
+date: "2022-05-25T23:00:06+09:00"
 type: "projects"
 category: "GIS"
-tag: [ "GIS", "GeoServer", "OpenLayers" ]
+tag: [ "GIS", "GeoServer", "OpenLayers", "WMS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: true
+publish: false
 ---
 
 # 개요
 
-지도에 표시된 마커 혹은 객체를 클릭하면, 팝업을 통해 해당 객체의 자세한 정보를 보여준다. 이 장에서는 WFS 지도에 팝업을 출력하여 마커의 세부 정보를 표현해본다.
+WFS와 같은 객체 기반의 지도가 아닌, WMS와 같이 이미지 기반의 지도에도 팝업을 표현할 수 있을까?
+
+표면적으론 불가능해보인다. WFS의 경우 스크립트 상에서 공간정보를 갖고 있으므로, 이를 적절히 활용하면 원하는 정보를 보여줄 수 있었다. 하지만 WMS의 경우 기반 자체가 이미지이므로, 분석 가능한 데이터로써의 활용성은 매우 떨어진다.
+
+![image](https://user-images.githubusercontent.com/50317129/170293519-b0ed1d98-77ea-4249-89fd-5de5934d3de6.png)
+
+
+즉, 컴퓨터가 이 한 장의 이미지에서 어떤 객체를 얼마나 갖고 있는지 직접적으로 알 수 없다.
+
+그렇다면 WMS 지도는 팝업을 표현하는 게 불가능한 걸까?
 
 <br />
 <br />
@@ -28,9 +37,15 @@ publish: true
 
 
 
-# Overlay
+# GetFeatureInfo
 
-[17장](/projects/2022/05/21/gis-guide-for-programmer-17)에서 다룬 WFS 지도를 그대로 사용한다. `Select` 객체가 포함되어 있으므로, 사용자로 하여금 시각적으로 상호작용이 가능하다는 걸 보여줄 수 있을 것이다.
+이 때 고려해볼만한 것이 이 `GetFeatureInfo`라는 프로토콜이다. `GetFeatureInfo`는 현재 지도의 BBOX, 클릭한 좌표, 지도 상의 픽셀값을 통해 계산된 위치에 있는 `Feature`들의 정보를 제공해준다.
+
+즉, 지도 이미지를 클릭하는 것으로 `Feature`의 존재 여부와 `Feature`의 정보에 대해 캐낼 수 있다. 이를 통해 팝업을 구현할 수 있을 것이다.
+
+<br />
+
+[1장](/projects/2022/05/16/gis-guide-for-programmer-16)에서 다룬 WMS 지도를 그대로 사용한다.
 
 OpenLayers는 `Overlay` 객체를 통해 지도 위에 원하는 HTML 태그를 띄울 수 있다. OpenLayers가 동작을 담당하긴 하지만, `canvas` 위에서 렌더링되는 객체는 아니고, 실제 DOM을 출력시켜준다.
 
@@ -132,6 +147,86 @@ map.removeOverlay();
 
 <br />
 <br />
+
+
+
+
+
+## 3. Overlay 이벤트 적용하기
+
+오버레이를 등록했으니, 적절한 이벤트 핸들링을 통해 오버레이를 띄우고, 원하는 데이터를 보여줄 수 있을 것이다.
+
+``` jsx
+map.on('singleclick', (e) =>
+{
+	// 해당 픽셀에 객체가 있을 경우
+	if (map.hasFeatureAtPixel(e.pixel))
+	{
+		map.forEachFeatureAtPixel(e.pixel, feature =>
+		{
+			// 해당 객체의 아이디가 buld_sejong으로 시작할 경우
+			if (feature.getId()?.toString().startsWith('buld_sejong'))
+			{
+				const geom = feature.getGeometry();
+
+				// 공간정보가 유효할 경우
+				if (geom)
+				{
+					const [ minX, minY, maxX, maxY ] = geom.getExtent();
+
+					setPopupState((
+						<ul>
+							<li>{feature.getId() || ''}</li>
+							<li>{feature.get('buld_nm') || <span>이름 없음</span>}</li>
+							<li>{feature.get('bul_man_no')}</li>
+						</ul>
+					));
+
+					overlay.setPosition([ (maxX + minX) / 2, (maxY + minY) / 2 ]);
+				}
+			}
+		});
+	}
+
+	// 없을 경우
+	else
+	{
+		overlay.setPosition(undefined);
+	}
+});
+```
+
+위와 같이 클릭 이벤트를 적절히 활용한다.
+
+1. 클릭 시, 해당 픽셀에 `Feature`가 있는지 `hasFeatureAtPixel` 메서드로 확인한다.
+   1. 없다면 `overlay.setPosition(undefined)`으로 오버레이를 숨긴다.
+2. `forEachFeatureAtPixel` 메서드로 해당 픽셀에 위치한 모든 `Feature`를 불러온다.
+3. 그 중 우리에게 필요한 `Feature`의 데이터를 확인한다. 
+   1. 본문에서는 `Feature`의 아이디가 `buld_sejong`로 시작되는 것들이 대상임.
+4. 원하는 데이터를 DOM에 표시한다.
+   1. 본문에서는 상태 기반의 데이터 관리를 사용한다.
+5. `feature.getGeometry()`로 지오메트리 정보를 호출하여 오버레이의 위치를 계산한다.
+   1. 본문에서는 `Feature` 영역의 센터값을 사용
+6. `overlay.setPosition([ x, y ])`의 형태로 원하는 위치에 오버레이 출력
+
+위와 같은 방식으로 로직이 진행된다. 물론 어디까지나 사용의 한 예시이므로, 이벤트에 원하는 동작을 기술하여 다양한 동작을 수행할 수 있다.
+
+<br />
+
+
+
+## 3-1. Feature에 커서 표시하기
+
+번외로, `Feature`에 마우스 포인터를 호버링할 경우, 마우스 커서 모양을 `pointer`로 지정하여 사용자로 하여금 상호작용이 가능하다는 것을 UI로 표현해줄 수 있다.
+
+``` typescript
+map.on('pointermove', (e) => map.getViewport().style.cursor = map.hasFeatureAtPixel(e.pixel) ? 'pointer' : '');
+```
+
+`pointermove` 이벤트를 통해, 현재 픽셀에 `Feature`가 하나라도 있을 경우 커서 CSS를 `pointer`로 변경한다.
+
+<br />
+<br />
 <br />
 
 
@@ -145,6 +240,6 @@ map.removeOverlay();
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/169587097-b2513a74-6dc4-4d34-9b6c-a2acaca92f48.png)
+![image](https://user-images.githubusercontent.com/50317129/170280310-58a64c75-b529-4ce7-a9b4-09ca6a13abf2.png)
 
-[OpenLayers6 Sandbox - Feature Click](https://project.itcode.dev/gis-dev/feature-click)에서 이를 구현한 예제를 확인할 수 있다.
+[OpenLayers6 Sandbox - WFS Popup](https://project.itcode.dev/gis-dev/wfs-popup)에서 이를 구현한 예제를 확인할 수 있다.
