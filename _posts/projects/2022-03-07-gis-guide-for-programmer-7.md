@@ -60,7 +60,7 @@ API 형태로 원하는 GIS 데이터를 다양한 형태로 통신할 수 있�
 
 만약 별도로 Tomcat을 운용하는데, GeoServer 스탠드얼론 버전을 사용할 경우, 포트가 8080으로 서로 겹친다. GeoServer 스탠드얼론 버전의 기본 포트도 8080이기 때문. `start.ini`의 `jetty.port=8080`을 원하는 포트로 변경해주면 된다.
 
-기본 설정 기준으로 [https://localhost:8080/geoserver](https://localhost:8080/geoserver)로 접속하면 GeoServer에 접속할 수 있다.
+기본 설정 기준으로 [https://example.com/geoserver](https://example.com/geoserver)로 접속하면 GeoServer에 접속할 수 있다.
 
 ![image](https://user-images.githubusercontent.com/50317129/157474361-20317947-87f0-4695-86a5-2c3517ad7991.png)
 

@@ -15,7 +15,7 @@ import fs from 'fs';
 
 const FORMAT = {
 	collapseContent: true,
-	indentation: '	',
+	indentation: '\t',
 	lineSeparator: '\n'
 };
 
@@ -63,7 +63,7 @@ async function seo()
 		projects: []
 	};
 
-	pages.forEach(element =>
+	pages.forEach((element) =>
 	{
 		const url = element.replace('./pages/index.tsx', '').replace('./pages', '').replace('/index.tsx', '').replace('.tsx', '');
 
@@ -73,7 +73,7 @@ async function seo()
 
 	console.log(`    - ${pages.length}개 메뉴 페이지 SEO 텍스트 생성`);
 
-	posts.forEach(content =>
+	posts.forEach((content) =>
 	{
 		sitemap.posts.push(getSitemap(content));
 		rss.posts.push(getRSS(content));
@@ -81,7 +81,7 @@ async function seo()
 
 	console.log(`    - ${posts.length}개 posts 페이지 SEO 텍스트 생성`);
 
-	projects.forEach(content =>
+	projects.forEach((content) =>
 	{
 		sitemap.projects.push(getSitemap(content));
 		rss.projects.push(getRSS(content));
@@ -241,9 +241,9 @@ function getSitemap(item: ContentProps)
 function getRSS(item: ContentProps): string
 {
 	const { url, header } = item;
-	const { title, date, excerpt } = header;
+	const { title, date, excerpt, type } = header;
 
-	const link = `${BASE_URL}/${url.slice(1, 5).join('/')}`;
+	const link = `${BASE_URL}/${type}/${url.slice(1, 5).join('/')}`;
 	const tags = getRSSTags(item);
 
 	return `
@@ -272,7 +272,7 @@ function getRSSTags(item: ContentProps): string[]
 	const list: string[] = [];
 	list.push(`<category>${category}</category>`);
 
-	tag.forEach(item =>
+	tag.forEach((item) =>
 	{
 		// 태그가 카테고리와 다른 값이고, 중복되지 않을 경우
 		if (category !== item)

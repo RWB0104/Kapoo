@@ -2,13 +2,13 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 19. WMS에 팝업 붙이기"
 excerpt: "지도에 표시된 마커 혹은 객체를 클릭하면, 팝업을 통해 해당 객체의 자세한 정보를 보여준다. 이 장에서는 WFS 지도에 팝업을 출력하여 마커의 세부 정보를 표현해본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-25T23:00:06+09:00"
+date: "2022-05-28T20:55:23+09:00"
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WMS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
@@ -18,7 +18,6 @@ WFS와 같은 객체 기반의 지도가 아닌, WMS와 같이 이미지 기반�
 표면적으론 불가능해보인다. WFS의 경우 스크립트 상에서 공간정보를 갖고 있으므로, 이를 적절히 활용하면 원하는 정보를 보여줄 수 있었다. 하지만 WMS의 경우 기반 자체가 이미지이므로, 분석 가능한 데이터로써의 활용성은 매우 떨어진다.
 
 ![image](https://user-images.githubusercontent.com/50317129/170293519-b0ed1d98-77ea-4249-89fd-5de5934d3de6.png)
-
 
 즉, 컴퓨터가 이 한 장의 이미지에서 어떤 객체를 얼마나 갖고 있는지 직접적으로 알 수 없다.
 
@@ -58,7 +57,42 @@ OpenLayers는 `Overlay` 객체를 통해 지도 위에 원하는 HTML 태그를 
 
 
 
-## 1. Overlay 생성하기
+## 1. GetFeatureInfo URL 구성하기
+
+``` txt
+GET https://example.com/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=test:building&layers=buld_sejong&exceptions=application%2Fjson&INFO_FORMAT=application%2Fjson&I=221&J=178&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14169590.555392835%2C4366694.551875548%2C14169896.303505976%2C4367000.299988689
+```
+
+|   Parameter   |              Example              | Require |                     Description                     |
+| :-----------: | :-------------------------------: | :-----: | :-------------------------------------------------: |
+|    service    |            WMS (고정)             |    Y    |                      서비스명                       |
+|    version    | 1.3.0 (고정), 1.1.1, 1.1.0, 1.0.0 |    Y    |                        버전                         |
+|    request    |       GetFeatureInfo (고정)       |    Y    |                       요청명                        |
+|    layers     |       repo_name:layer_name        |    Y    |            레이어명 (다수는 쉼표로 구분)            |
+|    styles     |              style1               |         |  적용할 스타일명 (`GetFeatureInfo`에선 의미 없음)   |
+|  crs(or srs)  |             EPSG:4326             |         | 기준 좌표계 (비울 경우 레이어의 기본 좌표계로 인식) |
+|     bbox      | $x_{min},y_{min},x_{max},y_{max}$ |    Y    |                  이미지 영역 좌표                   |
+|     width     |                256                |    Y    |                     이미지 넓이                     |
+|    height     |                256                |    Y    |                     이미지 높이                     |
+| query_layers  |       repo_name:layer_name        |    Y    |       추가 요청 레이어명 (다수는 쉼표로 구분)       |
+|  info_format  | application/vnd.ogc.se_xml (기본) |         |                      응답 형식                      |
+| feature_count |             1 (기본)              |         |                  최대 객체 호출 수                  |
+|    x(or i)    |                225                |    Y    |                   지도의 x 픽셀값                   |
+|    y(or j)    |                156                |    Y    |                   지도의 y 픽셀값                   |
+|  exceptions   | application/vnd.ogc.se_xml (기본) |         |                   예외 응답 형식                    |
+
+`GetFeatureInfo`의 경우도 `GetImage`와 마찬가지로 입력해야할 파라미터의 갯수가 많다. `GetFeatureInfo` 자체가 클릭 시 해당 위치의 마커 정보를 반환하는 API이므로, 지도 상의 클릭한 위치를 `x`, `y`의 형태로 제공해야한다. 여러모로 까다로운 파라미터들이 많은 편.
+
+다행히 `GetImage`와 마찬가지로 OpenLayers에서 `GetFeatureInfo` URL를 생성해주는 객체를 제공해주니, 이를 사용하면 쉽게 호출할 수 있다. 이 방법은 `Overlay`의 이벤트를 핸들링하는 부분에서 서술한다. 여기선 그냥 순수 URL로 이와 같이 호출할 수 있다는 점만 알아두자.
+
+<br />
+<br />
+
+
+
+
+
+## 2. Overlay 생성하기
 
 `Overlay` 객체를 직접 생성해보자.
 
@@ -113,7 +147,7 @@ const overlay = new Overlay({
 
 
 
-## 2. Map에 적용하기
+## 3. Map에 적용하기
 
 생성한 `Overlay`를 `Map`에 적용시켜본다.
 
@@ -152,78 +186,103 @@ map.removeOverlay();
 
 
 
-## 3. Overlay 이벤트 적용하기
+## 3. Overlay 이벤트 적용하고 GetFeatureInfo 호출하기
 
-오버레이를 등록했으니, 적절한 이벤트 핸들링을 통해 오버레이를 띄우고, 원하는 데이터를 보여줄 수 있을 것이다.
+여기서부터는 WFS와 WMS의 방식이 좀 다르다. WFS의 경우, `GetFeature`의 정보를 토대로 스크립트 상에서 해당 정보에 접근하여 `Feature`의 정보를 바로 보여줄 수 있었다.
 
-``` jsx
+하지만 누차 언급하듯이, WMS의 `GetImage`는 공간정보를 토대로 이미지를 렌더링하여 반환하기 때문에, 직접적으로 `Feature`의 정보를 보여주는 데 한계가 있다.
+
+클릭 시 `GetFeatureInfo`를 활용하면 해당 클릭 위치의 `Feature` 데이터를 받아올 수 있으므로, 이를 활용한다.
+
+``` typescript
+import ImageLayer from 'ol/layer/Image';
+
+const layer = new TileLayer({
+	source: source,
+	minZoom: 15,
+	properties: { name: 'wms' },
+	zIndex: 5
+});
+```
+
+WMS 레이어는 위와 같이 선언됐다고 가정한다.
+
+``` tsx
 map.on('singleclick', (e) =>
 {
-	// 해당 픽셀에 객체가 있을 경우
-	if (map.hasFeatureAtPixel(e.pixel))
+	// WMS properties의 name이 wms인 레이어를 추출
+	const wmsLayer = map.getAllLayers().filter(layer => layer.get('name') === 'wms')[0];
+
+	// WMS 레이어의 Source 호출
+	const source: TileWMS | ImageWMS = wmsLayer.getSource();
+
+	// GetFeatureInfo URL 생성
+	const url = source.getFeatureInfoUrl(e.coordinate, map.getView().getResolution() || 0, 'EPSG:3857', {
+		QUERY_LAYERS: 'test:building',
+		INFO_FORMAT: 'application/json'
+	});
+
+	// GetFeatureInfo URL이 유효할 경우
+	if (url)
 	{
-		map.forEachFeatureAtPixel(e.pixel, feature =>
+		const request = await fetch(url.toString(), { method: 'GET' }).catch(e => alert(e.message));
+
+		// 응답이 유효할 경우
+		if (request)
 		{
-			// 해당 객체의 아이디가 buld_sejong으로 시작할 경우
-			if (feature.getId()?.toString().startsWith('buld_sejong'))
+			// 응답이 정상일 경우
+			if (request.ok)
 			{
-				const geom = feature.getGeometry();
+				const json = await request.json();
 
-				// 공간정보가 유효할 경우
-				if (geom)
+				// 객체가 하나도 없을 경우
+				if (json.features.length === 0)
 				{
-					const [ minX, minY, maxX, maxY ] = geom.getExtent();
+					overlay.setPosition(undefined);
+				}
 
-					setPopupState((
+				// 객체가 있을 경우
+				else
+				{
+					// GeoJSON에서 Feature를 생성
+					const feature = new GeoJSON().readFeature(json.features[0]);
+
+					// 생성한 Feature로 VectorSource 생성
+					const vector = new VectorSource({ features: [ feature ] });
+
+					setPopupState(
 						<ul>
 							<li>{feature.getId() || ''}</li>
 							<li>{feature.get('buld_nm') || <span>이름 없음</span>}</li>
 							<li>{feature.get('bul_man_no')}</li>
 						</ul>
-					));
+					);
 
-					overlay.setPosition([ (maxX + minX) / 2, (maxY + minY) / 2 ]);
+					overlay.setPosition(getCenter(vector.getExtent()));
 				}
 			}
-		});
-	}
 
-	// 없을 경우
-	else
-	{
-		overlay.setPosition(undefined);
+			// 아닐 경우
+			else
+			{
+				alert(request.status);
+			}
+		}
 	}
 });
 ```
 
 위와 같이 클릭 이벤트를 적절히 활용한다.
 
-1. 클릭 시, 해당 픽셀에 `Feature`가 있는지 `hasFeatureAtPixel` 메서드로 확인한다.
-   1. 없다면 `overlay.setPosition(undefined)`으로 오버레이를 숨긴다.
-2. `forEachFeatureAtPixel` 메서드로 해당 픽셀에 위치한 모든 `Feature`를 불러온다.
-3. 그 중 우리에게 필요한 `Feature`의 데이터를 확인한다. 
-   1. 본문에서는 `Feature`의 아이디가 `buld_sejong`로 시작되는 것들이 대상임.
-4. 원하는 데이터를 DOM에 표시한다.
-   1. 본문에서는 상태 기반의 데이터 관리를 사용한다.
-5. `feature.getGeometry()`로 지오메트리 정보를 호출하여 오버레이의 위치를 계산한다.
-   1. 본문에서는 `Feature` 영역의 센터값을 사용
-6. `overlay.setPosition([ x, y ])`의 형태로 원하는 위치에 오버레이 출력
+1. 클릭 시, WMS 레이어를 호출한다.
+2. WMS 레이어에서 `Source` 객체를 호출한다.
+3. `Source` 객체의 `getFeatureInfoUrl` 메서드를 통해 `GetFeatureInfo` URL을 생성한다.
+4. GeoServer에 `GetFeatureInfo`를 호출한다.
+5. 응답의 GeoJSON을 토대로 `Feature`를 만들어 `VectorSource` 객체를 생성한다.
+6. 생성한 `Feature` 객체에서 원하는 데이터를 받아 호출한다.
+7. `vector.getExtent()`를 통해 데이터의 실제 위치를 계산하여 `Overlay` 위치로 지정한다.
 
 위와 같은 방식으로 로직이 진행된다. 물론 어디까지나 사용의 한 예시이므로, 이벤트에 원하는 동작을 기술하여 다양한 동작을 수행할 수 있다.
-
-<br />
-
-
-
-## 3-1. Feature에 커서 표시하기
-
-번외로, `Feature`에 마우스 포인터를 호버링할 경우, 마우스 커서 모양을 `pointer`로 지정하여 사용자로 하여금 상호작용이 가능하다는 것을 UI로 표현해줄 수 있다.
-
-``` typescript
-map.on('pointermove', (e) => map.getViewport().style.cursor = map.hasFeatureAtPixel(e.pixel) ? 'pointer' : '');
-```
-
-`pointermove` 이벤트를 통해, 현재 픽셀에 `Feature`가 하나라도 있을 경우 커서 CSS를 `pointer`로 변경한다.
 
 <br />
 <br />
@@ -240,6 +299,6 @@ map.on('pointermove', (e) => map.getViewport().style.cursor = map.hasFeatureAtPi
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/170280310-58a64c75-b529-4ce7-a9b4-09ca6a13abf2.png)
+![image](https://user-images.githubusercontent.com/50317129/170824412-2ca5f1d3-2066-4fd5-a6fc-179b3978a7ae.png)
 
-[OpenLayers6 Sandbox - WFS Popup](https://project.itcode.dev/gis-dev/wfs-popup)에서 이를 구현한 예제를 확인할 수 있다.
+[OpenLayers6 Sandbox - WMS Popup](https://project.itcode.dev/gis-dev/wms-popup)에서 이를 구현한 예제를 확인할 수 있다.

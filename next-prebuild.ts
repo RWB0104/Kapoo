@@ -69,7 +69,7 @@ async function genImageList()
 
 		console.log(`    - 총 ${list.length}개 이미지 확인`);
 
-		fs.writeFileSync(path, JSON.stringify({ list: list }, null, 4));
+		fs.writeFileSync(path, JSON.stringify({ list }, null, 4));
 
 		console.log(`    - ${path}`);
 		console.log('    - ✅ 이미지 리스트 생성 성공');
@@ -105,7 +105,7 @@ async function genContentList(type: ContentType)
 
 		console.log(`    - 총 ${list.length}개 ${type} 확인`);
 
-		fs.writeFileSync(path, JSON.stringify({ list: list }, null, 4));
+		fs.writeFileSync(path, JSON.stringify({ list }, null, 4));
 
 		console.log(`    - ${path}`);
 		console.log(`    - ✅ ${type} 리스트 생성 성공`);
@@ -141,7 +141,7 @@ async function genCategoryList(type: ContentType)
 
 		console.log(`    - 총 ${list.length}개 ${type} 카테고리 확인`);
 
-		fs.writeFileSync(path, JSON.stringify({ list: list }, null, 4));
+		fs.writeFileSync(path, JSON.stringify({ list }, null, 4));
 
 		console.log(`    - ${path}`);
 		console.log(`    - ✅ ${type} 카테고리 리스트 생성 성공`);

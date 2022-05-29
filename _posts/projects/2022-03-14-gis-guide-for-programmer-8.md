@@ -50,7 +50,7 @@ WFS의 주요 명령어를 기술한다.
 * GetFeature
 * Transaction
 
-기본 URL은 `http://localhost:8080/geoserver/wfs`와 같다.
+기본 URL은 `https://example.com/geoserver/wfs`와 같다.
 
 <br />
 
@@ -65,7 +65,7 @@ WFS의 주요 명령어를 기술한다.
 GeoServer의 `GetFeature`에 필요한 파라미터는 아래와 같다.
 
 ``` txt
-GET http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
+GET https://example.com/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=test:building&srsName=EPSG:3857&outputFormat=application/json&bbox=14168809.936013725,4366042.924151548,14170735.193663657,4367768.7289308,EPSG:3857
 ```
 
 |  Parameter   |                   Example                   | Require |                     Description                     |
@@ -270,7 +270,7 @@ Line은 반드시 첫 좌표와 마지막 좌표가 다르다는 점을 잊지 �
 레이어 데이터에 대한 삽입 기능이다.
 
 ``` txt
-POST http://localhost:8080/geoserver/wfs
+POST https://example.com/geoserver/wfs
 ```
 
 ``` xml
@@ -347,7 +347,7 @@ POST http://localhost:8080/geoserver/wfs
 레이어 데이터에 대한 수정 기능이다.
 
 ``` txt
-POST http://localhost:8080/geoserver/wfs
+POST https://example.com/geoserver/wfs
 ```
 
 ``` xml
@@ -445,7 +445,7 @@ POST http://localhost:8080/geoserver/wfs
 단순 삭제만 수행하면 되므로, XML이 훨씬 간단하다.
 
 ``` txt
-POST http://localhost:8080/geoserver/wfs
+POST https://example.com/geoserver/wfs
 ```
 
 ``` xml
@@ -515,7 +515,7 @@ WMS의 주요 명령어를 기술한다.
 * GetMap
 * GetFeatureInfo
 
-기본 URL은 `http://localhost:8080/geoserver/wms`와 같다.
+기본 URL은 `https://example.com/geoserver/wms`와 같다.
 
 <br />
 
@@ -530,7 +530,7 @@ WMS의 주요 명령어를 기술한다.
 GeoServer의 `GetMap`에 필요한 파라미터는 아래와 같다.
 
 ``` txt
-GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=buld_sejong&exceptions=application%2Fjson&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14167144.570487704%2C4365471.559422987%2C14167756.066713985%2C4366083.055649268
+GET https://example.com/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&layers=buld_sejong&exceptions=application%2Fjson&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14167144.570487704%2C4365471.559422987%2C14167756.066713985%2C4366083.055649268
 ```
 
 |  Parameter  |              Example              | Require |                                      Description                                      |
@@ -599,7 +599,7 @@ GetMap으로 출력된 지도는 모든 객체들이 이미지로 바뀌므로, 
 GeoServer의 `GetFeatureInfo`에 필요한 파라미터는 아래와 같다.
 
 ``` txt
-GET http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=buld_sejong&layers=buld_sejong&exceptions=application%2Fjson&INFO_FORMAT=application%2Fjson&I=221&J=178&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14169590.555392835%2C4366694.551875548%2C14169896.303505976%2C4367000.299988689
+GET https://example.com/geoserver/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=buld_sejong&layers=buld_sejong&exceptions=application%2Fjson&INFO_FORMAT=application%2Fjson&I=221&J=178&WIDTH=256&HEIGHT=256&CRS=EPSG%3A3857&STYLES=&BBOX=14169590.555392835%2C4366694.551875548%2C14169896.303505976%2C4367000.299988689
 ```
 
 |   Parameter   |              Example              | Require |                     Description                     |
