@@ -46,6 +46,7 @@ export default function Post(content: ContentProps): JSX.Element
 export async function getStaticProps({ params }: RoutesProps): Promise<ContentPageProps>
 {
 	const posts = await getContent(type, params.url.join('-'), true);
+	console.dir(posts);
 
 	return { props: posts };
 }

@@ -1,14 +1,14 @@
 ---
-title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 20. WFS Transaction으로 데이터 수정하기"
-excerpt: "지금까지는 GeoServer를 통해 데이터를 호출하고, 이를 표현하는 것이 전부였다. 객체로 표현을 하던, 이미지로 그리던, 데이터를 직접 표현해주던, 결국 어떠한 형태로든 데이터를 보여주는 수준에 그쳤다. 이 문서를 포함하여, 앞으로 서술할 3개 문서는 공간정보 데이터의 삽입/수정/삭제에 대해 다룬다. WFS Transaction 프로토콜을 활용하면 정해진 패턴으로 데이터의 CUD를 수행할 수 있다. 이 중 이 문서에서는 WFS Transaction Insert. 즉, 공간정보 데이터의 추가에 대해 다룬다."
+title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 21. WFS Transaction으로 데이터 수정하기"
+excerpt: "세 가지 WFS Transaction API 중, 데이터를 수정하는 Update에 대해 다뤄보자."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-30T00:55:46+09:00"
+date: "2022-05-31T01:10:12+09:00"
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WFS" ]
 group: "OpenLayers를 여행하는 개발자를 위한 안내서"
 comment: true
-publish: false
+publish: true
 ---
 
 # 개요
@@ -113,40 +113,28 @@ XML의 의미는 위와 같다. 직접 지도에 도형을 그린 후, 도형의
 
 
 
-## 2. Draw 기능 추가하기
+## 2. Snap과 Modify 기능 추가하기
 
-지도는 일반적인 WFS 지도를 활용한다. 지도 위에 `Polygon`을 그리기 위해 `Draw` 객체를 추가해보자.
+지도는 일반적인 WFS 지도를 활용한다. `Draw` 객체가 도형을 그리는 객체라면, `Modify` 객체는 이미 그려진 도형을 조작할 수 있는 기능이다.
+
+쉽게 말해서, 그냥 도형의 모습을 바꿀 수 있다고 생각하면 된다.
+
+`Snap`은 마우스 포인터가 객체에 쉽게 달라붙도록 유도하는 기능이다.
 
 ``` typescript
-import { Map } from 'ol';
-import Draw from 'ol/interaction/Draw';
-import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
+import Snap from 'ol/interaction/Snap';
+import Modify from 'ol/interaction/Modify';
 
-const drawSource = new VectorSource();
-
-const drawLayer = new VectorLayer({
-	source: drawSource,
-	properties: { name: 'draw' }
+const snap = new Snap({
+	source: wfsLayer
 });
 
-const drawInteraction = new Draw({
-	source: drawLayer.getSource(),
-	type: 'Polygon'
-});
-
-new Map({
-	...
-	layers: [ ..., drawLayer ]
+const modify = new Modify({
+	source: wfsLayer
 });
 ```
 
-1. 빈 `VectorSource`를 생성한다.
-   1. 드로잉되는 객체는 해당 `VectorSource`에 생성된다.
-2. `VectorSource`로 `VectorLayer`를 생성한다.
-   1. 기존의 `VectorLayer`를 활용하는 것도 가능하다.
-3. `VectorSource`로 `Draw` 객체를 생성한다.
-   1. `type` 값을 통해 원하는 데이터의 형식을 지정할 수 있다.
+`Snap`과 `Modify` 모두 `Source` 객체를 주요 옵션으로 받는다. 각 기능은 해당 `Source` 데이터에서만 동작하게 된다.
 
 <br />
 <br />
@@ -155,11 +143,11 @@ new Map({
 
 
 
-## 4. Draw 객체에 이벤트 붙이기
+## 3. Snap과 Modify 객체에 이벤트 붙이기
 
-`map.addInteraction()` 메서드로 기능을 활성화할 수 있다. 반대로 드로잉 기능을 비활성화하려면, `map.removeInteraction()`으로 `Draw` 객체를 제거해야한다.
+`map.addInteraction()` 메서드로 기능을 활성화할 수 있다. 반대로 드로잉 기능을 비활성화하려면, `map.removeInteraction()`으로 `Modify` 객체를 제거해야한다.
 
-즉, `Draw`를 `Map`에 추가해놓고 제거하지 않으면, 드로잉 기능이 계속 활성화되어 있어서 지도를 제대로 조작할 수 없는 현상이 발생한다. 따라서 드로잉 후 적절한 시점에 `Draw` 객체를 `Map`에서 제거해줘야한다.
+`Snap` 객체는 그냥 바로 `Map` 객체에 상시 할당해도 무방하다.
 
 ``` typescript
 document.onkeyup = (e) =>
@@ -167,36 +155,19 @@ document.onkeyup = (e) =>
 	// ESC를 눌렀을 경우
 	if (e.key.toLowerCase() === 'escape')
 	{
-		map.removeInteraction(drawInteraction);
+		map.removeInteraction(modify);
 	}
 };
 
 document.oncontextmenu = () =>
 {
-	map.removeInteraction(drawInteraction);
+	map.removeInteraction(modify);
 };
 ```
 
-각각 ESC 키를 눌렀을 때, 오른쪽 마우스 버튼을 눌렀을 때 `Draw` 기능을 해제한다.
+각각 ESC 키를 눌렀을 때, 오른쪽 마우스 버튼을 눌렀을 때 `Modify` 기능을 해제한다.
 
-`Draw` 객체 또한 이벤트를 지원한다.
-
-``` typescript
-// 드로잉 시작 이벤트
-drawInteraction.on('drawstart', () => {});
-
-// 드로잉 종료 이벤트
-drawInteraction.on('drawend', () => {});
-
-// 드로잉 취소 이벤트
-drawInteraction.on('drawabort', () => {});
-```
-
-* `drawstart` - 드로잉을 시작할 때
-* `drawend` - 드로잉이 종료될 때 (도형을 정상적으로 그림)
-* `drawabort` - 드로잉을 취소할 때 (다시 그리기와 비슷)
-
-이 문서에서는 드로잉이 끝날 경우 데이터 입력 폼을 출력한다. 입력이 완료되면 WFS Transaction API를 호출한다.
+이 문서에서는 `Modify` 기능이 끝날 경우 데이터 입력 폼을 출력한다. 입력이 완료되면 WFS Transaction API를 호출한다.
 
 <br />
 <br />
@@ -213,6 +184,6 @@ drawInteraction.on('drawabort', () => {});
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/170878861-a364f06e-3c30-432c-b081-0fd9c096c29d.png)
+![image](https://user-images.githubusercontent.com/50317129/171029500-f0fee3e6-fe98-4b7c-ad23-33843efdba69.png)
 
-[OpenLayers6 Sandbox - WFS Transaction Insert](https://project.itcode.dev/gis-dev/transaction-insert)에서 이를 구현한 예제를 확인할 수 있다.
+[OpenLayers6 Sandbox - WFS Transaction Update](https://project.itcode.dev/gis-dev/transaction-update)에서 이를 구현한 예제를 확인할 수 있다.

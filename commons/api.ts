@@ -170,7 +170,7 @@ export async function getContent(type: ContentType, name: string, isFull: boolea
 		const { toc, html } = await converter(content);
 
 		const current = list.findIndex((item) => item.name === name);
-		const group = list.filter((item) => item.header.group === header.group);
+		const group = list.filter((item) => item.header.group && item.header.group === header.group);
 
 		result.toc = toc;
 		result.content = html;
