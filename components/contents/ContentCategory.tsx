@@ -84,7 +84,7 @@ export default function ContentCategory({ type, list }: Props): JSX.Element
 
 			<div className={cn('meta')}>
 				<p>{item.name}</p>
-				<p>( {item.count} )</p>
+				<p>{item.count}</p>
 			</div>
 
 			{categoryState.indexOf(item.name) > -1 && (
