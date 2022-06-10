@@ -522,6 +522,10 @@ module.exports = {
 
 ## 8. 프로젝트 설정
 
+- `.npmignore`
+  - `.npmignore`는 `.gitignore`와 비슷하다. 다만, npm에 배포 시 제외할 파일을 선언한다는 점이 다르다.
+  - 해당 리스트의 규칙과 일치하는 파일 및 폴더는 npm 배포 시 포함되지 않는다.
+
 ``` txt
 .storybook/
 src/
@@ -530,8 +534,18 @@ tsconfig.json
 yarn.lock
 ```
 
-- `.npmignore`는 `.gitignore`와 비슷하다. 다만, npm에 배포 시 제외할 파일을 선언한다는 점이 다르다.
-- 해당 리스트의 규칙과 일치하는 파일 및 폴더는 npm 배포 시 포함되지 않는다.
+- `package.json`
+  - `name` - npm 배포 시, 이 이름을 기준으로 배포를 수행한다.
+    - 조직 하위에 배포할 경우, `@org/name` 형태로 입력한다.
+  - `version` - 라이브러리 버전. 이미 올라간 버전은 재배포가 불가능하며, 배포 시마다 버전을 적절히 관리해야한다.
+  - `main` - 해당 라이브러리의 기본(CJS) 스크립트
+  - `module` - 해당 라이브러리의 ESM 스크립트
+  - `browser` - 해당 라이브러리의 UMD 스크립트
+  - `types` - 해당 라이브러리의 타입
+  - `private` - npm 공개 여부
+    - GitHub의 Repository와는 관계없다.
+  - `script` - 프로젝트의 스크립트 명령어 목록
+    - 빌드를 위해 `rollup -c` 명령어를 추가한다.
 
 ``` json
 {
@@ -539,17 +553,11 @@ yarn.lock
 	"version": "3.0.1",
 	"main": "./dist/index.js",
 	"module": "./dist/index.es.js",
+	"browser": "./dist/index.umd.js",
 	"types": "./dist/index.d.ts",
 	"private": false,
+	"script": {
+		"build": "rollup -c"
+	}
 }
 ```
-
-- `name` - npm 배포 시, 이 이름을 기준으로 배포를 수행한다.
-  - 조직 하위에 배포할 경우, `@org/name` 형태로 입력한다.
-- `version` - 라이브러리 버전. 이미 올라간 버전은 재배포가 불가능하며, 배포 시마다 버전을 적절히 관리해야한다.
-- `main` - 해당 라이브러리의 기본(CJS) 스크립트
-- `module` - 해당 라이브러리의 ESM 스크립트
-- `browser` - 해당 라이브러리의 UMD 스크립트
-- `types` - 해당 라이브러리의 타입
-- `private` - npm 공개 여부
-  - GitHub와는 관계 없는 설정
