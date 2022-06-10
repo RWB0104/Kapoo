@@ -1,13 +1,13 @@
 ---
 title: "Rollup.js로 React 컴포넌트 라이브러리 개발기"
-excerpt: "Next.js로 블로그를 다시 만든 뒤에, 새로운 글 작성 이외에 별다른 유지보수는 하지 않았었다. 나름의 이유는 있었던 것이, 일단 당장 쓰는 데 큰 문제가 없었고, 귀찮기도 했다. 적절한 컴포넌트를 구상하고 배치하는 게 여간 귀찮은 일이 아니기도 했고. 내 블로그에 몇 가지 문제점이 있었는데, 그 중 하나가 About 페이지에 아무 것도 없다는 점이다. 뭔가 나름의 블로그 소개를 작성하려고 했는데, 마땅한 아이디어가 없었기 때문. 그러다 문득, 괜찮은 아이디어가 하나 떠올랐는데, \"About 페이지에 커밋 리스트를 표시해주면 괜찮지 않을까?\"란 생각이였다. 나쁘지 않은 생각이였으므로 개발에 들어갔으나, 갑자기 블로그의 못난 부분들이 거슬리기 시작했다. 갑자기 못난 부분들이 보이는 게 너무나도 참을 수 없던 나는, 그렇게 예정에도 없던 블로그 리뉴얼 작업을 시작했다."
-coverImage: "https://user-images.githubusercontent.com/50317129/172054319-11955bfc-e4f3-4a30-b8fb-0de34f57c001.png"
-date: "2022-06-05T23:01:19+09:00"
+excerpt: "회사에서 할당받은 업무 중 하나로, 컴포넌트를 라이브러리화하여 npm으로 배포하는 업무를 맡게 됐다. 즉, react-bootstrap 같은 컴포넌트 라이브러리를 개발해야한다. 코드 배포 경험이라곤 예전에 JAVA 오픈소스 라이브러리 만든답시고 Maven에 한 번 배포해본 게 전부인 내게, 새로운 개발환경에서의 배포는 필연적인 시행착오를 불러왔다. 개발하면서 느꼈던건, 깊게 참고할만한 레퍼런스가 너무 없었고, 가져다 쓸만한 적절한 코드도 찾지 못 했다. 다행히 뭐 어찌저찌 시간 갈아가며 어느정도 기틀을 잡을 수 있었다. 나름 재밌기도 했고, 한 번 파볼만한 가치도 있는 것 같고, 인지도 높은 레퍼런스도 없는 것 같아서 내가 직접 한 번 만들어보기로 했다."
+coverImage: "https://user-images.githubusercontent.com/50317129/173095674-228ad2b4-ef60-4c9c-9f2a-78058cde9cf2.png"
+date: "2022-06-10T23:51:25+09:00"
 type: "projects"
 category: "React"
 tag: [ "React", "Rollup.js", "npm", "Library" ]
 comment: true
-publish: false
+publish: true
 ---
 
 # 왜?
@@ -561,3 +561,100 @@ yarn.lock
 	}
 }
 ```
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+# 배포
+
+라이브러리를 배포한다.
+
+``` bash
+npm login
+# username
+# password
+# email
+# email otp
+
+yarn publish --access public
+```
+
+- `npm login`으로 로그인을 수행한다.
+  - 없다면 [npm 홈페이지](https://www.npmjs.com/)에서 계정을 생성한다.
+- `yarn publish --access public`으로 배포를 수행한다.
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+# 설치
+
+배포한 프로젝트를 직접 설치하여 사용해보자.
+
+``` bash
+npm i @itcode-dev/react-components-library-starter
+
+yarn add @itcode-dev/react-components-library-starter
+```
+
+위 명령어를 통해 라이브러리를 설치할 수 있다.
+
+``` tsx
+import Button from '@itcode-dev/react-components-library-starter/dist/atom/Button';
+import Input from '@itcode-dev/react-components-library-starter/dist/atom/Input';
+```
+
+![image](https://user-images.githubusercontent.com/50317129/173087696-58504aeb-5908-4b4d-8768-f2fb1c8d8382.png)
+
+위와 같이 라이브러리를 활용할 수 있다.
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+
+# 여담
+
+이번 프로젝트는 규모는 작았지만, 연구할 게 많은 프로젝트였다. 찾아볼 건 많은데 규모는 작다보니 재밌게 했던 것 같다.
+
+이 프로젝트 덕분에 새로운 걸 많이 알아갈 수 있었다.
+
+- Storybook
+- classnames
+- npm 배포 흐름
+- rollup.js
+
+그 밖에도 자잘자잘하게 얻은 게 많지 않나 싶다. 여러모로 보람찬 프로젝트였다.
+
+<br />
+
+그러고보니 저번에 자바 라이브러리도 배포한 적이 있던 거 같은데... npm랑 다르게 Maven은 배포 과정이 복잡했던걸로 기억한다.
+
+지금 다시 하라고 하면 못 할거 같긴 한데.. 시간 날 때 그 것도 다시 한 번 정리해야 할 것 같다.

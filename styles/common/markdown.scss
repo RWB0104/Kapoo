@@ -1,5 +1,6 @@
 @import "../fonts/hack.scss";
-@import "../common/color.scss";
+@import "./color.scss";
+@import "./markdown-code.scss";
 
 @mixin gutter() {
 	margin-top: 40px;
@@ -11,7 +12,7 @@
 
 	overflow: auto;
 
-	border-radius: 10px;
+	border-radius: 5px;
 
 	table {
 		margin: auto;
@@ -24,8 +25,6 @@
 			transition: 0.3s;
 
 			th {
-				color: white;
-
 				padding: 8px 20px;
 				text-align: center;
 
@@ -67,23 +66,17 @@
 	h4,
 	h5,
 	h6 {
-		padding-left: 10px;
-
-		margin-top: 100px;
-		margin-bottom: 30px;
+		margin-top: 50px;
 
 		&:hover {
 			a {
 				font-size: inherit;
-				opacity: 1;
 			}
 		}
 
 		a {
 			font-size: 0px;
 			text-decoration: none;
-
-			opacity: 0;
 		}
 
 		.katex {
@@ -134,10 +127,11 @@
 
 	pre,
 	code {
+		font-family: Hack, AppleSDGothicNeo, sans-serif;
+
 		font-size: 0.8rem;
 
 		cursor: text;
-
 		user-select: text;
 
 		* {
@@ -147,13 +141,10 @@
 
 	pre[class*="language-"],
 	code[class*="language-"] {
-		background-color: #0D1117;
 		padding: 20px;
 
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
-
-		color: white;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
 
 		text-align: left;
 		white-space: pre;
@@ -161,97 +152,12 @@
 		word-break: normal;
 		word-wrap: normal;
 
-		-webkit-hyphens: none;
-		-moz-hyphens: none;
-		-ms-hyphens: none;
 		hyphens: none;
 
 		overflow: auto;
-
-		.token.comment,
-		.token.block-comment,
-		.token.prolog,
-		.token.doctype,
-		.token.cdata {
-			color: map-get($green, "600");
-		}
-
-		.token.annotation.punctuation {
-			color: #808080;
-		}
-
-		.token.punctuation {
-			color: #82AAFF;
-		}
-
-		.token.tag,
-		.token.attr-name,
-		.token.namespace,
-		.token.deleted {
-			color: #e2777a;
-		}
-
-		.token.function-name,
-		.token.function {
-			color: #82AAFF;
-		}
-
-		.token.boolean,
-		.token.number {
-			color: #f08d49;
-		}
-
-		.token.property,
-		.token.class-name,
-		.token.constant,
-		.token.symbol {
-			color: #FFCB6B;
-		}
-
-		.token.selector,
-		.token.important,
-		.token.atrule,
-		.token.keyword,
-		.token.builtin {
-			color: #C792EA;
-			font-style: italic;
-		}
-
-		.token.string,
-		.token.char,
-		.token.attr-value,
-		.token.regex,
-		.token.variable {
-			color: map-get($map: $pink, $key: "300");
-		}
-
-		.token.operator,
-		.token.entity,
-		.token.url {
-			color: #67cdcc;
-		}
-
-		.token.important,
-		.token.bold {
-			font-weight: bold;
-		}
-
-		.token.italic {
-			font-style: italic;
-		}
-
-		.token.entity {
-			cursor: help;
-		}
-
-		.token.inserted {
-			color: green;
-		}
 	}
 
 	code:not([class*="language-"]) {
-		font-family: Hack, AppleSDGothicNeo, sans-serif;
-
 		display: inline-block;
 
 		padding: 0px 6px;
@@ -278,26 +184,9 @@
 			line-height: 1.5;
 			border-collapse: collapse;
 
-			& tr {
-				&:nth-child(2n) {
-					background-color: #161B22;
-				}
-
-				&:hover {
-					background-color: #2b3442;
-
-					& td:first-child {
-						color: white;
-					}
-				}
-			}
-
 			& td {
 				&:nth-child(1) {
-					color: #455983;
 					padding-right: 10px;
-
-					border-right: 1px solid #455983;
 
 					text-align: right;
 
@@ -323,10 +212,8 @@
 		.top {
 			padding: 5px 20px;
 
-			background-color: #2b3445;
-
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
 
 			display: flex;
 			flex-direction: row;
@@ -336,8 +223,6 @@
 			p {
 				margin: 0px;
 				flex-grow: 1;
-
-				color: map-get($yellow, "400");
 			}
 
 			div {
@@ -370,10 +255,8 @@
 			width: 40px;
 			height: 40px;
 
-			background-color: #1e2739;
 			cursor: pointer;
 
-			border: 1px solid map-get($grey, "600");
 			border-radius: 10px;
 
 			opacity: 0;
@@ -462,78 +345,171 @@
 		color: map-get($map: $green, $key: "A400");
 		width: 12px;
 	}
-}
 
-.markdown.dark {
-	$color: map-get($map: $blue, $key: "400");
+	&.dark {
+		&>p>a>img {
+			border: 1px solid #161B22;
+		}
 
-	code:not([class*="language-"]) {
-		border: 1px solid $color;
-		color: $color;
-	}
+		pre[class*="language-"],
+		code[class*="language-"] {
+			background-color: #0D1117;
 
-	blockquote {
-		background-color: #1e2739;
-	}
+			@include code-dark();
+		}
 
-	.table-wrapper {
-		@include gutter;
-		@include table;
+		code:not([class*="language-"]) {
+			background-color: #2b3445;
+			border: 1px solid #0D1117;
+		}
 
-		table {
-			$border: #323c50;
+		blockquote {
+			background-color: #1e2739;
+		}
 
-			th {
-				background-color: #111b2b;
-			}
+		.codeblock {
+			border: 1px solid #2b3442;
+			border-radius: 5px;
 
-			tr {
-				background-color: #2b3445;
+			table {
+				& tr {
+					&:nth-child(2n) {
+						background-color: #161B22;
+					}
 
-				&:nth-child(2n) {
-					background-color: $border;
+					&:hover {
+						background-color: #2b3442;
+
+						& td:first-child {
+							color: white;
+						}
+					}
 				}
 
-				&:hover {
-					background-color: dodgerblue;
+				& td {
+					&:nth-child(1) {
+						color: #455983;
+						border-right: 1px solid #455983;
+					}
+				}
+			}
+
+			.top {
+				background-color: #161B22;
+			}
+
+			button {
+				background-color: #1e2739;
+				border: 1px solid map-get($grey, "600");
+			}
+		}
+
+		.table-wrapper {
+			@include gutter;
+			@include table;
+
+			table {
+				$border: #323c50;
+
+				th {
+					background-color: #111b2b;
+				}
+
+				tr {
+					background-color: #2b3445;
+
+					&:nth-child(2n) {
+						background-color: $border;
+					}
+
+					&:hover {
+						background-color: dodgerblue;
+					}
 				}
 			}
 		}
 	}
-}
 
-.markdown.light {
-	$color: map-get($map: $pink, $key: "400");
+	&.light {
 
-	code:not([class*="language-"]) {
-		border: 1px solid $color;
-		color: $color;
-	}
+		&>p>a>img {
+			border: 1px solid gainsboro;
+		}
 
-	blockquote {
-		background-color: whitesmoke;
-	}
+		pre[class*="language-"],
+		code[class*="language-"] {
+			background-color: whitesmoke;
 
-	.table-wrapper {
-		@include gutter;
-		@include table;
+			@include code-light();
+		}
 
-		table {
-			$border: gainsboro;
+		code:not([class*="language-"]) {
+			background-color: whitesmoke;
+			border: 1px solid gainsboro;
+		}
 
-			th {
-				background-color: grey;
-			}
+		blockquote {
+			background-color: rgb(31, 24, 24);
+		}
 
-			tr {
-				background-color: whitesmoke;
+		.codeblock {
+			border: 1px solid gainsboro;
+			border-radius: 5px;
 
-				&:nth-child(2n) {
-					background-color: $border;
+			table {
+				& tr {
+					&:nth-child(2n) {
+						background-color: #E9E9E9;
+					}
+
+					&:hover {
+						background-color: rgb(235, 255, 252);
+
+						& td:first-child {
+							color: grey;
+						}
+					}
 				}
 
-				&:hover {
-					background-color: skyblue;
+				& td {
+					&:nth-child(1) {
+						color: gainsboro;
+						border-right: 1px solid gainsboro;
+					}
+				}
+			}
+
+			.top {
+				background-color: white;
+			}
+
+			button {
+				background-color: whitesmoke;
+				border: 1px solid map-get($grey, "400");
+			}
+		}
+
+		.table-wrapper {
+			@include gutter;
+			@include table;
+
+			table {
+				$border: gainsboro;
+
+				th {
+					background-color: gainsboro;
+				}
+
+				tr {
+					background-color: white;
+
+					&:nth-child(2n) {
+						background-color: whitesmoke;
+					}
+
+					&:hover {
+						background-color: skyblue;
+					}
 				}
 			}
 		}
