@@ -208,9 +208,9 @@ export async function converter(body: string): Promise<ConvertProps>
 			// 블록 수식일 경우
 			if (lang === 'latex-block')
 			{
-				const katex = katex.renderToString(code, { output: 'html', throwOnError: true });
+				const katexText = katex.renderToString(code, { output: 'html', throwOnError: true });
 
-				return `<div class="katex-block">${katex}</div>`;
+				return `<div class="katex-block">${katexText}</div>`;
 			}
 
 			// 아닐 경우
