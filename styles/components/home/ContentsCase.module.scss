@@ -32,15 +32,22 @@
 
 	border-radius: 5px;
 
-	border: 1px solid dodgerblue;
-	color: dodgerblue;
-
 	transition: 0.3s;
 
 	word-spacing: 10px;
 
 	&:hover {
-		background-color: dodgerblue;
+		opacity: 0.7;
+	}
+
+	&.dark {
+		border: 1px solid #2B3442;
+		background-color: #161B22;
 		color: white;
+	}
+
+	&.light {
+		border: 1px solid gainsboro;
+		background-color: whitesmoke;
 	}
 }

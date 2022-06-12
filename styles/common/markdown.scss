@@ -1,17 +1,17 @@
 @import "../fonts/hack.scss";
 @import "./color.scss";
-@import "./markdown-code.scss";
 
 @mixin gutter() {
-	margin-top: 40px;
-	margin-bottom: 40px;
+	$size: 40px;
+
+	margin-top: $size;
+	margin-bottom: $size;
 }
 
 @mixin table() {
 	@include gutter;
 
 	overflow: auto;
-
 	border-radius: 5px;
 
 	table {
@@ -44,10 +44,8 @@
 
 			&:hover {
 				a {
-					color: white;
-
 					&:hover {
-						text-decoration: underline;
+						text-decoration: none;
 					}
 				}
 			}
@@ -57,7 +55,6 @@
 
 .markdown {
 	line-height: 1.75;
-
 	margin-bottom: 200px;
 
 	h1,
@@ -139,25 +136,7 @@
 		}
 	}
 
-	pre[class*="language-"],
-	code[class*="language-"] {
-		padding: 20px;
-
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-
-		text-align: left;
-		white-space: pre;
-		word-spacing: normal;
-		word-break: normal;
-		word-wrap: normal;
-
-		hyphens: none;
-
-		overflow: auto;
-	}
-
-	code:not([class*="language-"]) {
+	.inline-code {
 		display: inline-block;
 
 		padding: 0px 6px;
@@ -166,7 +145,7 @@
 		border-radius: 5px;
 	}
 
-	.codeblock {
+	.block-code {
 		@include gutter;
 
 		display: flex;
@@ -180,30 +159,35 @@
 			}
 		}
 
-		table {
-			line-height: 1.5;
-			border-collapse: collapse;
+		pre {
+			padding: 20px;
+			overflow: auto;
 
-			& td {
-				&:nth-child(1) {
-					padding-right: 10px;
+			table {
+				line-height: 1.5;
+				border-collapse: collapse;
 
-					text-align: right;
+				& td {
+					&:nth-child(1) {
+						padding-right: 10px;
 
-					user-select: none;
-					-moz-user-select: none;
-					-webkit-user-select: none;
-				}
+						text-align: right;
 
-				&:nth-child(2) {
-					width: 100%;
+						user-select: none;
+						-moz-user-select: none;
+						-webkit-user-select: none;
+					}
 
-					padding: 0px 20px 0px 10px;
+					&:nth-child(2) {
+						width: 100%;
 
-					font-family: Hack, AppleSDGothicNeo, sans-serif;
+						padding: 0px 20px 0px 10px;
 
-					span {
-						font-family: inherit;
+						font-family: Hack, AppleSDGothicNeo, sans-serif;
+
+						span {
+							font-family: inherit;
+						}
 					}
 				}
 			}
@@ -347,18 +331,21 @@
 	}
 
 	&.dark {
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			text-shadow: 1px 1px 5px whitesmoke;
+		}
+
 		&>p>a>img {
 			border: 1px solid #161B22;
 		}
 
-		pre[class*="language-"],
-		code[class*="language-"] {
-			background-color: #0D1117;
-
-			@include code-dark();
-		}
-
-		code:not([class*="language-"]) {
+		.inline-code {
 			background-color: #2b3445;
 			border: 1px solid #0D1117;
 		}
@@ -367,29 +354,33 @@
 			background-color: #1e2739;
 		}
 
-		.codeblock {
+		.block-code {
+			@include code-dark();
+
+			background-color: #0D1117;
 			border: 1px solid #2b3442;
-			border-radius: 5px;
 
-			table {
-				& tr {
-					&:nth-child(2n) {
-						background-color: #161B22;
-					}
+			pre {
+				table {
+					& tr {
+						&:nth-child(2n) {
+							background-color: #161B22;
+						}
 
-					&:hover {
-						background-color: #2b3442;
+						&:hover {
+							background-color: #2b3442;
 
-						& td:first-child {
-							color: white;
+							& td:first-child {
+								color: white;
+							}
 						}
 					}
-				}
 
-				& td {
-					&:nth-child(1) {
-						color: #455983;
-						border-right: 1px solid #455983;
+					& td {
+						&:nth-child(1) {
+							color: #455983;
+							border-right: 1px solid #455983;
+						}
 					}
 				}
 			}
@@ -409,21 +400,20 @@
 			@include table;
 
 			table {
-				$border: #323c50;
+				border: 1px solid #323c50;
+				background-color: #0D1117;
 
 				th {
-					background-color: #111b2b;
+					background-color: #161B22;
 				}
 
 				tr {
-					background-color: #2b3445;
-
 					&:nth-child(2n) {
-						background-color: $border;
+						background-color: #161B22;
 					}
 
 					&:hover {
-						background-color: dodgerblue;
+						background-color: #2b3442;
 					}
 				}
 			}
@@ -432,18 +422,20 @@
 
 	&.light {
 
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			text-shadow: 1px 1px 3px grey;
+		}
+
 		&>p>a>img {
 			border: 1px solid gainsboro;
 		}
 
-		pre[class*="language-"],
-		code[class*="language-"] {
-			background-color: whitesmoke;
-
-			@include code-light();
-		}
-
-		code:not([class*="language-"]) {
+		.inline-code {
 			background-color: whitesmoke;
 			border: 1px solid gainsboro;
 		}
@@ -452,29 +444,34 @@
 			background-color: rgb(31, 24, 24);
 		}
 
-		.codeblock {
+		.block-code {
+			@include code-light();
+
+			background-color: whitesmoke;
 			border: 1px solid gainsboro;
 			border-radius: 5px;
 
-			table {
-				& tr {
-					&:nth-child(2n) {
-						background-color: #E9E9E9;
-					}
+			pre {
+				table {
+					& tr {
+						&:nth-child(2n) {
+							background-color: #E9E9E9;
+						}
 
-					&:hover {
-						background-color: rgb(235, 255, 252);
+						&:hover {
+							background-color: #DDD;
 
-						& td:first-child {
-							color: grey;
+							& td:first-child {
+								color: black;
+							}
 						}
 					}
-				}
 
-				& td {
-					&:nth-child(1) {
-						color: gainsboro;
-						border-right: 1px solid gainsboro;
+					& td {
+						&:nth-child(1) {
+							color: grey;
+							border-right: 1px solid gainsboro;
+						}
 					}
 				}
 			}
@@ -494,21 +491,20 @@
 			@include table;
 
 			table {
-				$border: gainsboro;
+				border: 1px solid gainsboro;
+				background-color: whitesmoke;
 
 				th {
-					background-color: gainsboro;
+					background-color: white;
 				}
 
 				tr {
-					background-color: white;
-
 					&:nth-child(2n) {
-						background-color: whitesmoke;
+						background-color: #E9E9E9;
 					}
 
 					&:hover {
-						background-color: skyblue;
+						background-color: #DDD;
 					}
 				}
 			}

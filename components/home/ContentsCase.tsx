@@ -6,11 +6,13 @@
  */
 
 import { ContentProps } from '@commons/common';
+import { themeAtom } from '@commons/state';
 import ContentList from '@components/contents/ContentList';
 import styles from '@styles/components/home/ContentsCase.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 
 interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 {
@@ -31,6 +33,8 @@ export default function ContentsCase({ num, title, url, list, className, ...prop
 {
 	const cn = classNames.bind(styles);
 
+	const themeState = useRecoilValue(themeAtom);
+
 	return (
 		<article className={cn('root', className)} {...props}>
 			<h1 className={cn('title')}>{title}</h1>
@@ -38,7 +42,7 @@ export default function ContentsCase({ num, title, url, list, className, ...prop
 			<ContentList list={list.slice(0, num)} />
 
 			<Link href={url} passHref>
-				<a className={cn('more')} href='#replace' title='more'>M O R E</a>
+				<a className={cn('more', themeState)} href='#replace' title='more'>M O R E</a>
 			</Link>
 		</article>
 	);

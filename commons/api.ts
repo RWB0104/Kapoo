@@ -200,7 +200,7 @@ export async function converter(body: string): Promise<ConvertProps>
 	const toc = [] as TocProps[];
 
 	// 코드블럭 렌더링
-	renderer.code = (code: string, lang: string | undefined): string =>
+	renderer.code = (code: string, lang: string = 'txt'): string =>
 	{
 		// 유효한 언어가 있을 경우
 		if (lang && renderer?.options?.highlight)
@@ -208,11 +208,12 @@ export async function converter(body: string): Promise<ConvertProps>
 			// 블록 수식일 경우
 			if (lang === 'latex-block')
 			{
-				return `<div class="katex-block">${katex.renderToString(code, { output: 'html', throwOnError: true })}</div>`;
+				const katex = katex.renderToString(code, { output: 'html', throwOnError: true });
+
+				return `<div class="katex-block">${katex}</div>`;
 			}
 
 			// 아닐 경우
-
 			code = renderer.options.highlight(code, lang as string) as string;
 
 			const langClass = `language-${lang}`;
@@ -229,31 +230,7 @@ export async function converter(body: string): Promise<ConvertProps>
 			const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
 
 			return `
-					<div class="codeblock">
-						<div class="top">
-							<p>${lang.toUpperCase()}</p>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-
-						<button onclick="copyCode(this);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-icon="clipboard" class="i-clipboard"><path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path></svg></button>
-
-						<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
-					</div>
-				`;
-		}
-
-		// 없을 경우
-
-		lang = 'unknown';
-
-		const langClass = `language-${lang}`;
-
-		const line = code.split('\n').map((item, index) => `<tr data-number=${index}><td class="line-number" data-number="${index}">${index}</td><td class="line-code" data-number=${index}>${item}</td></tr>`).join('\n').replace(/\t|\\n/, '');
-
-		return `
-				<div class="codeblock">
+				<div class="block-code">
 					<div class="top">
 						<p>${lang.toUpperCase()}</p>
 						<div></div>
@@ -266,13 +243,16 @@ export async function converter(body: string): Promise<ConvertProps>
 					<pre class="${langClass}"><table><tbody>${line}</tbody></table></pre>
 				</div>
 			`;
+		}
+
+		return '';
 	};
 
 	renderer.image = (href, title, text) => `
 		<a href="${href}" target="_blank" data-title="${title}">
 			<img src="${href}" alt="${text}" />
 		</a>
-		`;
+	`;
 
 	// 코드라인 렌더링
 	renderer.codespan = (code) =>

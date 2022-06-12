@@ -52,6 +52,11 @@ a {
 	border-radius: 20px;
 }
 
+*::selection {
+	color: inherit;
+	background-color: rgba($color: cornflowerblue, $alpha: 0.5);
+}
+
 button {
 	display: flex;
 	justify-content: center;
