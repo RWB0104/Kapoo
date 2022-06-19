@@ -33,8 +33,6 @@
 			text-decoration: none;
 
 			line-height: 1.7;
-
-			color: inherit;
 		}
 
 		&:hover {
@@ -45,18 +43,10 @@
 	&.dark {
 		background-color: #0D1117;
 		border: 1px solid #21262D;
-
-		a {
-			color: white;
-		}
 	}
 
 	&.light {
 		background-color: whitesmoke;
 		border: 1px solid gainsboro;
-
-		a {
-			color: black;
-		}
 	}
 }

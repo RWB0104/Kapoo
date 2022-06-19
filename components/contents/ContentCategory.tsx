@@ -11,8 +11,8 @@ import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAto
 import styles from '@styles/components/contents/ContentCategory.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { FaCheck } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
-import { IoHeart } from 'react-icons/io5';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface Props
@@ -89,7 +89,7 @@ export default function ContentCategory({ type, list }: Props): JSX.Element
 
 			{categoryState.indexOf(item.name) > -1 && (
 				<div className={cn('flag')}>
-					<IoHeart color='white' />
+					<FaCheck color='white' />
 				</div>
 			)}
 		</button>

@@ -436,7 +436,7 @@ SPA 라우팅을 적용해야하는데, `a` 태그는 그냥 페이지 이동을
 function App(): JSX.Element
 {
 	return (
-		<Link to='/{page}'>
+		<Link href='/{page}'>
 			<a>페이지 게시글</a>
 		</Link>
 	)

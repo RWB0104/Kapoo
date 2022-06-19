@@ -2,12 +2,19 @@
 	transition: 0.3s;
 
 	padding: 5px 15px;
-
 	max-width: 600px;
 
 	font-size: 0.85rem;
-
-	color: white;
-	background-color: dodgerblue;
 	border-radius: 20px;
+
+	&.dark {
+		color: white;
+		background-color: #161B22;
+		border: 1px solid #21262D;
+	}
+
+	&.light {
+		background-color: whitesmoke;
+		border: 1px solid gainsboro;
+	}
 }

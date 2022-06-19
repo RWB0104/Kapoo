@@ -9,6 +9,7 @@ import { ContentHeaderProps, getDateDetail } from '@commons/common';
 import { CATEGORY } from '@commons/env';
 import styles from '@styles/components/contents/ContentMeta.module.scss';
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 
 import ContentTags from './ContentTags';
 
@@ -43,7 +44,9 @@ export default function ContentMeta({ header }: Props): JSX.Element
 
 				<div className={cn('category-wrapper')}>
 					<img alt={header.category} className={cn('category-image')} src={CATEGORY[header.category] || CATEGORY.All} />
-					<p className={cn('link')}>{header.category}</p>
+					<Link href={`/${header.type}?category=${header.category}`} passHref>
+						<a className={cn('link')} href='#replace'>{header.category}</a>
+					</Link>
 				</div>
 			</div>
 

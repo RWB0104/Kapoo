@@ -5,8 +5,10 @@
  * @since 2021.07.16 Fri 00:42:43
  */
 
+import { themeAtom } from '@commons/state';
 import styles from '@styles/components/contents/ContentTags.module.scss';
 import classNames from 'classnames/bind';
+import { useRecoilValue } from 'recoil';
 
 interface Props
 {
@@ -24,6 +26,7 @@ interface Props
 export default function ContentTags({ type, tags }: Props): JSX.Element
 {
 	const cn = classNames.bind(styles);
+	const theme = useRecoilValue(themeAtom);
 
-	return <>{tags.map((item, index) => <p className={cn('root')} data-type={type} key={index}>{item}</p>)}</>;
+	return <>{tags.map((item, index) => <p className={cn('root', theme)} data-type={type} key={index}>{item}</p>)}</>;
 }
