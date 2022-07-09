@@ -39,7 +39,7 @@ export default function Home(): JSX.Element
 
 		const postsPopularList = postsPopularUrls ? postsPopularUrls.reduce((acc, item) =>
 		{
-			const target = postsState.find((content) => `blog.itcode.dev/${content.header.type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}` === item);
+			const target = postsState.find((content) => `/${content.header.type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}` === item);
 
 			if (target)
 			{
@@ -58,7 +58,7 @@ export default function Home(): JSX.Element
 
 		const projectsPostsPopularList = projectsPopularUrls ? projectsPopularUrls.reduce((acc, item) =>
 		{
-			const target = projectsState.find((content) => `blog.itcode.dev/${content.header.type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}` === item);
+			const target = projectsState.find((content) => `/${content.header.type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}` === item);
 
 			if (target)
 			{

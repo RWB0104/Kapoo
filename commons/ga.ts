@@ -92,15 +92,15 @@ export async function getPopularPage(auth: GoogleAuth, type: ContentType): Promi
 			],
 			dimensionFilter: {
 				filter: {
-					fieldName: 'fullPageUrl',
+					fieldName: 'pagePath',
 					stringFilter: {
 						matchType: 'BEGINS_WITH',
-						value: `blog.itcode.dev/${type}/2`
+						value: `/${type}/2`
 					}
 				}
 			},
 			dimensions: [
-				{ name: 'fullPageUrl' }
+				{ name: 'pagePath' }
 			],
 			limit: '10',
 			metricAggregations: [
