@@ -60,7 +60,7 @@ export async function authorize(): Promise<GoogleAuth | undefined>
 			client_id: '22130300203-s47tft38ah28e6o2jsv5144vqn1cl32p.apps.googleusercontent.com',
 			client_secret: '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',
 			grant_type: 'refresh_token',
-			refresh_token: '1//04iZ6ahFjojgzCgYIARAAGAQSNwF-L9IrOhYq9Wz4MycJH_H2CyuxxhCntZeHhmfsLwfIXgJzV-11rEvDZLmEFNl8k_UnR3LpCOs'
+			refresh_token: '1//04u8PuiYDaouQCgYIARAAGAQSNwF-L9Irf_soLSlM4IbILyYdvJML04lBGWk3Oy-IAV0MbRol6lTMllhOm8whYQYvebxNddzfPr8'
 		}),
 		method: 'POST'
 	});

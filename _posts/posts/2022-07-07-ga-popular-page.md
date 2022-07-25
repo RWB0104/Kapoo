@@ -7,7 +7,7 @@ type: "posts"
 category: "WEB"
 tag: [ "CSR", "SSR", "SSG" ]
 comment: true
-publish: true
+publish: false
 ---
 
 # 개요
