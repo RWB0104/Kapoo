@@ -143,6 +143,32 @@ OAuth 서비스 활용 시 요청 URL을 확인하므로, 등록된 URL에서 �
 키가 생성되면 <span class="red-500">클라이언트 ID</span>와 <span class="red-500">클라이언트 보안 비밀키</span>를 확인할 수 있으며, 이로써 OAuth 클라이언트 ID 발급이 끝난다.
 
 <br />
+
+
+
+### (6) 프로덕션 활성화하기
+
+기본적으로 프로젝트를 생성하면 테스트 모드로 생성된다. 테스트 모드는 별다른 심사를 거치지 않지만, 대신 API키를 사용하는 데 있어 여러 부분에 제약이 생긴다. 이를테면 사전에 등록된 테스트 계정만 API키를 사용할 수 있는 식.
+
+문제는 테스트 모드일 경우, 발급받는 Refresh Token의 만료시간이 일주일로 제한된다. 이는 [해당 링크](https://developers.google.com/identity/protocols/oauth2#expiration)에서 확인할 수 있다.
+
+`A Google Cloud Platform project with an OAuth consent screen configured for an external user type and a publishing status of "Testing" is issued a refresh token expiring in 7 days.`
+
+Google은 위와 같이 테스트 모드일 경우, Refresh Token의 만료시간이 7일로 제한된다고 안내하고 있다.
+
+그 말인 즉슨, 테스트 모드의 Refresh Token을 사용할 경우 일주일마다 해당 토큰을 교체해줘야 한다는 문제점이 생긴다. 필자는 이 차이를 몰라서 한 동안 토큰이 만료되어 인기 게시글을 보여주지 못 했다.
+
+<br />
+
+[OAuth 동의 화면] 메뉴에서 [앱 개시] 버튼을 클릭해 게시 상태를 변경한다.
+
+정상적인 사용을 위해선 앱 심사를 거쳐야한다. 하지만 우리가 사용하는 Scope인 `/auth/analytics.readonly`는 Google의 Scope 중 민감한 범위에 해당하므로, API의 활용 시연을 YouTube에 올려야한다...
+
+프로덕션 프로젝트가 심사를 아직 받지 않았을 경우, 위와 같이 경고 페이지가 뜨며, 직접 링크를 눌러 넘어갈 수 있다.
+
+어차피 불특정 다수에게 공개할 것도 아니고, 자신이 직접 Refresh Token을 딱 한 번 발급받아 사용할 예정이므로 심사없이 사용해도 큰 문제는 없다.
+
+<br />
 <br />
 
 
@@ -185,3 +211,80 @@ OAuth의 인증 객체는 보통 **Access Token**과 **Refresh Token**으로 나
 
 URI가 허용되지 않았거나, 테스트 대상 계정으로 로그인하지 않았을 경우 관련 오류가 뜨므로 주의할 것.
 
+<br />
+<br />
+
+
+
+
+
+## 3. Refresh Token으로 Access Token 발급받기
+
+이제 Refresh Token을 발급받았으니, 실제 인증 정보가 담겨있는 Access Token을 발급받을 수 있다.
+
+``` txt
+POST https://oauth2.googleapis.com/token?
+grant_type=refresh_token
+&client_id={:client_id}
+&client_secret={:client_secret}
+&refresh_token={:refresh_token}
+```
+
+블로그 게시물 중 OAuth에 대해 다룬 글인 [[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 5. Google OAuth 서비스 신청 및 모듈 구현하기](https://blog.itcode.dev/posts/2021/10/23/oauth2-java-server-5#%EC%A0%91%EA%B7%BC-%ED%86%A0%ED%81%B0%20%EA%B0%B1%EC%8B%A0%20%EB%B0%8F%20%EB%B0%98%ED%99%98%20%EB%A9%94%EC%84%9C%EB%93%9C)에서 API에 대한 자세한 내용을 참고할 수 있다.
+
+``` json
+{
+    "access_token": "1/fFAGRNJru1FTz70BzhT3Zg",
+    "expires_in": 3920,
+    "scope": "https://www.googleapis.com/auth/drive.metadata.readonly",
+    "token_type": "Bearer"
+}
+```
+
+응답은 위와 같은 형식으로 제공된다. 이 중 우리가 필요한 것은 당연히 `access_token`이다.
+
+<br />
+<br />
+
+
+
+
+
+## 4. Google Analytics 인기 조회수 데이터 호출하기
+
+Access Token이 준비됐으니, 이제 Google Analytics 데이터를 호출해보자. 우리가 필요한 데이터는 게시글 별 조회수 데이터다. 이를 호출하는 API는 아래와 같다.
+
+``` txt
+POST https://content-analyticsdata.googleapis.com/v1beta/properties/{:project_id}:runReport?alt=json
+Authorization: {:access_token}
+```
+
+``` json
+{
+	"dateRanges": [
+		{
+			"endDate": "today",
+			"startDate": "30daysAgo"
+		}
+	],
+	"dimensionFilter": {
+		"filter": {
+			"fieldName": "pagePath",
+			"stringFilter": {
+				"matchType": "BEGINS_WITH",
+				"value": "/posts/2"
+			}
+		}
+	},
+	"dimensions": [
+		{ "name": "pagePath" }
+	],
+	"limit": "10",
+	"metricAggregations": [
+		"TOTAL"
+	],
+	"metrics": [
+		{ "name": "active28DayUsers" }
+	]
+}
+```
