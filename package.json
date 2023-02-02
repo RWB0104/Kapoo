@@ -10,8 +10,7 @@
 		"lint": "next lint",
 		"datagen": "ts-node -r tsconfig-paths/register ./next-prebuild.ts",
 		"seo": "ts-node -r tsconfig-paths/register ./next-seo.ts",
-		"preexport": "npm run build",
-		"export": "next export -o ../blog.itcode.dev/docs"
+		"export": "next export"
 	},
 	"dependencies": {
 		"next": "^12.1.6",
