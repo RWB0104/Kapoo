@@ -1,0 +1,82 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    tags: 'kapoo@**
+
+jobs:
+  set-dependencies:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-kapoo
+
+      - name: Jader Dependencies Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+  deploy:
+    needs: set-dependencies
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-kapoo
+
+      - name: Jader Build
+        run: yarn build
+
+      - name: Jader Export
+        run: yarn export
+
+      - name: Pushes to Jader Public Repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
+        with:
+          source-directory: out
+          destination-github-username: RWB0104
+          destination-repository-name: blog.itcode.dev
+          user-email: psj2716@gmail.com
+          target-branch: main
+          target-directory: docs
+          commit-message: ${{ github.event.head_commit.message }}
