@@ -289,4 +289,9 @@ Authorization: {:access_token}
 }
 ```
 
-위 API는 
+- `dateRanges`: 데이터의 날짜 구간
+- `dimensionFilter`: 데이터의 필터링. 필터에 해당하는 데이터만 호출이 가능하다.
+- `dimensions`: 데이터의 요소. 여기서는 `pagePath`라는 페이지의 URL 데이터를 호출한다.
+- `limit`: 데이터의 갯수
+- `metricAggregations`: metric 집계 방식. 여기서는 `TOTAL`이라는 metric의 전체값을 추가로 호출한다.
+- `metrics`: 보고서의 측정값 배열. 여기서는 `active28DayUsers`라는 28일 동안의 고유 활성 유저 수를 호출한다. 최대 10개의 metric을 지원한다.
