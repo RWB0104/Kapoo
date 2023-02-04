@@ -23,7 +23,7 @@ export default function Loading(): JSX.Element | null
 
 	const cn = classNames.bind(styles);
 
-	return !loadingState ? (
+	return loadingState ? (
 		<article className={cn('root', themeState)}>
 			<div className={cn('logo-wrapper')}>
 				<LottieIcon icon='loading' />
