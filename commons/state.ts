@@ -7,69 +7,69 @@
 
 import { atom } from 'recoil';
 
-import { ContentProps, Theme } from './common';
+import { ContentProps, getAtomKey, Theme } from './common';
 
 export const themeAtom = atom({
 	default: Theme.DARK,
-	key: 'themeState'
+	key: getAtomKey('themeState')
 });
 
 export const menuAtom = atom({
 	default: undefined as boolean | undefined,
-	key: 'menuState'
+	key: getAtomKey('menuState')
 });
 
 export const loadingAtom = atom({
 	default: false,
-	key: 'loadingState'
+	key: getAtomKey('loadingState')
 });
 
 export const postsPageAtom = atom({
 	default: 1,
-	key: 'postsPageState'
+	key: getAtomKey('postsPageState')
 });
 
 export const projectsPageAtom = atom({
 	default: 1,
-	key: 'projectsPageState'
+	key: getAtomKey('projectsPageState')
 });
 
 export const postsCategoryAtom = atom({
 	default: [] as string[],
-	key: 'postsCategoryState'
+	key: getAtomKey('postsCategoryState')
 });
 
 export const projectsCategoryAtom = atom({
 	default: [] as string[],
-	key: 'projectsCategoryState'
+	key: getAtomKey('projectsCategoryState')
 });
 
 export const postsSearchAtom = atom({
 	default: '',
-	key: 'postsSearchState'
+	key: getAtomKey('postsSearchState')
 });
 
 export const projectsSearchAtom = atom({
 	default: '',
-	key: 'projectsSearchState'
+	key: getAtomKey('projectsSearchState')
 });
 
 export const postsAtom = atom({
 	default: [] as ContentProps[],
-	key: 'postsState'
+	key: getAtomKey('postsState')
 });
 
 export const projectsAtom = atom({
 	default: [] as ContentProps[],
-	key: 'projectsState'
+	key: getAtomKey('projectsState')
 });
 
 export const postsScrollAtom = atom({
 	default: 0,
-	key: 'postsScrollState'
+	key: getAtomKey('postsScrollState')
 });
 
 export const projectsScrollAtom = atom({
 	default: 0,
-	key: 'projectsScrollState'
+	key: getAtomKey('projectsScrollState')
 });

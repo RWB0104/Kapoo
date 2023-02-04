@@ -214,7 +214,14 @@ export function isNewContent(date: string): boolean
 	return new Date().getTime() - new Date(date).getTime() < 86400000 * 7;
 }
 
-export function getUrlQuery(location: Location): { key: string, value: string }[]
+/**
+ * URL 쿼리 반환 메서드
+ *
+ * @param {Location} location: Location 객체
+ *
+ * @returns {Record[]} 쿼리 리스트
+ */
+export function getUrlQuery(location: Location): Record<string, string>[]
 {
 	const { href } = location;
 
@@ -227,4 +234,16 @@ export function getUrlQuery(location: Location): { key: string, value: string }[
 			value: decodeURIComponent(value)
 		};
 	});
+}
+
+/**
+ * atom 키 반환 메서드
+ *
+ * @param {string} key: 키
+ *
+ * @returns {string} atom 키
+ */
+export function getAtomKey(key: string): string
+{
+	return process.env.NODE_ENV === 'development' ? `${key}-${Date.now()}` : key;
 }

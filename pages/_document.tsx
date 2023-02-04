@@ -18,10 +18,13 @@ export default class KapooDocument extends Document
 		return (
 			<Html lang='ko'>
 				<Head>
+					<meta content='#333F50' name='theme-color' />
+
 					<link href='/manifest.json' rel='manifest' />
 
 					<link href='/favicon.ico' rel='icon' />
 					<link href='/favicon.ico' rel='shortcut icon' />
+					<link href='/favicon.ico' rel='apple-touch-icon' />
 
 					<script src='https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R' async />
 					<script src='/js/ga.js' />
