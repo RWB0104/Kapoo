@@ -16,6 +16,7 @@
 	z-index: 20;
 
 	transition: 0.3s;
+	backdrop-filter: blur(20px);
 
 	cursor: wait;
 
@@ -31,18 +32,4 @@
 .logo-wrapper {
 	padding: 15px;
 	margin: 0px auto;
-
-	border-radius: 50%;
-	background-color: #020D1D;
-}
-
-.logo {
-	color: #00D8FF;
-
-	width: 70px;
-	height: 70px;
-
-	transition: 0.3s;
-
-	@include spin-animation;
 }

@@ -6,9 +6,9 @@
  */
 
 import { loadingAtom, themeAtom } from '@commons/state';
+import LottieIcon from '@components/global/LottieIcon';
 import styles from '@styles/components/global/Loading.module.scss';
 import classNames from 'classnames/bind';
-import { FaReact } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 
 /**
@@ -23,10 +23,10 @@ export default function Loading(): JSX.Element | null
 
 	const cn = classNames.bind(styles);
 
-	return loadingState ? (
+	return !loadingState ? (
 		<article className={cn('root', themeState)}>
 			<div className={cn('logo-wrapper')}>
-				<FaReact className={cn('logo')} />
+				<LottieIcon icon='loading' />
 			</div>
 		</article>
 	) : null;
