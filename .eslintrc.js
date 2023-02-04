@@ -60,6 +60,7 @@ module.exports = {
 		'no-await-in-loop': 'off',
 		'no-console': 'off',
 		'no-lonely-if': 'off',
+		'react/jsx-no-target-blank': 'off',
 		'no-param-reassign': 'off',
 		'no-plusplus': 'off',
 		'no-restricted-exports': 'off',
