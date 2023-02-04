@@ -36,6 +36,7 @@ yarn-error.log*
 /public/rss.xml
 /public/sitemap.xml
 /public/sw.js
+/public/*.map
 /public/workbox-*.js
 /public/posts*.json
 /public/project*.json
