@@ -24,7 +24,7 @@ export default function Info(): JSX.Element
 		<article className={cn('root')}>
 			<div className={cn('head')}>
 				<div className={cn('icon')}>
-					<FaReact />
+					<img alt='logo' height='100%' src='/img/icon-192x192.png' width='100%' />
 				</div>
 
 				<div className={cn('prompt')}>

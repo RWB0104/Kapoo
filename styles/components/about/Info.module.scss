@@ -26,18 +26,8 @@
 }
 
 .icon {
-	svg {
-		color: #00D8FF;
-		width: 150px;
-		height: 150px;
-
-		@include rotate-animation;
-
-		@media (max-width: $ref) {
-			width: 100px;
-			height: 100px;
-		}
-	}
+	width: 150px;
+	height: 150px;
 }
 
 .prompt {
