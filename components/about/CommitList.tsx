@@ -75,13 +75,13 @@ export default function CommitList(): JSX.Element | null
 				return (
 					<div className={cn('item', themeState)} data-index={index} data-sha={commit.sha} key={index}>
 						<div className={cn('header')}>
-							<a aria-label='github' href={commit.author.html_url} rel='noreferrer' target='_blank'><img alt='github' src={commit.author.avatar_url} /></a>
-							<p><b><a href={commit.author.html_url} rel='noreferrer' target='_blank'>{commit.author.login}</a></b> has commits <small>at {date}</small></p>
+							<a aria-label='github' href={commit.author.html_url} target='_blank'><img alt='github' src={commit.author.avatar_url} /></a>
+							<p><b><a href={commit.author.html_url} target='_blank'>{commit.author.login}</a></b> has commits <small>at {date}</small></p>
 						</div>
 
 						<div className={cn('content', themeState)}>
 							<div>
-								<h4><a href={commit.html_url} rel='noreferrer' target='_blank'>{commit.commit.message.split('\n')[0]}</a></h4>
+								<h4><a href={commit.html_url} target='_blank'>{commit.commit.message.split('\n')[0]}</a></h4>
 							</div>
 
 							<div>

@@ -39,27 +39,27 @@ export default function Info(): JSX.Element
 				</div>
 
 				<div className={cn('brands')}>
-					<a href='https://ko.reactjs.org/' rel='noreferrer' target='_blank' title='React'>
+					<a href='https://ko.reactjs.org/' target='_blank' title='React'>
 						<FaReact color='#00D8FF' />
 					</a>
 
-					<a data-brand='nextjs' href='https://nextjs.org/' rel='noreferrer' target='_blank' title='Next.js'>
+					<a data-brand='nextjs' href='https://nextjs.org/' target='_blank' title='Next.js'>
 						<SiNextdotjs />
 					</a>
 
-					<a data-brand='github' href='https://pages.github.com/' rel='noreferrer' target='_blank' title='GitHub Pages'>
+					<a data-brand='github' href='https://pages.github.com/' target='_blank' title='GitHub Pages'>
 						<FaGithub />
 					</a>
 
-					<a data-brand='typescript' href='https://www.typescriptlang.org/' rel='noreferrer' target='_blank' title='TypeScript'>
+					<a data-brand='typescript' href='https://www.typescriptlang.org/' target='_blank' title='TypeScript'>
 						<SiTypescript color='dodgerblue' />
 					</a>
 
-					<a data-brand='scss' href='https://sass-lang.com/' rel='noreferrer' target='_blank' title='SCSS'>
+					<a data-brand='scss' href='https://sass-lang.com/' target='_blank' title='SCSS'>
 						<FaSass color='hotpink' />
 					</a>
 
-					<a data-brand='scss' href='https://www.markdownguide.org/' rel='noreferrer' target='_blank' title='Markdown'>
+					<a data-brand='scss' href='https://www.markdownguide.org/' target='_blank' title='Markdown'>
 						<FaMarkdown />
 					</a>
 				</div>

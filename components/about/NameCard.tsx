@@ -43,19 +43,19 @@ export default function NameCard(): JSX.Element
 					</div>
 
 					<div className={cn('footer')}>
-						<a href='https://github.com/RWB0104' rel='noreferrer' target='_blank' title='GitHub'>
+						<a href='https://github.com/RWB0104' target='_blank' title='GitHub'>
 							<IoLogoGithub />
 						</a>
 
-						<a href='https://www.linkedin.com/in/itcode/' rel='noreferrer' target='_blank' title='Linkedin'>
+						<a href='https://www.linkedin.com/in/itcode/' target='_blank' title='Linkedin'>
 							<IoLogoLinkedin />
 						</a>
 
-						<a href='mailto:psj2716@gmail.com' rel='noreferrer' target='_blank' title='Mail'>
+						<a href='mailto:psj2716@gmail.com' target='_blank' title='Mail'>
 							<SiGmail />
 						</a>
 
-						<a href='https://itcode.dev' rel='noreferrer' target='_blank' title='Project Page'>
+						<a href='https://itcode.dev' target='_blank' title='Project Page'>
 							<IoLogoReact />
 						</a>
 					</div>

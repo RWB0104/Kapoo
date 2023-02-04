@@ -51,21 +51,21 @@ export default function Footer(): JSX.Element
 			</div>
 
 			<div className={cn('buttons')}>
-				<a className={cn('button')} href='https://github.com/RWB0104' rel='noreferrer' target='_blank' title='GitHub'>
+				<a className={cn('button')} href='https://github.com/RWB0104' target='_blank' title='GitHub'>
 					<IoLogoGithub />
 				</a>
 
-				<a className={cn('button')} href='https://www.linkedin.com/in/itcode/' rel='noreferrer' target='_blank' title='Linkedin'>
+				<a className={cn('button')} href='https://www.linkedin.com/in/itcode/' target='_blank' title='Linkedin'>
 					<IoLogoLinkedin />
 				</a>
 
-				<a className={cn('button')} href='mailto:psj2716@gmail.com' rel='noreferrer' target='_blank' title='Mail'>
+				<a className={cn('button')} href='mailto:psj2716@gmail.com' target='_blank' title='Mail'>
 					<SiGmail />
 				</a>
 			</div>
 
 			<div className={cn('buttons')}>
-				<a className={cn('button')} href='https://itcode.dev' rel='noreferrer' target='_blank' title='Project Page'>
+				<a className={cn('button')} href='https://itcode.dev' target='_blank' title='Project Page'>
 					<IoLogoReact />
 				</a>
 
