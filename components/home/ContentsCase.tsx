@@ -8,6 +8,7 @@
 import { ContentProps } from '@commons/common';
 import { themeAtom } from '@commons/state';
 import ContentList from '@components/contents/ContentList';
+import LottieIcon from '@components/global/LottieIcon';
 import styles from '@styles/components/home/ContentsCase.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
@@ -39,7 +40,13 @@ export default function ContentsCase({ num, title, url, list, className, ...prop
 		<article className={cn('root', className)} {...props}>
 			<h1 className={cn('title')}>{title}</h1>
 
-			<ContentList list={list.slice(0, num)} />
+			{list.length === 0 ? (
+				<div className={cn('loading')}>
+					<LottieIcon icon='search' />
+				</div>
+			) : (
+				<ContentList list={list.slice(0, num)} />
+			)}
 
 			<Link href={url} passHref>
 				<a className={cn('more', themeState)} href='#replace' title='more'>M O R E</a>
