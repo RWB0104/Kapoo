@@ -6,5 +6,6 @@
  */
 
 import loading from './loading.lottie.json';
+import search from './search.lottie.json';
 
-export default { loading };
+export default { loading, search };
