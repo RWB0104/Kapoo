@@ -6,6 +6,7 @@
  */
 
 import BaseLayout from '@components/global/BaseLayout';
+import QueryLayout from '@components/global/QueryLayout';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
@@ -42,9 +43,11 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element
 	return (
 		<RecoilRoot>
 			<CookiesProvider>
-				<BaseLayout>
-					<Component {...pageProps} />
-				</BaseLayout>
+				<QueryLayout>
+					<BaseLayout>
+						<Component {...pageProps} />
+					</BaseLayout>
+				</QueryLayout>
 			</CookiesProvider>
 		</RecoilRoot>
 	);
