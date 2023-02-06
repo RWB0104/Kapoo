@@ -46,7 +46,7 @@ export default function ContentGroup({ urls, group }: Props): JSX.Element | null
 					{current === url ? (
 						<p title={title}>👀 <b>{title}</b></p>
 					) : (
-						<Link href={url} passHref>
+						<Link href={url} legacyBehavior passHref>
 							<a href='#replace' title={title}>{title}</a>
 						</Link>
 					)}

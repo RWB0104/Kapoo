@@ -39,7 +39,7 @@ interface SubProps
 function SideButton({ className, data, isNext }: SubProps): JSX.Element | null
 {
 	return data ? (
-		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`} passHref>
+		<Link href={`/${data?.header.type}/${data?.url.slice(1, 5).join('/')}`} legacyBehavior passHref>
 			<a className={className} data-prev={isNext} href='#replace' title={data.header.title}>
 				{isNext && <IoArrowBack />}
 				<p>{data.header.title}</p>
@@ -79,7 +79,7 @@ export default function ContentMover({ page }: Props): JSX.Element
 			<hr className={cn('divider')} />
 
 			<div>
-				<Link href={`/${page.type}`} passHref>
+				<Link href={`/${page.type}`} legacyBehavior passHref>
 					<a className={cn('button', themeState)} href='#replace' title={`/${page.type}`}>
 						<IoMenu />
 						<p>목록</p>

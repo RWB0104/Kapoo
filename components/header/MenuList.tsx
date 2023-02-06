@@ -30,7 +30,7 @@ export default function MenuList(): JSX.Element | null
 	return semantic ? (
 		<nav className={cn('root')}>
 			{MENU_LIST.map((element) => (
-				<Link href={element.url} key={element.id} passHref>
+				<Link href={element.url} key={element.id} legacyBehavior passHref>
 					<a className={cn('link')} href='#replace' title={element.title}>{element.icon}</a>
 				</Link>
 			))}

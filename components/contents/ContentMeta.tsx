@@ -44,7 +44,7 @@ export default function ContentMeta({ header }: Props): JSX.Element
 
 				<div className={cn('category-wrapper')}>
 					<img alt={header.category} className={cn('category-image')} src={CATEGORY[header.category] || CATEGORY.All} />
-					<Link href={`/${header.type}?category=${header.category}`} passHref>
+					<Link href={`/${header.type}?category=${header.category}`} legacyBehavior passHref>
 						<a className={cn('link')} href='#replace'>{header.category}</a>
 					</Link>
 				</div>

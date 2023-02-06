@@ -57,7 +57,7 @@ export default function ContentItem({ item }: Props): JSX.Element
 	return (
 		<div className={cn('root', themeState)}>
 			<div className={cn('image-wrapper')}>
-				<Link href={postUrl} passHref>
+				<Link href={postUrl} legacyBehavior passHref>
 					<a href='#replace' onClick={() => setScrollState(window.scrollY)}>
 						<img alt='cover' className={cn('image')} src={coverImage} />
 					</a>
@@ -67,13 +67,13 @@ export default function ContentItem({ item }: Props): JSX.Element
 			<div className={cn('body-wrapper')}>
 				<div className={cn('wrapper')}>
 					<div className={cn('category-wrapper')}>
-						<Link href={categoryUrl} passHref>
+						<Link href={categoryUrl} legacyBehavior passHref>
 							<a href='#replace'>
 								<img alt={category} className={cn('category-image')} src={CATEGORY[category] || CATEGORY.All} />
 							</a>
 						</Link>
 
-						<Link href={categoryUrl} passHref>
+						<Link href={categoryUrl} legacyBehavior passHref>
 							<a href='#replace'>
 								<h4 className={cn('category')}>{category}</h4>
 							</a>
@@ -82,7 +82,7 @@ export default function ContentItem({ item }: Props): JSX.Element
 						<NewContent flag={isNew} />
 					</div>
 
-					<Link href={postUrl} passHref>
+					<Link href={postUrl} legacyBehavior passHref>
 						<a href='#replace' onClick={() => setScrollState(window.scrollY)}>
 							<h3 className={cn('title')}>{title}</h3>
 						</a>

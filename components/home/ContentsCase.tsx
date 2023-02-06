@@ -48,7 +48,7 @@ export default function ContentsCase({ num, title, url, list, className, ...prop
 				<ContentList list={list.slice(0, num)} />
 			)}
 
-			<Link href={url} passHref>
+			<Link href={url} legacyBehavior passHref>
 				<a className={cn('more', themeState)} href='#replace' title='more'>M O R E</a>
 			</Link>
 		</article>

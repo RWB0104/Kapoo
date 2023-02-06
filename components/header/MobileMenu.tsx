@@ -41,7 +41,7 @@ export default function MobileMenu(): JSX.Element | null
 			<ul className={cn('list', themeState)}>
 				{MENU_LIST.map((element) => (
 					<li key={element.id}>
-						<Link href={element.url} passHref>
+						<Link href={element.url} legacyBehavior passHref>
 							<a href='#replace' title={element.title}>
 								{element.icon}
 								{element.title}
