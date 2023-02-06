@@ -17,7 +17,7 @@ import { join } from 'path';
 
 import { ContentHeaderProps, CONTENT_REGX, ContentProps, MD_REGX, NAME_REGX, ConvertProps, TocProps, COMMENT_REGX, CategoryProps, ContentType } from './common';
 
-const CONTENT_DIR = join(process.cwd(), '_posts');
+const CONTENT_DIR = join(process.cwd(), 'src/_posts');
 
 /**
  * 빌드 해쉬 반환 메서드
