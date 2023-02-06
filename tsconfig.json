@@ -22,16 +22,16 @@
 		"baseUrl": ".",
 		"paths": {
 			"@commons/*": [
-				"commons/*"
+				"./src/commons/*"
 			],
 			"@components/*": [
-				"components/*"
+				"./src/components/*"
 			],
 			"@pages/*": [
-				"pages/*"
+				"./src/pages/*"
 			],
 			"@styles/*": [
-				"styles/*"
+				"./src/styles/*"
 			]
 		}
 	},

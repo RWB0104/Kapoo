@@ -3,6 +3,7 @@
 	"version": "3.0.0",
 	"private": true,
 	"scripts": {
+		"predev": "npm run datagen && npm run seo",
 		"dev": "next dev",
 		"prebuild": "npm run datagen && npm run seo",
 		"build": "next build",
