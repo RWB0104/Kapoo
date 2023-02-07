@@ -102,7 +102,7 @@ export function useGetGooglePopularData(type: ContentType, options?: UseQueryOpt
 {
 	const query = useGoogleAuthorize();
 
-	return useQuery<PopularPage | undefined>([ 'useGetGooglePopularData' ], async () =>
+	return useQuery<PopularPage | undefined>([ 'useGetGooglePopularData', type ], async () =>
 	{
 		const auth = await query.mutateAsync();
 
