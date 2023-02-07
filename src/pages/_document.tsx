@@ -27,7 +27,11 @@ export default class KapooDocument extends Document
 					<link href='/favicon.ico' rel='apple-touch-icon' />
 
 					<script src='https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R' async />
-					<script custom-element='amp-ad' src='https://cdn.ampproject.org/v0/amp-ad-0.1.js' async />
+					<script
+						crossOrigin='anonymous'
+						src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5522045122225064'
+						async
+					/>
 					<script src='/js/ga.js' />
 				</Head>
 
