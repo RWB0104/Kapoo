@@ -8,11 +8,10 @@
 import BaseLayout from '@kapoo/components/global/BaseLayout';
 import QueryLayout from '@kapoo/components/global/QueryLayout';
 import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { RecoilRoot } from 'recoil';
 
-import '@styles/index.scss';
+import '@kapoo/styles/index.scss';
 
 /**
  * 웹 애플리케이션 JSX 반환 함수
@@ -21,25 +20,8 @@ import '@styles/index.scss';
  *
  * @returns {JSX.Element} JSX
  */
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element
+export default function App({ Component, pageProps }: AppProps): JSX.Element
 {
-	useEffect(() =>
-	{
-		if ('serviceWorker' in navigator)
-		{
-			navigator.serviceWorker
-				.register('/service-worker.js')
-				.then(() =>
-				{
-					console.log('service worker registration successful');
-				})
-				.catch((err) =>
-				{
-					console.warn('service worker registration failed', err.message);
-				});
-		}
-	});
-
 	return (
 		<RecoilRoot>
 			<CookiesProvider>
