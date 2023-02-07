@@ -4,8 +4,7 @@
 		"lib": [
 			"dom",
 			"dom.iterable",
-			"esnext",
-			"ES2021"
+			"esnext"
 		],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -19,13 +18,23 @@
 		"isolatedModules": true,
 		"sourceMap": false,
 		"jsx": "preserve",
+		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
+			"@kapoo/commons": [
+				"./src/commons/index"
+			],
 			"@kapoo/commons/*": [
 				"./src/commons/*"
 			],
+			"@kapoo/components": [
+				"./src/components/index"
+			],
 			"@kapoo/components/*": [
 				"./src/components/*"
+			],
+			"@kapoo/styles": [
+				"./src/styles/index"
 			],
 			"@kapoo/styles/*": [
 				"./src/styles/*"
