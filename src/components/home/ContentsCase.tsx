@@ -20,7 +20,8 @@ interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElem
 	num: number,
 	title: string,
 	url: { pathname: string },
-	list: ContentProps[]
+	list: ContentProps[],
+	loading?: boolean
 }
 
 /**
@@ -30,7 +31,7 @@ interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElem
  *
  * @returns {JSX.Element} JSX
  */
-export default function ContentsCase({ num, title, url, list, className, ...props }: Props): JSX.Element
+export default function ContentsCase({ num, title, url, list, loading, className, ...props }: Props): JSX.Element
 {
 	const cn = classNames.bind(styles);
 
@@ -40,7 +41,7 @@ export default function ContentsCase({ num, title, url, list, className, ...prop
 		<article className={cn('root', className)} {...props}>
 			<h1 className={cn('title')}>{title}</h1>
 
-			{list.length === 0 ? (
+			{loading ? (
 				<div className={cn('loading')}>
 					<LottieIcon icon='search' />
 				</div>
