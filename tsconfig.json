@@ -21,16 +21,13 @@
 		"jsx": "preserve",
 		"baseUrl": ".",
 		"paths": {
-			"@commons/*": [
+			"@kapoo/commons/*": [
 				"./src/commons/*"
 			],
-			"@components/*": [
+			"@kapoo/components/*": [
 				"./src/components/*"
 			],
-			"@pages/*": [
-				"./src/pages/*"
-			],
-			"@styles/*": [
+			"@kapoo/styles/*": [
 				"./src/styles/*"
 			]
 		}
