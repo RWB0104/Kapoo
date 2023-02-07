@@ -5,8 +5,13 @@
  * @since 2023.02.07 Tue 12:41:32
  */
 
-import { ContentType, ContentProps } from '@kapoo/commons/common';
+import { ContentType, ContentProps, CategoryProps } from '@kapoo/commons/common';
 import { useInfiniteQuery, UseInfiniteQueryOptions, UseInfiniteQueryResult, useMutation, UseMutationOptions, UseMutationResult, useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
+
+export interface UseGetImageProps
+{
+	list: string[]
+}
 
 export interface UseGetContentsProps
 {
@@ -71,10 +76,10 @@ function useGoogleAuthorize(options?: UseMutationOptions<GoogleAuth | undefined,
 	{
 		const auth = await fetch('https://accounts.google.com/o/oauth2/token', {
 			body: JSON.stringify({
-				client_id: '22130300203-s47tft38ah28e6o2jsv5144vqn1cl32p.apps.googleusercontent.com',
-				client_secret: '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',
+				client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+				client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
 				grant_type: 'refresh_token',
-				refresh_token: '1//04SoK9dOIeQQDCgYIARAAGAQSNwF-L9IrNkGEGZ5xuJSsDuT5NbSMUWBd9sFrbtdv3hegoJZmQqSITRMCVMy1y71_DJZl4TsMEac'
+				refresh_token: process.env.NEXT_PUBLIC_REFRESH
 			}),
 			method: 'POST'
 		});
@@ -178,14 +183,14 @@ export function useGetContents(type: ContentType, options?: UseQueryOptions<Cont
  */
 export function useGetInfiniteContents(type: ContentType, options?: UseInfiniteQueryOptions<UseGetContentsProps>): UseInfiniteQueryResult<UseGetContentsProps>
 {
-	return useInfiniteQuery<UseGetContentsProps>('useGetInfiniteContents', async ({ pageParam = 1 }) =>
+	return useInfiniteQuery<UseGetContentsProps>([ 'useGetInfiniteContents', type ], async ({ pageParam = 1 }) =>
 	{
 		const list = await fetch(`/${type}.json`);
 		const json = (await list.json()).list as ContentProps[];
 
 		return {
 			count: pageParam,
-			list: json.splice((pageParam - 1) * DIV, pageParam * DIV),
+			list: json.slice((pageParam - 1) * DIV, pageParam * DIV),
 			total: Math.ceil(json.length / DIV)
 		};
 	}, {
@@ -193,6 +198,25 @@ export function useGetInfiniteContents(type: ContentType, options?: UseInfiniteQ
 		getPreviousPageParam: ({ count }) => (count === 1 ? undefined : count - 1),
 		...options
 	});
+}
+
+/**
+ * 카테고리 리스트 반환 훅 메서드
+ *
+ * @param {ContentType} type: ContentType 객체
+ * @param {UseInfiniteQueryOptions} options: UseInfiniteQueryOptions 객체
+ *
+ * @returns {UseInfiniteQueryResult} UseInfiniteQueryResult 객체
+ */
+export function useGetCategories(type: ContentType, options?: UseQueryOptions<CategoryProps[]>): UseQueryResult<CategoryProps[]>
+{
+	return useQuery<CategoryProps[]>([ 'useGetCategories', type ], async () =>
+	{
+		const list = await fetch(`/${type}-category.json`);
+		const json = (await list.json()).list as CategoryProps[];
+
+		return json;
+	}, options);
 }
 
 /**
@@ -228,4 +252,22 @@ export function useGetPopularContents(type: ContentType, contents?: ContentProps
 
 		return [];
 	}, { enabled: contents !== undefined && popularContents !== undefined, ...options });
+}
+
+/**
+ * 이미지 리스트 반환 훅 메서드
+ *
+ * @param {UseQueryOptions} options: UseQueryOptions 객체
+ *
+ * @returns {UseQueryResult} UseQueryResult 객체
+ */
+export function useGetImage(options?: UseQueryOptions<UseGetImageProps>): UseQueryResult<UseGetImageProps>
+{
+	return useQuery<UseGetImageProps>([ 'useGetImage' ], async () =>
+	{
+		const list = await fetch('/image.json');
+		const json = await list.json() as UseGetImageProps;
+
+		return json;
+	}, options);
 }
