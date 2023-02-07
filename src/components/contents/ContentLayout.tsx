@@ -10,6 +10,7 @@ import Hits from '@kapoo/components/global/Hits';
 import Utterances from '@kapoo/components/global/Utterances';
 import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
 import classNames from 'classnames/bind';
+import GoogleAdsense from 'react-adsense-google';
 
 import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
@@ -51,6 +52,14 @@ export default function ContentLayout({ data }: Props): JSX.Element
 			<Hits urls={urls} />
 
 			<ContentViewer content={data.content as string} />
+
+			<GoogleAdsense
+				adClient='ca-pub-5522045122225064'
+				adFormat='rspv'
+				adLayout='in-article'
+				adSlot='8348565597'
+				fullWidthResponsive='true'
+			/>
 
 			<ContentMeta header={data.header} />
 
