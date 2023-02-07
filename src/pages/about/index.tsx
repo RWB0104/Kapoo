@@ -6,7 +6,7 @@
  */
 
 import { TITLE } from '@kapoo/commons/env';
-import { useResetHook, useScreenImage } from '@kapoo/commons/hook';
+import { useResetHook } from '@kapoo/commons/hook';
 import { MENU_LIST } from '@kapoo/commons/menulist';
 import CommitList from '@kapoo/components/about/CommitList';
 import Info from '@kapoo/components/about/Info';
@@ -23,13 +23,11 @@ export default function Posts(): JSX.Element
 {
 	useResetHook();
 
-	const imageState = useScreenImage();
-
 	return (
 		<section>
 			<Meta description={MENU_LIST[3].desc} title={MENU_LIST[3].title} url={MENU_LIST[3].url.pathname} />
 
-			<Screener image={imageState} lower={MENU_LIST[3].desc} menu={MENU_LIST[3].title} title={TITLE} />
+			<Screener lower={MENU_LIST[3].desc} menu={MENU_LIST[3].title} title={TITLE} />
 
 			<Info />
 			<NameCard />

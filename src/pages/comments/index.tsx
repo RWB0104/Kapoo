@@ -6,7 +6,6 @@
  */
 
 import { TITLE } from '@kapoo/commons/env';
-import { useScreenImage } from '@kapoo/commons/hook';
 import { MENU_LIST } from '@kapoo/commons/menulist';
 import CommentLayout from '@kapoo/components/comments/CommentLayout';
 import Meta from '@kapoo/components/global/Meta';
@@ -19,13 +18,11 @@ import Screener from '@kapoo/components/global/Screener';
  */
 export default function Comments(): JSX.Element
 {
-	const imageState = useScreenImage();
-
 	return (
 		<section>
 			<Meta description={MENU_LIST[4].desc} title={MENU_LIST[4].title} url={MENU_LIST[4].url.pathname} />
 
-			<Screener image={imageState} lower={MENU_LIST[4].desc} menu={MENU_LIST[4].title} title={TITLE} />
+			<Screener lower={MENU_LIST[4].desc} menu={MENU_LIST[4].title} title={TITLE} />
 
 			<CommentLayout />
 		</section>

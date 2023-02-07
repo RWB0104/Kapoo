@@ -6,7 +6,6 @@
  */
 
 import { TITLE } from '@kapoo/commons/env';
-import { useScreenImage } from '@kapoo/commons/hook';
 import Meta from '@kapoo/components/global/Meta';
 import Screener from '@kapoo/components/global/Screener';
 
@@ -17,13 +16,11 @@ import Screener from '@kapoo/components/global/Screener';
  */
 export default function Error404(): JSX.Element
 {
-	const imageState = useScreenImage();
-
 	return (
 		<section>
 			<Meta description='놀라울 만큼 아무 일도 일어나지 않았다' title='404' url='' />
 
-			<Screener image={imageState} lower='놀라울 만큼 아무 일도 일어나지 않았다' menu='404' title={TITLE} />
+			<Screener lower='놀라울 만큼 아무 일도 일어나지 않았다' menu='404' title={TITLE} />
 		</section>
 	);
 }

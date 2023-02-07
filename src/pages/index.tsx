@@ -7,7 +7,6 @@
 
 import { ContentTypeEnum } from '@kapoo/commons/common';
 import { TITLE } from '@kapoo/commons/env';
-import { useScreenImage } from '@kapoo/commons/hook';
 import { MENU_LIST } from '@kapoo/commons/menulist';
 import { useGetContents, useGetGooglePopularData, useGetPopularContents } from '@kapoo/commons/query';
 import Artbox from '@kapoo/components/global/Artbox';
@@ -22,8 +21,6 @@ import ContentsCase from '@kapoo/components/home/ContentsCase';
  */
 export default function Home(): JSX.Element
 {
-	const imageState = useScreenImage();
-
 	const { data: postsContents } = useGetContents(ContentTypeEnum.POSTS);
 	const { data: projectsContents } = useGetContents(ContentTypeEnum.PROJECTS);
 
@@ -37,7 +34,7 @@ export default function Home(): JSX.Element
 		<section>
 			<Meta description={MENU_LIST[0].desc} title={MENU_LIST[0].title} url='' />
 
-			<Screener image={imageState} lower={MENU_LIST[0].desc} menu={MENU_LIST[0].title} title={TITLE} />
+			<Screener lower={MENU_LIST[0].desc} menu={MENU_LIST[0].title} title={TITLE} />
 
 			<ContentsCase list={postsPopularData || []} loading={postsPopularContentsLoading || postsPopularLoading} num={10} title='Posts Popular' url={MENU_LIST[1].url} />
 

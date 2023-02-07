@@ -7,8 +7,9 @@
 
 import { ContentTypeEnum, CONTENT_DIV, getUrlQuery } from '@kapoo/commons/common';
 import { TITLE } from '@kapoo/commons/env';
-import { useCategories, useContents, useResetHook, useScreenImage } from '@kapoo/commons/hook';
+import { useContents, useResetHook } from '@kapoo/commons/hook';
 import { MENU_LIST } from '@kapoo/commons/menulist';
+import { useGetCategories } from '@kapoo/commons/query';
 import { projectsAtom, projectsCategoryAtom, projectsPageAtom, projectsScrollAtom, projectsSearchAtom } from '@kapoo/commons/state';
 import ContentBoard from '@kapoo/components/contents/ContentBoard';
 import ContentCategory from '@kapoo/components/contents/ContentCategory';
@@ -36,9 +37,8 @@ export default function Projects(): JSX.Element
 
 	const projectsScrollState = useRecoilValue(projectsScrollAtom);
 
-	const imageState = useScreenImage();
 	const refProjectsState = useContents(type);
-	const categoryState = useCategories(type);
+	const { data: categoryData } = useGetCategories(type);
 
 	useEffect(() =>
 	{
@@ -172,10 +172,10 @@ export default function Projects(): JSX.Element
 		<section>
 			<Meta description={MENU_LIST[2].desc} title={MENU_LIST[2].title} url={MENU_LIST[2].url.pathname} />
 
-			<Screener image={imageState} lower={MENU_LIST[2].desc} menu={MENU_LIST[2].title} title={TITLE} />
+			<Screener lower={MENU_LIST[2].desc} menu={MENU_LIST[2].title} title={TITLE} />
 
 			<ContentSearch type={type} />
-			<ContentCategory list={categoryState} type={type} />
+			<ContentCategory list={categoryData || []} type={type} />
 			<ContentBoard list={projectsState.slice(0, projectsPageState * CONTENT_DIV)} />
 		</section>
 	);
