@@ -56,7 +56,6 @@ export default function ContentLayout({ data }: Props): JSX.Element
 			<GoogleAdsense
 				adClient='ca-pub-5522045122225064'
 				adFormat='auto'
-				adLayout='in-article'
 				adSlot='8348565597'
 				fullWidthResponsive='true'
 			/>
