@@ -5,10 +5,10 @@
  * @since 2021.07.17 Sat 10:32:45
  */
 
-import { CategoryProps, ContentTypeEnum } from '@commons/common';
-import { CATEGORY } from '@commons/env';
-import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAtom, themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentCategory.module.scss';
+import { CategoryProps, ContentTypeEnum } from '@kapoo/commons/common';
+import { CATEGORY } from '@kapoo/commons/env';
+import { postsCategoryAtom, postsPageAtom, projectsCategoryAtom, projectsPageAtom, themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentCategory.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';

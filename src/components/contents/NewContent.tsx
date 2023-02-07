@@ -5,7 +5,7 @@
  * @since 2021.08.17 Tue 11:57:51
  */
 
-import styles from '@styles/components/contents/NewContent.module.scss';
+import styles from '@kapoo/styles/components/contents/NewContent.module.scss';
 import classNames from 'classnames/bind';
 import { BsCircleFill } from 'react-icons/bs';
 

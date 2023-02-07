@@ -5,10 +5,10 @@
  * @since 2021.07.11 Sun 20:07:12
  */
 
-import { useSemanticHook } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import { menuAtom } from '@commons/state';
-import styles from '@styles/components/header/MenuList.module.scss';
+import { useSemanticHook } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import { menuAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/header/MenuList.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { IoClose, IoMenu } from 'react-icons/io5';

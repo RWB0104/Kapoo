@@ -5,10 +5,10 @@
  * @since 2021.07.12 Mon 00:53:20
  */
 
-import { Theme } from '@commons/common';
-import { useSemanticHook } from '@commons/hook';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/global/ThemeFab.module.scss';
+import { Theme } from '@kapoo/commons/common';
+import { useSemanticHook } from '@kapoo/commons/hook';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/global/ThemeFab.module.scss';
 import classNames from 'classnames/bind';
 import { useCookies } from 'react-cookie';
 import { IoMoon } from 'react-icons/io5';

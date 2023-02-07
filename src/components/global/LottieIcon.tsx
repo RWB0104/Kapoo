@@ -5,7 +5,7 @@
  * @since 2023.02.04 Sat 12:57:03
  */
 
-import lottie from '@components/global/lottie';
+import lottie from '@kapoo/components/global/lottie';
 import Lottie, { LottieComponentProps } from 'lottie-react';
 
 export interface LottieIconProps extends Omit<LottieComponentProps, 'animationData'>

@@ -5,7 +5,7 @@
  * @since 2021.07.17 Sat 03:38:21
  */
 
-import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
+import { BASE_URL, DESCRIPTION, TITLE } from '@kapoo/commons/env';
 import Head from 'next/head';
 
 interface Props

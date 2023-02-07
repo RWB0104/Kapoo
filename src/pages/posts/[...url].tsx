@@ -5,11 +5,11 @@
  * @since 2021.07.17 Sat 02:27:06
  */
 
-import { getContent, getContentList } from '@commons/api';
-import { ContentPageProps, ContentProps, ContentTypeEnum, PathsProps, RoutesProps } from '@commons/common';
-import ContentLayout from '@components/contents/ContentLayout';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
+import { getContent, getContentList } from '@kapoo/commons/api';
+import { ContentPageProps, ContentProps, ContentTypeEnum, PathsProps, RoutesProps } from '@kapoo/commons/common';
+import ContentLayout from '@kapoo/components/contents/ContentLayout';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
 import Script from 'next/script';
 
 const type = ContentTypeEnum.POSTS;

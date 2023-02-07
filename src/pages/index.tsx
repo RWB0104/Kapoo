@@ -5,14 +5,14 @@
  * @since 2021.07.12 Mon 14:19:40
  */
 
-import { ContentProps, ContentTypeEnum } from '@commons/common';
-import { TITLE } from '@commons/env';
-import { useContents, usePopularPage, useResetHook, useScreenImage } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import Artbox from '@components/global/Artbox';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
-import ContentsCase from '@components/home/ContentsCase';
+import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
+import { TITLE } from '@kapoo/commons/env';
+import { useContents, usePopularPage, useResetHook, useScreenImage } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import Artbox from '@kapoo/components/global/Artbox';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
+import ContentsCase from '@kapoo/components/home/ContentsCase';
 import { useEffect, useState } from 'react';
 
 /**

@@ -5,8 +5,8 @@
  * @since 2021.07.12 Mon 00:53:20
  */
 
-import { Theme } from '@commons/common';
-import { themeAtom } from '@commons/state';
+import { Theme } from '@kapoo/commons/common';
+import { themeAtom } from '@kapoo/commons/state';
 import { useRecoilValue } from 'recoil';
 
 import ThemeDarkFab from './ThemeDarkFab';

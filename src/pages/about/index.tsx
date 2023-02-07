@@ -5,14 +5,14 @@
  * @since 2021.07.12 Mon 00:01:37
  */
 
-import { TITLE } from '@commons/env';
-import { useResetHook, useScreenImage } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import CommitList from '@components/about/CommitList';
-import Info from '@components/about/Info';
-import NameCard from '@components/about/NameCard';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
+import { TITLE } from '@kapoo/commons/env';
+import { useResetHook, useScreenImage } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import CommitList from '@kapoo/components/about/CommitList';
+import Info from '@kapoo/components/about/Info';
+import NameCard from '@kapoo/components/about/NameCard';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
 
 /**
  * 소개 페이지 JSX 반환 함수

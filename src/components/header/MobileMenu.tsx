@@ -5,11 +5,11 @@
  * @since 2021.07.25 Sun 23:33:48
  */
 
-import { Theme } from '@commons/common';
-import { useSemanticHook } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import { menuAtom, themeAtom } from '@commons/state';
-import styles from '@styles/components/header/MobileMenu.module.scss';
+import { Theme } from '@kapoo/commons/common';
+import { useSemanticHook } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import { menuAtom, themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/header/MobileMenu.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import React from 'react';

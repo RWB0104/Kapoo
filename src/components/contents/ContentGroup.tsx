@@ -5,9 +5,9 @@
  * @since 2021.07.24 Sat 10:01:18
  */
 
-import { ContentProps } from '@commons/common';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentGroup.module.scss';
+import { ContentProps } from '@kapoo/commons/common';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentGroup.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';

@@ -5,10 +5,10 @@
  * @since 2021.07.11 Sun 15:01:10
  */
 
-import { TITLE } from '@commons/env';
-import { useScrollTopHook } from '@commons/hook';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/header/Header.module.scss';
+import { TITLE } from '@kapoo/commons/env';
+import { useScrollTopHook } from '@kapoo/commons/hook';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/header/Header.module.scss';
 import classNames from 'classnames/bind';
 import { useRecoilValue } from 'recoil';
 

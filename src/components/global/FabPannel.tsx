@@ -5,7 +5,7 @@
  * @since 2022.05.06 Fri 13:36:27
  */
 
-import styles from '@styles/components/global/FabPannel.module.scss';
+import styles from '@kapoo/styles/components/global/FabPannel.module.scss';
 import classNames from 'classnames/bind';
 
 interface Props

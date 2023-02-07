@@ -5,9 +5,9 @@
  * @since 2021.07.14 Wed 23:52:50
  */
 
-import { getRandomIndex } from '@commons/common';
-import { PIECE } from '@commons/env';
-import styles from '@styles/components/global/ArtBox.module.scss';
+import { getRandomIndex } from '@kapoo/commons/common';
+import { PIECE } from '@kapoo/commons/env';
+import styles from '@kapoo/styles/components/global/ArtBox.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { IoMdRefresh } from 'react-icons/io';

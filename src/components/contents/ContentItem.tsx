@@ -5,11 +5,11 @@
  * @since 2021.07.13 Tue 00:00:40
  */
 
-import { ContentProps, ContentTypeEnum, getWrittenTimes, isNewContent } from '@commons/common';
-import { CATEGORY } from '@commons/env';
-import { useSemanticHook } from '@commons/hook';
-import { postsScrollAtom, projectsScrollAtom, themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentItem.module.scss';
+import { ContentProps, ContentTypeEnum, getWrittenTimes, isNewContent } from '@kapoo/commons/common';
+import { CATEGORY } from '@kapoo/commons/env';
+import { useSemanticHook } from '@kapoo/commons/hook';
+import { postsScrollAtom, projectsScrollAtom, themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentItem.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useState } from 'react';

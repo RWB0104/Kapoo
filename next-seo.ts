@@ -5,9 +5,9 @@
  * @since 2021.05.26 Wed 16:45:19
  */
 
-import { getContentList } from '@commons/api';
-import { ContentProps, ContentTypeEnum, SeoProps } from '@commons/common';
-import { BASE_URL, DESCRIPTION, TITLE } from '@commons/env';
+import { getContentList } from '@kapoo/commons/api';
+import { ContentProps, ContentTypeEnum, SeoProps } from '@kapoo/commons/common';
+import { BASE_URL, DESCRIPTION, TITLE } from '@kapoo/commons/env';
 import globby from 'globby';
 import format from 'xml-formatter';
 

@@ -5,8 +5,8 @@
  * @since 2022.05.09 Mon 19:56:59
  */
 
-import { getBuildHash, getContentList, getCategoryList, getImageList } from '@commons/api';
-import { ContentType, ContentTypeEnum } from '@commons/common';
+import { getBuildHash, getContentList, getCategoryList, getImageList } from '@kapoo/commons/api';
+import { ContentType, ContentTypeEnum } from '@kapoo/commons/common';
 
 import fs from 'fs';
 

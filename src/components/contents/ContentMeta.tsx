@@ -5,9 +5,9 @@
  * @since 2021.07.25 Sun 16:07:52
  */
 
-import { ContentHeaderProps, getDateDetail } from '@commons/common';
-import { CATEGORY } from '@commons/env';
-import styles from '@styles/components/contents/ContentMeta.module.scss';
+import { ContentHeaderProps, getDateDetail } from '@kapoo/commons/common';
+import { CATEGORY } from '@kapoo/commons/env';
+import styles from '@kapoo/styles/components/contents/ContentMeta.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 

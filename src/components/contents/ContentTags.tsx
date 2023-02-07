@@ -5,8 +5,8 @@
  * @since 2021.07.16 Fri 00:42:43
  */
 
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentTags.module.scss';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentTags.module.scss';
 import classNames from 'classnames/bind';
 import { useRecoilValue } from 'recoil';
 

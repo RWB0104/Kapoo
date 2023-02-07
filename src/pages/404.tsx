@@ -5,10 +5,10 @@
  * @since 2021.08.01 Sun 19:47:47
  */
 
-import { TITLE } from '@commons/env';
-import { useScreenImage } from '@commons/hook';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
+import { TITLE } from '@kapoo/commons/env';
+import { useScreenImage } from '@kapoo/commons/hook';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
 
 /**
  * 404 에러 JSX 반환 함수

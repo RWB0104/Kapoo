@@ -5,8 +5,8 @@
  * @since 2021.07.17 Sat 09:57:28
  */
 
-import { ContentProps } from '@commons/common';
-import styles from '@styles/components/contents/ContentBoard.module.scss';
+import { ContentProps } from '@kapoo/commons/common';
+import styles from '@kapoo/styles/components/contents/ContentBoard.module.scss';
 import classNames from 'classnames/bind';
 
 import ContentList from './ContentList';

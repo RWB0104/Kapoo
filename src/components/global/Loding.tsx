@@ -5,9 +5,9 @@
  * @since 2021.07.31 Sat 00:16:04
  */
 
-import { loadingAtom, themeAtom } from '@commons/state';
-import LottieIcon from '@components/global/LottieIcon';
-import styles from '@styles/components/global/Loading.module.scss';
+import { loadingAtom, themeAtom } from '@kapoo/commons/state';
+import LottieIcon from '@kapoo/components/global/LottieIcon';
+import styles from '@kapoo/styles/components/global/Loading.module.scss';
 import classNames from 'classnames/bind';
 import { useRecoilValue } from 'recoil';
 

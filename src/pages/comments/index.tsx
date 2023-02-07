@@ -5,12 +5,12 @@
  * @since 2022.05.14 Sat 00:38:22
  */
 
-import { TITLE } from '@commons/env';
-import { useScreenImage } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import CommentLayout from '@components/comments/CommentLayout';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
+import { TITLE } from '@kapoo/commons/env';
+import { useScreenImage } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import CommentLayout from '@kapoo/components/comments/CommentLayout';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
 
 /**
  * 코멘트 페이지 JSX 반환 함수

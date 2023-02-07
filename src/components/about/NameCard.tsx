@@ -5,8 +5,8 @@
  * @since 2022.05.14 Sat 02:26:30
  */
 
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/about/NameCard.module.scss';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/about/NameCard.module.scss';
 import classNames from 'classnames/bind';
 import { IoLogoGithub, IoLogoLinkedin, IoLogoReact } from 'react-icons/io5';
 import { SiGmail } from 'react-icons/si';

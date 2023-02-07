@@ -5,11 +5,11 @@
  * @since 2021.07.15 Thu 19:56:14
  */
 
-import { ContentProps } from '@commons/common';
-import { themeAtom } from '@commons/state';
-import ContentList from '@components/contents/ContentList';
-import LottieIcon from '@components/global/LottieIcon';
-import styles from '@styles/components/home/ContentsCase.module.scss';
+import { ContentProps } from '@kapoo/commons/common';
+import { themeAtom } from '@kapoo/commons/state';
+import ContentList from '@kapoo/components/contents/ContentList';
+import LottieIcon from '@kapoo/components/global/LottieIcon';
+import styles from '@kapoo/styles/components/home/ContentsCase.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import React from 'react';

@@ -5,12 +5,12 @@
  * @since 2021.07.11 Sun 13:28:18
  */
 
-import { Theme } from '@commons/common';
-import { loadingAtom, menuAtom, themeAtom } from '@commons/state';
-import Footer from '@components/footer/Footer';
-import Header from '@components/header/Header';
-import MobileMenu from '@components/header/MobileMenu';
-import styles from '@styles/components/global/BaseLayout.module.scss';
+import { Theme } from '@kapoo/commons/common';
+import { loadingAtom, menuAtom, themeAtom } from '@kapoo/commons/state';
+import Footer from '@kapoo/components/footer/Footer';
+import Header from '@kapoo/components/header/Header';
+import MobileMenu from '@kapoo/components/header/MobileMenu';
+import styles from '@kapoo/styles/components/global/BaseLayout.module.scss';
 import classNames from 'classnames/bind';
 import { Router } from 'next/router';
 import { useEffect } from 'react';

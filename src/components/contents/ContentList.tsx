@@ -5,9 +5,9 @@
  * @since 2021.07.15 Thu 22:32:57
  */
 
-import { ContentProps } from '@commons/common';
-import ContentItem from '@components/contents/ContentItem';
-import styles from '@styles/components/contents/ContentList.module.scss';
+import { ContentProps } from '@kapoo/commons/common';
+import ContentItem from '@kapoo/components/contents/ContentItem';
+import styles from '@kapoo/styles/components/contents/ContentList.module.scss';
 import classNames from 'classnames/bind';
 
 interface Props

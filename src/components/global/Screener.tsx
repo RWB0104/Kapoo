@@ -5,7 +5,7 @@
  * @since 2021.07.11 Sun 19:44:15
  */
 
-import styles from '@styles/components/global/Screener.module.scss';
+import styles from '@kapoo/styles/components/global/Screener.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useRef } from 'react';
 

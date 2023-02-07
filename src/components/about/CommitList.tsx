@@ -5,9 +5,9 @@
  * @since 2022.04.10 Sun 19:17:35
  */
 
-import { getDateDetail } from '@commons/common';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/about/CommitList.module.scss';
+import { getDateDetail } from '@kapoo/commons/common';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/about/CommitList.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

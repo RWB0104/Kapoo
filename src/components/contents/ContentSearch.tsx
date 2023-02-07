@@ -5,9 +5,9 @@
  * @since 2022.05.10 Tue 01:01:15
  */
 
-import { ContentType, ContentTypeEnum } from '@commons/common';
-import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentSearch.module.scss';
+import { ContentType, ContentTypeEnum } from '@kapoo/commons/common';
+import { postsCategoryAtom, postsPageAtom, postsSearchAtom, projectsCategoryAtom, projectsPageAtom, projectsSearchAtom, themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentSearch.module.scss';
 import classNames from 'classnames/bind';
 import React, { useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';

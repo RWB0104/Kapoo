@@ -5,8 +5,8 @@
  * @since 2021.07.25 Sun 19:42:46
  */
 
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/Utterances.module.scss';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/Utterances.module.scss';
 import { useRecoilValue } from 'recoil';
 
 interface Props

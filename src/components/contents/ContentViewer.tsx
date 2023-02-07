@@ -5,7 +5,7 @@
  * @since 2021.07.17 Sat 04:11:28
  */
 
-import { themeAtom } from '@commons/state';
+import { themeAtom } from '@kapoo/commons/state';
 import Head from 'next/head';
 import { useRecoilValue } from 'recoil';
 

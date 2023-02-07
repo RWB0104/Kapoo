@@ -5,10 +5,10 @@
  * @since 2021.07.11 Sun 16:52:22
  */
 
-import { TITLE } from '@commons/env';
-import { themeAtom } from '@commons/state';
-import Hits from '@components/global/Hits';
-import styles from '@styles/components/footer/Footer.module.scss';
+import { TITLE } from '@kapoo/commons/env';
+import { themeAtom } from '@kapoo/commons/state';
+import Hits from '@kapoo/components/global/Hits';
+import styles from '@kapoo/styles/components/footer/Footer.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { FaCopyright, FaHashtag, FaRss, FaSitemap } from 'react-icons/fa';

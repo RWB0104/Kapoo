@@ -5,10 +5,10 @@
  * @since 2021.07.17 Sat 04:09:04
  */
 
-import { ContentProps, ContentTypeEnum } from '@commons/common';
-import Hits from '@components/global/Hits';
-import Utterances from '@components/global/Utterances';
-import styles from '@styles/components/contents/ContentLayout.module.scss';
+import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
+import Hits from '@kapoo/components/global/Hits';
+import Utterances from '@kapoo/components/global/Utterances';
+import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
 import classNames from 'classnames/bind';
 
 import ContentGroup from './ContentGroup';

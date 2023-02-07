@@ -5,8 +5,8 @@
  * @since 2021.09.23 Thu 16:37:47
  */
 
-import { BASE_URL } from '@commons/env';
-import styles from '@styles/components/global/Hits.module.scss';
+import { BASE_URL } from '@kapoo/commons/env';
+import styles from '@kapoo/styles/components/global/Hits.module.scss';
 import classNames from 'classnames/bind';
 
 interface Props

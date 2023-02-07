@@ -5,9 +5,9 @@
  * @since 2021.07.25 Sun 17:37:32
  */
 
-import { ContentProps } from '@commons/common';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/contents/ContentMover.module.scss';
+import { ContentProps } from '@kapoo/commons/common';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/contents/ContentMover.module.scss';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { IoArrowBack, IoArrowForward, IoMenu } from 'react-icons/io5';

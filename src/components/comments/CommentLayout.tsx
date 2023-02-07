@@ -5,8 +5,8 @@
  * @since 2022.05.14 Sat 01:47:22
  */
 
-import Utterances from '@components/global/Utterances';
-import styles from '@styles/components/comments/CommentLayout.module.scss';
+import Utterances from '@kapoo/components/global/Utterances';
+import styles from '@kapoo/styles/components/comments/CommentLayout.module.scss';
 import classNames from 'classnames/bind';
 
 /**

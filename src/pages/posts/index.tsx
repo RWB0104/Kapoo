@@ -5,16 +5,16 @@
  * @since 2021.07.11 Sun 11:59:59
  */
 
-import { ContentTypeEnum, CONTENT_DIV, getUrlQuery } from '@commons/common';
-import { TITLE } from '@commons/env';
-import { useCategories, useContents, useResetHook, useScreenImage } from '@commons/hook';
-import { MENU_LIST } from '@commons/menulist';
-import { postsAtom, postsCategoryAtom, postsPageAtom, postsScrollAtom, postsSearchAtom } from '@commons/state';
-import ContentBoard from '@components/contents/ContentBoard';
-import ContentCategory from '@components/contents/ContentCategory';
-import ContentSearch from '@components/contents/ContentSearch';
-import Meta from '@components/global/Meta';
-import Screener from '@components/global/Screener';
+import { ContentTypeEnum, CONTENT_DIV, getUrlQuery } from '@kapoo/commons/common';
+import { TITLE } from '@kapoo/commons/env';
+import { useCategories, useContents, useResetHook, useScreenImage } from '@kapoo/commons/hook';
+import { MENU_LIST } from '@kapoo/commons/menulist';
+import { postsAtom, postsCategoryAtom, postsPageAtom, postsScrollAtom, postsSearchAtom } from '@kapoo/commons/state';
+import ContentBoard from '@kapoo/components/contents/ContentBoard';
+import ContentCategory from '@kapoo/components/contents/ContentCategory';
+import ContentSearch from '@kapoo/components/contents/ContentSearch';
+import Meta from '@kapoo/components/global/Meta';
+import Screener from '@kapoo/components/global/Screener';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 

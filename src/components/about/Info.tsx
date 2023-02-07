@@ -5,8 +5,8 @@
  * @since 2022.05.14 Sat 11:47:28
  */
 
-import { DESCRIPTION, TITLE } from '@commons/env';
-import styles from '@styles/components/about/Info.module.scss';
+import { DESCRIPTION, TITLE } from '@kapoo/commons/env';
+import styles from '@kapoo/styles/components/about/Info.module.scss';
 import classNames from 'classnames/bind';
 import { FaGithub, FaMarkdown, FaReact, FaSass } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript } from 'react-icons/si';

@@ -5,9 +5,9 @@
  * @since 2022.05.06 Fri 13:48:37
  */
 
-import { useScrollTopHook } from '@commons/hook';
-import { themeAtom } from '@commons/state';
-import styles from '@styles/components/global/TopFab.module.scss';
+import { useScrollTopHook } from '@kapoo/commons/hook';
+import { themeAtom } from '@kapoo/commons/state';
+import styles from '@kapoo/styles/components/global/TopFab.module.scss';
 import classNames from 'classnames/bind';
 import { IoArrowUp } from 'react-icons/io5';
 import { useRecoilValue } from 'recoil';

@@ -5,8 +5,8 @@
  * @since 2021.07.11 Sun 13:21:27
  */
 
-import BaseLayout from '@components/global/BaseLayout';
-import QueryLayout from '@components/global/QueryLayout';
+import BaseLayout from '@kapoo/components/global/BaseLayout';
+import QueryLayout from '@kapoo/components/global/QueryLayout';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { CookiesProvider } from 'react-cookie';
