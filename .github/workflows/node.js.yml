@@ -18,8 +18,8 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     outputs:
-      key: ${{ steps.env.outputs.key }}
-      restore: ${{ steps.env.outputs.restore }}
+      key: ${{ steps.var.outputs.key }}
+      restore: ${{ steps.var.outputs.restore }}
 
     steps:
       - uses: actions/checkout@v3
@@ -35,6 +35,9 @@ jobs:
         run: |
           echo "key=${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}" >> $GITHUB_OUTPUT
           echo "restore=${{ runner.os }}-node-kapoo" >> $GITHUB_OUTPUT
+
+      - name: Check Variables
+        run: |
           echo ${{ steps.var.outputs.key }}
           echo ${{ steps.var.outputs.restore }}
 
