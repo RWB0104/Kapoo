@@ -61,6 +61,12 @@ export interface PopularPage
 	kind: string
 }
 
+export interface ContentFilterProps
+{
+	keyword?: string
+	categories?: string[]
+}
+
 const DIV = 10;
 
 /**
@@ -84,6 +90,7 @@ function useGoogleAuthorize(options?: UseMutationOptions<GoogleAuth | undefined,
 			method: 'POST'
 		});
 
+		// 인증 성공일 경우
 		if (auth.ok)
 		{
 			const json: GoogleAuth = await auth.json();
@@ -143,6 +150,7 @@ export function useGetGooglePopularData(type: ContentType, options?: UseQueryOpt
 			method: 'POST'
 		});
 
+		// 인증 성공일 경우
 		if (list.ok)
 		{
 			const json: PopularPage = await list.json();
@@ -158,16 +166,35 @@ export function useGetGooglePopularData(type: ContentType, options?: UseQueryOpt
  * 컨텐츠 리스트 반환 훅 메서드
  *
  * @param {ContentType} type: ContentType 객체
+ * @param {ContentFilterProps} filter: ContentFilterProps 객체
  * @param {UseQueryOptions} options: UseQueryOptions 객체
  *
  * @returns {UseQueryResult} UseQueryResult 객체
  */
-export function useGetContents(type: ContentType, options?: UseQueryOptions<ContentProps[]>): UseQueryResult<ContentProps[]>
+export function useGetContents(type: ContentType, filter?: ContentFilterProps, options?: UseQueryOptions<ContentProps[]>): UseQueryResult<ContentProps[]>
 {
 	return useQuery<ContentProps[]>([ 'useGetContents', type ], async () =>
 	{
 		const list = await fetch(`/${type}.json`);
-		const json = (await list.json()).list as ContentProps[];
+		let json = (await list.json()).list as ContentProps[];
+
+		// 필터가 유효할 경우
+		if (filter)
+		{
+			const { keyword, categories } = filter;
+
+			// 카테고리가 유효할 경우
+			if (categories && categories.length > 0)
+			{
+				json = json.filter(({ header }) => categories.includes(header.category));
+			}
+
+			// 키워드가 유효할 경우
+			if (keyword && keyword.length > 1)
+			{
+				json = json.filter(({ header }) => header.title.includes(keyword) || header.tag.includes(keyword));
+			}
+		}
 
 		return json;
 	}, options);
@@ -177,16 +204,35 @@ export function useGetContents(type: ContentType, options?: UseQueryOptions<Cont
  * 인피니티 스크롤 컨텐츠 반환 훅 메서드
  *
  * @param {ContentType} type: ContentType 객체
+ * @param {ContentFilterProps} filter: ContentFilterProps 객체
  * @param {UseInfiniteQueryOptions} options: UseInfiniteQueryOptions 객체
  *
  * @returns {UseInfiniteQueryResult} UseInfiniteQueryResult 객체
  */
-export function useGetInfiniteContents(type: ContentType, options?: UseInfiniteQueryOptions<UseGetContentsProps>): UseInfiniteQueryResult<UseGetContentsProps>
+export function useGetInfiniteContents(type: ContentType, filter?: ContentFilterProps, options?: UseInfiniteQueryOptions<UseGetContentsProps>): UseInfiniteQueryResult<UseGetContentsProps>
 {
 	return useInfiniteQuery<UseGetContentsProps>([ 'useGetInfiniteContents', type ], async ({ pageParam = 1 }) =>
 	{
 		const list = await fetch(`/${type}.json`);
-		const json = (await list.json()).list as ContentProps[];
+		let json = (await list.json()).list as ContentProps[];
+
+		// 필터가 유효할 경우
+		if (filter)
+		{
+			const { keyword, categories } = filter;
+
+			// 카테고리가 유효할 경우
+			if (categories && categories.length > 0)
+			{
+				json = json.filter(({ header }) => categories.includes(header.category));
+			}
+
+			// 키워드가 유효할 경우
+			if (keyword && keyword.length > 1)
+			{
+				json = json.filter(({ header }) => header.title.includes(keyword) || header.tag.includes(keyword));
+			}
+		}
 
 		return {
 			count: pageParam,
@@ -233,21 +279,23 @@ export function useGetPopularContents(type: ContentType, contents?: ContentProps
 {
 	return useQuery<ContentProps[]>([ 'useGetPopularContents', type ], async () =>
 	{
+		// 컨텐츠, 인기 게시글이 모두 유효할 경우
 		if (contents && popularContents)
 		{
 			const urls: string[] = popularContents.rows.map((item) => item.dimensionValues[0].value.replace(/.html$/, '')) || [];
 
-			return urls?.reduce((acc, item) =>
+			return urls.reduce((acc, item) =>
 			{
 				const target = contents?.find((content) => `/${content.header.type}/${content.url[1]}/${content.url[2]}/${content.url[3]}/${content.url[4]}` === item);
 
+				// 일치하는 데이터가 있을 경우
 				if (target)
 				{
 					acc.push(target);
 				}
 
 				return acc;
-			}, [] as ContentProps[]) || [];
+			}, [] as ContentProps[]);
 		}
 
 		return [];

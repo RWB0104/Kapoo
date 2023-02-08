@@ -14,6 +14,7 @@ import ContentList from './ContentList';
 interface Props
 {
 	list: ContentProps[]
+	onLast?: IntersectionObserverCallback
 }
 
 /**
@@ -21,13 +22,13 @@ interface Props
  *
  * @returns {JSX.Element} JSX
  */
-export default function ContentBoard({ list }: Props): JSX.Element
+export default function ContentBoard({ list, onLast }: Props): JSX.Element
 {
 	const cn = classNames.bind(styles);
 
 	return (
 		<article className={cn('root')}>
-			<ContentList list={list} />
+			<ContentList list={list} onLast={onLast} />
 		</article>
 	);
 }
