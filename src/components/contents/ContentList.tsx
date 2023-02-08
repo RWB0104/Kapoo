@@ -38,11 +38,11 @@ export default function ContentList({ list, onLast }: Props): JSX.Element
 
 		if (ref.current)
 		{
-			observer = new IntersectionObserver((e) =>
+			observer = new IntersectionObserver((ent, obs) =>
 			{
 				if (onLast)
 				{
-					onLast(e);
+					onLast(ent, obs);
 				}
 			}, { threshold: 1 });
 			observer.observe(ref.current);
