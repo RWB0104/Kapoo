@@ -5,7 +5,8 @@ name: Kapoo CI/CD
 
 on:
   push:
-    tags: "kapoo@**"
+    tags:
+      - "kapoo@**"
 
 jobs:
   set-dependencies:
@@ -16,6 +17,10 @@ jobs:
         node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+    outputs:
+      key: ${{ steps.env.outputs.key }}
+      restore: ${{ steps.env.outputs.restore }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -25,15 +30,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
+      - name: Set Variables
+        id: var
+        run: |
+          echo "key=${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}" >> $GITHUB_OUTPUT
+          echo "restore=${{ runner.os }}-node-kapoo" >> $GITHUB_OUTPUT
+          echo ${{ steps.var.outputs.key }}
+          echo ${{ steps.var.outputs.restore }}
+
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.os }}-node-kapoo
+          key: ${{ steps.var.outputs.key }}
+          restore-keys: ${{ steps.var.outputs.restore }}
 
-      - name: Jader Dependencies Install
+      - name: Kapoo Dependencies Install
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
 
@@ -59,16 +72,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-kapoo-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.os }}-node-kapoo
+          key: ${{ needs.set-dependencies.outputs.key }}
+          restore-keys: ${{ needs.set-dependencies.outputs.restore }}
 
-      - name: Jader Build
+      - name: Kapoo Build
         run: yarn build
 
-      - name: Jader Export
+      - name: Kapoo Export
         run: yarn export
 
-      - name: Pushes to Jader Public Repository
+      - name: Pushes to Kapoo Public Repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
