@@ -9,7 +9,7 @@ import { getRandomIndex } from '@kapoo/commons/common';
 import { useGetImage } from '@kapoo/commons/query';
 import styles from '@kapoo/styles/components/global/Screener.module.scss';
 import classNames from 'classnames/bind';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface Props
 {
@@ -32,30 +32,18 @@ export default function Screener({ title, menu, lower, image }: Props): JSX.Elem
 
 	const { data } = useGetImage();
 
-	const [ imageState ] = useState(image || data?.list[getRandomIndex(data?.list.length || 0)]);
+	const [ imageState, setImageState ] = useState(image);
 
-	const videoRef = useRef<HTMLVideoElement>(null);
-	const imageRef = useRef<HTMLImageElement>(null);
-
-	useEffect((): void =>
+	useEffect(() =>
 	{
-		if (imageState)
+		// 이미지가 유효하지 않을 경우
+		if (image === undefined)
 		{
-			// 동영상일 경우
-			if (/(.mp4|webm)$/.test(imageState) && videoRef.current)
-			{
-				videoRef.current.src = imageState;
-			}
-
-			// 사진일 경우
-			else if (imageRef.current)
-			{
-				imageRef.current.src = imageState;
-			}
+			setImageState(data?.list[getRandomIndex(data?.list.length)]);
 		}
-	}, [ imageState ]);
+	}, [ image, data ]);
 
-	const tag = useMemo(() => (/(.mp4|webm)$/.test(imageState || '') ? <video className={cn('media')} ref={videoRef} autoPlay loop muted /> : <img alt='screen' className={cn('image')} ref={imageRef} />), [ imageState ]);
+	const tag = useMemo(() => (/(.mp4|webm)$/.test(imageState || '') ? <video className={cn('media')} src={imageState} autoPlay loop muted /> : <img alt='screen' className={cn('image')} src={imageState} />), [ imageState ]);
 
 	return (
 		<div className={cn('root')}>
