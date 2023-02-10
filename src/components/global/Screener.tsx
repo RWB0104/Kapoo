@@ -50,7 +50,7 @@ export default function Screener({ title, menu, lower, image }: Props): JSX.Elem
 			<div className={cn('image-wrapper')}>
 				{imageState ? tag : null}
 
-				<div className={styles.plate} />
+				<div className={cn('plate')} />
 			</div>
 
 			<div className={cn('title-wrapper')}>
