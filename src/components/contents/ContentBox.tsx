@@ -48,7 +48,7 @@ export default function ContentBox({ type }: ContentBoxProps): JSX.Element
 		{
 			fetchNextPage();
 		}
-	}, [ fetchNextPage ]);
+	}, [ postsData ]);
 
 	const contents = useMemo(() => postsData?.pages.flatMap(({ list }) => list) || [], [ postsData?.pages ]);
 

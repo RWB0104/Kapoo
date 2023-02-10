@@ -9,7 +9,7 @@ import { ContentProps } from '@kapoo/commons/common';
 import ContentItem from '@kapoo/components/contents/ContentItem';
 import styles from '@kapoo/styles/components/contents/ContentList.module.scss';
 import classNames from 'classnames/bind';
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, Fragment } from 'react';
 
 interface Props
 {
@@ -26,11 +26,16 @@ interface Props
  */
 export default function ContentList({ list, onLast }: Props): JSX.Element
 {
+	const cn = classNames.bind(styles);
 	const ref = useRef<HTMLDivElement | null>(null);
 
-	const map = list.map((item, index) => <ContentItem data-index={index} item={item} key={index} />);
+	const map = useMemo(() => list.map((item, index) => (
+		<Fragment key={index}>
+			<ContentItem data-index={index} item={item} />
 
-	const cn = classNames.bind(styles);
+			{index === list.length - 1 ? <div className={cn('end')} ref={ref} /> : null}
+		</Fragment>
+	)), [ list ]);
 
 	useEffect(() =>
 	{
@@ -40,10 +45,16 @@ export default function ContentList({ list, onLast }: Props): JSX.Element
 		{
 			observer = new IntersectionObserver((ent, obs) =>
 			{
-				if (onLast)
+				ent.forEach(({ isIntersecting }) =>
 				{
-					onLast(ent, obs);
-				}
+					if (isIntersecting)
+					{
+						if (onLast)
+						{
+							onLast(ent, obs);
+						}
+					}
+				});
 			}, { threshold: 1 });
 			observer.observe(ref.current);
 		}
@@ -55,13 +66,12 @@ export default function ContentList({ list, onLast }: Props): JSX.Element
 				observer.disconnect();
 			}
 		};
-	}, [ ref.current ]);
+	}, [ ref, onLast ]);
 
 	return (
 		<div className={cn('root')}>
 			{map}
 
-			<div className={cn('end')} ref={ref} />
 		</div>
 	);
 }
