@@ -5,8 +5,8 @@
  * @since 2021.07.17 Sat 04:09:04
  */
 
+import { Adsense } from '@ctrl/react-adsense';
 import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
-import Adsense from '@kapoo/components/contents/Adsense';
 import Hits from '@kapoo/components/global/Hits';
 import Utterances from '@kapoo/components/global/Utterances';
 import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
@@ -53,7 +53,7 @@ export default function ContentLayout({ data }: Props): JSX.Element
 
 			<ContentViewer content={data.content as string} />
 
-			<Adsense />
+			<Adsense client='ca-pub-5522045122225064' format='auto' slot='8348565597' />
 
 			<ContentMeta header={data.header} />
 
