@@ -13,6 +13,12 @@ import { RecoilRoot } from 'recoil';
 
 import '@kapoo/styles/index.scss';
 
+declare global {
+	interface Window {
+		adsbygoogle: { [key: string] : unknown}[]
+	}
+}
+
 /**
  * 웹 애플리케이션 JSX 반환 함수
  *

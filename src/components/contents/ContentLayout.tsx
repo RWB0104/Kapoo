@@ -6,11 +6,11 @@
  */
 
 import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
+import Adsense from '@kapoo/components/contents/Adsense';
 import Hits from '@kapoo/components/global/Hits';
 import Utterances from '@kapoo/components/global/Utterances';
 import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
 import classNames from 'classnames/bind';
-import GoogleAdsense from 'react-adsense-google';
 
 import ContentGroup from './ContentGroup';
 import ContentMeta from './ContentMeta';
@@ -53,12 +53,7 @@ export default function ContentLayout({ data }: Props): JSX.Element
 
 			<ContentViewer content={data.content as string} />
 
-			<GoogleAdsense
-				adClient='ca-pub-5522045122225064'
-				adFormat='auto'
-				adSlot='8348565597'
-				fullWidthResponsive='true'
-			/>
+			<Adsense />
 
 			<ContentMeta header={data.header} />
 
