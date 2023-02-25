@@ -26,6 +26,8 @@ export default class KapooDocument extends Document
 					<link href='/favicon.ico' rel='shortcut icon' />
 					<link href='/favicon.ico' rel='apple-touch-icon' />
 
+					<link as='style' href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css' rel='stylesheet' />
+
 					<script src='https://www.googletagmanager.com/gtag/js?id=G-7QYWYNZ90R' async />
 					<script
 						crossOrigin='anonymous'
