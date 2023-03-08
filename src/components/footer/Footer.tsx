@@ -59,7 +59,7 @@ export default function Footer(): JSX.Element
 					<IoLogoLinkedin />
 				</a>
 
-				<a className={cn('button')} href='mailto:psj2716@gmail.com' target='_blank' title='Mail'>
+				<a className={cn('button')} href='mailto:psj2716@mensakorea.org' target='_blank' title='Mail'>
 					<SiGmail />
 				</a>
 			</div>

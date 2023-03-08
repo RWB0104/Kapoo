@@ -154,8 +154,8 @@ function makeRss(seo: SeoProps): string
 				<link>${BASE_URL}</link>
 				<copyright>Copyright ⓒ RWB 2021.05</copyright>
 				<language>ko-KR</language>
-				<managingEditor>psj2716@gmail.com</managingEditor>
-				<webMaster>psj2716@gmail.com</webMaster>
+				<managingEditor>psj2716@mensakorea.org</managingEditor>
+				<webMaster>psj2716@mensakorea.org</webMaster>
 				<generator>Kapoo's next-seo.js</generator>
 				<pubDate>${new Date('2021-05-26 23:36:57').toUTCString()}</pubDate>
 				<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

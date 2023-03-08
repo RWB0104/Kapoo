@@ -51,7 +51,7 @@ export default function NameCard(): JSX.Element
 							<IoLogoLinkedin />
 						</a>
 
-						<a href='mailto:psj2716@gmail.com' target='_blank' title='Mail'>
+						<a href='mailto:psj2716@mensakorea.org' target='_blank' title='Mail'>
 							<SiGmail />
 						</a>
 
