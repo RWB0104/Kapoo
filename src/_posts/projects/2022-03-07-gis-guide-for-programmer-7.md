@@ -187,10 +187,10 @@ MariaDB(MySQL) 플러그인의 경우, 하단의 [Vector Formats - MySQL]을 클
 
 받은 플러그인의 압축을 해제하면 `jar` 파일이 나오는데, 이 `jar` 라이브러리를 GeoServer의 라이브러리에 넣으면 된다. 아래의 경로 중 하나에 넣자.
 
-Tomcat의 설치경로를 `$CATALINA_HOME`으로 표기한다.
+Tomcat의 설치경로를 `CATALINA_HOME`으로 표기한다.
 
-* Tomcat 전역 라이브러리: `$CATALINA_HOME/lib`
-* GeoServer 라이브러리 `$CATALINA_HOME/webapps/geoserver/WEB-INF/lib`
+* Tomcat 전역 라이브러리: `CATALINA_HOME/lib`
+* GeoServer 라이브러리 `CATALINA_HOME/webapps/geoserver/WEB-INF/lib`
 
 이후 재기동을 해주면 반영된다. MySQL 플러그인을 설치하면, 이후 [저장소 생성하기] 메뉴의 저장소 목록에서 MySQL 관련 항목이 추가된 것을 확인할 수 있다.
 

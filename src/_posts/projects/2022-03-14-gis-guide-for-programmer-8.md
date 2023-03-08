@@ -27,8 +27,8 @@ OGC에서 공간정보 질의 표준을 정의한 것이 OGC 표준이다. 공�
 
 아래는 웹 환경에서의 OGC 표준 주요 항목이다.
 
-* WFS (Web Feature Service): 벡터 데이터의 속성 및 공간 정보
-* WMS (Web Map Service): 배경지도 및 시각화
+* **WFS (Web Feature Service)**: 벡터 데이터의 속성 및 공간 정보
+* **WMS (Web Map Service)**: 배경지도 및 시각화
 * WCS (Web Coverage Service): 래스터 데이터 추출
 * WPS (Web Processing Service): 공간분석 처리
 
@@ -194,10 +194,6 @@ JSON 방식을 원할 경우, `application/json`을 `outputFormat`에 지정하�
 위 응답은 세종시 건물 중 아이디가 `11645`인 데이터를 `GetFeature`로 호출한 결과이다. `outputFormat`을 `application/json`으로 지정하여 GeoJSON이 응답된다. 만약 응답 형식을 따로 지정하지 않는다면 XML 형태로 응답한다.
 
 만약 `propertyName=bdtyp_cd,bd_mgt_sn` 파라미터를 추가했다면, `properties`에서 `bdtyp_cd`, `bd_mgt_sn`만 포함될 것이다.
-
-> <b>공간정보를 가진 XML. GML</b>  
-> 공간정보를 가진 JSON을 GeoJSON이라고 부르듯이, XML 또한 GML이라는 별도의 명칭으로 부르기도 한다.  
-> GeoServer는 별도의 응답 형식을 지정하지 않으면, 대부분의 응답을 GML이나 XML로 처리하니, API 통신에서의 원활한 사용을 위해 가급적 JSON으로 지정해주자.
 
 <br />
 

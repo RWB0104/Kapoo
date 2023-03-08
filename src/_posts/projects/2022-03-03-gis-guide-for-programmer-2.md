@@ -25,11 +25,12 @@ publish: true
 
 공간을 구현해야한다는 관점에서 볼 때, 공간을 추상적인 개념으로 접근한다면 공간을 디지털화하기 매우 어려울 것이다. 때문에 우리는 공간을 다루기 이전에, 공간이 무엇으로 이루어지는지 그 개념을 명확하게 알 필요가 있다.
 
-공간은 **점(Point)**, **선(Line)**, **면(Polygon)**으로 이루어진다.
+공간은 **점(Point)**, **선(Line)**, **면(Polygon)** 세 가지로 이루어진다.
 
 * 공간에 점을 하나 찍으면 점이 생긴다.
 * 무수히 많은 점을 연달아 찍으면 선이 생긴다.
 * 무수히 많은 선을 연달아 그으면 면이 생긴다.
+* 면과 면을 조합하면 공간이 된다.
 
 ![image](https://user-images.githubusercontent.com/50317129/156584563-367bd1e7-390d-4e3d-bef1-1ff3103b1a13.png)
 
@@ -60,8 +61,8 @@ publish: true
 
 점의 경우 다행히 데이터의 표현 방식이 $(x, y)$로 명확하다. 하지만 선, 면으로 가면 얘기가 다소 복잡해진다. 우선 데이터의 양이 매우 많아진다. 데이터를 어떤 식으로 구분하는지에도 차이가 발생한다.
 
-* ${x_1}$,${y_1}$ ${x_2}$,${y_2}$ ... ${x_n}$,${y_n}$
-* ${x_1}$ ${y_1}$,${x_2}$ ${y_2}$, ... ${x_n}$ ${y_n}$
+* ${x_1}$,${y_1}$ ${x_2}$,${y_2}$ ... ${x_n}$,${y_n}$ (공백으로 구분)
+* ${x_1}$ ${y_1}$,${x_2}$ ${y_2}$, ... ${x_n}$ ${y_n}$ (쉼표로 구분)
 
 위 처럼 같은 집합을 표현함에도 개발자에 따라 다양한 표현 방법이 나오게 된다. 특정 컬럼의 양이 기하급수적으로 늘어남은 물론이고, 문자열 연산도 수행해야한다. 더 큰 문제는 데이터 보관 주체마다 양식이 통일되지 않으므로, 호환성은 희망사항일 뿐이다.
 
@@ -101,6 +102,151 @@ GeoJSON의 양식은 아래와 같다.
 JavaScript와 친숙한 JSON을 차용함으로써, HTTP 통신으로 공간정보를 쉽게 호출하는 데 쓰인다. 이러한 특성 때문에, 공간정보 데이터를 보관한다는 목적 보다는 HTTP 데이터 통신 시 주로 사용한다.
 
 물론 GeoJSON도 공간정보를 보관하는데 무리가 없으며, 인지도 있는 GIS 툴은 GeoJSON을 지원한다. 또한 SHP와 달리 데이터의 CRUD에 별다른 툴이 필요하지 않다는 장점이 있다.
+
+``` json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "buld_test.56",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14134175.8064104,
+              4517568.65467798
+            ],
+            [
+              14134176.63665842,
+              4517562.01269381
+            ],
+            [
+              14134187.59593229,
+              4517562.34479301
+            ],
+            [
+              14134175.8064104,
+              4517568.65467798
+            ]
+          ]
+        ]
+      },
+      "geometry_name": "SHAPE",
+      "properties": {
+        "name": "테스트",
+        "address": "서울시 어딘가",
+        "reg_date": null
+      }
+    }
+  ],
+  "totalFeatures": 1,
+  "numberMatched": 1,
+  "numberReturned": 1,
+  "timeStamp": "2023-03-08T14:19:49.134Z",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::3857"
+    }
+  }
+}
+```
+
+GeoJSON의 예시. `coordinates`에 공간정보 데이터가 담겨온다.
+
+<br />
+
+
+
+### GML
+
+GML(Geography Markup Language)는 XML 형식의 공간정보 데이터다. JSON이 성장하기 이전엔 복합적인 객체를 송수신하기 어려움이 많았을 것이다. 공간정보라는 복잡한 데이터를 위해 XML 형태로 이루어진 데이터 포맷이다.
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:TEST="test"
+  xmlns:wfs="http://www.opengis.net/wfs/2.0"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  numberMatched="1"
+  numberReturned="1"
+  timeStamp="2023-03-08T14:20:58.669Z"
+  xsi:schemaLocation="http://www.opengis.net/wfs/2.0 http://api.itcode.dev/geoserver/schemas/wfs/2.0/wfs.xsd test http://api.itcode.dev/geoserver/wfs?service=WFS&amp;version=2.0.0&amp;request=DescribeFeatureType&amp;typeName=TEST%3Abuld_test http://www.opengis.net/gml/3.2 http://api.itcode.dev/geoserver/schemas/gml/3.2.1/gml.xsd"
+>
+  <wfs:member>
+    <TEST:buld_test gml:id="buld_test.56">
+      <gml:name>테스트</gml:name>
+      <TEST:SHAPE>
+        <gml:Polygon srsName="http://www.opengis.net/gml/srs/epsg.xml#3857" srsDimension="2" gml:id="buld_test.56.SHAPE">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>1.41341758064104E7 4517568.65467798 1.413417663665842E7 4517562.01269381 1.413418759593229E7 4517562.34479301 1.41341758064104E7 4517568.65467798</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </TEST:SHAPE>
+      <TEST:address>서울시 어딘가</TEST:address>
+    </TEST:buld_test>
+  </wfs:member>
+</wfs:FeatureCollection>
+```
+
+XML이 으레 그렇듯이, 각 데이터의 구분이 상당히 장황하기 때문에, 가독성이 그리 좋진 못 하다.
+
+<br />
+
+
+
+### KML
+
+GML과 비슷하게 KML이라는 데이터 포맷도 존재한다. K-GML 이딴거 아니다.
+
+KML(Keyhole Markup Language)는 구글 어스에서 사용하기 위해 구글이 개량한 데이터 포맷이다.
+
+구글 어스에서 데이터를 추출할 때, KML로 제공하며, 2차원 지도는 물론, 구글 어를 활용한 3차원 데이터를 표시하는데 용이하다.
+
+``` xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml
+  xmlns="http://www.opengis.net/kml/2.2"
+  xmlns:ns2="http://www.google.com/kml/ext/2.2"
+  xmlns:ns3="http://www.w3.org/2005/Atom"
+  xmlns:ns4="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+>
+  <Document>
+    <Schema name="buld_test_1" id="buld_test_1">
+      <SimpleField type="string" name="name"/>
+      <SimpleField type="string" name="address"/>
+      <SimpleField type="string" name="reg_date"/>
+    </Schema>
+    <Folder>
+      <name>buld_test</name>
+      <Placemark id="buld_test.56">
+        <ExtendedData>
+          <SchemaData schemaUrl="#buld_test_1">
+            <SimpleData name="name">테스트</SimpleData>
+            <SimpleData name="address">서울시 어딘가</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>126.96946155330825,37.560818684658145 126.9694690115531,37.560771387037555 126.96956746038528,37.56077375191923 126.96946155330825,37.560818684658145</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
+```
+
+<br />
 
 
 

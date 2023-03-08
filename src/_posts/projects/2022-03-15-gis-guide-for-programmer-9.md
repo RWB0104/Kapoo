@@ -353,6 +353,12 @@ CQL Filter는 요청 URL에 `cql_filter` 파라미터로 값을 지정하여 사
 
 * `PropertyIsLike`
 
+``` txt
+CITY LIKE '%서울%'
+```
+
+이를 OGC로 표현하면 아래와 같다.
+
 ``` xml
 <!-- CITY 컬럼이 서울이란 단어를 포함한 데이터만을 필터링 -->
 <PropertyIsLike>
@@ -361,13 +367,15 @@ CQL Filter는 요청 URL에 `cql_filter` 파라미터로 값을 지정하여 사
 </PropertyIsLike>
 ```
 
-``` txt
-CITY LIKE '%서울%'
-```
-
 <br />
 
 * `Intersects`
+
+``` txt
+INTERSECTS(GEOM, POLYGON((x1 y1, x2 y2, x3 y3, x4 y4, x1 y1)))
+```
+
+이를 OGC로 표현하면 아래와 같다.
 
 ``` xml
 <!-- 해당 영역에 포함되거나 걸치는 데이터만을 필터링 -->
@@ -383,9 +391,7 @@ CITY LIKE '%서울%'
 </Intersects>
 ```
 
-``` txt
-INTERSECTS(GEOM, POLYGON((x1 y1, x2 y2, x3 y3, x4 y4, x1 y1)))
-```
+이 처럼 필터가 단순해지기 때문에, URL 필터링 시 활용하기 훨씬 용이하다.
 
 <br />
 <br />
@@ -405,6 +411,9 @@ INTERSECTS(GEOM, POLYGON((x1 y1, x2 y2, x3 y3, x4 y4, x1 y1)))
 OGC Filter와 CQL Filter에 대해서 알아봤다.
 
 데이터의 필터링을 구체적으로 수행할 경우, 요긴하게 사용할 것이다.
+
+* OGC: XML 형태의 필터. WFS Transaction 등, XML 기반 데이터의 필터링에 용이하다.
+* CQL: 텍스트 형태의 필터. WFS, WMS API와 같이 URL에 적용하기 편하다.
 
 <br />
 
