@@ -1,0 +1,17 @@
+.icon {
+	animation: 1s scroll ease-in-out infinite alternate;
+}
+
+.text {
+	text-shadow: 5px 5px 5px black;
+}
+
+@keyframes scroll {
+	0% {
+		top: 7px;
+	}
+
+	100% {
+		top: calc(100% - 17px);
+	}
+}
