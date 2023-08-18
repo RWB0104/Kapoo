@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,9 +23,39 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@kapoo/package": [
+        "./package.json"
+      ],
+      "@kapoo/atom/*": [
+        "./src/component/atom/*"
+      ],
+      "@kapoo/molecule/*": [
+        "./src/component/molecule/*"
+      ],
+      "@kapoo/organism/*": [
+        "./src/component/organism/*"
+      ],
+      "@kapoo/template/*": [
+        "./src/component/template/*"
+      ],
+      "@kapoo/api": [
+        "./src/script/api/index"
+      ],
+      "@kapoo/env": [
+        "./src/script/env/index"
+      ],
+      "@kapoo/store/*": [
+        "./src/script/store/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
