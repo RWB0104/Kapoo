@@ -5,9 +5,48 @@
  * @since 2023.08.19 토 05:20:59
  */
 
-import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+import { postsStore } from '@kapoo/store/markdown';
+import { MarkdownProps } from '@kapoo/util/markdown';
 
-export const QUERY_KEY = { SCREENER_VIDEO: 'screener-video' };
+import { UseInfiniteQueryOptions, UseInfiniteQueryResult, UseQueryOptions, UseQueryResult, useInfiniteQuery, useQuery } from '@tanstack/react-query';
+
+export const QUERY_KEY = { GET_POSTS: 'get-posts', SCREENER_VIDEO: 'screener-video' };
+
+export interface UseGetPostsParamProps
+{
+	/**
+	 * 키워드
+	 */
+	keyword?: string;
+
+	/**
+	 * 카테고리
+	 */
+	category?: string[];
+}
+
+export interface UseGetPostsProps
+{
+	/**
+	 * 리스트
+	 */
+	list: MarkdownProps[];
+
+	/**
+	 * 현재 페이지
+	 */
+	currentPage: number;
+
+	/**
+	 * 전체 페이지
+	 */
+	totalPage: number;
+
+	/**
+	 * 전체 데이터 갯수
+	 */
+	totalCount: number;
+}
 
 /**
  * 스크리너 비디오 반환 API 메서드
@@ -32,4 +71,26 @@ export function useScreenerVideo(options?: UseQueryOptions<string[], Response>):
 
 		throw response;
 	}, options);
+}
+
+export function useGetPosts(useGetPostsProps?: UseGetPostsParamProps, options?: UseInfiniteQueryOptions<UseGetPostsProps>): UseInfiniteQueryResult<UseGetPostsProps>
+{
+	const { markdown } = postsStore();
+
+	return useInfiniteQuery<UseGetPostsProps>([ QUERY_KEY.GET_POSTS, useGetPostsProps ], async ({ pageParam = 1 }) =>
+	{
+		const start = (pageParam - 1) * 10;
+		const end = start + 10;
+
+		return {
+			currentPage: pageParam,
+			list: markdown.slice(start, end),
+			totalCount: markdown.length,
+			totalPage: Math.ceil(markdown.length / 10)
+		};
+	}, {
+		getNextPageParam: ({ currentPage, totalPage }) => (currentPage === totalPage ? undefined : currentPage + 1),
+		getPreviousPageParam: ({ currentPage }) => (currentPage === 1 ? undefined : currentPage - 1),
+		...options
+	});
 }
