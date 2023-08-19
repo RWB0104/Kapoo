@@ -5,7 +5,7 @@
  * @since 2022.05.14 Sat 01:47:22
  */
 
-import Utterances from '@kapoo/components/global/Utterances';
+import Comment from '@kapoo/components/global/Comment';
 import styles from '@kapoo/styles/components/comments/CommentLayout.module.scss';
 import classNames from 'classnames/bind';
 
@@ -27,7 +27,7 @@ export default function CommentLayout(): JSX.Element
 				<p>작성 시 GitHub 아이디가 필요합니다.</p>
 			</div>
 
-			<Utterances flag />
+			<Comment flag />
 		</article>
 	);
 }

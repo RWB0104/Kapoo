@@ -8,7 +8,6 @@
 import { Adsense } from '@ctrl/react-adsense';
 import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
 import Hits from '@kapoo/components/global/Hits';
-import Utterances from '@kapoo/components/global/Utterances';
 import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
 import classNames from 'classnames/bind';
 
@@ -17,6 +16,7 @@ import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import ContentToc from './ContentToc';
 import ContentViewer from './ContentViewer';
+import Comment from '@kapoo/components/global/Comment';
 
 interface Props
 {
@@ -59,7 +59,7 @@ export default function ContentLayout({ data }: Props): JSX.Element
 
 			<ContentMover page={page} />
 
-			<Utterances flag={data.header.comment} />
+			<Comment flag={data.header.comment} />
 		</article>
 	);
 }

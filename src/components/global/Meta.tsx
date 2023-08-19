@@ -25,7 +25,7 @@ interface Props
  *
  * @returns {JSX.Element} JSX
  */
-export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://user-images.githubusercontent.com/50317129/167476335-17cd861c-1d56-4384-b0ae-8c3680d9de29.png', locale = 'ko_KR' }: Props): JSX.Element
+export default function Meta({ title, description = DESCRIPTION, type = 'website', url = '', image = 'https://user-images.githubusercontent.com/50317129/259803524-1354ec8d-c02f-44cc-a49c-2d5ea53452b6.png', locale = 'ko_KR' }: Props): JSX.Element
 {
 	return (
 		<Head>
