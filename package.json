@@ -1,6 +1,6 @@
 {
 	"name": "blog.itcode.dev",
-	"version": "1.5.8",
+	"version": "1.6.0",
 	"private": true,
 	"scripts": {
 		"predev": "npm run datagen && npm run seo",
