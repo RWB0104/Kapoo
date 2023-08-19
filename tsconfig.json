@@ -46,6 +46,9 @@
       ],
       "@kapoo/store/*": [
         "./src/script/store/*"
+      ],
+      "@kapoo/util/*": [
+        "./src/script/util/*"
       ]
     }
   },
