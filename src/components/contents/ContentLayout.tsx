@@ -7,6 +7,7 @@
 
 import { Adsense } from '@ctrl/react-adsense';
 import { ContentProps, ContentTypeEnum } from '@kapoo/commons/common';
+import Comment from '@kapoo/components/global/Comment';
 import Hits from '@kapoo/components/global/Hits';
 import styles from '@kapoo/styles/components/contents/ContentLayout.module.scss';
 import classNames from 'classnames/bind';
@@ -16,7 +17,6 @@ import ContentMeta from './ContentMeta';
 import ContentMover from './ContentMover';
 import ContentToc from './ContentToc';
 import ContentViewer from './ContentViewer';
-import Comment from '@kapoo/components/global/Comment';
 
 interface Props
 {
