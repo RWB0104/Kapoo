@@ -149,14 +149,27 @@ export interface MarkdownProps
 	info?: MarkdownInfoProps;
 }
 
+export interface MarkdownListProps
+{
+	/**
+	 * 메타
+	 */
+	frontmatter: Omit<FrontmatterProps, 'excerpt' | 'type' | 'tag' | 'comment' | 'publish'>;
+
+	/**
+	 * URL
+	 */
+	url: string;
+}
+
 /**
  * 마크다운 리스트 반환 메서드
  *
  * @param {MarkdownType} type: 마크다운 타입
  *
- * @returns [MarkdownProps[]] 마크다운 리스트
+ * @returns [MarkdownListProps[]] 마크다운 리스트
  */
-export function getMarkdownList(type: MarkdownType): MarkdownProps[]
+export function getMarkdownList(type: MarkdownType): MarkdownListProps[]
 {
 	const pwd = join(process.cwd(), 'src/markdown');
 
@@ -165,25 +178,18 @@ export function getMarkdownList(type: MarkdownType): MarkdownProps[]
 		.map((i) => join(pwd, type, i));
 
 	const list = files.map((i) => getMarkdownInfo(i));
-	list.forEach((item, i) =>
-	{
-		const info: MarkdownInfoProps = {
-			group: null,
-			next: i === 0 ? null : list[i - 1].frontmatter,
-			prev: i === list.length - 1 ? null : list[i + 1].frontmatter
-		};
-
-		if (item.frontmatter.group)
-		{
-			info.group = list.filter(({ frontmatter }) => frontmatter.group === item.frontmatter.group)
-				.map(({ frontmatter }) => frontmatter);
-		}
-
-		item.info = info;
-	});
 
 	return list.filter(({ frontmatter: { publish } }) => publish)
-		.sort((left, right) => (new Date(right.frontmatter.date).getTime() - new Date(left.frontmatter.date).getTime()));
+		.sort((left, right) => (new Date(right.frontmatter.date).getTime() - new Date(left.frontmatter.date).getTime()))
+		.map<MarkdownListProps>((i) => ({
+			frontmatter: {
+				category: i.frontmatter.category,
+				coverImage: i.frontmatter.coverImage,
+				date: i.frontmatter.date,
+				title: i.frontmatter.title
+			},
+			url: i.url
+		}));
 }
 
 /**

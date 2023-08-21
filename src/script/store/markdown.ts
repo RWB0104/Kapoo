@@ -5,18 +5,18 @@
  * @since 2023.08.20 일 02:39:50
  */
 
-import { MarkdownProps } from '@kapoo/util/markdown';
+import { MarkdownListProps } from '@kapoo/util/markdown';
 
 import { create } from 'zustand';
 
-export type SetMarkdownHandler = (list: MarkdownProps[]) => void;
+export type SetMarkdownHandler = (list: MarkdownListProps[]) => void;
 
 export interface MarkdownStateProps
 {
 	/**
 	 * 마크다운
 	 */
-	markdown: MarkdownProps[];
+	markdown: MarkdownListProps[];
 
 	/**
 	 * 마크다운 할당 메서드

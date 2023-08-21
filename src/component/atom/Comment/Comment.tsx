@@ -30,7 +30,7 @@ export default function Comment(): ReactNode
 			lang='ko'
 			mapping='pathname'
 			reactionsEnabled='1'
-			repo='RWB0104/RWB0104.github.io-comments'
+			repo='RWB0104/blog.itcode.dev-comments'
 			repoId='MDEwOlJlcG9zaXRvcnkzNjkxOTQ3OTE'
 			strict='0'
 			theme={mode.theme}

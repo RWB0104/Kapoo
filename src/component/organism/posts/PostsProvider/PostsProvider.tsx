@@ -8,7 +8,7 @@
 'use client';
 
 import { postsStore } from '@kapoo/store/markdown';
-import { MarkdownProps } from '@kapoo/util/markdown';
+import { MarkdownListProps } from '@kapoo/util/markdown';
 
 import { useEffect } from 'react';
 
@@ -17,7 +17,7 @@ export interface PostsProviderProps
 	/**
 	 * 게시글
 	 */
-	posts: MarkdownProps[];
+	posts: MarkdownListProps[];
 }
 
 /**
