@@ -2,7 +2,7 @@
  * 게시글 페이지 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 19:57:53
+ * @since 2023.08.19 Sat 19:57:53
  */
 
 import PostsProvider from '@kapoo/organism/posts/PostsProvider';

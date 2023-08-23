@@ -2,7 +2,7 @@
  * 방명록 스크리너 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 20:08:16
+ * @since 2023.08.19 Sat 20:08:16
  */
 
 import { APP_INFO } from '@kapoo/env';

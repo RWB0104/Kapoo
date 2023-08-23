@@ -2,7 +2,7 @@
  * 마크다운 유틸 모듈
  *
  * @author RWB
- * @since 2023.08.19 토 13:04:45
+ * @since 2023.08.19 Sat 13:04:45
  */
 
 import fs from 'fs';

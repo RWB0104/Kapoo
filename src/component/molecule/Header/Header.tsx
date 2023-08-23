@@ -2,7 +2,7 @@
  * 헤더 molecule 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 03:35:18
+ * @since 2023.08.19 Sat 03:35:18
  */
 
 import { APP_INFO } from '@kapoo/env';

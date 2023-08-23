@@ -2,7 +2,7 @@
  * 방명록 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 22:11:02
+ * @since 2023.08.19 Sat 22:11:02
  */
 
 import CommentsCommentTemplate from '@kapoo/template/comments/CommentsCommentTemplate';

@@ -2,7 +2,7 @@
  * 홈 스크리너 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 05:26:46
+ * @since 2023.08.19 Sat 05:26:46
  */
 
 import { APP_INFO } from '@kapoo/env';

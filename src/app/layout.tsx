@@ -2,7 +2,7 @@
  * 루트 레이아웃 app 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 01:40:15
+ * @since 2023.08.19 Sat 01:40:15
  */
 
 import RootTemplate from '@kapoo/template/global/RootTemplate';

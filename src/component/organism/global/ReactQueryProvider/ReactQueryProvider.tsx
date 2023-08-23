@@ -2,7 +2,7 @@
  * react-query 프로바이더 organism 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 02:18:47
+ * @since 2023.08.19 Sat 02:18:47
  */
 
 'use client';

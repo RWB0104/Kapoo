@@ -2,7 +2,7 @@
  * 프로젝트 페이지 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 20:09:24
+ * @since 2023.08.19 Sat 20:09:24
  */
 
 import ProjectsProvider from '@kapoo/organism/projects/ProjectsProvider';

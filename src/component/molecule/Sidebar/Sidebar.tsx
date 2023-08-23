@@ -2,7 +2,7 @@
  * 사이드바 molecule 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 04:53:25
+ * @since 2023.08.19 Sat 04:53:25
  */
 
 'use client';

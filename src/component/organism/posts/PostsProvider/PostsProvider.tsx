@@ -2,7 +2,7 @@
  * 게시글 프로바이더 organism 컴포넌트
  *
  * @author RWB
- * @since 2023.08.20 일 02:05:41
+ * @since 2023.08.20 Sun 02:05:41
  */
 
 'use client';

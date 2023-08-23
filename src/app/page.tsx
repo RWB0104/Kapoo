@@ -2,7 +2,7 @@
  * 홈 페이지 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 19:58:12
+ * @since 2023.08.19 Sat 19:58:12
  */
 
 import PageTemplate from '@kapoo/template/global/PageTemplate';

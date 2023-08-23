@@ -2,7 +2,7 @@
  * 환경변수 모듈
  *
  * @author RWB
- * @since 2023.08.19 토 05:03:25
+ * @since 2023.08.19 Sat 05:03:25
  */
 
 export const APP_INFO = {

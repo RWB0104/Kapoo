@@ -2,7 +2,7 @@
  * 공통 모듈
  *
  * @author RWB
- * @since 2023.08.19 토 13:09:34
+ * @since 2023.08.19 Sat 13:09:34
  */
 
 export const REGEX = {

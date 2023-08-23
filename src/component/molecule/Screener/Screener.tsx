@@ -2,7 +2,7 @@
  * 스크리너 molecule 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 05:24:14
+ * @since 2023.08.19 Sat 05:24:14
  */
 
 'use client';

@@ -2,7 +2,7 @@
  * 게시글 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.20 일 02:10:03
+ * @since 2023.08.20 Sun 02:10:03
  */
 
 'use client';

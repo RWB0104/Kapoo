@@ -2,7 +2,7 @@
  * 방명록 박스 organism 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 22:14:28
+ * @since 2023.08.19 Sat 22:14:28
  */
 
 import Comment from '@kapoo/atom/Comment';

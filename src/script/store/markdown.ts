@@ -2,7 +2,7 @@
  * 마크다운 상태관리 모듈
  *
  * @author RWB
- * @since 2023.08.20 일 02:39:50
+ * @since 2023.08.20 Sun 02:39:50
  */
 
 import { MarkdownListItemProps } from '@kapoo/util/markdown';

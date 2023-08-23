@@ -2,7 +2,7 @@
  * API 모듈
  *
  * @author RWB
- * @since 2023.08.19 토 05:20:59
+ * @since 2023.08.19 Sat 05:20:59
  */
 
 import { postsStore } from '@kapoo/store/markdown';

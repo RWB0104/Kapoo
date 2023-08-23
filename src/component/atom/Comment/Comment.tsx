@@ -2,7 +2,7 @@
  * 댓글 atom 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 22:03:07
+ * @since 2023.08.19 Sat 22:03:07
  */
 
 'use client';

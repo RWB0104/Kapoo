@@ -2,7 +2,7 @@
  * 게시글 스크리너 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.19 토 20:01:24
+ * @since 2023.08.19 Sat 20:01:24
  */
 
 import Screener from '@kapoo/molecule/Screener';

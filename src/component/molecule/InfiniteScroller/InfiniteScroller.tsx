@@ -2,7 +2,7 @@
  * 무한 스크롤러 molecule 컴포넌트
  *
  * @author RWB
- * @since 2023.08.21 월 18:55:37
+ * @since 2023.08.21 Mon 18:55:37
  */
 
 import Box, { BoxProps } from '@mui/material/Box';
