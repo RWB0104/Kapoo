@@ -2,10 +2,10 @@
  * 게시글 리스트 template 컴포넌트
  *
  * @author RWB
- * @since 2023.08.21 월 19:00:50
+ * @since 2023.08.21 Mon 19:00:50
  */
 
-import PostsBox from '@kapoo/organism/posts/PostsBox/PostsBox';
+import PostsListBox from '@kapoo/organism/posts/PostsListBox';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
@@ -19,7 +19,7 @@ export default function PostsListTemplate(): ReactNode
 {
 	return (
 		<Container data-component='PostsListTemplate'>
-			<PostsBox />
+			<PostsListBox />
 		</Container>
 	);
 }

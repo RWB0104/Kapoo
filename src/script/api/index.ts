@@ -6,7 +6,7 @@
  */
 
 import { postsStore } from '@kapoo/store/markdown';
-import { MarkdownListProps } from '@kapoo/util/markdown';
+import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import { UseInfiniteQueryOptions, UseInfiniteQueryResult, UseQueryOptions, UseQueryResult, useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
@@ -30,7 +30,7 @@ export interface UseGetPostsProps
 	/**
 	 * 리스트
 	 */
-	list: MarkdownListProps[];
+	list: MarkdownListItemProps[];
 
 	/**
 	 * 현재 페이지

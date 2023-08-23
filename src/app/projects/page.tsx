@@ -5,12 +5,11 @@
  * @since 2023.08.19 토 20:09:24
  */
 
+import ProjectsProvider from '@kapoo/organism/projects/ProjectsProvider';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
-import ProjectsScreenerTemplate from '@kapoo/template/projects/ProjectsScreenerTemplate';
+import ProjectsTemplate from '@kapoo/template/projects/ProjectsTemplate';
 import { getMarkdownList } from '@kapoo/util/markdown';
 
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
 
 /**
@@ -24,13 +23,8 @@ export default function ProjectsPage(): ReactNode
 
 	return (
 		<PageTemplate>
-			<ProjectsScreenerTemplate />
-
-			{list.map((i) => (
-				<Stack key={i.url}>
-					<Typography>{i.frontmatter.title}</Typography>
-				</Stack>
-			))}
+			<ProjectsProvider projects={list} />
+			<ProjectsTemplate />
 		</PageTemplate>
 	);
 }

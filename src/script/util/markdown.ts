@@ -149,7 +149,7 @@ export interface MarkdownProps
 	info?: MarkdownInfoProps;
 }
 
-export interface MarkdownListProps
+export interface MarkdownListItemProps
 {
 	/**
 	 * 메타
@@ -167,9 +167,9 @@ export interface MarkdownListProps
  *
  * @param {MarkdownType} type: 마크다운 타입
  *
- * @returns [MarkdownListProps[]] 마크다운 리스트
+ * @returns [MarkdownListItemProps[]] 마크다운 리스트
  */
-export function getMarkdownList(type: MarkdownType): MarkdownListProps[]
+export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 {
 	const pwd = join(process.cwd(), 'src/markdown');
 
@@ -181,7 +181,7 @@ export function getMarkdownList(type: MarkdownType): MarkdownListProps[]
 
 	return list.filter(({ frontmatter: { publish } }) => publish)
 		.sort((left, right) => (new Date(right.frontmatter.date).getTime() - new Date(left.frontmatter.date).getTime()))
-		.map<MarkdownListProps>((i) => ({
+		.map<MarkdownListItemProps>((i) => ({
 			frontmatter: {
 				category: i.frontmatter.category,
 				coverImage: i.frontmatter.coverImage,
