@@ -1,0 +1,27 @@
+.card {
+	overflow: hidden;
+
+	&::after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
+
+	&:hover {
+		.image {
+			scale: 1.15;
+		}
+	}
+}
+
+.image {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	transition: 0.3s;
+}
+
+.title {
+	backdrop-filter: blur(10px);
+}
