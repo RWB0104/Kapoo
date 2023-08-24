@@ -59,7 +59,7 @@ export default function InfiniteScroller({ fetchMargin, isLast, onFetch, childre
 			});
 		};
 
-		const io = new IntersectionObserver(handle, { rootMargin: fetchMargin, threshold: 1 });
+		const io = new IntersectionObserver(handle, { rootMargin: fetchMargin, threshold: 0 });
 
 		// DOM이 유효할 경우
 		if (ref.current)

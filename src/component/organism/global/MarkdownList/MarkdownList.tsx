@@ -8,11 +8,14 @@
 'use client';
 
 import InfiniteScroller from '@kapoo/molecule/InfiniteScroller';
+import MarkdownListItem from '@kapoo/molecule/MarkdownListItem';
 import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { Variants, motion } from 'framer-motion';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
-import { Fragment, ReactNode, useCallback, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 
 export type MarkdownListRenderer = (markdown: MarkdownListItemProps) => ReactNode;
 
@@ -22,11 +25,6 @@ export interface MarkdownListProps
 	 * 마크다운 리스트
 	 */
 	markdown: MarkdownListItemProps[];
-
-	/**
-	 * 태그 렌더러
-	 */
-	render: MarkdownListRenderer;
 }
 
 /**
@@ -36,8 +34,21 @@ export interface MarkdownListProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function MarkdownList({ markdown, render }: MarkdownListProps): ReactNode
+export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 {
+	const size = 6;
+
+	const variants: Variants = {
+		initial: {
+			opacity: 0,
+			translateY: 50
+		},
+		view: {
+			opacity: 1,
+			translateY: 0
+		}
+	};
+
 	const router = useRouter();
 	const seachParam = useSearchParams();
 	const pathname = usePathname();
@@ -91,27 +102,45 @@ export default function MarkdownList({ markdown, render }: MarkdownListProps): R
 	const piece = useMemo(() =>
 	{
 		const start = 0;
-		const end = page * 10;
+		const end = page * size;
 
 		return list.slice(start, end);
 	}, [ page, list ]);
 
 	const isLast = useMemo(() =>
 	{
-		const last = Math.ceil(list.length / 10);
+		const last = Math.ceil(list.length / size);
 
 		return page >= last;
 	}, [ page, list ]);
 
 	return (
-		<Stack data-component='PostsBox'>
-			<InfiniteScroller isLast={isLast} onFetch={handleFetch}>
-				{piece.map((i) => (
-					<Fragment key={i.url}>
-						{render(i)}
-					</Fragment>
-				))}
+		<Box data-component='MarkdownList'>
+			<InfiniteScroller fetchMargin='500px' isLast={isLast} onFetch={handleFetch}>
+				<Grid spacing={4} container>
+					{piece.map(({ frontmatter, url }) => (
+						<Grid key={url} lg={4} sm={6} xs={12} item>
+							<motion.div
+								className='fullheight'
+								initial='initial'
+								transition={{ duration: 1 }}
+								variants={variants}
+								viewport={{ amount: 0.5, once: true }}
+								whileInView='view'
+							>
+								<MarkdownListItem
+									category={frontmatter.category}
+									date={frontmatter.date}
+									excerpt={frontmatter.excerpt}
+									href={url}
+									thumb={frontmatter.coverImage}
+									title={frontmatter.title}
+								/>
+							</motion.div>
+						</Grid>
+					))}
+				</Grid>
 			</InfiniteScroller>
-		</Stack>
+		</Box>
 	);
 }

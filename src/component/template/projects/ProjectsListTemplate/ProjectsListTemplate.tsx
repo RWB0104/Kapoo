@@ -5,7 +5,7 @@
  * @since 2023.08.23 Wed 18:49:21
  */
 
-import ProjectsListBox from '@kapoo/organism/projects/ProjectsListBox';
+import MarkdownBox from '@kapoo/organism/global/MarkdownBox';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
@@ -19,7 +19,7 @@ export default function ProjectsListTemplate(): ReactNode
 {
 	return (
 		<Container data-component='ProjectsListTemplate'>
-			<ProjectsListBox />
+			<MarkdownBox type='projects' />
 		</Container>
 	);
 }

@@ -5,7 +5,7 @@
  * @since 2023.08.21 Mon 19:00:50
  */
 
-import PostsListBox from '@kapoo/organism/posts/PostsListBox';
+import MarkdownBox from '@kapoo/organism/global/MarkdownBox';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
@@ -19,7 +19,7 @@ export default function PostsListTemplate(): ReactNode
 {
 	return (
 		<Container data-component='PostsListTemplate'>
-			<PostsListBox />
+			<MarkdownBox type='posts' />
 		</Container>
 	);
 }

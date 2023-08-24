@@ -19,7 +19,7 @@ export default function PostsScreenerTemplate(): ReactNode
 {
 	return (
 		<Screener>
-			<ScreenerBox color='dodgerblue' name='게시글' text='🦙 뭔가 끄적끄적 쓰는 중...' />
+			<ScreenerBox color='dodgerblue' name='게시글' text='✒️ 뭔가 끄적끄적 쓰는 중...' />
 		</Screener>
 	);
 }

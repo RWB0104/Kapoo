@@ -154,7 +154,7 @@ export interface MarkdownListItemProps
 	/**
 	 * 메타
 	 */
-	frontmatter: Omit<FrontmatterProps, 'excerpt' | 'type' | 'tag' | 'comment' | 'publish'>;
+	frontmatter: Omit<FrontmatterProps, 'type' | 'tag' | 'comment' | 'publish'>;
 
 	/**
 	 * URL
@@ -186,9 +186,10 @@ export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 				category: i.frontmatter.category,
 				coverImage: i.frontmatter.coverImage,
 				date: i.frontmatter.date,
+				excerpt: i.frontmatter.excerpt,
 				title: i.frontmatter.title
 			},
-			url: i.url
+			url: `/${type}${i.url}`
 		}));
 }
 
