@@ -9,6 +9,7 @@
 
 import MarkdownCategory from '@kapoo/organism/global/MarkdownCategory';
 import MarkdownList from '@kapoo/organism/global/MarkdownList';
+import MarkdownSearch from '@kapoo/organism/global/MarkdownSearch';
 import { postsStore, projectsStore } from '@kapoo/store/markdown';
 import { MarkdownType } from '@kapoo/util/markdown';
 
@@ -42,6 +43,7 @@ export default function MarkdownBox({ type }: MarkdownBoxProps): ReactNode
 
 	return (
 		<Stack data-component='MarkdownBox' spacing={10}>
+			<MarkdownSearch />
 			<MarkdownCategory markdown={markdown[type]} />
 			<MarkdownList markdown={markdown[type]} />
 		</Stack>
