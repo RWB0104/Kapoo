@@ -5,6 +5,7 @@
  * @since 2023.08.19 Sat 03:45:53
  */
 
+import Footer from '@kapoo/molecule/Footer';
 import Navigator from '@kapoo/organism/global/Navigator';
 import ThemeSwitch from '@kapoo/organism/global/ThemeSwitch';
 
@@ -32,9 +33,7 @@ export default function PageTemplate({ children }: PageTemplateProps): ReactNode
 
 			<ThemeSwitch />
 
-			<Box>
-				Footer 올거임
-			</Box>
+			<Footer />
 		</Box>
 	);
 }

@@ -11,10 +11,12 @@ import MarkdownCategoryItem from '@kapoo/molecule/MarkdownCategoryItem';
 import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import LocalOffer from '@mui/icons-material/LocalOffer';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ReactNode, useCallback, useMemo } from 'react';
@@ -150,10 +152,13 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 	return (
 		<Accordion>
 			<AccordionSummary expandIcon={<ExpandMore />}>
-				<Typography fontWeight='bold' variant='h5'>카테고리</Typography>
+				<Stack alignItems='center' direction='row' spacing={2}>
+					<LocalOffer color='primary' />
+					<Typography fontWeight='bold' variant='h5'>카테고리</Typography>
+				</Stack>
 			</AccordionSummary>
 
-			<AccordionDetails sx={{ padding: 0.5 }}>
+			<AccordionDetails>
 				<Grid spacing={0.5} container>
 					{categories.map(({ name, count, selected }) => (
 						<Grid key={name} xl={2} item>

@@ -68,6 +68,35 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 		return `${year.text}-${month.text}-${day.text} ${hour.text}:${minute.text}:${second.text}`;
 	}, [ date ]);
 
+	const dateText = useMemo(() =>
+	{
+		const epoch = new Date(date).getTime();
+		const now = new Date().getTime();
+
+		const day = 86400000;
+		const diff = now - epoch;
+
+		// 하루가 지나지 않았을 경우
+		if (diff < day)
+		{
+			return '방금 전';
+		}
+
+		// 2주 이내일 경우
+		if (diff < day * 15)
+		{
+			return `${Math.round(diff / day)}일 전`;
+		}
+
+		// 1년 이내일 경우
+		if (diff < day * 365)
+		{
+			return `${Math.round(diff / (day * 30))}달 전`;
+		}
+
+		return `${Math.round(diff / (day * 365))}년 전`;
+	}, [ date ]);
+
 	return (
 		<Link className={cn('link', { dark: theme === 'dark' })} data-component='MarkdownListItem' {...props}>
 			<Paper className={cn('item')} variant='outlined'>
@@ -96,8 +125,10 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 								<Typography className={cn('excerpt')} color='GrayText' textAlign='start' variant='caption'>{excerpt}</Typography>
 							</Stack>
 
-							<Stack>
+							<Stack alignItems='center' direction='row' justifyContent='space-between' width='100%'>
 								<Typography color='GrayText' textAlign='start' variant='caption'>{dateTime}</Typography>
+
+								<Typography color='GrayText' textAlign='start' variant='caption'>{dateText}</Typography>
 							</Stack>
 						</Stack>
 					</Stack>

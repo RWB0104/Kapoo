@@ -62,6 +62,7 @@ export default function MarkdownSearch(): ReactNode
 			defaultValue={state}
 			label='키워드'
 			ref={ref}
+			size='small'
 			variant='outlined'
 			InputProps={{
 				startAdornment: (

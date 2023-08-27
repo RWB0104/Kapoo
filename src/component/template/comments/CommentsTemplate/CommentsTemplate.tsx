@@ -19,7 +19,7 @@ import { ReactNode } from 'react';
 export default function CommentsTemplate(): ReactNode
 {
 	return (
-		<Stack data-component='CommentsTemplate' spacing={10}>
+		<Stack alignItems='center' data-component='CommentsTemplate' spacing={10}>
 			<CommentsScreenerTemplate />
 			<CommentsCommentTemplate />
 		</Stack>

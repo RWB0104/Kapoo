@@ -43,8 +43,11 @@ export default function MarkdownBox({ type }: MarkdownBoxProps): ReactNode
 
 	return (
 		<Stack data-component='MarkdownBox' spacing={10}>
-			<MarkdownSearch />
-			<MarkdownCategory markdown={markdown[type]} />
+			<Stack spacing={4}>
+				<MarkdownSearch />
+				<MarkdownCategory markdown={markdown[type]} />
+			</Stack>
+
 			<MarkdownList markdown={markdown[type]} />
 		</Stack>
 	);

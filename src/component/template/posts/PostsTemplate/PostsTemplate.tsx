@@ -21,7 +21,7 @@ import { ReactNode } from 'react';
 export default function PostsTemplate(): ReactNode
 {
 	return (
-		<Stack data-component='PostsTemplate'>
+		<Stack alignItems='center' data-component='PostsTemplate' spacing={10} width='100%'>
 			<PostsScreenerTemplate />
 			<PostsListTemplate />
 		</Stack>

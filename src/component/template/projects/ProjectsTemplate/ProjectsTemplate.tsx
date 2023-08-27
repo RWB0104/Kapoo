@@ -19,7 +19,7 @@ import { ReactNode } from 'react';
 export default function ProjectsTemplate(): ReactNode
 {
 	return (
-		<Stack data-component='ProjectsTemplate'>
+		<Stack alignItems='center' data-component='ProjectsTemplate' spacing={10}>
 			<ProjectsScreenerTemplate />
 			<ProjectsListTemplate />
 		</Stack>
