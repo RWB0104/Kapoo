@@ -61,6 +61,7 @@ export default function MarkdownSearch(): ReactNode
 			data-component='MarkdownSearch'
 			defaultValue={state}
 			label='키워드'
+			placeholder='⌨️ 원하는 키워드를 입력해보세요'
 			ref={ref}
 			size='small'
 			variant='outlined'

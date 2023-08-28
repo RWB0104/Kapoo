@@ -81,13 +81,13 @@ export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 		// 키워드, 카테고리가 모두 입력된 경우
 		if (keyword && keyword.length > 0 && category.length > 0)
 		{
-			return frontmatter.title.includes(keyword) && category.includes(frontmatter.category);
+			return (frontmatter.title.includes(keyword) || frontmatter.excerpt.includes(keyword)) && category.includes(frontmatter.category);
 		}
 
 		// 키워드만 입력된 경우
 		if (keyword && keyword.length > 0)
 		{
-			return frontmatter.title.includes(keyword);
+			return frontmatter.title.includes(keyword) || frontmatter.excerpt.includes(keyword);
 		}
 
 		// 카테고리만 입력된 경우

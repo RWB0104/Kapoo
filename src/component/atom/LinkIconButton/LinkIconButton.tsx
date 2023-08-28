@@ -12,7 +12,7 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import styles from './LinkIconButton.module.scss';
 
@@ -42,9 +42,11 @@ export default function LinkIconButton({ tooltip, link, ...props }: LinkIconButt
 {
 	const { palette: { mode } } = useTheme();
 
+	const isInternal = useMemo(() => link.startsWith('/'), [ link ]);
+
 	return (
 		<Tooltip title={tooltip} arrow>
-			<Link data-component='LinkIconButton' href={link}>
+			<Link data-component='LinkIconButton' href={link} target={isInternal ? undefined : '_blank'}>
 				<IconButton className={cn('icon', mode)} {...props} />
 			</Link>
 		</Tooltip>

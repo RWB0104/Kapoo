@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import { motion } from 'framer-motion';
-import { CSSProperties, PropsWithChildren, ReactNode, useCallback, useMemo, useState } from 'react';
+import { CSSProperties, PropsWithChildren, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import styles from './Screener.module.scss';
 
@@ -30,6 +30,11 @@ interface Props
 	 * 높이
 	 */
 	height?: CSSProperties['height'];
+
+	/**
+	 * 커버
+	 */
+	cover?: string;
 }
 
 export type ScreenerProps = PropsWithChildren<Props>
@@ -41,7 +46,7 @@ export type ScreenerProps = PropsWithChildren<Props>
  *
  * @returns {ReactNode} JSX
  */
-export default function Screener({ width = '100%', height = '100vh', children }: ScreenerProps): ReactNode
+export default function Screener({ width = '100%', height = '100vh', cover, children }: ScreenerProps): ReactNode
 {
 	const [ isReadyState, setReadyState ] = useState(false);
 
@@ -53,6 +58,15 @@ export default function Screener({ width = '100%', height = '100vh', children }:
 	{
 		setReadyState(true);
 	}, [ setReadyState ]);
+
+	useEffect(() =>
+	{
+		// 커버가 유효할 경우
+		if (cover)
+		{
+			setReadyState(true);
+		}
+	}, [ cover ]);
 
 	return (
 		<Box
@@ -85,17 +99,28 @@ export default function Screener({ width = '100%', height = '100vh', children }:
 			</motion.div>
 
 			<Box className={cn('wrap')}>
-				<video
-					className={cn('video')}
-					controls={false}
-					height='100%'
-					src={getList}
-					width='100%'
-					autoPlay
-					loop
-					muted
-					onCanPlay={handleCanPlay}
-				/>
+				{cover ? (
+					<img
+						alt={cover}
+						className={cn('cover')}
+						height='100%'
+						src={cover}
+						width='100%'
+					/>
+				) : (
+					<video
+						className={cn('cover')}
+						controls={false}
+						height='100%'
+						src={getList}
+						width='100%'
+						autoPlay
+						loop
+						muted
+						onCanPlay={handleCanPlay}
+					/>
+				)}
+
 			</Box>
 		</Box>
 	);

@@ -69,7 +69,7 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 			// 키워드가 있을 경우
 			if (keyword && keyword.length > 0)
 			{
-				return frontmatter.title === keyword;
+				return frontmatter.title.includes(keyword) || frontmatter.excerpt.includes(keyword);
 			}
 
 			return true;
@@ -102,6 +102,8 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 			name: '전체',
 			selected: false
 		}]), [ markdown, keyword, category ]);
+
+	const isDimmed = useCallback((name: string) => category.length > 0 && !category.includes(name), [ category ]);
 
 	const handleClick = useCallback((name: string) =>
 	{
@@ -165,6 +167,7 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 							<MarkdownCategoryItem
 								category={name}
 								count={count}
+								dimmed={isDimmed(name)}
 								selected={selected}
 								onClick={(): void => handleClick(name)}
 							/>

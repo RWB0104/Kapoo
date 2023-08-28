@@ -20,6 +20,11 @@ const cn = classNames.bind(styles);
 export interface ScreenerBoxProps
 {
 	/**
+	 * 타이틀
+	 */
+	title?: string;
+
+	/**
 	 * 이름
 	 */
 	name: string;
@@ -27,7 +32,7 @@ export interface ScreenerBoxProps
 	/**
 	 * 텍스트
 	 */
-	text: string;
+	text?: string;
 
 	/**
 	 * 색상
@@ -42,7 +47,7 @@ export interface ScreenerBoxProps
  *
  * @returns {ReactNode} JSX
  */
-export default function ScreenerBox({ name, text, color = 'white' }: ScreenerBoxProps): ReactNode
+export default function ScreenerBox({ title, name, text, color = 'white' }: ScreenerBoxProps): ReactNode
 {
 	return (
 		<Stack
@@ -58,9 +63,9 @@ export default function ScreenerBox({ name, text, color = 'white' }: ScreenerBox
 				<Box bgcolor={color} boxShadow='5px 5px 5px black' width={5} />
 
 				<Stack>
-					<Typography className={cn('text')} color='white' fontWeight='bold'>{APP_INFO.title}</Typography>
-					<Typography className={cn('text')} color={color}>{name}</Typography>
-					<Typography className={cn('text')} color='white'>{text}</Typography>
+					<Typography className={cn('text')} color='white' fontWeight='bold' variant='h4'>{title || APP_INFO.title}</Typography>
+					<Typography className={cn('text')} color={color} variant='h6'>{name}</Typography>
+					{text ? <Typography className={cn('text')} color='white' variant='h6'>{text}</Typography> : null}
 				</Stack>
 			</Stack>
 

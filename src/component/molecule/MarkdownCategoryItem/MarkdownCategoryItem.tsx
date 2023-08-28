@@ -32,6 +32,11 @@ export interface MarkdownCategoryItemProps extends ButtonBaseProps
 	 * 선택 여부
 	 */
 	selected?: boolean;
+
+	/**
+	 * 흐린 효과 여부
+	 */
+	dimmed?: boolean;
 }
 
 /**
@@ -41,18 +46,20 @@ export interface MarkdownCategoryItemProps extends ButtonBaseProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function MarkdownCategoryItem({ category, count, selected, ...props }: MarkdownCategoryItemProps): ReactNode
+export default function MarkdownCategoryItem({ category, count, selected, dimmed, ...props }: MarkdownCategoryItemProps): ReactNode
 {
 	return (
 		<ButtonBase className='fullwidth' data-component='MarkdownCategoryItem' data-selected={selected} {...props}>
 			<Box className={cn('card')} position='relative' width='100%'>
-				<img
-					alt={category}
-					className={cn('image')}
-					height='100%'
-					src={`https://datastore.itcode.dev/blog/category/${encodeURIComponent(category)}.png`}
-					width='100%'
-				/>
+				<Box className={cn('wrap')}>
+					<img
+						alt={category}
+						className={cn('image', { dimmed })}
+						height='100%'
+						src={`https://datastore.itcode.dev/blog/category/${encodeURIComponent(category)}.png`}
+						width='100%'
+					/>
+				</Box>
 
 				<Stack
 					alignItems='center'

@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 	authors: [{ name: 'RWB', url: 'https://github.com/RWB0104' }],
 	description: '🖥️ 무언가 뚝딱뚝딱 하는 중...',
 	icons: [ '/favicon.ico', { rel: 'shortcut icon', url: '/favicon.ico' }, { rel: 'apple-touch-icon', url: '/favicon.ico' }],
+	metadataBase: new URL('https://blog.itcode.dev'),
 	openGraph: {
 		description: '🖥️ 무언가 뚝딱뚝딱 하는 중...',
 		images: '/thumb.png',
