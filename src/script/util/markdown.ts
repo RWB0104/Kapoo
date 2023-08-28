@@ -9,10 +9,12 @@ import fs from 'fs';
 import { join } from 'path';
 
 import matter from 'gray-matter';
+import { Marked } from 'marked';
 
 import { REGEX } from './common';
 
 export type MarkdownType = 'posts' | 'projects';
+export type FrontmatterForListProps = Omit<FrontmatterProps, 'type' | 'tag' | 'comment' | 'publish' | 'info'>;
 
 export interface ConvertProps
 {
@@ -98,22 +100,30 @@ export interface FrontmatterProps
 	publish: boolean;
 }
 
+export interface MarkdownListItemProps extends Pick<MarkdownProps, 'names' | 'url'>
+{
+	/**
+	 * 메타
+	 */
+	frontmatter: FrontmatterForListProps;
+}
+
 export interface MarkdownInfoProps
 {
 	/**
 	 * 이전 페이지
 	 */
-	prev: FrontmatterProps | null;
+	prev: MarkdownListItemProps | null;
 
 	/**
 	 * 다음 페이지
 	 */
-	next: FrontmatterProps | null;
+	next: MarkdownListItemProps | null;
 
 	/**
 	 * 그룹 리스트
 	 */
-	group: FrontmatterProps[] | null;
+	group: MarkdownListItemProps[] | null;
 }
 
 export interface MarkdownProps
@@ -126,7 +136,7 @@ export interface MarkdownProps
 	/**
 	 * 파일명
 	 */
-	name: string;
+	names: string[];
 
 	/**
 	 * 내용
@@ -149,18 +159,7 @@ export interface MarkdownProps
 	info?: MarkdownInfoProps;
 }
 
-export interface MarkdownListItemProps
-{
-	/**
-	 * 메타
-	 */
-	frontmatter: Omit<FrontmatterProps, 'type' | 'tag' | 'comment' | 'publish'>;
-
-	/**
-	 * URL
-	 */
-	url: string;
-}
+const MARKDOWN_DIR = join(process.cwd(), 'src/markdown');
 
 /**
  * 마크다운 리스트 반환 메서드
@@ -171,39 +170,39 @@ export interface MarkdownListItemProps
  */
 export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 {
-	const pwd = join(process.cwd(), 'src/markdown');
-
-	const files = fs.readdirSync(join(pwd, type))
+	const files = fs.readdirSync(join(MARKDOWN_DIR, type))
 		.filter((item) => REGEX.markdown.test(item))
-		.map((i) => join(pwd, type, i));
+		.map((i) => join(MARKDOWN_DIR, type, i));
 
-	const list = files.map((i) => getMarkdownInfo(i));
+	const list = files.map((i) => getMarkdownForList(i));
 
-	return list.filter(({ frontmatter: { publish } }) => publish)
+	return list
+		.filter(({ frontmatter: { publish } }) => publish)
 		.sort((left, right) => (new Date(right.frontmatter.date).getTime() - new Date(left.frontmatter.date).getTime()))
-		.map<MarkdownListItemProps>((i) => ({
+		.map<MarkdownListItemProps>(({ frontmatter, url, names }) => ({
 			frontmatter: {
-				category: i.frontmatter.category,
-				coverImage: i.frontmatter.coverImage,
-				date: i.frontmatter.date,
-				excerpt: i.frontmatter.excerpt,
-				title: i.frontmatter.title
+				category: frontmatter.category,
+				coverImage: frontmatter.coverImage,
+				date: frontmatter.date,
+				excerpt: frontmatter.excerpt,
+				title: frontmatter.title
 			},
-			url: `/${type}${i.url}`
+			names,
+			url
 		}));
 }
 
 /**
- * 마크다운 정보 반환 메서드
+ * 리스트용 마크다운 반환 메서드
  *
- * @param {string} name: 파일명
+ * @param {string} fullpath: 파일 경로
  *
- * @returns {MarkdownProps} 마크다운 정보
+ * @returns {MarkdownProps} 리스트용 마크다운
  */
-export function getMarkdownInfo(name: string): MarkdownProps
+export function getMarkdownForList(fullpath: string): MarkdownProps
 {
-	const file = fs.readFileSync(name, 'utf-8');
-	const urls = REGEX.markdownName.exec(name);
+	const file = fs.readFileSync(fullpath, 'utf-8');
+	const urls = REGEX.markdownName.exec(fullpath);
 
 	// 정규식에 맞지 않는 경우
 	if (!urls)
@@ -211,15 +210,60 @@ export function getMarkdownInfo(name: string): MarkdownProps
 		throw Error('올바르지 않은 파일');
 	}
 
-	const { data } = matter(file);
+	const { data, content } = matter(file);
+	const frontmatter = data as FrontmatterProps;
 
-	const header = data as FrontmatterProps;
+	const url = `/${frontmatter.type}/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`;
 
 	const result: MarkdownProps = {
-		frontmatter: header,
-		name,
-		url: `/${urls[1]}/${urls[2]}/${urls[3]}/${urls[4]}`
+		content,
+		frontmatter,
+		names: urls.slice(1, 5),
+		url
 	};
 
 	return result;
+}
+
+export function getMarkdownInfo(type: MarkdownType, name: string): MarkdownInfoProps
+{
+	const list = getMarkdownList(type);
+	const markdown = list.find((i) => i.names.join('-') === name);
+
+	if (!markdown)
+	{
+		throw Error('올바르지 않은 마크다운');
+	}
+
+	const currentIndex = list.findIndex(({ url }) => url === markdown.url);
+
+	const groupList = list.filter(({ frontmatter }) => frontmatter.group && frontmatter.group === markdown.frontmatter.group);
+
+	const group = groupList.length > 0 ? groupList : null;
+	const prev = currentIndex === 0 ? null : list[currentIndex - 1];
+	const next = currentIndex === list.length - 1 ? null : list[currentIndex + 1];
+
+	return {
+		group,
+		next,
+		prev
+	};
+}
+
+export function getMarkdown(type: MarkdownType, name: string): MarkdownProps
+{
+	const fullpath = join(MARKDOWN_DIR, type, `${name}.md`);
+
+	const result = getMarkdownForList(fullpath);
+	result.info = getMarkdownInfo(type, name);
+	result.content = getMarkdownContent(result.content || '');
+
+	return result;
+}
+
+export function getMarkdownContent(content: string): string
+{
+	const marked = new Marked();
+
+	return String(marked.parse(content));
 }
