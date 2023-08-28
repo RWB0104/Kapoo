@@ -7,9 +7,9 @@
 
 'use client';
 
-import MarkdownCategory from '@kapoo/organism/global/MarkdownCategory';
-import MarkdownList from '@kapoo/organism/global/MarkdownList';
-import MarkdownSearch from '@kapoo/organism/global/MarkdownSearch';
+import MarkdownCategory from '@kapoo/organism/markdown/MarkdownCategory';
+import MarkdownList from '@kapoo/organism/markdown/MarkdownList';
+import MarkdownSearch from '@kapoo/organism/markdown/MarkdownSearch';
 import { postsStore, projectsStore } from '@kapoo/store/markdown';
 import { MarkdownType } from '@kapoo/util/markdown';
 
