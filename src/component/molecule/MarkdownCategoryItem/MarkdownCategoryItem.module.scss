@@ -14,12 +14,18 @@
 	}
 }
 
-.image {
+.wrap {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+}
 
+.image {
 	transition: 0.3s;
+
+	&.dimmed:not(:hover) {
+		filter: blur(5px) grayscale(100%);
+	}
 }
 
 .title {
