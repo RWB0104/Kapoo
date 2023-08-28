@@ -5,7 +5,7 @@
  * @since 2023.08.21 Mon 19:00:50
  */
 
-import MarkdownBox from '@kapoo/organism/global/MarkdownBox';
+import MarkdownBox from '@kapoo/organism/markdown/MarkdownBox';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
