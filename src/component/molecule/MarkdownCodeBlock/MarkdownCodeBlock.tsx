@@ -5,14 +5,18 @@
  * @since 2023.08.30 Wed 02:12:03
  */
 
+import { themeStore } from '@kapoo/store/theme';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { MouseEventHandler, ReactNode, useCallback, useMemo } from 'react';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
+import { Prism } from 'react-syntax-highlighter';
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-export interface MarkdownCodeBlockProps extends CodeProps
+export interface MarkdownCodeBlockProps extends Omit<CodeProps, 'style'>
 {
 	/**
 	 * 언어명
@@ -29,6 +33,10 @@ export interface MarkdownCodeBlockProps extends CodeProps
  */
 export default function MarkdownCodeBlock({ languageName, children, ...props }: MarkdownCodeBlockProps): ReactNode
 {
+	const { theme } = themeStore();
+
+	const style = useMemo(() => (theme === 'light' ? oneLight : oneDark), [ theme ]);
+
 	const code = useMemo(() => String(children).replace(/\n$/, ''), [ children ]);
 
 	const handleCopyClick: MouseEventHandler<HTMLButtonElement> = useCallback(() =>
@@ -71,9 +79,15 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 					복사
 				</Button>
 
-				<Box component='code' padding={2} {...props}>
+				<Prism
+					language={languageName}
+					style={style}
+					showLineNumbers
+					useInlineStyles
+					{...props}
+				>
 					{code}
-				</Box>
+				</Prism>
 			</Stack>
 		</Box>
 	);
