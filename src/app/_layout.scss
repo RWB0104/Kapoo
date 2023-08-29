@@ -27,4 +27,8 @@ a {
 pre, code {
 	user-select: text;
 	font-family: Hack !important;
+
+	* {
+		user-select: text;
+	}
 }
