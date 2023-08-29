@@ -9,7 +9,6 @@ import fs from 'fs';
 import { join } from 'path';
 
 import matter from 'gray-matter';
-import { Marked } from 'marked';
 
 import { REGEX } from './common';
 
@@ -225,10 +224,18 @@ export function getMarkdownForList(fullpath: string): MarkdownProps
 	return result;
 }
 
-export function getMarkdownInfo(type: MarkdownType, name: string): MarkdownInfoProps
+/**
+ * 마크다운 정보 반환 메서드
+ *
+ * @param {MarkdownType} type: 마크다운 타입
+ * @param {string} filename: 마크다운 파일명
+ *
+ * @returns {MarkdownInfoProps} 마크다운 정보
+ */
+export function getMarkdownInfo(type: MarkdownType, filename: string): MarkdownInfoProps
 {
 	const list = getMarkdownList(type);
-	const markdown = list.find((i) => i.names.join('-') === name);
+	const markdown = list.find((i) => i.names.join('-') === filename);
 
 	if (!markdown)
 	{
@@ -250,20 +257,20 @@ export function getMarkdownInfo(type: MarkdownType, name: string): MarkdownInfoP
 	};
 }
 
-export function getMarkdown(type: MarkdownType, name: string): MarkdownProps
+/**
+ * 마크다운 반환 메서드
+ *
+ * @param {MarkdownType} type: 마크다운 타입
+ * @param {string} filename: 마크다운 파일명
+ *
+ * @returns {MarkdownProps} 마크다운
+ */
+export function getMarkdown(type: MarkdownType, filename: string): MarkdownProps
 {
-	const fullpath = join(MARKDOWN_DIR, type, `${name}.md`);
+	const fullpath = join(MARKDOWN_DIR, type, `${filename}.md`);
 
 	const result = getMarkdownForList(fullpath);
-	result.info = getMarkdownInfo(type, name);
-	result.content = getMarkdownContent(result.content || '');
+	result.info = getMarkdownInfo(type, filename);
 
 	return result;
-}
-
-export function getMarkdownContent(content: string): string
-{
-	const marked = new Marked();
-
-	return String(marked.parse(content));
 }
