@@ -31,8 +31,10 @@
     "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-katex": "^6.0.3",
+    "rehype-raw": "6.1.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
+    "supports-color": "8",
     "typescript": "5.1.6",
     "zustand": "^4.4.1"
   },
@@ -40,8 +42,6 @@
   "devDependencies": {
     "@itcode-dev/eslint-config": "^1.1.0",
     "@tanstack/react-query-devtools": "^4.32.6",
-    "@types/katex": "^0.16.2",
-    "@types/prismjs": "^1.26.0",
     "@types/react-syntax-highlighter": "^15.5.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
