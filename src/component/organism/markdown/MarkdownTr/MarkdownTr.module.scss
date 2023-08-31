@@ -1,0 +1,27 @@
+.tr {
+	border-bottom: 1px solid;
+	border-color: gainsboro;
+
+	&.header {
+		border-bottom: 4px double;
+		border-color: gainsboro;
+
+		background-color: #EFEFEF;
+
+		&.dark {
+			background-color: #222222;
+		}
+	}
+
+	&.dark {
+		border-color: #444444;
+	}
+
+	&:nth-child(2n) {
+		background-color: #F5F5F5;
+
+		&.dark {
+			background-color: #1F1F1F;
+		}
+	}
+}
