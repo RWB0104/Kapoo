@@ -27,41 +27,43 @@ export type MarkdownHeadingProps = HeadingProps;
  */
 export default function MarkdownHeading({ level, className, children, ...props }: MarkdownHeadingProps): ReactNode
 {
+	const href = useMemo(() => String(children).replaceAll(' ', '-'), [ children ]);
+
 	const tag = useMemo(() =>
 	{
 		switch (level)
 		{
 			case 1: return (
-				<h1 {...props}>
+				<h1 className={cn('text', className)} {...props}>
 					{children}
 				</h1>
 			);
 
 			case 2: return (
-				<h2 {...props}>
+				<h2 className={cn('text', className)} {...props}>
 					{children}
 				</h2>
 			);
 
 			case 3: return (
-				<h3 {...props}>
+				<h3 className={cn('text', className)} {...props}>
 					{children}
 				</h3>
 			);
 			case 4: return (
-				<h4 {...props}>
+				<h4 className={cn('text', className)} {...props}>
 					{children}
 				</h4>
 			);
 
 			case 5: return (
-				<h5 {...props}>
+				<h5 className={cn('text', className)} {...props}>
 					{children}
 				</h5>
 			);
 
 			default: return (
-				<h6 {...props}>
+				<h6 className={cn('text', className)} {...props}>
 					{children}
 				</h6>
 			);
@@ -70,10 +72,10 @@ export default function MarkdownHeading({ level, className, children, ...props }
 
 	return (
 		<Link
-			className={cn('heading', className)}
+			className={cn('heading')}
 			data-component='MarkdownHeading'
-			href={`#${String(children)}`}
-			id={`${String(children)}`}
+			href={`#${href}`}
+			id={href}
 		>
 			{tag}
 		</Link>

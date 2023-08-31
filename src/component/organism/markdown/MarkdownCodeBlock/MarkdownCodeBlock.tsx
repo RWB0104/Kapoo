@@ -5,6 +5,7 @@
  * @since 2023.08.30 Wed 02:12:03
  */
 
+import { ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
 import { themeStore } from '@kapoo/store/theme';
 import { toastState } from '@kapoo/store/toast';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
@@ -124,28 +125,14 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 					borderColor={borderColor}
 					direction='row'
 					justifyContent='space-between'
-					padding='10px 20px'
+					padding='5px 20px'
 				>
 					<Stack alignItems='center' direction='row' spacing={1}>
 						<Code />
-						<Typography fontFamily='Hack'>{languageName.toUpperCase()}</Typography>
+						<Typography className='unselectable' fontFamily={ubuntuMono.style.fontFamily}>{languageName.toUpperCase()}</Typography>
 					</Stack>
 
 					<Stack alignItems='center' direction='row' spacing={1.5}>
-						<Tooltip title='Copy to Clipboard!' arrow>
-							<Button
-								className={cn('button')}
-								color={aniamteState ? 'success' : undefined}
-								size='small'
-								variant='outlined'
-								onClick={handleCopyClick}
-							>
-								<AnimatePresence>
-									{aniamteState ? getIcon(Check, 'Check') : getIcon(ContentCopy, 'ContentCopy')}
-								</AnimatePresence>
-							</Button>
-						</Tooltip>
-
 						<Box
 							bgcolor='springgreen'
 							borderRadius='50%'
@@ -173,7 +160,22 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 				</Stack>
 
 				<Box className={cn('markdown')} position='relative'>
+					<Tooltip title='Copy to Clipboard!' arrow>
+						<Button
+							className={cn('button')}
+							color={aniamteState ? 'success' : undefined}
+							size='small'
+							variant='outlined'
+							onClick={handleCopyClick}
+						>
+							<AnimatePresence>
+								{aniamteState ? getIcon(Check, 'Check') : getIcon(ContentCopy, 'ContentCopy')}
+							</AnimatePresence>
+						</Button>
+					</Tooltip>
+
 					<Prism
+						customStyle={{ fontFamily: ubuntuMono.style.fontFamily }}
 						language={languageName}
 						style={style}
 						showLineNumbers

@@ -148,11 +148,6 @@ export interface MarkdownProps
 	url: string;
 
 	/**
-	 * TOC
-	 */
-	toc?: string;
-
-	/**
 	 * 정보
 	 */
 	info?: MarkdownInfoProps;
@@ -184,6 +179,7 @@ export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 				coverImage: frontmatter.coverImage,
 				date: frontmatter.date,
 				excerpt: frontmatter.excerpt,
+				group: frontmatter.group,
 				title: frontmatter.title
 			},
 			names,

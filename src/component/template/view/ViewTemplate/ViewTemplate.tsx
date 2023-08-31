@@ -7,6 +7,8 @@
 
 import ViewCommentTemplate from '@kapoo/template/view/ViewCommentTemplate';
 import ViewContentTemplate from '@kapoo/template/view/ViewContentTemplate';
+import ViewControllTemplate from '@kapoo/template/view/ViewControllTemplate';
+import ViewGroupTemplate from '@kapoo/template/view/ViewGroupTemplate';
 import ViewScrennerTemplate from '@kapoo/template/view/ViewScrennerTemplate';
 
 import Stack from '@mui/material/Stack';
@@ -22,7 +24,9 @@ export default function ViewTemplate(): ReactNode
 	return (
 		<Stack alignItems='center' data-component='ViewTemplate' spacing={10}>
 			<ViewScrennerTemplate />
+			<ViewGroupTemplate />
 			<ViewContentTemplate />
+			<ViewControllTemplate />
 			<ViewCommentTemplate />
 		</Stack>
 	);

@@ -6,6 +6,7 @@
  */
 
 import ViewContentBox from '@kapoo/organism/view/ViewContentBox';
+import ViewImageModal from '@kapoo/organism/view/ViewImageModal';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
@@ -20,6 +21,7 @@ export default function ViewContentTemplate(): ReactNode
 	return (
 		<Container data-component='ViewContentTemplate'>
 			<ViewContentBox />
+			<ViewImageModal />
 		</Container>
 	);
 }

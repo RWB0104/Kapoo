@@ -9,13 +9,14 @@
 
 import InfiniteScroller from '@kapoo/molecule/InfiniteScroller';
 import MarkdownListItem from '@kapoo/molecule/MarkdownListItem';
+import { RefererProps, refererStore } from '@kapoo/store/markdown';
 import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Variants, motion } from 'framer-motion';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
-import { ReactNode, useCallback, useMemo } from 'react';
+import { ReactNode, useCallback, useEffect, useMemo } from 'react';
 
 export type MarkdownListRenderer = (markdown: MarkdownListItemProps) => ReactNode;
 
@@ -52,6 +53,8 @@ export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 	const router = useRouter();
 	const seachParam = useSearchParams();
 	const pathname = usePathname();
+
+	const { referer, setReferer } = refererStore();
 
 	const page = useMemo(() => parseInt(seachParam.get('page') || '1', 10), [ seachParam ]);
 	const keyword = useMemo(() => seachParam.get('keyword'), [ seachParam ]);
@@ -114,6 +117,47 @@ export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 		return page >= last;
 	}, [ page, list ]);
 
+	const handleClick = useCallback(() =>
+	{
+		const param = new URLSearchParams(seachParam);
+		const page = param.get('page');
+		const keyword = param.get('keyword');
+		const category = param.getAll('category');
+
+		const referer: RefererProps = { scroll: window.scrollY };
+
+		// 페이지가 유효할 경우
+		if (page)
+		{
+			referer.page = page;
+		}
+
+		// 키워드가 유효할 경우
+		if (keyword && keyword.length > 0)
+		{
+			referer.keyword = keyword;
+		}
+
+		// 카테고리가 유효할 경우
+		if (category && category.length > 0)
+		{
+			referer.category = category;
+		}
+
+		setReferer(referer);
+	}, [ seachParam, setReferer ]);
+
+	useEffect(() =>
+	{
+		// 스크롤이 유효할 경우
+		if (referer?.scroll)
+		{
+			window.scroll({ top: referer.scroll });
+		}
+
+		setReferer(undefined);
+	}, [ setReferer ]);
+
 	return (
 		<Box data-component='MarkdownList'>
 			<InfiniteScroller fetchMargin='500px' isLast={isLast} onFetch={handleFetch}>
@@ -135,6 +179,7 @@ export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 									href={url}
 									thumb={frontmatter.coverImage}
 									title={frontmatter.title}
+									onClick={handleClick}
 								/>
 							</motion.div>
 						</Grid>

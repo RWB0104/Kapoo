@@ -12,12 +12,13 @@ import { themeStore } from '@kapoo/store/theme';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 // eslint-disable-next-line camelcase
-import { Noto_Sans_KR } from 'next/font/google';
+import { Noto_Sans_KR, Ubuntu_Mono } from 'next/font/google';
 import { PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 
 export type AppThemeProviderProps = PropsWithChildren;
 
-const notoSans = Noto_Sans_KR({ subsets: [ 'latin' ], weight: [ '100', '300', '400', '500', '700', '900' ] });
+export const notoSans = Noto_Sans_KR({ subsets: [ 'latin' ], weight: [ '100', '300', '400', '500', '700', '900' ] });
+export const ubuntuMono = Ubuntu_Mono({ subsets: [ 'latin' ], weight: [ '400', '700' ] });
 
 /**
  * 앱 테마 프로바이더 organism 컴포넌트 JSX 반환 메서드
@@ -43,6 +44,21 @@ export default function AppThemeProvider({ children }: AppThemeProviderProps): R
 
 		setTheme(saved);
 	}, [ setTheme ]);
+
+	useEffect(() =>
+	{
+		const handle = (e: MouseEvent): void =>
+		{
+			e.preventDefault();
+		};
+
+		document.addEventListener('contextmenu', handle);
+
+		return () =>
+		{
+			document.removeEventListener('contextmenu', handle);
+		};
+	}, []);
 
 	return (
 		<ThemeProvider theme={getTheme(theme)}>
