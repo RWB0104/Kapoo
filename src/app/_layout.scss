@@ -23,14 +23,21 @@ a {
 }
 
 .selectable {
-	user-select: initial;
+	user-select: text;
+}
+
+.unselectable {
+	user-select: none;
 }
 
 pre, code {
 	user-select: text;
-	font-family: Hack !important;
 
 	* {
 		user-select: text;
 	}
+}
+
+code {
+	font-family: inherit !important;
 }
