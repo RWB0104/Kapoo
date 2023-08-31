@@ -125,7 +125,7 @@ export default function MarkdownList({ markdown }: MarkdownListProps): ReactNode
 								initial='initial'
 								transition={{ duration: 1 }}
 								variants={variants}
-								viewport={{ amount: 0.5, once: true }}
+								viewport={{ amount: 0.3, once: true }}
 								whileInView='view'
 							>
 								<MarkdownListItem
