@@ -1,0 +1,35 @@
+.li {
+	line-height: 2;
+}
+
+.image {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	object-fit: cover;
+}
+
+.link {
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.icon {
+	animation: left 2s ease-in-out infinite;
+}
+
+@keyframes left {
+	0% {
+		translate: 0px 0px;
+	}
+
+	50% {
+		translate: 5px 0px;
+	}
+
+	100% {
+		translate: 0px 0px;
+	}
+}

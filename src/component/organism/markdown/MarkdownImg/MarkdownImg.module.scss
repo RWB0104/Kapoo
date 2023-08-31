@@ -1,0 +1,7 @@
+.image {
+	filter: drop-shadow(3px 3px 10px grey);
+
+	&.dark {
+		filter: drop-shadow(3px 3px 10px #222222);
+	}
+}
