@@ -1,0 +1,19 @@
+.toc {
+	a {
+		transition: 0.3s;
+
+		&:hover {
+			color: dodgerblue;
+			text-decoration: underline;
+		}
+	}
+}
+
+.tag {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.sub {
+	rotate: 45deg;
+}
