@@ -22,7 +22,6 @@ import classNames from 'classnames/bind';
 import { ReactNode, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
-import ReactToc from 'react-toc';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
@@ -56,32 +55,28 @@ export default function ViewContentBox(): ReactNode
 	}, []);
 
 	return (
-		<>
-			<ReactToc markdownText={view?.content || ''} />
-
-			<ReactMarkdown
-				className={cn('markdown')}
-				rehypePlugins={[[ rehypeKatex, { output: 'mathml' }], rehypeRaw ]}
-				remarkPlugins={[ remarkGfm, remarkMath ]}
-				components={{
-					a: MarkdownA,
-					blockquote: MarkdownBlockquote,
-					code: handleCode,
-					h1: MarkdownHeading,
-					h2: MarkdownHeading,
-					h3: MarkdownHeading,
-					h4: MarkdownHeading,
-					h5: MarkdownHeading,
-					h6: MarkdownHeading,
-					img: MarkdownImg,
-					table: MarkdownTable,
-					td: MarkdownCell,
-					th: MarkdownCell,
-					tr: MarkdownTr
-				}}
-			>
-				{view?.content || ''}
-			</ReactMarkdown>
-		</>
+		<ReactMarkdown
+			className={cn('markdown')}
+			rehypePlugins={[[ rehypeKatex, { output: 'mathml' }], rehypeRaw ]}
+			remarkPlugins={[ remarkGfm, remarkMath ]}
+			components={{
+				a: MarkdownA,
+				blockquote: MarkdownBlockquote,
+				code: handleCode,
+				h1: MarkdownHeading,
+				h2: MarkdownHeading,
+				h3: MarkdownHeading,
+				h4: MarkdownHeading,
+				h5: MarkdownHeading,
+				h6: MarkdownHeading,
+				img: MarkdownImg,
+				table: MarkdownTable,
+				td: MarkdownCell,
+				th: MarkdownCell,
+				tr: MarkdownTr
+			}}
+		>
+			{view?.content || ''}
+		</ReactMarkdown>
 	);
 }

@@ -26,7 +26,14 @@ export default function ViewHits(): ReactNode
 
 	return (
 		<Stack data-component='ViewHits' direction='row' justifyContent='center'>
-			<Hits countBgcolor='#333333' icon='react.svg' iconColor={color} text='view' titleBgcolor='#222222' unique={view?.url || '/'} />
+			<Hits
+				countBgcolor='#333333'
+				icon='react.svg'
+				iconColor={color}
+				text='view'
+				titleBgcolor='#222222'
+				unique={view?.url || '/'}
+			/>
 		</Stack>
 	);
 }

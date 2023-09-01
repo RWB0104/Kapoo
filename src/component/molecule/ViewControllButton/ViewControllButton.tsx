@@ -70,11 +70,11 @@ export default function ViewControllButton({ mode, title, cover, link, ...props 
 						zIndex={2}
 					>
 						<Stack alignItems='center' direction='row' spacing={1}>
-							{mode === 'prev' ? <ArrowBack /> : null}
+							{mode === 'prev' ? <ArrowBack htmlColor='white' /> : null}
 
 							<Typography color='white' fontWeight='bold'>{modeText}</Typography>
 
-							{mode === 'next' ? <ArrowForward /> : null}
+							{mode === 'next' ? <ArrowForward htmlColor='white' /> : null}
 						</Stack>
 
 						<Typography className={cn('title')} color='white' variant='caption'>{title}</Typography>

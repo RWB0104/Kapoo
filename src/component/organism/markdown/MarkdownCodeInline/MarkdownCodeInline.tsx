@@ -37,7 +37,7 @@ export default function MarkdownCodeInline({ ...props }: MarkdownCodeInlineProps
 			className='selectable'
 			component='span'
 			data-component='MarkdownCodeInline'
-			fontFamily={ubuntuMono.style.fontFamily}
+			fontFamily={[ ubuntuMono.style.fontFamily ]}
 			marginLeft={0.5}
 			marginRight={0.5}
 			padding='2px 5px'

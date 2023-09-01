@@ -63,7 +63,7 @@ export default function Hits({ unique, countBgcolor, titleBgcolor, icon, iconCol
 			icon_color: iconColor,
 			title: text,
 			title_bg: titleBgcolor,
-			url: process.env.NODE_ENV === 'development' ? 'https://dev.itcode.dev' : unique
+			url: unique
 		};
 
 		const param = Object

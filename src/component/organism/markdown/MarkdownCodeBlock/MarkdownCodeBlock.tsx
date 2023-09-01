@@ -5,7 +5,7 @@
  * @since 2023.08.30 Wed 02:12:03
  */
 
-import { ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
+import { notoSans, ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
 import { themeStore } from '@kapoo/store/theme';
 import { toastState } from '@kapoo/store/toast';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
@@ -129,7 +129,7 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 				>
 					<Stack alignItems='center' direction='row' spacing={1}>
 						<Code />
-						<Typography className='unselectable' fontFamily={ubuntuMono.style.fontFamily}>{languageName.toUpperCase()}</Typography>
+						<Typography className='unselectable' fontFamily={[ ubuntuMono.style.fontFamily, notoSans.style.fontFamily ]}>{languageName.toUpperCase()}</Typography>
 					</Stack>
 
 					<Stack alignItems='center' direction='row' spacing={1.5}>
