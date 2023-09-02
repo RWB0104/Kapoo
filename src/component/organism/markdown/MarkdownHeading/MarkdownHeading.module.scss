@@ -1,9 +1,11 @@
 .heading {
-	&:hover {
-		text-decoration: underline;
-	}
-}
+	margin-top: 60px;
 
-.text {
-	padding-top: 60px;
+	a {
+		scroll-margin-top: 60px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
