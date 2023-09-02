@@ -81,14 +81,14 @@ mkdir react-components-library-starter
 cd react-components-library-starter
 
 yarn init
-# question name (react-components-library-starter):
-# question version (1.0.0):
-# question description:
-# question entry point (index.js):
-# question repository url (https://github.com/itcode-dev/react-components-library-starter):
-# question author (RWB0104 <psj2716@gmail.com>):
-# question license (MIT):
-# question private: false
+ # question name (react-components-library-starter):
+ # question version (1.0.0):
+ # question description:
+ # question entry point (index.js):
+ # question repository url (https://github.com/itcode-dev/react-components-library-starter):
+ # question author (RWB0104 <psj2716@gmail.com>):
+ # question license (MIT):
+ # question private: false
 
 mkdir src
 ```
@@ -581,10 +581,10 @@ yarn.lock
 
 ``` bash
 npm login
-# username
-# password
-# email
-# email otp
+ # username
+ # password
+ # email
+ # email otp
 
 yarn publish --access public
 ```

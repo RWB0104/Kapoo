@@ -79,13 +79,13 @@ sudo apt-get install ufw
 ufw의 상태를 관리하는 명령어다.
 
 ``` bash
-# ufw 활성화
+ # ufw 활성화
 sudo ufw enable
 
-# ufw 비활성화
+ # ufw 비활성화
 sudo ufw disable
 
-# ufw 상태 확인
+ # ufw 상태 확인
 sudo ufw status verbose
 ```
 
@@ -98,23 +98,23 @@ ufw가 설치된 후 방화벽에 영향을 주는 걸 방지하기 위해 <span
 ufw에 적용된 <span class="blue-400">정책을 관리</span>한다.
 
 ``` bash
-# 정책 조회
+ # 정책 조회
 sudo ufw show raw
 
-# 기본 정책 허용
+ # 기본 정책 허용
 sudo ufw default allow
 
-# 기본 정책 차단
+ # 기본 정책 차단
 sudo ufw default deny
 ```
 
 모든 포트 통신에 대한 일괄 허용/차단이 가능하다.
 
 ``` bash
-# 들어오는 통신 차단
+ # 들어오는 통신 차단
 sudo ufw default deny incoming
 
-# 나가는 통신 허용
+ # 나가는 통신 허용
 sudo ufw default allow outgoing
 ```
 
@@ -123,16 +123,16 @@ sudo ufw default allow outgoing
 ## ufw 정책 설정 명령어
 
 ``` bash
-# 80포트(HTTP) 허용
+ # 80포트(HTTP) 허용
 sudo ufw allow 80
 
-# 80포트(HTTP) TCP 허용
+ # 80포트(HTTP) TCP 허용
 sudo ufw allow 80/tcp
 
-# 80포트(HTTP) UDP 허용
+ # 80포트(HTTP) UDP 허용
 sudo ufw allow 80/udp
 
-# 80포트(HTTP) 허용
+ # 80포트(HTTP) 허용
 sudo ufw allow http
 ```
 
@@ -149,10 +149,10 @@ ufw는 고유 서비스 이름을 사용해서 포트를 관리할 수 있다. H
 ### IP 통신 정책
 
 ``` bash
-# 192.168.0.100 IP의 통신 허용
+ # 192.168.0.100 IP의 통신 허용
 sudo ufw allow from 192.168.0.100
 
-# 192.168.0.100 ~ 200 대역의 IP의 통신 허용
+ # 192.168.0.100 ~ 200 대역의 IP의 통신 허용
 sudo ufw allow from 192.168.0.100/200
 ```
 
@@ -161,10 +161,10 @@ sudo ufw allow from 192.168.0.100/200
 ### IP 및 포트 통신 정책
 
 ``` bash
-# 192.168.0.100 IP의 80포트 허용
+ # 192.168.0.100 IP의 80포트 허용
 sudo ufw allow from 192.168.0.100 to any port 80
 
-# 192.168.0.100 IP의 80포트 TCP 허용
+ # 192.168.0.100 IP의 80포트 TCP 허용
 sudo ufw allow from 192.168.0.100 to any port 80 proto tcp
 ```
 
@@ -181,17 +181,17 @@ sudo ufw status numbered
 해당 번호를 통해 <span class="blue-400">정책을 수정, 삭제</span>할 수 있다.
 
 ``` bash
-# 1번 정책을 80포트 차단 정책으로 변경
+ # 1번 정책을 80포트 차단 정책으로 변경
 sudo ufw insert 1 deny 80
 
-# 2번 정책을 192.168.0.100 IP의 통신 허용 정책으로 변경
+ # 2번 정책을 192.168.0.100 IP의 통신 허용 정책으로 변경
 sudo ufw insert 2 allow from 192.168.0.100
 ```
 
 ## ufw 정책 삭제 명령어
 
 ``` bash
-# 1번 정책 삭제
+ # 1번 정책 삭제
 sudo ufw delete 1
 ```
 

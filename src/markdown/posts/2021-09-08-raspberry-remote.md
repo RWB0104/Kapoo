@@ -131,14 +131,14 @@ Ubuntu IP를 입력하여 연결한다. 정상적으로 연결되면 Ubuntu의 �
 ``` bash
 sudo vi /etc/xrdp/startwm.sh
 
-# 파일의 맨 아랫 줄에 아래 내용 추가
+ # 파일의 맨 아랫 줄에 아래 내용 추가
 unset DBUS_SESSION_BUS_ADDRESS
 unset XDG_RUNTIME_DIR
 
 test -x /etc/X11/Xsession && exec /etc/X11/Xsession
 exec /bin/sh /etc/X11/Xsession
 
-# 파일 저장
+ # 파일 저장
 :wq
 ```
 

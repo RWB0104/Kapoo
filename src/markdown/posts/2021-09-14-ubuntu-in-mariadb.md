@@ -86,7 +86,7 @@ sudo apt-get -y mariadb-server
 ``` bash
 sudo mariadb
 
-# 혹은
+ # 혹은
 sudo mysql
 ```
 

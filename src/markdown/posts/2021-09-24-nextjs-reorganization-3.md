@@ -183,10 +183,10 @@ SCSS는 Typescript와 같이 별도의 템플릿은 없으므로, 직접 설정�
 ## SCSS Loader 설치하기
 
 ``` bash
-# NPM 기반
+ # NPM 기반
 npm install @zeit/next-sass --save-dev
 
-# Yarn 기반
+ # Yarn 기반
 yarn add @zeit/next-sass --dev
 ```
 

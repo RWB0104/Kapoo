@@ -165,7 +165,7 @@ DNS 전파가 느리다면 대기시간이 많이 늘어나버리니 주의할 �
 DNS TXT Record가 정상적으로 전파됐다면, 콘솔에서 Enter를 눌러 다음 단계로 넘어간다. certbot이 인증확인을 시도하며, 인증이 완료되면 <span class="blue-600">인증서를 발급</span>해준다.
 
 ``` bash
-# itcode.dev는 인증한 도메인 이름
+ # itcode.dev는 인증한 도메인 이름
 cd /etc/letsencrypt/live/itcode.dev
 ```
 

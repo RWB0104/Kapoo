@@ -16,7 +16,7 @@ publish: true
 OpenLayers는 웹 브라우저에서 지도나 GIS 서비스를 제공하기 위한 JavaScript Library다. GIS 라이브러리 중 진입 장벽은 가장 높지만, 그에 상응하는 강력한 기능을 제공한다.
 
 ``` bash
-# OpenLayers 설치
+ # OpenLayers 설치
 yarn add ol
 ```
 

@@ -92,13 +92,13 @@ Tomcat Native 찾다보면 `./configure`, `make` 같은 명령어가 나오기�
 톰캣의 설치 경로는 `/var/lib/tomcat9`다.
 
 ``` bash
-# 톰캣 기동
+ # 톰캣 기동
 systemctl start tomcat9
 
-# 톰캣 정지
+ # 톰캣 정지
 systemctl stop tomcat9
 
-# 톰캣 재기동
+ # 톰캣 재기동
 systemctl restart tomcat9
 ```
 
@@ -127,13 +127,13 @@ sudo apt-get install ufw
 위 명령어를 입력하여 ufw를 설치할 수 있다.
 
 ``` bash
-# ufw 활성화
+ # ufw 활성화
 sudo ufw enable
 
-# ufw 비활성화
+#  ufw 비활성화
 sudo ufw disable
 
-# ufw 상태 확인
+ # ufw 상태 확인
 sudo ufw status verbose
 ```
 

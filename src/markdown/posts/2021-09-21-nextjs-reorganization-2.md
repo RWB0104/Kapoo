@@ -64,10 +64,10 @@ NextJS에 타입스크립트"님"을 강림시키는 법은 생각보다 매우 
 ## 새 프로젝트
 
 ``` bash
-# NPM 기반
+ # NPM 기반
 npx create-next-app --ts
 
-# Yarn 기반
+ # Yarn 기반
 yarn create-next-app --typescript
 ```
 
@@ -76,10 +76,10 @@ yarn create-next-app --typescript
 ## 기존 프로젝트
 
 ``` bash
-# NPM 기반
+ # NPM 기반
 npm install typescript @types/react @types/node --save-dev
 
-# Yarn 기반
+ # Yarn 기반
 yarn add typescript @types/react @types/node --dev
 ```
 

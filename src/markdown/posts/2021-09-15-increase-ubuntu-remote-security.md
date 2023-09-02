@@ -61,13 +61,13 @@ SSH 서비스를 재시작함을 잊지 말자.
 SSH의 포트 변경이 꺼려진다면, 포트포워딩을 통해 외부에서 접속하는 임의의 포트 하나와 매칭하자. `iptables`를 활용하여 구성할 수 있다.
 
 ``` bash
-# 포트포워딩 추가
+ # 포트포워딩 추가
 iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port [PORT NUMBER]
 
-# 포트포워딩 삭제
+ # 포트포워딩 삭제
 iptables -t nat -D PREROUTING -p tcp --dport 22 -j REDIRECT --to-port [PORT NUMBER]
 
-# 포트포워딩 상태 확인
+ # 포트포워딩 상태 확인
 iptables -L
 ```
 
@@ -176,10 +176,10 @@ systemctl restart ssh
 재부팅 후 로그인을 수행해보자.
 
 ``` bash
-# 일반 로그인 방식의 SSH
+ # 일반 로그인 방식의 SSH
 ssh username@xxx.xxx.xxx.xxx
 
-# 키 파일 방식의 SSH
+ # 키 파일 방식의 SSH
 ssh -i [PRIVATE KEY] username@xxx.xxx.xxx.xxx
 ```
 
