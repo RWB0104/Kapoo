@@ -5,6 +5,7 @@
  * @since 2023.08.19 Sat 20:08:16
  */
 
+import { PAGE_INFO } from '@kapoo/env';
 import Screener from '@kapoo/molecule/Screener';
 import ScreenerBox from '@kapoo/organism/global/ScreenerBox';
 
@@ -19,7 +20,7 @@ export default function CommentsScreenerTemplate(): ReactNode
 {
 	return (
 		<Screener>
-			<ScreenerBox color='hotpink' name='방명록' text='💝 두근대며 읽어보는 중...' />
+			<ScreenerBox color='hotpink' name={PAGE_INFO.comments.title} text={PAGE_INFO.comments.description} />
 		</Screener>
 	);
 }

@@ -5,6 +5,8 @@
  * @since 2023.08.19 Sat 03:35:18
  */
 
+'use client';
+
 import Logo from '@kapoo/atom/Logo';
 import { APP_INFO } from '@kapoo/env';
 
@@ -15,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler, ReactNode, useEffect, useMemo, useState } from 'react';
 
 export interface HeaderProps extends BoxProps
 {
@@ -36,10 +38,38 @@ export default function Header({ onMenuClick, ...props }: HeaderProps): ReactNod
 {
 	const { palette: { background: { default: defaultColor } } } = useTheme();
 
+	const [ isTopState, setTopState ] = useState(true);
+
+	const bgcolor = useMemo(() => (isTopState ? 'transparent' : defaultColor), [ isTopState, defaultColor ]);
+	const border = useMemo(() => (isTopState ? '1px solid #FFFFFF55' : undefined), [ isTopState ]);
+	const boxShadow = useMemo(() => (isTopState ? undefined : '0px 3px 5px #00000044'), [ isTopState ]);
+	const color = useMemo(() => (isTopState ? 'white' : undefined), [ isTopState ]);
+
+	useEffect(() =>
+	{
+		setTopState(window.scrollY === 0);
+
+		const handle = (): void =>
+		{
+			setTopState(window.scrollY === 0);
+		};
+
+		if (document)
+		{
+			document.addEventListener('scroll', handle);
+		}
+
+		return () =>
+		{
+			document.removeEventListener('scroll', handle);
+		};
+	}, [ setTopState ]);
+
 	return (
 		<Box
-			bgcolor={defaultColor}
-			boxShadow='0px 3px 10px black'
+			bgcolor={bgcolor}
+			borderBottom={border}
+			boxShadow={boxShadow}
 			component='header'
 			data-component='Header'
 			height={50}
@@ -50,7 +80,7 @@ export default function Header({ onMenuClick, ...props }: HeaderProps): ReactNod
 			zIndex={10000}
 			{...props}
 		>
-			<Stack alignItems='center' direction='row' height='100%' paddingLeft={2} paddingRight={2} spacing={2}>
+			<Stack alignItems='center' color={color} direction='row' height='100%' paddingLeft={2} paddingRight={2} spacing={2}>
 				{onMenuClick ? (
 					<IconButton color='inherit' onClick={onMenuClick}>
 						<Menu />

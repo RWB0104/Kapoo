@@ -5,6 +5,7 @@
  * @since 2023.08.19 Sat 20:01:24
  */
 
+import { PAGE_INFO } from '@kapoo/env';
 import Screener from '@kapoo/molecule/Screener';
 import ScreenerBox from '@kapoo/organism/global/ScreenerBox';
 
@@ -19,7 +20,7 @@ export default function PostsScreenerTemplate(): ReactNode
 {
 	return (
 		<Screener>
-			<ScreenerBox color='dodgerblue' name='게시글' text='✒️ 뭔가 끄적끄적 쓰는 중...' />
+			<ScreenerBox color='dodgerblue' name={PAGE_INFO.posts.title} text={PAGE_INFO.posts.description} />
 		</Screener>
 	);
 }

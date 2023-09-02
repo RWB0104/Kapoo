@@ -5,6 +5,10 @@
  * @since 2023.08.19 Sat 13:09:34
  */
 
+import { APP_INFO, AUTHOR } from '@kapoo/env';
+
+import { Metadata } from 'next';
+
 export interface DateParseProps
 {
 	/**
@@ -61,6 +65,44 @@ export const REGEX = {
 	markdownExt: /\.md$/,
 	markdownName: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
 };
+
+/**
+ * 메타데이터 반환 메서드
+ *
+ * @param {string} title: 제목
+ * @param {string} description: 설명
+ * @param {string[]} keywords: 키워드
+ * @param {string} url: URL
+ * @param {string} image: 커버 이미지
+ *
+ * @returns {Metadata} 메타데이터
+ */
+export function getMetadata(title: string, description?: string, keywords?: string[], url = '', image = '/thumb.png'): Metadata
+{
+	const authors = Object.values(AUTHOR.social).map(({ link, name }) => ({ name, url: link }));
+
+	return {
+		authors,
+		description: description || APP_INFO.description,
+		icons: [
+			'/favicon.ico',
+			{ rel: 'shortcut icon', url: '/favicon.ico' },
+			{ rel: 'apple-touch-icon', url: '/favicon.ico' }
+		],
+		keywords,
+		metadataBase: new URL(APP_INFO.baseurl),
+		openGraph: {
+			description,
+			images: image,
+			locale: 'ko-KR',
+			siteName: APP_INFO.title,
+			title: `${title} - ${APP_INFO.title}`,
+			type: 'website',
+			url: `${APP_INFO.baseurl}${url}`
+		},
+		title: `${title} - ${APP_INFO.title}`
+	};
+}
 
 /**
  * 0 추가 메서드

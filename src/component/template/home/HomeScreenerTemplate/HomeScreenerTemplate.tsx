@@ -5,7 +5,7 @@
  * @since 2023.08.19 Sat 05:26:46
  */
 
-import { APP_INFO } from '@kapoo/env';
+import { PAGE_INFO } from '@kapoo/env';
 import Screener from '@kapoo/molecule/Screener';
 import ScreenerBox from '@kapoo/organism/global/ScreenerBox';
 
@@ -20,7 +20,7 @@ export default function HomeScreenerTemplate(): ReactNode
 {
 	return (
 		<Screener>
-			<ScreenerBox color='gold' name='홈' text={`🦙 ${APP_INFO.description}`} />
+			<ScreenerBox color='gold' name={PAGE_INFO.index.title} text={PAGE_INFO.index.description} />
 		</Screener>
 	);
 }

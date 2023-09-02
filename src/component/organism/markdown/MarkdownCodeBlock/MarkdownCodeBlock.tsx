@@ -23,7 +23,7 @@ import classNames from 'classnames/bind';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CSSProperties, MouseEventHandler, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
-import { Prism } from 'react-syntax-highlighter';
+import { PrismAsync } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import styles from './MarkdownCodeBlock.module.scss';
@@ -165,7 +165,7 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 							className={cn('button')}
 							color={aniamteState ? 'success' : undefined}
 							size='small'
-							variant='outlined'
+							variant='contained'
 							onClick={handleCopyClick}
 						>
 							<AnimatePresence>
@@ -174,16 +174,15 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 						</Button>
 					</Tooltip>
 
-					<Prism
+					<PrismAsync
 						customStyle={{ fontFamily: ubuntuMono.style.fontFamily }}
 						language={languageName}
 						style={style}
 						showLineNumbers
-						useInlineStyles
 						{...props}
 					>
 						{code}
-					</Prism>
+					</PrismAsync>
 				</Box>
 			</Stack>
 		</Box>

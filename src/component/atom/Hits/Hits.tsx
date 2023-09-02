@@ -54,6 +54,8 @@ export interface HitsProps extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImage
  */
 export default function Hits({ unique, countBgcolor, titleBgcolor, icon, iconColor, text, isFlat, ...props }: HitsProps): ReactNode
 {
+	const url = useMemo(() => (process.env.NODE_ENV === 'development' ? 'https://example.itcode.dev' : unique), [ unique ]);
+
 	const src = useMemo(() =>
 	{
 		const obj = {
@@ -63,7 +65,7 @@ export default function Hits({ unique, countBgcolor, titleBgcolor, icon, iconCol
 			icon_color: iconColor,
 			title: text,
 			title_bg: titleBgcolor,
-			url: unique
+			url
 		};
 
 		const param = Object
@@ -73,9 +75,9 @@ export default function Hits({ unique, countBgcolor, titleBgcolor, icon, iconCol
 			.join('&');
 
 		return `https://hits.seeyoufarm.com/api/count/incr/badge.svg?${param}`;
-	}, [ unique, countBgcolor, titleBgcolor, icon, iconColor, text, isFlat ]);
+	}, [ url, countBgcolor, titleBgcolor, icon, iconColor, text, isFlat ]);
 
 	return (
-		<img alt={text} data-component='Hits' src={src} {...props} />
+		<img alt={url} data-component='Hits' src={src} {...props} />
 	);
 }

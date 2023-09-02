@@ -5,29 +5,15 @@
  * @since 2023.08.19 Sat 19:58:12
  */
 
-import { APP_INFO } from '@kapoo/env';
+import { PAGE_INFO } from '@kapoo/env';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import HomeScreenerTemplate from '@kapoo/template/home/HomeScreenerTemplate';
+import { getMetadata } from '@kapoo/util/common';
 
 import Typography from '@mui/material/Typography';
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
-export const metadata: Metadata = {
-	authors: [{ name: 'RWB', url: 'https://github.com/RWB0104' }],
-	description: APP_INFO.description,
-	icons: [ '/favicon.ico', { rel: 'shortcut icon', url: '/favicon.ico' }, { rel: 'apple-touch-icon', url: '/favicon.ico' }],
-	openGraph: {
-		description: APP_INFO.description,
-		images: '/thumb.png',
-		locale: 'ko-KR',
-		siteName: APP_INFO.title,
-		title: `홈 - ${APP_INFO.title}`,
-		type: 'website',
-		url: 'https://blog.itcode.dev'
-	},
-	title: `홈 - ${APP_INFO.title}`
-};
+export const metadata = getMetadata(PAGE_INFO.index.title, PAGE_INFO.index.description);
 
 /**
  * 홈 페이지 컴포넌트 JSX 반환 메서드

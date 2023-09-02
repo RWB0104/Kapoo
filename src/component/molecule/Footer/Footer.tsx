@@ -36,6 +36,10 @@ export default function Footer(): ReactNode
 		<Box component='footer' data-component='Footer' padding={4} paddingTop={10}>
 			<Stack spacing={10}>
 				<Stack alignItems='center' direction='row' justifyContent='center' spacing={2}>
+					<LinkIconButton link='https://itcode.dev' tooltip='𝝅번 째 알파카의 우당탕탕 개발 연구소'>
+						<img alt='itcode.dev' height={24} src='https://itcode.dev/logo-transparent.png' width={24} />
+					</LinkIconButton>
+
 					<LinkIconButton link='https://github.com/RWB0104' tooltip='GitHub 프로필'>
 						<GitHub />
 					</LinkIconButton>

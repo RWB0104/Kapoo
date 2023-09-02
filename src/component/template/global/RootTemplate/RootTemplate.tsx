@@ -6,6 +6,7 @@
  */
 
 import AppThemeProvider from '@kapoo/organism/global/AppThemeProvider';
+import DevtoolDefender from '@kapoo/organism/global/DevtoolsDepender';
 import ReactQueryProvider from '@kapoo/organism/global/ReactQueryProvider';
 
 import { PropsWithChildren, ReactNode } from 'react';
@@ -22,12 +23,12 @@ export type RootTemplateProps = PropsWithChildren;
 export default function RootTemplate({ children }: RootTemplateProps): ReactNode
 {
 	return (
-		<>
+		<DevtoolDefender>
 			<AppThemeProvider>
 				<ReactQueryProvider>
 					{children}
 				</ReactQueryProvider>
 			</AppThemeProvider>
-		</>
+		</DevtoolDefender>
 	);
 }

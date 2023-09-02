@@ -32,7 +32,7 @@ export default function ViewHits(): ReactNode
 				iconColor={color}
 				text='view'
 				titleBgcolor='#222222'
-				unique={view?.url || '/'}
+				unique={`https://blog.itcode.dev${view?.url || '/'}`}
 			/>
 		</Stack>
 	);
