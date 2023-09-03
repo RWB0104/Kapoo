@@ -5,47 +5,130 @@
  * @since 2023.08.19 Sat 05:20:59
  */
 
-import { postsStore } from '@kapoo/store/markdown';
-import { MarkdownListItemProps } from '@kapoo/util/markdown';
+import { MarkdownType } from '@kapoo/util/markdown';
 
-import { UseInfiniteQueryOptions, UseInfiniteQueryResult, UseQueryOptions, UseQueryResult, useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { UseMutationOptions, UseMutationResult, UseQueryOptions, UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 
-export const QUERY_KEY = { GET_POSTS: 'get-posts', SCREENER_VIDEO: 'screener-video' };
+export const QUERY_KEY = {
+	GOOGLE_AUTHORIZE: 'google-authorize',
+	GOOGLE_POPULAR_DATA: 'google-popular-data',
+	SCREENER_VIDEO: 'screener-video'
+};
 
-export interface UseGetPostsParamProps
+export interface GoogleAuth
 {
 	/**
-	 * 키워드
+	 * access 토큰
 	 */
-	keyword?: string;
+	access_token: string;
 
 	/**
-	 * 카테고리
+	 * 만료일
 	 */
-	category?: string[];
+	expires_in: number;
+
+	/**
+	 * 스코프
+	 */
+	scope: string;
+
+	/**
+	 * 토큰 종류
+	 */
+	token_type: string;
 }
 
-export interface UseGetPostsProps
+export interface DimensionHeader
 {
 	/**
-	 * 리스트
+	 * 이름
 	 */
-	list: MarkdownListItemProps[];
+	name: string;
+}
+
+export interface MetricHeader
+{
+	/**
+	 * 이름
+	 */
+	name: string;
 
 	/**
-	 * 현재 페이지
+	 * 타입
 	 */
-	currentPage: number;
+	type: string;
+}
+
+export interface PopularPageValue
+{
+	/**
+	 * 값
+	 */
+	value: string;
+}
+
+export interface PopularPageObject
+{
+	/**
+	 * 디멘션 값
+	 */
+	dimensionValues: PopularPageValue[];
 
 	/**
-	 * 전체 페이지
+	 * 메트릭 값
 	 */
-	totalPage: number;
+	metricValues: PopularPageValue[];
+}
+
+export interface PopularMetadata
+{
+	/**
+	 * 코드
+	 */
+	currencyCode: string;
 
 	/**
-	 * 전체 데이터 갯수
+	 * 타임존
 	 */
-	totalCount: number;
+	timeZone: string;
+}
+
+export interface PopularPage
+{
+	/**
+	 * 디멘션 헤더
+	 */
+	dimensionHeaders?: DimensionHeader[];
+
+	/**
+	 * 메트릭 헤더
+	 */
+	metricHeaders?: MetricHeader[];
+
+	/**
+	 * 데이터
+	 */
+	rows: PopularPageObject[];
+
+	/**
+	 * 전체
+	 */
+	totals?: PopularPageObject;
+
+	/**
+	 * 데이터 갯수
+	 */
+	rowCount?: number;
+
+	/**
+	 * 메타데이터
+	 */
+	metadata?: PopularMetadata;
+
+	/**
+	 * 종류
+	 */
+	kind: string;
 }
 
 /**
@@ -73,24 +156,95 @@ export function useScreenerVideo(options?: UseQueryOptions<string[], Response>):
 	}, options);
 }
 
-export function useGetPosts(useGetPostsProps?: UseGetPostsParamProps, options?: UseInfiniteQueryOptions<UseGetPostsProps>): UseInfiniteQueryResult<UseGetPostsProps>
+/**
+ * 구글 인증 결과 반환 훅 메서드
+ *
+ * @param {UseMutationOptions} options: UseMutationOptions 객체
+ *
+ * @returns {UseMutationResult} UseMutationResult 객체
+ */
+function useGoogleAuthorize(options?: UseMutationOptions<GoogleAuth | undefined, unknown, void>): UseMutationResult<GoogleAuth | undefined, unknown, void>
 {
-	const { markdown } = postsStore();
-
-	return useInfiniteQuery<UseGetPostsProps>([ QUERY_KEY.GET_POSTS, useGetPostsProps ], async ({ pageParam = 1 }) =>
+	return useMutation<GoogleAuth | undefined, unknown, void>([ QUERY_KEY.GOOGLE_AUTHORIZE ], async () =>
 	{
-		const start = (pageParam - 1) * 10;
-		const end = start + 10;
+		const auth = await fetch('https://accounts.google.com/o/oauth2/token', {
+			body: JSON.stringify({
+				client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+				client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+				grant_type: 'refresh_token',
+				refresh_token: process.env.NEXT_PUBLIC_REFRESH
+			}),
+			method: 'POST'
+		});
 
-		return {
-			currentPage: pageParam,
-			list: markdown.slice(start, end),
-			totalCount: markdown.length,
-			totalPage: Math.ceil(markdown.length / 10)
-		};
-	}, {
-		getNextPageParam: ({ currentPage, totalPage }) => (currentPage === totalPage ? undefined : currentPage + 1),
-		getPreviousPageParam: ({ currentPage }) => (currentPage === 1 ? undefined : currentPage - 1),
-		...options
-	});
+		// 인증 성공일 경우
+		if (auth.ok)
+		{
+			const json: GoogleAuth = await auth.json();
+
+			return json;
+		}
+
+		return undefined;
+	}, options);
+}
+
+/**
+ * 구글 인기게시글 데이터 반환 훅 메서드
+ *
+ * @param {MarkdownType} type: MarkdownType 객체
+ * @param {UseQueryOptions} options: UseQueryOptions 객체
+ *
+ * @returns {UseQueryResult} UseQueryResult 객체
+ */
+export function useGetGooglePopularData(type: MarkdownType, options?: UseQueryOptions<PopularPage | undefined>): UseQueryResult<PopularPage | undefined>
+{
+	const query = useGoogleAuthorize();
+
+	return useQuery<PopularPage | undefined>([ QUERY_KEY.GOOGLE_POPULAR_DATA, type ], async () =>
+	{
+		const auth = await query.mutateAsync();
+
+		const list = await fetch('https://content-analyticsdata.googleapis.com/v1beta/properties/284521573:runReport?alt=json', {
+			body: JSON.stringify({
+				dateRanges: [
+					{
+						endDate: 'today',
+						startDate: '30daysAgo'
+					}
+				],
+				dimensionFilter: {
+					filter: {
+						fieldName: 'pagePath',
+						stringFilter: {
+							matchType: 'BEGINS_WITH',
+							value: `/${type}/2`
+						}
+					}
+				},
+				dimensions: [
+					{ name: 'pagePath' }
+				],
+				limit: 6,
+				metricAggregations: [
+					'TOTAL'
+				],
+				metrics: [
+					{ name: 'active28DayUsers' }
+				]
+			}),
+			headers: { Authorization: `${auth?.token_type} ${auth?.access_token}` },
+			method: 'POST'
+		});
+
+		// 인증 성공일 경우
+		if (list.ok)
+		{
+			const json: PopularPage = await list.json();
+
+			return json;
+		}
+
+		return undefined;
+	}, options);
 }
