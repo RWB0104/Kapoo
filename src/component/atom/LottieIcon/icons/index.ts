@@ -6,5 +6,11 @@
  */
 
 import heartMessage from './heart_message.json';
+import loading from './loading.json';
+import notFound from './not_found.json';
 
-export default { heartMessage };
+export default {
+	heartMessage,
+	loading,
+	notFound
+};
