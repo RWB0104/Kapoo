@@ -46,6 +46,6 @@ jobs:
         destination-github-username: RWB0104
         destination-repository-name: blog.itcode.dev
         user-email: psj2716@mensakorea.org
-        target-branch: main
+        target-branch: master
         target-directory: docs
         commit-message: ${{ github.event.head_commit.message }}
