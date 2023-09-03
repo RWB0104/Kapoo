@@ -44,3 +44,5 @@ next-env.d.ts
 
 /public/rss.xml
 /public/sitemap*.xml
+/public/sw*
+/public/workbox-*
