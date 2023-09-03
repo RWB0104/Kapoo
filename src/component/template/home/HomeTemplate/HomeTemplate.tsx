@@ -14,6 +14,11 @@ import HomeWelcomeTemplate from '@kapoo/template/home/HomeWelcomeTemplate';
 import Stack from '@mui/material/Stack';
 import { ReactNode } from 'react';
 
+/**
+ * 홈 template 컴포넌트 JSX 반환 메서드
+ *
+ * @returns {ReactNode} ReactNode
+ */
 export default function HomeTemplate(): ReactNode
 {
 	return (

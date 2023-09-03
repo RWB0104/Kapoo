@@ -21,7 +21,7 @@ export interface ViewProviderProps
 }
 
 /**
- * 뷰 프로바이더 organism 컴포넌트 JSX 반환 메서드
+ * 뷰 프로바이더 organism 컴포넌트 메서드
  *
  * @param {ViewProviderProps} param0: ViewProviderProps 객체
  */
