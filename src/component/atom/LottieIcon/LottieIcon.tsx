@@ -29,6 +29,16 @@ export interface LottieIconProps extends Omit<LottieComponentProps, 'animationDa
 	 * 높이
 	 */
 	height?: CSSProperties['height'];
+
+	/**
+	 * 최대 너비
+	 */
+	maxWidth?: CSSProperties['maxWidth'];
+
+	/**
+	 * 최대 높이
+	 */
+	maxHeight?: CSSProperties['maxHeight'];
 }
 
 /**
@@ -38,10 +48,10 @@ export interface LottieIconProps extends Omit<LottieComponentProps, 'animationDa
  *
  * @returns {ReactNode} ReactNode
  */
-export default function LottieIcon({ iconName, width, height, ...props }: LottieIconProps): ReactNode
+export default function LottieIcon({ iconName, width, height, maxWidth, maxHeight, ...props }: LottieIconProps): ReactNode
 {
 	return (
-		<Box data-component='LottieIcon' height={height} width={width}>
+		<Box data-component='LottieIcon' height={height} maxHeight={maxHeight} maxWidth={maxWidth} width={width}>
 			<Lottie animationData={icons[iconName]} {...props} />
 		</Box>
 	);

@@ -12,7 +12,7 @@ import { themeStore } from '@kapoo/store/theme';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 // eslint-disable-next-line camelcase
-import { Noto_Sans_KR, Ubuntu_Mono, Dancing_Script } from 'next/font/google';
+import { Noto_Sans_KR, Ubuntu_Mono, Dancing_Script, Gamja_Flower } from 'next/font/google';
 import { PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 
 export type AppThemeProviderProps = PropsWithChildren;
@@ -20,6 +20,7 @@ export type AppThemeProviderProps = PropsWithChildren;
 export const notoSans = Noto_Sans_KR({ subsets: [ 'latin' ], weight: [ '100', '300', '400', '500', '700', '900' ] });
 export const ubuntuMono = Ubuntu_Mono({ subsets: [ 'latin' ], weight: [ '400', '700' ] });
 export const dancingScript = Dancing_Script({ subsets: [ 'latin' ], weight: [ '400' ] });
+export const gamjaFlower = Gamja_Flower({ subsets: [ 'latin' ], weight: [ '400' ] });
 
 /**
  * 앱 테마 프로바이더 organism 컴포넌트 JSX 반환 메서드

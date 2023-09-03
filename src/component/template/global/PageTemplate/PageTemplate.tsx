@@ -8,6 +8,7 @@
 import Footer from '@kapoo/molecule/Footer';
 import InteractionBox from '@kapoo/organism/global/InteractionBox';
 import Navigator from '@kapoo/organism/global/Navigator';
+import Preloader from '@kapoo/organism/global/Preloader';
 import Toaster from '@kapoo/organism/global/Toaster';
 
 import Box from '@mui/material/Box';
@@ -26,6 +27,8 @@ export default function PageTemplate({ children }: PageTemplateProps): ReactNode
 {
 	return (
 		<Box data-component='PageTemplate'>
+			<Preloader />
+
 			<Navigator />
 
 			<Box component='main'>

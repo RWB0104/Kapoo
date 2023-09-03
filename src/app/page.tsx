@@ -7,10 +7,9 @@
 
 import { PAGE_INFO } from '@kapoo/env';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
-import HomeScreenerTemplate from '@kapoo/template/home/HomeScreenerTemplate';
+import HomeTemplate from '@kapoo/template/home/HomeTemplate';
 import { getMetadata } from '@kapoo/util/common';
 
-import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
 
 export const metadata = getMetadata(PAGE_INFO.index.title, PAGE_INFO.index.description);
@@ -24,8 +23,7 @@ export default function HomePage(): ReactNode
 {
 	return (
 		<PageTemplate>
-			<HomeScreenerTemplate />
-			<Typography>테스트</Typography>
+			<HomeTemplate />
 		</PageTemplate>
 	);
 }

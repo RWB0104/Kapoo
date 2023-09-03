@@ -6,11 +6,9 @@
  */
 
 import { PAGE_INFO } from '@kapoo/env';
-import ProjectsProvider from '@kapoo/organism/projects/ProjectsProvider';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import ProjectsTemplate from '@kapoo/template/projects/ProjectsTemplate';
 import { getMetadata } from '@kapoo/util/common';
-import { getMarkdownList } from '@kapoo/util/markdown';
 
 import { ReactNode } from 'react';
 
@@ -23,11 +21,8 @@ export const metadata = getMetadata(PAGE_INFO.projects.title, PAGE_INFO.projects
  */
 export default function ProjectsPage(): ReactNode
 {
-	const list = getMarkdownList('projects');
-
 	return (
 		<PageTemplate>
-			<ProjectsProvider projects={list} />
 			<ProjectsTemplate />
 		</PageTemplate>
 	);

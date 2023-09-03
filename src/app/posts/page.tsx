@@ -6,11 +6,9 @@
  */
 
 import { PAGE_INFO } from '@kapoo/env';
-import PostsProvider from '@kapoo/organism/posts/PostsProvider';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import PostsTemplate from '@kapoo/template/posts/PostsTemplate';
 import { getMetadata } from '@kapoo/util/common';
-import { getMarkdownList } from '@kapoo/util/markdown';
 
 import { ReactNode } from 'react';
 
@@ -23,12 +21,8 @@ export const metadata = getMetadata(PAGE_INFO.posts.title, PAGE_INFO.posts.descr
  */
 export default function PostsPage(): ReactNode
 {
-	const list = getMarkdownList('posts');
-
 	return (
 		<PageTemplate>
-			<PostsProvider posts={list} />
-
 			<PostsTemplate />
 		</PageTemplate>
 	);
