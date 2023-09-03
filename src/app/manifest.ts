@@ -23,8 +23,9 @@ export default function manifest(): MetadataRoute.Manifest
 			}
 		],
 		name: APP_INFO.title,
+		scope: './',
 		short_name: 'blog.itcode.dev',
-		start_url: '.',
+		start_url: './',
 		theme_color: '#FFFFFF'
 	};
 }
