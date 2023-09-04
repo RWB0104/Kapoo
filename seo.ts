@@ -181,7 +181,7 @@ function generateSitemap(): void
 
 	const json: XmlElement = {
 		_attrs: { xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' },
-		_content: list.map((item, i) => ({ sitemap: { loc: `${APP_INFO.baseurl}/sitemap-${i + 1}.xml` } })),
+		_content: list.map((item, i) => ({ sitemap: { loc: `${APP_INFO.baseurl}/sitemap-${i}.xml` } })),
 		_name: 'sitemapindex'
 	};
 
