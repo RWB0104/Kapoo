@@ -14,6 +14,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 // eslint-disable-next-line camelcase
 import { Noto_Sans_KR, Ubuntu_Mono, Dancing_Script, Gamja_Flower } from 'next/font/google';
 import { PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 
 export type AppThemeProviderProps = PropsWithChildren;
 
@@ -31,6 +32,8 @@ export const gamjaFlower = Gamja_Flower({ subsets: [ 'latin' ], weight: [ '400' 
  */
 export default function AppThemeProvider({ children }: AppThemeProviderProps): ReactNode
 {
+	ReactGA.initialize('G-7QYWYNZ90R');
+
 	const { theme, setTheme } = themeStore();
 
 	const list = [ notoSans.style.fontFamily, 'sans-serif' ];

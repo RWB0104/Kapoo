@@ -6,10 +6,10 @@
  */
 
 import AppThemeProvider from '@kapoo/organism/global/AppThemeProvider';
+import DevtoolDefender from '@kapoo/organism/global/DevtoolsDepender';
 import ReactQueryProvider from '@kapoo/organism/global/ReactQueryProvider';
 
 import { PropsWithChildren, ReactNode } from 'react';
-import ReactGA from 'react-ga4';
 
 export type RootTemplateProps = PropsWithChildren;
 
@@ -22,13 +22,13 @@ export type RootTemplateProps = PropsWithChildren;
  */
 export default function RootTemplate({ children }: RootTemplateProps): ReactNode
 {
-	ReactGA.initialize('G-7QYWYNZ90R');
-
 	return (
-		<AppThemeProvider>
-			<ReactQueryProvider>
-				{children}
-			</ReactQueryProvider>
-		</AppThemeProvider>
+		<DevtoolDefender>
+			<AppThemeProvider>
+				<ReactQueryProvider>
+					{children}
+				</ReactQueryProvider>
+			</AppThemeProvider>
+		</DevtoolDefender>
 	);
 }
