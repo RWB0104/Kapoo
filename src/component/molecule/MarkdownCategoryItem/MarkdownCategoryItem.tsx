@@ -51,7 +51,7 @@ export default function MarkdownCategoryItem({ category, count, selected, dimmed
 	return (
 		<ButtonBase className='fullwidth' data-component='MarkdownCategoryItem' data-selected={selected} {...props}>
 			<Box className={cn('card')} position='relative' width='100%'>
-				<Box className={cn('wrap')}>
+				<Box className={cn('wrap')} height='100%' width='100%'>
 					<img
 						alt={category}
 						className={cn('image', { dimmed })}

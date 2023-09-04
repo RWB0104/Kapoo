@@ -163,7 +163,7 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 			<AccordionDetails>
 				<Grid spacing={0.5} container>
 					{categories.map(({ name, count, selected }) => (
-						<Grid key={name} xl={2} item>
+						<Grid key={name} md={2} xs={4} item>
 							<MarkdownCategoryItem
 								category={name}
 								count={count}
