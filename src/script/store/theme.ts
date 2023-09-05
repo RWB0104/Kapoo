@@ -5,6 +5,13 @@
  * @since 2023.08.19 Sat 03:03:23
  */
 
+/**
+ * 테마 상태관리 모듈
+ *
+ * @author RWB
+ * @since 2023.09.06 Wed 02:28:05
+ */
+
 'use client';
 
 import { PaletteMode } from '@mui/material';

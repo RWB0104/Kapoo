@@ -1,3 +1,10 @@
+/**
+ * 토스트 상태관리 모듈
+ *
+ * @author RWB
+ * @since 2023.09.06 Wed 02:28:15
+ */
+
 import { AlertColor } from '@mui/material/Alert';
 import { SnackbarOrigin } from '@mui/material/Snackbar';
 import { create } from 'zustand';

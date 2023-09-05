@@ -1,3 +1,10 @@
+/**
+ * 모달 상태관리 모듈
+ *
+ * @author RWB
+ * @since 2023.09.06 Wed 02:27:50
+ */
+
 import { create } from 'zustand';
 
 export type SetImageModalHandler = (image?: string) => void;
