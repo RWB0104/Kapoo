@@ -243,8 +243,8 @@ export function getMarkdownInfo(type: MarkdownType, filename: string): MarkdownI
 	const groupList = list.filter(({ frontmatter }) => frontmatter.group && frontmatter.group === markdown.frontmatter.group);
 
 	const group = groupList.length > 0 ? groupList : null;
-	const prev = currentIndex === 0 ? null : list[currentIndex - 1];
-	const next = currentIndex === list.length - 1 ? null : list[currentIndex + 1];
+	const next = currentIndex === 0 ? null : list[currentIndex - 1];
+	const prev = currentIndex === list.length - 1 ? null : list[currentIndex + 1];
 
 	return {
 		group,

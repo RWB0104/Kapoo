@@ -6,6 +6,7 @@
  */
 
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import { DetailedHTMLProps, ReactNode, TableHTMLAttributes } from 'react';
 
@@ -25,8 +26,10 @@ export type MarkdownTableProps = DetailedHTMLProps<TableHTMLAttributes<HTMLTable
 export default function MarkdownTable({ className, ...props }: MarkdownTableProps): ReactNode
 {
 	return (
-		<Box data-component='MarkdownTable' marginBottom={4} marginTop={4} maxWidth='100%' overflow='auto'>
-			<table className={cn('table', className)} {...props} />
-		</Box>
+		<Stack alignItems='center' data-component='MarkdownTable' marginBottom={4} marginTop={4}>
+			<Box maxWidth='100%' overflow='auto'>
+				<table className={cn('table', className)} {...props} />
+			</Box>
+		</Stack>
 	);
 }
