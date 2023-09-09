@@ -8,6 +8,9 @@
 'use client';
 
 import { Adsense } from '@ctrl/react-adsense';
+import { useTheme } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import { ReactNode } from 'react';
 
@@ -22,6 +25,26 @@ const cn = classNames.bind(styles);
  */
 export default function Ads(): ReactNode
 {
+	const { palette: { divider } } = useTheme();
+
+	// 개발환경일 경우
+	if (process.env.NODE_ENV === 'development')
+	{
+		return (
+			<Stack
+				alignItems='center'
+				border='5px dashed'
+				borderColor={divider}
+				borderRadius={4}
+				data-component='Ads'
+				padding={4}
+				width='100%'
+			>
+				<Typography>Google Adsense</Typography>
+			</Stack>
+		);
+	}
+
 	return (
 		<Adsense
 			adTest='on'

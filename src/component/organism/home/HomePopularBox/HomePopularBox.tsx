@@ -9,7 +9,7 @@
 
 import { useGetGooglePopularData } from '@kapoo/api';
 import LottieIcon from '@kapoo/atom/LottieIcon';
-import HomePopularList from '@kapoo/organism/home/HomePopularList';
+import MarkdownList from '@kapoo/molecule/MarkdownList';
 import { postsStore, projectsStore } from '@kapoo/store/markdown';
 import { MarkdownListItemProps, MarkdownType } from '@kapoo/util/markdown';
 
@@ -52,7 +52,7 @@ export default function HomePopularBox({ type }: HomePopularBoxProps): ReactNode
 	return (
 		<Stack data-component='HomePopularBox' paddingBottom={4} paddingTop={4} spacing={8}>
 			<Stack spacing={2}>
-				<Typography fontWeight='bold' variant='h3'>👑 인기 {text}</Typography>
+				<Typography fontWeight='bold' variant='h4'>👑 인기 {text}</Typography>
 				<Typography color='GrayText'>한 달 이내의 Google Analytics 데이터 중, 가장 조회수가 높은 {text}의 목록입니다.</Typography>
 			</Stack>
 
@@ -61,7 +61,7 @@ export default function HomePopularBox({ type }: HomePopularBoxProps): ReactNode
 					<LottieIcon iconName='loading' maxWidth={200} width='100%' />
 				</Stack>
 			) : (
-				<HomePopularList markdown={markdown} />
+				<MarkdownList markdown={markdown} />
 			)}
 		</Stack>
 	);

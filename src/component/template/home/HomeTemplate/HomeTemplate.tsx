@@ -6,6 +6,7 @@
  */
 
 import BusinessCard from '@kapoo/organism/home/BusinessCard';
+import HomeNewistMarkdownTemplate from '@kapoo/template/home/HomeNewistMarkdownTemplate';
 import HomePopularPostsTemplate from '@kapoo/template/home/HomePopularPostsTemplate';
 import HomePopularProjectsTemplate from '@kapoo/template/home/HomePopularProjectsTemplate';
 import HomeScreenerTemplate from '@kapoo/template/home/HomeScreenerTemplate';
@@ -25,6 +26,7 @@ export default function HomeTemplate(): ReactNode
 		<Stack alignItems='center' data-component='HomeTemplate' spacing={10}>
 			<HomeScreenerTemplate />
 			<HomeWelcomeTemplate />
+			<HomeNewistMarkdownTemplate />
 			<HomePopularPostsTemplate />
 			<HomePopularProjectsTemplate />
 			<BusinessCard />

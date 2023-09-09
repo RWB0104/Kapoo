@@ -66,6 +66,8 @@ export const REGEX = {
 	markdownName: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
 };
 
+export const DAY_EPOCH = 86400000;
+
 /**
  * 메타데이터 반환 메서드
  *
@@ -160,4 +162,21 @@ export function dateParse(obj?: string | number | Date): DateParseProps
 			value: date.getFullYear()
 		}
 	};
+}
+
+/**
+ * 신규 여부 반환 메서드
+ *
+ * @param {string | number | Date} obj: 파라미터
+ *
+ * @returns {boolean} 신규 여부
+ */
+export function getNewist(obj?: string | number | Date): boolean
+{
+	const now = new Date();
+	const date = obj ? new Date(obj) : new Date();
+
+	const diff = now.getTime() - date.getTime();
+
+	return diff < DAY_EPOCH * 15;
 }

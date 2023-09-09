@@ -11,8 +11,6 @@ import { dancingScript } from '@kapoo/organism/global/AppThemeProvider';
 import { viewStore } from '@kapoo/store/markdown';
 import { themeStore } from '@kapoo/store/theme';
 
-import TurnedIn from '@mui/icons-material/TurnedIn';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -68,10 +66,6 @@ export default function ViewTocBox(): ReactNode
 				<Stack alignItems='center'>
 					<ReactToc className={cn('toc')} data-component='ViewTocBox' markdownText={view?.content || ''} type='raw' />
 				</Stack>
-
-				<Box bottom={-80} className={cn('tag')} fontSize={100} position='absolute' right={50}>
-					<TurnedIn color='error' fontSize='inherit' />
-				</Box>
 
 				<Stack alignItems='center'>
 					<img

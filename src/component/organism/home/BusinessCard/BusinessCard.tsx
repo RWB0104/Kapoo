@@ -63,6 +63,14 @@ export default function BusinessCard(): JSX.Element
 							<Typography className={cn('text')} fontWeight='bold'>{APP_INFO.title}</Typography>
 
 							<Stack alignItems='center' direction='row' spacing={1}>
+								<img alt='홈페이지' height={24} src='https://itcode.dev/logo.png' width={24} />
+
+								<Link href='https://itcode.dev'>
+									<Typography>홈페이지</Typography>
+								</Link>
+							</Stack>
+
+							<Stack alignItems='center' direction='row' spacing={1}>
 								<Email />
 
 								<Link href={`mailto:${AUTHOR.email}`}>

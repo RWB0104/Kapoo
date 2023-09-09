@@ -27,14 +27,14 @@ export default function HomeWelcomBox(): ReactNode
 				borderRadius={4}
 				boxShadow='0px 0px 20px #00000099'
 				display='flex'
-				height={400}
+				height={300}
 				overflow='hidden'
-				width={400}
+				width={300}
 			>
 				<img alt={APP_INFO.title} height='100%' src='/thumb.png' width='100%' />
 			</Stack>
 
-			<Typography fontFamily={gamjaFlower.style.fontFamily} fontWeight='bold' variant='h4'>{APP_INFO.title}</Typography>
+			<Typography fontFamily={gamjaFlower.style.fontFamily} fontWeight='bold' textAlign='center' variant='h4'>{APP_INFO.title}</Typography>
 		</Stack>
 	);
 }

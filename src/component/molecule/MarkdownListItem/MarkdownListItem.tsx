@@ -6,7 +6,7 @@
  */
 
 import { themeStore } from '@kapoo/store/theme';
-import { dateParse } from '@kapoo/util/common';
+import { DAY_EPOCH, dateParse } from '@kapoo/util/common';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -48,6 +48,11 @@ export interface MarkdownListItemProps extends LinkProps
 	 * 날짜
 	 */
 	date: string;
+
+	/**
+	 * 신규 여부
+	 */
+	newist?: boolean;
 }
 
 /**
@@ -57,7 +62,7 @@ export interface MarkdownListItemProps extends LinkProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function MarkdownListItem({ title, excerpt, thumb, category, date, ...props }: MarkdownListItemProps): ReactNode
+export default function MarkdownListItem({ title, excerpt, thumb, category, date, newist, ...props }: MarkdownListItemProps): ReactNode
 {
 	const { theme } = themeStore();
 
@@ -73,28 +78,27 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 		const epoch = new Date(date).getTime();
 		const now = new Date().getTime();
 
-		const day = 86400000;
 		const diff = now - epoch;
 
 		// 하루가 지나지 않았을 경우
-		if (diff < day)
+		if (diff < DAY_EPOCH)
 		{
 			return '방금 전';
 		}
 
 		// 2주 이내일 경우
-		if (diff < day * 15)
+		if (diff < DAY_EPOCH * 15)
 		{
-			return `${Math.round(diff / day)}일 전`;
+			return `${Math.round(diff / DAY_EPOCH)}일 전`;
 		}
 
 		// 1년 이내일 경우
-		if (diff < day * 365)
+		if (diff < DAY_EPOCH * 365)
 		{
-			return `${Math.round(diff / (day * 30))}달 전`;
+			return `${Math.round(diff / (DAY_EPOCH * 30))}달 전`;
 		}
 
-		return `${Math.round(diff / (day * 365))}년 전`;
+		return `${Math.round(diff / (DAY_EPOCH * 365))}년 전`;
 	}, [ date ]);
 
 	return (
@@ -107,14 +111,24 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 						</Box>
 
 						<Stack alignItems='start' flex={1} justifyContent='start' padding={3} spacing={1}>
-							<Stack alignItems='center' direction='row' spacing={1}>
-								<Avatar
-									alt={category}
-									className={cn('category')}
-									src={`https://datastore.itcode.dev/blog/category/${category}.png`}
-								/>
+							<Stack alignItems='center' direction='row' justifyContent='space-between' spacing={1} width='100%'>
+								<Stack alignItems='center' direction='row' spacing={1}>
+									<Avatar
+										alt={category}
+										className={cn('category')}
+										src={`https://datastore.itcode.dev/blog/category/${category}.png`}
+									/>
 
-								<Typography variant='caption'>{category}</Typography>
+									<Typography variant='caption'>{category}</Typography>
+								</Stack>
+
+								<Stack alignItems='center' direction='row' spacing={1}>
+									{newist ? (
+										<Box bgcolor='hotpink' borderRadius={1} padding='1px 10px'>
+											<Typography color='white' fontSize={8}>NEW</Typography>
+										</Box>
+									) : null}
+								</Stack>
 							</Stack>
 
 							<Box>

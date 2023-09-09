@@ -5,9 +5,12 @@
  * @since 2023.09.02 Sat 00:17:11
  */
 
+'use client';
+
 import Comment from '@kapoo/atom/Comment';
 import LottieIcon from '@kapoo/atom/LottieIcon/LottieIcon';
 import ViewHits from '@kapoo/organism/view/ViewHits';
+import { viewStore } from '@kapoo/store/markdown';
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -20,6 +23,8 @@ import { ReactNode } from 'react';
  */
 export default function ViewCommentBox(): ReactNode
 {
+	const { view } = viewStore();
+
 	return (
 		<Stack data-component='ViewCommentBox' spacing={10}>
 			<Stack alignItems='center' justifyContent='center' spacing={1} width='100%'>
@@ -32,7 +37,7 @@ export default function ViewCommentBox(): ReactNode
 
 			<ViewHits />
 
-			<Comment />
+			{view?.frontmatter.comment ? <Comment /> : null}
 		</Stack>
 	);
 }

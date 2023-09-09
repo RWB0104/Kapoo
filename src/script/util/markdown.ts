@@ -10,7 +10,7 @@ import { join } from 'path';
 
 import matter from 'gray-matter';
 
-import { REGEX } from './common';
+import { REGEX, getNewist } from './common';
 
 export type MarkdownType = 'posts' | 'projects';
 export type FrontmatterForListProps = Omit<FrontmatterProps, 'type' | 'tag' | 'comment' | 'publish' | 'info'>;
@@ -97,6 +97,11 @@ export interface FrontmatterProps
 	 * 발행 여부
 	 */
 	publish: boolean;
+
+	/**
+	 * 최신 여부
+	 */
+	isNew: boolean;
 }
 
 export interface MarkdownListItemProps extends Pick<MarkdownProps, 'names' | 'url'>
@@ -180,6 +185,7 @@ export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 				date: frontmatter.date,
 				excerpt: frontmatter.excerpt,
 				group: frontmatter.group,
+				isNew: getNewist(frontmatter.date),
 				title: frontmatter.title
 			},
 			names,

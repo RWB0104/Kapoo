@@ -8,7 +8,7 @@
 'use client';
 
 import MarkdownCategory from '@kapoo/organism/markdown/MarkdownCategory';
-import MarkdownList from '@kapoo/organism/markdown/MarkdownList';
+import MarkdownInfiniteList from '@kapoo/organism/markdown/MarkdownInfiniteList';
 import MarkdownSearch from '@kapoo/organism/markdown/MarkdownSearch';
 import { postsStore, projectsStore } from '@kapoo/store/markdown';
 import { MarkdownType } from '@kapoo/util/markdown';
@@ -48,7 +48,7 @@ export default function MarkdownBox({ type }: MarkdownBoxProps): ReactNode
 				<MarkdownCategory markdown={markdown[type]} />
 			</Stack>
 
-			<MarkdownList markdown={markdown[type]} />
+			<MarkdownInfiniteList markdown={markdown[type]} />
 		</Stack>
 	);
 }
