@@ -30,7 +30,11 @@ export default function RootLayout({ children }: RootLayoutProps): ReactNode
 	return (
 		<html lang='ko'>
 			<head>
-				<script src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' async />
+				<script
+					crossOrigin='anonymous'
+					src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5522045122225064'
+					async
+				/>
 			</head>
 
 			<body>
