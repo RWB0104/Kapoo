@@ -5,6 +5,7 @@
  * @since 2023.08.28 Mon 21:13:22
  */
 
+import Ads from '@kapoo/atom/Ads';
 import ViewCommentTemplate from '@kapoo/template/view/ViewCommentTemplate';
 import ViewContentTemplate from '@kapoo/template/view/ViewContentTemplate';
 import ViewControllTemplate from '@kapoo/template/view/ViewControllTemplate';
@@ -29,6 +30,7 @@ export default function ViewTemplate(): ReactNode
 			<ViewGroupTemplate />
 			<ViewTocTemplate />
 			<ViewContentTemplate />
+			<Ads />
 			<ViewTagTemplate />
 			<ViewControllTemplate />
 			<ViewCommentTemplate />
