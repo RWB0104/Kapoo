@@ -9,8 +9,37 @@ on:
       - v*
 
 jobs:
-  build:
+  set-dependencies:
+    runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: .yarn
+          key: ${{ runner.os }}-kapoo-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-kapoo
+
+      - name: Kapoo Dependencies Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+  build:
+    needs: set-dependencies
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,8 +57,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: Dependencies Install
-      run: yarn
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: .yarn
+        key: ${{ runner.os }}-kapoo-${{ hashFiles('yarn.lock') }}
+        restore-keys: ${{ runner.os }}-kapoo
 
     - name: Build SEO
       run: yarn seo
