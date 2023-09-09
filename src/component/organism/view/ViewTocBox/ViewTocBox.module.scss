@@ -17,23 +17,3 @@
 		rotate: 180deg;
 	}
 }
-
-.tag {
-	animation: float ease-in-out 3s infinite;
-
-	filter: drop-shadow(1px 1px 2px #222222);
-}
-
-@keyframes float {
-	0% {
-		translate: 0px 0px;
-	}
-
-	50% {
-		translate: 0px -10px;
-	}
-
-	100% {
-		translate: 0px 0px;
-	}
-}
