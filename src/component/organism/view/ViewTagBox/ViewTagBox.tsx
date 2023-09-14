@@ -9,6 +9,7 @@
 
 import { viewStore } from '@kapoo/store/markdown';
 
+import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -27,9 +28,13 @@ export default function ViewTagBox(): ReactNode
 		<Stack data-component='ViewTagBox' spacing={2}>
 			<Typography fontWeight='bold'>🏷️ Related Tag</Typography>
 
-			<Stack direction='row' spacing={2}>
-				{view?.frontmatter.tag.map((i) => <Chip key={i} label={`# ${i}`} size='medium' variant='outlined' />)}
-			</Stack>
+			<Box width='100%'>
+				{view?.frontmatter.tag.map((i) => (
+					<Box display='inline-block' key={i} paddingBottom={1} paddingRight={1}>
+						<Chip label={`# ${i}`} size='medium' variant='outlined' />
+					</Box>
+				))}
+			</Box>
 		</Stack>
 	);
 }
