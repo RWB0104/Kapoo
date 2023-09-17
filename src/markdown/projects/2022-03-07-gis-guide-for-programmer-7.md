@@ -77,6 +77,197 @@ GeoServer의 모든 설정은 웹에서 관리하므로, 여기에서 원하는 
 
 
 
+## CORS 설정
+
+GeoServer 서버 설정엔 CORS도 포함이 되어있다. 처음 설치할 때 놓치기 쉬운데, CORS 설정을 빼먹고 요청을 보낼 경우, CORS 설정에 의해 요청을 받지 못할 수 있다.
+
+`web.xml`을 수정하면 되는데, 바이너리와 WAR 파일마다 web.xml의 위치가 조금씩 다르다.
+
+- 바이너리
+  - `{ROOT}/webapps/geoserver/WEB-INF/web.xml`
+- WAR
+  - `{ROOT}/WEB-INF/web.xml`
+  - WAR의 경우, Tomcat이 구동되어 압축이 풀려있어야 한다.
+
+<br />
+<br />
+<br />
+
+
+
+### 1. web.xml 설정
+
+어찌됐든 `web.xml`을 찾아 수정하자. 파일에서 아래의 항목을 찾을 수 있을 것이다.
+
+``` xml
+<!-- Uncomment following filter to enable CORS in Jetty. Do not forget the second config block further down.
+<filter>
+    <filter-name>cross-origin</filter-name>
+    <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+    <init-param>
+    <param-name>chainPreflight</param-name>
+    <param-value>false</param-value>
+    </init-param>
+    <init-param>
+    <param-name>allowedOrigins</param-name>
+    <param-value>*</param-value>
+    </init-param>
+    <init-param>
+    <param-name>allowedMethods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+    </init-param>
+    <init-param>
+    <param-name>allowedHeaders</param-name>
+    <param-value>*</param-value>
+    </init-param>
+</filter>
+-->
+
+<!-- Uncomment following filter to enable CORS in Tomcat. Do not forget the second config block further down.
+<filter>
+    <filter-name>cross-origin</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>*</param-value>
+    </init-param>
+</filter>
+-->
+```
+
+기본적으로 주석 처리가 되어있으며, GeoServer 종류에 따라 두 주석 중 하나를 제거하여 CORS 설정을 적용할 수 있다. `filter-class`를 보고 구분해야한다.
+
+<br />
+<br />
+<br />
+
+
+
+#### WAR 파일일 경우
+
+``` xml
+<filter>
+    <filter-name>cross-origin</filter-name>
+    <!-- 여기 주목! 👇 -->
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>*</param-value>
+    </init-param>
+</filter>
+```
+
+<br />
+<br />
+<br />
+
+
+
+#### WAR 파일이 아닐 경우
+
+WAR의 경우, WAR를 구동하는 Tomcat 설정에 의존하므로, `filter-class`의 값이 `org.apache.catalina.filters.CorsFilter`인 설정을 해제하면 된다.
+
+``` xml
+<filter>
+    <filter-name>cross-origin</filter-name>
+    <!-- 여기 주목! 👇 -->
+    <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+    <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>*</param-value>
+    </init-param>
+</filter>
+```
+
+WAR가 아닌 다른 버전의 경우, WAR 처럼 Tomcat에 얹어 구동하는 게 아니라, 프로그램 스스로 구동하는 거라 프로그램 내부에 이미 `Jetty`라는 웹서버가 내장되어 있다.
+
+따라서 `filter-class`의 값이 `org.eclipse.jetty.servlets.CrossOriginFilter`인 설정을 해제해야 한다.
+
+<br />
+<br />
+<br />
+
+
+
+### 2. 필터 매핑 활성화하기
+
+``` xml
+<!-- Uncomment following filter to enable CORS
+<filter-mapping>
+    <filter-name>cross-origin</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+-->
+```
+
+`web.xml`의 CORS 설정에서 조금만 내려보면 위와 같이 주석 처리된 설정을 확인할 수 있다.
+
+위에서 활성화된 `cross-origin` 필터의 매핑을 활성화시키는 것으로, 기본적으로 모든 URL에 적용된다.
+
+<br />
+<br />
+<br />
+
+
+
+### 3. 필터 설정하기
+
+``` xml
+<filter>
+    <filter-name>cross-origin</filter-name>
+    <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+    <init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <!-- 여기 주목! 👇 -->
+    <param-value>https://example1.com,https://example2.com</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,PUT,DELETE,HEAD,OPTIONS</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.headers</param-name>
+    <param-value>*</param-value>
+    </init-param>
+</filter>
+```
+
+기본적인 CORS 필터 설정은 <span class="red-400">모든 도메인의 CORS 설정을 해제</span>하는 것이다. 이를 그대로 적용할 경우, 누구나 내 GeoServer에 요청을 보내 응답을 받을 수 있게 된다.
+
+특정 도메인에만 요청을 허용하고 싶을 경우, 아래와 같이 설정하자. 도메인이 여러개라면, 쉼표로 구분하면 된다.
+
+
+<br />
+<br />
+
+
+
+
+
 ## 계정 관리
 
 기본 계정을 그대로 사용할 경우, 보안 상의 위협을 받을 수 있다. 따라서 비밀번호를 변경하거나, 아예 새로운 계정을 만들어 관리하는 것이 안전하다.
