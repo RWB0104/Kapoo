@@ -5,6 +5,7 @@
  * @since 2023.08.30 Wed 02:13:01
  */
 
+import Image from '@kapoo/atom/Image';
 import { imageModalStore } from '@kapoo/store/modal';
 import { themeStore } from '@kapoo/store/theme';
 
@@ -42,7 +43,7 @@ export default function MarkdownImg({ alt, src, ...props }: MarkdownImgProps): R
 		<Stack alignItems='center' data-component='MarkdownImg' padding={4} spacing={1}>
 			<ButtonBase onClick={handleClick}>
 				<Box borderRadius={2} className={cn('image', theme)} display='inline-flex' overflow='hidden'>
-					<img alt={alt} height='100%' src={src} width='100%' {...props} />
+					<Image alt={alt} height='100%' src={src} width='100%' {...props} />
 				</Box>
 			</ButtonBase>
 

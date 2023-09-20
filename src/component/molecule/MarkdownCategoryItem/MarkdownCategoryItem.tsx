@@ -5,6 +5,8 @@
  * @since 2023.08.24 Thu 19:26:50
  */
 
+import Image from '@kapoo/atom/Image';
+
 import Box from '@mui/material/Box';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
@@ -52,7 +54,7 @@ export default function MarkdownCategoryItem({ category, count, selected, dimmed
 		<ButtonBase className='fullwidth' data-component='MarkdownCategoryItem' data-selected={selected} {...props}>
 			<Box className={cn('card')} position='relative' width='100%'>
 				<Box className={cn('wrap')} height='100%' width='100%'>
-					<img
+					<Image
 						alt={category}
 						className={cn('image', { dimmed })}
 						height='100%'

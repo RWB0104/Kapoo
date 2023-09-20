@@ -7,6 +7,7 @@
 
 'use client';
 
+import Image from '@kapoo/atom/Image';
 import { APP_INFO } from '@kapoo/env';
 import { gamjaFlower } from '@kapoo/organism/global/AppThemeProvider';
 
@@ -31,7 +32,7 @@ export default function HomeWelcomBox(): ReactNode
 				overflow='hidden'
 				width={300}
 			>
-				<img alt={APP_INFO.title} height='100%' src='/thumb.png' width='100%' />
+				<Image alt={APP_INFO.title} height='100%' src='/thumb.png' width='100%' />
 			</Stack>
 
 			<Typography fontFamily={gamjaFlower.style.fontFamily} fontWeight='bold' textAlign='center' variant='h4'>{APP_INFO.title}</Typography>

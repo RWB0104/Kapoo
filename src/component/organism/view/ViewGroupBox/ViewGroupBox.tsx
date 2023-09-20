@@ -7,6 +7,7 @@
 
 'use client';
 
+import Image from '@kapoo/atom/Image';
 import { viewStore } from '@kapoo/store/markdown';
 
 import ArrowBack from '@mui/icons-material/ArrowBack';
@@ -52,7 +53,7 @@ export default function ViewGroupBox(): ReactNode | null
 		<Paper data-component='ViewGroupBox' variant='outlined'>
 			<Stack>
 				<Stack alignItems='center' height={200} justifyContent='center' position='relative'>
-					<img
+					<Image
 						alt={view.frontmatter.group}
 						className={cn('image')}
 						height='100%'

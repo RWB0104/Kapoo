@@ -5,6 +5,7 @@
  * @since 2023.08.25 Fri 02:19:38
  */
 
+import Image from '@kapoo/atom/Image';
 import { themeStore } from '@kapoo/store/theme';
 import { DAY_EPOCH, dateParse } from '@kapoo/util/common';
 
@@ -107,7 +108,7 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 				<ButtonBase className='fullwidth fullheight'>
 					<Stack height='100%' width='100%'>
 						<Box className={cn('thumb')} position='relative' width='100%'>
-							<img alt={title} className={cn('image')} height='100%' src={thumb} width='100%' />
+							<Image alt={title} className={cn('image')} height='100%' src={thumb} width='100%' />
 						</Box>
 
 						<Stack alignItems='start' flex={1} justifyContent='start' padding={3} spacing={1}>

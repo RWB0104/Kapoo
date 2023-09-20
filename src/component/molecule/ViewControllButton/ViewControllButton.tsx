@@ -5,6 +5,8 @@
  * @since 2023.09.01 Fri 02:00:16
  */
 
+import Image from '@kapoo/atom/Image';
+
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Box from '@mui/material/Box';
@@ -80,7 +82,7 @@ export default function ViewControllButton({ mode, title, cover, link, ...props 
 						<Typography className={cn('title')} color='white' variant='caption'>{title}</Typography>
 					</Stack>
 
-					<img alt={cover} className={cn('image')} height='100%' src={cover} width='100%' />
+					<Image alt={cover} className={cn('image')} height='100%' src={cover} width='100%' />
 
 					<Box bgcolor='#00000099' height='100%' left={0} position='absolute' top={0} width='100%' />
 				</Box>

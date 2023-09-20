@@ -7,6 +7,7 @@
 
 'use client';
 
+import Image from '@kapoo/atom/Image';
 import { imageModalStore } from '@kapoo/store/modal';
 
 import Backdrop from '@mui/material/Backdrop';
@@ -49,7 +50,7 @@ export default function ViewImageModal(): ReactNode
 				width='100%'
 			>
 				{image ? (
-					<img
+					<Image
 						alt={image}
 						className={cn('image')}
 						height='100%'
