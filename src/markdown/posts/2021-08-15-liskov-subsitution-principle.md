@@ -1,17 +1,17 @@
 ---
-title: "[OOP] 객체지향 5원칙(SOLID) - 리스코프 치환 원칙 (Liskov Subsitution Principle)"
+title: "[OOP] 객체지향 5원칙(SOLID) - 리스코프 치환 원칙 LSP (Liskov Subsitution Principle)"
 excerpt: "리스코프 치환 원칙은 부모 객체와 이를 상속한 자식 객체가 있을 때 부모 객체를 호출하는 동작에서 자식 객체가 부모 객체를 완전히 대체할 수 있다는 원칙이다. 객체지향 언어에선 객체의 상속이 일어난다. 이 과정에서 부모/자식 관계가 정의된다. 자식 객체는 부모 객체의 특성을 가지며, 이를 토대로 확장할 수 있다. 하지만 이 과정에서 무리하거나 객체의 의의와 어긋나는 확장으로 인해 잘못된 방향으로 상속되는 경우가 생긴다. 리스코프 치환 원칙은 올바른 상속을 위해 자식 객체의 확장이 부모 객체의 방향을 온전히 따르도록 권고하는 원칙이다."
 coverImage: "https://user-images.githubusercontent.com/50317129/128211434-7c28e08b-c867-4b08-98c0-bcf94f0e54b3.png"
 date: "2021-08-15T13:42:11"
 type: "posts"
 category: "CS"
-tag: [ "CS", "객체지향", "객체지향 5원칙" ]
+tag: [ "CS", "객체지향", "객체지향 5원칙", "리스코프 치환 원칙", "LSP" ]
 group: "객체지향"
 comment: true
 publish: true
 ---
 
-# 리스코프 치환 원칙 (Liskov Subsitution Principle)
+# 리스코프 치환 원칙 LSP (Liskov Subsitution Principle)
 
 <span class="orange-400">리스코프 치환 원칙</span>은 부모 객체와 이를 상속한 자식 객체가 있을 때 <span class="red-600">부모 객체를 호출하는 동작에서 자식 객체가 부모 객체를 완전히 대체할 수 있다</span>는 원칙이다.
 
