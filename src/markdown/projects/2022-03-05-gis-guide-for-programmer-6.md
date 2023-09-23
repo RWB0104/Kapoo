@@ -41,7 +41,7 @@ QGIS 3.16 기준으로 일반적인 설치 경로는 `C:\Program Files\QGIS 3.16
 <br />
 
 ``` batch
-ogr2ogr -f MySQL MySQL:{DB명}, host={DB 호스트}, user={DB 계정명}, password={DB 비밀번호} {SHP 경로} -nln {생성할 테이블 이름} -a_srs {SHP의 EPSG 코드} -lco engine=MYISAM
+ogr2ogr -f MySQL MySQL:"{DB명},host={DB 호스트},user={DB 계정명},password={DB 비밀번호}" {SHP 경로} -nln {생성할 테이블 이름} -a_srs {SHP의 EPSG 코드} -lco engine=MYISAM
 ```
 
 위 명령어를 입력하여 SHP를 MariaDB에 삽입할 수 있다. `-nln` 옵션을 지정하지 않을 경우, SHP의 이름을 그대로 따라간다.
