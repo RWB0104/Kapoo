@@ -9,7 +9,7 @@ import LottieIcon from '@kapoo/atom/LottieIcon';
 
 import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
-import { DetailedHTMLProps, ImgHTMLAttributes, ReactEventHandler, ReactNode, useCallback, useState } from 'react';
+import { DetailedHTMLProps, ImgHTMLAttributes, ReactEventHandler, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 import styles from './Image.module.scss';
 
@@ -29,6 +29,8 @@ export default function Image({ alt, width, height, className, onError, onLoad, 
 {
 	const [ statusState, setStatusState ] = useState<StatusType>('loading');
 
+	const imageRef = useRef<HTMLImageElement | null>(null);
+
 	const handleError: ReactEventHandler<HTMLImageElement> = useCallback((e) =>
 	{
 		setStatusState('error');
@@ -42,7 +44,7 @@ export default function Image({ alt, width, height, className, onError, onLoad, 
 
 	const handleLoad: ReactEventHandler<HTMLImageElement> = useCallback((e) =>
 	{
-		setStatusState('success');
+		setStatusState(e.currentTarget.complete ? 'success' : 'loading');
 
 		// onLoad 메서드가 유효할 경우
 		if (onLoad)
@@ -51,6 +53,14 @@ export default function Image({ alt, width, height, className, onError, onLoad, 
 		}
 	}, [ onLoad, setStatusState ]);
 
+	useEffect(() =>
+	{
+		if (imageRef.current)
+		{
+			setStatusState(imageRef.current.complete ? 'success' : 'loading');
+		}
+	}, [ imageRef, setStatusState ]);
+
 	return (
 		<Stack data-component='Image' height={height} position='relative' width={width}>
 			<img
@@ -58,9 +68,10 @@ export default function Image({ alt, width, height, className, onError, onLoad, 
 				className={cn('image', { loading: statusState !== 'success' }, className)}
 				data-status={statusState}
 				height='100%'
+				ref={imageRef}
 				width='100%'
 				onError={handleError}
-				onLoad={handleLoad}
+				onLoadCapture={handleLoad}
 				{...props}
 			/>
 
