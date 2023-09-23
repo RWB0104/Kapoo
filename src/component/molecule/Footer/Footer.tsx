@@ -55,7 +55,7 @@ export default function Footer(): ReactNode
 							<LinkedIn />
 						</LinkIconButton>
 
-						<LinkIconButton link='/sitemap.xml' tooltip='Sitemap XML'>
+						<LinkIconButton link='/sitemap-index.xml' tooltip='Sitemap XML'>
 							<Schema />
 						</LinkIconButton>
 
