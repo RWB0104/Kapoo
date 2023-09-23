@@ -27,7 +27,7 @@ export type MarkdownHeadingProps = HeadingProps;
  */
 export default function MarkdownHeading({ level, children, ...props }: MarkdownHeadingProps): ReactNode
 {
-	const href = useMemo(() => String(children).replaceAll(' ', '-'), [ children ]);
+	const href = useMemo(() => String(children).replaceAll(' ', '-').toLowerCase(), [ children ]);
 
 	const tag = useMemo(() =>
 	{
