@@ -53,15 +53,15 @@ export default function ViewGroupBox(): ReactNode | null
 		<Paper data-component='ViewGroupBox' variant='outlined'>
 			<Stack>
 				<Stack alignItems='center' height={200} justifyContent='center' position='relative'>
-					<Image
-						alt={view.frontmatter.group}
-						className={cn('image')}
-						height='100%'
-						src={view.frontmatter.coverImage}
-						width='100%'
-					/>
-
-					<Box bgcolor='#00000099' height='100%' position='absolute' width='100%' />
+					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+						<Image
+							alt={view.frontmatter.group}
+							className={cn('image')}
+							height='100%'
+							src={view.frontmatter.coverImage}
+							width='100%'
+						/>
+					</Box>
 
 					<Box padding={2} zIndex={2}>
 						<Typography color='white' textAlign='center' variant='h6'>이 게시글은 <Typography color='gold' component='span' variant='inherit'>{view.frontmatter.group}</Typography> 시리즈의 {view.info.group.length}개 중 {view.info.group.length - (idx || 0)}번 째 게시글입니다.</Typography>

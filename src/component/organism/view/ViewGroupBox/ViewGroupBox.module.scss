@@ -3,11 +3,8 @@
 }
 
 .image {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-
 	object-fit: cover;
+	filter: brightness(40%);
 }
 
 .link {

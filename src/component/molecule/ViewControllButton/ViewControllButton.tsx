@@ -72,19 +72,19 @@ export default function ViewControllButton({ mode, title, cover, link, ...props 
 						zIndex={2}
 					>
 						<Stack alignItems='center' direction='row' spacing={1}>
-							{mode === 'prev' ? <ArrowBack htmlColor='white' /> : null}
+							{mode === 'prev' ? <ArrowBack htmlColor='dodgerblue' /> : null}
 
-							<Typography color='white' fontWeight='bold'>{modeText}</Typography>
+							<Typography color='dodgerblue' fontWeight='bold'>{modeText}</Typography>
 
-							{mode === 'next' ? <ArrowForward htmlColor='white' /> : null}
+							{mode === 'next' ? <ArrowForward htmlColor='dodgerblue' /> : null}
 						</Stack>
 
 						<Typography className={cn('title')} color='white' variant='caption'>{title}</Typography>
 					</Stack>
 
-					<Image alt={cover} className={cn('image')} height='100%' src={cover} width='100%' />
-
-					<Box bgcolor='#00000099' height='100%' left={0} position='absolute' top={0} width='100%' />
+					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+						<Image alt={cover} className={cn('image')} height='100%' src={cover} width='100%' />
+					</Box>
 				</Box>
 			</ButtonBase>
 		</Link>
