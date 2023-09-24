@@ -2744,7 +2744,6 @@ __metadata:
     react-ga4: ^2.1.0
     react-markdown: ^8.0.7
     react-syntax-highlighter: ^15.5.0
-    react-toc: ^3.1.0
     rehype-katex: ^6.0.3
     rehype-raw: 6.1.1
     remark-gfm: ^3.0.1
@@ -7616,16 +7615,6 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: c082b48f30f8ba8d0c55ed1d761910630860077c7ff5793c4c912adcb5760df06436ed0ad62be0de28113aac9ad2af55eccd995f8eee98df53382e4ced2072fb
-  languageName: node
-  linkType: hard
-
-"react-toc@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "react-toc@npm:3.1.0"
-  peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  checksum: c93ff1b7b8affb2e530541625e34f0be5a3aadc68312b1d73e302127b5f33e33121e722d9f8182401c15c44de9e2f2cf31bbfcf8dc391a5c5d61d77ee0ac9322
   languageName: node
   linkType: hard
 

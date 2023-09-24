@@ -66,7 +66,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-ga4", "npm:2.1.0"],\
             ["react-markdown", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:8.0.7"],\
             ["react-syntax-highlighter", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:15.5.0"],\
-            ["react-toc", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:3.1.0"],\
             ["rehype-katex", "npm:6.0.3"],\
             ["rehype-raw", "npm:6.1.1"],\
             ["remark-gfm", "npm:3.0.1"],\
@@ -4325,7 +4324,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-ga4", "npm:2.1.0"],\
             ["react-markdown", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:8.0.7"],\
             ["react-syntax-highlighter", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:15.5.0"],\
-            ["react-toc", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:3.1.0"],\
             ["rehype-katex", "npm:6.0.3"],\
             ["rehype-raw", "npm:6.1.1"],\
             ["remark-gfm", "npm:3.0.1"],\
@@ -10089,32 +10087,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "packagePeers": [\
             "@types/react",\
-            "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["react-toc", [\
-        ["npm:3.1.0", {\
-          "packageLocation": "./.yarn/cache/react-toc-npm-3.1.0-9242b31142-c93ff1b7b8.zip/node_modules/react-toc/",\
-          "packageDependencies": [\
-            ["react-toc", "npm:3.1.0"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:3.1.0", {\
-          "packageLocation": "./.yarn/__virtual__/react-toc-virtual-e6232819f2/0/cache/react-toc-npm-3.1.0-9242b31142-c93ff1b7b8.zip/node_modules/react-toc/",\
-          "packageDependencies": [\
-            ["react-toc", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:3.1.0"],\
-            ["@types/react", "npm:18.2.20"],\
-            ["@types/react-dom", "npm:18.2.7"],\
-            ["react", "npm:18.2.0"],\
-            ["react-dom", "virtual:0460f86c7587ee75dac643681550c044e8047ba46e219a5baac054fc0fea2d0af97a9bd3fe4b22de0884797215e0a1a4368bb60f9ef7087a69c4008789f4e032#npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react-dom",\
-            "@types/react",\
-            "react-dom",\
             "react"\
           ],\
           "linkType": "HARD"\
