@@ -75,6 +75,7 @@ export interface TocProps
 
 export const REGEX = {
 	markdown: /^((19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-)(.*)(.md)$/,
+	markdownCodeblock: /```[^]*?```/gm,
 	markdownExt: /\.md$/,
 	markdownHeading: /^(#{1,6})(.+)$/gm,
 	markdownName: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
@@ -208,9 +209,11 @@ export function getMarkdownToc(text: string): TocProps[]
 
 	const list: TocProps[] = [];
 
+	const temp = text.replaceAll(REGEX.markdownCodeblock, '');
+
 	while (flag)
 	{
-		const match = REGEX.markdownHeading.exec(text);
+		const match = REGEX.markdownHeading.exec(temp);
 
 		// 일치하는 정규식이 없을 경우
 		if (match === null)

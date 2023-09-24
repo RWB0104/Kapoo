@@ -5,6 +5,9 @@
  * @since 2023.08.31 Thu 15:14:43
  */
 
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { ReactNode, useMemo } from 'react';
@@ -36,7 +39,13 @@ export default function MarkdownHeading({ level, children, ...props }: MarkdownH
 				href={`#${href}`}
 				id={href}
 			>
-				{children}
+				<Stack>
+					{children}
+
+					<Box paddingTop={1}>
+						<Divider />
+					</Box>
+				</Stack>
 			</Link>
 		);
 

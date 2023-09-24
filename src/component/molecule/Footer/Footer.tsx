@@ -73,18 +73,18 @@ export default function Footer(): ReactNode
 
 					<Stack alignItems='center' justifyContent='center' spacing={1}>
 						<Stack alignItems='center' direction='row' justifyContent='center' spacing={1}>
-							<Copyright color='primary' />
-							<Typography>Copyright. All rights reserved.</Typography>
+							<Copyright color='primary' fontSize='small' />
+							<Typography variant='caption'>Copyright. All rights reserved.</Typography>
 						</Stack>
 
 						<Stack alignItems='center' direction='row' justifyContent='center' spacing={1}>
-							<Terminal color='warning' />
-							<Typography>Developed by {AUTHOR.nickname} since 2021.05</Typography>
+							<Terminal color='warning' fontSize='small' />
+							<Typography variant='caption'>Developed by {AUTHOR.nickname} since 2021.05</Typography>
 						</Stack>
 
 						<Stack alignItems='center' direction='row' justifyContent='center' spacing={1}>
-							<IntegrationInstructions color='error' />
-							<Typography>4th Upgraded at 2023.08</Typography>
+							<IntegrationInstructions color='error' fontSize='small' />
+							<Typography variant='caption'>4th Upgraded at 2023.08</Typography>
 						</Stack>
 					</Stack>
 
