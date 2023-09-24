@@ -97,7 +97,7 @@ const stringAtom = atom<string | undefined>({
 ### 환경변수 활용하기
 
 ``` properties
-# .env
+ # .env
 RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false
 ```
 
@@ -110,12 +110,12 @@ RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false
 <br />
 
 ``` properties
-# .env.development
-# 개발환경 환경변수
+ # .env.development
+ # 개발환경 환경변수
 RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false
 
-# .env.production
-# 운영환경 환경변수
+ # .env.production
+ # 운영환경 환경변수
 RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=true
 ```
 

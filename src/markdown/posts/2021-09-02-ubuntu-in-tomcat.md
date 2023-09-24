@@ -130,7 +130,7 @@ sudo apt-get install ufw
  # ufw 활성화
 sudo ufw enable
 
-#  ufw 비활성화
+ #  ufw 비활성화
 sudo ufw disable
 
  # ufw 상태 확인
