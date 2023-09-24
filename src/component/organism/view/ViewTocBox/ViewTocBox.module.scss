@@ -9,6 +9,23 @@
 	}
 }
 
+.toc {
+	position: relative;
+
+	&::before {
+		content: "";
+
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		top: 0px;
+		left: -20px;
+
+		border: 3px solid dodgerblue;
+		border-radius: 50%;
+	}
+}
+
 .line {
 	max-width: 500px;
 	width: 100%;
