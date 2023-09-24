@@ -60,9 +60,23 @@ interface DateParseObject
 	value: number;
 }
 
+export interface TocProps
+{
+	/**
+	 * 텍스트
+	 */
+	text: string;
+
+	/**
+	 * 깊이
+	 */
+	level: number;
+}
+
 export const REGEX = {
 	markdown: /^((19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-)(.*)(.md)$/,
 	markdownExt: /\.md$/,
+	markdownHeading: /^(#{1,6})(.+)$/gm,
 	markdownName: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
 };
 
@@ -179,4 +193,36 @@ export function getNewist(obj?: string | number | Date): boolean
 	const diff = now.getTime() - date.getTime();
 
 	return diff < DAY_EPOCH * 15;
+}
+
+/**
+ * 마크다운 TOC 리스트 반환 메서드
+ *
+ * @param {string} text: 텍스트
+ *
+ * @returns {TocProps[]} 마크다운 TOC 리스트
+ */
+export function getMarkdownToc(text: string): TocProps[]
+{
+	const flag = true;
+
+	const list: TocProps[] = [];
+
+	while (flag)
+	{
+		const match = REGEX.markdownHeading.exec(text);
+
+		// 일치하는 정규식이 없을 경우
+		if (match === null)
+		{
+			break;
+		}
+
+		list.push({
+			level: match[1].trim().length,
+			text: match[2].trim()
+		});
+	}
+
+	return list;
 }

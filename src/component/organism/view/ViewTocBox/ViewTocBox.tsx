@@ -10,13 +10,16 @@
 import { dancingScript } from '@kapoo/organism/global/AppThemeProvider';
 import { viewStore } from '@kapoo/store/markdown';
 import { themeStore } from '@kapoo/store/theme';
+import { getMarkdownToc } from '@kapoo/util/common';
 
+import { useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 import { ReactNode, useMemo } from 'react';
-import ReactToc from 'react-toc';
 
 import styles from './ViewTocBox.module.scss';
 
@@ -29,11 +32,15 @@ const cn = classNames.bind(styles);
  */
 export default function ViewTocBox(): ReactNode
 {
+	const { palette } = useTheme();
+
 	const { theme } = themeStore();
 	const { view } = viewStore();
 
 	const bgcolor = useMemo(() => (theme === 'light' ? 'ivory' : undefined), [ theme ]);
 	const image = useMemo(() => (theme === 'light' ? 'https://user-images.githubusercontent.com/50317129/260317028-9c42e25d-9213-4583-87af-66853cf16bc2.png' : 'https://user-images.githubusercontent.com/50317129/260317030-e4b8575b-f09e-47f4-ab70-168a817268c6.png'), [ theme ]);
+
+	const toc = useMemo(() => getMarkdownToc(view?.content || ''), [ view ]);
 
 	return (
 		<Paper className='fullwidth' data-component='ViewTocBox'>
@@ -64,7 +71,25 @@ export default function ViewTocBox(): ReactNode
 				</Typography>
 
 				<Stack alignItems='center'>
-					<ReactToc className={cn('toc')} data-component='ViewTocBox' markdownText={view?.content || ''} type='raw' />
+					<Box>
+						{toc.map((i) => (
+							<Box key={`${i.level}-${i.text}`}>
+								<Link href={`#${i.text.replaceAll(' ', '-').toLowerCase()}`}>
+									<Stack alignItems='center' direction='row' marginLeft={(i.level - 1) * 2} spacing={1}>
+										<Box
+											border='2px solid'
+											borderColor={palette.primary.main}
+											borderRadius='50%'
+											height={10}
+											width={10}
+										/>
+
+										<Typography>{i.text}</Typography>
+									</Stack>
+								</Link>
+							</Box>
+						))}
+					</Box>
 				</Stack>
 
 				<Stack alignItems='center'>

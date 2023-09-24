@@ -28,24 +28,6 @@ export interface ConvertProps
 	html: string;
 }
 
-export interface TocProps
-{
-	/**
-	 * 텍스트
-	 */
-	text: string;
-
-	/**
-	 * 태그
-	 */
-	tag: string;
-
-	/**
-	 * 깊이
-	 */
-	depth: number;
-}
-
 export interface FrontmatterProps
 {
 	/**
