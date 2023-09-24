@@ -68,6 +68,7 @@ export default function Image({ alt, width, height, className, onError, onLoad, 
 				className={cn('image', { loading: statusState !== 'success' }, className)}
 				data-status={statusState}
 				height='100%'
+				loading='lazy'
 				ref={imageRef}
 				width='100%'
 				onError={handleError}
