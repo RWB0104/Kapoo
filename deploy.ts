@@ -1,7 +1,19 @@
+/**
+ * 배포 모듈
+ *
+ * @author RWB
+ * @since 2023.09.25 Mon 13:17:26
+ */
+
 import { execSync } from 'child_process';
 
 const list = [ 'major', 'minor', 'patch' ];
 
+/**
+ * 파라미터 검증 메서드
+ *
+ * @param {string} target: 파라미터
+ */
 function vaildTarget(target: string): void
 {
 	if (!list.includes(target))
@@ -10,6 +22,9 @@ function vaildTarget(target: string): void
 	}
 }
 
+/**
+ * 배포 메서드
+ */
 function run(): void
 {
 	try
