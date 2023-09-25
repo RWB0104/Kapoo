@@ -77,7 +77,7 @@ export const REGEX = {
 	markdown: /^((19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-)(.*)(.md)$/,
 	markdownCodeblock: /```[^]*?```/gm,
 	markdownExt: /\.md$/,
-	markdownHeading: /^(#{1,6})(.+)$/gm,
+	markdownHeading: /^(#{1,6}) (.+)$/gm,
 	markdownName: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
 };
 
