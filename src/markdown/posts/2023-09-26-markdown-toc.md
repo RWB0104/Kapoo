@@ -129,7 +129,7 @@ echo Lorem Ipsum
 It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 ```
 
-> 마크다운의 코드블럭 문법 \`을 코드블럭 내에서 표현하기 어렵기 때문에 \\`로 대체한다.
+> 마크다운의 코드블럭 문법 \`을 코드블럭 내에서 표현하기 어렵기 때문에 \\\`로 대체한다.
 이를 `text`라는 변수에 담아, 정규식을 활용하여 코드블럭을 제거한다.
 
 ``` ts
@@ -186,9 +186,11 @@ let text = '{...}';
 
 let list = [];
 
+const regex = /^(#{1,6}) (.+)$/gm;
+
 while (flag)
 {
-    const match = /^(#{1,6}) (.+)$/gm.exec(temp);
+    const match = regex.exec(temp);
 
     // 일치하는 정규식이 없을 경우
     if (match === null)
@@ -202,6 +204,9 @@ while (flag)
     });
 }
 ```
+
+> 위 코드를 보면, 굳이 `regex`라는 변수에 정규식을 할당하여 쓰고 있는데, 이는 `match` 후 다음 `match`로 넘기기 위해선, 정규식 객체가 이전에 검사한 위치를 알고 있어야 하기 때문이다.
+> 정규식을 `while`문 안에다 선언해버리면, 반복문마다 초기화되어 이전 위치를 잃게 된다. 이 경우 반복문이 무한히 돌 게 된다.
 
 `while`문을 활용하여, 정규식과 매치되는 텍스트가 없을 때까지 반복문을 돌려 heading 텍스트를 추출한다. 결과는 아래와 같다.
 
@@ -258,9 +263,6 @@ export function getMarkdownToc(text: string): TocProps[]
     while (true)
     {
         const match = regex.exec(temp);
-
-        // 이유는 모르겠는데, 변수를 선언하지 않고 정규식을 아래처럼 바로 쓰면 반복문을 벗어나지 못한다.
-        // const match = /^(#{1,6}) (.+)$/gm.exec(temp);
 
         // 일치하는 정규식이 없을 경우
         if (match === null)
