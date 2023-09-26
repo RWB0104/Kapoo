@@ -18,7 +18,7 @@ publish: true
 
 마크다운엔 `h1`, `h2`와 같은 heading 텍스트를 표현할 때, 아래와 같은 문법을 사용한다.
 
-``` md
+``` markdown
 # h1
 
 ## h2
@@ -66,7 +66,7 @@ heading 텍스트를 표현하기 위해 `#`을 사용하며, `h1` ~ `h6`까지 
 
 간단한 정규식이지만, 이를 그대로 적용하기엔 난감한 점이 있다. 바로 코드블럭인데, 일단 아래의 예시들을 보자.
 
-``` md
+``` markdown
 # h1
 
 ## h2
@@ -103,7 +103,7 @@ echo yahooo
 
 일련의 과정을 코드로 확인해보자. 아래와 같은 마크다운 텍스트가 있다고 가정하자.
 
-``` md
+``` markdown
 # Lorem Ipsum
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -162,7 +162,7 @@ text = text.replace(/```[^]*?```/gm, '');
 
 이제 변수 `text`에는 코드블럭이 제거된 마크다운 텍스트가 할당된다. 이를 콘솔로 찍어보면 아래와 같을 것이다.
 
-``` md
+``` markdown
 # Lorem Ipsum
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
