@@ -123,20 +123,20 @@ sudo ufw default allow outgoing
 ## ufw 정책 설정 명령어
 
 ``` bash
- # 80포트(HTTP) 허용
-sudo ufw allow 80
+ # 443포트(HTTPS) 허용
+sudo ufw allow 443
 
- # 80포트(HTTP) TCP 허용
-sudo ufw allow 80/tcp
+ # 443포트(HTTPS) TCP 허용
+sudo ufw allow 443/tcp
 
- # 80포트(HTTP) UDP 허용
-sudo ufw allow 80/udp
+ # 443포트(HTTPS) UDP 허용
+sudo ufw allow 443/udp
 
- # 80포트(HTTP) 허용
-sudo ufw allow http
+ # 443포트(HTTPS) 허용
+sudo ufw allow https
 ```
 
-위 명령어는 <span class="blue-400">HTTP 포트 80을 허용하는 명령어</span>들의 모음이다.
+위 명령어는 <span class="blue-400">HTTPS 포트 443을 허용하는 명령어</span>들의 모음이다.
 
 ufw는 고유 서비스 이름을 사용해서 포트를 관리할 수 있다. HTTP(80), HTTPS(443), FTP(21), SSH(22) 등이 이에 해당한다.
 
@@ -149,11 +149,11 @@ ufw는 고유 서비스 이름을 사용해서 포트를 관리할 수 있다. H
 ### IP 통신 정책
 
 ``` bash
- # 192.168.0.100 IP의 통신 허용
-sudo ufw allow from 192.168.0.100
+ # 192.168.0.5 IP의 통신 허용
+sudo ufw allow from 192.168.0.5
 
- # 192.168.0.100 ~ 200 대역의 IP의 통신 허용
-sudo ufw allow from 192.168.0.100/200
+ # 192.168.0.5 ~ 200 대역의 IP의 통신 허용
+sudo ufw allow from 192.168.0.5/200
 ```
 
 위 명령어를 통해서 <span class="blue-400">특정 IP 혹은 IP 대역의 통신을 관리</span>할 수 있다.
@@ -161,11 +161,11 @@ sudo ufw allow from 192.168.0.100/200
 ### IP 및 포트 통신 정책
 
 ``` bash
- # 192.168.0.100 IP의 80포트 허용
-sudo ufw allow from 192.168.0.100 to any port 80
+ # 192.168.0.5 IP의 443포트 허용
+sudo ufw allow from 192.168.0.5 to any port 443
 
- # 192.168.0.100 IP의 80포트 TCP 허용
-sudo ufw allow from 192.168.0.100 to any port 80 proto tcp
+ # 192.168.0.100 IP의 443포트 TCP 허용
+sudo ufw allow from 192.168.0.5 to any port 443 proto tcp
 ```
 
 <span class="blue-400">특정 IP의 특정 포트만 허용/차단</span>할 수도 있다.
@@ -181,11 +181,11 @@ sudo ufw status numbered
 해당 번호를 통해 <span class="blue-400">정책을 수정, 삭제</span>할 수 있다.
 
 ``` bash
- # 1번 정책을 80포트 차단 정책으로 변경
-sudo ufw insert 1 deny 80
+ # 1번 정책을 443포트 차단 정책으로 변경
+sudo ufw insert 1 deny 443
 
- # 2번 정책을 192.168.0.100 IP의 통신 허용 정책으로 변경
-sudo ufw insert 2 allow from 192.168.0.100
+ # 2번 정책을 192.168.0.5 IP의 통신 허용 정책으로 변경
+sudo ufw insert 2 allow from 192.168.0.5
 ```
 
 ## ufw 정책 삭제 명령어
