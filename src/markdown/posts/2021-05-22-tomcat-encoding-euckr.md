@@ -44,9 +44,18 @@ Windows Console의 기본 인코딩과 Tomcat이 출력하는 인코딩이 서�
 ![Registry](https://user-images.githubusercontent.com/50317129/119212160-83706d00-baf1-11eb-92c8-b41458950f20.png)
 
 3. 인코딩을 변경하려는 콘솔의 폴더를 클릭한다.
-   * **%SystemRoot%_system32_cmd.exe**: cmd
-   * **%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe**: 32비트 PowerShell
-   * **%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe**: 64비트 PowerShell
+
+``` powershell
+# cmd
+%SystemRoot%_system32_cmd.exe
+
+# 32비트 PowerShell
+%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe
+
+# 64비트 PowerShell
+%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe
+```
+
 4. `CodePage` 키를 더블클릭하여 편집을 수행한다.
    `CodePage`가 없을 경우, 오른쪽 마우스 버튼을 클릭하여 새 DWORD(32비트) 키를 동일한 이름으로 생성한다.
 5. 값 데이터를 10진수 `65001`로 변경한다.
