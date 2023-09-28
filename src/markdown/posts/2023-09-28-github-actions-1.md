@@ -1,5 +1,5 @@
 ---
-title: "[GitHub Actions] 삼가 수동배포의 명복을 GitHub Action빔 - 1. CI/CD"
+title: "[GitHub Actions] 삼가 수동배포의 명복을 GitHub Actions빔 - 1. CI/CD"
 excerpt: "하나의 프로그램이 나오기 위해선 여러 과정을 거친다. 프로그램의 규모에 따라 더 많은 인력, 더 많은 과정과 일정이 동반된다.
 하지만 그 어떤 프로그램이라도 결과는 빌드와 배포 하나로 귀속된다. 한낮 텍스트들과 에셋들이 빌드를 거쳐 하나의 프로그램으로 완성되고, 배포를 통해 사람들에게 쓰여진다. 모든 프로그램의 목표인 셈이다. 그에 걸맞게 빌드와 배포에 대한 중요성 역시 매우 크다.
 그에 맞게 빌드/배포는 마냥 쉬운 일이 아니다. 프로그램의 규모가 커질수록, 시간은 그 이상으로 걸리게 된다."
@@ -8,14 +8,14 @@ date: "2023-09-28T03:54:54"
 type: "posts"
 category: "TypeScript"
 tag: [ "GitHub", "GitHub Actions", "CI", "CD", "지속적 통합", "지속적 제공", "지속적 배포" ]
-group: "삼가 수동배포의 명복을 GitHub Action빔"
+group: "삼가 수동배포의 명복을 GitHub Actions빔"
 comment: true
 publish: true
 ---
 
 ![null](https://github.com/RWB0104/blog.itcode.dev/assets/50317129/094a4fa5-f336-4c54-9df3-b5791d48de21)
 
-# 삼가 수동배포의 명복을 GitHub Action빔
+# 삼가 수동배포의 명복을 GitHub Actions빔
 
 하나의 프로그램이 나오기 위해선 여러 과정을 거친다. 프로그램의 규모에 따라 더 많은 인력, 더 많은 과정과 일정이 동반된다.
 
