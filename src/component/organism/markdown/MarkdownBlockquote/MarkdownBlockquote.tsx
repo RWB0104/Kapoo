@@ -9,6 +9,7 @@ import { themeStore } from '@kapoo/store/theme';
 
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
 import { BlockquoteHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
 
 export type MarkdownBlockquoteProps = DetailedHTMLProps<BlockquoteHTMLAttributes<HTMLQuoteElement>, HTMLQuoteElement>;
@@ -25,14 +26,12 @@ export default function MarkdownBlockquote({ children }: MarkdownBlockquoteProps
 	const { theme } = themeStore();
 
 	return (
-		<Alert
-			data-component='MarkdownBlockquote'
-			severity='info'
-			variant={theme === 'light' ? 'standard' : 'outlined'}
-		>
-			<AlertTitle>메모</AlertTitle>
+		<Box data-component='MarkdownBlockquote' padding={2} paddingBottom={4} paddingTop={4}>
+			<Alert severity='info' variant={theme === 'light' ? 'standard' : 'outlined'}>
+				<AlertTitle>메모</AlertTitle>
 
-			{children}
-		</Alert>
+				{children}
+			</Alert>
+		</Box>
 	);
 }

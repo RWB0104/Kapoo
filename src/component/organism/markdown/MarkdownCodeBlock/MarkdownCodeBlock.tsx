@@ -110,7 +110,7 @@ export default function MarkdownCodeBlock({ languageName, children, ...props }: 
 	}, [ aniamteState, setAnimateState ]);
 
 	return (
-		<Box data-component='MarkdownCode' padding={2}>
+		<Box data-component='MarkdownCode' padding={2} paddingBottom={4} paddingTop={4}>
 			<Stack
 				bgcolor={bgcolor}
 				border='1px solid'

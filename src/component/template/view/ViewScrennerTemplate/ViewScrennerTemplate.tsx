@@ -10,6 +10,7 @@
 import Screener from '@kapoo/molecule/Screener';
 import ScreenerBox from '@kapoo/organism/global/ScreenerBox';
 import { viewStore } from '@kapoo/store/markdown';
+import { dateParse } from '@kapoo/util/common';
 
 import { CSSProperties, ReactNode, useMemo } from 'react';
 
@@ -24,12 +25,19 @@ export default function ViewScrennerTemplate(): ReactNode
 
 	const name = useMemo(() => (view?.frontmatter.type === 'projects' ? '프로젝트' : '게시글'), [ view ]);
 	const color: CSSProperties['color'] = useMemo(() => (view?.frontmatter.type === 'projects' ? 'springgreen' : 'dodgerblue'), [ view ]);
+	const date = useMemo(() =>
+	{
+		const parse = dateParse(view?.frontmatter.date);
+
+		return `⏰ ${parse.year.text}-${parse.month.text}-${parse.day.text} ${parse.hour.text}:${parse.minute.text}:${parse.second.text}`;
+	}, [ view ]);
 
 	return (
 		<Screener cover={view?.frontmatter.coverImage}>
 			<ScreenerBox
 				color={color}
 				name={name}
+				text={date}
 				title={view?.frontmatter.title || ''}
 			/>
 		</Screener>
