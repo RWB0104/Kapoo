@@ -1,5 +1,5 @@
 module.exports = {
 	extends: [
-		'@itcode-dev'
+		'@itcode-dev/eslint-config/react-ts'
 	]
 };
