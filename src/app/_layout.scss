@@ -3,7 +3,9 @@
 * {
 	transition: background, background-color 0.3s;
 	user-select: none;
+}
 
+body {
 	@media (max-width: 600px) {
 		font-size: calc(1rem - 2px);
 	}
