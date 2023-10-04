@@ -46,7 +46,7 @@
   },
   "packageManager": "yarn@3.6.2",
   "devDependencies": {
-    "@itcode-dev/eslint-config": "^1.1.0",
+    "@itcode-dev/eslint-config": "^2.0.1",
     "@tanstack/react-query-devtools": "^4.32.6",
     "@types/jstoxml": "^2.0.2",
     "@types/react-syntax-highlighter": "^15.5.7",
