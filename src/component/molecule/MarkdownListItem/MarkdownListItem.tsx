@@ -8,6 +8,7 @@
 import Image from '@kapoo/atom/Image';
 import { themeStore } from '@kapoo/store/theme';
 import { DAY_EPOCH, dateParse } from '@kapoo/util/common';
+import { MarkdownType } from '@kapoo/util/markdown';
 
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -25,6 +26,11 @@ const cn = classNames.bind(styles);
 
 export interface MarkdownListItemProps extends LinkProps
 {
+	/**
+	 * 마크다운 타입
+	 */
+	type: MarkdownType;
+
 	/**
 	 * 타이틀
 	 */
@@ -63,9 +69,11 @@ export interface MarkdownListItemProps extends LinkProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function MarkdownListItem({ title, excerpt, thumb, category, date, newist, ...props }: MarkdownListItemProps): ReactNode
+export default function MarkdownListItem({ type, title, excerpt, thumb, category, date, newist, ...props }: MarkdownListItemProps): ReactNode
 {
 	const { theme } = themeStore();
+
+	const color = useMemo(() => (type === 'posts' ? 'dodgerblue' : 'springgreen'), [ type ]);
 
 	const dateTime = useMemo(() =>
 	{
@@ -112,6 +120,10 @@ export default function MarkdownListItem({ title, excerpt, thumb, category, date
 						</Box>
 
 						<Stack alignItems='start' flex={1} justifyContent='start' padding={3} spacing={1}>
+							<Stack width='100%'>
+								<Box bgcolor={color} borderRadius={100} className={cn('bar')} height={5} marginBottom={1} width={70} />
+							</Stack>
+
 							<Stack alignItems='center' direction='row' justifyContent='space-between' spacing={1} width='100%'>
 								<Stack alignItems='center' direction='row' spacing={1}>
 									<Avatar

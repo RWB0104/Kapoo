@@ -70,6 +70,7 @@ export default function MarkdownList({ markdown = [], onCardClick, ...props }: M
 								newist={frontmatter.isNew}
 								thumb={frontmatter.coverImage}
 								title={frontmatter.title}
+								type={frontmatter.type}
 								onClick={onCardClick}
 							/>
 						</motion.div>

@@ -14,6 +14,10 @@
 		.image {
 			scale: 1.1;
 		}
+
+		.bar {
+			width: 100%;
+		}
 	}
 
 	&.dark:hover {
@@ -45,6 +49,10 @@
 	transition: 0.3s;
 
 	object-fit: cover;
+}
+
+.bar {
+	transition: 1s ease-out;
 }
 
 .category {

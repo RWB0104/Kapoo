@@ -13,7 +13,7 @@ import matter from 'gray-matter';
 import { REGEX, getNewist } from './common';
 
 export type MarkdownType = 'posts' | 'projects';
-export type FrontmatterForListProps = Omit<FrontmatterProps, 'type' | 'tag' | 'comment' | 'publish' | 'info'>;
+export type FrontmatterForListProps = Omit<FrontmatterProps, 'tag' | 'comment' | 'publish' | 'info'>;
 
 export interface ConvertProps
 {
@@ -168,7 +168,8 @@ export function getMarkdownList(type: MarkdownType): MarkdownListItemProps[]
 				excerpt: frontmatter.excerpt,
 				group: frontmatter.group,
 				isNew: getNewist(frontmatter.date),
-				title: frontmatter.title
+				title: frontmatter.title,
+				type
 			},
 			names,
 			url
