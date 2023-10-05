@@ -13,7 +13,7 @@ publish: true
 
 # OOP
 
-IT 업계에 종사하게 된다면 십중팔구 <span class="amber-400">JAVA</span>, <span class="amber-400">C++</span>, <span class="amber-400">C#</span> 중 하나는 다루게 된다. 국내 IT의 최다 공급이자 수요인 JAVA를 위시한 위 세 가지 언어의 공통점은 전부 <span class="primary">객체지향</span>언어라는 점이다.
+IT 업계에 종사하게 된다면 십중팔구 <span class="amber-400">JAVA</span>, <span class="amber-400">C++</span>, <span class="amber-400">C#</span> 중 하나는 다루게 된다. 국내 IT의 최다 공급이자 수요인 JAVA를 위시한 위 세 가지 언어의 공통점은 전부 <span class="blue-400">객체지향</span>언어라는 점이다.
 
 물론 지금에 이르러서는 함수형이라는 개념도 나왔지만, <span class="amber-400">C</span>의 단순한 절차지향 이래로 나온 객체지향은 프로그래밍의 새로운 관점을 제시했고, 크고 작은 언어들이 알게 모르게 영향을 받았다. 이렇게 영향력이 큰 개념임에도 불구하고 막상 이와 관련된 질문을 받으면 명확하게 답을 내지 못 하기도 한다.
 

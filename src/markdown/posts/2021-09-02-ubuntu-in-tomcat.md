@@ -118,7 +118,7 @@ Tomcat9 기준 로그는 위와 같으며, `catalina.yyyy-MM-dd.log` 형태의 �
 
 통신에 사용할 포트를 개방한다.
 
-Ubuntu는 <span class="primary">ufw</span>로 방화벽 설정을 쉽게 관리할 수 있다.
+Ubuntu는 <span class="blue-400">ufw</span>로 방화벽 설정을 쉽게 관리할 수 있다.
 
 ``` bash
 sudo apt-get install ufw

@@ -15,11 +15,11 @@ publish: true
 
 # 개요
 
-<span class="primary">GitHub</span>는 각 프로젝트를 하나의 Repository로 관리한다. 생성한 Repository는 <span class="orange-A400">Git</span>을 이용하여 관리할 수 있다. <span class="primary">GitHub</span> 페이지 자체로도 Repository 내부의 파일 생성, 수정, 삭제가 가능하지만 매우 번거로우므로 대부분 <span class="orange-A400">Git</span>을 활용하는 것이 권장된다.
+<span class="blue-400">GitHub</span>는 각 프로젝트를 하나의 Repository로 관리한다. 생성한 Repository는 <span class="orange-A400">Git</span>을 이용하여 관리할 수 있다. <span class="blue-400">GitHub</span> 페이지 자체로도 Repository 내부의 파일 생성, 수정, 삭제가 가능하지만 매우 번거로우므로 대부분 <span class="orange-A400">Git</span>을 활용하는 것이 권장된다.
 
 # GitHub Repository 생성하기
 
-이전 장에서 <span class="primary">GitHub</span> 계정을 만들었다. <a href="https://github.com">GitHub 홈페이지</a>로 이동하여 로그인을 해보자.
+이전 장에서 <span class="blue-400">GitHub</span> 계정을 만들었다. <a href="https://github.com">GitHub 홈페이지</a>로 이동하여 로그인을 해보자.
 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/50317129/90412420-0b9b8f00-e0e8-11ea-80a5-d28ff329a020.png" width="820px" />
@@ -49,7 +49,7 @@ publish: true
 	<img src="https://user-images.githubusercontent.com/50317129/90917728-6bfb3b00-e41e-11ea-8313-0251fba0659f.png" width="820px" />
 </p>
 
-생성된 저장소로 접근하면 위와 같은 화면이 나온다. 위 내용은 <span class="orange-A400">Git</span> 명령어를 이용하여 사용자의 PC에 저장소를 생성하고, 이를 <span class="primary">GitHub</span>의 원격 저장소와 연결하여 소스관리를 하는 절차를 안내하는 내용이다.
+생성된 저장소로 접근하면 위와 같은 화면이 나온다. 위 내용은 <span class="orange-A400">Git</span> 명령어를 이용하여 사용자의 PC에 저장소를 생성하고, 이를 <span class="blue-400">GitHub</span>의 원격 저장소와 연결하여 소스관리를 하는 절차를 안내하는 내용이다.
 
 # Git 설치하기
 
@@ -62,7 +62,7 @@ publish: true
 
 > Commit(커밋): Git의 변경사항(파일 생성, 수정, 삭제)을 저장소에 기록하는 작업
 
-Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므로, 이와 연계된 <span class="orange-A400">Git</span>의 사용은 필수다. 물론 <span class="orange-A400">Git</span>을 사용하지 않고 <span class="primary">GitHub</span>의 Repository에서 파일 추가, 삭제, 수정이 가능하다. 그러나 이 방법은 다수의 파일을 관리하는데 매우 비효율적이며, 파일 갱신 즉시 블로그에 내용이 반영되므로 오류가 있을 경우에도 블로그에 그대로 반영된다. 또한, 어찌됐든 Jekyll 사용하면서 코드를 만지게 될텐데, VSCode같은 에디터라도 쓰는게 개발환경에 여러모로 도움이 된다.
+Jekyll 블로그는 <span class="blue-400">GitHub</span>를 통해 관리하므로, 이와 연계된 <span class="orange-A400">Git</span>의 사용은 필수다. 물론 <span class="orange-A400">Git</span>을 사용하지 않고 <span class="blue-400">GitHub</span>의 Repository에서 파일 추가, 삭제, 수정이 가능하다. 그러나 이 방법은 다수의 파일을 관리하는데 매우 비효율적이며, 파일 갱신 즉시 블로그에 내용이 반영되므로 오류가 있을 경우에도 블로그에 그대로 반영된다. 또한, 어찌됐든 Jekyll 사용하면서 코드를 만지게 될텐데, VSCode같은 에디터라도 쓰는게 개발환경에 여러모로 도움이 된다.
 
 ## 설치파일 다운로드
 
@@ -95,7 +95,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 설치 시 적용할 옵션을 선택한다.
 
 * On the Desktop: 바탕화면 바로가기 생성
-* <span class="primary">Git Bash Here</span>: 바탕화면에서 오른쪽 마우스 클릭 시 Git Bash 실행 메뉴 추가
+* <span class="blue-400">Git Bash Here</span>: 바탕화면에서 오른쪽 마우스 클릭 시 Git Bash 실행 메뉴 추가
 * Git GUI Here: 바탕화면에서 오른쪽 마우스 클릭 시 Git GUI 실행 메뉴 추가
 * Git LFS: 대용량 파일 지원
 * Associate .git* configuration files with the default text editor: git 설정파일을 기본 텍스트 편집기와 연결
@@ -126,7 +126,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 <span class="orange-A400">Git</span>을 사용하기 위한 기본 편집기를 선택한다. 기본 권장옵션은 Vim이며, 원하는 편집기로 변경이 가능하다. 지원하는 편집기는 아래와 같다.
 
 * Nano Editor
-* <span class="primary">Vim</span>
+* <span class="blue-400">Vim</span>
 * Notepad++
 * Visual Studio Code
 * Visual Studio Code Insider
@@ -145,7 +145,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 환경변수를 지정하는 옵션을 선택한다.
 
 * Use Git from Git Bash Only: Bash 환경에서만 Git 사용 가능 (환경변수 미변경)
-* <span class="primary">Use Git from Windows Command Prompt</span>: 윈도우 프롬프트에서 Git 사용 가능
+* <span class="blue-400">Use Git from Windows Command Prompt</span>: 윈도우 프롬프트에서 Git 사용 가능
 * Use Git abnd optional Unix tools from the Windows Command Prompt: 윈도우 프롬프트에 Git 및 Linux 명령어 사용 가능
 
 ## HTTPS 전송 방법 설정(Choosing HTTPS tranport backend)
@@ -158,7 +158,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 
 <span class="orange-A400">Git</span> 사용 시 HTTPS 전송 방법을 선택한다.
 
-* <span class="primary">Use The OpenSSH library</span>: OpenSSH 라이브러리 사용
+* <span class="blue-400">Use The OpenSSH library</span>: OpenSSH 라이브러리 사용
 * Use The native Windows Secure Channel library: Windows 인증서 저장소 사용
 
 ## 개행문자 처리방식 지정(Configuring the line ending conversions)
@@ -171,7 +171,7 @@ Jekyll 블로그는 <span class="primary">GitHub</span>를 통해 관리하므�
 
 Checkout, Commit 작업 시 파일의 개행문자 처리 방식을 선택한다.
 
-* <span class="primary">Checkout Windows-style, commit Unix-style line endings</span>: Checkout 시엔 Windows방식(CRLF), commit 시엔 Unix방식(LF)로 지정
+* <span class="blue-400">Checkout Windows-style, commit Unix-style line endings</span>: Checkout 시엔 Windows방식(CRLF), commit 시엔 Unix방식(LF)로 지정
 * Checkout as-is, commit Unix-style line endings: Checkout 시엔 변환 없음, commit시엔 Unix방식(LF)로 지정
 * Checkout as-is, commit as-is: Checkout, commit 둘 다 변환 없음
 
@@ -185,7 +185,7 @@ Checkout, Commit 작업 시 파일의 개행문자 처리 방식을 선택한다
 
 Git Bash 실행 시 사용할 터미널을 선택한다.
 
-* <span class="primary">Use MinTTY</span>: MinTTY 터미널 사용
+* <span class="blue-400">Use MinTTY</span>: MinTTY 터미널 사용
 * Use Windows default console window: Windows 기본 터미널 사용
 
 ## Pull 기본동작 지정 (Choose the default behavior of 'git pull')
@@ -198,7 +198,7 @@ Git Bash 실행 시 사용할 터미널을 선택한다.
 
 `git pull` 명령어 실행 시 수행할 동작을 지정한다.
 
-* <span class="primary">Default (fast-forward or merge)</span>: fast-forward 혹은 merge를 이용한 병합
+* <span class="blue-400">Default (fast-forward or merge)</span>: fast-forward 혹은 merge를 이용한 병합
 * Rebase: rebase를 이용항 병합
 * Only ever fast-forward: fast-forward를 이용한 병합
 
@@ -215,7 +215,7 @@ Credential helper를 지정한다.
 > Credential은 데이터 통신에 HTTP 프로토콜을 사용 시, 매번 입력해야하는 인증정보를 저장하고 자동으로 입력해주는 시스템을 제공한다.
 
 * None: 사용하지 않음
-* <span class="primary">Git Credential Manager</span>: Windows 전용 Credential Manager 사용
+* <span class="blue-400">Git Credential Manager</span>: Windows 전용 Credential Manager 사용
 * Git Credential Manager Core: Cross-Platform을 지원하는 Credential Manager 사용
 
 ## 실험 옵션 지정(Configuring experimental options)
@@ -242,11 +242,11 @@ Credential helper를 지정한다.
 	<img src="https://user-images.githubusercontent.com/50317129/90957782-0618bd00-e4cb-11ea-9972-7bd3fe1aa45b.png" width="820px" />
 </p>
 
-설치가 완료됐다. <span class="primary">Launch Git Bash</span>를 체크하면 Git 명령어를 입력할 수 있는 Git Bash가 즉시 실행된다.
+설치가 완료됐다. <span class="blue-400">Launch Git Bash</span>를 체크하면 Git 명령어를 입력할 수 있는 Git Bash가 즉시 실행된다.
 
 ## Git Bash 실행하기
 
-설치 후 바탕화면이나 폴더에서 오른쪽 마우스를 클릭해서 컨텍스트 메뉴를 띄우자. [설치 옵션](#설치-옵션)에서 선택했던 내용에 따라 <span class="primary">Git Bash Here</span>, <span class="primary">Git GUI Here</span>가 생성됨을 확인할 수 있다. 해당 메뉴를 클릭하면 Bash 혹은 GUI를 실행할 수 있다. Bash는 콘솔 형태이며, GUI는 UI가 있는 흔한 프로그램이다.
+설치 후 바탕화면이나 폴더에서 오른쪽 마우스를 클릭해서 컨텍스트 메뉴를 띄우자. [설치 옵션](#설치-옵션)에서 선택했던 내용에 따라 <span class="blue-400">Git Bash Here</span>, <span class="blue-400">Git GUI Here</span>가 생성됨을 확인할 수 있다. 해당 메뉴를 클릭하면 Bash 혹은 GUI를 실행할 수 있다. Bash는 콘솔 형태이며, GUI는 UI가 있는 흔한 프로그램이다.
 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/50317129/90957788-0913ad80-e4cb-11ea-8627-6ceba19d58b4.png" width="820px" />

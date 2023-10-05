@@ -36,7 +36,7 @@ publish: true
 
 ![image](https://user-images.githubusercontent.com/50317129/157473965-c0bdfa0c-8915-4053-a1f0-eff73fc3e719.png)
 
-이 쯤에서 등장하는 게 <span class="primary">GeoServer</span>다. GeoServer는 GIS 데이터를 공유, 편집할 수 있는 웹 서버다. JAVA로 개발된 오픈 소프트웨어다.
+이 쯤에서 등장하는 게 <span class="blue-400">GeoServer</span>다. GeoServer는 GIS 데이터를 공유, 편집할 수 있는 웹 서버다. JAVA로 개발된 오픈 소프트웨어다.
 
 API 형태로 원하는 GIS 데이터를 다양한 형태로 통신할 수 있으며, 엔진 단계에서 좌표계 변환, 타일 렌더링 등을 제공하기 때문에 개발자가 구현해야할 GIS 연산 로직이 대폭 감소한다.
 

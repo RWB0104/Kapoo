@@ -15,11 +15,11 @@ publish: true
 
 # 개요
 
-<span class="primary">Jekyll</span>은 <span class="primary">GitHub</span>를 통해 호스팅한다. 즉, <span class="primary">Jekyll</span>로 블로그를 만들기 위해선 <span class="primary">GitHub</span>를 조금이나마 알고 있어야 한다. 본문에서는 <span class="primary">GitHub</span>의 여러 기능은 제쳐두고, <span class="primary">Jekyll</span> 호스팅을 목적을 기준으로 설명한다.
+<span class="blue-400">Jekyll</span>은 <span class="blue-400">GitHub</span>를 통해 호스팅한다. 즉, <span class="blue-400">Jekyll</span>로 블로그를 만들기 위해선 <span class="blue-400">GitHub</span>를 조금이나마 알고 있어야 한다. 본문에서는 <span class="blue-400">GitHub</span>의 여러 기능은 제쳐두고, <span class="blue-400">Jekyll</span> 호스팅을 목적을 기준으로 설명한다.
 
 # GitHub 속으로!
 
-<span class="primary">GitHub</span>는 개발자들을 위한 소스코드 형상관리 서비스를 제공해준다. Git을 저장하고 관리하는 대표적인 저장소로, 수 많은 오픈, 개인 소스가 존재한다. Git과 <span class="primary">GitHub</span>는 그 자체만으로도 커다란 주제가 여러개 튀어나오니, 일단은 우리의 목표인 호스팅만을 알아보자.
+<span class="blue-400">GitHub</span>는 개발자들을 위한 소스코드 형상관리 서비스를 제공해준다. Git을 저장하고 관리하는 대표적인 저장소로, 수 많은 오픈, 개인 소스가 존재한다. Git과 <span class="blue-400">GitHub</span>는 그 자체만으로도 커다란 주제가 여러개 튀어나오니, 일단은 우리의 목표인 호스팅만을 알아보자.
 
 <a href="https://github.com/">GitHub 바로가기</a>
 
@@ -61,4 +61,4 @@ publish: true
 	<img src="https://user-images.githubusercontent.com/50317129/90412420-0b9b8f00-e0e8-11ea-80a5-d28ff329a020.png" width="820px" />
 </p>
 
-<span class="primary">GitHub</span>에 접속하여 로그인을한다. 회원가입시 입력한 username이나 email 둘 중 아무거나 사용해도 상관없다. 위 화면이 뜨면 회원가입이 완료된 것이다.
+<span class="blue-400">GitHub</span>에 접속하여 로그인을한다. 회원가입시 입력한 username이나 email 둘 중 아무거나 사용해도 상관없다. 위 화면이 뜨면 회원가입이 완료된 것이다.

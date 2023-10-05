@@ -19,7 +19,7 @@ publish: true
 
 ## 4-1 버블 정렬
 
-배열을 효과적으로 다루기 위해 <span class="primary">정렬</span> 기법이 폭넓게 이용된다. <span class="orange-A400">이진 검색</span>에서도 겪었듯이, 정렬된 배열은 배열의 요소를 어느정도 **예측**할 수 있도록 규칙성을 부여한다. 이러한 이유로 배열을 정렬하는 다양한 기법이 고안되었으며, 이 문단에서는 정렬 중 가장 기본적이면서 상대적으로 비효율적인 <span class="orange-A400">버블 정렬</span>에 대해 알아본다.
+배열을 효과적으로 다루기 위해 <span class="blue-400">정렬</span> 기법이 폭넓게 이용된다. <span class="orange-A400">이진 검색</span>에서도 겪었듯이, 정렬된 배열은 배열의 요소를 어느정도 **예측**할 수 있도록 규칙성을 부여한다. 이러한 이유로 배열을 정렬하는 다양한 기법이 고안되었으며, 이 문단에서는 정렬 중 가장 기본적이면서 상대적으로 비효율적인 <span class="orange-A400">버블 정렬</span>에 대해 알아본다.
 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/50317129/125947608-e434441d-f735-44d6-8634-32431c152333.png" width="600px" />
@@ -47,7 +47,7 @@ publish: true
 
 4. 1 ~ 3의 과정을 반복한다.
 
-더 이상 교환이 이루어지지 않을 때까지 1 ~ 3의 과정을 반복한다. 이러한 반복을 <span class="primary">패스스루(passthrough)</span>라 명칭한다.
+더 이상 교환이 이루어지지 않을 때까지 1 ~ 3의 과정을 반복한다. 이러한 반복을 <span class="blue-400">패스스루(passthrough)</span>라 명칭한다.
 
 ## 4-2. 버블 정렬 실제로 해보기
 

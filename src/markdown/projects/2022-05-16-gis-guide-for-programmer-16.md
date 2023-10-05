@@ -13,7 +13,7 @@ publish: true
 
 # WMS
 
-이 장에선 <span class="primary">WFS</span>를 통해 지도에 이미지를 표시하는 방법에 대해 다룬다.
+이 장에선 <span class="blue-400">WFS</span>를 통해 지도에 이미지를 표시하는 방법에 대해 다룬다.
 
 이전 장의 WFS는 공간정보 데이터를 GeoJSON으로 받아 직접 객체로 표시하지만, WMS는 객체를 GeoServer에서 이미지로 렌더링한 이미지를 받아 표시한다.
 

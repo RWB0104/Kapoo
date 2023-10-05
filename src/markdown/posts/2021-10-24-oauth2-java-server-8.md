@@ -123,7 +123,7 @@ abstract public class Process
 
 <br />
 
-`getAuthModule`은 <span class="primary">각 플랫폼 이름에 따라 해당하는 인스턴스를 반환</span>하는 메서드다. 인증 모듈은 주로 프로세스에서 많이 사용하게 되므로, `Process`에 선언하여 이를 상속하는 모든 프로세스 클래스가 해당 메서드에 접근할 수 있도록 구성한다.
+`getAuthModule`은 <span class="blue-400">각 플랫폼 이름에 따라 해당하는 인스턴스를 반환</span>하는 메서드다. 인증 모듈은 주로 프로세스에서 많이 사용하게 되므로, `Process`에 선언하여 이를 상속하는 모든 프로세스 클래스가 해당 메서드에 접근할 수 있도록 구성한다.
 
 이러한 구성으로 동일한 프로세스에서 플랫폼별로 `AuthModule` 객체를 호출하여 플랫폼별로 선언한 메서드를 사용할 수 있다.
 
@@ -144,7 +144,7 @@ abstract public class Process
 
 ### 인증 URL 응답 반환 메서드
 
-<span class="primary">플랫폼 로그인을 위한 인증 URL을 반환</span>하는 메서드다.
+<span class="blue-400">플랫폼 로그인을 위한 인증 URL을 반환</span>하는 메서드다.
 
 `AuthModule`의 `getAuthorizationUrl` 메서드를 통해 URL를 얻고, 이 내용을 담아 응답 객체로 만들어 반환한다.
 
@@ -203,7 +203,7 @@ public Response getAuthorizationUrlResponse(String platform)
 
 ### 사용자 정보 응답 반환 메서드
 
-<span class="primary">Access Token을 통해 사용자 응답</span>을 받는 메서드다.
+<span class="blue-400">Access Token을 통해 사용자 응답</span>을 받는 메서드다.
 
 `AuthModule`의 `getUserInfoBean` 메서드를 통해 `UserInfoBean` 객체를 얻고, 이 내용을 담아 응답 객체로 만들어 반환한다.
 
@@ -424,7 +424,7 @@ public class AccountGetProcess extends Process
 
 ### 로그인 응답 반환 메서드
 
-플랫폼 로그인 이후 발급되는 `code`를 통해 <span class="primary">Access Token으로 교환하여 로그인을 수행</span>하는 메서드다.
+플랫폼 로그인 이후 발급되는 `code`를 통해 <span class="blue-400">Access Token으로 교환하여 로그인을 수행</span>하는 메서드다.
 
 `AuthModule`의 `getAccessToken` 메서드를 통해 `OAuth2AccessToken` 객체를 반환받아 Access Token, Refresh Token을 추출한다.
 
@@ -559,7 +559,7 @@ JWT의 내용은 위와 같다. 쿠키에 해당 JWT를 담아 생성한다. <sp
 
 ### 자동 로그인 응답 반환 메서드
 
-만약 이전에 로그인을 수행한 이력이 있어, <span class="primary">access, refresh 쿠키를 이미 가지고 있을 경우 이를 활용하여 자동 로그인을 수행</span>하는 메서드다.
+만약 이전에 로그인을 수행한 이력이 있어, <span class="blue-400">access, refresh 쿠키를 이미 가지고 있을 경우 이를 활용하여 자동 로그인을 수행</span>하는 메서드다.
 
 ``` java
 public Response postAutoLoginResponse(String accessCookie, String refreshCookie)
@@ -662,7 +662,7 @@ access 쿠키가 이미 있을 경우, 이미 인증 정보가 있기 때문에 
 
 ### 로그아웃 응답 반환 메서드
 
-<span class="primary">인증 정보를 제거</span>하여 로그아웃을 수행하는 메서드.
+<span class="blue-400">인증 정보를 제거</span>하여 로그아웃을 수행하는 메서드.
 
 ``` java
 public Response postLogoutResponse()
@@ -986,7 +986,7 @@ public class AccountPostProcess extends Process
 
 ### 정보 제공 동의 갱신 URL 응답 반환 메서드
 
-<span class="primary">정보 제공 동의를 새로 갱신하는 URL을 반환</span>하는 메서드다.
+<span class="blue-400">정보 제공 동의를 새로 갱신하는 URL을 반환</span>하는 메서드다.
 
 ``` java
 public Response putUpdateAuthorizationUrl(String accessCookie)
@@ -1181,7 +1181,7 @@ public class AccountPutProcess extends Process
 
 ### 연동 해제 응답 반환 메서드
 
-<span class="primary">플랫폼과의 연동을 완전히 해제하고 로그아웃을 수행</span>하는 메서드다.
+<span class="blue-400">플랫폼과의 연동을 완전히 해제하고 로그아웃을 수행</span>하는 메서드다.
 
 ``` java
 public Response deleteInfoResponse(String accessCookie)

@@ -17,11 +17,11 @@ publish: true
 
 이 주제에서의 라즈베리파이는 어디까지나 서브로 운영되는 웹서버이므로, 메인 컴퓨터가 될 수 없다. 즉, 개발같은 대부분의 작업은 메인 컴퓨터에서 진행하고, 배포만 서버가 담당하는 방식이다. 이렇게 디바이스가 서로 나뉠 경우, 두 디바이스의 접근이 서로 원활해야한다.
 
-한 마디로, 원격 환경이 필요하다. 이 장에서는 <span class="amber-600">라즈베리파이에 원격 환경을 구축</span>한다. <span class="primary">SSH</span>, <span class="primary">RDP</span> 통신을 구축함으로써 SSH 혹은 윈도우 PC 어디에서나 라즈베리파이에 접근할 수 있도록 구성한다.
+한 마디로, 원격 환경이 필요하다. 이 장에서는 <span class="amber-600">라즈베리파이에 원격 환경을 구축</span>한다. <span class="blue-400">SSH</span>, <span class="blue-400">RDP</span> 통신을 구축함으로써 SSH 혹은 윈도우 PC 어디에서나 라즈베리파이에 접근할 수 있도록 구성한다.
 
 # SSH 환경 구축하기
 
-<span class="primary">SSH(Secure SHell)</span>는 네트워크에 연결된 PC에 로그인하여 원격 PC에서 해당 PC로 명령어를 실행하는 등의 Shell 통신을 수행하는 프로토콜이다.
+<span class="blue-400">SSH(Secure SHell)</span>는 네트워크에 연결된 PC에 로그인하여 원격 PC에서 해당 PC로 명령어를 실행하는 등의 Shell 통신을 수행하는 프로토콜이다.
 
 SSH 환경을 구축하여 원격으로 Ubuntu Shell에 접근할 수 있다. 이를 통해 원격으로 명령어를 입력하여 Ubuntu를 다룰 수 있다. Windows와 달리 Linux는 거의 모든 프로그램이 명령어 기반으로 동작하므로 어려움없이 Ubuntu를 다룰 수 있다.
 
@@ -83,7 +83,7 @@ ssh username@xxx.xxx.xxx.xxx
 
 ![image](https://user-images.githubusercontent.com/50317129/132518566-fb8858ce-0b0c-4483-9a84-c3dc718f3e5f.png)
 
-Windows에는 <span class="primary">원격 데스크톱 연결</span>이라는 기능이 존재한다. Windows 간 원격이 가능한 기능으로써, 팀뷰어나 AnyDesk를 생각하면 된다. 일종의 내장 원격 프로그램.
+Windows에는 <span class="blue-400">원격 데스크톱 연결</span>이라는 기능이 존재한다. Windows 간 원격이 가능한 기능으로써, 팀뷰어나 AnyDesk를 생각하면 된다. 일종의 내장 원격 프로그램.
 
 말로만 들어보면 왠지 Windows 간 통신만 지원할 것 같다. 필자도 그렇게 생각했었다. 하지만 Ubuntu는 내 생각 이상으로 잡다한게 많았다. xrdp 패키지를 설치하면 Windows의 RDP와 통신이 가능하다.
 

@@ -64,7 +64,7 @@ publish: true
 
 이 과정 후엔 스택에 5만 남게된다. 스택은 항상 위에만 데이터를 삽입할 수 있으므로, 스택의 중간에 데이터를 삽입하려면 해당 위치까지 모든 데이터를 팝한 뒤 푸시해야한다.
 
-이렇게 먼저 들어온 게 가장 늦게 나가고. 반대로 가장 늦게 들어온 게 가장 빨리 나가는 걸 <span class="primary">LIFO</span>(Last In, First Out)이라 한다.
+이렇게 먼저 들어온 게 가장 늦게 나가고. 반대로 가장 늦게 들어온 게 가장 빨리 나가는 걸 <span class="blue-400">LIFO</span>(Last In, First Out)이라 한다.
 
 월요일의 출근길을 생각해보자. 최대한 늦게 들어가고 최대한 빨리 나오고 싶지 않은가?
 
@@ -446,7 +446,7 @@ else
 
 ## 8-4. 큐 다뤄보기
 
-스택과는 다른 방식으로 데이터를 순차적으로 처리하는 큐의 특성 덕분에 여러 곳에서 유용하게 쓰인다. 대기열이나 작업 예약 등 먼저 들어온 요소가 먼저 나가는 <span class="primary">FIFO</span>(First In, First Out)으로 동작한다.
+스택과는 다른 방식으로 데이터를 순차적으로 처리하는 큐의 특성 덕분에 여러 곳에서 유용하게 쓰인다. 대기열이나 작업 예약 등 먼저 들어온 요소가 먼저 나가는 <span class="blue-400">FIFO</span>(First In, First Out)으로 동작한다.
 
 ``` java
 import java.io.BufferedReader;

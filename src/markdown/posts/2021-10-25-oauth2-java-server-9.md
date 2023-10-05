@@ -80,7 +80,7 @@ dependencies {
 
 ## Jersey 요청 URL 지정하기
 
-Jersey의 요청 URL을 지정한다. 무슨 뜻이냐면, <span class="primary">Jersey가 담당할 최상위 URL을 지정</span>한다는 의미다.
+Jersey의 요청 URL을 지정한다. 무슨 뜻이냐면, <span class="blue-400">Jersey가 담당할 최상위 URL을 지정</span>한다는 의미다.
 
 예를 들어, `/api`로 지정했다면 `https://example.com/api`로 시작하는 요청은 일반적인 Servlet이 아닌 Jersey가 위임받게 된다.
 

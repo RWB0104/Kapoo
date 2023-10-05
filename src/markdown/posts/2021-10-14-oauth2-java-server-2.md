@@ -17,7 +17,7 @@ OAuth2.0 프로토콜에 대한 사전 지식도 얻었으니, 이를 통해 인
 
 Frontend, Backend 부분으로 나누어 웹 페이지를 통해 <span class="red-400">소셜 로그인을 수행</span>하고, 직접 구현한 <span class="red-400">인증서버에서 이를 처리하는 시스템 일체를 구축</span>하는 것이 궁극적인 목표다.
 
-인증 서버의 인증 방식은 <span class="primary">인가 코드 승인 (Authorization Code Grant)</span>을 취한다.
+인증 서버의 인증 방식은 <span class="blue-400">인가 코드 승인 (Authorization Code Grant)</span>을 취한다.
 
 # 제원
 
@@ -90,7 +90,7 @@ RESTful API를 효과적으로 설계하기 위해 Jersey 프레임워크를 사
 
 ![image](https://user-images.githubusercontent.com/50317129/137264829-4e703edf-e682-4793-a2b1-675056cba087.png)
 
-controller는 <span class="primary">정의된 process로 요청을 전달하고, process가 반환하는 응답을 요청자에게 다시 전달</span>한다.
+controller는 <span class="blue-400">정의된 process로 요청을 전달하고, process가 반환하는 응답을 요청자에게 다시 전달</span>한다.
 
 * `/login`
   * GET `/:platform` - 플랫폼별 인증 URL 반환 API
@@ -115,7 +115,7 @@ controller는 <span class="primary">정의된 process로 요청을 전달하고,
 
 ![image](https://user-images.githubusercontent.com/50317129/137265824-a2652f3c-c32f-42cf-9b5e-8f523530895e.png)
 
-`process`는 <span class="primary">수행 결과를 정해진 형식의 JSON을 기반으로 응답 객체</span>를 만들어 `controller`로 반환한다.
+`process`는 <span class="blue-400">수행 결과를 정해진 형식의 JSON을 기반으로 응답 객체</span>를 만들어 `controller`로 반환한다.
 
 ``` json
 {
@@ -149,7 +149,7 @@ controller는 <span class="primary">정의된 process로 요청을 전달하고,
 
 ## module
 
-module은 여러 `process`에서 <span class="primary">반복적으로 사용되는 로직의 모듈화를 구현한 객체</span>다.
+module은 여러 `process`에서 <span class="blue-400">반복적으로 사용되는 로직의 모듈화를 구현한 객체</span>다.
 
 이 중 핵심 기능인 OAuth의 인증을 처리하는 모듈은 scribeJAVA 기반으로 작성된다.
 

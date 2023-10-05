@@ -16,11 +16,11 @@ publish: true
 
 # 왜?
 
-톰캣이 콘솔 형태로 실행되는 것은 맞지만, 실행되는 프로세스를 보면 살짝 다르다. `startup.bat`을 실행하면 cmd창이 뜬 뒤 꺼지면서 곧바로 Tomcat 창이 표시된다. <span class="primary">톰캣을 구동하면 항상 새로운 창이 뜨기 때문에, 톰캣이 오류로 인해 동작이 중지되면 창이 곧바로 닫히게 된다.</span>
+톰캣이 콘솔 형태로 실행되는 것은 맞지만, 실행되는 프로세스를 보면 살짝 다르다. `startup.bat`을 실행하면 cmd창이 뜬 뒤 꺼지면서 곧바로 Tomcat 창이 표시된다. <span class="blue-400">톰캣을 구동하면 항상 새로운 창이 뜨기 때문에, 톰캣이 오류로 인해 동작이 중지되면 창이 곧바로 닫히게 된다.</span>
 
 # 해결책?
 
-그렇다고 해결책이 없는 건 아니고, `startup.bat`의 간단한 수정을 통해 톰캣이 <span class="primary">현재 창에서 동작</span>하도록 수정할 수 있다. 
+그렇다고 해결책이 없는 건 아니고, `startup.bat`의 간단한 수정을 통해 톰캣이 <span class="blue-400">현재 창에서 동작</span>하도록 수정할 수 있다. 
 
 `startup.bat`을 메모장으로 열면, 맨 아래에 `call "%EXECUTABLE%" run %CMD_LINE_ARGS%` 구문이 존재한다. 여기서 가운데 `run`을 `start`로 변경한다.
 

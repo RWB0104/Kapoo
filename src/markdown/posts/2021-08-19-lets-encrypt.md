@@ -25,7 +25,7 @@ publish: true
 
 사실 Let's Encrypt는 SSL을 발급해주는 기관으로, Let's Encrypt에서 회원가입하고 뭐 제출하고 이런 방식이 아니다. Let's Encrypt와 통신하여 SSL을 발급해주는 프로그램들이 많이 있으니 이걸 다운로드 받으면 된다.
 
-[지원하는 프로그램 목록](https://letsencrypt.org/ko/docs/client-options/)을 확인해보자. 그 중 우리는 Windows 10용으로 빌드된 <span class="primary">win-acme</span>를 사용한다.
+[지원하는 프로그램 목록](https://letsencrypt.org/ko/docs/client-options/)을 확인해보자. 그 중 우리는 Windows 10용으로 빌드된 <span class="blue-400">win-acme</span>를 사용한다.
 
 필요한 준비물은 아래와 같다.
 

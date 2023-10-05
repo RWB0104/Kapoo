@@ -21,8 +21,8 @@ Windows Console의 기본 인코딩과 Tomcat이 출력하는 인코딩이 서�
 
 실력 좋은 개발자가 아니더라도, 컴퓨터와 친분이 있다면 언어가 깨짐은 곧 인코딩의 불일치라는 걸 개괄적으로 이해하고 있다. 이러한 현상이 일어나는 이유는 아래와 같은데,
 
-* <span class="primary">Windows Console</span>: Windows OS 설정 언어의 기본 인코딩 (한국어는 **EUC-KR**)
-* <span class="primary">Tomcat Console</span>: 설정파일의 인코딩 (**기본 UTF-8**)
+* <span class="blue-400">Windows Console</span>: Windows OS 설정 언어의 기본 인코딩 (한국어는 **EUC-KR**)
+* <span class="blue-400">Tomcat Console</span>: 설정파일의 인코딩 (**기본 UTF-8**)
 
 이 처럼, 기본 인코딩이 서로 다르다.
 

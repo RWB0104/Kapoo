@@ -23,7 +23,7 @@ publish: true
 4. 인터페이스 분리 원칙 (Interface Segregation Principle)
 5. 의존성 역전 원칙 (Dependency Inversion Principle)
 
-각 원칙의 영어 앞글자를 따 <span class="primary">SOLID</span>원칙이라고도 한다.
+각 원칙의 영어 앞글자를 따 <span class="blue-400">SOLID</span>원칙이라고도 한다.
 
 # 단일 책임 원칙 SRP (Single Responsibility Principle)
 

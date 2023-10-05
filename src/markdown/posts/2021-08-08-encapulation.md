@@ -17,7 +17,7 @@ publish: true
 
 객체에 선언된 변수나 메소드가 구분없이 중구난방으로 접근할 수 있다면 정상적인 객체로 보기 어렵다.
 
-<span class="primary">캡슐화</span>와 비슷한 개념으로 <span class="primary">정보 은닉</span>이라는 개념이 있다.
+<span class="blue-400">캡슐화</span>와 비슷한 개념으로 <span class="blue-400">정보 은닉</span>이라는 개념이 있다.
 
 정보 은닉은 객체의 내부 구현을 숨김으로써 객체가 반드시 정해진 메소드를 통해 상호작용하도록 유도한다.
 

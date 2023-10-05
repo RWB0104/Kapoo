@@ -21,7 +21,7 @@ publish: true
 
 ## 6-1. 삽입 정렬
 
-이 장에서는 <span class="primary">삽입 정렬</span> 알고리즘을 토대로 전개한다.
+이 장에서는 <span class="blue-400">삽입 정렬</span> 알고리즘을 토대로 전개한다.
 
 <p align="center">
 	<img src="https://user-images.githubusercontent.com/50317129/126834021-dcb0625e-80fb-4567-bd8d-982ae60a04c0.png" width="600px" />

@@ -55,7 +55,7 @@ API 정보를 얻기 위해 GitHub OAuth 서비스를 신청하자.
 
 ![image](https://user-images.githubusercontent.com/50317129/138511105-63c370c1-2131-4ab7-871d-9eb023ea1374.png)
 
-<span class="primary">Client ID</span>는 상시 확인 가능하고, <span class="primary">Client Secret</span>은 발급 직후에만 일시적으로 확인 가능하다는 점을 주의하자
+<span class="blue-400">Client ID</span>는 상시 확인 가능하고, <span class="blue-400">Client Secret</span>은 발급 직후에만 일시적으로 확인 가능하다는 점을 주의하자
 
 GitHub OAuth는 이게 끝이다. <span class="red-400">별도의 정보 동의 과정도 요구하지 않는다.</span> 그도 그럴 것이, GitHub의 OAuth 키는 프로필 정보만 불러올 수 있기 때문.
 
