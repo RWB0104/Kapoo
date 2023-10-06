@@ -2,7 +2,7 @@
 title: "IntelliJ(인텔리제이) 시작 시 오류(java.net.BindException: Address already in use: bind)"
 excerpt: ""
 coverImage: "https://user-images.githubusercontent.com/50317129/121893356-d6d48480-cd58-11eb-80bb-d4611be3bd40.png"
-date: "2021-06-14T21:59:16"
+date: 1623675556000
 type: "posts"
 category: "JAVA"
 tag: [ "IntelliJ(인텔리제이)", "Hyper-V", "오류 해결책" ]

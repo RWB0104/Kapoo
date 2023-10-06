@@ -2,7 +2,7 @@
 title: "[라즈베리파이 4] MariaDB 구축하기"
 excerpt: "드디어 라즈베리파이 개발환경 구축의 마지막 장이다. DBMS는 다양한 데이터를 저장하는 저장소인 DB(Database)를 관리하는 시스템이다. 필요한 데이터를 DB에 저장하고, 이를 적재적소에 꺼내어 데이터를 다룰 수 있도록 해준다. 웹 서버와 DBMS를 연동하면 사용자의 계정 정보, 설정 등을 저장하고 활용할 수 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-14T02:04:02"
+date: 1631552642000
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "MariaDB", "RDBMS" ]

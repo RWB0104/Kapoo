@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 10. 컨트롤러 구현하기"
 excerpt: "Jersey 라이브러리를 통해 요청을 받아 응답을 반환하는 컨트롤러를 구성해보자. Jersey에 대해 자세히 알아보고 싶다면 이전 글을 참고하자."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-25T02:24:17"
+date: 1635096257000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "Jersey" ]

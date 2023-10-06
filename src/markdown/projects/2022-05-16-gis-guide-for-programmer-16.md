@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 16. WMS GetImage를 사용하여 지도에 이미지 표시하기"
 excerpt: "이 장에선 WFS를 통해 지도에 이미지를 표시하는 방법에 대해 다룬다. 이전 장의 WFS는 공간정보 데이터를 GeoJSON으로 받아 직접 객체로 표시하지만, WMS는 객체를 GeoServer에서 이미지로 렌더링한 이미지를 받아 표시한다. 즉, GeoServer로 부터 직접 Tile Map을 받아 표현한다고 생각하면 된다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-16T02:13:10+09:00"
+date: 1652634790000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "OGC", "WMS" ]

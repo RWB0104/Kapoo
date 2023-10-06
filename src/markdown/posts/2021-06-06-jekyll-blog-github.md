@@ -2,7 +2,7 @@
 title: "[Jekyll] GitHub Pages를 이용해 나만의 블로그 만들기 - 2. GitHub와 친해지기"
 excerpt: "Jekyll은 GitHub를 통해 호스팅한다. 즉, Jekyll로 블로그를 만들기 위해선 GitHub를 조금이나마 알고 있어야 한다. 본문에서는 GitHub의 여러 기능은 제쳐두고, Jekyll 호스팅을 목적을 기준으로 설명한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/90983201-582f1080-e5a7-11ea-970b-8d7d82cb2084.png"
-date: "2021-06-06T23:29:32"
+date: 1622989772000
 type: "posts"
 category: "Jekyll"
 tag: [ "GitHub Pages(깃허브 페이지)", "Jekyll(지킬)", "Blog(블로그)", "GitHub(깃허브)" ]

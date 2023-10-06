@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 21. WFS Transaction으로 데이터 수정하기"
 excerpt: "세 가지 WFS Transaction API 중, 데이터를 수정하는 Update에 대해 다뤄보자."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-31T01:10:12+09:00"
+date: 1653927012000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WFS" ]

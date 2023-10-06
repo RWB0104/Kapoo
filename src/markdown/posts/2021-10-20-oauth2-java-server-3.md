@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 3. scribeJAVA로 OAuth2.0 인증 모듈 구현하기"
 excerpt: "OAuth 라이브러리인 scribeJAVA를 통해 인증 모듈을 구현해보자."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-20T01:26:40"
+date: 1634660800000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "Jersey" ]

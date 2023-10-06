@@ -2,7 +2,7 @@
 title: "URI? URL? URN? 리소스 식별자 구분하기"
 excerpt: "우리가 인터넷 상에서 특정한 데이터에 접근할 때 URL이라는 것을 활용하여 접근한다. 원하는 자료의 URL을 얻으면, 브라우저 같은 HTTP 통신 프로그램에 해당 URL을 호출하여 응답을 얻는 것이다."
 coverImage: "https://user-images.githubusercontent.com/50317129/120028437-a63ddc80-c02f-11eb-9d41-7c50d7002a42.png"
-date: "2021-05-29T03:30:17"
+date: 1622226617000
 type: "posts"
 category: "WEB"
 tag: [ "WEB(웹)", "URI", "URL", "URN" ]

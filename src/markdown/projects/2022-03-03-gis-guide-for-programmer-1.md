@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 1. 머릿말"
 excerpt: "공간정보, 지리쪽에 업이 있거나 관심있는 사람이 아니라면, GIS라는 단어는 다소 생소한 단어다. 혹자는 GIS가 아니라 GPS 아니냐고 반문하기도 한다. GPS(Global Positioning System)는 3개 이상의 위성 신호를 통해 수신기의 위치를 계산할 수 있는 기법이다. GPS라 하면 흔히 네비게이션을 연상하기 쉽지만, 알게 모르게 GPS는 일상생활에 깊게 녹아들어 있다. 네비게이션, 스마트폰 지도, 배달 플랫폼의 라이더 위치 추적, 드론 군집비행, 군사학 등. GPS는 다양한 영역에 스며들어 그 이로움을 전해준다. 우리는 GPS를 통해, 공간정보라는 디지털 시대에서 공간을 디지털화한다는 것이 어떤 능력을 발휘하는 지 엿볼 수 있다. GIS(Global Information System)는 GPS와 같이 공간정보를 다루는 모든 기술에 대한 포괄적인 기술을 의미한다. GPS 뿐만 아니라, 지도, 좌표계와 같이 공간과 엮이는 모든 기술은 GIS라는 커다란 범주로 묶을 수 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-03T23:05:35+09:00"
+date: 1646316335000
 type: "projects"
 category: "GIS"
 tag: [ "GIS" ]

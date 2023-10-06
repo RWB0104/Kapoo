@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 8. 프로세스 구현하기"
 excerpt: "4장부터 7장까지 진행하며 각 플랫폼의 인증 모듈을 구현했다. 이 장에서는 모듈을 사용하는 주체인 프로세스를 구현한다. 프로세스는 HTTP 메소드에 따라 구분하여 관리한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-24T23:58:10"
+date: 1635087490000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0" ]

@@ -2,7 +2,7 @@
 title: "백준 알고리즘 시작하기"
 excerpt: "코딩 테스트 및 개인 실력 향상을 위해 백준 알고리즘을 차례로 풀어보기로 했다. 그냥 풀기만 하면 분명히 나중에 어떻게 풀었는지 까먹을테니, 이해한 내용을 포스팅하며 풀이를 진행한다. 풀이의 규칙은 아래와 같다."
 coverImage: "https://user-images.githubusercontent.com/50317129/120028591-d5ece480-c02f-11eb-88f0-e14fc647dd81.png"
-date: "2021-05-21T21:22:31"
+date: 1621599751000
 type: "posts"
 category: "알고리즘"
 tag: [ "백준", "알고리즘", "JAVA(자바)" ]

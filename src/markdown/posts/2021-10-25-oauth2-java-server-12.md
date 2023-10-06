@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 12. 마치며"
 excerpt: "그 동안 만들어 놓은건 많은데, 정작 정리같은 건 해두지 않았었다. GitHub를 활용하지 않기도 했고, 블로그도 딱히 운영하지 않고 있었으니.. 개인 서버도 샀겠다. 나름의 개발 포트폴리오를 위해 시험삼아 만든 프로젝트다. 개발부터 정리까지 차근차근 작성한 프로젝트는 이게 처음이 아닌가 싶다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-25T22:41:21"
+date: 1635169281000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0" ]

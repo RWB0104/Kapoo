@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 19. WMS에 팝업 붙이기"
 excerpt: "지도에 표시된 마커 혹은 객체를 클릭하면, 팝업을 통해 해당 객체의 자세한 정보를 보여준다. 이 장에서는 WFS 지도에 팝업을 출력하여 마커의 세부 정보를 표현해본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-28T20:55:23+09:00"
+date: 1653738923000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WMS" ]

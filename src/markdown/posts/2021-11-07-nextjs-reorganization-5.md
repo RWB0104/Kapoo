@@ -2,7 +2,7 @@
 title: "[NextJS] 블로그 개편기 - 5. marked를 응용하여 코드블럭 디자인 개선하기"
 excerpt: "이전 장에서 marked를 활용하여 이 블로그만의 마크다운 변환기를 구현했다. 이 변환기를 활용하여 밋밋한 코드블럭을 좀 더 IDE 같게 개선해보자."
 coverImage: "https://user-images.githubusercontent.com/50317129/134931033-89954c3d-5e00-4b3b-85aa-54a1dfa29e46.png"
-date: "2021-11-07T21:13:57"
+date: 1636287237000
 type: "posts"
 category: "NextJS"
 tag: [ "NextJS", "React", "Markdown", "HTML", "SCSS", "TypeScript" ]

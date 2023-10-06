@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 7. GitHub OAuth 서비스 신청 및 모듈 구현하기"
 excerpt: "마지막 플랫폼으로, GitHub에 OAuth 서비스를 신청하고 인증 모듈을 구현한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-23T05:08:46"
+date: 1634933326000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "scribeJAVA" ]

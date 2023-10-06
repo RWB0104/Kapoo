@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 17. WFS 객체에 상호작용 추가하기"
 excerpt: "WFS와 WMS의 가장 큰 특징은 데이터의 결과물이다. WFS는 GeoJSON으로 공간정보 요소를 반환해주는 반면, WMS는 공간정보 요소를 토대로 직접 지도를 렌더링하여 제공해준다. OpenLayers는 WFS의 데이터를 토대로 `canvas`에 객체를 렌더링한다. 공간정보를 토대로 일종의 도형을 그린다고 생각하면 쉽다. 이미지와 다르게 웹 상에서 직접 그려지는 객체이므로, 웹은 이를 인식하거나 조작할 수 있다는 큰 장점이 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-21T03:04:59+09:00"
+date: 1653069899000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers" ]

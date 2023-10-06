@@ -2,7 +2,7 @@
 title: "[라즈베리파이 4] 라즈베리파이에 도메인 입히기"
 excerpt: "지금까지 과정을 거치면서 라즈베리파이에 OS를 설치하고, Tomcat을 구동하여 웹 서버로 동작할 수 있도록 환경을 구축했다. 이제 우리는 라즈베리파이의 IP로 접속하여 웹 사이트를 호스팅할 수 있다. 하지만 정상적인 페이지라면 IP를 입력하여 접속하지 않는다. Domain을 발급받아 IP에 연동하고, 이를 URL 주소로 사용할 것이다. 이 장에서는 Domain을 직접 구입하고 라즈베리파이 서버에 이를 연동한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-04T12:09:04"
+date: 1630724944000
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "도메인" ]

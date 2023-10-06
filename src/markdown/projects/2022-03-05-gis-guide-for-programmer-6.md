@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 6. 공간정보의 DB화"
 excerpt: "데이터의 CRUD 소요가 있는 서비스는 DB를 사용한다. 서비스 운영에 필요한 데이터를 DB에 저장하고, 이를 적절히 관리, 조작함으로써 서비스의 기능을 제공한다. GIS의 경우, 그 특성상 대용량 데이터를 자주 접하게 된다. 일례로, 전국의 건물 수는 몇백만을 우습게 상회하기 때문. 단순 row가 백만 단위인 것도 문제지만, 건물 정보의 특성 상 column의 갯수 또한 수십 개 정도다. 때문의 데이터의 용량이 매우 커진다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-05T04:35:41+09:00"
+date: 1646422541000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "MariaDB", "QGIS" ]

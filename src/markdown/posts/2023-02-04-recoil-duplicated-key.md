@@ -2,7 +2,7 @@
 title: "[recoil] Duplicate atom key 오류 해결하기"
 excerpt: "React와 상태관리는 떼놓을 수 없는 존재다. 좀 더 효율적이고 스마트한 상태관리를 위한 많은 시도가 있어왔는데, recoil도 그 중 하나다. recoil은 선발주자인 Redux, mobx와 달리 간편하면서도 강력한 기능 덕분에 많은 사랑을 받는 라이브러리다. 나 또한 React 개발 시 애용하기도 하고."
 coverImage: "https://user-images.githubusercontent.com/50317129/216662084-69f29d33-1956-42a1-90d6-80d311949d10.png"
-date: "2023-02-04T01:56:31+09:00"
+date: 1675443391000
 type: "posts"
 category: "React"
 tag: [ "React", "Web", "recoil" ]

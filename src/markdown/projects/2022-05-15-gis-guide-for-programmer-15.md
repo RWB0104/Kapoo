@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 15. WFS GetFeature를 사용하여 지도에 객체 표시하기"
 excerpt: "지금까지는 온전히 OpenLayers만의 기능이였다면, 이 장부터 슬슬 GeoServer와의 연동을 다루게 된다. 그 중 첫 번째로 다룰 기능은, WFS다. GeoServer에서 WFS는 지정한 요소의 정보를 GeoJSON의 형태로 반환해준다. 이 정보를 적절히 활용하여 지도에 표시할 수 있다. 이러한 기능을 통해 직접 관리하거나 가공한 데이터를 지도에 표시할 수 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-05-15T02:48:50+09:00"
+date: 1652550530000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "OGC", "WFS" ]

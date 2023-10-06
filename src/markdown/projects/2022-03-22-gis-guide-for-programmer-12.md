@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 12. 맵의 유용한 정보 표시하기"
 excerpt: "지도를 다루다보면, 내가 현재 보고있는 영역의 좌표, 지도 상에서 마우스가 위치한 좌표, 줌 레벨 등 다양한 정보를 얻어야할 경우가 생긴다. 이런 니즈를 충족하기 위해, 지도 상에 상태창을 만들어 관련 정보를 출력해주면 필요할 때 유용하게 사용할 수 있을 것이다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-22T22:37:21+09:00"
+date: 1647956241000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "OpenLayers" ]

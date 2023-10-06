@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 24. Heat Map 표현하기"
 excerpt: "데이터는 보는 관점에 따라, 전혀 새로운 결과를 도출하기도 한다. 지금까지 다뤘던 지도들은 하나같이 데이터를 지도 상에 있는 그대로 보여주는 것에 중점을 뒀었다. 이번 장에서는 Heat Map을 통해, 데이터를 바라보는 관점을 조금 바꿔본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-06-02T00:27:57+09:00"
+date: 1654097277000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WFS" ]

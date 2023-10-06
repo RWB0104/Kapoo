@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 25. WebGL로 초대용량 데이터 표시하기"
 excerpt: "WFS 마커는 표현 대상이 많아지면 많아질수록 비용으로 직결된다고 언급한 적이 있었다. 하지만 만약, 정말 만약에, 수 많은 객체를 온전히 마커로 전부 보여줘야 한다면? 어떠한 이유로든 이러한 문제에 당면했을 경우, WebGL이 그 해결책이 될 수 있다. 이 장에서는 WebGL 렌더러를 활용하여 30만개의 마커를 표현해본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-06-02T00:57:11+09:00"
+date: 1654099031000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "WFS", "WebGL" ]

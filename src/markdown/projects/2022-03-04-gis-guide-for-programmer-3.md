@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 3. 좌표계"
 excerpt: "1986년, NASA에서 우주왕복선 챌린저호를 발사했으나, 발사한 지 약 73초만에 폭발한 안타까운 사고가 있었다. 원인은 어이없게도 단위 실수. 국제적인 표준은 미터법임에도 불구하고, 미국을 포함한 몇몇 국가는 인치법을 표준으로 사용하고 있었다. 이러한 상황에서 우주선의 설계도 중 미터법으로 표기된 부품 O Ring을 인치법으로 제작했기 때문에 일어난 사고였다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-04T01:47:29+09:00"
+date: 1646326049000
 type: "projects"
 category: "GIS"
 tag: [ "GIS" ]

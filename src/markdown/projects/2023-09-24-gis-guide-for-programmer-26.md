@@ -5,7 +5,7 @@ excerpt: "이 시리즈를 쭉 정독했다면, 코드와 함께 예시로 보�
 예시 사이트를 보여주는 것도 좋지만, 자신이 직접 GeoServer를 구축하고 이를 예시 사이트에 연결하는 방법을 알려준다면, 더 자유롭게 탐구를 할 수 있지 않을까 싶었다.
 이 장에선, 내가 직접 예시 사이트에 사용한 데이터 일체와 GeoServer의 구축 방식을 제공하여, OpenLayers6 Sandbox 사이트를 내 GeoServer로 연결하여 구축해본다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2023-09-24T04:18:43+09:00"
+date: 1695496723000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "GeoServer", "OpenLayers", "React" ]

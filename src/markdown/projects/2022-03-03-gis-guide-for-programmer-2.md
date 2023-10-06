@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 2. GIS랑 인사하기"
 excerpt: "여러분들이 GIS를 처음 접했다면, 한 번 물어보고 싶다. 공간이란 뭘로 이루어져 있을까? 한 번 생각해보자. 다양한 답이 나왔을 것이라 생각한다. 무슨 답인지 내가 직접 못 듣는다는 게 좀 아쉽지만. 아마 대부분 추상적인 답이 나왔을 것이라 생각한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-03T23:36:04+09:00"
+date: 1646318164000
 type: "projects"
 category: "GIS"
 tag: [ "GIS" ]

@@ -3,7 +3,7 @@ title: "Google Analytics API를 활용하여 블로그의 인기 게시글을 �
 excerpt: "게시글이 중심인 사이트를 보면, 대부분 조회수에 기반한 인기 게시글을 보여주는 기능을 제공해준다. 각 게시글마다 조회수를 저장하고, 이를 통해 가장 많은 조회수 혹은 이에 기반한 특정 조건을 만족하는 게시글을 보여주는 방식이다.
 하지만, 내 블로그. 조회수 저장같은 건 없다. Serverless 방식이기 때문. GitHub를 통해 정적 호스팅만을 수행할 뿐, 서버에 그 이상의 어떤 연산도 기대할 수 없는 구조다. 때문에 능동적인 방문자수 계산은 불가능한 상황이다."
 coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/c2f5730a-8f58-4c18-b818-5dd64a431b98"
-date: "2023-10-05T23:08:50+09:00"
+date: 1696514930000
 type: "posts"
 category: "WEB"
 tag: [ "GA", "Google Analytics" ]

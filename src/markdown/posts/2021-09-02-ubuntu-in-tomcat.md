@@ -2,7 +2,7 @@
 title: "[라즈베리파이 4] Ubuntu에 톰캣 설치하기"
 excerpt: "OS가 준비되었으므로 본격적으로 웹 서버 환경을 구축해보자. 대표적인 WAS인 Tomcat을 활용하여 페이지를 호스팅한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-02T23:07:19"
+date: 1630591639000
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "도메인" ]

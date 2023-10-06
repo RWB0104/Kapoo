@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 11. OAuth 서비스 심사 신청하기"
 excerpt: "OAuth 서비스를 등록하고 인증 서버까지 별도로 구축했지만, 이렇게 했다고 해서 그 즉시 사용 가능한 것은 아니다. 이 장에서는 OAuth 서비스 심사를 신청하여 OAuth 서비스를 온전히 사용할 수 있도록 한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-25T22:41:21"
+date: 1635169281000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0" ]

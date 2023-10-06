@@ -2,7 +2,7 @@
 title: "[OOP] 객체지향 5원칙(SOLID) - 의존성 역전 원칙 DIP (Dependency Inversion Principle)"
 excerpt: "의존성 역전 원칙이란 객체는 저수준 모듈보다 고수준 모듈에 의존해야한다는 원칙이다. 말이 좀 어렵다. 고수준 모듈은 뭐고, 저수준 모듈은 또 뭐란 말인가? 고/저수준 모델의 정의는 위와 같다. 위 정의를 의존성 역전 원칙에 대입하면, 객체는 객체보다 인터페이스에 의존해야한다로 치환할 수 있다. 즉, 가급적 객체의 상속은 인터페이스를 통해 이루어져야 한다는 의미로 해석할 수 있다."
 coverImage: "https://user-images.githubusercontent.com/50317129/128211434-7c28e08b-c867-4b08-98c0-bcf94f0e54b3.png"
-date: "2021-08-17T03:06:35"
+date: 1629137195000
 type: "posts"
 category: "CS"
 tag: [ "CS", "객체지향", "객체지향 5원칙", "의존성 역전 원칙", "DIP" ]

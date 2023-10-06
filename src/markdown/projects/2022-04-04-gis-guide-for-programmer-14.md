@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 14. 지도에 사용자의 위치 표시하기"
 excerpt: "사용자의 위치를 기반으로 다양한 서비스를 제공할 수 있겠지만, 그 중에서 가장 기본적인 기능은 사용자의 위치를 지도 상에 직접 표시하는 것이다. 이전 장에서 설명한 지오로케이션을 토대로, OpenLayers를 활용하여 위치를 지도에 표시한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-04-04T01:56:03+09:00"
+date: 1649004963000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "OpenLayers" ]

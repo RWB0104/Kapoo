@@ -2,7 +2,7 @@
 title: "[SSL] SSL 인증서"
 excerpt: "이전 장을 읽었다면 인증서에 대한 언급이 있음을 확인할 수 있다. SSL이 적용되면 서버와 클라이언트가 어떤 식으로 통신하고 암/복호화하여 데이터를 다루는지 설명했지만, 이는 SSL의 원리일 뿐이다. 그렇다면, 해당 도메인에 SSL이 적용되어 https를 사용할 수 있는 이유는 무엇일까?"
 coverImage: "https://user-images.githubusercontent.com/50317129/129755999-c5d6c474-d5c0-442a-b7c5-37b3cdf703a9.png"
-date: "2021-08-18T10:55:24"
+date: 1629251724000
 type: "posts"
 category: "WEB"
 tag: [ "CS", "객체지향", "SSL" ]

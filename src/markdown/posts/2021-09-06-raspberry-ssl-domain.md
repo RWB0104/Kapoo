@@ -2,7 +2,7 @@
 title: "[라즈베리파이 4] Let's Ecrypt로 Ubuntu 서버에 HTTPS 통신 제공하기"
 excerpt: "이전 장에서 Google Domains를 통해 dev 도메인을 발급받았다. 이 블로그의 주소는 실제로 구입한 https://blog.itcode.dev 도메인이 적용되어있다. dev 도메인은 강화된 보안정책이 적용되어있다. 해당 도메인으로의 모든 HTTP 통신은 반드시 HTTPS 보안 통신으로만 제공된다. 네트워크 계층에서 https 프로토콜로 라우팅하므로 좋든 싫든 HTTPS 서비스를 제공해야만 한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png"
-date: "2021-09-06T16:50:40"
+date: 1630914640000
 type: "posts"
 category: "RaspberryPi"
 tag: [ "라즈베리파이", "Ubuntu", "Tomcat(톰캣)", "SSL" ]

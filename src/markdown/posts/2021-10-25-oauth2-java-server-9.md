@@ -2,7 +2,7 @@
 title: "[OAuth2.0] ScribeJAVA로 OAuth2.0 인증서버 구축하기 - 9. Jersey로 RESTful API 서비스 제공하기"
 excerpt: "이 장에서는 Jersey를 활용하여 RESTful API 서비스를 제공하는 방법에 대해 다룬다. 이 프로젝트는 Jersey를 통해 요청을 받아 응답하므로, 컨트롤러를 구성하기 이전에 Jersey에 대해 잠깐 다루고 넘어간다. 통상 JAVA 서버를 구축하는데 Spring 프레임워크를 많이 사용할 것이다. 그럼에도 굳이 Jersey를 선택하는 이유는 일단 내가 Spring을 잘 모른다. 그것도 그거지만, Spring에 비해 규모가 작고 설정이 간단해서 온전히 RESTful 서버를 구축하는데 집중할 수 있다. Spring 설정의 악랄함은 고사하고, 이 프로젝트의 특성 상 복잡한 로직이나 다채로운 기능을 요구하지 않는다. Spring의 방대한 규모를 온전히 쓰지 못 하므로 배보다 배꼽이 더 크다는 뜻이다."
 coverImage: "https://user-images.githubusercontent.com/50317129/137171016-99af1db1-a346-4def-9329-6072b927bdc0.png"
-date: "2021-10-25T00:12:58"
+date: 1635088378000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "OAuth2.0", "Jersey" ]

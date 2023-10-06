@@ -2,7 +2,7 @@
 title: "[OOP] 객체지향 5원칙(SOLID) - 단일 책임 원칙 SRP(Single Responsibility Principle)"
 excerpt: "올바른 객체지향 설계를 위해 수립한 원칙이 있으며, 이 다섯 가지 원칙을 통틀어 객체지향 5원칙(SOLID)이라 명명한다. 필수로 적용하지는 않지만, 적어도 이 규칙을 준수하면 준수할 수록 올바르게 설계된 객체지향이라 할 수 있다. 이 다섯가지 원칙은 아래와 같다."
 coverImage: "https://user-images.githubusercontent.com/50317129/128211434-7c28e08b-c867-4b08-98c0-bcf94f0e54b3.png"
-date: "2021-08-13T01:37:48"
+date: 1628786268000
 type: "posts"
 category: "CS"
 tag: [ "CS", "객체지향", "객체지향 5원칙", "단일 책임 원칙", "SRP" ]

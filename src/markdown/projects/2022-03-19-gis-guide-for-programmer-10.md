@@ -2,7 +2,7 @@
 title: "OpenLayers를 여행하는 개발자를 위한 안내서 - 10. Open Street Map(OSM) 맵 만들기"
 excerpt: "OSM이란, 전세계 지도 종사자들이 자율적으로 관리하는 세계지도다. 즉, 지도 분야의 오픈 소스라고 생각하면 이해하기 쉽다. 각 국의 기여자들이 지도를 관리하고 있으며, 각 국가의 영역은 해당하는 국가의 언어로 표시된다. 전세계를 대상으로 하는 서비스에도 무리없이 적용 가능하다는 장점이 있다. 단, 한국 기준으로 지도의 퀄리티가 그리 뛰어나진 않다. OpenLayers는 라이브러리 단계에서 OSM을 기본 제공한다. 즉, 별다른 API 호출이나 설정 없이 간단한 코드 몇 줄 만으로도 웹 상에 세계지도를 띄울 수 있다. 이 장에서는 OpenLayers6를 활용하여 웹 상에 OSM을 띄우는 매우 기초적인 방법에 대해 다룬다."
 coverImage: "https://user-images.githubusercontent.com/50317129/156607880-c5abad92-1991-4c01-b85f-7153bf89cb64.png"
-date: "2022-03-15T04:53:00+09:00"
+date: 1647287580000
 type: "projects"
 category: "GIS"
 tag: [ "GIS", "OpenLayers" ]

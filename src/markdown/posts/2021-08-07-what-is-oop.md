@@ -2,7 +2,7 @@
 title: "[OOP] 객체지향 프로그래밍(Object Oriented Programming)이란?"
 excerpt: "IT 업계에 종사하게 된다면 십중팔구 JAVA, C++, C# 중 하나는 다루게 된다. 국내 IT의 최다 공급이자 수요인 JAVA를 위시한 위 세 가지 언어의 공통점은 전부 객체지향언어라는 점이다. 물론 지금에 이르러서는 함수형이라는 개념도 나왔지만, C의 단순한 절차지향 이래로 나온 객체지향은 프로그래밍의 새로운 관점을 제시했고, 크고 작은 언어들이 알게 모르게 영향을 받았다. 이렇게 영향력이 큰 개념임에도 불구하고 막상 이와 관련된 질문을 받으면 명확하게 답을 내지 못 하기도 한다."
 coverImage: "https://user-images.githubusercontent.com/50317129/128211434-7c28e08b-c867-4b08-98c0-bcf94f0e54b3.png"
-date: "2021-08-07T12:06:45"
+date: 1628305605000
 type: "posts"
 category: "CS"
 tag: [ "CS", "객체지향" ]

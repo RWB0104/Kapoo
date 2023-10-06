@@ -2,7 +2,7 @@
 title: "[TypeScript] 마크다운 TOC 만들기"
 excerpt: "글의 요소 중엔 목차라는 개념이 존재한다. TOC(Table Of Content)라고도 한다. 목차를 통해 독자는 글의 전반적인 내용과 짜임새를 파악할 수 있으며, 원할 경우 필요한 부분만 취사선택을 하도록 유도할 수도 있다. 독자를 위해서도, 글을 위해서도 좋은 장치인 셈이다."
 coverImage: "https://user-images.githubusercontent.com/50317129/270418234-c6951309-6bad-4e82-82a8-244585f54735.jpg"
-date: "2023-09-26T01:53:00"
+date: 1695660780000
 type: "posts"
 category: "TypeScript"
 tag: [ "React", "TypeScript", "Markdown", "Regexp", "Table Of Content" ]

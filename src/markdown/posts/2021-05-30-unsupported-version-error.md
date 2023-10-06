@@ -2,7 +2,7 @@
 title: "Unsupported major.minor version 에러 해결하기 (+Servlet 404 에러)"
 excerpt: "간혹 JAVA 프로그램을 실행하다보면 Unsupported major.minor version 52(숫자는 class 버전에 따라 다름) 오류가 출력되면서 정상적으로 동작하지 않는 오류가 발생한다. Unsupported major.minor version 오류는 직역하면 \"지원하지 않는 주/부 버전\"이다. JAVA 버전관련 오류라고 보면 된다."
 coverImage: "https://user-images.githubusercontent.com/50317129/120079117-78b76880-c0ed-11eb-944d-c0d020228db3.png"
-date: "2021-05-30T02:16:35"
+date: 1622308595000
 type: "posts"
 category: "JAVA"
 tag: [ "JAVA", "WAS", "Tomcat(톰캣)", "오류 해결책" ]

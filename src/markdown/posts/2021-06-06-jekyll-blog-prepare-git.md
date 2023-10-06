@@ -2,7 +2,7 @@
 title: "[Jekyll] GitHub Pages를 이용해 나만의 블로그 만들기 - 3. Git 설치하기"
 excerpt: "GitHub는 각 프로젝트를 하나의 Repository로 관리한다. 생성한 Repository는 Git을 이용하여 관리할 수 있다. GitHub 페이지 자체로도 Repository 내부의 파일 생성, 수정, 삭제가 가능하지만 매우 번거로우므로 대부분 Git을 활용하는 것이 권장된다."
 coverImage: "https://user-images.githubusercontent.com/50317129/90983201-582f1080-e5a7-11ea-970b-8d7d82cb2084.png"
-date: "2021-06-06T23:42:11"
+date: 1622990531000
 type: "posts"
 category: "Jekyll"
 tag: [ "GitHub Pages(깃허브 페이지)", "Jekyll(지킬)", "Blog(블로그)", "Git" ]
