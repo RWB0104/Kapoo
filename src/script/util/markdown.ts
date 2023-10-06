@@ -15,19 +15,6 @@ import { REGEX, getNewist } from './common';
 export type MarkdownType = 'posts' | 'projects';
 export type FrontmatterForListProps = Omit<FrontmatterProps, 'tag' | 'comment' | 'publish' | 'info'>;
 
-export interface ConvertProps
-{
-	/**
-	 * TOC
-	 */
-	toc: string;
-
-	/**
-	 * HTML
-	 */
-	html: string;
-}
-
 export interface FrontmatterProps
 {
 	/**
