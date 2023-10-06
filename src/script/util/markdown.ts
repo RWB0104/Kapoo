@@ -35,7 +35,7 @@ export interface FrontmatterProps
 	/**
 	 * 날짜
 	 */
-	date: string;
+	date: number;
 
 	/**
 	 * 타입

@@ -54,7 +54,7 @@ export interface MarkdownListItemProps extends LinkProps
 	/**
 	 * 날짜
 	 */
-	date: string;
+	date: number;
 
 	/**
 	 * 신규 여부
