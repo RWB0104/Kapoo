@@ -9,8 +9,13 @@ import { ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
 import { themeStore } from '@kapoo/store/theme';
 
 import Box from '@mui/material/Box';
+import classNames from 'classnames/bind';
 import { CSSProperties, ReactNode, useMemo } from 'react';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
+
+import styles from './MarkdownCodeInline.module.scss';
+
+const cn = classNames.bind(styles);
 
 export type MarkdownCodeInlineProps = CodeProps;
 
@@ -34,7 +39,7 @@ export default function MarkdownCodeInline({ ...props }: MarkdownCodeInlineProps
 			border='1px solid'
 			borderColor={borderColor}
 			borderRadius={1}
-			className='selectable'
+			className={cn('codeline', 'selectable')}
 			component='span'
 			data-component='MarkdownCodeInline'
 			fontFamily={[ ubuntuMono.style.fontFamily ]}
