@@ -175,7 +175,9 @@ OAuth의 인증 객체는 보통 **Access Token**과 **Refresh Token**으로 나
 
 <span class="blue-400">[Use your own OAuth credentials]</span>를 체크하면 입력 폼이 나온다. 여기에 이전 절차에서 발급받은 클라이언트 ID, 비밀키를 입력한다.
 
-이후 우측 목록에서 [Google Analytics API v3]를 클릭하고, 하위 목록 중 [https://www.googleapis.com/auth/analytics.readonly]를 선택한다.
+이후 우측 목록에서 [Google Analytics API v3]를 클릭하고, 하위 목록 중 아래의 URL을 선택한다.
+
+- `https://www.googleapis.com/auth/analytics.readonly`
 
 이후 [Authorize APIs]를 클릭하면 Authorization code를 발급받을 수 있다. 이 과정에서 Google 로그인을 수행하는데, 테스트 서비스이므로, 안전하지 않은 환경이라는 경고가 뜬다. [계속] 버튼을 클릭하면 사용이 가능하다.
 
