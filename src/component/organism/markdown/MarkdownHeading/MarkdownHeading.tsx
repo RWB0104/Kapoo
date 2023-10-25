@@ -52,36 +52,36 @@ export default function MarkdownHeading({ level, children, ...props }: MarkdownH
 		switch (level)
 		{
 			case 1: return (
-				<h1 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h1 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h1>
 			);
 
 			case 2: return (
-				<h2 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h2 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h2>
 			);
 
 			case 3: return (
-				<h3 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h3 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h3>
 			);
 			case 4: return (
-				<h4 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h4 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h4>
 			);
 
 			case 5: return (
-				<h5 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h5 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h5>
 			);
 
 			default: return (
-				<h6 className={cn('heading')} data-component='MarkdownHeading' {...props}>
+				<h6 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
 				</h6>
 			);
