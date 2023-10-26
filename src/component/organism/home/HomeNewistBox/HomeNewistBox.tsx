@@ -9,6 +9,7 @@
 
 import MarkdownList from '@kapoo/molecule/MarkdownList';
 import { postsStore, projectsStore } from '@kapoo/store/markdown';
+import { getNewist } from '@kapoo/util/common';
 import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import Stack from '@mui/material/Stack';
@@ -29,7 +30,7 @@ export default function HomeNewistBox(): ReactNode
 	{
 		const list = [ ...postsMarkdown, ...projectsMarkdown ];
 
-		return list.filter(({ frontmatter }) => frontmatter.isNew)
+		return list.filter(({ frontmatter }) => getNewist(frontmatter.date))
 			.sort((left, right) => (new Date(right.frontmatter.date).getTime() - new Date(left.frontmatter.date).getTime()));
 	}, [ postsMarkdown, projectsMarkdown ]);
 

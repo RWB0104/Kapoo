@@ -7,6 +7,7 @@
 
 import LottieIcon from '@kapoo/atom/LottieIcon';
 import MarkdownListItem from '@kapoo/molecule/MarkdownListItem';
+import { getNewist } from '@kapoo/util/common';
 import { MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import Box from '@mui/material/Box';
@@ -67,7 +68,7 @@ export default function MarkdownList({ markdown = [], onCardClick, ...props }: M
 								date={frontmatter.date}
 								excerpt={frontmatter.excerpt}
 								href={url}
-								newist={frontmatter.isNew}
+								newist={getNewist(frontmatter.date)}
 								thumb={frontmatter.coverImage}
 								title={frontmatter.title}
 								type={frontmatter.type}
