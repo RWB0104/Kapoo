@@ -68,6 +68,7 @@ export default function MarkdownHeading({ level, children, ...props }: MarkdownH
 					{child}
 				</h3>
 			);
+
 			case 4: return (
 				<h4 className={cn('heading', `h${level}`)} data-component='MarkdownHeading' {...props}>
 					{child}
