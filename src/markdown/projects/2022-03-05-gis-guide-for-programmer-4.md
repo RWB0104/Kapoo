@@ -73,7 +73,9 @@ OSM이란, 전세계 지도 종사자들이 자율적으로 관리하는 세계�
 
 좌측 사이드바에서 [XYZ Tiles - OpenStreetMap]을 더블 클릭하여 레이어에 추가하자.
 
-레이어 순서에 따라 표시되는 우선순위가 달라지니, 가급적 OpenLayers를 제일 밑에 두도록 하자.
+레이어 순서에 따라 표시되는 우선순위가 달라지니, 가급적 Open Street Map을 제일 밑에 두도록 하자.
+
+가장 베이스가 되는 지도를 밑에 깔아두어야 다른 요소를 덮지 않는다.
 
 ![image](https://user-images.githubusercontent.com/50317129/156783705-707ce5d6-c6ce-4d7f-9b49-ce13d824f9e6.png)
 
@@ -157,4 +159,4 @@ QGIS에서 데이터의 내용이나, 좌표계를 변경했을 경우, 이 데�
 <br />
 <br />
 
-※ 잘못된 정보를 정정해주신 [Justin Chi](https://github.com/Justin-Marine)님에게 감사의 말씀을 드립니다.
+※ 잘못된 정보를 정정해주신 [Justin Chi](https://github.com/Justin-Marine)님,[ohe1013](https://github.com/ohe1013)님에게 감사의 말씀을 드립니다.
