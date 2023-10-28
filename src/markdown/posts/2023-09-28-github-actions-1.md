@@ -6,7 +6,7 @@ excerpt: "하나의 프로그램이 나오기 위해선 여러 과정을 거친�
 coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/094a4fa5-f336-4c54-9df3-b5791d48de21"
 date: 1695840894000
 type: "posts"
-category: "TypeScript"
+category: "GitHub"
 tag: [ "GitHub", "GitHub Actions", "CI", "CD", "지속적 통합", "지속적 제공", "지속적 배포" ]
 group: "삼가 수동배포의 명복을 GitHub Actions빔"
 comment: true

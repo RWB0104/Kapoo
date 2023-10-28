@@ -6,7 +6,7 @@ GitHub Actions에 대해 알아보자."
 coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/094a4fa5-f336-4c54-9df3-b5791d48de21"
 date: 1698250814682
 type: "posts"
-category: "TypeScript"
+category: "GitHub"
 tag: [ "GitHub", "GitHub Actions", "Workflows", "Events", "Jobs", "Runners", "Steps", "YAML" ]
 group: "삼가 수동배포의 명복을 GitHub Actions빔"
 comment: true

@@ -6,7 +6,7 @@ excerpt: "GitHub. Git 호스팅 관리 서비스의 대표주자라 할 수 있�
 coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/094a4fa5-f336-4c54-9df3-b5791d48de21"
 date: 1698515909306
 type: "posts"
-category: "TypeScript"
+category: "GitHub"
 tag: [ "GitHub", "GitHub Actions", "Events", "YAML", "crontab" ]
 group: "삼가 수동배포의 명복을 GitHub Actions빔"
 comment: true
