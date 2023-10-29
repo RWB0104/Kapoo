@@ -185,6 +185,35 @@ test, and deploy your project.
 
 
 
+### Actions
+
+액션(Actions)은 복잡한 작업을 간단하게 재사용이 가능하도록 포팅한 커스텀 애플리케이션이다.
+
+특정 레포지토리에 push 수행, SSH 연결, NPM 라이브러리 배포 등을 쉽게 수행할 수 있다.
+
+이러한 액션들은 `with` 키워드를 통해 파라미터를 입력할 수 있어, 사용자의 니즈에 맞게 커스터마이징이 가능하다.
+
+``` yaml
+- name: ssh-action 테스트
+  uses: appleboy/ssh-action@v1.0.0
+  with:
+    host: 192.168.0.20
+    username: username
+    password: password
+    port: 22
+    script: echo Hello SSH World!
+```
+
+위 스크립트는 SSH 액션 중 하나인 [appleboy/ssh-action](https://github.com/marketplace/actions/ssh-remote-commands)의 사용 예시다.
+
+SSH 연결을 위해 필요한 파라미터들을 입력하는 것을 확인할 수 있다.
+
+각 액션의 사용법은 해당 개발자가 어떻게 구현했는지에 따라 다르다. 통상적인 라이브러리처럼, 사용방법이 적힌 문서를 제공하는 편이니 이를 통해 확인하면 된다.
+
+[GitHub Marketplace](https://github.com/marketplace)에서 사용 가능한 모든 액션을 확인할 수 있다.
+
+
+
 ## 마치며
 
 이 장에서는 GitHub Actions에 대해 간략하게 다뤄봤다. 각 요소 중에는 비교적 간단한 요소들이 있는가 하면, 복잡한 요소들도 존재한다.
