@@ -15,7 +15,7 @@ publish: true
 
 드디어 라즈베리파이 개발환경 구축의 마지막 장이다. 라즈베리파이에 DBMS를 구축한다.
 
-![image](https://user-images.githubusercontent.com/50317129/133107200-6b527196-5ee8-41fb-a74d-3faf70e97dda.png)
+![null](https://user-images.githubusercontent.com/50317129/133107200-6b527196-5ee8-41fb-a74d-3faf70e97dda.png)
 
 <span class="blue-400">DBMS</span>는 다양한 데이터를 저장하는 저장소인 DB(Database)를 관리하는 시스템이다. 필요한 데이터를 DB에 저장하고, 이를 적재적소에 꺼내어 데이터를 다룰 수 있도록 해준다. 웹 서버와 DBMS를 연동하면 사용자의 계정 정보, 설정 등을 저장하고 활용할 수 있다.
 
@@ -94,7 +94,7 @@ sudo mysql
 
 `sudo mysql`을 사용해도 접속할 수 있다. MariaDB와 MySQL의 유사성을 체감할 수 있는 부분.
 
-![image](https://user-images.githubusercontent.com/50317129/133102225-7d63de47-0b70-49e4-9452-c202fad098c4.png)
+![null](https://user-images.githubusercontent.com/50317129/133102225-7d63de47-0b70-49e4-9452-c202fad098c4.png)
 
 위와 같이 접속되면 MariaDB가 정상적으로 동작하는 것이다.
 
@@ -102,7 +102,7 @@ sudo mysql
 
 DBMS는 Linux와 같이 명령어 기반으로 동작한다. 하지만 모든 명령어 기반이 그렇듯 사용자에게 편안함을 주는 환경이 아니다보니, 명령어를 일일히 치고 있긴 좀 귀찮다. 더군다나 이런 CLI 환경은 데이터 조회할 때 그 단점이 극명하게 드러나는데, 출력한 데이터를 어떻게든 표 형식으로 보여주기 위해 안간힘을 쓴다. 그러나 그 노력에도 불구하고 콘솔은 텍스트가 화면 길이를 넘어갈 경우 강제로 줄바꿈해서 보여준다. 수평 스크롤의 개념이 아예 없어 데이터가 일정량 이상 길어질 경우 극악의 가독성을 보여준다.
 
-![image](https://user-images.githubusercontent.com/50317129/133102630-3a33dd50-18d6-4b16-848b-919000c75f2e.png)
+![null](https://user-images.githubusercontent.com/50317129/133102630-3a33dd50-18d6-4b16-848b-919000c75f2e.png)
 
 이러한 특징으로 DBMS는 서버에서 돌리더라도 그 관리는 Window같은 GUI 환경에서 관리 툴을 사용하는 것이 보편적이다. 적어도 위와 같은 꼴은 보기 싫다면 더더욱.
 

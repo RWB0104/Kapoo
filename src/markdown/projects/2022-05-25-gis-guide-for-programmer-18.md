@@ -225,6 +225,6 @@ map.on('pointermove', (e) => map.getViewport().style.cursor = map.hasFeatureAtPi
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/170280310-58a64c75-b529-4ce7-a9b4-09ca6a13abf2.png)
+![null](https://user-images.githubusercontent.com/50317129/170280310-58a64c75-b529-4ce7-a9b4-09ca6a13abf2.png)
 
 [OpenLayers6 Sandbox - WFS Popup](https://project.itcode.dev/gis-dev/wfs-popup)에서 이를 구현한 예제를 확인할 수 있다.

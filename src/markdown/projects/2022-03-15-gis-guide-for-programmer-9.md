@@ -181,7 +181,7 @@ Boundary 태그 안에 Literal 태그가 들어감을 주의하자.
 
 글로 보면 좀 모호할 수 있는데, 이해를 돕기 위해 아래 그림을 보자.
 
-![image](https://user-images.githubusercontent.com/50317129/158647372-0e75b6ba-2f93-46bd-9425-eba12f0335cf.png)
+![null](https://user-images.githubusercontent.com/50317129/158647372-0e75b6ba-2f93-46bd-9425-eba12f0335cf.png)
 
 이와 같은 차이가 존재한다.
 

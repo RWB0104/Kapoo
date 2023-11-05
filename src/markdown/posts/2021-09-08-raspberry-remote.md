@@ -65,7 +65,7 @@ ssh username@xxx.xxx.xxx.xxx
 
 위 명령어를 통해 입력한 IP와 계정명으로 접근을 시도할 수 있다. IP는 라즈베리파이의 IP를, 계정명은 라즈베리파이의 계정명을 입력하면 된다. IP 대신 도메인을 입력해도 된다.
 
-![image](https://user-images.githubusercontent.com/50317129/132518427-796d71c2-7331-4a99-8d7f-65eef29344bb.png)
+![null](https://user-images.githubusercontent.com/50317129/132518427-796d71c2-7331-4a99-8d7f-65eef29344bb.png)
 
 접속정보가 유효하다면 비밀번호를 입력하여 로그인을 수행해야한다. 로그인이 완료되면 Shell에 명령어를 입력할 수 있으며, 이를 통해 원격지에서도 Ubuntu를 다룰 수 있게된다.
 
@@ -81,7 +81,7 @@ ssh username@xxx.xxx.xxx.xxx
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/132518566-fb8858ce-0b0c-4483-9a84-c3dc718f3e5f.png)
+![null](https://user-images.githubusercontent.com/50317129/132518566-fb8858ce-0b0c-4483-9a84-c3dc718f3e5f.png)
 
 Windows에는 <span class="blue-400">원격 데스크톱 연결</span>이라는 기능이 존재한다. Windows 간 원격이 가능한 기능으로써, 팀뷰어나 AnyDesk를 생각하면 된다. 일종의 내장 원격 프로그램.
 
@@ -114,11 +114,11 @@ ufw를 통해 3389번 포트를 개방한다.
 
 다른 Windows PC에서 Ubuntu로 접속해보자. 시작 프로그램에서 <span class="blue-400">[원격 데스크톱 연결]</span>을 입력하여 프로그램을 실행하자.
 
-![image](https://user-images.githubusercontent.com/50317129/132518999-0293653c-ccef-4181-a084-71022f83fc47.png)
+![null](https://user-images.githubusercontent.com/50317129/132518999-0293653c-ccef-4181-a084-71022f83fc47.png)
 
 Ubuntu IP를 입력하여 연결한다. 정상적으로 연결되면 Ubuntu의 접속정보를 통해 로그인을 수행한다.
 
-![image](https://user-images.githubusercontent.com/50317129/132519253-e4ec536d-d6a4-4fea-8905-50451a892a5b.png)
+![null](https://user-images.githubusercontent.com/50317129/132519253-e4ec536d-d6a4-4fea-8905-50451a892a5b.png)
 
 접속에 성공하면 원격으로 Ununtu UI를 다룰 수 있게 된다. 하지만 여러 기술적 한계와 효용성으로 인해 성능이 그리 좋지는 않은 것 같다. 끊김 현상이 좀 심한 것으로 보인다.
 

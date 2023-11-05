@@ -191,7 +191,7 @@ OAuth를 신청하면 자동으로 테스트 단계로 구성되고, 이후 심�
 
 처음엔 단순히 OAuth 로그인만 수행하는 프로젝트라서 적을 것도 없고, 그냥 이메일이랑 이름 표출되는 페이지랑 로그인 절차 스크린샷만 잘 찍어서 보냈는데, 거절당했다.
 
-![image](https://user-images.githubusercontent.com/50317129/138678286-e20471c5-c385-4005-b9a1-6fc0dc5fc966.png)
+![null](https://user-images.githubusercontent.com/50317129/138678286-e20471c5-c385-4005-b9a1-6fc0dc5fc966.png)
 
 ???: 사유 명확하게 적어와.
 
@@ -204,7 +204,7 @@ OAuth를 신청하면 자동으로 테스트 단계로 구성되고, 이후 심�
 <br />
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/138678601-1eea1ba7-9926-4507-aec3-b61a2e32428d.png)
+![null](https://user-images.githubusercontent.com/50317129/138678601-1eea1ba7-9926-4507-aec3-b61a2e32428d.png)
 
 ???: 아 그딴 간단한 건 걍 개발 중으로 써^^
 
@@ -219,7 +219,7 @@ OAuth를 신청하면 자동으로 테스트 단계로 구성되고, 이후 심�
 <br />
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/138678930-c2d93ae7-d449-414a-b66a-4a1db9eda49a.png)
+![null](https://user-images.githubusercontent.com/50317129/138678930-c2d93ae7-d449-414a-b66a-4a1db9eda49a.png)
 
 방법은 제안서의 정석 PPT. 내가 생각하기에도 반드시 OAuth 심사를 신청해야하는 마땅한 이유가 없어서, 반 장난식으로 "다 활성화인데 너네만 이렇게 냅둘꺼야...?"같은 뉘앙스를 잔뜩 담아 PPT로 제출했다.
 
@@ -230,7 +230,7 @@ OAuth를 신청하면 자동으로 테스트 단계로 구성되고, 이후 심�
 <br />
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/138703203-d9edc619-f4ec-4edf-8535-ad1db832b2f4.png)
+![null](https://user-images.githubusercontent.com/50317129/138703203-d9edc619-f4ec-4edf-8535-ad1db832b2f4.png)
 
 이왜진?
 
@@ -274,13 +274,13 @@ OAuth 서비스를 등록했던 [Google Cloud Platform](https://console.cloud.go
 
 ### 2. 게시하기
 
-![image](https://user-images.githubusercontent.com/50317129/138680360-a51a8830-ca37-4a93-8912-20f529199621.png)
+![null](https://user-images.githubusercontent.com/50317129/138680360-a51a8830-ca37-4a93-8912-20f529199621.png)
 
 해당 페이지에서 [<span class="lightBlue-600">게시</span>]를 클릭하여 프로덕션 모드로 전환한다.
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/138680486-cd0d27a7-42f1-4b66-8abf-04bb2d0ce12c.png)
+![null](https://user-images.githubusercontent.com/50317129/138680486-cd0d27a7-42f1-4b66-8abf-04bb2d0ce12c.png)
 
 이와 같이 변경된다. [<span class="lightBlue-600">테스트로 돌아가기</span>]를 선택하면 다시 이전처럼 테스트 모드로 되돌릴 수 있다.
 
@@ -310,7 +310,7 @@ OAuth 서비스를 등록했던 [Google Cloud Platform](https://console.cloud.go
 
 카카오의 차이는 정보 제공 동의 선택에서 나타난다.
 
-![image](https://user-images.githubusercontent.com/50317129/138683825-b7442ce0-7afe-4179-bc10-c74d1dca822b.png)
+![null](https://user-images.githubusercontent.com/50317129/138683825-b7442ce0-7afe-4179-bc10-c74d1dca822b.png)
 
 정보 제공 선택 시, 몇몇 정보는 검수가 필요하다는 이유로 필수 선택이 불가능하다.
 
@@ -322,7 +322,7 @@ OAuth 서비스를 등록했던 [Google Cloud Platform](https://console.cloud.go
 
 그렇다고 개인은 신청이 불가능하냐? 그건 또 아니다. [이 링크](https://devtalk.kakao.com/t/how-can-i-switch-to-a-biz-app-if-i-do-not-have-any-business-registration-number/71983)에서 이와 관련한 카카오 개발자의 답변을 확인할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/138684484-c40a6381-1428-47ae-a056-7813be503492.png)
+![null](https://user-images.githubusercontent.com/50317129/138684484-c40a6381-1428-47ae-a056-7813be503492.png)
 
 * 앱 이름
 * 애플리케이션 ID

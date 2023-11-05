@@ -51,7 +51,7 @@ OAuth 정보를 관리하게 될 애플리케이션을 등록하자.
 
 해당 애플리케이션의 이름이다. 이 이름은 네이버 로그인 창에도 표시가 된다.
 
-![image](https://user-images.githubusercontent.com/50317129/138466274-8c7dff01-7aaf-4911-a2c6-874caa418122.png)
+![null](https://user-images.githubusercontent.com/50317129/138466274-8c7dff01-7aaf-4911-a2c6-874caa418122.png)
 
 필자의 네아로 창 예시. 필자의 애플리케이션 이름은 OAuth2로, 위 창의 OAuth2 부분에 지정한 이름이 표시된다.
 
@@ -101,7 +101,7 @@ Callback URL은 로그인 후 결과를 전달할 URL이다. 최대 5개까지 �
 
 ### API 정보 확인
 
-![image](https://user-images.githubusercontent.com/50317129/138097785-f918f5b3-2d9f-49c0-82b6-09f95c64242c.png)
+![null](https://user-images.githubusercontent.com/50317129/138097785-f918f5b3-2d9f-49c0-82b6-09f95c64242c.png)
 
 애플리케이션을 만들면 API와 Secret을 확인할 수 있다. Secret은 기본적으로 마스킹되어있으며, 별도의 버튼을 눌러 확인할 수 있다. Secret이 유출되었다고 판단될 경우, 재발급을 할 수도 있다. 이 경우 당연히도 인증 서버에 변경된 Secret을 적용해야한다.
 

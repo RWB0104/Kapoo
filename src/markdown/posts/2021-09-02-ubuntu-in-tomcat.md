@@ -104,7 +104,7 @@ systemctl restart tomcat9
 
 위 명령어를 통해 톰캣 서비스를 on/off할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/131715233-e70c15ac-0e38-48f3-8618-96b63a87ee0e.png)
+![null](https://user-images.githubusercontent.com/50317129/131715233-e70c15ac-0e38-48f3-8618-96b63a87ee0e.png)
 
 Tomcat Native 활성화 여부는 로그에서 확인할 수 있으며, 로그에 위와 같은 문구가 출력되면 Tomcat Native가 활성화된 것이다.
 
@@ -163,7 +163,7 @@ ifconfig -a
 
 라즈베리파이의 IP `xxx.xxx.xxx.xxx:8080`에 접속하여 톰캣 페이지가 정상적으로 출력되는지 확인하자.
 
-![image](https://user-images.githubusercontent.com/50317129/131716513-505d0ed5-32ef-423e-b86d-d020253cede0.png)
+![null](https://user-images.githubusercontent.com/50317129/131716513-505d0ed5-32ef-423e-b86d-d020253cede0.png)
 
 별다른 설정을 변경하지 않았을 경우 위와 같은 관리자 페이지가 표시될 것이다.
 

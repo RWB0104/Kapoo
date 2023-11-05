@@ -16,7 +16,7 @@ publish: false
 
 하지만, 내 블로그. 조회수 저장같은 건 없다. Serverless 방식이기 때문. GitHub를 통해 정적 호스팅만을 수행할 뿐, 서버에 그 이상의 어떤 연산도 기대할 수 없는 구조다. 때문에 능동적인 방문자수 계산은 불가능한 상황이다.
 
-![image](https://user-images.githubusercontent.com/50317129/178286896-bbe0f6b4-c166-4f85-89e2-baf5e86835c0.png)
+![null](https://user-images.githubusercontent.com/50317129/178286896-bbe0f6b4-c166-4f85-89e2-baf5e86835c0.png)
 
 이 때문에 언제나 고민만 하고 있었는데, 어느날 평소처럼 Google Analytics 페이지를 보면서 방문자수 추이를 살펴보다 "생각해보니 내가 필요한 데이터가 이미 여기 있는데?"란 생각이 들었다. 아마 Google Analytics 정도 되는 서비스라면 API도 있을거라 판단. 이를 잘만 활용한다면 내가 원하는 인기 게시글 목록을 구현하기에 충분할 것이다.
 
@@ -56,7 +56,7 @@ Google은 OAuth 2.0 기반의 인증 체계를 구축하고 있으므로, 이를
 
 ### (1) 프로젝트 생성하기
 
-![image](https://user-images.githubusercontent.com/50317129/178294331-21a6203d-6104-416f-9be0-04e57ae2dddd.png)
+![null](https://user-images.githubusercontent.com/50317129/178294331-21a6203d-6104-416f-9be0-04e57ae2dddd.png)
 
 만약, 아예 처음이라 아무런 절차도 진행하지 않았다면 <span class="blue-400">[새 프로젝트]</span>를 하나 생성하자. 프로젝트는 GCP의 작업 단위다.
 
@@ -66,7 +66,7 @@ Google은 OAuth 2.0 기반의 인증 체계를 구축하고 있으므로, 이를
 
 ### (2) GA Data API 라이브러리 활성화하기
 
-![image](https://user-images.githubusercontent.com/50317129/178295143-510fb537-8aa7-41ea-9ff9-eb8ed517198e.png)
+![null](https://user-images.githubusercontent.com/50317129/178295143-510fb537-8aa7-41ea-9ff9-eb8ed517198e.png)
 
 프로젝트 생성이 완료됐다면, 이제 해당 프로젝트에서 필요한 작업들을 진행할 수 있다. GA를 바로 사용할 수 있는 건 아니고, 생성한 프로젝트에서 GA 라이브러리를 활성화해야한다.
 
@@ -74,7 +74,7 @@ Google은 OAuth 2.0 기반의 인증 체계를 구축하고 있으므로, 이를
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178295340-21c5d216-5077-441e-9f5b-8f53e5455570.png)
+![null](https://user-images.githubusercontent.com/50317129/178295340-21c5d216-5077-441e-9f5b-8f53e5455570.png)
 
 <span class="blue-400">[Google Analytics Data API]</span>를 활성화한다. 해당 행을 클릭해서 사용하면 된다.
 
@@ -86,13 +86,13 @@ Google은 OAuth 2.0 기반의 인증 체계를 구축하고 있으므로, 이를
 
 OAuth 키를 발급받기 위해선 OAuth 동의 화면을 먼저 설정해야한다. <span class="blue-400">[OAuth 동의 화면]</span> 메뉴에서 설정할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/178296158-b0df1134-41cf-434f-a30e-966c85341982.png)
+![null](https://user-images.githubusercontent.com/50317129/178296158-b0df1134-41cf-434f-a30e-966c85341982.png)
 
 유저 타입은 <span class="green-600">[내부]</span>로 설정하자. 어디 외부에서 사용할 서비스는 아니기 때문이다.
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178296496-c63f0186-a86c-48f7-96eb-c0a15a426f58.png)
+![null](https://user-images.githubusercontent.com/50317129/178296496-c63f0186-a86c-48f7-96eb-c0a15a426f58.png)
 
 이후 필요한 정보를 기입한다. Google에 제출해서 심사하고 그럴 필요는 없으므로 그냥 적당히 적으면 된다.
 
@@ -100,7 +100,7 @@ OAuth 키를 발급받기 위해선 OAuth 동의 화면을 먼저 설정해야�
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178297915-40edd535-b389-400a-8016-5371881ab263.png)
+![null](https://user-images.githubusercontent.com/50317129/178297915-40edd535-b389-400a-8016-5371881ab263.png)
 
 다음으로 OAuth에서 활용할 데이터의 범위를 선택하는데, 필요한 범위는 아래와 같다.
 
@@ -116,7 +116,7 @@ GA 데이터를 가져오기만 하면 되므로, readonly로 지정했다.
 
 ### (4) 테스트 사용자 설정하기
 
-![image](https://user-images.githubusercontent.com/50317129/178298453-2fa516b5-af46-4b00-a351-a35aa673193d.png)
+![null](https://user-images.githubusercontent.com/50317129/178298453-2fa516b5-af46-4b00-a351-a35aa673193d.png)
 
 테스트 사용자로 내 계정을 추가한다. 해당 리스트에 등록된 계정만 API키 사용이 가능하다.
 
@@ -128,13 +128,13 @@ GA 데이터를 가져오기만 하면 되므로, readonly로 지정했다.
 
 ### (5) OAuth 클라이언트 ID 생성하기
 
-![image](https://user-images.githubusercontent.com/50317129/178304035-e0193268-089a-4114-940a-3ffaea703456.png)
+![null](https://user-images.githubusercontent.com/50317129/178304035-e0193268-089a-4114-940a-3ffaea703456.png)
 
 OAuth 서비스를 사용하기 위한 클라이언트 ID를 생성한다.
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178304237-81398f92-2e98-493f-bfc5-71fdaaa2cc7a.png)
+![null](https://user-images.githubusercontent.com/50317129/178304237-81398f92-2e98-493f-bfc5-71fdaaa2cc7a.png)
 
 필요한 정보를 입력한다. <span class="blue-400">[승인된 리디렉션 URI]</span>는 블로그 URL을 입력한다. 예시로 이 블로그의 경우 `https://blog.itcode.dev`와 같이 입력한다.
 
@@ -188,7 +188,7 @@ OAuth의 인증 객체는 보통 **Access Token**과 **Refresh Token**으로 나
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178307598-b5e307be-d648-42a9-8f2a-ea0f632452ec.png)
+![null](https://user-images.githubusercontent.com/50317129/178307598-b5e307be-d648-42a9-8f2a-ea0f632452ec.png)
 
 [Google OAuth Playground](https://developers.google.com/oauthplayground/)는 Google API를 테스트할 수 있는 사이트다.
 
@@ -199,7 +199,7 @@ OAuth의 인증 객체는 보통 **Access Token**과 **Refresh Token**으로 나
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/178308027-4bbe1627-bd6c-4927-a1e9-bf96dd60f27c.png)
+![null](https://user-images.githubusercontent.com/50317129/178308027-4bbe1627-bd6c-4927-a1e9-bf96dd60f27c.png)
 
 상단 우측 톱니바퀴 버튼을 통해 보유한 클라이언트 ID를 임의로 지정할 수 있다.
 

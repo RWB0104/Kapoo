@@ -402,7 +402,7 @@ OpenLayers에서 제공하는 WMS 호출 방식에는 두 가지가 존재한다
 
 <br />
 
-![image](https://user-images.githubusercontent.com/50317129/168485084-f83cabf6-1bc7-4bd1-9b35-0b94c0c634e3.png)
+![null](https://user-images.githubusercontent.com/50317129/168485084-f83cabf6-1bc7-4bd1-9b35-0b94c0c634e3.png)
 
 두 방식의 차이를 도식화하면 위 그림과 같다. 배경지도 또한 `TileWMS` 방식을 사용한다.
 
@@ -433,7 +433,7 @@ OpenLayers에서 제공하는 WMS 호출 방식에는 두 가지가 존재한다
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/168484353-f85aee8e-922c-453e-877b-d14f757c095b.png)
+![null](https://user-images.githubusercontent.com/50317129/168484353-f85aee8e-922c-453e-877b-d14f757c095b.png)
 
 [OpenLayers6 Sandbox - WMS](https://project.itcode.dev/gis-dev/wms)에서 이를 구현한 예제를 확인할 수 있다.
 

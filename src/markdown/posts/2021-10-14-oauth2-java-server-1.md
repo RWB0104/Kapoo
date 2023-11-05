@@ -15,7 +15,7 @@ publish: true
 
 사이트를 돌아다니다보면 로그인이 필요한 사이트를 심심치않게 만나볼 수 있다. 그리고 이런 사이트들은 대부분 "네이버로 로그인하기"와 같은 플랫폼 로그인을 제공한다. 사이트 뿐만 아니라 근래 들어 출시되는 앱 역시 대부분 플랫폼을 통한 인증 서비스를 제공한다.
 
-![image](https://user-images.githubusercontent.com/50317129/137170074-d678c0e1-d30a-4d38-91e5-543344e18ec3.png)
+![null](https://user-images.githubusercontent.com/50317129/137170074-d678c0e1-d30a-4d38-91e5-543344e18ec3.png)
 
 이를 활용하면 매우 간단한 절차를 통해 회원가입 또는 로그인을 수행할 수 있게 된다. 이러한 서비스는 네이버 뿐만 아니라 Google, 카카오 등 어느정도 규모있는 플랫폼의 대부분은 이러한 "플랫폼으로 로그인하기"와 같은 기능을 제공한다.
 
@@ -23,7 +23,7 @@ publish: true
 
 # OAuth
 
-![image](https://user-images.githubusercontent.com/50317129/137171256-3ca820ec-1435-4103-bc34-9c922832886c.png)
+![null](https://user-images.githubusercontent.com/50317129/137171256-3ca820ec-1435-4103-bc34-9c922832886c.png)
 
 OAuth는 Open Authentication의 약자로, 인증을 위한 표준 프로토콜이다.
 
@@ -72,7 +72,7 @@ OAuth2.0은 구현 방식에 따라 4가지 방식으로 구분된다.
 
 ## 인가 코드 승인 (Authorization Code Grant)
 
-![image](https://user-images.githubusercontent.com/50317129/137179813-de61fd8a-bbe6-4824-afdf-3652cde164bc.png)
+![null](https://user-images.githubusercontent.com/50317129/137179813-de61fd8a-bbe6-4824-afdf-3652cde164bc.png)
 
 * 사용자가 Service Provider에 직접 인증을 수행
 * 인증에 성공하면 Consumer Frontend는 인가 코드를 전달받음
@@ -122,7 +122,7 @@ code=dfnY865gHjUbnknt57yGV
 
 ## 암시적 승인 (Implicit Grant)
 
-![image](https://user-images.githubusercontent.com/50317129/137179833-fe688388-0d29-47c0-b4db-c4a42b26dccd.png)
+![null](https://user-images.githubusercontent.com/50317129/137179833-fe688388-0d29-47c0-b4db-c4a42b26dccd.png)
 
 * 인가 코드 승인과 달리, 인증 성공 시 Consumer는 Token을 직접 전달받음
 * 각 플랫폼에서 제공되는 JavaScript SDK를 사용하여 구현
@@ -175,7 +175,7 @@ Host: oauth2.example.com
 
 ## 리소스 소유자 암호 자격 승인 (Resource Owner Password Credentials Grant)
 
-![image](https://user-images.githubusercontent.com/50317129/137179866-29962644-c0a7-42f8-a397-7b3b1c361082.png)
+![null](https://user-images.githubusercontent.com/50317129/137179866-29962644-c0a7-42f8-a397-7b3b1c361082.png)
 
 * Service Provider에 ID, PW를 전달하여 Token을 전달받음
 * 보안 구조가 비밀번호 기반의 인증 뿐이므로 이를 구현하는 Consumer는 신뢰성이 매우 높아야 함
@@ -220,7 +220,7 @@ grant_type=password
 
 ## 클라이언트 자격 승인 (Client Credentials Grant)
 
-![image](https://user-images.githubusercontent.com/50317129/137179894-94e8f974-27cd-44b1-9c36-5e1d3dc69377.png)
+![null](https://user-images.githubusercontent.com/50317129/137179894-94e8f974-27cd-44b1-9c36-5e1d3dc69377.png)
 
 * 사용자가 Access Token을 외부 저장소에서 받아 인증하는 형식
 * 클라이언트 자체가 인증 수단이므로 절차가 매우 간소함

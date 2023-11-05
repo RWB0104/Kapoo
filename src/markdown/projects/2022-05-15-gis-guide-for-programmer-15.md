@@ -593,7 +593,7 @@ WFS로 호출한 데이터가 기술한 스타일대로 출력되는 것을 확�
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/168443001-896de833-4eb9-4a95-8033-29143760e3b5.png)
+![null](https://user-images.githubusercontent.com/50317129/168443001-896de833-4eb9-4a95-8033-29143760e3b5.png)
 
 [OpenLayers6 Sandbox - WFS](https://project.itcode.dev/gis-dev/wfs)에서 이를 구현한 예제를 확인할 수 있다.
 

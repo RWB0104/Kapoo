@@ -142,7 +142,7 @@ const layer = new WebGLPointsLayer({
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/171446281-7955f8fd-2140-45e3-8c94-134790c620e7.png)
+![null](https://user-images.githubusercontent.com/50317129/171446281-7955f8fd-2140-45e3-8c94-134790c620e7.png)
 
 [OpenLayers6 Sandbox - WebGL](https://project.itcode.dev/gis-dev/webgl)에서 이를 구현한 예제를 확인할 수 있다.
 

@@ -15,7 +15,7 @@ publish: true
 
 지도에서 마커의 경우, 사용자와의 상호작용이 일어나는 주요소이기 때문에 통상 WFS 객체로 관리한다. 객체를 기반으로 렌더링하다보니, 데이터가 많아지면 많아질수록 곧 서비스의 비용으로 직결된다.
 
-![image](https://user-images.githubusercontent.com/50317129/171227755-40fbf5f0-9dcb-4e42-b10d-3b83440920f2.png)
+![null](https://user-images.githubusercontent.com/50317129/171227755-40fbf5f0-9dcb-4e42-b10d-3b83440920f2.png)
 
 보다시피, 너무 많은 양의 마커는 데이터로써의 의미를 잃게 된다. 너무나도 많은 요소로 인해 시인성은 극도로 떨어지며, 유의미한 상호작용 또한 불가능하다.
 
@@ -126,6 +126,6 @@ const clusterSource = new Cluster({
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/171253658-b907a824-c626-42c2-8bbf-1111d8538ffb.png)
+![null](https://user-images.githubusercontent.com/50317129/171253658-b907a824-c626-42c2-8bbf-1111d8538ffb.png)
 
 [OpenLayers6 Sandbox - Cluster Map](https://project.itcode.dev/gis-dev/cluster-map)에서 이를 구현한 예제를 확인할 수 있다.

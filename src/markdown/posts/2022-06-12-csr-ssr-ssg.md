@@ -31,7 +31,7 @@ publish: true
 
 ## 초기 렌더링 기법
 
-![image](https://user-images.githubusercontent.com/50317129/173239614-e82bb280-8f8a-436b-a1fe-6c9110655126.png)
+![null](https://user-images.githubusercontent.com/50317129/173239614-e82bb280-8f8a-436b-a1fe-6c9110655126.png)
 
 옛날 얘기를 하다보면 수강신청을 위해 직접 말 그대로 진짜 학교에서 줄을 서서 대기를 했다는 얘기를 들어본 적이 있는가? 내가 태어나지도 않았던 시절. 컴퓨터는 지금처럼 흔하지 않았다고 한다.
 
@@ -39,7 +39,7 @@ publish: true
 
 때문에 그 옛날 웹 페이지의 렌더링 방식은 매우 단순했다. 그냥 호출한 URL의 파일을 전달하는 것 뿐이다.
 
-![image](https://user-images.githubusercontent.com/50317129/173240277-165e128e-56c6-4442-a84e-b0aebcc4a298.png)
+![null](https://user-images.githubusercontent.com/50317129/173240277-165e128e-56c6-4442-a84e-b0aebcc4a298.png)
 
 물론, 현대에도 사이트의 용도에 따라 정적 렌더링을 사용하기도 한다. Nginx, Apache, IIS 등의 Web Server가 전형적인 정적 렌더링을 제공한다.
 
@@ -60,7 +60,7 @@ AJAX와 같은 비동기 기술이 나온 이래로, 이러한 문제를 해결�
 
 그 중 첫 번째로, 브라우저와 같은 클라이언트에서 페이지 렌더링을 수행하는 방식이 CSR이다.
 
-![image](https://user-images.githubusercontent.com/50317129/173243095-fb985d43-3e98-47c5-b92e-27745cba1e71.png)
+![null](https://user-images.githubusercontent.com/50317129/173243095-fb985d43-3e98-47c5-b92e-27745cba1e71.png)
 
 CSR은 웹 서비스에서 사용하는 모든 JS, CSS를 `index.js`, `index.css`와 같이 하나의 파일로 번들링한다. 모든 페이지에서 이 번들링된 파일을 사용하여 페이지를 렌더링한다.
 
@@ -97,7 +97,7 @@ React를 통해 CSR을 제공할 수 있다.
 
 SSR은 서버에서 페이지 렌더링을 수행하는 방식이다.
 
-![image](https://user-images.githubusercontent.com/50317129/173243156-48c774f4-5080-4cd4-85f6-0bb900655b47.png)
+![null](https://user-images.githubusercontent.com/50317129/173243156-48c774f4-5080-4cd4-85f6-0bb900655b47.png)
 
 SSR은 각 URL마다 서버가 요청을 받아, 정의된 로직에 따라 페이지를 렌더링하여 응답하는 방식이다. 서버가 널널했던 CSR과 달리, SSR은 브라우저의 역할이 매우 널널하다. 브라우저는 서버에서 제공한 파일을 그대로 표시하고 스크립트를 수행하는 역할 정도가 끝이다.
 
@@ -135,7 +135,7 @@ SSG는 이러한 발상에서 착안한 것으로, 각 페이지의 HTML, JS, CS
 
 SSG는 빌드 시 이미 렌더링된 페이지 자체를 아예 빌드해버린다. 이러한 특성으로 CSR, SSR 모두 SSG로 빌드하여 운용이 가능하다.
 
-![image](https://user-images.githubusercontent.com/50317129/173244087-8061b020-3aba-48b8-95bd-4e698efbfb01.png)
+![null](https://user-images.githubusercontent.com/50317129/173244087-8061b020-3aba-48b8-95bd-4e698efbfb01.png)
 
 페이지가 얼마나 복잡하던 간에, 이미 적절히 빌드된 파일로 변환하기 때문에, 정적 렌더링이라는 단순한 기법을 사용해도 전혀 무리가 없다. 또한, 이미 생성된 파일을 전달하는 방식이기 때문에, SEO 엔진이 이를 분석하는데에 전혀 무리가 없다.
 

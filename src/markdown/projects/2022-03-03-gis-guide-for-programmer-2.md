@@ -32,7 +32,7 @@ publish: true
 * 무수히 많은 선을 연달아 그으면 면이 생긴다.
 * 면과 면을 조합하면 공간이 된다.
 
-![image](https://user-images.githubusercontent.com/50317129/156584563-367bd1e7-390d-4e3d-bef1-1ff3103b1a13.png)
+![null](https://user-images.githubusercontent.com/50317129/156584563-367bd1e7-390d-4e3d-bef1-1ff3103b1a13.png)
 
 3차원 관점에서는 좀 더 복잡한 요소들이 작용하지만, 2차원은 단순한 점, 선, 면만으로 온전한 공간을 구현할 수 있다. 면은 선의 집합으로 표현할 수 있고, 선은 점의 집합으로 표현할 수 있으니, 공간은 점의 위치들로 표현이 가능하다. 이 글에서 궁극적으로 다룰 OpenLayers는 2차원 형태의 지도이므로, 이 정도로만 기억해도 당장엔 무리가 없다.
 

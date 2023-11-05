@@ -76,7 +76,7 @@ Next.js로 블로그를 다시 만든 뒤에, 새로운 글 작성 이외에 별
 
 그 대상은 개발자의 영혼의 단짝인 GitHub.
 
-![image](https://user-images.githubusercontent.com/50317129/172016780-e259b31a-d150-4f72-a4dd-a7971768145c.png)
+![null](https://user-images.githubusercontent.com/50317129/172016780-e259b31a-d150-4f72-a4dd-a7971768145c.png)
 
 GitHub 다크 테마의 색상을 참고하여 색상을 다시 잡았다. 헤더의 그라데이션도 그냥 없애버렸다. 색감을 잘 맞추면 모를까, 테마랑 색감이 어울리지 않다보니 너무 촌스러웠다. 다시 말하지만, 난 색상에 전혀 감이 없다.
 
@@ -240,7 +240,7 @@ function App(): JSX.Element
 
 `data-show` 속성으로 구분하여 메뉴를 on/off 할 수 있도록 구현했다. `width: 200px;`, `right: 200px;`로 지정하여 화면 바깥에 숨어있도록 구성하고, `data-show=true`일 경우, 0.3초 동안 `right: 0px;`로 이동하는 방식이다. `data-show=off`일 경우 그 반대로 동작한다.
 
-![image](https://user-images.githubusercontent.com/50317129/172017188-209b6625-ede8-41d1-b507-947123a724b0.png)
+![null](https://user-images.githubusercontent.com/50317129/172017188-209b6625-ede8-41d1-b507-947123a724b0.png)
 
 대충 이런 방식이다. 지금 만든 것도 엄청 완벽한 건 아니지만, 적어도 이전보단 훨씬 이쁘다.
 
@@ -303,7 +303,7 @@ SSR, CSR과 달리, SSG는 선언된 모든 페이지에 대한 빌드 과정이
 
 이를 해결하기 위해 기존 로직을 뜯어 고쳤다. 페이지네이션을 과감히 없애고, 사전 빌드 시 게시글에 대한 메타 정보를 JSON으로 저장한다.
 
-![image](https://user-images.githubusercontent.com/50317129/172049256-8bb04df4-e234-44ba-8bf2-496978aa500a.gif)
+![null](https://user-images.githubusercontent.com/50317129/172049256-8bb04df4-e234-44ba-8bf2-496978aa500a.gif)
 
 게시글 리스트는 렌더링 시 메타 정보를 분석하고, 이를 10개마다 분리하여 표현해줬다. 페이지는 상태값에 저장하고, 스크롤이 끝까지 내려가면 다음 그룹을 추가로 표현해주는 식. 부드러운 UX를 위해, 스크롤이 약 80% 정도가 될 경우에 다음 그룹을 추가하도록 했다. 이러한 조치는 사용자로 하여금 끊김없는 데이터 호출을 제공해줄 것이다.
 
@@ -355,7 +355,7 @@ const hasMatch2 = keyword2.includes(keyword)
 
 `keyword`를 포함하는 문자열을 가진 게시글을 찾을 경우, 키워드 배열 `keyword1`과 이를 문자열로 만든 `keyword2`의 차이. 확실히 `keyword2` 쪽이 훨씬 간단하다.
 
-![image](https://user-images.githubusercontent.com/50317129/172050669-2929f71a-bc34-453d-8c45-93d5369fb8cb.png)
+![null](https://user-images.githubusercontent.com/50317129/172050669-2929f71a-bc34-453d-8c45-93d5369fb8cb.png)
 
 이렇게 검색 기능을 통해 게시글을 쉽게 접근할 수 있도록 유도가 가능하다.
 
@@ -459,13 +459,13 @@ function App(): JSX.Element
 
 이건 좀 웃기긴 한데... 예전에 리뉴얼을 하면서 이런 언급을 했었다.
 
-![image](https://user-images.githubusercontent.com/50317129/172045738-8eb3fc4d-c72a-44f0-ade4-b08d0cd06227.png)
+![null](https://user-images.githubusercontent.com/50317129/172045738-8eb3fc4d-c72a-44f0-ade4-b08d0cd06227.png)
 
 저 이후로 실제로 URL 정책을 쿼리 방식에서 경로 방식으로 전면 개편했었다.
 
 이후 당분간 잘 쓰고 있었지만...
 
-![image](https://user-images.githubusercontent.com/50317129/172045787-09944567-047d-4a80-977b-1c1c64c740e0.png)
+![null](https://user-images.githubusercontent.com/50317129/172045787-09944567-047d-4a80-977b-1c1c64c740e0.png)
 
 짜잔~ 하지만 "절대"라는 건 없군요!
 
@@ -494,7 +494,7 @@ function App(): JSX.Element
 
 카테고리의 경우, 정책 변경이 있었다. 기존의 카테고리는 카테고리 당 하나만 선택할 수 있었다. 그도 그럴 것이, 카테고리별 리스트를 각각 빌드해야했기 때문에, 다수의 카테고리를 고려할 경우 빌드할 페이지의 갯수가 기하급수적으로 증가하기 때문.
 
-![image](https://user-images.githubusercontent.com/50317129/172050501-9ff973d8-0845-4139-bb92-ed1bc1f36bbb.png)
+![null](https://user-images.githubusercontent.com/50317129/172050501-9ff973d8-0845-4139-bb92-ed1bc1f36bbb.png)
 
 하지만 인피티니 스크롤을 적용하면서 리스트의 빌드 과정이 완전히 삭제됐고, URL 또한 쿼리 기반으로 변경함에 따라 다수의 카테고리를 선택할 수 있도록 변경했다.
 
@@ -512,7 +512,7 @@ function App(): JSX.Element
 
 게시글 그룹 UI를 좀 더 직관적이고 간략하게 표현했다. 기존의 경우 너무 많은 정보를 보여주려고 한 흔적이 있어서, 게시글 그룹의 전체적인 리스트를 한 눈에 보기 어려웠다.
 
-![image](https://user-images.githubusercontent.com/50317129/172051940-cb12f91c-d6ae-47e9-a92c-127914efc9b3.png)
+![null](https://user-images.githubusercontent.com/50317129/172051940-cb12f91c-d6ae-47e9-a92c-127914efc9b3.png)
 
 리스트 기반으로 UI를 변경했다.
 

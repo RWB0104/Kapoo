@@ -26,7 +26,7 @@ publish: true
 
 후기는 지극히 주관적인 시점에서 작성되었으며, 필자는 지금껏 내연기관만을 운전해봤고, 운전 경력 자체도 그리 길지 않다.
 
-![image](https://user-images.githubusercontent.com/50317129/180803079-5e77d5ea-6b33-47a1-8007-a845cbeb4dec.png)
+![null](https://user-images.githubusercontent.com/50317129/180803079-5e77d5ea-6b33-47a1-8007-a845cbeb4dec.png)
 
 <b class="large red-600 center">[안내] 이 글은 Tesla로부터 소정의 협찬을 받아 작성했었으면 합니다.</b>
 

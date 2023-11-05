@@ -12,7 +12,7 @@ publish: true
 
 # 𝝅번째 알파카의 개발 낙서장 프로젝트
 
-![image](https://user-images.githubusercontent.com/50317129/138726633-1576b0dd-55bd-492c-ac1d-ccfbdc5472dc.png)
+![null](https://user-images.githubusercontent.com/50317129/138726633-1576b0dd-55bd-492c-ac1d-ccfbdc5472dc.png)
 
 <p align="center"><b class="large">𝝅번째 알파카의 개발 낙서장 프로젝트</b></p>
 

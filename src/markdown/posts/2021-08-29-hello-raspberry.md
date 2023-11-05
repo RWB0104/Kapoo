@@ -23,7 +23,7 @@ publish: true
 
 # Hello, Raspberry Pi
 
-![image](https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png)
+![null](https://user-images.githubusercontent.com/50317129/131238727-666f2aaa-d759-4f62-af73-3856086da73d.png)
 
 많은 선택지가 있었지만, 내가 선택한 방안은 <span class="pink-700">Raspberry Pi</span>를 통해 서버환경을 구축하는 것이였다.
 
@@ -33,7 +33,7 @@ publish: true
 
 근래 들어 AWS를 필두로 클라우드 시장이 크게 활성화됐다. 덕분에 국/내외를 막론하고 여러 양질의 클라우드 서비스 제공처가 생겼다.
 
-![image](https://user-images.githubusercontent.com/50317129/131238859-18b9cccd-4d6b-4e38-b279-c0faa66d4815.png)
+![null](https://user-images.githubusercontent.com/50317129/131238859-18b9cccd-4d6b-4e38-b279-c0faa66d4815.png)
 
 클라우드 서비스를 활용하면 개인 서버를 쉽게 구축할 수 있겠지만, 그럼에도 불구하고 난 라즈베리 파이를 선택했다.
 
@@ -103,7 +103,7 @@ AWS 역시 클라우드 업계의 대표로, 최근의 회사들은 AWS를 다�
 
 케이스까지 조립해서 구동한 라즈베리파이다.
 
-![image](https://user-images.githubusercontent.com/50317129/131309644-69d69416-12e9-4fd6-95fc-3f1909289387.png)
+![null](https://user-images.githubusercontent.com/50317129/131309644-69d69416-12e9-4fd6-95fc-3f1909289387.png)
 
 # 목표
 

@@ -146,6 +146,6 @@ map.removeInteraction();
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/169587097-b2513a74-6dc4-4d34-9b6c-a2acaca92f48.png)
+![null](https://user-images.githubusercontent.com/50317129/169587097-b2513a74-6dc4-4d34-9b6c-a2acaca92f48.png)
 
 [OpenLayers6 Sandbox - Feature Click](https://project.itcode.dev/gis-dev/feature-click)에서 이를 구현한 예제를 확인할 수 있다.

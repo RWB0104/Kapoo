@@ -49,7 +49,7 @@ publish: true
 
 압축을 해제한다. `wacs.exe`를 실행하면 아래와 같은 창이 뜰 것이다.
 
-![image](https://user-images.githubusercontent.com/50317129/130079131-3eb9c5de-c1bc-4919-a921-e4c7c7f28a3d.png)
+![null](https://user-images.githubusercontent.com/50317129/130079131-3eb9c5de-c1bc-4919-a921-e4c7c7f28a3d.png)
 
 ## 2. 발급 방법 선택
 
@@ -66,7 +66,7 @@ publish: true
 
 ## 3. 도메인 입력 방법 선택
 
-![image](https://user-images.githubusercontent.com/50317129/130080688-2bbbc350-399a-4bc3-b619-732d4b25ae58.png)
+![null](https://user-images.githubusercontent.com/50317129/130080688-2bbbc350-399a-4bc3-b619-732d4b25ae58.png)
 
 * <span class="grey-600">Read site bindings from IIS</span>: IIS에서 바인딩 (1)
 * <span class="green-A400">Manual input</span>: 직접 입력 (2)
@@ -77,7 +77,7 @@ publish: true
 
 ## 4. 도메인 입력
 
-![image](https://user-images.githubusercontent.com/50317129/130080746-f57c8f5f-6243-4c9d-b5ca-a6859fcb30ec.png)
+![null](https://user-images.githubusercontent.com/50317129/130080746-f57c8f5f-6243-4c9d-b5ca-a6859fcb30ec.png)
 
 인증받을 도메인을 입력한다. 다수의 도메인을 하나의 인증서로 만들 수도 있으며, 이 경우 쉼표(,)로 구분하면 된다.
 
@@ -97,7 +97,7 @@ example.com,www.example.com,admin.example.com
 
 ## 5. 인증 방법 선택
 
-![image](https://user-images.githubusercontent.com/50317129/130081483-11eef349-d3e7-4e81-9498-67355eb2632f.png)
+![null](https://user-images.githubusercontent.com/50317129/130081483-11eef349-d3e7-4e81-9498-67355eb2632f.png)
 
 * <span class="green-A400">Save verification files on (network) path</span>: 네트워크 경로에 인증 파일 저장 (1)
 * <span class="grey-600">Serve verification files from memory</span>: 메모리에 인증 파일 저장 (2)
@@ -115,7 +115,7 @@ example.com,www.example.com,admin.example.com
 
 ## 6. 웹루트 경로 입력
 
-![image](https://user-images.githubusercontent.com/50317129/130083363-c4e34aeb-6041-4895-9e4c-71085514f51f.png)
+![null](https://user-images.githubusercontent.com/50317129/130083363-c4e34aeb-6041-4895-9e4c-71085514f51f.png)
 
 웹루트 경로를 입력한다. 예를 들어, `https://example.com` 도메인이 있다면, 이 도메인의 파일들이 위치한 경로를 입력해야한다.
 
@@ -129,7 +129,7 @@ example.com,www.example.com,admin.example.com
 
 ## 7. CSR 유형 선택
 
-![image](https://user-images.githubusercontent.com/50317129/130084201-636a0f36-ac1a-4aaa-b17d-948248b2600c.png)
+![null](https://user-images.githubusercontent.com/50317129/130084201-636a0f36-ac1a-4aaa-b17d-948248b2600c.png)
 
 * <span class="green-300">Elliptic Curve key</span>: 타원곡선 암호화 (1)
 * <span class="green-A400">RSA Key</span>: 비대칭 암호화 (2)
@@ -138,7 +138,7 @@ example.com,www.example.com,admin.example.com
 
 ## 8. 인증서 저장 방식 선택
 
-![image](https://user-images.githubusercontent.com/50317129/130084595-c96c3c33-ddde-4b95-b395-5e073d6b4eba.png)
+![null](https://user-images.githubusercontent.com/50317129/130084595-c96c3c33-ddde-4b95-b395-5e073d6b4eba.png)
 
 * <span class="green-300">IIS Central Certificate Store</span>: IIS용 인증서 (.pfx) (1)
 * <span class="green-A400">PEM encoded files</span>: 아파치 계열용 인증서 (.pem) (2)
@@ -150,13 +150,13 @@ example.com,www.example.com,admin.example.com
 
 ## 9. 저장경로 입력
 
-![image](https://user-images.githubusercontent.com/50317129/130085226-7f89895e-ad04-4851-9b6f-5922eb749f36.png)
+![null](https://user-images.githubusercontent.com/50317129/130085226-7f89895e-ad04-4851-9b6f-5922eb749f36.png)
 
 원하는 저장경로를 입력한다. 편한 경로로 입력하자.
 
 ## 10. 키파일 암호 입력 방식
 
-![image](https://user-images.githubusercontent.com/50317129/130085398-cc5e9c1e-6b1c-4b20-ba3d-d62caf3b02e3.png)
+![null](https://user-images.githubusercontent.com/50317129/130085398-cc5e9c1e-6b1c-4b20-ba3d-d62caf3b02e3.png)
 
 * <span class="green-300">None</span>: 안 함 (1)
 * <span class="green-A400">Type/paste in console</span>: 콘솔에서 입력/붙여넣기 (2)
@@ -176,7 +176,7 @@ example.com,www.example.com,admin.example.com
 
 ## 12. 추가 옵션
 
-![image](https://user-images.githubusercontent.com/50317129/130086251-6744a758-1f4a-44b3-9bc1-ed260fac4d67.png)
+![null](https://user-images.githubusercontent.com/50317129/130086251-6744a758-1f4a-44b3-9bc1-ed260fac4d67.png)
 
 * <span class="grey-300">Create or update https bindings in IIS</span>: IIS에 HTTPS 바인딩 생성 혹은 갱신 (1)
 * <span class="grey-300">Create or update ftps bindings in IIS</span>: IIS에 FTPS(보안 FTP) 바인딩 생성 혹은 갱신 (2)
@@ -187,7 +187,7 @@ example.com,www.example.com,admin.example.com
 
 ## 13. 도메인 인증
 
-![image](https://user-images.githubusercontent.com/50317129/130086813-01c8e143-e2dd-4b3b-ad41-d89292d07607.png)
+![null](https://user-images.githubusercontent.com/50317129/130086813-01c8e143-e2dd-4b3b-ad41-d89292d07607.png)
 
 아까 입력했던 도메인에 대한 인증을 수행한다. 도메인의 유효성만 검증하므로 DV 인증서라고 할 수 있다.
 

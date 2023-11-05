@@ -15,7 +15,7 @@ publish: true
 
 이전 장에서 OSM을 통해 지도를 표시해봤다. 하지만, OSM의 지도는 디테일함이 떨어진다는 무시할 수 없는 단점이 존재한다.
 
-![image](https://user-images.githubusercontent.com/50317129/159114894-ea855a99-8989-4979-adda-72ad93bd0e70.png)
+![null](https://user-images.githubusercontent.com/50317129/159114894-ea855a99-8989-4979-adda-72ad93bd0e70.png)
 
 OSM은 사용하기 쉬운 세계지도라는 큰 장점이 있음에도, 저 단점 하나로 인해 국내 서비스용 지도로 사용하기 어렵다.
 
@@ -67,7 +67,7 @@ API키를 발급하기 위해선 회원가입이 필요하다. 위 링크에 접
 
 [인증키] - [인증키 발급] 메뉴에서 API 발급을 신청할 수 있다. 발급은 신청 즉시 이루어진다.
 
-![image](https://user-images.githubusercontent.com/50317129/159266446-7dee6a83-f0b0-419a-a88b-1206ac847b86.png)
+![null](https://user-images.githubusercontent.com/50317129/159266446-7dee6a83-f0b0-419a-a88b-1206ac847b86.png)
 
 요구하는 항목을 작성하고 신청하면 된다.
 
@@ -395,7 +395,7 @@ const map = new Map({
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/164761239-e80c77e5-1948-43fa-8640-4abc566a90e5.png)
+![null](https://user-images.githubusercontent.com/50317129/164761239-e80c77e5-1948-43fa-8640-4abc566a90e5.png)
 
 [OpenLayers6 Sandbox - VWorld](https://project.itcode.dev/gis-dev/vworld)에서 이를 구현한 예제를 확인할 수 있다.
 

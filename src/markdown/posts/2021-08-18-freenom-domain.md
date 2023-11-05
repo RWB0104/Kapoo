@@ -112,7 +112,7 @@ Freenom에서 제공하는 DNS 혹은 Google DNS와 같은 국제적으로 인�
 
 검색창에서 원하는 도메인명을 검색한다. [Services] -> [Register a New Domain]을 메뉴를 선택하면 검색 페이지가 뜬다. 
 
-![image](https://user-images.githubusercontent.com/50317129/129911927-51d23984-87d3-47e9-88bf-e13abf2dff8a.png)
+![null](https://user-images.githubusercontent.com/50317129/129911927-51d23984-87d3-47e9-88bf-e13abf2dff8a.png)
 
 <span class="blue-400">rwb0104</span>의 경우 5개의 무료 도메인 중 5개 전부 적용이 가능하다.
 
@@ -122,7 +122,7 @@ Freenom에서 제공하는 DNS 혹은 Google DNS와 같은 국제적으로 인�
 
 이 중 원하는 TLD를 선택하자.
 
-![image](https://user-images.githubusercontent.com/50317129/129912910-869d2ce9-d312-4cf6-85bf-4aa534ea87d8.png)
+![null](https://user-images.githubusercontent.com/50317129/129912910-869d2ce9-d312-4cf6-85bf-4aa534ea87d8.png)
 
 여기에선 `tk` TLD를 선택한다. 위의 [<span class="green-A400">Checkout</span>] 버튼을 클릭하여 다음으로 넘어간다.
 
@@ -130,11 +130,11 @@ Freenom에서 제공하는 DNS 혹은 Google DNS와 같은 국제적으로 인�
 
 도메인 옵션을 선택한다.
 
-![image](https://user-images.githubusercontent.com/50317129/129913319-c648e9cd-f097-4761-bede-685b5732039f.png)
+![null](https://user-images.githubusercontent.com/50317129/129913319-c648e9cd-f097-4761-bede-685b5732039f.png)
 
 보다시피 별건 없고, 반드시 우측 콤보박스에서 [Period]를 12개월로 맞추자. 최대 12개월까지 무료로 사용 가능하며, 만료일자 기준으로 2주 안에 갱신이 가능하다.
 
-![image](https://user-images.githubusercontent.com/50317129/129913740-d8f36236-2136-477f-8375-e20e435156a1.png)
+![null](https://user-images.githubusercontent.com/50317129/129913740-d8f36236-2136-477f-8375-e20e435156a1.png)
 
 [<span class="green-A400">Use DNS</span>]를 선택하여 자신의 IP를 입력하자.
 
@@ -148,7 +148,7 @@ Freenom에서 제공하는 DNS 혹은 Google DNS와 같은 국제적으로 인�
 
 100원이든 0원이든 일단 "구매"는 하는 셈이니, 절차상 구매 약관에 따라 구매한다.
 
-![image](https://user-images.githubusercontent.com/50317129/129914504-abad20fc-e84d-4040-a003-1b82e6ba8080.png)
+![null](https://user-images.githubusercontent.com/50317129/129914504-abad20fc-e84d-4040-a003-1b82e6ba8080.png)
 
 $0.00 달러임을 확인하자. 문제가 없다면 약관에 동의하고 [<span class="lightBlue-A400">Complete Order</span>]를 클릭한다.
 
@@ -158,7 +158,7 @@ $0.00 달러임을 확인하자. 문제가 없다면 약관에 동의하고 [<sp
 
 [Services] -> [My Domains]에서 발급받은 도메인 목록을 확인할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/129914950-4ecd1040-82eb-4a35-b402-4914ea1013c1.png)
+![null](https://user-images.githubusercontent.com/50317129/129914950-4ecd1040-82eb-4a35-b402-4914ea1013c1.png)
 
 [Manage Domain] 버튼을 클릭하면 도메인 설정을 변경하거나 삭제할 수 있다.
 

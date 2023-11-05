@@ -33,7 +33,7 @@ SSL 인증서는 인증서 심사의 수준에 따라 DV, OV, EV 세 가지로 �
 
 <span class="pink-600">DV</span>는 오로지 <span class="pink-400">도메인의 소유만을 검증하여 발급하는 인증서</span>다.
 
-![image](https://user-images.githubusercontent.com/50317129/129820828-2bcf1d36-c954-471d-a7ce-e5facfa27859.png)
+![null](https://user-images.githubusercontent.com/50317129/129820828-2bcf1d36-c954-471d-a7ce-e5facfa27859.png)
 
 * <span class="orange-400">CN(Common Name)</span>: 도메인명 (*일 경우 와일드 카드)
 
@@ -83,7 +83,7 @@ DNS 설정은 도메인 소유주만 관리할 수 있으므로, CNAME이 추가
 
 내가 제출한 도메인이 유효한지와는 별개로 <span class="orange-400">도메인을 소유한 단체, 회사에 대한 검증까지 진행</span>한다.
 
-![image](https://user-images.githubusercontent.com/50317129/129820836-ac84d888-46cc-4877-a060-bea4df121e7c.png)
+![null](https://user-images.githubusercontent.com/50317129/129820836-ac84d888-46cc-4877-a060-bea4df121e7c.png)
 
 * <span class="orange-400">CN(Common Name)</span>: 도메인명
 * <span class="orange-400">O(Organization)</span>: 기관명
@@ -107,17 +107,17 @@ OV의 인증서 정책은 <span class="orange-400">2.23.140.1.2.2</span>이다. 
 
 OV의 경우 회사가 실재하는지를 검증한다면, <span class="pink-400">EV</span>는 회사가 정상적으로 운영되는지를 검증한다.
 
-![image](https://user-images.githubusercontent.com/50317129/129820838-a87a8221-7785-49be-a3c2-26d0041b3295.png)
+![null](https://user-images.githubusercontent.com/50317129/129820838-a87a8221-7785-49be-a3c2-26d0041b3295.png)
 
 인증서의 주체를 보면 도메인 정보, 회사 정보 외에도 다양한 정보가 추가되었음을 알 수 있다.
 
 EV의 인증서 정책은 <span class="orange-400">2.23.140.1.1</span>이다. 이를 통해 해당 인증서가 DV임을 유추할 수도 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/129820842-41c97a59-f306-48d7-abfc-e6a06fd8ccf4.png)
+![null](https://user-images.githubusercontent.com/50317129/129820842-41c97a59-f306-48d7-abfc-e6a06fd8ccf4.png)
 
 또한 EV 인증서는 다른 인증서와 달리 인증서 자체에 회사 서명을 표시해준다. 위 사진을 기준으로 좌측이 EV, 우측이 OV 혹은 DV. Microsoft Chromium Edge 기준으로 위와 같이 표시해준다.
 
-![image](https://user-images.githubusercontent.com/50317129/129820843-1c77482f-bf84-47c4-a46b-ecfdf8149398.png)
+![null](https://user-images.githubusercontent.com/50317129/129820843-1c77482f-bf84-47c4-a46b-ecfdf8149398.png)
 
 그 뿐만 아니라, IE로 접속했을 경우 주소창에 <span class="green-600">Green Bar</span>를 적용하여 해당 도메인에 EV가 적용되었음을 시각적으로 알려준다. Chromium 기반 브라우저의 경우 시각적으로 표현해주진 않으니 참고할 것.
 

@@ -31,7 +31,7 @@ TLD 중 어떤 걸 사용할까 고민했다. 개인적으론 `io` 도메인의 
 
 원랜 대중적인 `com`으로 하려했으나, 조사 중 `dev`라는 개발자스러운 도메인이 있음을 확인하여 이를 선택하기로 했다.
 
-![image](https://user-images.githubusercontent.com/50317129/132054483-01b3e988-376d-444f-9d5e-8415368e0822.png)
+![null](https://user-images.githubusercontent.com/50317129/132054483-01b3e988-376d-444f-9d5e-8415368e0822.png)
 
 [Google Domains](https://domains.google/)에서 구매하기로 했으며, Google Domains 기준 일반가는 12$다.
 
@@ -41,7 +41,7 @@ TLD 중 어떤 걸 사용할까 고민했다. 개인적으론 `io` 도메인의 
 
 유명한 도메인인 `socket.io`처럼 뭔가 `dev`를 적절히 이용하여 하나의 문장처럼 보이는 도메인을 생성하고 싶었다.
 
-![image](https://user-images.githubusercontent.com/50317129/132054569-31a96ab2-652f-4631-849f-759d3c82f823.png)
+![null](https://user-images.githubusercontent.com/50317129/132054569-31a96ab2-652f-4631-849f-759d3c82f823.png)
 
 <br />
 
@@ -78,7 +78,7 @@ TLD 중 어떤 걸 사용할까 고민했다. 개인적으론 `io` 도메인의 
 
 ## 1. 도메인 결정하기
 
-![image](https://user-images.githubusercontent.com/50317129/132057934-b103e4ef-157d-46e1-b9aa-52a9b8f273c1.png)
+![null](https://user-images.githubusercontent.com/50317129/132057934-b103e4ef-157d-46e1-b9aa-52a9b8f273c1.png)
 
 원하는 도메인을 검색하자.
 
@@ -92,7 +92,7 @@ TLD 중 어떤 걸 사용할까 고민했다. 개인적으론 `io` 도메인의 
 
 첫 결제라면 결제할 화폐 단위를 선택해야한다.
 
-![image](https://user-images.githubusercontent.com/50317129/132058739-2766fbd9-791c-4e19-971f-7520e46de5b2.png)
+![null](https://user-images.githubusercontent.com/50317129/132058739-2766fbd9-791c-4e19-971f-7520e46de5b2.png)
 
 아쉽게도 원화는 지원되지 않으므로, 지원되는 화폐 중 하나를 선택한다.
 
@@ -112,7 +112,7 @@ TLD 중 어떤 걸 사용할까 고민했다. 개인적으론 `io` 도메인의 
 
 도메인 구매를 수행한다.
 
-![image](https://user-images.githubusercontent.com/50317129/132058813-3eb136bc-d801-40ac-a1c3-83a68478f6e4.png)
+![null](https://user-images.githubusercontent.com/50317129/132058813-3eb136bc-d801-40ac-a1c3-83a68478f6e4.png)
 
 <span class="red-600">[Read trademark notice]</span>는 starcraft라는 브랜드명을 도메인으로 사용함에 따라 관련 약관의 동의를 받는 것이다.
 
@@ -133,11 +133,11 @@ Custom email은 자신의 도메인으로 된 구글 이메일을 만드는 것�
 
 구입 이후 도메인은 즉시 사용이 가능하다. 이 도메인을 라즈베리파이에 연동하기 위해선 DNS 설정을 통해 <span class="green-600">라즈베이파이의 IP와 도메인을 연결</span>해주면 된다.
 
-![image](https://user-images.githubusercontent.com/50317129/132080600-d1083686-ceb4-4046-a6ab-c4a0c7a83f90.png)
+![null](https://user-images.githubusercontent.com/50317129/132080600-d1083686-ceb4-4046-a6ab-c4a0c7a83f90.png)
 
 Google Domains의 DNS 메뉴에서 DNS 설정을 관리할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/132080643-7a92c2ec-8b8a-4428-b4c3-4ba149bb6875.png)
+![null](https://user-images.githubusercontent.com/50317129/132080643-7a92c2ec-8b8a-4428-b4c3-4ba149bb6875.png)
 
 [맞춤 레코드 관리]를 클릭하여 DNS Record를 추가한다.
 

@@ -95,7 +95,7 @@ alert(test);
 
 원랜 직접 보면서 디자인하려 했는데, 막상 찾으려고 하니 나오질 않아서 기억속에 어렴풋이 남아있는 디자인을 되짚어보며 구상했다.
 
-![image](https://user-images.githubusercontent.com/50317129/140773168-5d03d708-dfd1-4f96-8aaa-0da1c0ab1a84.png)
+![null](https://user-images.githubusercontent.com/50317129/140773168-5d03d708-dfd1-4f96-8aaa-0da1c0ab1a84.png)
 
 위와 같이 창 형태의 디자인을 취하며, 좌측 상단에 매킨토시의 창 컨텍스트가 달려있다.
 

@@ -62,6 +62,6 @@ ogr2ogr -f MySQL MySQL:"{DB명},host={DB 호스트},user={DB 계정명},password
 
 SHP 데이터를 입력하다보면, 잘못된 도형으로 인해 삽입이 되지 않는 현상을 종종 목격한다. 명령어 마지막에 `--skipfailure` 옵션을 붙여주면 오류가 난 행은 제외하고 삽입하니 참고할 것.
 
-![image](https://user-images.githubusercontent.com/50317129/156867178-87770a5a-e24f-4beb-b21b-fc081d67e5aa.png)
+![null](https://user-images.githubusercontent.com/50317129/156867178-87770a5a-e24f-4beb-b21b-fc081d67e5aa.png)
 
 SHP를 MariaDB에 삽입한 예시. DBeaver로 데이터베이스를 확인하면 무려 OSM을 기반으로 데이터의 형태까지 보여준다. 하단의 메뉴에서 EPSG 코드를 설정할 수 있으니 참고할 것.

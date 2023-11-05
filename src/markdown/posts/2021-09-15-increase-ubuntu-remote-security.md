@@ -142,11 +142,11 @@ Load key "C:\\id_rsa": bad permissions
 
 문제는 Windows의 편의성으로 인해, 파일 전송 완료 시 필요한 권한을 자동으로 부여해주기 때문에, 수동으로 제거해야한다.
 
-![image](https://user-images.githubusercontent.com/50317129/133301005-c4c5a2df-f878-4ff5-8dc0-63366e28b59b.png)
+![null](https://user-images.githubusercontent.com/50317129/133301005-c4c5a2df-f878-4ff5-8dc0-63366e28b59b.png)
 
 키 파일의 [속성] - [보안] 탭에서 파일에 부여된 접근권한을 확인할 수 있다. 보다시피 현재는 너무 많은 사용자에게 접근이 허가되어 있으므로, 오직 나만 접근할 수 있도록 변경한다. 안타깝게도 파일에 상속이 적용되어있어서 그냥 삭제되지 않는다. 하단의 [고급] 탭을 누르자.
 
-![image](https://user-images.githubusercontent.com/50317129/133299523-ec1af2cc-44e2-4b39-b5ae-d7e04425500f.png)
+![null](https://user-images.githubusercontent.com/50317129/133299523-ec1af2cc-44e2-4b39-b5ae-d7e04425500f.png)
 
 하단의 [상속 사용 안 함] 버튼을 클릭하여 상속 관계를 제거한다. 메시지 하나가 뜰텐데, [명시적 사용 권한으로 변환]을 선택한다. 제거하면 사용자를 직접 지정해야해서 번거롭다.
 

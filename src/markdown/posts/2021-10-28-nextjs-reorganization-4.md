@@ -99,7 +99,7 @@ Loren ipsum **test** area
 
 [link](https://blog.itcode.dev)
 
-![image](https://blog.itcode.dev/img/)
+![null](https://blog.itcode.dev/img/)
 
 <span class="red">native html tag</span>
 `;
@@ -121,7 +121,7 @@ Loren ipsum **test** area
 
 [link](https://blog.itcode.dev)
 
-![image](https://blog.itcode.dev/img/)
+![null](https://blog.itcode.dev/img/)
 
 <span class="red">native html tag</span>
 ```
@@ -154,7 +154,7 @@ Loren ipsum **test** area
 
 대충 기본적으로 설정된 토큰화 과정을 직접 커스터마이징할 수 있다는 것 같은데, 대체 토큰이라는 게 뭐고, 어디에 쓰는 걸까?
 
-마크다운은 자신의 문법을 매칭되는 HTML 태그로 변환한다. `marked`는 이 변환을 미리 정의하기 위해 토큰화 과정을 수행한다. 모든 마크다운 텍스트를 적절한 토큰으로 분류한다. 링크 문법 `[‌link](https://example.com)`은 링크 토큰으로, 이미지 문법 `![image](https://example.com/image.png)`는 이미지 토큰으로 분류하는 식이다. 이를 분류하기 위해 마크다운 문법 패턴을 정의하여 일치하는 문자열을 찾는 방식이다.
+마크다운은 자신의 문법을 매칭되는 HTML 태그로 변환한다. `marked`는 이 변환을 미리 정의하기 위해 토큰화 과정을 수행한다. 모든 마크다운 텍스트를 적절한 토큰으로 분류한다. 링크 문법 `[‌link](https://example.com)`은 링크 토큰으로, 이미지 문법 `![null](https://example.com/image.png)`는 이미지 토큰으로 분류하는 식이다. 이를 분류하기 위해 마크다운 문법 패턴을 정의하여 일치하는 문자열을 찾는 방식이다.
 
 만약 개발자가 특정 패턴의 문자열을 이미지 문법으로 추가하고 싶다면, 해당 문법을 가진 문자열을 찾아내어 이미지 토큰으로 치환하면 된다.
 

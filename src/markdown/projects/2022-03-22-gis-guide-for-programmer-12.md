@@ -51,7 +51,7 @@ publish: true
 
 `Map` 객체에서 유용할만한 정보를 추출해보자.
 
-![image](https://user-images.githubusercontent.com/50317129/156811772-4fd36475-dcc9-41a5-a3ab-c7bcef24e8da.png)
+![null](https://user-images.githubusercontent.com/50317129/156811772-4fd36475-dcc9-41a5-a3ab-c7bcef24e8da.png)
 
 * `Feature`: 점, 선, 면과 같은 요소 (벡터 레이어 한정)
 * `Source`: 레이이의 데이터 원천. Feature의 모음과 같다. (SHP, GeoJSON 등)
@@ -751,7 +751,7 @@ map.on('pointermove', (e) => setPosition(e.coordinate));
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/164761404-8611d7a9-17ab-4201-8258-b4467e27ec8b.png)
+![null](https://user-images.githubusercontent.com/50317129/164761404-8611d7a9-17ab-4201-8258-b4467e27ec8b.png)
 
 [OpenLayers6 Sandbox - MapInfo](https://project.itcode.dev/gis-dev/map-info)에서 이를 구현한 예제를 확인할 수 있다.
 

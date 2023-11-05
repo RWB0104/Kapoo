@@ -17,7 +17,7 @@ publish: true
 
 구현할 객체에게 무의미한 메소드의 구현을 방지하기 위해 반드시 필요한 메소드만을 상속/구현하도록 권고한다. 만약 상속할 객체의 규모가 너무 크다면, 해당 객체의 메소드를 작은 인터페이스로 나누는 것이 좋다.
 
-![image](https://user-images.githubusercontent.com/50317129/128585790-a761f795-b4da-4a52-865d-d2dd4b858f20.png)
+![null](https://user-images.githubusercontent.com/50317129/128585790-a761f795-b4da-4a52-865d-d2dd4b858f20.png)
 
 위 그림은 규모가 너무 큰 객체를 상속했을 때 발생하는 문제와, 이를 인터페이스로 분리하여 해결하는 방법을 도식한 것이다.
 

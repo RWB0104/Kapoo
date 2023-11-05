@@ -52,7 +52,7 @@ publish: true
 
 라즈베리파이는 기본적으로 Micro HDMI라고 하는 작은 단자를 제공한다.
 
-![image](https://user-images.githubusercontent.com/50317129/131310544-4fc47a26-b541-45e1-ac8c-4586bcbdc978.png)
+![null](https://user-images.githubusercontent.com/50317129/131310544-4fc47a26-b541-45e1-ac8c-4586bcbdc978.png)
 
 위 사진의 좌측 단자가 일반적으로 알고있는 HDMI, 우측의 작은 단자가 Micro HDMI다. Argon M2 케이스의 경우 Micro HDMI와 연결된 HDMI 단자를 제공해주므로 상관없었으나, 별도의 케이스나 커넥터 없이 모니터를 연결할 경우 위 사진과 같은 <span class="amber-500">Micro HDMI to HDMI</span> 케이블이 필요하니 주의할 것.
 
@@ -80,13 +80,13 @@ Ubuntu는 Linux이므로, 위 경로에서 쉽게 다운로드 받을 수 있다
 
 ### 1. BalenaEtcher 실행
 
-![image](https://user-images.githubusercontent.com/50317129/131342380-c9c0d006-e4cf-457a-9cbf-66ffcfbf8e4f.png)
+![null](https://user-images.githubusercontent.com/50317129/131342380-c9c0d006-e4cf-457a-9cbf-66ffcfbf8e4f.png)
 
 USB를 꽂고 다운로드받은 <span class="green-400">BalenaEtcher를 실행</span>한다.
 
 ### 2. Ubuntu ISO 선택
 
-![image](https://user-images.githubusercontent.com/50317129/131342500-b406e9e9-c72f-41f6-aedb-1e1d88f678f7.png)
+![null](https://user-images.githubusercontent.com/50317129/131342500-b406e9e9-c72f-41f6-aedb-1e1d88f678f7.png)
 
 다운로드받은 <span class="green-400">Ubuntu ISO를 선택</span>한다. 선택한 ISO가 디스크에 기록될 것이다.
 
@@ -94,7 +94,7 @@ Ubuntu Desktop ISO는 용량이 많음에 유의하자.
 
 ### 3. 디스크 드라이브 선택
 
-![image](https://user-images.githubusercontent.com/50317129/131343798-ae4caaa3-5b39-42cc-8d87-362bde5ad5eb.png)
+![null](https://user-images.githubusercontent.com/50317129/131343798-ae4caaa3-5b39-42cc-8d87-362bde5ad5eb.png)
 
 ISO가 기록될 디스크 드라이브를 선택한다.
 
@@ -102,15 +102,15 @@ ISO가 기록될 디스크 드라이브를 선택한다.
 
 ### 4. 디스크 기록
 
-![image](https://user-images.githubusercontent.com/50317129/131343897-2ab71120-ba0e-4a10-9e20-85b7f562f25c.png)
+![null](https://user-images.githubusercontent.com/50317129/131343897-2ab71120-ba0e-4a10-9e20-85b7f562f25c.png)
 
 모든 선택이 완료되면 <span class="blue-400">[Flash!]</span> 버튼을 클릭하여 부팅 디스크를 만든다.
 
-![image](https://user-images.githubusercontent.com/50317129/131344037-dd53f8e7-4a66-4e3e-90d5-dd06bdf79904.png)
+![null](https://user-images.githubusercontent.com/50317129/131344037-dd53f8e7-4a66-4e3e-90d5-dd06bdf79904.png)
 
 SSD같이 Disk I/O가 빠르면 금방 끝나지만, 느리면 수 분의 시간이 걸린다.
 
-![image](https://user-images.githubusercontent.com/50317129/131344661-ef5737a7-e2b8-483b-88af-9f79318c6661.png)
+![null](https://user-images.githubusercontent.com/50317129/131344661-ef5737a7-e2b8-483b-88af-9f79318c6661.png)
 
 완료되면 위와 같은 화면이 뜬다.
 

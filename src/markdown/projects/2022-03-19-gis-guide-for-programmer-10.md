@@ -38,7 +38,7 @@ OpenLayers는 라이브러리 단계에서 OSM을 기본 제공한다. 즉, 별�
 
 일전에 언급했었지만, 혹시 모르니 다시 한 번 OpenLayers의 구조에 대해 짚고 넘어가자.
 
-![image](https://user-images.githubusercontent.com/50317129/156811772-4fd36475-dcc9-41a5-a3ab-c7bcef24e8da.png)
+![null](https://user-images.githubusercontent.com/50317129/156811772-4fd36475-dcc9-41a5-a3ab-c7bcef24e8da.png)
 
 * `Feature`: 점, 선, 면과 같은 요소 (벡터 레이어 한정)
 * `Source`: 레이이의 데이터 원천. Feature의 모음과 같다. (SHP, GeoJSON 등)
@@ -275,7 +275,7 @@ const map = new Map({
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/164761027-283f384b-82b9-4be3-aedb-fb92788eb3ec.png)
+![null](https://user-images.githubusercontent.com/50317129/164761027-283f384b-82b9-4be3-aedb-fb92788eb3ec.png)
 
 [OpenLayers6 Sandbox - OSM](https://project.itcode.dev/gis-dev/osm)에서 이를 구현한 예제를 확인할 수 있다.
 

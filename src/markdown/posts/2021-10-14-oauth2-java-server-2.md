@@ -88,7 +88,7 @@ Jersey 프레임워크는 `controller` 영역에서 동작한다.
 
 RESTful API를 효과적으로 설계하기 위해 Jersey 프레임워크를 사용한다.
 
-![image](https://user-images.githubusercontent.com/50317129/137264829-4e703edf-e682-4793-a2b1-675056cba087.png)
+![null](https://user-images.githubusercontent.com/50317129/137264829-4e703edf-e682-4793-a2b1-675056cba087.png)
 
 controller는 <span class="blue-400">정의된 process로 요청을 전달하고, process가 반환하는 응답을 요청자에게 다시 전달</span>한다.
 
@@ -113,7 +113,7 @@ controller는 <span class="blue-400">정의된 process로 요청을 전달하고
 
 `process`에선 실제 로직이 구현되는 영역이다. 이 때 필요하다면 `module`을 호출하기도 한다.
 
-![image](https://user-images.githubusercontent.com/50317129/137265824-a2652f3c-c32f-42cf-9b5e-8f523530895e.png)
+![null](https://user-images.githubusercontent.com/50317129/137265824-a2652f3c-c32f-42cf-9b5e-8f523530895e.png)
 
 `process`는 <span class="blue-400">수행 결과를 정해진 형식의 JSON을 기반으로 응답 객체</span>를 만들어 `controller`로 반환한다.
 
@@ -159,11 +159,11 @@ module은 여러 `process`에서 <span class="blue-400">반복적으로 사용�
 
 이 프로젝트의 Backend에 가장 중요한 역할을 담당하는 모듈로, OAuth 인증을 구현한다.
 
-![image](https://user-images.githubusercontent.com/50317129/137314562-675ee988-0dad-4937-93a1-73753c2afee4.png)
+![null](https://user-images.githubusercontent.com/50317129/137314562-675ee988-0dad-4937-93a1-73753c2afee4.png)
 
 요즘은 어느정도 규모있는 플랫폼이라면 OAuth 서비스를 제공한다. 플랫폼은 달라도 OAuth를 준수한다면 모두 공통된 요청 받아 공통된 응답을 제공할 것이다. 공통 프로토콜을 사용하므로, 인증 모듈 하나를 만들어 모든 인증을 거기서 처리하면 될 것이다.
 
-![image](https://user-images.githubusercontent.com/50317129/137314573-599b1317-0e46-4698-ac65-04fef57933e8.png)
+![null](https://user-images.githubusercontent.com/50317129/137314573-599b1317-0e46-4698-ac65-04fef57933e8.png)
 
 하지만 문제가 하나 있다. 아무리 공통 프로토콜을 사용한다지만, <span class="red-400">플랫폼마다 추가적인 파라미터 혹은 헤더를 요구</span>하기도 한다. 조건문을 떡칠한다면 모를까, 고작 인증 모듈 하나에서 플랫폼별 요구사항을 하나하나 처리하기엔 문제가 많다. 조건문을 통한 분기 역시 유지보수적인 측면에서 그리 좋은 방식은 아니다.
 
@@ -172,7 +172,7 @@ module은 여러 `process`에서 <span class="blue-400">반복적으로 사용�
 
 OAuth는 객체라기보단 일종의 개념에 더 가깝다. 이렇게 추상적인 개념의 형태는 JAVA의 인터페이스 내지는 추상 객체가 적합하다.
 
-![image](https://user-images.githubusercontent.com/50317129/137314582-cf0c24f7-5ad3-42f8-a7d7-de19e59c8582.png)
+![null](https://user-images.githubusercontent.com/50317129/137314582-cf0c24f7-5ad3-42f8-a7d7-de19e59c8582.png)
 
 인증 모듈의 경우, 몇몇 플랫폼의 특이 사항으로 인해 문제가 발생하니, 기본적으로는 <span class="blue-600">인증 모듈의 공통 로직을 사용하되, 추가적인 요구를 하는 플랫폼에 한해 로직을 변경하는 것이 효율적</span>일 것이다. 따라서 인증 모듈은 인터페이스보단 추상 객체가 더 어울릴 것이다.
 
@@ -202,7 +202,7 @@ OAuth는 객체라기보단 일종의 개념에 더 가깝다. 이렇게 추상�
 
 # 구조도
 
-![image](https://user-images.githubusercontent.com/50317129/137319720-28a6d25b-6128-4873-bbb4-b0e0f5cce847.png)
+![null](https://user-images.githubusercontent.com/50317129/137319720-28a6d25b-6128-4873-bbb4-b0e0f5cce847.png)
 
 OAuth 모듈을 사용하는 API의 구조를 도식화하면 위와 같다.
 

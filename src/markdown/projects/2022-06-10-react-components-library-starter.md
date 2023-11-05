@@ -623,7 +623,7 @@ import Button from '@itcode-dev/react-components-library-starter/dist/atom/Butto
 import Input from '@itcode-dev/react-components-library-starter/dist/atom/Input';
 ```
 
-![image](https://user-images.githubusercontent.com/50317129/173087696-58504aeb-5908-4b4d-8768-f2fb1c8d8382.png)
+![null](https://user-images.githubusercontent.com/50317129/173087696-58504aeb-5908-4b4d-8768-f2fb1c8d8382.png)
 
 위와 같이 라이브러리를 활용할 수 있다.
 

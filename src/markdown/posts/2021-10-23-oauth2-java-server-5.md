@@ -39,7 +39,7 @@ Google은 <span class="lightBlue-600">Google Cloud Platform(GCP)</span>에서 OA
 
 ## 2. 프로젝트 만들기
 
-![image](https://user-images.githubusercontent.com/50317129/138465442-6c4691b1-e5a3-4920-98fa-16bcf80c178a.png)
+![null](https://user-images.githubusercontent.com/50317129/138465442-6c4691b1-e5a3-4920-98fa-16bcf80c178a.png)
 
 OAuth 정보를 관리하게 될 프로젝트를 생성하자. 이름은 아무렇게나 지어도 상관없다.
 
@@ -74,7 +74,7 @@ OAuth API를 생성하기 위해선 먼저 동의 화면을 구성해야한다. 
 
 Access Token이 가지는 범위를 지정한다.
 
-![image](https://user-images.githubusercontent.com/50317129/138469867-30c70149-a919-4583-9105-5817e7ba5dd4.png)
+![null](https://user-images.githubusercontent.com/50317129/138469867-30c70149-a919-4583-9105-5817e7ba5dd4.png)
 
 이 프로젝트에선 프로필 정보 정도만 사용할 계획이므로 `/auth/userinfo.email`, `/auth/userinfo.profile`을 선택한다.
 
@@ -98,7 +98,7 @@ Access Token이 가지는 범위를 지정한다.
 
 좌측 사이드바에서 [<span class="lightBlue-600">사용자 인증 정보</span>] 메뉴로 들어가자.
 
-![image](https://user-images.githubusercontent.com/50317129/138471904-75045dc5-9a8b-4323-8af9-01c41d1292f0.png)
+![null](https://user-images.githubusercontent.com/50317129/138471904-75045dc5-9a8b-4323-8af9-01c41d1292f0.png)
 
 [<span class="lightBlue-600">OAuth 클라이언트 ID</span>]를 선택하여 API키를 하나 생성하자.
 
@@ -123,7 +123,7 @@ Access Token이 가지는 범위를 지정한다.
 
 생성된 API 리스트를 클릭하여 API를 확인할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/138473426-3429bf2b-0c5b-49a2-a7cc-b209cf9f126f.png)
+![null](https://user-images.githubusercontent.com/50317129/138473426-3429bf2b-0c5b-49a2-a7cc-b209cf9f126f.png)
 
 상단의 [<span class="lightBlue-600">보안 비밀 재설정</span>]을 통해 클라이언트 보안 비밀키를 갱신할 수 있다.
 

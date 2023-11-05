@@ -53,7 +53,7 @@ API 정보를 얻기 위해 GitHub OAuth 서비스를 신청하자.
 
 메인 화면인 [<span class="lightBlue-600">General</span>]에서 확인할 수 있다.
 
-![image](https://user-images.githubusercontent.com/50317129/138511105-63c370c1-2131-4ab7-871d-9eb023ea1374.png)
+![null](https://user-images.githubusercontent.com/50317129/138511105-63c370c1-2131-4ab7-871d-9eb023ea1374.png)
 
 <span class="blue-400">Client ID</span>는 상시 확인 가능하고, <span class="blue-400">Client Secret</span>은 발급 직후에만 일시적으로 확인 가능하다는 점을 주의하자
 

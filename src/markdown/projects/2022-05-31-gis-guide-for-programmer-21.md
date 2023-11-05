@@ -184,6 +184,6 @@ document.oncontextmenu = () =>
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/171029500-f0fee3e6-fe98-4b7c-ad23-33843efdba69.png)
+![null](https://user-images.githubusercontent.com/50317129/171029500-f0fee3e6-fe98-4b7c-ad23-33843efdba69.png)
 
 [OpenLayers6 Sandbox - WFS Transaction Update](https://project.itcode.dev/gis-dev/transaction-update)에서 이를 구현한 예제를 확인할 수 있다.

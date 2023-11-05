@@ -387,7 +387,7 @@ if (index == 1)
 
 폴더 루트 경로는 `D:\root`와 같으며, 구조는 아래와 같다.
 
-![image](https://user-images.githubusercontent.com/50317129/128032026-9ad5c07e-c274-45b2-8865-0164ddd8f618.png)
+![null](https://user-images.githubusercontent.com/50317129/128032026-9ad5c07e-c274-45b2-8865-0164ddd8f618.png)
 
 ``` java
 import java.io.BufferedReader;
@@ -636,7 +636,7 @@ D:\root
 
 탐색 순서는 아래와 같다.
 
-![image](https://user-images.githubusercontent.com/50317129/128036750-4094185e-3e77-4f24-94c7-dd8ccc9428ef.png)
+![null](https://user-images.githubusercontent.com/50317129/128036750-4094185e-3e77-4f24-94c7-dd8ccc9428ef.png)
 
 # 마무리
 

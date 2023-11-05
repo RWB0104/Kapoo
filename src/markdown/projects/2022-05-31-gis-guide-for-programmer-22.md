@@ -88,6 +88,6 @@ POST https://example.com/geoserver/wfs
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/171033925-64b45b42-9b44-4c75-b2aa-5f3de3d74ddb.png)
+![null](https://user-images.githubusercontent.com/50317129/171033925-64b45b42-9b44-4c75-b2aa-5f3de3d74ddb.png)
 
 [OpenLayers6 Sandbox - WFS Transaction Delete](https://project.itcode.dev/gis-dev/transaction-delete)에서 이를 구현한 예제를 확인할 수 있다.

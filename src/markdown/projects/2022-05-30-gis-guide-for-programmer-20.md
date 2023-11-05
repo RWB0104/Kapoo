@@ -206,6 +206,6 @@ drawInteraction.on('drawabort', () => {});
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/170878861-a364f06e-3c30-432c-b081-0fd9c096c29d.png)
+![null](https://user-images.githubusercontent.com/50317129/170878861-a364f06e-3c30-432c-b081-0fd9c096c29d.png)
 
 [OpenLayers6 Sandbox - WFS Transaction Insert](https://project.itcode.dev/gis-dev/transaction-insert)에서 이를 구현한 예제를 확인할 수 있다.

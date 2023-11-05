@@ -578,7 +578,7 @@ WMS는 반드시 `bbox`를 통해 영역을 입력해야한다.
 
 `sld_body`는 SLD XML을 직접 파라미터에 입력하는 것이다.
 
-![image](https://user-images.githubusercontent.com/50317129/158647221-814d9d12-a03e-47fd-acb9-487ca6c5da8d.png)
+![null](https://user-images.githubusercontent.com/50317129/158647221-814d9d12-a03e-47fd-acb9-487ca6c5da8d.png)
 
 `GetMap`의 응답 예시다.
 

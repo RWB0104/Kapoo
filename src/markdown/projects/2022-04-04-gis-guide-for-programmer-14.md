@@ -212,7 +212,7 @@ Geolocation을 통해 수집한 위치 정보로 `Feature`를 생성하여 추�
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/164761803-940e951e-3ae7-448a-af94-b4857f68c368.png)
+![null](https://user-images.githubusercontent.com/50317129/164761803-940e951e-3ae7-448a-af94-b4857f68c368.png)
 
 [OpenLayers6 Sandbox - Feature](https://project.itcode.dev/gis-dev/feature)에서 이를 구현한 예제를 확인할 수 있다.
 

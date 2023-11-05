@@ -50,7 +50,7 @@ SHP의 prj 파일은 이 프로젝션에 대한 정보를 담고 있다.
 
 지구는 구 형태지만, 실제로 엄밀한 구는 아니다. 아, 그렇다고 평평하다는 뜻은 더더욱 아니다.
 
-![image](https://user-images.githubusercontent.com/50317129/156601191-e161a593-ccee-4f06-b5c8-b2ffce88bdaf.png)
+![null](https://user-images.githubusercontent.com/50317129/156601191-e161a593-ccee-4f06-b5c8-b2ffce88bdaf.png)
 
 아름다운 구 형태였다면 좋았겠지만, 아쉽게도 지구의 모양은 문제가 좀 많다. 구라고 부르기 애매한 수준. 혹자는 감자라고도 칭하기도 한다.
 
@@ -91,7 +91,7 @@ GPS라는 걸출한 기술이 개발되기 전까지는 각 구역을 중심으�
 
 그말인즉슨, 우리에게 익숙한 지도를 만들기 위해선, 구를 평면화하는 작업이 필요하다. 어렸을 때 수학시간에 전개라는 개념을 배운 적이 있는가? 우유팩을 완전히 펼치는 과정을 생각하면 얼추 비슷하다.
 
-![image](https://user-images.githubusercontent.com/50317129/156607735-9b23d446-1bdc-4dd1-9105-455906f51fc4.png)
+![null](https://user-images.githubusercontent.com/50317129/156607735-9b23d446-1bdc-4dd1-9105-455906f51fc4.png)
 
 이처럼 좌표계에서 구를 평면화하는 것을 투영법이라 부른다.
 

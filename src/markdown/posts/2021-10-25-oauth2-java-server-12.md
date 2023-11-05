@@ -13,7 +13,7 @@ publish: true
 
 # 개요
 
-![image](https://user-images.githubusercontent.com/50317129/138708107-c6f86f3b-e599-4f99-8e61-5371ac7ecbed.png)
+![null](https://user-images.githubusercontent.com/50317129/138708107-c6f86f3b-e599-4f99-8e61-5371ac7ecbed.png)
 
 <p align="center"><b class="large">OAuth Project</b></p>
 

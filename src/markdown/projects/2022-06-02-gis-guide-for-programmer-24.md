@@ -34,7 +34,7 @@ publish: true
 
 Heat Map은 데이터의 분포도를 중점적으로 나타내는 지도다. 데이터들의 분포도, 갯수 등을 계산하여 시각화한다.
 
-![image](https://user-images.githubusercontent.com/50317129/171439560-2afc37c1-6b20-4b9b-adf3-a0055a4983c4.png)
+![null](https://user-images.githubusercontent.com/50317129/171439560-2afc37c1-6b20-4b9b-adf3-a0055a4983c4.png)
 
 영화 같은 매체에서 한 번쯤 봤을 것이다. 통상 재난(특히 질병)의 분포나 규모를 파악하는 데 주로 쓰인다.
 
@@ -113,6 +113,6 @@ Heat Map을 만드는 것 또한, Cluster Map을 만드는 것과 유사하게 �
 
 # 예제 확인하기
 
-![image](https://user-images.githubusercontent.com/50317129/171441697-29880b11-235d-435b-bfab-7907b4d33e3d.png)
+![null](https://user-images.githubusercontent.com/50317129/171441697-29880b11-235d-435b-bfab-7907b4d33e3d.png)
 
 [OpenLayers6 Sandbox - Heat Map](https://project.itcode.dev/gis-dev/heat-map)에서 이를 구현한 예제를 확인할 수 있다.
