@@ -68,6 +68,19 @@ export interface FrontmatterProps
 	publish: boolean;
 }
 
+export interface TocProps
+{
+	/**
+	 * 텍스트
+	 */
+	text: string;
+
+	/**
+	 * 깊이
+	 */
+	level: number;
+}
+
 export interface MarkdownListItemProps extends Pick<MarkdownProps, 'names' | 'url'>
 {
 	/**
@@ -110,6 +123,11 @@ export interface MarkdownProps
 	 * 내용
 	 */
 	content?: string;
+
+	/**
+	 * TOC
+	 */
+	toc: TocProps[];
 
 	/**
 	 * URL
@@ -184,6 +202,7 @@ export function getMarkdownForList(fullpath: string): MarkdownProps
 		content,
 		frontmatter,
 		names: urls.slice(1, 5),
+		toc: getMarkdownToc(content),
 		url
 	};
 
@@ -239,4 +258,38 @@ export function getMarkdown(type: MarkdownType, filename: string): MarkdownProps
 	result.info = getMarkdownInfo(type, filename);
 
 	return result;
+}
+
+/**
+ * 마크다운 TOC 리스트 반환 메서드
+ *
+ * @param {string} text: 텍스트
+ *
+ * @returns {TocProps[]} 마크다운 TOC 리스트
+ */
+export function getMarkdownToc(text: string): TocProps[]
+{
+	const flag = true;
+
+	const list: TocProps[] = [];
+
+	const temp = text.replaceAll(REGEX.markdownCodeblock, '');
+
+	while (flag)
+	{
+		const match = REGEX.markdownHeading.exec(temp);
+
+		// 일치하는 정규식이 없을 경우
+		if (match === null)
+		{
+			break;
+		}
+
+		list.push({
+			level: match[1].trim().length,
+			text: match[2].trim()
+		});
+	}
+
+	return list;
 }

@@ -5,6 +5,8 @@
  * @since 2023.08.30 Wed 02:12:03
  */
 
+'use client';
+
 import { notoSans, ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
 import { themeStore } from '@kapoo/store/theme';
 import { toastState } from '@kapoo/store/toast';

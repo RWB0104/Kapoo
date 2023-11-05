@@ -5,6 +5,8 @@
  * @since 2023.08.31 Thu 15:18:10
  */
 
+'use client';
+
 import { themeStore } from '@kapoo/store/theme';
 
 import classNames from 'classnames/bind';

@@ -8,7 +8,7 @@
 'use client';
 
 import Image from '@kapoo/atom/Image';
-import { viewStore } from '@kapoo/store/markdown';
+import { FrontmatterProps, MarkdownListItemProps } from '@kapoo/util/markdown';
 
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
@@ -26,18 +26,34 @@ import styles from './ViewGroupBox.module.scss';
 
 const cn = classNames.bind(styles);
 
+export interface ViewGroupBoxProps
+{
+	/**
+	 * 마크다운 메타
+	 */
+	frontmatter: FrontmatterProps;
+
+	/**
+	 * 마크다운 정보
+	 */
+	group: MarkdownListItemProps[] | null;
+
+	/**
+	 * 링크
+	 */
+	link: string;
+}
+
 /**
  * 뷰 그룹 박스 organism 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode | null} ReactNode
  */
-export default function ViewGroupBox(): ReactNode | null
+export default function ViewGroupBox({ frontmatter, group, link }: ViewGroupBoxProps): ReactNode | null
 {
-	const { view } = viewStore();
-
 	const [ isOpenState, setOpenState ] = useState(false);
 
-	const idx = useMemo(() => view?.info?.group?.findIndex(({ url }) => url === view.url), [ view ]);
+	const idx = useMemo(() => group?.findIndex(({ url }) => url === link), [ group ]);
 
 	const handleDownClick = useCallback(() =>
 	{
@@ -49,29 +65,29 @@ export default function ViewGroupBox(): ReactNode | null
 		setOpenState(false);
 	}, [ setOpenState ]);
 
-	return view?.info?.group ? (
+	return group ? (
 		<Paper data-component='ViewGroupBox' variant='outlined'>
 			<Stack>
 				<Stack alignItems='center' height={200} justifyContent='center' position='relative'>
 					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
 						<Image
-							alt={view.frontmatter.group}
+							alt={frontmatter.group}
 							className={cn('image')}
 							height='100%'
-							src={view.frontmatter.coverImage}
+							src={frontmatter.coverImage}
 							width='100%'
 						/>
 					</Box>
 
 					<Box padding={2} zIndex={2}>
-						<Typography color='white' textAlign='center' variant='h6'>이 게시글은 <Typography color='gold' component='span' variant='inherit'>{view.frontmatter.group}</Typography> 시리즈의 {view.info.group.length}개 중 {view.info.group.length - (idx || 0)}번 째 게시글입니다.</Typography>
+						<Typography color='white' textAlign='center' variant='h6'>이 게시글은 <Typography color='gold' component='span' variant='inherit'>{frontmatter.group}</Typography> 시리즈의 {group.length}개 중 {group.length - (idx || 0)}번 째 게시글입니다.</Typography>
 					</Box>
 				</Stack>
 
 				{isOpenState ? (
 					<Stack>
 						<ul>
-							{view.info.group.map(({ frontmatter, url }) =>
+							{group.map(({ frontmatter, url }) =>
 							{
 								let tag = (
 									<Link href={url}>
@@ -79,7 +95,7 @@ export default function ViewGroupBox(): ReactNode | null
 									</Link>
 								);
 
-								if (view.url === url)
+								if (link === url)
 								{
 									tag = (
 										<Stack alignItems='center' direction='row' spacing={1}>

@@ -5,6 +5,8 @@
  * @since 2023.08.30 Wed 02:13:01
  */
 
+'use client';
+
 import Image from '@kapoo/atom/Image';
 import { imageModalStore } from '@kapoo/store/modal';
 import { themeStore } from '@kapoo/store/theme';

@@ -5,6 +5,8 @@
  * @since 2023.09.20 Wed 19:31:38
  */
 
+'use client';
+
 import LottieIcon from '@kapoo/atom/LottieIcon';
 
 import Stack from '@mui/material/Stack';

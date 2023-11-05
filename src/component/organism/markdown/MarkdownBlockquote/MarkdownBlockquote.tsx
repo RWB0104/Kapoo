@@ -5,6 +5,8 @@
  * @since 2023.08.31 Thu 15:10:17
  */
 
+'use client';
+
 import { themeStore } from '@kapoo/store/theme';
 
 import Alert from '@mui/material/Alert';

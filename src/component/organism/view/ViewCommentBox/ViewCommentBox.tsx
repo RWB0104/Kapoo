@@ -5,26 +5,40 @@
  * @since 2023.09.02 Sat 00:17:11
  */
 
-'use client';
-
 import Comment from '@kapoo/atom/Comment';
 import LottieIcon from '@kapoo/atom/LottieIcon/LottieIcon';
 import ViewHits from '@kapoo/organism/view/ViewHits';
-import { viewStore } from '@kapoo/store/markdown';
+import { MarkdownType } from '@kapoo/util/markdown';
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ReactNode } from 'react';
+
+export interface ViewCommentBoxProps
+{
+	/**
+	 * 마크다운 타입
+	 */
+	type: MarkdownType;
+
+	/**
+	 * URL
+	 */
+	url?: string;
+
+	/**
+	 * 댓글 여부
+	 */
+	comment: boolean;
+}
 
 /**
  * 뷰 댓글 박스 organism 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function ViewCommentBox(): ReactNode
+export default function ViewCommentBox({ type, url, comment }: ViewCommentBoxProps): ReactNode
 {
-	const { view } = viewStore();
-
 	return (
 		<Stack data-component='ViewCommentBox' spacing={10}>
 			<Stack alignItems='center' justifyContent='center' spacing={1} width='100%'>
@@ -35,9 +49,9 @@ export default function ViewCommentBox(): ReactNode
 				<Typography variant='h5'>블로그 운영에 큰 힘이 됩니다!</Typography>
 			</Stack>
 
-			<ViewHits />
+			<ViewHits type={type} url={url} />
 
-			{view?.frontmatter.comment ? <Comment /> : null}
+			{comment ? <Comment /> : null}
 		</Stack>
 	);
 }

@@ -5,6 +5,8 @@
  * @since 2023.08.30 Wed 02:47:37
  */
 
+'use client';
+
 import { ubuntuMono } from '@kapoo/organism/global/AppThemeProvider';
 import { themeStore } from '@kapoo/store/theme';
 

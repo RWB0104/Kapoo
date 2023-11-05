@@ -6,20 +6,29 @@
  */
 
 import ViewTocBox from '@kapoo/organism/view/ViewTocBox';
+import { TocProps } from '@kapoo/util/markdown';
 
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
+
+export interface ViewTocTemplateProps
+{
+	/**
+	 * TOC
+	 */
+	toc: TocProps[];
+}
 
 /**
  * 뷰 TOC template 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function ViewTocTemplate(): ReactNode
+export default function ViewTocTemplate({ toc }: ViewTocTemplateProps): ReactNode
 {
 	return (
 		<Container data-component='ViewTocTemplate'>
-			<ViewTocBox />
+			<ViewTocBox toc={toc} />
 		</Container>
 	);
 }

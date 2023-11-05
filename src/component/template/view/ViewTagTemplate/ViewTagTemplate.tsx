@@ -10,16 +10,24 @@ import ViewTagBox from '@kapoo/organism/view/ViewTagBox';
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
 
+export interface ViewTagTemplateProps
+{
+	/**
+	 * 태그
+	 */
+	tag: string[];
+}
+
 /**
  * 뷰 태그 template 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function ViewTagTemplate(): ReactNode
+export default function ViewTagTemplate({ tag }: ViewTagTemplateProps): ReactNode
 {
 	return (
 		<Container data-component='ViewTagTemplate'>
-			<ViewTagBox />
+			<ViewTagBox tag={tag} />
 		</Container>
 	);
 }

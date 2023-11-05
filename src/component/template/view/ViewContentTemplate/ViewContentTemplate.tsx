@@ -11,16 +11,24 @@ import ViewImageModal from '@kapoo/organism/view/ViewImageModal';
 import Container from '@mui/material/Container';
 import { ReactNode } from 'react';
 
+export interface ViewContentTemplateProps
+{
+	/**
+	 * 내용
+	 */
+	content?: string;
+}
+
 /**
  * 뷰 컨텐츠 template 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function ViewContentTemplate(): ReactNode
+export default function ViewContentTemplate({ content }: ViewContentTemplateProps): ReactNode
 {
 	return (
 		<Container data-component='ViewContentTemplate'>
-			<ViewContentBox />
+			<ViewContentBox content={content} />
 			<ViewImageModal />
 		</Container>
 	);

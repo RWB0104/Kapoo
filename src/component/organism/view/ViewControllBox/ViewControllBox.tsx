@@ -8,7 +8,8 @@
 'use client';
 
 import ViewControllButton from '@kapoo/molecule/ViewControllButton';
-import { refererStore, viewStore } from '@kapoo/store/markdown';
+import { refererStore } from '@kapoo/store/markdown';
+import { MarkdownListItemProps, MarkdownType } from '@kapoo/util/markdown';
 
 import Menu from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
@@ -18,19 +19,36 @@ import Stack from '@mui/material/Stack';
 import Link from 'next/link';
 import { ReactNode, useMemo } from 'react';
 
+export interface ViewControllBoxProps
+{
+	/**
+	 * 마크다운 타입
+	 */
+	type: MarkdownType;
+
+	/**
+	 * 이전 페이지
+	 */
+	prev: MarkdownListItemProps | null;
+
+	/**
+	 * 다음 페이지
+	 */
+	next: MarkdownListItemProps | null;
+}
+
 /**
  * 뷰 컨트롤 박스 organism 컴포넌트 JSX 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function ViewControllBox(): ReactNode
+export default function ViewControllBox({ type, prev, next }: ViewControllBoxProps): ReactNode
 {
-	const { view } = viewStore();
 	const { referer } = refererStore();
 
 	const link = useMemo(() =>
 	{
-		let base = `/${view?.frontmatter.type}`;
+		let base = `/${type}`;
 
 		const query = [];
 
@@ -62,29 +80,29 @@ export default function ViewControllBox(): ReactNode
 		}
 
 		return base;
-	}, [ view, referer ]);
+	}, [ type, referer ]);
 
 	return (
 		<Stack spacing={1} width='100%'>
 			<Grid spacing={1} width='100%' container>
 				<Grid lg={6} sm={12} xs={12} item>
-					{view?.info?.prev ? (
+					{prev ? (
 						<ViewControllButton
-							cover={view.info.prev.frontmatter.coverImage}
-							link={view.info.prev.url}
+							cover={prev.frontmatter.coverImage}
+							link={prev.url}
 							mode='prev'
-							title={view.info.prev.frontmatter.title}
+							title={prev.frontmatter.title}
 						/>
 					) : null}
 				</Grid>
 
 				<Grid lg={6} sm={12} xs={12} item>
-					{view?.info?.next ? (
+					{next ? (
 						<ViewControllButton
-							cover={view.info.next.frontmatter.coverImage}
-							link={view.info.next.url}
+							cover={next.frontmatter.coverImage}
+							link={next.url}
 							mode='next'
-							title={view.info.next.frontmatter.title}
+							title={next.frontmatter.title}
 						/>
 					) : null}
 				</Grid>

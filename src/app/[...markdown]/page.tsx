@@ -6,7 +6,6 @@
  */
 
 import ViewProgress from '@kapoo/organism/view/ViewProgress';
-import ViewProvider from '@kapoo/organism/view/ViewProvider';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import ViewTemplate from '@kapoo/template/view/ViewTemplate';
 import { REGEX, getMetadata } from '@kapoo/util/common';
@@ -48,10 +47,8 @@ export default function MarkdownDynamicPage({ params }: MarkdownDynamicPageProps
 
 	return (
 		<PageTemplate>
-			<ViewProvider markdown={markdown} />
-			<ViewProgress />
-
-			<ViewTemplate />
+			<ViewProgress type={markdown.frontmatter.type} />
+			<ViewTemplate markdown={markdown} />
 		</PageTemplate>
 	);
 }

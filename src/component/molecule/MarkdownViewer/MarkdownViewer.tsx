@@ -5,8 +5,6 @@
  * @since 2023.09.06 Wed 01:35:11
  */
 
-'use client';
-
 import MarkdownA from '@kapoo/organism/markdown/MarkdownA';
 import MarkdownBlockquote from '@kapoo/organism/markdown/MarkdownBlockquote';
 import MarkdownCell from '@kapoo/organism/markdown/MarkdownCell';
