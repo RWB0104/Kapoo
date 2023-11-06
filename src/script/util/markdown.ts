@@ -293,3 +293,6 @@ export function getMarkdownToc(text: string): TocProps[]
 
 	return list;
 }
+
+export const POST_LIST = getMarkdownList('posts');
+export const PROJECT_LIST = getMarkdownList('projects');

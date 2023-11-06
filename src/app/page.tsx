@@ -9,6 +9,7 @@ import { PAGE_INFO } from '@kapoo/env';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import HomeTemplate from '@kapoo/template/home/HomeTemplate';
 import { getMetadata } from '@kapoo/util/common';
+import { POST_LIST, PROJECT_LIST } from '@kapoo/util/markdown';
 
 import { ReactNode } from 'react';
 
@@ -21,9 +22,12 @@ export const metadata = getMetadata(PAGE_INFO.index.title, PAGE_INFO.index.descr
  */
 export default function HomePage(): ReactNode
 {
+	const postsList = POST_LIST;
+	const projectsList = PROJECT_LIST;
+
 	return (
 		<PageTemplate>
-			<HomeTemplate />
+			<HomeTemplate postsList={postsList} projectsList={projectsList} />
 		</PageTemplate>
 	);
 }

@@ -10,7 +10,6 @@
 import { useGetGooglePopularData } from '@kapoo/api';
 import LottieIcon from '@kapoo/atom/LottieIcon';
 import MarkdownList from '@kapoo/molecule/MarkdownList';
-import { postsStore, projectsStore } from '@kapoo/store/markdown';
 import { MarkdownListItemProps, MarkdownType } from '@kapoo/util/markdown';
 
 import Stack from '@mui/material/Stack';
@@ -23,6 +22,11 @@ export interface HomePopularBoxProps
 	 * 마크다운 타입
 	 */
 	type: MarkdownType;
+
+	/**
+	 * 마크다운 리스트
+	 */
+	markdownList: MarkdownListItemProps[];
 }
 
 /**
@@ -32,22 +36,18 @@ export interface HomePopularBoxProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function HomePopularBox({ type }: HomePopularBoxProps): ReactNode
+export default function HomePopularBox({ type, markdownList }: HomePopularBoxProps): ReactNode
 {
-	const { markdown: postsMarkdown } = postsStore();
-	const { markdown: projectsMarkdown } = projectsStore();
-
 	const { data, isLoading } = useGetGooglePopularData(type);
 
 	const text = useMemo(() => (type === 'posts' ? '게시글' : '프로젝트'), [ type ]);
-	const list = useMemo(() => (type === 'posts' ? postsMarkdown : projectsMarkdown), [ type, postsMarkdown, projectsMarkdown ]);
 
 	const markdown: MarkdownListItemProps[] = useMemo(() =>
 	{
 		const urls = data?.rows.map(({ dimensionValues }) => dimensionValues[0].value) || [];
 
-		return urls.map((i) => list.filter(({ url }) => i === url)[0]) || [];
-	}, [ data, list ]);
+		return urls.map((i) => markdownList.filter(({ url }) => i === url)[0]) || [];
+	}, [ data, markdownList ]);
 
 	return (
 		<Stack data-component='HomePopularBox' paddingBottom={4} paddingTop={4} spacing={8}>
