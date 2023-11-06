@@ -9,6 +9,7 @@ import { PAGE_INFO } from '@kapoo/env';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import PostsTemplate from '@kapoo/template/posts/PostsTemplate';
 import { getMetadata } from '@kapoo/util/common';
+import { POST_LIST } from '@kapoo/util/markdown';
 
 import { ReactNode } from 'react';
 
@@ -23,7 +24,7 @@ export default function PostsPage(): ReactNode
 {
 	return (
 		<PageTemplate>
-			<PostsTemplate />
+			<PostsTemplate markdownList={POST_LIST} />
 		</PageTemplate>
 	);
 }
