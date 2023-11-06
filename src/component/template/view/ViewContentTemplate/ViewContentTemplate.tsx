@@ -22,6 +22,8 @@ export interface ViewContentTemplateProps
 /**
  * 뷰 컨텐츠 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewContentTemplateProps} param0: ViewContentTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewContentTemplate({ content }: ViewContentTemplateProps): ReactNode

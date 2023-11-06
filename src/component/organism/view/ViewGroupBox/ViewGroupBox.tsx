@@ -47,6 +47,8 @@ export interface ViewGroupBoxProps
 /**
  * 뷰 그룹 박스 organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewGroupBoxProps} param0: ViewGroupBoxProps 객체
+ *
  * @returns {ReactNode | null} ReactNode
  */
 export default function ViewGroupBox({ frontmatter, group, link }: ViewGroupBoxProps): ReactNode | null

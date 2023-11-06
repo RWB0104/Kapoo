@@ -32,6 +32,8 @@ export interface ViewCommentTemplateProps
 /**
  * 뷰 댓글 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewCommentTemplateProps} param0: ViewCommentTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewCommentTemplate({ type, url, comment }: ViewCommentTemplateProps): ReactNode

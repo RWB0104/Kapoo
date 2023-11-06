@@ -22,6 +22,8 @@ export interface ViewTagBoxProps
 /**
  * 뷰 태그 박스 organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewTagBoxProps} param0: ViewTagBoxProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewTagBox({ tag }: ViewTagBoxProps): ReactNode

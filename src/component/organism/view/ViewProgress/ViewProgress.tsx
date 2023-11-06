@@ -29,6 +29,8 @@ export interface ViewProgressProps
 /**
  * 뷰 프로그레스 organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewProgressProps} param0: ViewProgressProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewProgress({ type }: ViewProgressProps): ReactNode

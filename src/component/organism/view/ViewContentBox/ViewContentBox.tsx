@@ -20,6 +20,8 @@ export interface ViewContentBoxProps
 /**
  * 뷰 컨텐츠 organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewContentBoxProps} param0: ViewContentBoxProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewContentBox({ content }: ViewContentBoxProps): ReactNode

@@ -29,6 +29,8 @@ export interface ViewTemplateProps
 /**
  * 뷰 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewTemplateProps} param0: ViewTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewTemplate({ markdown }: ViewTemplateProps): ReactNode

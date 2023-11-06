@@ -22,6 +22,8 @@ export interface ViewTocTemplateProps
 /**
  * 뷰 TOC template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewTocTemplateProps} param0: ViewTocTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewTocTemplate({ toc }: ViewTocTemplateProps): ReactNode

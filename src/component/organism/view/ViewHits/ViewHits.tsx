@@ -27,6 +27,8 @@ export interface ViewHitsProps
 /**
  * 뷰 Hits organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewHitsProps} param0: ViewHitsProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewHits({ type, url }: ViewHitsProps): ReactNode

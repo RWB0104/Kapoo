@@ -35,6 +35,8 @@ export interface ViewTocBoxProps
 /**
  * 뷰 TOC organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewTocBoxProps} param0: ViewTocBoxProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewTocBox({ toc }: ViewTocBoxProps): ReactNode

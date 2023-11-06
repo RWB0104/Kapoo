@@ -23,6 +23,8 @@ export interface ViewScrennerTemplateProps
 /**
  * 뷰 스크리너 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewScrennerTemplateProps} param0: ViewScrennerTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewScrennerTemplate({ frontmatter }: ViewScrennerTemplateProps): ReactNode

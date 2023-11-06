@@ -21,6 +21,8 @@ export interface ViewTagTemplateProps
 /**
  * 뷰 태그 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewTagTemplateProps} param0: ViewTagTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewTagTemplate({ tag }: ViewTagTemplateProps): ReactNode

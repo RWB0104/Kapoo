@@ -32,6 +32,8 @@ export interface ViewControllTemplateProps
 /**
  * 뷰 컨트롤 template 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewControllTemplateProps} param0: ViewControllTemplateProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewControllTemplate({ type, prev, next }: ViewControllTemplateProps): ReactNode

@@ -35,6 +35,8 @@ export interface ViewCommentBoxProps
 /**
  * 뷰 댓글 박스 organism 컴포넌트 JSX 반환 메서드
  *
+ * @param {ViewCommentBoxProps} param0: ViewCommentBoxProps 객체
+ *
  * @returns {ReactNode} ReactNode
  */
 export default function ViewCommentBox({ type, url, comment }: ViewCommentBoxProps): ReactNode
