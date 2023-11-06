@@ -9,6 +9,7 @@ import { PAGE_INFO } from '@kapoo/env';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import ProjectsTemplate from '@kapoo/template/projects/ProjectsTemplate';
 import { getMetadata } from '@kapoo/util/common';
+import { PROJECT_LIST } from '@kapoo/util/markdown';
 
 import { ReactNode } from 'react';
 
@@ -23,7 +24,7 @@ export default function ProjectsPage(): ReactNode
 {
 	return (
 		<PageTemplate>
-			<ProjectsTemplate />
+			<ProjectsTemplate markdownList={PROJECT_LIST} />
 		</PageTemplate>
 	);
 }
