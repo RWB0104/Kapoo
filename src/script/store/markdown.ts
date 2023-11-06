@@ -5,25 +5,9 @@
  * @since 2023.08.20 Sun 02:39:50
  */
 
-import { MarkdownListItemProps } from '@kapoo/util/markdown';
-
 import { create } from 'zustand';
 
-export type SetMarkdownHandler = (list: MarkdownListItemProps[]) => void;
 export type SetRefererHandler = (referer?: RefererProps) => void;
-
-export interface MarkdownStateProps
-{
-	/**
-	 * 마크다운
-	 */
-	markdown: MarkdownListItemProps[];
-
-	/**
-	 * 마크다운 할당 메서드
-	 */
-	setMarkdown: SetMarkdownHandler;
-}
 
 export interface RefererProps
 {
@@ -60,22 +44,6 @@ export interface RefererStateProps
 	 */
 	setReferer: SetRefererHandler;
 }
-
-export const postsStore = create<MarkdownStateProps>((set) => ({
-	markdown: [],
-	setMarkdown: (list): void =>
-	{
-		set({ markdown: list });
-	}
-}));
-
-export const projectsStore = create<MarkdownStateProps>((set) => ({
-	markdown: [],
-	setMarkdown: (list): void =>
-	{
-		set({ markdown: list });
-	}
-}));
 
 export const refererStore = create<RefererStateProps>((set) => ({
 	setReferer: (referer): void =>
