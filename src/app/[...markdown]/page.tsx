@@ -9,7 +9,7 @@ import ViewProgress from '@kapoo/organism/view/ViewProgress';
 import PageTemplate from '@kapoo/template/global/PageTemplate';
 import ViewTemplate from '@kapoo/template/view/ViewTemplate';
 import { REGEX, getMetadata } from '@kapoo/util/common';
-import { MarkdownType, getMarkdown, getMarkdownList } from '@kapoo/util/markdown';
+import { MarkdownType, POST_LIST, PROJECT_LIST, getMarkdown } from '@kapoo/util/markdown';
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -60,12 +60,9 @@ export default function MarkdownDynamicPage({ params }: MarkdownDynamicPageProps
  */
 export async function generateStaticParams(): Promise<MarkdownDynamicPageParams[]>
 {
-	const posts = getMarkdownList('posts');
-	const projects = getMarkdownList('projects');
-
 	const list = [
-		...posts,
-		...projects
+		...POST_LIST,
+		...PROJECT_LIST
 	];
 
 	return list.map(({ url }) => ({ markdown: url.split('/').slice(1) }));

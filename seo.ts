@@ -6,7 +6,7 @@
  */
 
 import { APP_INFO, AUTHOR, PAGE_INFO } from '@kapoo/env';
-import { getMarkdownList } from '@kapoo/util/markdown';
+import { POST_LIST, PROJECT_LIST } from '@kapoo/util/markdown';
 
 import fs from 'fs';
 
@@ -97,10 +97,7 @@ const options: XmlOptions = {
  */
 function getSeo(): SeoProps
 {
-	const posts = getMarkdownList('posts');
-	const projects = getMarkdownList('projects');
-
-	const markdowns = [ ...posts, ...projects ];
+	const markdowns = [ ...POST_LIST, ...PROJECT_LIST ];
 
 	const now = new Date().toISOString();
 
