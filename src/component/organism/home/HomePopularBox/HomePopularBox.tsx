@@ -46,7 +46,7 @@ export default function HomePopularBox({ type, markdownList }: HomePopularBoxPro
 	{
 		const urls = data?.rows.map(({ dimensionValues }) => dimensionValues[0].value) || [];
 
-		return urls.map((i) => markdownList.filter(({ url }) => i === url)[0]) || [];
+		return urls.map((i) => markdownList.filter(({ url }) => i === url)[0]);
 	}, [ data, markdownList ]);
 
 	return (

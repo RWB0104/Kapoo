@@ -63,45 +63,56 @@ export default function MarkdownCategory({ markdown }: MarkdownCategoryProps): R
 	const keyword = useMemo(() => seachParam.get('keyword'), [ seachParam ]);
 	const category = useMemo(() => seachParam.getAll('category'), [ seachParam ]);
 
-	const categories = useMemo(() => markdown
-		.filter(({ frontmatter }) =>
-		{
-			// 키워드가 있을 경우
-			if (keyword && keyword.length > 0)
-			{
-				return frontmatter.title.includes(keyword) || frontmatter.excerpt.includes(keyword);
-			}
-
-			return true;
-		})
-		.reduce<CategoryProps[]>((acc, { frontmatter }) =>
-		{
-			const idx = acc.findIndex(({ name }) => name === frontmatter.category);
-			const has = category.includes(frontmatter.category);
-
-			// 선택된 카테고리가 있을 경우
-			if (idx > -1)
-			{
-				acc[idx].count += 1;
-				acc[idx].selected = has;
-			}
-
-			// 아닐 경우
-			else
-			{
-				acc.push({
-					count: 1,
-					name: frontmatter.category,
-					selected: has
-				});
-			}
-
-			return acc;
-		}, [{
+	const categories = useMemo(() =>
+	{
+		const allItem: CategoryProps = {
 			count: markdown.length,
 			name: '전체',
 			selected: false
-		}]), [ markdown, keyword, category ]);
+		};
+
+		const list = markdown
+			.filter(({ frontmatter }) =>
+			{
+				// 키워드가 있을 경우
+				if (keyword && keyword.length > 0)
+				{
+					return frontmatter.title.includes(keyword) || frontmatter.excerpt.includes(keyword);
+				}
+
+				return true;
+			})
+			.reduce<CategoryProps[]>((acc, { frontmatter }) =>
+			{
+				const idx = acc.findIndex(({ name }) => name === frontmatter.category);
+				const has = category.includes(frontmatter.category);
+
+				// 선택된 카테고리가 있을 경우
+				if (idx > -1)
+				{
+					acc[idx].count += 1;
+					acc[idx].selected = has;
+				}
+
+				// 아닐 경우
+				else
+				{
+					acc.push({
+						count: 1,
+						name: frontmatter.category,
+						selected: has
+					});
+				}
+
+				return acc;
+			}, [])
+			.sort((prev, next) => prev.name.localeCompare(next.name));
+
+		return [
+			allItem,
+			...list
+		];
+	}, [ markdown, keyword, category ]);
 
 	const isDimmed = useCallback((name: string) => category.length > 0 && !category.includes(name), [ category ]);
 
