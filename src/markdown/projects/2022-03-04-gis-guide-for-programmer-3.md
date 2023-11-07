@@ -150,8 +150,8 @@ GPS라는 걸출한 기술이 개발되기 전까지는 각 구역을 중심으�
 
 |  EPSG 코드  | proj 인자                                                                                                          |        비고         |
 | :---------: | :----------------------------------------------------------------------------------------------------------------- | :-----------------: |
-| `EPSG:3857` | `+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs`                                                                 |         GPS         |
-| `EPSG:4326` | `+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs` | Google Maps, VWorld |
+| `EPSG:3854` | `+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs` | Google Maps, VWorld |
+| `EPSG:4326` | `+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs`                                                                 |         GPS         |
 
 WGS84 세계 측지인 EPSG:4326을 보자. 장, 단반경이 6378137로 동일한 완벽한 구 형태를 지향하고 있다. GPS 기준 좌표계답게 위경도 및 xy의 보정이 없다. `proj=merc`은 메르카토르 투영법을 사용했다는 의미다.
 
@@ -177,3 +177,9 @@ WGS84 세계 측지인 EPSG:4326을 보자. 장, 단반경이 6378137로 동일�
 이 밖에도 여러 좌표계가 있으므로, 필요할 때마다 찾아 사용하면 된다.
 
 [EPSG.io](https://epsg.io/)에서 다양한 좌표계의 정보를 확인할 수 있으니 참고할 것.
+
+<br />
+<br />
+
+※ 잘못된 정보를 정정해주신 분들에게 감사의 말씀을 드립니다.
+- [neomaz](https://github.com/neomaz)님
