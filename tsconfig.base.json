@@ -16,7 +16,12 @@
     ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@kapoo/ui-pack/*": [
+        "packages/ui-pack/src/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",
