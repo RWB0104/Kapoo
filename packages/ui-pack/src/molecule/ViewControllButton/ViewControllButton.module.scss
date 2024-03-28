@@ -1,0 +1,26 @@
+.button {
+	width: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+
+	&:hover {
+		.title {
+			color: gold;
+		}
+
+		.image {
+			scale: 1.2;
+		}
+	}
+}
+
+.title {
+	transition: 0.3s;
+}
+
+.image {
+	object-fit: cover;
+	filter: brightness(40%);
+
+	transition: 0.3s;
+}
