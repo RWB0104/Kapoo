@@ -1,3 +1,8 @@
-// Use this file to export React client components (e.g. those with 'use client' directive) or other non-server utilities
+/**
+ * 공통 인덱스 모듈
+ *
+ * @author RWB
+ * @since 2024.03.31 Sun 03:49:06
+ */
 
-export * from './lib/common';
+export * from './util';
