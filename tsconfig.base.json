@@ -18,6 +18,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kapoo/api": [
+        "packages/api/src/index.ts"
+      ],
+      "@kapoo/common": [
+        "packages/common/src/index.ts"
+      ],
+      "@kapoo/state": [
+        "packages/state/src/index.ts"
+      ],
       "@kapoo/ui-pack/*": [
         "packages/ui-pack/src/*"
       ]
