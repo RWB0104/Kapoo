@@ -1,0 +1,25 @@
+.screener {
+	background: linear-gradient(135deg, #feac5e, #c779d0, #4bc0c8);
+	background-size: 400% 400%;
+
+	animation: gradient 5s ease infinite;
+}
+
+.cover {
+	object-fit: cover;
+	object-position: center;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
