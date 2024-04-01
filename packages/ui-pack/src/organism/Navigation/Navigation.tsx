@@ -9,7 +9,7 @@
 
 import { Func, useIntersectionObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
-import { ReactNode, useCallback, useRef, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
 import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
@@ -43,10 +43,9 @@ export default function Navigation({ logo, title, items }: NavigationProps): Rea
 {
 	const [ isTopState, setTopState ] = useState(true);
 	const [ isOpenState, setOpenState ] = useState(false);
+	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 
-	const ref = useRef<HTMLDivElement>(null);
-
-	useIntersectionObserver(ref.current, setTopState);
+	useIntersectionObserver(domState, setTopState);
 
 	const handleMenuClick = useCallback<Func<HeaderProps['onMenuClick']>>(() =>
 	{
@@ -59,7 +58,7 @@ export default function Navigation({ logo, title, items }: NavigationProps): Rea
 	}, []);
 
 	return (
-		<Box data-component='Navigation' ref={ref}>
+		<Box data-component='Navigation' ref={setDomState}>
 			<Header isTransparent={isTopState} logo={logo} title={title} onMenuClick={handleMenuClick} />
 			<Sidebar items={items} open={isOpenState} onClose={handleClose} />
 		</Box>

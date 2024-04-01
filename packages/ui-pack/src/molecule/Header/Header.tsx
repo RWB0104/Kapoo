@@ -51,6 +51,9 @@ export default function Header({ logo, title, isTransparent, onMenuClick }: Head
 {
 	return (
 		<Box
+			bgcolor={isTransparent ? undefined : '#121212'}
+			borderBottom={1}
+			borderColor={isTransparent ? '#FFFFFF30' : 'transparent'}
 			className={cn('header', { isTransparent: true })}
 			component='header'
 			data-component='Header'
@@ -62,7 +65,7 @@ export default function Header({ logo, title, isTransparent, onMenuClick }: Head
 			zIndex={10000}
 		>
 			<Stack color='white' direction='row' gap={2} height='100%' width='100%'>
-				<IconButton color='inherit'>
+				<IconButton color='inherit' onClick={onMenuClick}>
 					<Menu htmlColor='inherit' />
 				</IconButton>
 

@@ -38,5 +38,5 @@ export function useIntersectionObserver(ref: Element | null, callback: UseInters
 		{
 			io.disconnect();
 		};
-	}, [ ref ]);
+	}, [ ref, callback, options ]);
 }
