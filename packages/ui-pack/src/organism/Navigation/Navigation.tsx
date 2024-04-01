@@ -7,8 +7,9 @@
 
 'use client';
 
+import { Func, useIntersectionObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useRef, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
 import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
@@ -41,35 +42,26 @@ export interface NavigationProps
 export default function Navigation({ logo, title, items }: NavigationProps): ReactNode
 {
 	const [ isTopState, setTopState ] = useState(true);
+	const [ isOpenState, setOpenState ] = useState(false);
 
 	const ref = useRef<HTMLDivElement>(null);
 
-	useEffect(() =>
+	useIntersectionObserver(ref.current, setTopState);
+
+	const handleMenuClick = useCallback<Func<HeaderProps['onMenuClick']>>(() =>
 	{
-		const io = new IntersectionObserver((entries) =>
-		{
-			entries.forEach((entry) =>
-			{
-				setTopState(entry.isIntersecting);
-			});
-		});
+		setOpenState(true);
+	}, []);
 
-		// DOM이 유효할 경우
-		if (ref.current)
-		{
-			io.observe(ref.current);
-		}
-
-		return () =>
-		{
-			io.disconnect();
-		};
-	}, [ ref.current ]);
+	const handleClose = useCallback<Func<SidebarProps['onClose']>>(() =>
+	{
+		setOpenState(false);
+	}, []);
 
 	return (
 		<Box data-component='Navigation' ref={ref}>
-			<Header isTransparent={isTopState} logo={logo} title={title} />
-			<Sidebar items={items} />
+			<Header isTransparent={isTopState} logo={logo} title={title} onMenuClick={handleMenuClick} />
+			<Sidebar items={items} open={isOpenState} onClose={handleClose} />
 		</Box>
 	);
 }
