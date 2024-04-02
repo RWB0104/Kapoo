@@ -50,8 +50,7 @@
               {
                 "sourceTag": "name:ui-pack",
                 "onlyDependOnLibsWithTags": [
-                  "!name:api",
-                  "!name:state"
+                  "name:common"
                 ]
               }
             ]
@@ -65,7 +64,8 @@
         "*.tsx"
       ],
       "extends": [
-        "plugin:@nx/typescript"
+        "plugin:@nx/typescript",
+        "@itcode-dev/eslint-config/react-ts"
       ],
       "rules": {
         "indent": [
