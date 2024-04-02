@@ -21,20 +21,14 @@
       "@kapoo/api": [
         "packages/api/src/index.ts"
       ],
-      "@kapoo/blog-ui-pack": [
-        "packages/blog-ui-pack/src/index.ts"
-      ],
-      "@kapoo/blog-ui-pack/server": [
-        "packages/blog-ui-pack/src/server.ts"
+      "@kapoo/blog-ui-pack/*": [
+        "packages/blog-ui-pack/src/*"
       ],
       "@kapoo/common": [
         "packages/common/src/index.ts"
       ],
-      "@kapoo/root-ui-pack": [
-        "packages/root-ui-pack/src/index.ts"
-      ],
-      "@kapoo/root-ui-pack/server": [
-        "packages/root-ui-pack/src/server.ts"
+      "@kapoo/root-ui-pack/*": [
+        "packages/root-ui-pack/src/*"
       ],
       "@kapoo/state": [
         "packages/state/src/index.ts"
