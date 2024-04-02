@@ -10,20 +10,42 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@kapoo/api": ["packages/api/src/index.ts"],
-      "@kapoo/blog-ui-pack": ["packages/blog-ui-pack/src/index.ts"],
-      "@kapoo/blog-ui-pack/server": ["packages/blog-ui-pack/src/server.ts"],
-      "@kapoo/common": ["packages/common/src/index.ts"],
-      "@kapoo/root-ui-pack": ["packages/root-ui-pack/src/index.ts"],
-      "@kapoo/root-ui-pack/server": ["packages/root-ui-pack/src/server.ts"],
-      "@kapoo/state": ["packages/state/src/index.ts"],
-      "@kapoo/ui-pack/*": ["packages/ui-pack/src/*"]
+      "@kapoo/api": [
+        "packages/api/src/index.ts"
+      ],
+      "@kapoo/blog-ui-pack": [
+        "packages/blog-ui-pack/src/index.ts"
+      ],
+      "@kapoo/blog-ui-pack/server": [
+        "packages/blog-ui-pack/src/server.ts"
+      ],
+      "@kapoo/common": [
+        "packages/common/src/index.ts"
+      ],
+      "@kapoo/root-ui-pack": [
+        "packages/root-ui-pack/src/index.ts"
+      ],
+      "@kapoo/root-ui-pack/server": [
+        "packages/root-ui-pack/src/server.ts"
+      ],
+      "@kapoo/state": [
+        "packages/state/src/index.ts"
+      ],
+      "@kapoo/ui-pack/*": [
+        "packages/ui-pack/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
