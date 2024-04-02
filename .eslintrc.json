@@ -22,9 +22,36 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
+                "sourceTag": "app:root",
                 "onlyDependOnLibsWithTags": [
-                  "*"
+                  "lib:root",
+                  "lib:shared"
+                ]
+              },
+              {
+                "sourceTag": "app:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:blog",
+                  "lib:shared"
+                ]
+              },
+              {
+                "sourceTag": "lib:root",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared"
+                ]
+              },
+              {
+                "sourceTag": "lib:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared"
+                ]
+              },
+              {
+                "sourceTag": "name:ui-pack",
+                "onlyDependOnLibsWithTags": [
+                  "!name:api",
+                  "!name:state"
                 ]
               }
             ]
@@ -38,8 +65,7 @@
         "*.tsx"
       ],
       "extends": [
-        "plugin:@nx/typescript",
-        "@itcode-dev/eslint-config/react-ts"
+        "plugin:@nx/typescript"
       ],
       "rules": {
         "indent": [

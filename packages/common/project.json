@@ -3,7 +3,10 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/common/src",
   "projectType": "library",
-  "tags": [],
+  "tags": [
+    "lib:shared",
+    "name:common"
+  ],
   "// targets": "to see all targets run: nx show project common --web",
   "targets": {}
 }

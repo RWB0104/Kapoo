@@ -3,7 +3,10 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/root",
   "projectType": "application",
-  "tags": [],
+  "tags": [
+    "app:root",
+    "name:root"
+  ],
   "// targets": "to see all targets run: nx show project root --web",
   "targets": {}
 }
