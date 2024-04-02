@@ -3,7 +3,7 @@
  *
  * @returns {Promise} 스크리너 리스트
  *
- * @throws {Response} Response
+ * @throws {Response} 비동기 string 배열
  */
 export async function getScreenerList(): Promise<string[]>
 {
