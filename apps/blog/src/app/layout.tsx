@@ -5,6 +5,7 @@
  * @since 2024.03.31 Sun 02:51:31
  */
 
+import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
 import CssBaseline from '@mui/material/CssBaseline';
 import { PropsWithChildren, ReactNode } from 'react';
 
@@ -27,9 +28,11 @@ export default function RootLayout({ children }: PropsWithChildren): ReactNode
 	return (
 		<html lang='ko'>
 			<body>
-				<CssBaseline />
+				<AppThemeProvider>
+					<CssBaseline />
 
-				{children}
+					{children}
+				</AppThemeProvider>
 			</body>
 		</html>
 	);

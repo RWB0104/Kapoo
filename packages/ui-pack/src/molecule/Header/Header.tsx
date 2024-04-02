@@ -6,9 +6,9 @@
  */
 
 import Menu from '@mui/icons-material/Menu';
-import { IconButton } from '@mui/material';
+import { IconButton, PaletteMode } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import Stack, { StackProps } from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import { MouseEventHandler, ReactNode } from 'react';
@@ -19,6 +19,11 @@ const cn = classNames.bind(styles);
 
 export interface HeaderProps extends BoxProps
 {
+	/**
+	 * 테마
+	 */
+	theme?: PaletteMode;
+
 	/**
 	 * 로고 URL
 	 */
@@ -47,13 +52,30 @@ export interface HeaderProps extends BoxProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function Header({ logo, title, isTransparent, onMenuClick }: HeaderProps): ReactNode
+export default function Header({ theme, logo, title, isTransparent, onMenuClick, ...props }: HeaderProps): ReactNode
 {
+	const calc = <T, >(transparent?: T, light?: T, dark?: T): T | undefined =>
+	{
+		// 투명일 경우
+		if (isTransparent)
+		{
+			return transparent;
+		}
+
+		if (theme === 'dark')
+		{
+			return dark;
+		}
+
+		return light;
+	};
+
 	return (
 		<Box
-			bgcolor={isTransparent ? undefined : '#121212'}
+			bgcolor={calc<BoxProps['bgcolor']>('transparent', 'white', '#121212')}
 			borderBottom={1}
-			borderColor={isTransparent ? '#FFFFFF30' : 'transparent'}
+			borderColor={calc<BoxProps['borderColor']>('#FFFFFF30', 'transparent', 'transparent')}
+			boxShadow={calc<BoxProps['boxShadow']>(undefined, '0px 0px 5px #00000050', '0px 0px 5px #00000050')}
 			className={cn('header', { isTransparent: true })}
 			component='header'
 			data-component='Header'
@@ -63,8 +85,9 @@ export default function Header({ logo, title, isTransparent, onMenuClick }: Head
 			top={0}
 			width='100%'
 			zIndex={10000}
+			{...props}
 		>
-			<Stack color='white' direction='row' gap={2} height='100%' width='100%'>
+			<Stack color={calc<StackProps['color']>('white', undefined, undefined)} direction='row' gap={2} height='100%' width='100%'>
 				<IconButton color='inherit' onClick={onMenuClick}>
 					<Menu htmlColor='inherit' />
 				</IconButton>
