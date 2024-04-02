@@ -12,9 +12,9 @@ export async function getScreenerList(): Promise<string[]>
 	// 정상 응답일 경우
 	if (response.ok)
 	{
-		const json = await response.json();
+		const json = await response.json<string[]>();
 
-		return json as string[];
+		return json;
 	}
 
 	throw response;
