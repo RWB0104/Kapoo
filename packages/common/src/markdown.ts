@@ -7,14 +7,14 @@
 
 'use server';
 
-import matter, { GrayMatterFile } from 'gray-matter';
+import matter from 'gray-matter';
 
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 import { markdownRegex } from './regex';
 
-export interface MarkdownAllListItem
+export interface MarkdownAllListItemProps
 {
 	/**
 	 * 이름
@@ -32,7 +32,7 @@ export interface MarkdownAllListItem
 	fullname: string;
 }
 
-export interface MarkdownToc
+export interface MarkdownTocProps
 {
 	/**
 	 * 레벨
@@ -45,7 +45,7 @@ export interface MarkdownToc
 	text: string;
 }
 
-export interface MarkdownDetail<T = Record<string, string>>
+export interface MarkdownDetailProps<T = Record<string, string>>
 {
 	/**
 	 * 메타
@@ -65,7 +65,7 @@ export interface MarkdownDetail<T = Record<string, string>>
 	/**
 	 * TOC
 	 */
-	toc: MarkdownToc[];
+	toc: MarkdownTocProps[];
 }
 
 /**
@@ -75,23 +75,23 @@ export interface MarkdownDetail<T = Record<string, string>>
  *
  * @returns {Promise} 비동기 MarkdownAllListItem[]
  */
-export async function getMarkdownAllList(path: string): Promise<MarkdownAllListItem[]>
+export async function getMarkdownAllList(path: string): Promise<MarkdownAllListItemProps[]>
 {
 	const dir = join(process.cwd(), path);
 
 	return readdirSync(dir)
 		.filter((filename) => markdownRegex.fullname.test(filename))
-		.map<MarkdownAllListItem>((filename) => ({
+		.map<MarkdownAllListItemProps>((filename) => ({
 			filename,
 			fullname: join(dir, filename),
 			name: markdownRegex.fullname.exec?.(filename)?.[1] || filename
 		}));
 }
 
-export async function getMarkdownToc(body: string): Promise<MarkdownToc[]>
+export async function getMarkdownToc(body: string): Promise<MarkdownTocProps[]>
 {
 	const flag = true;
-	const list: MarkdownToc[] = [];
+	const list: MarkdownTocProps[] = [];
 
 	const temp = body.replace(markdownRegex.codeBlock, '');
 
@@ -114,7 +114,7 @@ export async function getMarkdownToc(body: string): Promise<MarkdownToc[]>
 	return list;
 }
 
-export async function getMarkdownDetail<T = Record<string, string>>(fullname: string): Promise<MarkdownDetail<T>>
+export async function getMarkdownDetail<T = Record<string, string>>(fullname: string): Promise<MarkdownDetailProps<T>>
 {
 	const names = markdownRegex.nameToken.exec(fullname);
 

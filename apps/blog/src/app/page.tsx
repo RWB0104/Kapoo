@@ -9,9 +9,9 @@ import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import Screener from '@kapoo/ui-pack/organism/Screener';
 
 /**
- * 앱 페이지 컴포넌트 반환 메서드
+ * 앱 페이지 컴포넌트 반환 비동기 메서드
  *
- * @returns {JSX.Element} JSX
+ * @returns {Promise} 비동기 JSX
  */
 export default async function AppPage(): Promise<JSX.Element>
 {
