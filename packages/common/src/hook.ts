@@ -5,6 +5,8 @@
  * @since 2024.04.01 Mon 09:46:48
  */
 
+'use client';
+
 import { useEffect } from 'react';
 
 export type UseIntersectionObserverCallback = (isShow: boolean) => void;

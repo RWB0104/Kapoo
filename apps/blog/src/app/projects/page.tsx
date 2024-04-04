@@ -5,6 +5,8 @@
  * @since 2024.03.31 Sun 04:54:47
  */
 
+import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
+import Screener from '@kapoo/ui-pack/organism/Screener';
 import { ReactNode } from 'react';
 
 /**
@@ -15,8 +17,8 @@ import { ReactNode } from 'react';
 export default function ProjectsPage(): ReactNode
 {
 	return (
-		<div>
-			/projects
-		</div>
+		<PageTemplate>
+			<Screener />
+		</PageTemplate>
 	);
 }

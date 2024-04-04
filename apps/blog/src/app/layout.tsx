@@ -6,7 +6,6 @@
  */
 
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
-import CssBaseline from '@mui/material/CssBaseline';
 import { PropsWithChildren, ReactNode } from 'react';
 
 import './global.scss';
@@ -29,8 +28,6 @@ export default function RootLayout({ children }: PropsWithChildren): ReactNode
 		<html lang='ko'>
 			<body>
 				<AppThemeProvider>
-					<CssBaseline />
-
 					{children}
 				</AppThemeProvider>
 			</body>

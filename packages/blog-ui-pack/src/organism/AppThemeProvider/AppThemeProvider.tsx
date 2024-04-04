@@ -8,7 +8,8 @@
 'use client';
 
 import { themeStore } from '@kapoo/state';
-import { Button, PaletteMode, ThemeProvider, createTheme } from '@mui/material';
+import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 import { PropsWithChildren, ReactNode, useCallback } from 'react';
 
 /**
@@ -20,7 +21,7 @@ import { PropsWithChildren, ReactNode, useCallback } from 'react';
  */
 export default function AppThemeProvider({ children }: PropsWithChildren): ReactNode
 {
-	const { theme, toggleTheme } = themeStore();
+	const { theme } = themeStore();
 
 	const getTheme = useCallback((theme: PaletteMode) => createTheme({
 		palette: { mode: theme },
@@ -29,9 +30,9 @@ export default function AppThemeProvider({ children }: PropsWithChildren): React
 
 	return (
 		<ThemeProvider theme={getTheme(theme)}>
+			<CssBaseline />
+
 			{children}
-			{theme}
-			<Button onClick={toggleTheme}>테스트</Button>
 		</ThemeProvider>
 	);
 }

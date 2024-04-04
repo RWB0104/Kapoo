@@ -5,6 +5,8 @@
  * @since 2024.03.31 Sun 04:53:40
  */
 
+import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
+import Screener from '@kapoo/ui-pack/organism/Screener';
 import { ReactNode } from 'react';
 
 /**
@@ -15,8 +17,8 @@ import { ReactNode } from 'react';
 export default function PostsPage(): ReactNode
 {
 	return (
-		<div>
-			/posts
-		</div>
+		<PageTemplate>
+			<Screener />
+		</PageTemplate>
 	);
 }

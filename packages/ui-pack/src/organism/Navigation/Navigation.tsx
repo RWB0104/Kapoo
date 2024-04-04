@@ -8,7 +8,6 @@
 'use client';
 
 import { useIntersectionObserver } from '@kapoo/common';
-import { themeStore } from '@kapoo/state';
 import Box from '@mui/material/Box';
 import { ReactNode, useCallback, useState } from 'react';
 
@@ -17,6 +16,11 @@ import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
 
 export interface NavigationProps
 {
+	/**
+	 * 테마
+	 */
+	theme?: HeaderProps['theme'];
+
 	/**
 	 * 로고 URL
 	 */
@@ -40,13 +44,11 @@ export interface NavigationProps
  *
  * @returns {ReactNode} ReactNode
  */
-export default function Navigation({ logo, title, items }: NavigationProps): ReactNode
+export default function Navigation({ theme, logo, title, items }: NavigationProps): ReactNode
 {
 	const [ isTopState, setTopState ] = useState(true);
 	const [ isOpenState, setOpenState ] = useState(false);
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
-
-	const { theme } = themeStore();
 
 	useIntersectionObserver(domState, setTopState);
 
@@ -62,7 +64,14 @@ export default function Navigation({ logo, title, items }: NavigationProps): Rea
 
 	return (
 		<Box data-component='Navigation' ref={setDomState}>
-			<Header isTransparent={isTopState} logo={logo} theme={theme} title={title} onMenuClick={handleMenuClick} />
+			<Header
+				isTransparent={isTopState}
+				logo={logo}
+				theme={theme}
+				title={title}
+				onMenuClick={handleMenuClick}
+			/>
+
 			<Sidebar items={items} open={isOpenState} onClose={handleClose} />
 		</Box>
 	);

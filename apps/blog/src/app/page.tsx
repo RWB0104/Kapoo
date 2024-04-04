@@ -5,39 +5,19 @@
  * @since 2024.03.31 Sun 04:48:01
  */
 
-import Navigation from '@kapoo/ui-pack/organism/Navigation';
+import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import Screener from '@kapoo/ui-pack/organism/Screener';
-import { ReactNode } from 'react';
 
 /**
  * 앱 페이지 컴포넌트 반환 메서드
  *
  * @returns {ReactNode} ReactNode
  */
-export default function AppPage(): ReactNode
+export default async function AppPage(): Promise<JSX.Element>
 {
 	return (
-		<div data-component='Index'>
-			<Navigation />
+		<PageTemplate>
 			<Screener />
-
-			<div>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-				<p>2342423</p>
-			</div>
-		</div>
+		</PageTemplate>
 	);
 }
