@@ -6,4 +6,6 @@
  */
 
 export * from './hook';
+export * from './markdown';
+export * from './regex';
 export * from './util';
