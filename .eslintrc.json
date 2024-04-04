@@ -50,6 +50,7 @@
               {
                 "sourceTag": "name:ui-pack",
                 "onlyDependOnLibsWithTags": [
+                  "name:api",
                   "name:common"
                 ]
               }
