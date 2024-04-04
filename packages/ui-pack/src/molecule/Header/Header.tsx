@@ -92,12 +92,10 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 					<Menu htmlColor='inherit' />
 				</IconButton>
 
-				<Stack alignItems='center' direction='row' gap={1}>
+				<Stack alignItems='center' direction='row' gap={2}>
 					<img alt={title} height={32} src={logo} width={32} />
 
 					<Typography className={cn('title')}>{title}</Typography>
-
-					{isTransparent ? 'isTopState' : 'basic'}
 				</Stack>
 			</Stack>
 		</Box>

@@ -21,7 +21,7 @@ export default function PageTemplate({ children }: PropsWithChildren): JSX.Eleme
 {
 	return (
 		<Box component='main' data-component='PageTemplate'>
-			<Navigation />
+			<Navigation logo='/logo.png' title={process.env.TITLE} />
 
 			{children}
 

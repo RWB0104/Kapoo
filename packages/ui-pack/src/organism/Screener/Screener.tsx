@@ -85,7 +85,7 @@ export default async function Screener({ width = '100%', height = '100vh', src, 
 						className={cn('cover')}
 						controls={false}
 						height='100%'
-						src={`${list[getRandom(list)]}|||`}
+						src={list[getRandom(list)]}
 						width='100%'
 						autoPlay
 						loop
