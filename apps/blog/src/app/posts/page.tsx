@@ -7,14 +7,13 @@
 
 import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import Screener from '@kapoo/ui-pack/organism/Screener';
-import { ReactNode } from 'react';
 
 /**
  * 게시글 페이지 컴포넌트 반환 메서드
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function PostsPage(): ReactNode
+export default function PostsPage(): JSX.Element
 {
 	return (
 		<PageTemplate>

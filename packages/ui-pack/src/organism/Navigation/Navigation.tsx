@@ -9,7 +9,7 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
-import { ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
 import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
@@ -42,9 +42,9 @@ export interface NavigationProps
  *
  * @param {NavigationProps} param0: NavigationProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function Navigation({ theme, logo, title, items }: NavigationProps): ReactNode
+export default function Navigation({ theme, logo, title, items }: NavigationProps): JSX.Element
 {
 	const [ isTopState, setTopState ] = useState(true);
 	const [ isOpenState, setOpenState ] = useState(false);

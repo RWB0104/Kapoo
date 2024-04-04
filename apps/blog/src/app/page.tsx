@@ -11,7 +11,7 @@ import Screener from '@kapoo/ui-pack/organism/Screener';
 /**
  * 앱 페이지 컴포넌트 반환 메서드
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
 export default async function AppPage(): Promise<JSX.Element>
 {

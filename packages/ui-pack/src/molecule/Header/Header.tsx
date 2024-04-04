@@ -11,7 +11,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import Stack, { StackProps } from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
-import { MouseEventHandler, ReactNode } from 'react';
+import { MouseEventHandler } from 'react';
 
 import styles from './Header.module.scss';
 
@@ -50,9 +50,9 @@ export interface HeaderProps extends BoxProps
  *
  * @param {HeaderProps} param0: HeaderProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function Header({ theme, logo, title, isTransparent, onMenuClick, ...props }: HeaderProps): ReactNode
+export default function Header({ theme, logo, title, isTransparent, onMenuClick, ...props }: HeaderProps): JSX.Element
 {
 	const calc = <T, >(transparent?: T, light?: T, dark?: T): T | undefined =>
 	{

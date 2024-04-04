@@ -7,7 +7,6 @@
 
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
-import { ReactNode } from 'react';
 
 export interface SidebarItem
 {
@@ -40,9 +39,9 @@ export interface SidebarProps extends DrawerProps
  *
  * @param {SidebarProps} param0: SidebarProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function Sidebar({ ...props }: SidebarProps): ReactNode
+export default function Sidebar({ ...props }: SidebarProps): JSX.Element
 {
 	return (
 		<Drawer data-component='Sidebar' {...props}>

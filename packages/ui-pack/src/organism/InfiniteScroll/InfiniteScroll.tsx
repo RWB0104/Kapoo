@@ -9,7 +9,7 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
-import { ReactNode, useRef } from 'react';
+import { useRef } from 'react';
 
 export interface InfiniteScrollProps extends BoxProps
 {
@@ -24,9 +24,9 @@ export interface InfiniteScrollProps extends BoxProps
  *
  * @param {InfiniteScrollProps} param0: InfiniteScrollProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function InfiniteScroll({ children, onEnd, ...props }: InfiniteScrollProps): ReactNode
+export default function InfiniteScroll({ children, onEnd, ...props }: InfiniteScrollProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement>(null);
 

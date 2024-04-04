@@ -11,7 +11,7 @@ import { getScreenerList } from '@kapoo/api';
 import { getRandom } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, useEffect, useMemo, useState } from 'react';
 
 import styles from './Screener.module.scss';
 
@@ -53,9 +53,9 @@ interface ScreenerSource
  *
  * @param {ScreenerProps} param0: ScreenerProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function Screener({ width = '100%', height = '100vh', src }: ScreenerProps): ReactNode
+export default function Screener({ width = '100%', height = '100vh', src }: ScreenerProps): JSX.Element
 {
 	const [ listState, setListState ] = useState<string[]>([]);
 

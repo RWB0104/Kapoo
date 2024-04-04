@@ -10,16 +10,16 @@
 import { themeStore } from '@kapoo/state';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import { PropsWithChildren, ReactNode, useCallback } from 'react';
+import { PropsWithChildren, useCallback } from 'react';
 
 /**
  * 앱 테마 프로바이더 organism 컴포넌트 반환 메서드
  *
  * @param {PropsWithChildren} param0: PropsWithChildren
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function AppThemeProvider({ children }: PropsWithChildren): ReactNode
+export default function AppThemeProvider({ children }: PropsWithChildren): JSX.Element
 {
 	const { theme } = themeStore();
 

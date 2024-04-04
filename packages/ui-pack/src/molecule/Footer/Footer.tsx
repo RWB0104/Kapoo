@@ -6,7 +6,6 @@
  */
 
 import Box, { BoxProps } from '@mui/material/Box';
-import { ReactNode } from 'react';
 
 export interface FooterProps extends BoxProps
 {
@@ -26,9 +25,9 @@ export interface FooterProps extends BoxProps
  *
  * @param {FooterProps} param0: FooterProps
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function Footer({ logo, title, ...props }: FooterProps): ReactNode
+export default function Footer({ logo, title, ...props }: FooterProps): JSX.Element
 {
 	return (
 		<Box component='footer' data-component='Footer' {...props}>

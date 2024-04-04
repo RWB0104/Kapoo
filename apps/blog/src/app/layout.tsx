@@ -6,7 +6,7 @@
  */
 
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 import './global.scss';
 
@@ -20,9 +20,9 @@ export const metadata = {
  *
  * @param {PropsWithChildren} param0: PropsWithChildren
  *
- * @returns {ReactNode} ReactNode
+ * @returns {JSX.Element} JSX
  */
-export default function RootLayout({ children }: PropsWithChildren): ReactNode
+export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 {
 	return (
 		<html lang='ko'>
