@@ -5,8 +5,6 @@
  * @since 2024.04.03 Wed 09:45:54
  */
 
-'use server';
-
 import matter from 'gray-matter';
 
 import { readFileSync, readdirSync } from 'fs';
@@ -75,7 +73,7 @@ export interface MarkdownDetailProps<T = Record<string, string>>
  *
  * @returns {Promise} 비동기 MarkdownAllListItem[]
  */
-export async function getMarkdownAllList(path: string): Promise<MarkdownAllListItemProps[]>
+export function getMarkdownAllList(path: string): MarkdownAllListItemProps[]
 {
 	const dir = join(process.cwd(), path);
 

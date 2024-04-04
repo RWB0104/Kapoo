@@ -9,6 +9,7 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
+import { usePathname } from 'next/navigation';
 import { useCallback, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
@@ -46,6 +47,8 @@ export interface NavigationProps
  */
 export default function Navigation({ theme, logo, title, items }: NavigationProps): JSX.Element
 {
+	const pathname = usePathname();
+
 	const [ isTopState, setTopState ] = useState(true);
 	const [ isOpenState, setOpenState ] = useState(false);
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
@@ -65,14 +68,19 @@ export default function Navigation({ theme, logo, title, items }: NavigationProp
 	return (
 		<Box data-component='Navigation' ref={setDomState}>
 			<Header
-				isTransparent={isTopState}
+				isTransparent={isTopState && !isOpenState}
 				logo={logo}
 				theme={theme}
 				title={title}
 				onMenuClick={handleMenuClick}
 			/>
 
-			<Sidebar items={items} open={isOpenState} onClose={handleClose} />
+			<Sidebar
+				currentUrl={pathname}
+				items={items}
+				open={isOpenState}
+				onClose={handleClose}
+			/>
 		</Box>
 	);
 }

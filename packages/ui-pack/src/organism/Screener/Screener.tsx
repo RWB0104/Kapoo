@@ -33,6 +33,8 @@ export interface ScreenerProps extends PropsWithChildren
 	src?: string;
 }
 
+const screenList = getScreenerList();
+
 /**
  * 스크리너 organism 컴포넌트 반환 비동기 메서드
  *
@@ -42,7 +44,8 @@ export interface ScreenerProps extends PropsWithChildren
  */
 export default async function Screener({ width = '100%', height = '100vh', src, children }: ScreenerProps): Promise<JSX.Element>
 {
-	const list = await getScreenerList();
+	const list = await screenList;
+	const getVideo = (): string => list[getRandom(list)];
 
 	return (
 		<Box
@@ -85,7 +88,7 @@ export default async function Screener({ width = '100%', height = '100vh', src, 
 						className={cn('cover')}
 						controls={false}
 						height='100%'
-						src={list[getRandom(list)]}
+						src={getVideo()}
 						width='100%'
 						autoPlay
 						loop
