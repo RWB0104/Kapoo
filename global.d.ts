@@ -3,7 +3,7 @@ interface Body
 	json<T = unknown>(): Promise<T>;
 }
 
-interface NextPageProps<T = Record<string, string>, K = Record<string, string>>
+interface NextPageProps<T = void, K = void>
 {
 	/**
 	 * 파라미터
