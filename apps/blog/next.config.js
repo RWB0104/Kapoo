@@ -2,17 +2,13 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const pwa = require('next-pwa')
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
   output: 'export',
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-
-    return config;
-  },
   nx: {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr
@@ -20,9 +16,15 @@ const nextConfig = {
   },
 };
 
+
+const withPwa = pwa({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development'
+})
+
 const plugins = [
   // Add more Next.js plugins to this list if needed.
-  withNx,
+  withNx
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = withPwa(composePlugins(...plugins)(nextConfig));
