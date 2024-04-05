@@ -110,6 +110,13 @@ export function getMarkdownAllList(path: string, params: string[] = []): Markdow
 		}));
 }
 
+/**
+ * 마크다운 TOC 반환 메서드
+ *
+ * @param {string} body: 마크다운 내용
+ *
+ * @returns {MarkdownTocProps[]} 마크다운 TOC 배열
+ */
 export function getMarkdownToc(body: string): MarkdownTocProps[]
 {
 	const flag = true;
@@ -136,6 +143,13 @@ export function getMarkdownToc(body: string): MarkdownTocProps[]
 	return list;
 }
 
+/**
+ * 마크다운 상세정보 반환 메서드
+ *
+ * @param {string} fullname: 전체 경로
+ *
+ * @returns {MarkdownDetailProps} 마크다운 상세 정보
+ */
 export function getMarkdownDetail<T = Record<string, string>>(fullname: string): MarkdownDetailProps<T>
 {
 	const names = markdownRegex.nameToken.exec(fullname);
@@ -146,7 +160,8 @@ export function getMarkdownDetail<T = Record<string, string>>(fullname: string):
 		throw new Error(`[${fullname}] is Invalid markdown file name`);
 	}
 
-	const file = readFileSync(fullname, 'utf-8');
+	const dir = join(process.cwd(), fullname);
+	const file = readFileSync(dir, 'utf-8');
 
 	const { data, content } = matter(file);
 
