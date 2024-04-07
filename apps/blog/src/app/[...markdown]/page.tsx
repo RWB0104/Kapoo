@@ -5,8 +5,11 @@
  * @since 2024.04.05 Fri 18:45:16
  */
 
+import Comment from '@kapoo/blog-ui-pack/organism/Comment';
+import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
+import Screener from '@kapoo/ui-pack/organism/Screener';
 import { Metadata } from 'next';
 
 import { getMarkdownDetailBySlug, getMetadata, markdownPath } from '../../common';
@@ -28,12 +31,18 @@ interface DynamicPageProps
  */
 export default function MarkdownPage({ params: { markdown } }: NextPageProps<DynamicPageProps>): JSX.Element
 {
-	const { body } = getMarkdownDetailBySlug(markdown);
+	const { meta, body } = getMarkdownDetailBySlug(markdown);
 
 	return (
-		<MarkdownViewer>
-			{body}
-		</MarkdownViewer>
+		<PageTemplate>
+			<Screener src={meta.coverImage} />
+
+			<MarkdownViewer>
+				{body}
+			</MarkdownViewer>
+
+			<Comment />
+		</PageTemplate>
 	);
 }
 

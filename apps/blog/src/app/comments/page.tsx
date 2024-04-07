@@ -5,6 +5,7 @@
  * @since 2024.03.31 Sun 05:00:32
  */
 
+import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import Screener from '@kapoo/ui-pack/organism/Screener';
 
@@ -18,6 +19,8 @@ export default function CommentsPage(): JSX.Element
 	return (
 		<PageTemplate>
 			<Screener />
+
+			<Comment />
 		</PageTemplate>
 	);
 }
