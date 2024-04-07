@@ -1,0 +1,11 @@
+.th {
+	border-bottom: 4px double;
+	border-color: gainsboro;
+
+	background-color: #EFEFEF;
+
+	&.dark {
+		background-color: #222222;
+		border-color: #444444;
+	}
+}
