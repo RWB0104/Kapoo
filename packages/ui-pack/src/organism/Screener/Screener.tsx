@@ -5,11 +5,13 @@
  * @since 2024.03.31 Sun 01:44:51
  */
 
-import { getScreenerList } from '@kapoo/api';
+'use client';
+
+import { useGetScreenerList } from '@kapoo/api';
 import { getRandom } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { CSSProperties, PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren, useCallback } from 'react';
 
 import styles from './Screener.module.scss';
 
@@ -33,8 +35,6 @@ export interface ScreenerProps extends PropsWithChildren
 	src?: string;
 }
 
-const screenList = getScreenerList();
-
 /**
  * 스크리너 organism 컴포넌트 반환 비동기 메서드
  *
@@ -42,10 +42,11 @@ const screenList = getScreenerList();
  *
  * @returns {Promise} 비동기 JSX
  */
-export default async function Screener({ width = '100%', height = '100vh', src, children }: ScreenerProps): Promise<JSX.Element>
+export default function Screener({ width = '100%', height = '100vh', src, children }: ScreenerProps): JSX.Element
 {
-	const list = await screenList;
-	const getVideo = (): string => list[getRandom(list)];
+	const { data = [] } = useGetScreenerList();
+
+	const getVideo = useCallback(() => data[getRandom(data)], [ data ]);
 
 	return (
 		<Box

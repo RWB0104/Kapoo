@@ -9,7 +9,7 @@
 
 import { PaletteMode } from '@mui/material';
 import classNames from 'classnames/bind';
-import { BlockquoteHTMLAttributes, ClassAttributes, HTMLAttributes, ThHTMLAttributes, useCallback } from 'react';
+import { BlockquoteHTMLAttributes, ClassAttributes, HTMLAttributes, ImgHTMLAttributes, ThHTMLAttributes, useCallback } from 'react';
 import ReactMarkdown, { ExtraProps, Options } from 'react-markdown';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
@@ -22,6 +22,7 @@ import MarkdownBlockquote from './sub/MarkdownBlockquote';
 import MarkdownCodeBlock from './sub/MarkdownCodeBlock';
 import MarkdownCodeInline from './sub/MarkdownCodeInline';
 import MarkdownHeading, { MarkdownHeadingLevel } from './sub/MarkdownHeading';
+import MarkdownImg from './sub/MarkdownImg';
 import MarkdownTable from './sub/MarkdownTable';
 import MarkdownTd from './sub/MarkdownTd';
 import MarkdownTh from './sub/MarkdownTh';
@@ -31,6 +32,7 @@ const cn = classNames.bind(styles);
 
 type BlockquoteType = ClassAttributes<HTMLQuoteElement> & BlockquoteHTMLAttributes<HTMLQuoteElement> & ExtraProps;
 type CodeType = ClassAttributes<HTMLElement> & HTMLAttributes<HTMLElement> & ExtraProps;
+type ImgType = ClassAttributes<HTMLImageElement> & ImgHTMLAttributes<HTMLImageElement> & ExtraProps;
 type HeadingType = ClassAttributes<HTMLHeadingElement> & HTMLAttributes<HTMLHeadingElement> & ExtraProps;
 type ThType = ClassAttributes<HTMLElement> & ThHTMLAttributes<HTMLElement> & ExtraProps;
 type TrType = ClassAttributes<HTMLTableRowElement> & HTMLAttributes<HTMLTableRowElement> & ExtraProps;
@@ -65,7 +67,8 @@ export default function MarkdownViewer({ theme, className, ...props }: MarkdownV
 
 		return <MarkdownCodeInline theme={theme} {...props} />;
 	}, [ theme ]);
-	const getHeadingTag = useCallback((props: HeadingType, level: MarkdownHeadingLevel) => <MarkdownHeading level={level} {...props} />, []);
+	const getHeading = useCallback((props: HeadingType, level: MarkdownHeadingLevel) => <MarkdownHeading level={level} {...props} />, []);
+	const getImg = useCallback((props: ImgType) => <MarkdownImg theme={theme} {...props} />, [ theme ]);
 	const getTh = useCallback((props: ThType) => <MarkdownTh theme={theme} {...props} />, [ theme ]);
 	const getTr = useCallback((props: TrType) => <MarkdownTr theme={theme} {...props} />, [ theme ]);
 
@@ -79,12 +82,13 @@ export default function MarkdownViewer({ theme, className, ...props }: MarkdownV
 				a: MarkdownA,
 				blockquote: (props) => getBlockquote(props),
 				code: (props) => getCode(props),
-				h1: (props) => getHeadingTag(props, 1),
-				h2: (props) => getHeadingTag(props, 2),
-				h3: (props) => getHeadingTag(props, 3),
-				h4: (props) => getHeadingTag(props, 4),
-				h5: (props) => getHeadingTag(props, 5),
-				h6: (props) => getHeadingTag(props, 6),
+				h1: (props) => getHeading(props, 1),
+				h2: (props) => getHeading(props, 2),
+				h3: (props) => getHeading(props, 3),
+				h4: (props) => getHeading(props, 4),
+				h5: (props) => getHeading(props, 5),
+				h6: (props) => getHeading(props, 6),
+				img: (props) => getImg(props),
 				table: MarkdownTable,
 				td: MarkdownTd,
 				th: (props) => getTh(props),

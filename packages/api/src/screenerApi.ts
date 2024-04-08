@@ -1,3 +1,5 @@
+import { useQuery, UseQueryResult, UseQueryOptions } from '@tanstack/react-query';
+
 /**
  * 스크리너 리스트 반환 API 비동기 메서드
  *
@@ -18,4 +20,20 @@ export async function getScreenerList(): Promise<string[]>
 	}
 
 	throw response;
+}
+
+/**
+ * 스크리너 리스트 반환 API 훅 메서드
+ *
+ * @param {UseQueryOptions} options: UseQueryOptions
+ *
+ * @returns {UseQueryResult} 스크리너 리스트
+ */
+export function useGetScreenerList(options?: UseQueryOptions<string[], Error>): UseQueryResult<string[], Error>
+{
+	return useQuery({
+		queryFn: getScreenerList,
+		queryKey: [ 'useGetScreenerList' ],
+		...options
+	});
 }

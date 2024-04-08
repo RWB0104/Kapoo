@@ -6,6 +6,7 @@
  */
 
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
+import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
 import { PropsWithChildren } from 'react';
 
 import './global.scss';
@@ -27,9 +28,11 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 	return (
 		<html lang='ko'>
 			<body>
-				<AppThemeProvider>
-					{children}
-				</AppThemeProvider>
+				<QueryProvider>
+					<AppThemeProvider>
+						{children}
+					</AppThemeProvider>
+				</QueryProvider>
 			</body>
 		</html>
 	);

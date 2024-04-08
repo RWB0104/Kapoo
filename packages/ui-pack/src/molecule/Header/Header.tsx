@@ -63,6 +63,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 			return transparent;
 		}
 
+		// 다크 테마일 경우
 		if (theme === 'dark')
 		{
 			return dark;
@@ -73,7 +74,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 
 	return (
 		<Box
-			bgcolor={calc<BoxProps['bgcolor']>('transparent', 'white', '#121212')}
+			bgcolor={calc<BoxProps['bgcolor']>('transparent', '#FFFFFF50', '#12121250')}
 			borderBottom={1}
 			borderColor={calc<BoxProps['borderColor']>('#FFFFFF30', 'transparent', 'transparent')}
 			boxShadow={calc<BoxProps['boxShadow']>(undefined, '0px 0px 5px #00000050', '0px 0px 5px #00000050')}
