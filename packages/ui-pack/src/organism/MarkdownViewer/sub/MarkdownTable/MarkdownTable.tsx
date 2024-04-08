@@ -1,5 +1,5 @@
 /**
- * 마크다운 table 태그 organism 컴포넌트
+ * 마크다운 table 태그 서브 컴포넌트
  *
  * @author RWB
  * @since 2024.04.06 Sat 11:05:08
@@ -17,7 +17,7 @@ const cn = classNames.bind(styles);
 export type MarkdownTableProps = DetailedHTMLProps<TableHTMLAttributes<HTMLTableElement>, HTMLTableElement>;
 
 /**
- * 마크다운 table 태그 organism 컴포넌트 반환 메서드
+ * 마크다운 table 태그 서브 컴포넌트 반환 메서드
  *
  * @param {MarkdownTableProps} param0: MarkdownTableProps
  *

@@ -1,5 +1,5 @@
 /**
- * 마크다운 th 태그 organism 컴포넌트
+ * 마크다운 th 태그 서브 컴포넌트
  *
  * @author RWB
  * @since 2024.04.06 Sat 11:14:22
@@ -22,7 +22,7 @@ export interface MarkdownThProps extends Omit<JSX.IntrinsicElements['th'], 'ref'
 }
 
 /**
- * 마크다운 th 태그 organism 컴포넌트 반환 메서드
+ * 마크다운 th 태그 서브 컴포넌트 반환 메서드
  *
  * @param {MarkdownThProps} param0: MarkdownThProps
  *

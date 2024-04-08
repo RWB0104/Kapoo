@@ -1,5 +1,5 @@
 /**
- * 마크다운 헤딩 태그 organism 컴포넌트
+ * 마크다운 헤딩 태그 서브 컴포넌트
  *
  * @author RWB
  * @since 2024.04.06 Sat 04:45:26
@@ -27,7 +27,7 @@ export interface MarkdownHeadingProps extends DetailedHTMLProps<HTMLAttributes<H
 }
 
 /**
- * 마크다운 헤딩 태그 organism 컴포넌트 반환 메서드
+ * 마크다운 헤딩 태그 서브 컴포넌트 반환 메서드
  *
  * @param {MarkdownHeadingProps} param0: MarkdownHeadingProps
  *

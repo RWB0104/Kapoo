@@ -1,5 +1,5 @@
 /**
- * 마크다운 tr 태그 organism 컴포넌트
+ * 마크다운 tr 태그 서브 컴포넌트
  *
  * @author RWB
  * @since 2024.04.06 Sat 11:22:15
@@ -22,7 +22,7 @@ export interface MarkdownTrProps extends Omit<JSX.IntrinsicElements['tr'], 'ref'
 }
 
 /**
- * 마크다운 tr 태그 organism 컴포넌트 반환 메서드
+ * 마크다운 tr 태그 서브 컴포넌트 반환 메서드
  *
  * @param {MarkdownTrProps} param0: MarkdownTrProps
  *

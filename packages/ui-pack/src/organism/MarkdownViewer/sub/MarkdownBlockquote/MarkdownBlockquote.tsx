@@ -1,5 +1,5 @@
 /**
- * 마크다운 blockquote 태그 organism 컴포넌트
+ * 마크다운 blockquote 태그 서브 컴포넌트
  *
  * @author RWB
  * @since 2024.04.06 Sat 04:19:29
@@ -20,7 +20,7 @@ export interface MarkdownBlockquoteProps extends Omit<DetailedHTMLProps<Blockquo
 }
 
 /**
- * 마크다운 blockquote 태그 organism 컴포넌트 반환 메서드
+ * 마크다운 blockquote 태그 서브 컴포넌트 반환 메서드
  *
  * @param {MarkdownBlockquoteProps} param0: MarkdownBlockquoteProps
  *
