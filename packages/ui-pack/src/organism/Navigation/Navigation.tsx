@@ -57,7 +57,7 @@ export default function Navigation({ theme, logo, title, items }: NavigationProp
 
 	const handleMenuClick = useCallback<Func<HeaderProps['onMenuClick']>>(() =>
 	{
-		setOpenState(true);
+		setOpenState((state) => !state);
 	}, []);
 
 	const handleClose = useCallback<Func<SidebarProps['onClose']>>(() =>

@@ -11,6 +11,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import Stack, { StackProps } from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 import { MouseEventHandler } from 'react';
 
 import styles from './Header.module.scss';
@@ -54,7 +55,7 @@ export interface HeaderProps extends BoxProps
  */
 export default function Header({ theme, logo, title, isTransparent, onMenuClick, ...props }: HeaderProps): JSX.Element
 {
-	const calc = <T, >(transparent?: T, light?: T, dark?: T): T | undefined =>
+	const calc = <T, >(transparent: T, light: T, dark: T): T =>
 	{
 		// 투명일 경우
 		if (isTransparent)
@@ -76,7 +77,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 			borderBottom={1}
 			borderColor={calc<BoxProps['borderColor']>('#FFFFFF30', 'transparent', 'transparent')}
 			boxShadow={calc<BoxProps['boxShadow']>(undefined, '0px 0px 5px #00000050', '0px 0px 5px #00000050')}
-			className={cn('header', { isTransparent: true })}
+			className={cn('header')}
 			component='header'
 			data-component='Header'
 			left={0}
@@ -87,16 +88,18 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 			zIndex={10000}
 			{...props}
 		>
-			<Stack color={calc<StackProps['color']>('white', undefined, undefined)} direction='row' gap={2} height='100%' width='100%'>
+			<Stack alignItems='center' color={calc<StackProps['color']>('white', undefined, undefined)} direction='row' gap={2} height='100%' width='100%'>
 				<IconButton color='inherit' onClick={onMenuClick}>
 					<Menu htmlColor='inherit' />
 				</IconButton>
 
-				<Stack alignItems='center' direction='row' gap={2}>
-					<img alt={title} height={32} src={logo} width={32} />
+				<Link href='/'>
+					<Stack alignItems='center' direction='row' gap={2}>
+						<img alt={title} height={32} src={logo} width={32} />
 
-					<Typography className={cn('title')}>{title}</Typography>
-				</Stack>
+						<Typography className={cn('title')}>{title}</Typography>
+					</Stack>
+				</Link>
 			</Stack>
 		</Box>
 	);

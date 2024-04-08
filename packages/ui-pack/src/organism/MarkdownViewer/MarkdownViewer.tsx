@@ -19,7 +19,8 @@ import remarkMath from 'remark-math';
 import styles from './MarkdownViewer.module.scss';
 import MarkdownA from './sub/MarkdownA';
 import MarkdownBlockquote from './sub/MarkdownBlockquote';
-import MarkdownCodeBlock from './sub/MarkdownCodeBlock.ts/MarkdownCodeBlock';
+import MarkdownCodeBlock from './sub/MarkdownCodeBlock';
+import MarkdownCodeInline from './sub/MarkdownCodeInline';
 import MarkdownHeading, { MarkdownHeadingLevel } from './sub/MarkdownHeading';
 import MarkdownTable from './sub/MarkdownTable';
 import MarkdownTd from './sub/MarkdownTd';
@@ -62,7 +63,7 @@ export default function MarkdownViewer({ theme, className, ...props }: MarkdownV
 			return <MarkdownCodeBlock languageName={regex[2]} theme={theme} {...props} />;
 		}
 
-		return <p>234</p>;
+		return <MarkdownCodeInline theme={theme} {...props} />;
 	}, [ theme ]);
 	const getHeadingTag = useCallback((props: HeadingType, level: MarkdownHeadingLevel) => <MarkdownHeading level={level} {...props} />, []);
 	const getTh = useCallback((props: ThType) => <MarkdownTh theme={theme} {...props} />, [ theme ]);
