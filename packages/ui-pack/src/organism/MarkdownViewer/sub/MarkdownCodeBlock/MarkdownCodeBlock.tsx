@@ -1,3 +1,10 @@
+/**
+ * 마크다운 코드블럭 태그 서브 컴포넌트
+ *
+ * @author RWB
+ * @since 2024.04.08 Mon 09:54:57
+ */
+
 'use client';
 
 import Code from '@mui/icons-material/Code';
@@ -27,6 +34,13 @@ export interface MarkdownCodeBlockProps extends Omit<DetailedHTMLProps<HTMLAttri
 	languageName: string;
 }
 
+/**
+ * 마크다운 코드블럭 태그 서브 컴포넌트 반환 메서드
+ *
+ * @param {MarkdownCodeBlockProps} param0: MarkdownCodeBlockProps
+ *
+ * @return {JSX.Element} JSX
+ */
 export default function MarkdownCodeBlock({ theme, languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
 {
 	const [ aniamteState, setAnimateState ] = useState(false);
@@ -51,7 +65,7 @@ export default function MarkdownCodeBlock({ theme, languageName, children, ...pr
 	}, [ aniamteState, setAnimateState ]);
 
 	return (
-		<Box data-component='MarkdownCode' padding={2} paddingBottom={4} paddingTop={4}>
+		<Box data-component='MarkdownCodeBlock' padding={2} paddingBottom={4} paddingTop={4}>
 			<Stack
 				bgcolor={bgcolor}
 				border='1px solid'
