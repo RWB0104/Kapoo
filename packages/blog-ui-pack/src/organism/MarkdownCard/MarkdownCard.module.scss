@@ -1,0 +1,9 @@
+.thumbnail {
+	overflow: hidden;
+
+	&::after {
+		display: block;
+		content: "";
+		padding-bottom: 70%;
+	}
+}
