@@ -13,14 +13,22 @@ import Home from '@mui/icons-material/Home';
 import Box from '@mui/material/Box';
 import { PropsWithChildren } from 'react';
 
+export interface PageTemplateProps extends PropsWithChildren
+{
+	/**
+	 * 타이틀
+	 */
+	title: string;
+}
+
 /**
  * 페이지 template 컴포넌트 반환 메서드
  *
- * @param {PropsWithChildren} param0: PropsWithChildren
+ * @param {PageTemplateProps} param0: PageTemplateProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function PageTemplate({ children }: PropsWithChildren): JSX.Element
+export default function PageTemplate({ title, children }: PageTemplateProps): JSX.Element
 {
 	const menuList: SidebarItem[] = [
 		{
@@ -50,7 +58,7 @@ export default function PageTemplate({ children }: PropsWithChildren): JSX.Eleme
 			<Navigation
 				items={menuList}
 				logo='/logo.png'
-				title={process.env.TITLE}
+				title={title}
 			/>
 
 			{children}

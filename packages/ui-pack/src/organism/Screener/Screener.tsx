@@ -11,7 +11,7 @@ import { useGetScreenerList } from '@kapoo/api';
 import { getRandom } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { CSSProperties, PropsWithChildren, useCallback } from 'react';
+import { CSSProperties, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
 
 import styles from './Screener.module.scss';
 
@@ -44,9 +44,25 @@ export interface ScreenerProps extends PropsWithChildren
  */
 export default function Screener({ width = '100%', height = '100vh', src, children }: ScreenerProps): JSX.Element
 {
+	const [ isReadyState, setReadyState ] = useState(false);
+
 	const { data = [] } = useGetScreenerList();
 
-	const getVideo = useCallback(() => data[getRandom(data)], [ data ]);
+	const getVideo = useMemo(() => data[getRandom(data)], [ data ]);
+
+	const handleCanPlay = useCallback(() =>
+	{
+		setReadyState(true);
+	}, [ setReadyState ]);
+
+	useEffect(() =>
+	{
+		// 커버가 유효할 경우
+		if (src)
+		{
+			setReadyState(true);
+		}
+	}, [ src ]);
 
 	return (
 		<Box
@@ -58,6 +74,7 @@ export default function Screener({ width = '100%', height = '100vh', src, childr
 		>
 			<Box
 				bgcolor='#00000088'
+				className={(cn('dimmer', { loading: !isReadyState }))}
 				height='100%'
 				left={0}
 				position='absolute'
@@ -89,11 +106,12 @@ export default function Screener({ width = '100%', height = '100vh', src, childr
 						className={cn('cover')}
 						controls={false}
 						height='100%'
-						src={getVideo()}
+						src={getVideo}
 						width='100%'
 						autoPlay
 						loop
 						muted
+						onCanPlay={handleCanPlay}
 					/>
 				)}
 			</Box>

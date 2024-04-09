@@ -16,7 +16,7 @@ import Screener from '@kapoo/ui-pack/organism/Screener';
 export default async function AppPage(): Promise<JSX.Element>
 {
 	return (
-		<PageTemplate>
+		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener />
 		</PageTemplate>
 	);

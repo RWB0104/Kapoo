@@ -23,7 +23,7 @@ export default function ProjectsPage(): JSX.Element
 	const markdown = getMarkdownAllList(markdownPath.project);
 
 	return (
-		<PageTemplate>
+		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener />
 
 			<Stack>

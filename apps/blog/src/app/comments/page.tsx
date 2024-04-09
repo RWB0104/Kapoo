@@ -17,7 +17,7 @@ import Screener from '@kapoo/ui-pack/organism/Screener';
 export default function CommentsPage(): JSX.Element
 {
 	return (
-		<PageTemplate>
+		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener />
 
 			<Comment />

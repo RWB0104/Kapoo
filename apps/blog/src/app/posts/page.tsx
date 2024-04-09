@@ -34,7 +34,7 @@ export default function PostsPage({ searchParams }: PageParams): JSX.Element
 	const markdown = getMarkdownAllList(markdownPath.post);
 
 	return (
-		<PageTemplate>
+		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener />
 
 			<SearchInput name='keyword' />

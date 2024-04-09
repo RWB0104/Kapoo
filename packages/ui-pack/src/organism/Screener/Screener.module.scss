@@ -5,6 +5,14 @@
 	animation: gradient 5s ease infinite;
 }
 
+.dimmer {
+	transition: 0.5s;
+
+	&.loading {
+		backdrop-filter: blur(20px);
+	}
+}
+
 .cover {
 	object-fit: cover;
 	object-position: center;

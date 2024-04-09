@@ -16,7 +16,7 @@ export default function manifest(): MetadataRoute.Manifest
 {
 	return {
 		background_color: '#FFFFFF',
-		description: process.env.DESCRIPTION,
+		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		display: 'standalone',
 		icons: [
 			{
@@ -61,7 +61,7 @@ export default function manifest(): MetadataRoute.Manifest
 				type: 'image/png'
 			}
 		],
-		name: process.env.TITLE,
+		name: process.env.NEXT_PUBLIC_TITLE,
 		scope: './',
 		short_name: 'blog.itcode.dev',
 		start_url: './',

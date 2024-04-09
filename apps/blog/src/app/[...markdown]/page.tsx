@@ -34,7 +34,7 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 	const { meta, body } = getMarkdownDetailBySlug(markdown);
 
 	return (
-		<PageTemplate>
+		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener src={meta.coverImage} />
 
 			<MarkdownViewer>

@@ -55,19 +55,19 @@ export const markdownPath = {
 export function getMetadata(params: BaseMetadataProps | undefined): Metadata
 {
 	const init: BaseMetadataProps = {
-		description: process.env.DESCRIPTION,
+		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		keywords: [],
 		thumbnail: '/thumb.png',
-		title: process.env.TITLE,
+		title: process.env.NEXT_PUBLIC_TITLE,
 		url: '/'
 	};
 
 	const { title, description, keywords, url, thumbnail } = { ...init, ...params };
 
-	const fullTitle = `${title} - ${process.env.TITLE}`;
+	const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_TITLE}`;
 
 	return {
-		applicationName: process.env.TITLE,
+		applicationName: process.env.NEXT_PUBLIC_TITLE,
 		authors: Object.values(author.social).map<Author>(({ link, name }) => ({ name, url: link })),
 		creator: author.nickname,
 		description,
@@ -83,7 +83,7 @@ export function getMetadata(params: BaseMetadataProps | undefined): Metadata
 			description,
 			images: thumbnail,
 			locale: 'ko-KR',
-			siteName: process.env.TITLE,
+			siteName: process.env.NEXT_PUBLIC_TITLE,
 			title: fullTitle,
 			type: 'website',
 			url
