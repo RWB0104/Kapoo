@@ -82,7 +82,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 			component='header'
 			data-component='Header'
 			left={0}
-			padding={1}
+			padding={0.5}
 			position='fixed'
 			top={0}
 			width='100%'
@@ -96,7 +96,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 
 				<Link href='/'>
 					<Stack alignItems='center' direction='row' gap={2}>
-						<img alt={title} height={32} src={logo} width={32} />
+						<img alt={title} height={24} src={logo} width={24} />
 
 						<Typography className={cn('title')}>{title}</Typography>
 					</Stack>

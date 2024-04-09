@@ -78,7 +78,7 @@ export function getMetadata(params: BaseMetadataProps | undefined): Metadata
 			{ rel: 'apple-touch-icon', url: '/favicon.ico' }
 		],
 		keywords,
-		metadataBase: new URL(process.env.BASE_URL || '/'),
+		metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || ''),
 		openGraph: {
 			description,
 			images: thumbnail,

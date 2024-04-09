@@ -38,6 +38,11 @@ export interface MarkdownAllListItemProps
 	path: string;
 
 	/**
+	 * 전체 경로
+	 */
+	fullpath: string;
+
+	/**
 	 * 사용자 파라미터
 	 */
 	params: string[];
@@ -96,18 +101,20 @@ export const markdownRegex = {
  */
 export function getMarkdownAllList(path: string, params: string[] = []): MarkdownAllListItemProps[]
 {
-	const dir = join(process.cwd(), path);
+	const fullpath = join(process.cwd(), path);
 
-	return readdirSync(dir)
+	return readdirSync(fullpath)
 		.filter((filename) => markdownRegex.fullname.test(filename))
 		.map<MarkdownAllListItemProps>((filename) => ({
 			filename,
-			fullname: join(dir, filename),
+			fullname: join(fullpath, filename),
+			fullpath,
 			name: markdownRegex.fullname.exec?.(filename)?.[1] || filename,
 			params,
-			path: dir,
+			path,
 			token: markdownRegex.nameToken.exec?.(filename)?.slice(1, 5) || []
-		}));
+		}))
+		.sort((a, b) => b.filename.localeCompare(a.filename));
 }
 
 /**

@@ -7,9 +7,17 @@
 
 'use client';
 
-import { QueryClient, QueryClientProvider, QueryClientProviderProps } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
+
+export interface QueryProviderProps extends PropsWithChildren
+{
+	/**
+	 * QueryClient
+	 */
+	defaultClient?: QueryClient;
+}
 
 /**
  * react-query 프로바이더 organism 컴포넌트 반환 메서드
@@ -18,12 +26,12 @@ import { useMemo } from 'react';
  *
  * @returns {JSX.Element} JSX
  */
-export default function QueryProvider({ client, children, ...props }: QueryClientProviderProps): JSX.Element
+export default function QueryProvider({ defaultClient, children, ...props }: QueryProviderProps): JSX.Element
 {
-	const clientObj = useMemo(() => client || new QueryClient({ defaultOptions: { queries: { staleTime: 3600 * 1000 } } }), [ client ]);
+	const client = useMemo(() => defaultClient || new QueryClient({ defaultOptions: { queries: { staleTime: 3600 * 1000 } } }), [ defaultClient ]);
 
 	return (
-		<QueryClientProvider client={clientObj} {...props}>
+		<QueryClientProvider client={client} {...props}>
 			{children}
 
 			<ReactQueryDevtools />

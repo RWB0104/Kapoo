@@ -7,8 +7,7 @@
 
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
 import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
-import { PropsWithChildren } from 'react';
-
+import { PropsWithChildren, Suspense } from 'react';
 import './global.scss';
 
 export const metadata = {
@@ -28,11 +27,13 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 	return (
 		<html lang='ko'>
 			<body>
-				<QueryProvider>
-					<AppThemeProvider>
-						{children}
-					</AppThemeProvider>
-				</QueryProvider>
+				<Suspense>
+					<QueryProvider>
+						<AppThemeProvider>
+							{children}
+						</AppThemeProvider>
+					</QueryProvider>
+				</Suspense>
 			</body>
 		</html>
 	);

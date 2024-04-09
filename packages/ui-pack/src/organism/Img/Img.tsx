@@ -5,6 +5,9 @@
  * @since 2024.04.08 Mon 09:53:02
  */
 
+'use client';
+
+import Box, { BoxProps } from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import { DetailedHTMLProps, ImgHTMLAttributes, ReactEventHandler, useCallback, useEffect, useRef, useState } from 'react';
@@ -15,7 +18,11 @@ import DotLottieIcon from '../../atom/DotLottieIcon/DotLottieIcon';
 
 const cn = classNames.bind(styles);
 
-export type ImgProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+export interface ImgProps extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+{
+	containerProps?: BoxProps;
+}
+
 type StatusType = 'loading' | 'error' | 'success';
 
 /**
@@ -25,7 +32,7 @@ type StatusType = 'loading' | 'error' | 'success';
  *
  * @returns {JSX.Element} JSX
  */
-export default function Img({ alt, width, height, className, onError, onLoad, ...props }: ImgProps): JSX.Element
+export default function Img({ containerProps, alt, width, height, className, onError, onLoad, ...props }: ImgProps): JSX.Element
 {
 	const [ statusState, setStatusState ] = useState<StatusType>('loading');
 
@@ -62,7 +69,12 @@ export default function Img({ alt, width, height, className, onError, onLoad, ..
 	}, [ imageRef, setStatusState ]);
 
 	return (
-		<Stack data-component='Img' height={height} position='relative' width={width}>
+		<Box
+			data-component='Img'
+			height={height}
+			width={width}
+			{...containerProps}
+		>
 			<img
 				alt={alt}
 				className={cn('img', { loading: statusState !== 'success' }, className)}
@@ -81,6 +93,6 @@ export default function Img({ alt, width, height, className, onError, onLoad, ..
 					<DotLottieIcon iconName={statusState === 'error' ? 'image-loading-improved' : 'image-loading-improved'} maxWidth={300} width='75%' />
 				</Stack>
 			)}
-		</Stack>
+		</Box>
 	);
 }
