@@ -10,3 +10,11 @@ a {
 .w-full {
 	width: 100%;
 }
+
+body {
+	transition: 0.3s;
+
+	@media (max-width: 600px) {
+		font-size: calc(1rem - 4px);
+	}
+}
