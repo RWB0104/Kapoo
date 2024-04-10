@@ -9,14 +9,16 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
-import { useRef } from 'react';
+import { useState } from 'react';
+
+export type InfiniteScrollEndHandler = () => void;
 
 export interface InfiniteScrollProps extends BoxProps
 {
 	/**
 	 * 스크롤 마지막 이벤트 메서드
 	 */
-	onEnd?: FunctionConstructor;
+	onEnd?: InfiniteScrollEndHandler;
 }
 
 /**
@@ -28,22 +30,22 @@ export interface InfiniteScrollProps extends BoxProps
  */
 export default function InfiniteScroll({ children, onEnd, ...props }: InfiniteScrollProps): JSX.Element
 {
-	const ref = useRef<HTMLDivElement>(null);
+	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 
-	useIntersectionObserver(ref.current, (isShow) =>
+	useIntersectionObserver(domState, (isShow) =>
 	{
 		// DOM이 보일 경우
 		if (isShow)
 		{
 			onEnd?.();
 		}
-	}, { rootMargin: '0px 0px 16px 0px' });
+	}, { rootMargin: '0px 0px 20px 0px' });
 
 	return (
-		<Box data-component='InfiniteScroll' ref={ref} {...props}>
+		<Box data-component='InfiniteScroll' {...props}>
 			{children}
 
-			{children ? <Box width='100%' /> : null}
+			{children ? <Box ref={setDomState} width='100%' /> : null}
 		</Box>
 	);
 }

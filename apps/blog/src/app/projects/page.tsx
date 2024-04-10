@@ -5,30 +5,58 @@
  * @since 2024.03.31 Sun 04:54:47
  */
 
+import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/common';
+import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
 import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import Screener from '@kapoo/ui-pack/organism/Screener';
-import Stack from '@mui/material/Stack';
-import Link from 'next/link';
+import Container from '@mui/material/Container';
 
-import { markdownPath } from '../../common';
+interface PathParams
+{
+	/**
+	 * 페이지
+	 */
+	page: number;
+
+	/**
+	 * 카테고리
+	 */
+	category?: string[];
+
+	/**
+	 * 키워드
+	 */
+	keyword?: string;
+}
+
+type PageParams = NextPageProps<unknown, PathParams>;
 
 /**
  * 프로젝트 페이지 컴포넌트 반환 메서드
  *
  * @returns {JSX.Element} JSX
  */
-export default function ProjectsPage(): JSX.Element
+export default function ProjectsPage({ searchParams }: PageParams): JSX.Element
 {
-	const markdown = getMarkdownAllList(markdownPath.project);
+	const page = searchParams?.page || 1;
+
+	const markdown = getMarkdownAllList(markdownPath.project)
+		.map(({ token }) =>
+		{
+			const slug = [ 'projects', ...token ];
+			return getMarkdownDetailBySlug(slug);
+		});
+
+	const filteredMarkdown = markdown.slice(0, page * 6);
 
 	return (
 		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
 			<Screener />
 
-			<Stack>
-				{markdown.map(({ token, fullname }) => <Link href={`/projects/${token.join('/')}`} key={fullname}>/projects/{token.join('/')}</Link>)}
-			</Stack>
+			<Container>
+				<MarkdownGrid list={filteredMarkdown} />
+			</Container>
 		</PageTemplate>
 	);
 }

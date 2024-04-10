@@ -5,6 +5,7 @@
  * @since 2024.04.05 Fri 18:45:16
  */
 
+import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/common';
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
@@ -12,7 +13,7 @@ import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import Screener from '@kapoo/ui-pack/organism/Screener';
 import { Metadata } from 'next';
 
-import { getMarkdownDetailBySlug, getMetadata, markdownPath } from '../../common';
+import { getMetadata } from '../../common';
 
 interface DynamicPageProps
 {

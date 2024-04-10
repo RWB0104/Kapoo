@@ -6,7 +6,6 @@
  */
 
 import { author } from '@kapoo/common';
-import { MarkdownDetailProps, getMarkdownDetail } from '@kapoo/markdown-kit';
 import { Metadata } from 'next';
 import { Author } from 'next/dist/lib/metadata/types/metadata-types';
 
@@ -37,13 +36,6 @@ export interface BaseMetadataProps
 	 */
 	thumbnail?: string;
 }
-
-export const markdownBasePath = 'src/markdown';
-
-export const markdownPath = {
-	post: `${markdownBasePath}/posts`,
-	project: `${markdownBasePath}/projects`
-};
 
 /**
  * 메타데이터 반환 메서드
@@ -96,21 +88,4 @@ export function getMetadata(params: BaseMetadataProps | undefined): Metadata
 			title: fullTitle
 		}
 	};
-}
-
-/**
- * slug별 마크다운 상세 반환 메서드
- *
- * @param {string[]} slug: slug
- *
- * @returns {MarkdownDetailProps} 마크다운 상세
- */
-export function getMarkdownDetailBySlug(slug: string[]): MarkdownDetailProps<MarkdownHeaderProps>
-{
-	const type = slug[0];
-	const filename = slug.slice(1, 5).join('-');
-
-	const dir = `${markdownBasePath}/${type}/${filename}.md`;
-
-	return getMarkdownDetail<MarkdownHeaderProps>(dir);
 }

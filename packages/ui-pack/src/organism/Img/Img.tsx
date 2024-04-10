@@ -72,6 +72,7 @@ export default function Img({ containerProps, alt, width, height, className, onE
 		<Box
 			data-component='Img'
 			height={height}
+			position='relative'
 			width={width}
 			{...containerProps}
 		>
@@ -89,8 +90,8 @@ export default function Img({ containerProps, alt, width, height, className, onE
 			/>
 
 			{statusState === 'success' ? null : (
-				<Stack alignItems='center' height={height} justifyContent='center' left={0} position='absolute' top={0} width={width}>
-					<DotLottieIcon iconName={statusState === 'error' ? 'image-loading-improved' : 'image-loading-improved'} maxWidth={300} width='75%' />
+				<Stack alignItems='center' height='100%' justifyContent='center' left={0} position='absolute' top={0} width='100%'>
+					<DotLottieIcon iconName='image-loading-improved' />
 				</Stack>
 			)}
 		</Box>

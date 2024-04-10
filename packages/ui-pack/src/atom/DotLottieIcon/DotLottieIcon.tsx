@@ -7,7 +7,12 @@
 
 import { DotLottiePlayer, Props } from '@dotlottie/react-player';
 import { Stack } from '@mui/material';
+import classNames from 'classnames/bind';
 import { CSSProperties } from 'react';
+
+import styles from './DotLottieIcon.module.scss';
+
+const cn = classNames.bind(styles);
 
 export const icons = [
 	'image-loading-improved',
@@ -74,12 +79,13 @@ export interface DotLottieIconProps extends Omit<Props, 'src'>
  *
  * @returns {JSX.Element} JSX
  */
-export default function DotLottieIcon({ iconName, position, width = '100%', height = '100%', maxWidth, maxHeight, autoplay = true, loop = true, ...props }: DotLottieIconProps): JSX.Element
+export default function DotLottieIcon({ iconName, position, width = '100%', height = '100%', maxWidth, maxHeight, autoplay = true, loop = true, className, ...props }: DotLottieIconProps): JSX.Element
 {
 	return (
-		<Stack data-component='DotLottieIcon' height='100%' maxHeight={maxHeight} maxWidth={maxWidth} position={position} width='100%'>
+		<Stack data-component='DotLottieIcon' height={height} maxHeight={maxHeight} maxWidth={maxWidth} position={position} width={width}>
 			<DotLottiePlayer
 				autoplay={autoplay}
+				className={cn('dot-lottie', className)}
 				loop={loop}
 				src={`https://project.itcode.dev/lottie/lottie/${iconName}.lottie`}
 				{...props}
