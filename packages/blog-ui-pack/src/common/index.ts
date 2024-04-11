@@ -9,6 +9,14 @@ import { MarkdownDetailProps, getMarkdownDetail } from '@kapoo/markdown-kit';
 
 export type MarkdownType = 'posts' | 'projects';
 
+export interface BlogMarkdownDetailProps<T = Record<string, string>> extends MarkdownDetailProps<T>
+{
+	/**
+	 * 요약
+	 */
+	summary: string;
+}
+
 export interface MarkdownHeaderProps
 {
 	/**
@@ -102,14 +110,26 @@ export const markdownPath = {
  *
  * @param {string[]} slug: slug
  *
- * @returns {MarkdownDetailProps} 마크다운 상세
+ * @returns {BlogMarkdownDetailProps} 마크다운 상세
  */
-export function getMarkdownDetailBySlug(slug: string[]): MarkdownDetailProps<MarkdownHeaderProps>
+export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps<MarkdownHeaderProps>
 {
 	const type = slug[0];
 	const filename = slug.slice(1, 5).join('-');
 
 	const dir = `${markdownBasePath}/${type}/${filename}.md`;
 
-	return getMarkdownDetail<MarkdownHeaderProps>(dir);
+	const raw = getMarkdownDetail<MarkdownHeaderProps>(dir);
+
+	const summary = [
+		raw.meta.title,
+		raw.meta.excerpt,
+		raw.meta.category,
+		...raw.meta.tag
+	].join('|||').toLowerCase();
+
+	return {
+		...raw,
+		summary
+	};
 }

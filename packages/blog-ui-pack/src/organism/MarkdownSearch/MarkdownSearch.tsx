@@ -34,6 +34,8 @@ export default function MarkdownSearch(): JSX.Element
 		// 키워드가 두 글자 이상일 경우
 		if (currentTarget.value.length > 1)
 		{
+			urlParams.delete('page');
+			urlParams.delete('category');
 			urlParams.set(name, currentTarget.value);
 		}
 

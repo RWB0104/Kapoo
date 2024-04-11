@@ -7,13 +7,12 @@
 
 'use client';
 
-import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import InfiniteScroll from '@kapoo/ui-pack/organism/InfiniteScroll';
 import { Grid } from '@mui/material';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MouseEventHandler, useCallback, useEffect, useMemo } from 'react';
 
-import { MarkdownHeaderProps } from '../../common';
+import { BlogMarkdownDetailProps, MarkdownHeaderProps } from '../../common';
 import MarkdownCard from '../MarkdownCard';
 
 export interface MarkdownGridProps
@@ -21,7 +20,7 @@ export interface MarkdownGridProps
 	/**
 	 * 리스트
 	 */
-	list: MarkdownDetailProps<MarkdownHeaderProps>[];
+	list: BlogMarkdownDetailProps<MarkdownHeaderProps>[];
 }
 
 /**
@@ -50,6 +49,27 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 		replace(`${window.location.pathname}?${urlParams.toString()}`, { scroll: false });
 	}, [ replace ]);
 
+	const filteredList = useMemo(() => list.filter(({ meta, summary }) =>
+	{
+		let matched = meta.publish;
+
+		// 카테고리가 하나 이상 선택된 경우
+		if (category.length > 0)
+		{
+			matched = matched && category.includes(meta.category);
+		}
+
+		// 키워드가 하나 이상 입력된 경우
+		if (keyword)
+		{
+			matched = matched && summary.includes(keyword.toLowerCase());
+		}
+
+		return matched;
+	}), [ list, category, keyword ]);
+
+	const pageFilteredList = useMemo(() => filteredList.slice(0, page * 6), [ filteredList, page ]);
+
 	const handleClick = useCallback<MouseEventHandler<HTMLButtonElement>>(() =>
 	{
 		sessionStorage.setItem('scroll', `${window.scrollY}`);
@@ -69,52 +89,26 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 	}, []);
 
 	return (
-		<InfiniteScroll data-component='MarkdownGrid' onEnd={handleEnd}>
+		<InfiniteScroll data-component='MarkdownGrid' disabled={pageFilteredList.length >= filteredList.length} onEnd={handleEnd}>
 			<Grid spacing={4} container>
-				{list.filter(({ meta }) =>
+				{pageFilteredList.map(({ meta, urls }) =>
 				{
-					const summary = [
-						meta.title,
-						meta.excerpt,
-						meta.category,
-						...meta.tag
-					].join('|||').toLowerCase();
+					const href = [ meta.type, ...urls ].join('/');
 
-					let matched = meta.publish;
-
-					// 카테고리가 하나 이상 선택된 경우
-					if (category.length > 0)
-					{
-						matched = category.includes(meta.category);
-					}
-
-					// 키워드가 하나 이상 입력된 경우
-					if (keyword)
-					{
-						matched = summary.includes(keyword.toLowerCase());
-					}
-
-					return matched;
-				})
-					.slice(0, page * 6)
-					.map(({ meta, urls }) =>
-					{
-						const href = [ meta.type, ...urls ].join('/');
-
-						return (
-							<Grid key={href} md={4} sm={6} xs={12} item>
-								<MarkdownCard
-									category={meta.category}
-									description={meta.excerpt}
-									href={href}
-									thumbnail={meta.coverImage}
-									timestamp={meta.date}
-									title={meta.title}
-									onClick={handleClick}
-								/>
-							</Grid>
-						);
-					})}
+					return (
+						<Grid key={href} md={4} sm={6} xs={12} item>
+							<MarkdownCard
+								category={meta.category}
+								description={meta.excerpt}
+								href={href}
+								thumbnail={meta.coverImage}
+								timestamp={meta.date}
+								title={meta.title}
+								onClick={handleClick}
+							/>
+						</Grid>
+					);
+				})}
 			</Grid>
 		</InfiniteScroll>
 	);

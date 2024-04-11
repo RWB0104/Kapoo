@@ -7,12 +7,11 @@
 
 'use client';
 
-import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import Stack from '@mui/material/Stack';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
-import { MarkdownHeaderProps } from '../../common';
+import { BlogMarkdownDetailProps, MarkdownHeaderProps } from '../../common';
 import MarkdownCategory from '../MarkdownCategory';
 import { MarkdownCategoryTileProps } from '../MarkdownCategory/sub/MarkdownCategoryTile';
 import MarkdownGrid from '../MarkdownGrid';
@@ -23,7 +22,7 @@ export interface MarkdownBoxProps
 	/**
 	 * 마크다운
 	 */
-	markdown: MarkdownDetailProps<MarkdownHeaderProps>[];
+	markdown: BlogMarkdownDetailProps<MarkdownHeaderProps>[];
 }
 
 /**
@@ -47,7 +46,14 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 			label: '전체'
 		}];
 
-		markdown.forEach(({ meta }) =>
+		let list = markdown;
+
+		if (keyword)
+		{
+			list = list.filter(({ summary }) => summary.includes(keyword.toLowerCase()));
+		}
+
+		list.forEach(({ meta }) =>
 		{
 			const idx = arr.findIndex(({ label }) => label === meta.category);
 
@@ -72,7 +78,7 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 		});
 
 		return arr;
-	}, [ markdown, category ]);
+	}, [ markdown, keyword, category ]);
 
 	return (
 		<Stack data-component='MarkdownBox' gap={2} width='100%'>

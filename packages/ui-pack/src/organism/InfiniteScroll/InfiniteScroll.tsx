@@ -16,6 +16,11 @@ export type InfiniteScrollEndHandler = () => void;
 export interface InfiniteScrollProps extends BoxProps
 {
 	/**
+	 * 비활성화 여부
+	 */
+	disabled?: boolean;
+
+	/**
 	 * 스크롤 마지막 이벤트 메서드
 	 */
 	onEnd?: InfiniteScrollEndHandler;
@@ -28,7 +33,7 @@ export interface InfiniteScrollProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function InfiniteScroll({ children, onEnd, ...props }: InfiniteScrollProps): JSX.Element
+export default function InfiniteScroll({ disabled = false, onEnd, children, ...props }: InfiniteScrollProps): JSX.Element
 {
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 
@@ -45,7 +50,7 @@ export default function InfiniteScroll({ children, onEnd, ...props }: InfiniteSc
 		<Box data-component='InfiniteScroll' {...props}>
 			{children}
 
-			{children ? <Box ref={setDomState} width='100%' /> : null}
+			{children && !disabled ? <Box ref={setDomState} width='100%' /> : null}
 		</Box>
 	);
 }
