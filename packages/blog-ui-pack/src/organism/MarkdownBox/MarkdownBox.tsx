@@ -13,7 +13,8 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
 import { MarkdownHeaderProps } from '../../common';
-import MarkdownCategory, { MarkdownCategoryItem } from '../MarkdownCategory';
+import MarkdownCategory from '../MarkdownCategory';
+import { MarkdownCategoryTileProps } from '../MarkdownCategory/sub/MarkdownCategoryTile';
 import MarkdownGrid from '../MarkdownGrid';
 import MarkdownSearch from '../MarkdownSearch';
 
@@ -39,9 +40,9 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 	const category = useMemo(() => searchParams.getAll('category') || [], [ searchParams ]);
 	const keyword = useMemo(() => searchParams.get('keyword') || undefined, [ searchParams ]);
 
-	const categories: MarkdownCategoryItem[] = useMemo(() =>
+	const categories: MarkdownCategoryTileProps[] = useMemo(() =>
 	{
-		const arr: MarkdownCategoryItem[] = [{
+		const arr: MarkdownCategoryTileProps[] = [{
 			count: markdown.length,
 			label: '전체'
 		}];

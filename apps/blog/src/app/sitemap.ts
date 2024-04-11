@@ -18,8 +18,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap>
 {
 	const baseList = [ '', '/posts', '/projects', '/comments' ];
 
-	const postsList = await getMarkdownAllList(markdownPath.post).map(({ token }) => `/posts/${token.join('/')}`);
-	const projectsList = await getMarkdownAllList(markdownPath.project).map(({ token }) => `/projects/${token.join('/')}`);
+	const postsList = await getMarkdownAllList(markdownPath.posts).map(({ token }) => `/posts/${token.join('/')}`);
+	const projectsList = await getMarkdownAllList(markdownPath.projects).map(({ token }) => `/projects/${token.join('/')}`);
 
 	const totalList = baseList.concat(postsList).concat(projectsList);
 

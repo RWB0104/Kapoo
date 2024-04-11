@@ -5,44 +5,31 @@
  * @since 2024.04.11 Thu 17:56:40
  */
 
-import Tile from '@kapoo/ui-pack/atom/Tile';
-import Img from '@kapoo/ui-pack/organism/Img';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { useCallback } from 'react';
+import classNames from 'classnames/bind';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
 
-export interface MarkdownCategoryItem
-{
-	/**
-	 * 라벨
-	 */
-	label: string;
+import styles from './MarkdownCategory.module.scss';
+import MarkdownCategoryTile, { MarkdownCategoryTileProps } from './sub/MarkdownCategoryTile';
 
-	/**
-	 * 카운트
-	 */
-	count: number;
-
-	/**
-	 * 선택 여부
-	 */
-	selected?: boolean;
-}
+const cn = classNames.bind(styles);
 
 export interface MarkdownCategoryProps
 {
 	/**
 	 * 카테고리
 	 */
-	categories: MarkdownCategoryItem[];
+	categories: MarkdownCategoryTileProps[];
 }
+
+const key = 'category';
 
 /**
  * 마크다운 카테고리 organism 컴포넌트 반환 메서드
@@ -53,13 +40,40 @@ export interface MarkdownCategoryProps
  */
 export default function MarkdownCategory({ categories }: MarkdownCategoryProps): JSX.Element
 {
+	const { replace } = useRouter();
+	const searchParams = useSearchParams();
+
+	const hasSelected = useMemo(() => searchParams.has(key), [ searchParams ]);
+
 	const handleClick = useCallback((label: string) =>
 	{
 		const urlParams = new URLSearchParams(window.location.search);
+		urlParams.delete('page');
+
+		const has = urlParams.has(key, label);
+
+		if (label === '전체')
+		{
+			urlParams.delete('category');
+		}
+
+		// 이미 존재하는 카테고리일 경우
+		else if (has)
+		{
+			urlParams.delete(key, label);
+		}
+
+		// 아닐 경우
+		else
+		{
+			urlParams.append(key, label);
+		}
+
+		replace(`${window.location.pathname}?${urlParams.toString()}`, { scroll: false });
 	}, []);
 
 	return (
-		<Accordion data-component='MarkdownCategory'>
+		<Accordion className={cn('category', { active: hasSelected })} data-component='MarkdownCategory'>
 			<AccordionSummary expandIcon={<ExpandMore />}>
 				<Stack>
 					<Typography># 카테고리</Typography>
@@ -67,39 +81,15 @@ export default function MarkdownCategory({ categories }: MarkdownCategoryProps):
 			</AccordionSummary>
 
 			<AccordionDetails>
-				<Grid container>
+				<Grid spacing={0.5} container>
 					{categories.map(({ label, count, selected }) => (
-						<Grid key={label} md={2} sm={3} xs={4} item>
-							<Tile>
-								<ButtonBase
-									sx={{
-										height: '100%',
-										position: 'absolute',
-										width: '100%'
-									}}
-									onClick={() => handleClick(label)}
-								>
-									<Box height='100%' position='absolute' width='100%'>
-										<Img
-											height='100%'
-											src={`https://datastore.itcode.dev/blog/category/${encodeURIComponent(label)}.png`}
-											width='100%'
-										/>
-									</Box>
-
-									<Stack
-										height='100%'
-										justifyContent='space-between'
-										left={0}
-										position='absolute'
-										top={0}
-										width='100%'
-									>
-										{label}
-										{count}
-									</Stack>
-								</ButtonBase>
-							</Tile>
+						<Grid className={cn('tile', { selected })} key={label} md={2} sm={3} xs={4} item>
+							<MarkdownCategoryTile
+								count={count}
+								label={label}
+								selected={selected}
+								onClick={() => handleClick(label)}
+							/>
 						</Grid>
 					))}
 				</Grid>
