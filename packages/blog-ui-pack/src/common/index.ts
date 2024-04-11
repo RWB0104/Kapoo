@@ -93,8 +93,8 @@ export interface BaseMetadataProps
 export const markdownBasePath = 'src/markdown';
 
 export const markdownPath = {
-	post: `${markdownBasePath}/posts`,
-	project: `${markdownBasePath}/projects`
+	posts: `${markdownBasePath}/posts`,
+	projects: `${markdownBasePath}/projects`
 };
 
 /**

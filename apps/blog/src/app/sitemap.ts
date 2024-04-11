@@ -5,10 +5,9 @@
  * @since 2024.04.08 Mon 16:41:09
  */
 
+import { markdownPath } from '@kapoo/blog-ui-pack/common';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import { MetadataRoute } from 'next';
-
-import { markdownPath } from '../common';
 
 /**
  * 사이트맵 에셋 컴포넌트 반환 메서드

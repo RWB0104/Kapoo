@@ -7,10 +7,10 @@
 
 import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/common';
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
-import PageTemplate from '@kapoo/blog-ui-pack/template/PageTemplate';
+import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
-import Screener from '@kapoo/ui-pack/organism/Screener';
+import Container from '@mui/material/Container';
 import { Metadata } from 'next';
 
 import { getMetadata } from '../../common';
@@ -35,15 +35,15 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 	const { meta, body } = getMarkdownDetailBySlug(markdown);
 
 	return (
-		<PageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
-			<Screener src={meta.coverImage} />
+		<ScreenPageTemplate src={meta.coverImage} title={process.env.NEXT_PUBLIC_TITLE}>
+			<Container>
+				<MarkdownViewer>
+					{body}
+				</MarkdownViewer>
 
-			<MarkdownViewer>
-				{body}
-			</MarkdownViewer>
-
-			<Comment />
-		</PageTemplate>
+				{meta.comment ? <Comment /> : null}
+			</Container>
+		</ScreenPageTemplate>
 	);
 }
 
@@ -54,8 +54,8 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
  */
 export async function generateStaticParams(): Promise<DynamicPageProps[]>
 {
-	const postsList = getMarkdownAllList(markdownPath.post, [ 'posts' ]);
-	const projectsList = getMarkdownAllList(markdownPath.project, [ 'projects' ]);
+	const postsList = getMarkdownAllList(markdownPath.posts, [ 'posts' ]);
+	const projectsList = getMarkdownAllList(markdownPath.projects, [ 'projects' ]);
 
 	const totalList = postsList.concat(projectsList);
 

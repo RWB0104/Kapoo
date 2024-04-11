@@ -26,7 +26,7 @@ export interface MarkdownBlockquoteProps extends Omit<DetailedHTMLProps<Blockquo
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownBlockquote({ theme, children, ...props }: MarkdownBlockquoteProps): JSX.Element
+export default function MarkdownBlockquote({ theme = 'light', children, ...props }: MarkdownBlockquoteProps): JSX.Element
 {
 	return (
 		<Box component='blockquote' data-component='MarkdownBlockquote' margin={0} paddingBottom={4} paddingTop={4} {...props}>

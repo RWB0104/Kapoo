@@ -41,7 +41,7 @@ export interface MarkdownCodeBlockProps extends Omit<DetailedHTMLProps<HTMLAttri
  *
  * @return {JSX.Element} JSX
  */
-export default function MarkdownCodeBlock({ theme, languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
+export default function MarkdownCodeBlock({ theme = 'light', languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
 {
 	const [ aniamteState, setAnimateState ] = useState(false);
 
@@ -65,7 +65,7 @@ export default function MarkdownCodeBlock({ theme, languageName, children, ...pr
 	}, [ aniamteState, setAnimateState ]);
 
 	return (
-		<Box data-component='MarkdownCodeBlock' padding={2} paddingBottom={4} paddingTop={4}>
+		<Box data-component='MarkdownCodeBlock' paddingBottom={4} paddingTop={4}>
 			<Stack
 				bgcolor={bgcolor}
 				border='1px solid'

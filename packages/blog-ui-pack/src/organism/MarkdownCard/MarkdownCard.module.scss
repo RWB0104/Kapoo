@@ -1,3 +1,19 @@
+.card {
+	transition: 0.75s ease-out;
+
+	.thumbnail img {
+		transition: 0.75s ease-out;
+	}
+
+	&:hover {
+		transform: translateY(-10px);
+
+		.thumbnail img {
+			scale: 1.2;
+		}
+	}
+}
+
 .button {
 	width: 100%;
 	height: 100%;

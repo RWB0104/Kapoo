@@ -1,3 +1,10 @@
+/**
+ * 마크다운 카드 organism 컴포넌트
+ *
+ * @author RWB
+ * @since 2024.04.11 Thu 12:20:07
+ */
+
 import { calcDuring, parseLocalDate } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
@@ -5,6 +12,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
+import Link from 'next/link';
+import { MouseEventHandler } from 'react';
 
 import styles from './MarkdownCard.module.scss';
 
@@ -41,9 +50,21 @@ export interface MarkdownCardProps
 	 * 날짜
 	 */
 	timestamp: number;
+
+	/**
+	 * 클릭 이벤트 메서드
+	 */
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function MarkdownCard({ href, title, description, category, thumbnail, timestamp }: MarkdownCardProps): JSX.Element
+/**
+ * 마크다운 카드 organism 컴포넌트 반환 메서드
+ *
+ * @param {MarkdownCardProps} param0: MarkdownCardProps
+ *
+ * @returns {JSX.Element} JSX
+ */
+export default function MarkdownCard({ href, title, description, category, thumbnail, timestamp, onClick }: MarkdownCardProps): JSX.Element
 {
 	const { year, month, date, hour, minute, second, weekday } = parseLocalDate(timestamp);
 
@@ -51,52 +72,62 @@ export default function MarkdownCard({ href, title, description, category, thumb
 	const during = calcDuring(timestamp);
 
 	return (
-		<Box borderRadius={1} boxShadow='0px 0px 10px gainsboro' data-component='MarkdownCard' height='100%' overflow='hidden' width='100%'>
-			<ButtonBase className={cn('button')} href={href}>
-				<Stack height='100%' width='100%'>
-					<Box className={cn('thumbnail')} position='relative'>
-						<Img
-							src={thumbnail}
-							containerProps={{
-								height: '100%',
-								left: 0,
-								overflow: 'hidden',
-								position: 'absolute',
-								top: 0,
-								width: '100%'
-							}}
-						/>
-					</Box>
-
-					<Stack flex={1} gap={2} padding={2}>
-						<Stack alignItems='center' direction='row' gap={1}>
+		<Box
+			borderRadius={1}
+			boxShadow='0px 0px 10px gainsboro'
+			className={cn('card')}
+			data-component='MarkdownCard'
+			height='100%'
+			overflow='hidden'
+			width='100%'
+		>
+			<ButtonBase className={cn('button')} onClick={onClick}>
+				<Link className={cn('button')} href={href} title={title}>
+					<Stack height='100%' width='100%'>
+						<Box className={cn('thumbnail')} position='relative'>
 							<Img
-								alt={category}
-								height={24}
-								src={`https://datastore.itcode.dev/blog/category/${category}.png`}
-								width={24}
+								src={thumbnail}
 								containerProps={{
-									borderRadius: '50%',
-									overflow: 'hidden'
+									height: '100%',
+									left: 0,
+									overflow: 'hidden',
+									position: 'absolute',
+									top: 0,
+									width: '100%'
 								}}
 							/>
+						</Box>
 
-							<Typography component='span' variant='caption'>{category}</Typography>
-						</Stack>
+						<Stack flex={1} gap={2} padding={2}>
+							<Stack alignItems='center' direction='row' gap={1}>
+								<Img
+									alt={category}
+									height={24}
+									src={`https://datastore.itcode.dev/blog/category/${category}.png`}
+									width={24}
+									containerProps={{
+										borderRadius: '50%',
+										overflow: 'hidden'
+									}}
+								/>
 
-						<Stack gap={1} height='100%'>
-							<Typography fontWeight='bold'>{title}</Typography>
+								<Typography component='span' variant='caption'>{category}</Typography>
+							</Stack>
 
-							<Typography className={cn('description')} color='GrayText' variant='caption'>{description}</Typography>
-						</Stack>
+							<Stack gap={1} height='100%'>
+								<Typography fontWeight='bold' textAlign='start'>{title}</Typography>
 
-						<Stack alignItems='center' direction='row' justifyContent='space-between'>
-							<Typography color='GrayText' variant='caption'>{dateText}</Typography>
+								<Typography className={cn('description')} color='GrayText' textAlign='start' variant='caption'>{description}</Typography>
+							</Stack>
 
-							<Typography color='GrayText' variant='caption'>{during}</Typography>
+							<Stack alignItems='center' direction='row' justifyContent='space-between'>
+								<Typography color='GrayText' variant='caption'>{dateText}</Typography>
+
+								<Typography color='GrayText' variant='caption'>{during}</Typography>
+							</Stack>
 						</Stack>
 					</Stack>
-				</Stack>
+				</Link>
 			</ButtonBase>
 		</Box>
 	);
