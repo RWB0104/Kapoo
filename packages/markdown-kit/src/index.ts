@@ -14,38 +14,52 @@ export interface MarkdownAllListItemProps
 {
 	/**
 	 * 이름
+	 *
+	 * @example yyyy-MM-dd-filename
 	 */
 	name: string;
 
 	/**
 	 * 파일 이름
+	 *
+	 * @example yyyy-MM-dd-filename.md
 	 */
 	filename: string;
 
 	/**
 	 * 전체 이름
+	 *
+	 * @example /root/workspace/src/dir/yyyy-MM-dd-filename.md
 	 */
 	fullname: string;
 
 	/**
 	 * 토큰
+	 *
+	 * @example [ 'yyyy', 'MM', 'dd', 'filename' ]
 	 */
 	token: string[];
 
 	/**
 	 * 경로
+	 *
+	 * @example src/dir
 	 */
 	path: string;
 
 	/**
 	 * 전체 경로
+	 *
+	 * @example /root/workspace/src/dir
 	 */
 	fullpath: string;
 
 	/**
-	 * 사용자 파라미터
+	 * 대상
+	 *
+	 * @example src/dir/yyyy-MM-dd-filename.md
 	 */
-	params: string[];
+	target: string;
 }
 
 export interface MarkdownTocProps
@@ -95,11 +109,10 @@ export const markdownRegex = {
  * 전체 마크다운 목록 반환 비동기 메서드
  *
  * @param {string} path: 경로
- * @param {string[]} params: 사용자 파라미터
  *
  * @returns {Promise} 비동기 MarkdownAllListItem[]
  */
-export function getMarkdownAllList(path: string, params: string[] = []): MarkdownAllListItemProps[]
+export function getMarkdownAllList(path: string): MarkdownAllListItemProps[]
 {
 	const fullpath = join(process.cwd(), path);
 
@@ -110,8 +123,8 @@ export function getMarkdownAllList(path: string, params: string[] = []): Markdow
 			fullname: join(fullpath, filename),
 			fullpath,
 			name: markdownRegex.fullname.exec?.(filename)?.[1] || filename,
-			params,
 			path,
+			target: join(path, filename),
 			token: markdownRegex.nameToken.exec?.(filename)?.slice(1, 5) || []
 		}))
 		.sort((a, b) => b.filename.localeCompare(a.filename));
@@ -151,23 +164,23 @@ export function getMarkdownToc(body: string): MarkdownTocProps[]
 }
 
 /**
- * 마크다운 상세정보 반환 메서드
+ * 마크다운 상세 정보 반환 메서드
  *
- * @param {string} fullname: 전체 경로
+ * @param {string} target: 대상
  *
  * @returns {MarkdownDetailProps} 마크다운 상세 정보
  */
-export function getMarkdownDetail<T = Record<string, string>>(fullname: string): MarkdownDetailProps<T>
+export function getMarkdownDetail<T = Record<string, string>>(target: string): MarkdownDetailProps<T>
 {
-	const names = markdownRegex.nameToken.exec(fullname);
+	const names = markdownRegex.nameToken.exec(target);
 
 	// 정규식과 일치하지 않는 경우
 	if (names === null)
 	{
-		throw new Error(`[${fullname}] is Invalid markdown file name`);
+		throw new Error(`[${target}] is Invalid markdown file name`);
 	}
 
-	const dir = join(process.cwd(), fullname);
+	const dir = join(process.cwd(), target);
 	const file = readFileSync(dir, 'utf-8');
 
 	const { data, content } = matter(file);
@@ -180,4 +193,16 @@ export function getMarkdownDetail<T = Record<string, string>>(fullname: string):
 		toc,
 		urls: names.slice(1, 5)
 	};
+}
+
+/**
+ * 전체 마크다운 상세정보 목록 반환 비동기 메서드
+ *
+ * @param {string} path: 경로
+ *
+ * @returns {MarkdownDetailProps[]} 마크다운 상세 정보 목록
+ */
+export function getMarkdownDetailList<T = Record<string, string>>(path: string): MarkdownDetailProps<T>[]
+{
+	return getMarkdownAllList(path).map<MarkdownDetailProps<T>>(({ target }) => getMarkdownDetail(target));
 }

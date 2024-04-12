@@ -57,12 +57,12 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
  */
 export async function generateStaticParams(): Promise<DynamicPageProps[]>
 {
-	const postsList = getMarkdownAllList(markdownPath.posts, [ 'posts' ]);
-	const projectsList = getMarkdownAllList(markdownPath.projects, [ 'projects' ]);
+	const postsList = getMarkdownAllList(markdownPath.posts)
+		.map<DynamicPageProps>(({ token }) => ({ markdown: [ 'posts', ...token ] }));
+	const projectsList = getMarkdownAllList(markdownPath.projects)
+		.map<DynamicPageProps>(({ token }) => ({ markdown: [ 'projects', ...token ] }));
 
-	const totalList = postsList.concat(projectsList);
-
-	return totalList.map<DynamicPageProps>(({ params, token }) => ({ markdown: [ ...params, ...token ] }));
+	return postsList.concat(projectsList);
 }
 
 /**
