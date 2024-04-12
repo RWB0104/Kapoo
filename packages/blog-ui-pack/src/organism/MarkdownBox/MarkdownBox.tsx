@@ -35,7 +35,6 @@ export interface MarkdownBoxProps
 export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 {
 	const searchParams = useSearchParams();
-	const page = useMemo(() => Number.parseInt(searchParams.get('page') || '1', 10), [ searchParams ]);
 	const category = useMemo(() => searchParams.getAll('category') || [], [ searchParams ]);
 	const keyword = useMemo(() => searchParams.get('keyword') || undefined, [ searchParams ]);
 
@@ -43,11 +42,13 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 	{
 		const arr: MarkdownCategoryTileProps[] = [{
 			count: markdown.length,
-			label: '전체'
+			label: '전체',
+			selected: category.length === 0
 		}];
 
 		let list = markdown;
 
+		// 키워드가 있을 경우
 		if (keyword)
 		{
 			list = list.filter(({ summary }) => summary.includes(keyword.toLowerCase()));

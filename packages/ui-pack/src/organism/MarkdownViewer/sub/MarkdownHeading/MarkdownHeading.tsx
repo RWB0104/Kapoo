@@ -35,7 +35,7 @@ export interface MarkdownHeadingProps extends DetailedHTMLProps<HTMLAttributes<H
  */
 export default function MarkdownHeading({ level, className, children, ...props }: MarkdownHeadingProps): JSX.Element
 {
-	const href = useMemo(() => String(children).replaceAll(' ', '-').toLowerCase(), [ children ]);
+	const href = useMemo(() => String(children).replaceAll(' ', '-'), [ children ]);
 
 	const tag = useMemo(() =>
 	{

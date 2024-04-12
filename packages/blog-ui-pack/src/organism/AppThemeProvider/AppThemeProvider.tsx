@@ -7,10 +7,13 @@
 
 'use client';
 
+import { notoSans } from '@kapoo/common';
 import { themeStore } from '@kapoo/state';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { PropsWithChildren, useCallback } from 'react';
+
+const fonts = [ notoSans.className, 'sans-serif' ];
 
 /**
  * 앱 테마 프로바이더 organism 컴포넌트 반환 메서드
@@ -25,7 +28,7 @@ export default function AppThemeProvider({ children }: PropsWithChildren): JSX.E
 
 	const getTheme = useCallback((theme: PaletteMode) => createTheme({
 		palette: { mode: theme },
-		typography: { fontFamily: 'Pretendard, sans-serif' }
+		typography: { fontFamily: fonts.join(', ') }
 	}), []);
 
 	return (

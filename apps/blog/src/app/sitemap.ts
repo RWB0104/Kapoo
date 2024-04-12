@@ -14,7 +14,7 @@ import { MetadataRoute } from 'next';
  *
  * @returns {Promise} MetadataRoute.Sitemap
  */
-export default async function sitemap(): Promise<MetadataRoute.Sitemap>
+export default async function SitemapAssets(): Promise<MetadataRoute.Sitemap>
 {
 	const baseList = [ '', '/posts', '/projects', '/comments' ];
 

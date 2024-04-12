@@ -9,12 +9,60 @@ import { MarkdownDetailProps, getMarkdownDetail } from '@kapoo/markdown-kit';
 
 export type MarkdownType = 'posts' | 'projects';
 
+export type MarkdownSlug = [ MarkdownType, string, string, string, string, string ];
+
+export interface BlogMarkdownDetailGropProps
+{
+	/**
+	 * 제목
+	 */
+	title: string;
+
+	/**
+	 * URL
+	 */
+	url: string;
+}
+
+export interface BlogMarkdownDetailSideProps
+{
+	/**
+	 * 제목
+	 */
+	title: string;
+
+	/**
+	 * URL
+	 */
+	url: string;
+
+	/**
+	 * 썸네일
+	 */
+	thumbnail: string;
+}
+
 export interface BlogMarkdownDetailProps<T = Record<string, string>> extends MarkdownDetailProps<T>
 {
 	/**
 	 * 요약
 	 */
 	summary: string;
+
+	/**
+	 * 그룹
+	 */
+	group?: BlogMarkdownDetailGropProps[];
+
+	/**
+	 * 이전 게시글
+	 */
+	prev?: BlogMarkdownDetailSideProps;
+
+	/**
+	 * 다음 게시글
+	 */
+	next?: BlogMarkdownDetailSideProps;
 }
 
 export interface MarkdownHeaderProps

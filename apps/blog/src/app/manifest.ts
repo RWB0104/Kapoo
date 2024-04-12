@@ -12,7 +12,7 @@ import { MetadataRoute } from 'next';
  *
  * @returns {MetadataRoute.Manifest} manifest
  */
-export default function manifest(): MetadataRoute.Manifest
+export default function ManifestAssets(): MetadataRoute.Manifest
 {
 	return {
 		background_color: '#FFFFFF',

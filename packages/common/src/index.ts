@@ -5,6 +5,7 @@
  * @since 2024.03.31 Sun 03:49:06
  */
 
+export * from './fonts';
 export * from './hook';
 export * from './util';
 export * from './variables';
