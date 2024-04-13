@@ -5,7 +5,7 @@
  * @since 2024.04.05 Fri 14:21:09
  */
 
-import { MarkdownDetailProps, getMarkdownDetail } from '@kapoo/markdown-kit';
+import { MarkdownDetailProps, getMarkdownDetailList } from '@kapoo/markdown-kit';
 
 export type MarkdownType = 'posts' | 'projects';
 
@@ -154,6 +154,22 @@ export const markdownPath = {
 };
 
 /**
+ * 사이드 마크다운 반환 메서드
+ *
+ * @param {MarkdownDetailProps} param0: MarkdownDetailProps
+ *
+ * @returns {BlogMarkdownDetailSideProps} 마크다운 상세
+ */
+function getMarkdownSide({ meta, urls }: MarkdownDetailProps<MarkdownHeaderProps>): BlogMarkdownDetailSideProps
+{
+	return {
+		thumbnail: meta.coverImage,
+		title: meta.title,
+		url: `/${meta.type}/${urls.join('/')}`
+	};
+}
+
+/**
  * slug별 마크다운 상세 반환 메서드
  *
  * @param {string[]} slug: slug
@@ -165,19 +181,38 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 	const type = slug[0];
 	const filename = slug.slice(1, 5).join('-');
 
-	const dir = `${markdownBasePath}/${type}/${filename}.md`;
+	const list = getMarkdownDetailList<MarkdownHeaderProps>(`${markdownBasePath}/${type}`);
 
-	const raw = getMarkdownDetail<MarkdownHeaderProps>(dir);
+	const currentIndex = list.findIndex(({ urls }) => urls.join('-') === filename);
+
+	// 찾을 수 없을 경우
+	if (currentIndex < 0)
+	{
+		throw Error(`${filename} can't find`);
+	}
+
+	const current = list[currentIndex];
+	const prev = currentIndex < list.length ? getMarkdownSide(list[currentIndex + 1]) : undefined;
+	const next = currentIndex - 1 < 0 ? undefined : getMarkdownSide(list[currentIndex - 1]);
+
+	const groupList = list.filter(({ meta }) => meta.category === current.meta.category);
+	const group = groupList.length > 0 ? groupList.map<BlogMarkdownDetailGropProps>(({ meta, urls }) => ({
+		title: meta.title,
+		url: `/${meta.type}/${urls.join('/')}`
+	})) : undefined;
 
 	const summary = [
-		raw.meta.title,
-		raw.meta.excerpt,
-		raw.meta.category,
-		...raw.meta.tag
+		current.meta.title,
+		current.meta.excerpt,
+		current.meta.category,
+		...current.meta.tag
 	].join('|||').toLowerCase();
 
 	return {
-		...raw,
+		...current,
+		group,
+		next,
+		prev,
 		summary
 	};
 }
