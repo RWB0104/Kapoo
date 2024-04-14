@@ -11,7 +11,7 @@ export type MarkdownType = 'posts' | 'projects';
 
 export type MarkdownSlug = [ MarkdownType, string, string, string, string, string ];
 
-export interface BlogMarkdownDetailGropProps
+export interface BlogMarkdownDetailGroupProps
 {
 	/**
 	 * 제목
@@ -57,7 +57,7 @@ export interface BlogMarkdownDetailProps<T = Record<string, string>> extends Mar
 	/**
 	 * 그룹
 	 */
-	group?: BlogMarkdownDetailGropProps[];
+	group?: BlogMarkdownDetailGroupProps[];
 
 	/**
 	 * 이전 게시글
@@ -223,7 +223,7 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 	const next = currentIndex - 1 < 0 ? undefined : getMarkdownSide(list[currentIndex - 1]);
 
 	const groupList = list.filter(({ meta }) => meta.category === current.meta.category);
-	const group = groupList.length > 0 ? groupList.map<BlogMarkdownDetailGropProps>(({ meta, urls }) => ({
+	const group = groupList.length > 0 ? groupList.map<BlogMarkdownDetailGroupProps>(({ meta, urls }) => ({
 		title: meta.title,
 		url: `/${meta.type}/${urls.join('/')}`
 	})) : undefined;
