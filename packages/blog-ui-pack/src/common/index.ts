@@ -45,6 +45,11 @@ export interface BlogMarkdownDetailSideProps
 export interface BlogMarkdownDetailProps<T = Record<string, string>> extends MarkdownDetailProps<T>
 {
 	/**
+	 * URL
+	 */
+	url: string;
+
+	/**
 	 * 요약
 	 */
 	summary: string;
@@ -169,6 +174,28 @@ function getMarkdownSide({ meta, urls }: MarkdownDetailProps<MarkdownHeaderProps
 	};
 }
 
+export function getMarkdownDetailListForGrid(type: MarkdownType): BlogMarkdownDetailProps<MarkdownHeaderProps>[]
+{
+	return getMarkdownDetailList<MarkdownHeaderProps>(markdownPath[type])
+		.map<BlogMarkdownDetailProps<MarkdownHeaderProps>>((item) =>
+		{
+			const summary = [
+				item.meta.title,
+				item.meta.excerpt,
+				item.meta.category,
+				...item.meta.tag
+			].join('|||').toLowerCase();
+
+			const url = `/${item.meta.type}/${item.urls.join('/')}`;
+
+			return {
+				...item,
+				summary,
+				url
+			};
+		});
+}
+
 /**
  * slug별 마크다운 상세 반환 메서드
  *
@@ -192,7 +219,7 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 	}
 
 	const current = list[currentIndex];
-	const prev = currentIndex < list.length ? getMarkdownSide(list[currentIndex + 1]) : undefined;
+	const prev = currentIndex + 1 < list.length ? getMarkdownSide(list[currentIndex + 1]) : undefined;
 	const next = currentIndex - 1 < 0 ? undefined : getMarkdownSide(list[currentIndex - 1]);
 
 	const groupList = list.filter(({ meta }) => meta.category === current.meta.category);
@@ -213,6 +240,7 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 		group,
 		next,
 		prev,
-		summary
+		summary,
+		url: `/${current.meta.type}/${current.urls.join('/')}`
 	};
 }

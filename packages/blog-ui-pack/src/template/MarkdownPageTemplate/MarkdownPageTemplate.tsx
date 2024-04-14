@@ -5,10 +5,9 @@
  * @since 2024.04.11 Thu 14:19:36
  */
 
-import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import Container from '@mui/material/Container';
 
-import { getMarkdownDetailBySlug, markdownPath } from '../../common';
+import { getMarkdownDetailListForGrid, markdownPath } from '../../common';
 import MarkdownBox from '../../organism/MarkdownBox';
 import ScreenPageTemplate, { ScreenPageTemplateProps } from '../ScreenPageTemplate';
 
@@ -29,12 +28,7 @@ export interface MarkdownPageTemplateProps extends ScreenPageTemplateProps
  */
 export default function MarkdownPageTemplate({ type, ...props }: MarkdownPageTemplateProps): JSX.Element
 {
-	const markdown = getMarkdownAllList(markdownPath[type])
-		.map(({ token }) =>
-		{
-			const slug = [ type, ...token ];
-			return getMarkdownDetailBySlug(slug);
-		})
+	const markdown = getMarkdownDetailListForGrid(type)
 		.filter(({ meta }) => meta.publish);
 
 	return (

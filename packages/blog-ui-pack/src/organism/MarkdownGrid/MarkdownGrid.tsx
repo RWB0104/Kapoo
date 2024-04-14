@@ -91,24 +91,19 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 	return (
 		<InfiniteScroll data-component='MarkdownGrid' disabled={pageFilteredList.length >= filteredList.length} onEnd={handleEnd}>
 			<Grid spacing={4} container>
-				{pageFilteredList.map(({ meta, urls }) =>
-				{
-					const href = [ meta.type, ...urls ].join('/');
-
-					return (
-						<Grid key={href} md={4} sm={6} xs={12} item>
-							<MarkdownCard
-								category={meta.category}
-								description={meta.excerpt}
-								href={href}
-								thumbnail={meta.coverImage}
-								timestamp={meta.date}
-								title={meta.title}
-								onClick={handleClick}
-							/>
-						</Grid>
-					);
-				})}
+				{pageFilteredList.map(({ meta, url }) => (
+					<Grid key={url} md={4} sm={6} xs={12} item>
+						<MarkdownCard
+							category={meta.category}
+							description={meta.excerpt}
+							href={url}
+							thumbnail={meta.coverImage}
+							timestamp={meta.date}
+							title={meta.title}
+							onClick={handleClick}
+						/>
+					</Grid>
+				))}
 			</Grid>
 		</InfiniteScroll>
 	);

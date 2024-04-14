@@ -13,7 +13,7 @@ import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { PropsWithChildren, useCallback } from 'react';
 
-const fonts = [ notoSans.className, 'sans-serif' ];
+const fonts = [ notoSans.style.fontFamily, 'sans-serif' ];
 
 /**
  * 앱 테마 프로바이더 organism 컴포넌트 반환 메서드
