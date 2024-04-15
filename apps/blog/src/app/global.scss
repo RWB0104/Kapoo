@@ -19,10 +19,14 @@ a {
 	width: 100%;
 }
 
-body {
-	transition: 0.3s;
+html, body {
+	font-size: 16px;
 
 	@media (max-width: 600px) {
-		font-size: calc(1rem - 4px);
+		font-size: 12px
 	}
+}
+
+body {
+	transition: 0.3s;
 }
