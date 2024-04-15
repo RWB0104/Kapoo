@@ -7,6 +7,7 @@
 
 'use client';
 
+import { refererStore } from '@kapoo/state';
 import InfiniteScroll from '@kapoo/ui-pack/organism/InfiniteScroll';
 import { Grid } from '@mui/material';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -33,6 +34,8 @@ export interface MarkdownGridProps
 export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 {
 	const { replace } = useRouter();
+
+	const { setReferer } = refererStore();
 
 	const searchParams = useSearchParams();
 	const page = useMemo(() => Number.parseInt(searchParams.get('page') || '1', 10), [ searchParams ]);
@@ -73,10 +76,14 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 	const handleClick = useCallback<MouseEventHandler<HTMLButtonElement>>(() =>
 	{
 		sessionStorage.setItem('scroll', `${window.scrollY}`);
+
+		setReferer(window.location.search);
 	}, []);
 
 	useEffect(() =>
 	{
+		setReferer(undefined);
+
 		const scroll = sessionStorage.getItem('scroll');
 
 		// 스크롤이 유효할 경우

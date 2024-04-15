@@ -28,6 +28,7 @@ export default function AppThemeProvider({ children }: PropsWithChildren): JSX.E
 
 	const getTheme = useCallback((theme: PaletteMode) => createTheme({
 		palette: { mode: theme },
+		transitions: { duration: { standard: 0.3 } },
 		typography: { fontFamily: fonts.join(', ') }
 	}), []);
 

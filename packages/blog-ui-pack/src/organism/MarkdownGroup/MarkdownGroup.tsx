@@ -5,14 +5,31 @@
  * @since 2024.04.15 Mon 02:25:29
  */
 
+import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
 import { BlogMarkdownDetailGroupProps } from '../../common';
 
 export interface MarkdownGroupProps
 {
+	/**
+	 * 그룹명
+	 */
+	title: string;
+
+	/**
+	 * 현재
+	 */
+	current?: string;
+
+	/**
+	 * 썸네일
+	 */
+	thumbnail: string;
+
 	/**
 	 * 그룹 리스트
 	 */
@@ -26,15 +43,21 @@ export interface MarkdownGroupProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownGroup({ groups }: MarkdownGroupProps): JSX.Element
+export default function MarkdownGroup({ title, current, thumbnail, groups }: MarkdownGroupProps): JSX.Element
 {
 	return (
 		<Stack data-component='MarkdownGroup'>
+			<Stack>
+				<Img height='100%' src={thumbnail} width='100%' />
+
+				<Typography>{title}</Typography>
+			</Stack>
+
 			<Box component='ul'>
 				{groups.map(({ title, url }) => (
 					<Box component='li' key={url}>
 						<Link href={url}>
-							{title}
+							<Typography color={url === current ? 'primary' : undefined} variant='caption'>{title}</Typography>
 						</Link>
 					</Box>
 				))}

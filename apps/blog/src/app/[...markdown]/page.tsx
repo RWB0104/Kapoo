@@ -8,6 +8,7 @@
 import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/common';
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import MarkdownGroup from '@kapoo/blog-ui-pack/organism/MarkdownGroup';
+import MarkdownMenu from '@kapoo/blog-ui-pack/organism/MarkdownMenu';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
@@ -34,17 +35,27 @@ interface DynamicPageProps
  */
 export default function MarkdownPage({ params: { markdown } }: NextPageProps<DynamicPageProps>): JSX.Element
 {
-	const { meta, body, toc, group } = getMarkdownDetailBySlug(markdown);
+	const { meta, body, toc, group, prev, next, url } = getMarkdownDetailBySlug(markdown);
 
 	return (
 		<ScreenPageTemplate src={meta.coverImage} title={process.env.NEXT_PUBLIC_TITLE}>
 			<Container>
-				{group ? <MarkdownGroup groups={group} /> : null}
+				{meta.group && group ? (
+					<MarkdownGroup
+						current={url}
+						groups={group}
+						thumbnail={meta.coverImage}
+						title={meta.group}
+					/>
+				) : null}
+
 				<MarkdownTocBox list={toc} />
 
 				<MarkdownViewer>
 					{body}
 				</MarkdownViewer>
+
+				<MarkdownMenu next={next} prev={prev} type={meta.type} />
 
 				{meta.comment ? <Comment /> : null}
 			</Container>
