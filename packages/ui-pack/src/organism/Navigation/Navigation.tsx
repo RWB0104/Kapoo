@@ -10,7 +10,7 @@
 import { useIntersectionObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import { usePathname } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
 import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
@@ -53,8 +53,6 @@ export default function Navigation({ theme, logo, title, items }: NavigationProp
 	const [ isOpenState, setOpenState ] = useState(false);
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 
-	useIntersectionObserver(domState, setTopState);
-
 	const handleMenuClick = useCallback<Func<HeaderProps['onMenuClick']>>(() =>
 	{
 		setOpenState((state) => !state);
@@ -64,6 +62,23 @@ export default function Navigation({ theme, logo, title, items }: NavigationProp
 	{
 		setOpenState(false);
 	}, []);
+
+	const headerHeight = useMemo(() =>
+	{
+		const tag = domState?.getElementsByTagName('header');
+
+		let value = 0;
+
+		// 헤더가 유효할 경우
+		if (tag && tag[0])
+		{
+			value = tag[0].clientHeight;
+		}
+
+		return `${value}px`;
+	}, [ domState ]);
+
+	useIntersectionObserver(domState, setTopState);
 
 	return (
 		<Box data-component='Navigation' ref={setDomState}>
@@ -79,6 +94,7 @@ export default function Navigation({ theme, logo, title, items }: NavigationProp
 				currentUrl={pathname}
 				items={items}
 				open={isOpenState}
+				paddingTop={headerHeight}
 				onClose={handleClose}
 			/>
 		</Box>

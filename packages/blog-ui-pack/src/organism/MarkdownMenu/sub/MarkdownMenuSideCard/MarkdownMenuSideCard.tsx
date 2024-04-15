@@ -85,8 +85,23 @@ export default function MarkdownMenuSideCard({ href, title, subtitle, thumbnail,
 					{iconPosition === 'start' ? icon : null}
 
 					<Stack flex={1}>
-						<Typography color='dodgerblue' textAlign={iconPosition} variant='caption'>{subtitle}</Typography>
-						<Typography color='white' fontWeight='bold' textAlign={iconPosition}>{title}</Typography>
+						<Typography
+							className={cn('text')}
+							color='yellow'
+							textAlign={iconPosition}
+							variant='caption'
+						>
+							{subtitle}
+						</Typography>
+
+						<Typography
+							className={cn('text')}
+							color='white'
+							fontWeight='bold'
+							textAlign={iconPosition}
+						>
+							{title}
+						</Typography>
 					</Stack>
 
 					{iconPosition === 'end' ? icon : null}

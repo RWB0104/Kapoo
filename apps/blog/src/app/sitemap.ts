@@ -18,8 +18,8 @@ export default async function SitemapAssets(): Promise<MetadataRoute.Sitemap>
 {
 	const baseList = [ '', '/posts', '/projects', '/comments' ];
 
-	const postsList = await getMarkdownAllList(markdownPath.posts).map(({ token }) => `/posts/${token.join('/')}`);
-	const projectsList = await getMarkdownAllList(markdownPath.projects).map(({ token }) => `/projects/${token.join('/')}`);
+	const postsList = getMarkdownAllList(markdownPath.posts).map(({ token }) => `/posts/${token.join('/')}`);
+	const projectsList = getMarkdownAllList(markdownPath.projects).map(({ token }) => `/projects/${token.join('/')}`);
 
 	const totalList = baseList.concat(postsList).concat(projectsList);
 

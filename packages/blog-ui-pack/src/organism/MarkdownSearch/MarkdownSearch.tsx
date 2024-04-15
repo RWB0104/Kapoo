@@ -55,6 +55,7 @@ export default function MarkdownSearch(): JSX.Element
 			helperText='두 글자 이상 입력해주세요.'
 			label='키워드'
 			name={name}
+			placeholder='⌨️ 키워드를 입력해보세요'
 			size='small'
 			InputProps={{
 				startAdornment: (

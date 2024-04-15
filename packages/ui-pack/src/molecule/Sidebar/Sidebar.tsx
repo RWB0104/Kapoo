@@ -14,6 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
+import { CSSProperties } from 'react';
 
 export interface SidebarItem
 {
@@ -44,6 +45,11 @@ export interface SidebarProps extends DrawerProps
 	 * 현재 URL
 	 */
 	currentUrl?: string;
+
+	/**
+	 * 상단 여백
+	 */
+	paddingTop?: CSSProperties['paddingTop'];
 }
 
 /**
@@ -53,10 +59,11 @@ export interface SidebarProps extends DrawerProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Sidebar({ items, currentUrl, ...props }: SidebarProps): JSX.Element
+export default function Sidebar({ items, currentUrl, paddingTop, ...props }: SidebarProps): JSX.Element
 {
 	const isSelected = (url: string): boolean =>
 	{
+		// 홈일 경우
 		if (url === '/')
 		{
 			return currentUrl === url;
@@ -67,7 +74,7 @@ export default function Sidebar({ items, currentUrl, ...props }: SidebarProps): 
 
 	return (
 		<Drawer data-component='Sidebar' {...props}>
-			<Stack marginTop={10}>
+			<Stack marginTop={paddingTop}>
 				<Box minWidth={250}>
 					<List>
 						{items?.map(({ icon, title, url }) => (
