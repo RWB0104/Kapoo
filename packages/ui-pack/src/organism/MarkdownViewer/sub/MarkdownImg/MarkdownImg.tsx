@@ -41,7 +41,7 @@ export interface MarkdownImgProps extends ImgProps
 export default function MarkdownImg({ theme, onImageClick, alt, ...props }: MarkdownImgProps): JSX.Element
 {
 	return (
-		<Stack alignItems='center' data-component='MarkdownImg' padding={4} spacing={1} width='100%'>
+		<Stack alignItems='center' data-component='MarkdownImg' padding={2} spacing={1} width='100%'>
 			<ButtonBase onClick={onImageClick}>
 				<Box borderRadius={2} className={cn('image', theme)} display='inline-flex' overflow='hidden'>
 					<Img alt={alt} height='100%' width='100%' {...props} />

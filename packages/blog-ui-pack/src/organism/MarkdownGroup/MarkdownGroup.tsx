@@ -45,13 +45,30 @@ export interface MarkdownGroupProps
  */
 export default function MarkdownGroup({ title, current, thumbnail, groups }: MarkdownGroupProps): JSX.Element
 {
-	return (
-		<Stack data-component='MarkdownGroup'>
-			<Stack>
-				<Img height='100%' src={thumbnail} width='100%' />
+	const currentIndex = groups.length - groups.findIndex(({ url }) => url === current);
 
-				<Typography>{title}</Typography>
-			</Stack>
+	return (
+		<Stack data-component='MarkdownGroup' width='100%'>
+			<Box height='100%' minHeight={150} position='relative' width='100%'>
+				<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+					<Img height='100%' src={thumbnail} width='100%' />
+				</Box>
+
+				<Stack
+					alignItems='center'
+					bgcolor='#00000070'
+					gap={1}
+					height='100%'
+					justifyContent='center'
+					padding={1}
+					position='absolute'
+					width='100%'
+				>
+					<Typography color='white' variant='caption'>시리즈 모아보기</Typography>
+					<Typography color='dodgerblue' fontWeight='bold'>{title}</Typography>
+					<Typography color='white'>{currentIndex} / {groups.length}</Typography>
+				</Stack>
+			</Box>
 
 			<Box component='ul'>
 				{groups.map(({ title, url }) => (
