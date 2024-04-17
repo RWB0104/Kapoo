@@ -37,6 +37,21 @@ export interface SidebarItem
 export interface SidebarProps extends DrawerProps
 {
 	/**
+	 * 타이틀
+	 */
+	title?: string;
+
+	/**
+	 * 로고
+	 */
+	logo?: string;
+
+	/**
+	 * 버전
+	 */
+	version?: string;
+
+	/**
 	 * 아이템 배열
 	 */
 	items?: SidebarItem[];

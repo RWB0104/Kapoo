@@ -73,6 +73,11 @@ export interface MarkdownTocProps
 	 * 내용
 	 */
 	text: string;
+
+	/**
+	 * 인덱스
+	 */
+	idx: string;
 }
 
 export interface MarkdownDetailProps<T = Record<string, string>>
@@ -144,6 +149,8 @@ export function getMarkdownToc(body: string): MarkdownTocProps[]
 
 	const temp = body.replace(markdownRegex.codeBlock, '');
 
+	const idx = [ 0, 0, 0, 0, 0, 0 ];
+
 	while (flag)
 	{
 		const match = markdownRegex.heading.exec(temp);
@@ -154,8 +161,15 @@ export function getMarkdownToc(body: string): MarkdownTocProps[]
 			break;
 		}
 
+		const level = match[1].trim().length;
+
+		idx[level - 1] += 1;
+
+		idx.fill(0, level, 6);
+
 		list.push({
-			level: match[1].trim().length,
+			idx: `${idx.filter((i) => i > 0).join('.')}.`,
+			level,
 			text: match[2].trim()
 		});
 	}
