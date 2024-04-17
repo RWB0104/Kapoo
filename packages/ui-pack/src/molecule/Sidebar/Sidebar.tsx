@@ -5,7 +5,6 @@
  * @since 2024.04.01 Mon 01:18:06
  */
 
-import Box from '@mui/material/Box';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,8 +12,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { CSSProperties } from 'react';
+
+import Img from '../../organism/Img';
 
 export interface SidebarItem
 {
@@ -74,7 +76,7 @@ export interface SidebarProps extends DrawerProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Sidebar({ items, currentUrl, paddingTop, ...props }: SidebarProps): JSX.Element
+export default function Sidebar({ title, logo, version, items, currentUrl, paddingTop, ...props }: SidebarProps): JSX.Element
 {
 	const isSelected = (url: string): boolean =>
 	{
@@ -89,24 +91,31 @@ export default function Sidebar({ items, currentUrl, paddingTop, ...props }: Sid
 
 	return (
 		<Drawer data-component='Sidebar' {...props}>
-			<Stack marginTop={paddingTop}>
-				<Box minWidth={250}>
-					<List>
-						{items?.map(({ icon, title, url }) => (
-							<ListItem key={title}>
-								<Link className='w-full' href={url}>
-									<ListItemButton selected={isSelected(url)}>
-										<ListItemIcon color='inherit'>
-											{icon}
-										</ListItemIcon>
+			<Stack height='100%' justifyContent='space-between' marginTop={paddingTop} minWidth={250} paddingBottom={4}>
+				<List>
+					{items?.map(({ icon, title, url }) => (
+						<ListItem key={title}>
+							<Link className='w-full' href={url}>
+								<ListItemButton selected={isSelected(url)}>
+									<ListItemIcon color='inherit'>
+										{icon}
+									</ListItemIcon>
 
-										<ListItemText color='inherit' primary={title} />
-									</ListItemButton>
-								</Link>
-							</ListItem>
-						))}
-					</List>
-				</Box>
+									<ListItemText color='inherit' primary={title} />
+								</ListItemButton>
+							</Link>
+						</ListItem>
+					))}
+				</List>
+
+				<Stack alignItems='center'>
+					<Stack alignItems='center' direction='row' gap={1}>
+						{logo ? <Img alt={logo} height={20} src={logo} width={20} /> : null}
+						{title ? <Typography variant='caption'>{title}</Typography> : null}
+					</Stack>
+
+					{version ? <Typography color='GrayText' variant='caption'>{version}</Typography> : null}
+				</Stack>
 			</Stack>
 		</Drawer>
 	);

@@ -11,6 +11,7 @@ import Navigation from '@kapoo/ui-pack/organism/Navigation';
 import { Book, Code, Comment } from '@mui/icons-material';
 import Home from '@mui/icons-material/Home';
 import Box from '@mui/material/Box';
+import pgk from 'package.json';
 import { PropsWithChildren } from 'react';
 
 export interface PageTemplateProps extends PropsWithChildren
@@ -59,6 +60,7 @@ export default function PageTemplate({ title, children }: PageTemplateProps): JS
 				items={menuList}
 				logo='/logo.png'
 				title={title}
+				version={pgk.version}
 			/>
 
 			{children}

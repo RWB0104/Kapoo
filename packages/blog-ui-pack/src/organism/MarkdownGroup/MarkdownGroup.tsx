@@ -70,15 +70,17 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 				</Stack>
 			</Box>
 
-			<Box component='ul'>
-				{groups.map(({ title, url }) => (
-					<Box component='li' key={url}>
-						<Link href={url}>
-							<Typography color={url === current ? 'primary' : undefined} variant='caption'>{title}</Typography>
-						</Link>
-					</Box>
-				))}
-			</Box>
+			<Stack paddingLeft={2} paddingRight={2}>
+				<Box component='ul'>
+					{groups.map(({ title, url }) => (
+						<Box component='li' key={url}>
+							<Link href={url}>
+								<Typography color={url === current ? 'primary' : undefined} variant='caption'>{title}</Typography>
+							</Link>
+						</Box>
+					))}
+				</Box>
+			</Stack>
 		</Stack>
 	);
 }

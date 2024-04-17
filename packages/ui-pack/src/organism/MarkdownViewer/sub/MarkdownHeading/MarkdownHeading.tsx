@@ -5,6 +5,8 @@
  * @since 2024.04.06 Sat 04:45:26
  */
 
+'use client';
+
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';

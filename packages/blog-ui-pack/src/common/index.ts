@@ -233,14 +233,20 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 		current.meta.excerpt,
 		current.meta.category,
 		...current.meta.tag
-	].join('|||').toLowerCase();
+	];
+
+	// 그룹이 유효할 경우
+	if (current.meta.group)
+	{
+		summary.push(current.meta.group);
+	}
 
 	return {
 		...current,
 		group,
 		next,
 		prev,
-		summary,
+		summary: summary.join('|||').toLowerCase(),
 		url: `/${current.meta.type}/${current.urls.join('/')}`
 	};
 }

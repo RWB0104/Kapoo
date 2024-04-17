@@ -51,7 +51,7 @@ export default function MarkdownMenu({ type, prev, next }: MarkdownMenuProps): J
 	const { referer } = refererStore();
 
 	return (
-		<Stack data-component='MarkdownMenu' gap={2}>
+		<Stack data-component='MarkdownMenu' gap={2} marginTop={20}>
 			<Grid spacing={2} container>
 				<Grid md={6} xs={12} item>
 					{prev ? (
