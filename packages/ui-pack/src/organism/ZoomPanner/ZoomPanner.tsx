@@ -8,7 +8,7 @@
 'use client';
 
 import Box, { BoxProps } from '@mui/material/Box';
-import { DragEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+import { MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 interface OffsetProps
 {
@@ -117,43 +117,34 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 		setInitOffsetState(undefined);
 	}, []);
 
-	const handleDragStart = useCallback<DragEventHandler<HTMLDivElement>>((e) =>
+	const handleDragStart = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
-		const img = document.createElement('img');
-		e.dataTransfer.setDragImage(img, 0, 0);
-
 		setInitOffsetState({
 			x: e.clientX - (offsetState?.x || 0),
 			y: e.clientY - (offsetState?.y || 0)
 		});
 	}, [ offsetState, scaleState ]);
 
-	const handleDragEnd = useCallback<DragEventHandler<HTMLDivElement>>(() =>
+	const handleDragEnd = useCallback<MouseEventHandler<HTMLDivElement>>(() =>
 	{
 		setInitOffsetState(undefined);
 	}, []);
 
-	const handleDrag = useCallback<DragEventHandler<HTMLDivElement>>((e) =>
-	{
-		// 드래그 중이고, 유효한 값일 경우
-		if (initOffsetState && e.clientX > 0 && e.clientY > 0)
-		{
-			setOffsetState({
-				x: (e.clientX - initOffsetState.x) / scaleState,
-				y: (e.clientY - initOffsetState.y) / scaleState
-			});
-		}
-	}, [ initOffsetState, scaleState ]);
-
-	const handleOver = useCallback<DragEventHandler<HTMLDivElement>>((e) =>
-	{
-		e.preventDefault();
-		e.stopPropagation();
-	}, []);
-
 	useEffect(() =>
 	{
-		const handle = (e: WheelEvent): void =>
+		const handleMousemove = (e: MouseEvent): void =>
+		{
+			// 드래그 중이고, 유효한 값일 경우
+			if (initOffsetState && e.clientX > 0 && e.clientY > 0)
+			{
+				setOffsetState({
+					x: (e.clientX - initOffsetState.x) / scaleState,
+					y: (e.clientY - initOffsetState.y) / scaleState
+				});
+			}
+		};
+
+		const handleWheel = (e: WheelEvent): void =>
 		{
 			// 컨트롤 키를 눌렀을 경우
 			if (e.ctrlKey)
@@ -177,8 +168,8 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 		// DOM이 유효할 경우
 		if (ref.current)
 		{
-			ref.current.addEventListener('wheel', handle);
-			ref.current.addEventListener('drag', console.log);
+			window.addEventListener('mousemove', handleMousemove);
+			ref.current.addEventListener('wheel', handleWheel);
 		}
 
 		return () =>
@@ -186,10 +177,11 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 			// DOM이 유효할 경우
 			if (ref.current)
 			{
-				ref.current.removeEventListener('wheel', handle);
+				window.removeEventListener('mousemove', handleMousemove);
+				ref.current.removeEventListener('wheel', handleWheel);
 			}
 		};
-	}, [ ref.current, zoomIn, zoomOut ]);
+	}, [ initOffsetState, ref.current, zoomIn, zoomOut ]);
 
 	useEffect(() =>
 	{
@@ -207,12 +199,8 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 			data-component='ZoomPanner'
 			overflow='hidden'
 			ref={ref}
-			draggable
-			onDrag={handleDrag}
-			onDragEnd={handleDragEnd}
-			onDragOver={handleOver}
-			onDragStart={handleDragStart}
-			{...props}
+			onMouseDown={handleDragStart}
+			onMouseUp={handleDragEnd}
 		>
 			<Box
 				component='div'
