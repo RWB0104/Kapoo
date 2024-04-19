@@ -16,34 +16,34 @@ export interface ThemeStore
 	/**
 	 * 테마
 	 */
-	theme: PaletteMode;
+	themeState: PaletteMode;
 
 	/**
 	 * 테마 할당 메서드
 	 */
-	setTheme: ThemeStoreSetThemeHandler;
+	setThemeState: ThemeStoreSetThemeHandler;
 
 	/**
 	 * 테마 토글 메서드
 	 */
-	toggleTheme: ThemeStoreToggleThemeHandler;
+	toggleThemeState: ThemeStoreToggleThemeHandler;
 }
 
 export const themeStore = create<ThemeStore>((set) => ({
-	setTheme: (theme): void =>
+	setThemeState: (themeState): void =>
 	{
-		localStorage.setItem('theme', theme);
-		set({ theme });
+		localStorage.setItem('theme', themeState);
+		set({ themeState });
 	},
-	theme: 'light',
-	toggleTheme: (): void =>
+	themeState: 'light',
+	toggleThemeState: (): void =>
 	{
-		set(({ theme }) =>
+		set(({ themeState }) =>
 		{
-			const newTheme = (theme === 'light' ? 'dark' : 'light');
+			const newTheme = (themeState === 'light' ? 'dark' : 'light');
 
 			localStorage.setItem('theme', newTheme);
-			return ({ theme: newTheme });
+			return ({ themeState: newTheme });
 		});
 	}
 }));

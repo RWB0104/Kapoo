@@ -7,5 +7,4 @@
 
 export * from './theme';
 
-export * from './blog/image';
 export * from './blog/referer';

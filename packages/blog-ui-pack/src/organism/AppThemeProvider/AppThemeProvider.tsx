@@ -24,7 +24,7 @@ const fonts = [ notoSans.style.fontFamily, 'sans-serif' ];
  */
 export default function AppThemeProvider({ children }: PropsWithChildren): JSX.Element
 {
-	const { theme } = themeStore();
+	const { themeState } = themeStore();
 
 	const getTheme = useCallback((theme: PaletteMode) => createTheme({
 		palette: { mode: theme },
@@ -33,7 +33,7 @@ export default function AppThemeProvider({ children }: PropsWithChildren): JSX.E
 	}), []);
 
 	return (
-		<ThemeProvider theme={getTheme(theme)}>
+		<ThemeProvider theme={getTheme(themeState)}>
 			<CssBaseline />
 
 			{children}

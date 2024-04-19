@@ -48,7 +48,7 @@ export interface MarkdownMenuProps
  */
 export default function MarkdownMenu({ type, prev, next }: MarkdownMenuProps): JSX.Element
 {
-	const { referer } = refererStore();
+	const { refererState } = refererStore();
 
 	return (
 		<Stack data-component='MarkdownMenu' gap={2} marginTop={20}>
@@ -82,7 +82,7 @@ export default function MarkdownMenu({ type, prev, next }: MarkdownMenuProps): J
 			<Divider />
 
 			<Stack alignItems='end'>
-				<Link href={`/${type}${referer || ''}`}>
+				<Link href={`/${type}${refererState || ''}`}>
 					<Button color='inherit' startIcon={<Menu />} variant='outlined'>
 						메뉴
 					</Button>

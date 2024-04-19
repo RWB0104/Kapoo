@@ -6,6 +6,7 @@
  */
 
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
+import FloatButtonsBox from '@kapoo/blog-ui-pack/organism/FloatButtonsBox';
 import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
 import { PropsWithChildren, Suspense } from 'react';
 
@@ -31,6 +32,8 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 					<QueryProvider>
 						<AppThemeProvider>
 							{children}
+
+							<FloatButtonsBox />
 						</AppThemeProvider>
 					</QueryProvider>
 				</Suspense>

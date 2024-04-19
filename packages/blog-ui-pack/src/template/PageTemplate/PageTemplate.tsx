@@ -6,13 +6,11 @@
  */
 
 import Footer from '@kapoo/ui-pack/molecule/Footer';
-import { SidebarItem } from '@kapoo/ui-pack/molecule/Sidebar';
-import Navigation from '@kapoo/ui-pack/organism/Navigation';
-import { Book, Code, Comment } from '@mui/icons-material';
-import Home from '@mui/icons-material/Home';
 import Box from '@mui/material/Box';
 import pgk from 'package.json';
 import { PropsWithChildren } from 'react';
+
+import AppNavigation from '../../organism/AppNavigation/AppNavigation';
 
 export interface PageTemplateProps extends PropsWithChildren
 {
@@ -31,34 +29,9 @@ export interface PageTemplateProps extends PropsWithChildren
  */
 export default function PageTemplate({ title, children }: PageTemplateProps): JSX.Element
 {
-	const menuList: SidebarItem[] = [
-		{
-			icon: <Home />,
-			title: '홈',
-			url: '/'
-		},
-		{
-			icon: <Book />,
-			title: '게시글',
-			url: '/posts'
-		},
-		{
-			icon: <Code />,
-			title: '프로젝트',
-			url: '/projects'
-		},
-		{
-			icon: <Comment />,
-			title: '방명록',
-			url: '/comments'
-		}
-	];
-
 	return (
 		<Box component='main' data-component='PageTemplate'>
-			<Navigation
-				items={menuList}
-				logo='/logo.png'
+			<AppNavigation
 				title={title}
 				version={pgk.version}
 			/>

@@ -7,7 +7,8 @@
 
 'use client';
 
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
+import Stack, { StackProps } from '@mui/material/Stack';
 import { MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 interface OffsetProps
@@ -23,7 +24,7 @@ interface OffsetProps
 	y: number;
 }
 
-export interface ZoomPannerLoadHandler
+export interface ZoomPannerControllerProps
 {
 	/**
 	 * 줌 메서드
@@ -48,8 +49,13 @@ export interface ZoomPannerLoadHandler
 	reset: () => void;
 }
 
-export interface ZoomPannerProps extends BoxProps
+export interface ZoomPannerProps extends StackProps
 {
+	/**
+	 * 기본 줌
+	 */
+	defaultZoom?: number;
+
 	/**
 	 * 줌 단위
 	 */
@@ -58,9 +64,9 @@ export interface ZoomPannerProps extends BoxProps
 	/**
 	 * 컨트롤 할당 메서드
 	 *
-	 * @param {ZoomPannerLoadHandler} func: ZoomPannerLoadHandler
+	 * @param {ZoomPannerControllerProps} func: ZoomPannerControllerProps
 	 */
-	controller?: (func: ZoomPannerLoadHandler) => void;
+	controller?: (func: ZoomPannerControllerProps) => void;
 }
 
 /**
@@ -70,20 +76,18 @@ export interface ZoomPannerProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...props }: ZoomPannerProps): JSX.Element
+export default function ZoomPanner({ defaultZoom = 1, zoomUnit = 0.1, controller, children, ...props }: ZoomPannerProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement>(null);
 
-	const [ scaleState, setScaleState ] = useState(1);
-
+	const [ scaleState, setScaleState ] = useState(defaultZoom);
+	const [ initOffsetState, setInitOffsetState ] = useState<OffsetProps>();
 	const [ offsetState, setOffsetState ] = useState<OffsetProps>({
 		x: 0,
 		y: 0
 	});
 
-	const [ initOffsetState, setInitOffsetState ] = useState<OffsetProps>();
-
-	const zoom = useCallback<ZoomPannerLoadHandler['zoom']>((value) =>
+	const zoom = useCallback<ZoomPannerControllerProps['zoom']>((value) =>
 	{
 		setScaleState(value);
 	}, []);
@@ -97,35 +101,37 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 	{
 		setScaleState((state) =>
 		{
-			// 줌 최소 값보다 클 경우
-			if (state > zoomUnit)
+			const value = Math.floor((state - zoomUnit) * 10) / 10;
+
+			// 줌 단위보다 작을 경우
+			if (value <= zoomUnit)
 			{
-				return state - zoomUnit;
+				return zoomUnit;
 			}
 
-			return state;
+			return value;
 		});
 	}, [ zoomUnit ]);
 
 	const reset = useCallback(() =>
 	{
-		setScaleState(1);
+		setScaleState(defaultZoom);
 		setOffsetState({
 			x: 0,
 			y: 0
 		});
 		setInitOffsetState(undefined);
-	}, []);
+	}, [ defaultZoom ]);
 
-	const handleDragStart = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
+	const handleMouseDown = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
 		setInitOffsetState({
-			x: e.clientX - (offsetState?.x || 0),
-			y: e.clientY - (offsetState?.y || 0)
+			x: e.clientX - (offsetState?.x || 0) * scaleState,
+			y: e.clientY - (offsetState?.y || 0) * scaleState
 		});
 	}, [ offsetState, scaleState ]);
 
-	const handleDragEnd = useCallback<MouseEventHandler<HTMLDivElement>>(() =>
+	const handleMouseUp = useCallback<MouseEventHandler<HTMLDivElement>>(() =>
 	{
 		setInitOffsetState(undefined);
 	}, []);
@@ -194,24 +200,24 @@ export default function ZoomPanner({ zoomUnit = 0.1, controller, children, ...pr
 	}, [ controller, zoom, zoomIn, zoomOut, reset ]);
 
 	return (
-		<Box
-			component='div'
+		<Stack
 			data-component='ZoomPanner'
 			overflow='hidden'
 			ref={ref}
-			onMouseDown={handleDragStart}
-			onMouseUp={handleDragEnd}
+			onMouseDown={handleMouseDown}
+			onMouseUp={handleMouseUp}
+			{...props}
 		>
 			<Box
 				component='div'
 				style={{
 					scale: scaleState,
 					transform: `translate(${offsetState.x}px, ${offsetState.y}px)`,
-					transformOrigin: 'top left'
+					transformOrigin: 'center center'
 				}}
 			>
 				{children}
 			</Box>
-		</Box>
+		</Stack>
 	);
 }

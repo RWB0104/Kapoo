@@ -14,17 +14,17 @@ export interface RefererStore
 	/**
 	 * 리퍼러
 	 */
-	referer?: string;
+	refererState?: string;
 
 	/**
 	 * 리퍼러 할당 메서드
 	 */
-	setReferer: RefererStoreSetHandler;
+	setRefererState: RefererStoreSetHandler;
 }
 
 export const refererStore = create<RefererStore>((set) => ({
-	setReferer: (referer): void =>
+	setRefererState: (refererState): void =>
 	{
-		set({ referer });
+		set({ refererState });
 	}
 }));

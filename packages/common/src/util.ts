@@ -109,6 +109,14 @@ export function parseLocalDate(source?: Date | number | string): ParsedDate
 	};
 }
 
+/**
+ * 기간 반환 메서드
+ *
+ * @param {Date | number | string} source: 날짜 소스
+ * @param {number} dayEpoch: 날짜 기준
+ *
+ * @returns {string} 기간
+ */
 export function calcDuring(source?: Date | number | string, dayEpoch = 86400000): string
 {
 	const epoch = new Date(source || new Date()).getTime();

@@ -74,7 +74,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 
 	return (
 		<Box
-			bgcolor={calc<BoxProps['bgcolor']>('transparent', '#FFFFFF50', '#12121250')}
+			bgcolor={calc<BoxProps['bgcolor']>('transparent', '#FFFFFF70', '#12121270')}
 			boxShadow={calc<BoxProps['boxShadow']>(undefined, '0px 0px 5px #00000050', '0px 0px 5px #00000050')}
 			className={cn('header', { transparent: isTransparent })}
 			component='header'

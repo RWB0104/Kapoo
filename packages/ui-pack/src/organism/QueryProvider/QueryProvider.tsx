@@ -34,7 +34,7 @@ export default function QueryProvider({ defaultClient, children, ...props }: Que
 		<QueryClientProvider client={client} {...props}>
 			{children}
 
-			<ReactQueryDevtools />
+			<ReactQueryDevtools buttonPosition='bottom-left' />
 		</QueryClientProvider>
 	);
 }

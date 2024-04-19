@@ -5,15 +5,12 @@
  * @since 2024.04.08 Mon 12:27:05
  */
 
-'use client';
-
-import { imageStore } from '@kapoo/state';
 import { PaletteMode, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
-import { MouseEventHandler, useCallback } from 'react';
+import { MouseEventHandler } from 'react';
 
 import styles from './MarkdownImg.module.scss';
 
@@ -29,7 +26,7 @@ export interface MarkdownImgProps extends ImgProps
 	theme?: PaletteMode;
 
 	/**
-	 * 이미지 클릭 이벤트 메서드
+	 * 이미지 클릭 메서드
 	 */
 	onImageClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -43,16 +40,9 @@ export interface MarkdownImgProps extends ImgProps
  */
 export default function MarkdownImg({ theme, onImageClick, alt, ...props }: MarkdownImgProps): JSX.Element
 {
-	const { setImage } = imageStore();
-
-	const handleClick = useCallback(() =>
-	{
-		setImage(props.src);
-	}, [ props.src ]);
-
 	return (
 		<Stack alignItems='center' data-component='MarkdownImg' padding={2} spacing={1} width='100%'>
-			<ButtonBase onClick={handleClick}>
+			<ButtonBase onClick={onImageClick}>
 				<Box borderRadius={2} className={cn('image', theme)} display='inline-flex' overflow='hidden'>
 					<Img alt={alt} height='100%' width='100%' {...props} />
 				</Box>

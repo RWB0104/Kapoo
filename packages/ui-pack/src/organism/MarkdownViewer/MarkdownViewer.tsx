@@ -8,9 +8,10 @@
 'use client';
 
 import { PaletteMode } from '@mui/material';
+import Box from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { BlockquoteHTMLAttributes, ClassAttributes, HTMLAttributes, ImgHTMLAttributes, ThHTMLAttributes, useCallback } from 'react';
-import ReactMarkdown, { ExtraProps, Options } from 'react-markdown';
+import { BlockquoteHTMLAttributes, ClassAttributes, HTMLAttributes, ImgHTMLAttributes, ThHTMLAttributes, useCallback, useMemo, useState } from 'react';
+import ReactMarkdown, { Components, ExtraProps, Options } from 'react-markdown';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
@@ -27,6 +28,8 @@ import MarkdownTable from './sub/MarkdownTable';
 import MarkdownTd from './sub/MarkdownTd';
 import MarkdownTh from './sub/MarkdownTh';
 import MarkdownTr from './sub/MarkdownTr';
+
+import ImageModal from '../ImageModal';
 
 const cn = classNames.bind(styles);
 
@@ -54,47 +57,62 @@ export interface MarkdownViewerProps extends Options
  */
 export default function MarkdownViewer({ theme, className, ...props }: MarkdownViewerProps): JSX.Element
 {
-	const getBlockquote = useCallback((props: BlockquoteType) => <MarkdownBlockquote theme={theme} {...props} />, [ theme ]);
-	const getCode = useCallback((props: CodeType) =>
+	const [ imageState, setImageState ] = useState<string>();
+
+	const components = useMemo<Partial<Components>>(() =>
 	{
-		const regex = /^(language-)(.*?)$/.exec(props.className || '');
-
-		// 정규식이 일치할 경우
-		if (regex && regex[2])
+		const getBlockquote = (props: BlockquoteType): JSX.Element => <MarkdownBlockquote theme={theme} {...props} />;
+		const getCode = (props: CodeType): JSX.Element =>
 		{
-			return <MarkdownCodeBlock languageName={regex[2]} theme={theme} {...props} />;
-		}
+			const regex = /^(language-)(.*?)$/.exec(props.className || '');
 
-		return <MarkdownCodeInline theme={theme} {...props} />;
+			// 정규식이 일치할 경우
+			if (regex && regex[2])
+			{
+				return <MarkdownCodeBlock languageName={regex[2]} theme={theme} {...props} />;
+			}
+
+			return <MarkdownCodeInline theme={theme} {...props} />;
+		};
+		const getHeading = (props: HeadingType, level: MarkdownHeadingLevel): JSX.Element => <MarkdownHeading level={level} {...props} />;
+		const getImg = (props: ImgType): JSX.Element => <MarkdownImg theme={theme} onImageClick={() => setImageState(props.src)} {...props} />;
+		const getTh = (props: ThType): JSX.Element => <MarkdownTh theme={theme} {...props} />;
+		const getTr = (props: TrType): JSX.Element => <MarkdownTr theme={theme} {...props} />;
+
+		return {
+			a: MarkdownA,
+			blockquote: (props) => getBlockquote(props),
+			code: (props) => getCode(props),
+			h1: (props) => getHeading(props, 1),
+			h2: (props) => getHeading(props, 2),
+			h3: (props) => getHeading(props, 3),
+			h4: (props) => getHeading(props, 4),
+			h5: (props) => getHeading(props, 5),
+			h6: (props) => getHeading(props, 6),
+			img: (props) => getImg(props),
+			table: MarkdownTable,
+			td: MarkdownTd,
+			th: (props) => getTh(props),
+			tr: (props) => getTr(props)
+		};
 	}, [ theme ]);
-	const getHeading = useCallback((props: HeadingType, level: MarkdownHeadingLevel) => <MarkdownHeading level={level} {...props} />, []);
-	const getImg = useCallback((props: ImgType) => <MarkdownImg theme={theme} {...props} />, [ theme ]);
-	const getTh = useCallback((props: ThType) => <MarkdownTh theme={theme} {...props} />, [ theme ]);
-	const getTr = useCallback((props: TrType) => <MarkdownTr theme={theme} {...props} />, [ theme ]);
+
+	const handleClose = useCallback(() =>
+	{
+		setImageState(undefined);
+	}, []);
 
 	return (
-		<ReactMarkdown
-			className={cn('markdown', className)}
-			data-component='MarkdownViewer'
-			rehypePlugins={[[ rehypeKatex, { output: 'mathml' }], rehypeRaw ]}
-			remarkPlugins={[ remarkGfm, remarkMath ]}
-			components={{
-				a: MarkdownA,
-				blockquote: (props) => getBlockquote(props),
-				code: (props) => getCode(props),
-				h1: (props) => getHeading(props, 1),
-				h2: (props) => getHeading(props, 2),
-				h3: (props) => getHeading(props, 3),
-				h4: (props) => getHeading(props, 4),
-				h5: (props) => getHeading(props, 5),
-				h6: (props) => getHeading(props, 6),
-				img: (props) => getImg(props),
-				table: MarkdownTable,
-				td: MarkdownTd,
-				th: (props) => getTh(props),
-				tr: (props) => getTr(props)
-			}}
-			{...props}
-		/>
+		<Box data-component='MarkdownViewer'>
+			<ReactMarkdown
+				className={cn('markdown', className)}
+				components={components}
+				rehypePlugins={[[ rehypeKatex, { output: 'mathml' }], rehypeRaw ]}
+				remarkPlugins={[ remarkGfm, remarkMath ]}
+				{...props}
+			/>
+
+			<ImageModal open={imageState !== undefined} src={imageState} onClose={handleClose} />
+		</Box>
 	);
 }

@@ -17,7 +17,7 @@ import { themeStore } from '@kapoo/state';
  */
 export default function Comment(): JSX.Element
 {
-	const { theme } = themeStore();
+	const { themeState } = themeStore();
 
 	return (
 		<Giscus
@@ -31,7 +31,7 @@ export default function Comment(): JSX.Element
 			repo='RWB0104/blog.itcode.dev-comments'
 			repoId='MDEwOlJlcG9zaXRvcnkzNjkxOTQ3OTE'
 			strict='0'
-			theme={theme}
+			theme={themeState}
 		/>
 	);
 }

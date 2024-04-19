@@ -35,7 +35,7 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 {
 	const { replace } = useRouter();
 
-	const { setReferer } = refererStore();
+	const { setRefererState } = refererStore();
 
 	const searchParams = useSearchParams();
 	const page = useMemo(() => Number.parseInt(searchParams.get('page') || '1', 10), [ searchParams ]);
@@ -77,12 +77,12 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 	{
 		sessionStorage.setItem('scroll', `${window.scrollY}`);
 
-		setReferer(window.location.search);
+		setRefererState(window.location.search);
 	}, []);
 
 	useEffect(() =>
 	{
-		setReferer(undefined);
+		setRefererState(undefined);
 
 		const scroll = sessionStorage.getItem('scroll');
 
