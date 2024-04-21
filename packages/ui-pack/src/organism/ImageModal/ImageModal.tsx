@@ -5,6 +5,7 @@
  * @since 2024.04.19 Fri 17:02:56
  */
 
+import { colors } from '@kapoo/common';
 import Add from '@mui/icons-material/Add';
 import Close from '@mui/icons-material/Close';
 import Refresh from '@mui/icons-material/Refresh';
@@ -124,7 +125,7 @@ export default function ImageModal({ open = false, src, onClose }: ImageModalPro
 				width='100vw'
 			>
 				<Img
-					containerProps={{ boxShadow: '0px 0px 10px #00000080' }}
+					containerProps={{ boxShadow: `0px 0px 10px ${colors.shadow.default}` }}
 					height='100%'
 					src={src}
 					width='100%'

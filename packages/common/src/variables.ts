@@ -19,3 +19,5 @@ export const author = {
 		}
 	}
 };
+
+export const colors = { shadow: { default: '#00000050' } };

@@ -5,7 +5,7 @@
  * @since 2024.04.11 Thu 12:20:07
  */
 
-import { calcDuring, parseLocalDate } from '@kapoo/common';
+import { calcDuring, colors, parseLocalDate } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -74,7 +74,7 @@ export default function MarkdownCard({ href, title, description, category, thumb
 	return (
 		<Box
 			borderRadius={1}
-			boxShadow='0px 0px 10px gainsboro'
+			boxShadow={`0px 0px 10px ${colors.shadow.default}`}
 			className={cn('card')}
 			data-component='MarkdownCard'
 			height='100%'

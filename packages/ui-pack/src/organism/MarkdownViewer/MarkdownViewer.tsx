@@ -7,7 +7,7 @@
 
 'use client';
 
-import { PaletteMode } from '@mui/material';
+import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import classNames from 'classnames/bind';
 import { BlockquoteHTMLAttributes, ClassAttributes, HTMLAttributes, ImgHTMLAttributes, ThHTMLAttributes, useCallback, useMemo, useState } from 'react';
@@ -40,13 +40,7 @@ type HeadingType = ClassAttributes<HTMLHeadingElement> & HTMLAttributes<HTMLHead
 type ThType = ClassAttributes<HTMLElement> & ThHTMLAttributes<HTMLElement> & ExtraProps;
 type TrType = ClassAttributes<HTMLTableRowElement> & HTMLAttributes<HTMLTableRowElement> & ExtraProps;
 
-export interface MarkdownViewerProps extends Options
-{
-	/**
-	 * 테마
-	 */
-	theme?: PaletteMode;
-}
+export type MarkdownViewerProps = Options
 
 /**
  * 마크다운 뷰어 organism 컴포넌트 반환 메서드
@@ -55,9 +49,11 @@ export interface MarkdownViewerProps extends Options
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownViewer({ theme, className, ...props }: MarkdownViewerProps): JSX.Element
+export default function MarkdownViewer({ className, ...props }: MarkdownViewerProps): JSX.Element
 {
 	const [ imageState, setImageState ] = useState<string>();
+
+	const { palette: { mode: theme } } = useTheme();
 
 	const components = useMemo<Partial<Components>>(() =>
 	{

@@ -7,6 +7,7 @@
 
 'use client';
 
+import { colors } from '@kapoo/common';
 import Code from '@mui/icons-material/Code';
 import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -46,7 +47,6 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 	const [ aniamteState, setAnimateState ] = useState(false);
 
 	const bgcolor: CSSProperties['backgroundColor'] = useMemo(() => (theme === 'light' ? 'whitesmoke' : '#222222'), [ theme ]);
-	const boxShadow: CSSProperties['boxShadow'] = useMemo(() => `3px 3px 20px ${theme === 'light' ? '#DDDDDD' : '#333333'}`, [ theme ]);
 	const borderColor: CSSProperties['borderColor'] = useMemo(() => (theme === 'light' ? '#DDDDDD' : '#333333'), [ theme ]);
 	const style: { [key: string]: CSSProperties; } | undefined = useMemo(() => (theme === 'light' ? oneLight : oneDark), [ theme ]);
 
@@ -71,7 +71,7 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 				border='1px solid'
 				borderColor={borderColor}
 				borderRadius={2}
-				boxShadow={boxShadow}
+				boxShadow={`0px 0px 10px ${colors.shadow.default}`}
 				overflow='hidden'
 			>
 				<Stack

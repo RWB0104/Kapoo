@@ -5,6 +5,7 @@
  * @since 2024.04.19 Fri 17:00:55
  */
 
+import { colors } from '@kapoo/common';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Stack, { StackProps } from '@mui/material/Stack';
 import classNames from 'classnames/bind';
@@ -51,7 +52,7 @@ export default function SymbolicButton({ bgcolor, width = '100%', height = '100%
 				alignItems='center'
 				bgcolor={bgcolor}
 				borderRadius='50%'
-				boxShadow='0px 0px 5px #00000050'
+				boxShadow={`0px 0px 5px ${colors.shadow.default}`}
 				height={height}
 				justifyContent='center'
 				padding={padding}

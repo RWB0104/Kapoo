@@ -60,7 +60,7 @@ export default function MarkdownTocBox({ list }: MarkdownTocBoxProps): JSX.Eleme
 			<Stack
 				alignItems='center'
 				bgcolor={primary.main}
-				color='white'
+				color={primary.contrastText}
 				direction='row'
 				gap={1}
 				padding={1}

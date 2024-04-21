@@ -11,7 +11,7 @@ import { notoSans } from '@kapoo/common';
 import { themeStore } from '@kapoo/state';
 import { PaletteMode, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import { PropsWithChildren, useCallback } from 'react';
+import { PropsWithChildren, useCallback, useEffect } from 'react';
 
 const fonts = [ notoSans.style.fontFamily, 'sans-serif' ];
 
@@ -24,13 +24,23 @@ const fonts = [ notoSans.style.fontFamily, 'sans-serif' ];
  */
 export default function AppThemeProvider({ children }: PropsWithChildren): JSX.Element
 {
-	const { themeState } = themeStore();
+	const { themeState, setThemeState } = themeStore();
 
 	const getTheme = useCallback((theme: PaletteMode) => createTheme({
 		palette: { mode: theme },
 		transitions: { duration: { standard: 0.3 } },
 		typography: { fontFamily: fonts.join(', ') }
 	}), []);
+
+	useEffect(() =>
+	{
+		const theme = localStorage.getItem('theme');
+
+		if (theme === 'light' || theme === 'dark')
+		{
+			setThemeState(theme);
+		}
+	}, []);
 
 	return (
 		<ThemeProvider theme={getTheme(themeState)}>

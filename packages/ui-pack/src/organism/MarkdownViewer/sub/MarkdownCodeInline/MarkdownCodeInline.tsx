@@ -32,8 +32,8 @@ export interface MarkdownCodeInlineProps extends Omit<TypographyProps, 'ref'>
  */
 export default function MarkdownCodeInline({ theme, ...props }: MarkdownCodeInlineProps): JSX.Element
 {
-	const bgcolor: CSSProperties['backgroundColor'] = useMemo(() => (theme === 'dark' ? '#333333' : 'whitesmoke'), [ theme ]);
-	const borderColor: CSSProperties['borderColor'] = useMemo(() => (theme === 'dark' ? '#444444' : 'gainsboro'), [ theme ]);
+	const bgcolor: CSSProperties['backgroundColor'] = useMemo(() => (theme === 'dark' ? '#48484880' : 'whitesmoke'), [ theme ]);
+	const borderColor: CSSProperties['borderColor'] = useMemo(() => (theme === 'dark' ? '#484848' : 'gainsboro'), [ theme ]);
 
 	return (
 		<Typography

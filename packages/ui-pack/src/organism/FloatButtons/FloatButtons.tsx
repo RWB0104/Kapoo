@@ -38,7 +38,7 @@ export interface FloatButtonsProps
  */
 export default function FloatButtons({ theme = 'light', onThemeClick }: FloatButtonsProps): JSX.Element
 {
-	const bgcolor = useMemo<SymbolicButtonProps['bgcolor']>(() => (theme === 'light' ? 'white' : '#484848'), [ theme ]);
+	const bgcolor = useMemo<SymbolicButtonProps['bgcolor']>(() => (theme === 'light' ? 'white' : '#242424'), [ theme ]);
 
 	const onUpClick = useCallback(() =>
 	{
@@ -56,7 +56,7 @@ export default function FloatButtons({ theme = 'light', onThemeClick }: FloatBut
 	}, [ theme, onThemeClick ]);
 
 	return (
-		<Stack bottom={20} data-component='FloatButtons' gap={1} position='fixed' right={20} zIndex={10}>
+		<Stack bottom={20} data-component='FloatButtons' gap={2} position='fixed' right={20} zIndex={10}>
 			<SymbolicButton bgcolor={bgcolor} padding={1} onClick={onUpClick}>
 				<KeyboardArrowUp />
 			</SymbolicButton>

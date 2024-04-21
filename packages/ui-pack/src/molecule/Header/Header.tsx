@@ -5,6 +5,7 @@
  * @since 2024.03.31 Sun 05:17:24
  */
 
+import { colors } from '@kapoo/common';
 import Menu from '@mui/icons-material/Menu';
 import { IconButton, PaletteMode } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
@@ -75,7 +76,7 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 	return (
 		<Box
 			bgcolor={calc<BoxProps['bgcolor']>('transparent', '#FFFFFF70', '#12121270')}
-			boxShadow={calc<BoxProps['boxShadow']>(undefined, '0px 0px 5px #00000050', '0px 0px 5px #00000050')}
+			boxShadow={`0px 0px 5px ${colors.shadow.default}`}
 			className={cn('header', { transparent: isTransparent })}
 			component='header'
 			data-component='Header'
