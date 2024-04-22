@@ -5,7 +5,7 @@
  * @since 2024.03.31 Sun 04:48:01
  */
 
-import { postPopularData } from '@kapoo/api';
+import { postGoogleLogin, postPopularData } from '@kapoo/api';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 
 import { getMetadata } from '../common';
