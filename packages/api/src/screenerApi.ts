@@ -1,3 +1,10 @@
+/**
+ * 스크리너 API 모듈
+ *
+ * @author RWB
+ * @since 2024.04.22 Mon 17:36:50
+ */
+
 import { useQuery, UseQueryResult, UseQueryOptions } from '@tanstack/react-query';
 
 /**

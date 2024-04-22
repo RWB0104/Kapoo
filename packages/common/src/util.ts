@@ -19,6 +19,10 @@ interface ParsedDateObject
 }
 
 type ParsedDateKey = 'year' | 'month' | 'date' | 'hour' | 'minute' | 'second' | 'weekday';
+
+export type ShareCallback = (data: ShareData) => void;
+export type CopyCallback = (url: string) => void;
+
 export interface ParsedDate extends Record<ParsedDateKey, ParsedDateObject>
 {
 	/**
@@ -143,4 +147,67 @@ export function calcDuring(source?: Date | number | string, dayEpoch = 86400000)
 	}
 
 	return `${Math.round(diff / (dayEpoch * 365))}년 전`;
+}
+
+/**
+ * 공유 메서드
+ *
+ * @param {ShareData} data: 공유 데이터
+ * @param {ShareCallback} onSuccess: 성공 콜백 메서드
+ * @param {ShareCallback} onError: 실패 콜백 메서드
+ */
+export function doShare(data: ShareData, onSuccess?: ShareCallback, onError?: ShareCallback): void
+{
+	// 공유하기 기능이 사용 가능할 경우
+	if (navigator.canShare && navigator.canShare(data))
+	{
+		navigator.share(data);
+
+		onSuccess?.(data);
+	}
+
+	// 아닐 경우
+	else
+	{
+		onError?.(data);
+	}
+}
+
+/**
+ * 클립보드 복사 메서드
+ *
+ * @param {string} url: URL
+ * @param {CopyCallback} onSuccess: 성공 콜백 메서드
+ * @param {CopyCallback} onError: 실패 콜백 메서드
+ */
+export function doCopy(url: string, onSuccess?: CopyCallback, onError?: CopyCallback): void
+{
+	// 클립보드 객체가 유효할 경우
+	if (navigator.clipboard)
+	{
+		navigator.clipboard.writeText(url);
+
+		onSuccess?.(url);
+	}
+
+	// 아닐 경우
+	else
+	{
+		onError?.(url);
+	}
+}
+
+/**
+ * 공유 및 클립보드 복사 메서드
+ *
+ * @param {ShareData} data: 공유 데이터
+ * @param {ShareCallback} onSuccess: 성공 콜백 메서드
+ * @param {ShareCallback} onError: 실패 콜백 메서드
+ */
+export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onError?: ShareCallback): void
+{
+	doShare(data, onSuccess, () =>
+	{
+		doCopy(data.url || '', undefined, () => onError?.(data));
+	});
 }
