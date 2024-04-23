@@ -15,6 +15,11 @@ export interface ScreenPageTemplateProps extends PageTemplateProps
 	 * 스크리너 소스
 	 */
 	src?: string;
+
+	/**
+	 * 스크린 템플릿
+	 */
+	template?: JSX.Element;
 }
 
 /**
@@ -24,11 +29,13 @@ export interface ScreenPageTemplateProps extends PageTemplateProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ScreenPageTemplate({ src, title, children }: ScreenPageTemplateProps): JSX.Element
+export default function ScreenPageTemplate({ src, template, title, children }: ScreenPageTemplateProps): JSX.Element
 {
 	return (
 		<PageTemplate data-component='ScreenPageTemplate' title={title}>
-			<Screener src={src} />
+			<Screener src={src}>
+				{template}
+			</Screener>
 
 			{children}
 		</PageTemplate>

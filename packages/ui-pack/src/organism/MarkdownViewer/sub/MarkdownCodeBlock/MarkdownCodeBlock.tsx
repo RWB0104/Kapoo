@@ -7,14 +7,17 @@
 
 'use client';
 
-import { colors } from '@kapoo/common';
+import { colors, doCopy } from '@kapoo/common';
+import Check from '@mui/icons-material/Check';
 import Code from '@mui/icons-material/Code';
-import { PaletteMode } from '@mui/material';
+import CopyAll from '@mui/icons-material/CopyAll';
+import { PaletteMode, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
-import { CSSProperties, DetailedHTMLProps, HTMLAttributes, useEffect, useMemo, useState } from 'react';
+import { CSSProperties, DetailedHTMLProps, HTMLAttributes, useCallback, useMemo, useState } from 'react';
 import { PrismAsync } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
@@ -44,25 +47,28 @@ export interface MarkdownCodeBlockProps extends Omit<DetailedHTMLProps<HTMLAttri
  */
 export default function MarkdownCodeBlock({ theme = 'light', languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
 {
-	const [ aniamteState, setAnimateState ] = useState(false);
+	const [ delayState, setDelayState ] = useState(false);
 
 	const bgcolor: CSSProperties['backgroundColor'] = useMemo(() => (theme === 'light' ? 'whitesmoke' : '#222222'), [ theme ]);
 	const borderColor: CSSProperties['borderColor'] = useMemo(() => (theme === 'light' ? '#DDDDDD' : '#333333'), [ theme ]);
 	const style: { [key: string]: CSSProperties; } | undefined = useMemo(() => (theme === 'light' ? oneLight : oneDark), [ theme ]);
 
+	const { palette: { success } } = useTheme();
+
 	const code = useMemo(() => String(children).replace(/\n$/, ''), [ children ]);
 
-	useEffect(() =>
+	const handleCopyClick = useCallback(() =>
 	{
-		// 애니메이션이 동작 중인 경우
-		if (aniamteState)
+		// 동작 가능할 경우
+		if (!delayState)
 		{
-			setTimeout(() =>
-			{
-				setAnimateState(false);
-			}, 2000);
+			doCopy(code);
+
+			setDelayState(true);
+
+			setTimeout(() => setDelayState(false), 1000);
 		}
-	}, [ aniamteState, setAnimateState ]);
+	}, [ delayState, code ]);
 
 	return (
 		<Box data-component='MarkdownCodeBlock' paddingBottom={4} paddingTop={4}>
@@ -115,6 +121,52 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 				</Stack>
 
 				<Box className={cn('markdown')} position='relative'>
+					<Box
+						bgcolor={bgcolor}
+						border='1px solid'
+						borderColor={delayState ? success.main : borderColor}
+						borderRadius={1}
+						boxShadow='0px 0px 4px #00000030'
+						className={cn('copy-button')}
+						height={24}
+						position='absolute'
+						right={10}
+						top={10}
+						width={24}
+					>
+						<ButtonBase
+							className={cn('copy-button-base')}
+							disabled={delayState}
+							onClick={handleCopyClick}
+						>
+							<Stack
+								alignItems='center'
+								className={cn('icon', { active: delayState })}
+								height={24}
+								justifyContent='center'
+								left={0}
+								position='absolute'
+								top={0}
+								width={24}
+							>
+								<Check color='success' fontSize='inherit' />
+							</Stack>
+
+							<Stack
+								alignItems='center'
+								className={cn('icon', { active: !delayState })}
+								height={24}
+								justifyContent='center'
+								left={0}
+								position='absolute'
+								top={0}
+								width={24}
+							>
+								<CopyAll fontSize='inherit' />
+							</Stack>
+						</ButtonBase>
+					</Box>
+
 					<PrismAsync
 						language={languageName}
 						style={style}

@@ -14,6 +14,7 @@ import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 import { Metadata } from 'next';
 
 import { getMetadata } from '../../common';
@@ -40,24 +41,26 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 	return (
 		<ScreenPageTemplate src={meta.coverImage} title={process.env.NEXT_PUBLIC_TITLE}>
 			<Container>
-				{meta.group && group ? (
-					<MarkdownGroup
-						current={url}
-						groups={group}
-						thumbnail={meta.coverImage}
-						title={meta.group}
-					/>
-				) : null}
+				<Stack gap={2} paddingTop={2}>
+					{meta.group && group ? (
+						<MarkdownGroup
+							current={url}
+							groups={group}
+							thumbnail={meta.coverImage}
+							title={meta.group}
+						/>
+					) : null}
 
-				<MarkdownTocBox list={toc} />
+					<MarkdownTocBox list={toc} />
 
-				<MarkdownViewer>
-					{body}
-				</MarkdownViewer>
+					<MarkdownViewer>
+						{body}
+					</MarkdownViewer>
 
-				<MarkdownMenu next={next} prev={prev} type={meta.type} />
+					<MarkdownMenu next={next} prev={prev} type={meta.type} />
 
-				{meta.comment ? <Comment /> : null}
+					{meta.comment ? <Comment /> : null}
+				</Stack>
 			</Container>
 		</ScreenPageTemplate>
 	);

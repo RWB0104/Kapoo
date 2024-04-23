@@ -82,7 +82,7 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 	}, [ markdown, keyword, category ]);
 
 	return (
-		<Stack data-component='MarkdownBox' gap={2} width='100%'>
+		<Stack data-component='MarkdownBox' gap={2} paddingTop={4} width='100%'>
 			<MarkdownSearch />
 			<MarkdownCategory categories={categories} />
 			<MarkdownGrid list={markdown} />
