@@ -5,6 +5,8 @@
  * @since 2024.04.05 Fri 14:21:09
  */
 
+import { postGoogleLogin, postPopularData } from '@kapoo/api';
+import { BlogMarkdownDetailProps, MarkdownHeaderProps, MarkdownType, getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
 import { author } from '@kapoo/common';
 import { Metadata } from 'next';
 import { Author } from 'next/dist/lib/metadata/types/metadata-types';
@@ -88,4 +90,32 @@ export function getMetadata(params: BaseMetadataProps | undefined): Metadata
 			title: fullTitle
 		}
 	};
+}
+
+/**
+ * 인기 컨텐츠 반환 비동기 메서드
+ *
+ * @param {MarkdownType} type: 마크다운 타입
+ *
+ * @returns {Promise} 비동기 마크다운 상세
+ */
+export async function getPopularList(type: MarkdownType): Promise<BlogMarkdownDetailProps<MarkdownHeaderProps>[]>
+{
+	const auth = await postGoogleLogin({
+		clientId: process.env.GOOGLE_CLIENT_ID,
+		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+		refreshToken: process.env.GOOGLE_REFRESH_TOKEN
+	});
+
+	if (auth)
+	{
+		const popularData = await postPopularData(type, auth);
+		const gridList = getMarkdownDetailListForGrid(type);
+
+		const popularUrl = popularData?.rows.map(({ dimensionValues }) => dimensionValues[0].value) || [];
+
+		return gridList.filter(({ url }) => popularUrl.includes(url));
+	}
+
+	return [];
 }

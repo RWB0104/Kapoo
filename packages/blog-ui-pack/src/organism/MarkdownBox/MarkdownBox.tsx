@@ -14,7 +14,7 @@ import { useMemo } from 'react';
 import { BlogMarkdownDetailProps, MarkdownHeaderProps } from '../../common';
 import MarkdownCategory from '../MarkdownCategory';
 import { MarkdownCategoryTileProps } from '../MarkdownCategory/sub/MarkdownCategoryTile';
-import MarkdownGrid from '../MarkdownGrid';
+import MarkdownInfiniteGrid from '../MarkdownInfiniteGrid';
 import MarkdownSearch from '../MarkdownSearch';
 
 export interface MarkdownBoxProps
@@ -85,7 +85,7 @@ export default function MarkdownBox({ markdown }: MarkdownBoxProps): JSX.Element
 		<Stack data-component='MarkdownBox' gap={2} paddingTop={4} width='100%'>
 			<MarkdownSearch />
 			<MarkdownCategory categories={categories} />
-			<MarkdownGrid list={markdown} />
+			<MarkdownInfiniteGrid list={markdown} />
 		</Stack>
 	);
 }

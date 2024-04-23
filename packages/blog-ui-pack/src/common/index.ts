@@ -174,6 +174,13 @@ function getMarkdownSide({ meta, urls }: MarkdownDetailProps<MarkdownHeaderProps
 	};
 }
 
+/**
+ * 그리드용 마크다은 상세 리스트 반환 메서드
+ *
+ * @param {MarkdownType} type: 마크다운 타입
+ *
+ * @returns {BlogMarkdownDetailSideProps} 마크다운 상세
+ */
 export function getMarkdownDetailListForGrid(type: MarkdownType): BlogMarkdownDetailProps<MarkdownHeaderProps>[]
 {
 	return getMarkdownDetailList<MarkdownHeaderProps>(markdownPath[type])
@@ -190,7 +197,9 @@ export function getMarkdownDetailListForGrid(type: MarkdownType): BlogMarkdownDe
 
 			return {
 				...item,
+				body: '',
 				summary,
+				toc: [],
 				url
 			};
 		});

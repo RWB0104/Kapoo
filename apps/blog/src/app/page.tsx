@@ -5,10 +5,13 @@
  * @since 2024.03.31 Sun 04:48:01
  */
 
-import { postGoogleLogin, postPopularData } from '@kapoo/api';
+import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
+import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 
-import { getMetadata } from '../common';
+import { getMetadata, getPopularList } from '../common';
 
 export const metadata = getMetadata({ title: '홈' });
 
@@ -19,20 +22,22 @@ export const metadata = getMetadata({ title: '홈' });
  */
 export default async function AppPage(): Promise<JSX.Element>
 {
-	const auth = await postGoogleLogin({
-		clientId: process.env.GOOGLE_CLIENT_ID,
-		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-		refreshToken: process.env.GOOGLE_REFRESH_TOKEN
-	});
-
-	// 인증이 유효할 경우
-	if (auth)
-	{
-		postPopularData('posts', auth);
-		postPopularData('projects', auth);
-	}
+	const postsList = await getPopularList('posts');
+	const projectsList = await getPopularList('projects');
 
 	return (
-		<ScreenPageTemplate title={process.env.NEXT_PUBLIC_TITLE} />
+		<ScreenPageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
+			<Container>
+				<Stack gap={16}>
+					<TitleTemplate subtitle='한 달 이내의 게시글 중, 가장 조회수가 높은 게시글들의 목록입니다.' title='👑 인기 게시글'>
+						<MarkdownGrid list={postsList} />
+					</TitleTemplate>
+
+					<TitleTemplate subtitle='한 달 이내의 프로젝트 중, 가장 조회수가 높은 프로젝트들의 목록입니다.' title='👑 인기 프로젝트'>
+						<MarkdownGrid list={projectsList} />
+					</TitleTemplate>
+				</Stack>
+			</Container>
+		</ScreenPageTemplate>
 	);
 }

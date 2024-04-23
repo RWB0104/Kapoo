@@ -9,6 +9,7 @@ import { calcDuring, colors, parseLocalDate } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
+import { blue, green } from '@mui/material/colors';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -17,10 +18,17 @@ import { MouseEventHandler } from 'react';
 
 import styles from './MarkdownCard.module.scss';
 
+import { MarkdownType } from '../../common';
+
 const cn = classNames.bind(styles);
 
 export interface MarkdownCardProps
 {
+	/**
+	 * 마크다운 타입
+	 */
+	type: MarkdownType;
+
 	/**
 	 * 링크
 	 */
@@ -47,6 +55,11 @@ export interface MarkdownCardProps
 	thumbnail: string;
 
 	/**
+	 * 태그
+	 */
+	tags: string[];
+
+	/**
 	 * 날짜
 	 */
 	timestamp: number;
@@ -64,12 +77,14 @@ export interface MarkdownCardProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownCard({ href, title, description, category, thumbnail, timestamp, onClick }: MarkdownCardProps): JSX.Element
+export default function MarkdownCard({ type, href, title, description, category, thumbnail, tags, timestamp, onClick }: MarkdownCardProps): JSX.Element
 {
 	const { year, month, date, hour, minute, second, weekday } = parseLocalDate(timestamp);
 
 	const dateText = `${year.text}-${month.text}-${date.text} (${weekday.text}) ${hour.text}:${minute.text}:${second.text}`;
 	const during = calcDuring(timestamp);
+
+	const color = type === 'posts' ? blue[500] : green[500];
 
 	return (
 		<Box
@@ -118,6 +133,14 @@ export default function MarkdownCard({ href, title, description, category, thumb
 								<Typography fontWeight='bold' textAlign='start'>{title}</Typography>
 
 								<Typography className={cn('description')} color='GrayText' textAlign='start' variant='caption'>{description}</Typography>
+							</Stack>
+
+							<Stack direction='row' flexWrap='wrap' gap={1} width='100%'>
+								{tags.map((i) => (
+									<Stack border='1px solid' borderColor={color} borderRadius={100} key={i} paddingLeft={1} paddingRight={1}>
+										<Typography color={color} variant='caption'># {i}</Typography>
+									</Stack>
+								))}
 							</Stack>
 
 							<Stack alignItems='center' direction='row' justifyContent='space-between'>
