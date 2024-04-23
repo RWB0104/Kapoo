@@ -22,7 +22,21 @@
 	align-items: center;
 }
 
+.copy-button {
+	overflow: hidden;
+}
+
+.copy-button-base {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 .icon {
-	width: 15px !important;
-	height: 15px !important;
+	transition: 0.3s;
+	scale: 0;
+
+	&.active {
+		scale: 1;
+	}
 }
