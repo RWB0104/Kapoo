@@ -30,11 +30,11 @@ export default async function AppPage(): Promise<JSX.Element>
 			<Container>
 				<Stack gap={16}>
 					<TitleTemplate subtitle='한 달 이내의 게시글 중, 가장 조회수가 높은 게시글들의 목록입니다.' title='👑 인기 게시글'>
-						<MarkdownGrid list={postsList} />
+						<MarkdownGrid list={postsList} disabledReferer />
 					</TitleTemplate>
 
 					<TitleTemplate subtitle='한 달 이내의 프로젝트 중, 가장 조회수가 높은 프로젝트들의 목록입니다.' title='👑 인기 프로젝트'>
-						<MarkdownGrid list={projectsList} />
+						<MarkdownGrid list={projectsList} disabledReferer />
 					</TitleTemplate>
 				</Stack>
 			</Container>

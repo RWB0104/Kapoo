@@ -36,8 +36,6 @@ interface DynamicPageProps
  */
 export default function MarkdownPage({ params: { markdown } }: NextPageProps<DynamicPageProps>): JSX.Element
 {
-	console.log(markdown);
-
 	const { meta, body, toc, group, prev, next, url } = getMarkdownDetailBySlug(markdown);
 
 	return (

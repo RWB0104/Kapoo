@@ -8,6 +8,7 @@
 import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
 import FloatButtonsBox from '@kapoo/blog-ui-pack/organism/FloatButtonsBox';
 import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
+import ToastifyProvider from '@kapoo/ui-pack/organism/ToastifyProvider';
 import { PropsWithChildren, Suspense } from 'react';
 
 import { getMetadata } from '../common';
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 							{children}
 
 							<FloatButtonsBox />
+							<ToastifyProvider />
 						</AppThemeProvider>
 					</QueryProvider>
 				</Suspense>

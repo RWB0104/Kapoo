@@ -11,6 +11,8 @@ import { colors, doCopy } from '@kapoo/common';
 import Check from '@mui/icons-material/Check';
 import Code from '@mui/icons-material/Code';
 import CopyAll from '@mui/icons-material/CopyAll';
+import ErrorOutline from '@mui/icons-material/ErrorOutline';
+import LinkIcon from '@mui/icons-material/Link';
 import { PaletteMode, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -20,6 +22,7 @@ import classNames from 'classnames/bind';
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes, useCallback, useMemo, useState } from 'react';
 import { PrismAsync } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { toast } from 'react-toastify';
 
 import styles from './MarkdownCodeBlock.module.scss';
 
@@ -62,13 +65,22 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 		// 동작 가능할 경우
 		if (!delayState)
 		{
-			doCopy(code);
+			doCopy(code, () =>
+			{
+				setDelayState(true);
 
-			setDelayState(true);
+				toast(`${languageName} 코드 복사 완료`, { icon: <LinkIcon htmlColor='dodgerblue' /> });
 
-			setTimeout(() => setDelayState(false), 1000);
+				setTimeout(() => setDelayState(false), 1000);
+			}, () =>
+			{
+				toast(`${languageName} 코드 복사 실패`, {
+					icon: <ErrorOutline htmlColor='crimson' />,
+					type: 'error'
+				});
+			});
 		}
-	}, [ delayState, code ]);
+	}, [ delayState, languageName, code ]);
 
 	return (
 		<Box data-component='MarkdownCodeBlock' paddingBottom={4} paddingTop={4}>
@@ -128,11 +140,9 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 						borderRadius={1}
 						boxShadow='0px 0px 4px #00000030'
 						className={cn('copy-button')}
-						height={24}
 						position='absolute'
 						right={10}
 						top={10}
-						width={24}
 					>
 						<ButtonBase
 							className={cn('copy-button-base')}
@@ -142,12 +152,12 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 							<Stack
 								alignItems='center'
 								className={cn('icon', { active: delayState })}
-								height={24}
+								height='100%'
 								justifyContent='center'
 								left={0}
 								position='absolute'
 								top={0}
-								width={24}
+								width='100%'
 							>
 								<Check color='success' fontSize='inherit' />
 							</Stack>
@@ -155,12 +165,12 @@ export default function MarkdownCodeBlock({ theme = 'light', languageName, child
 							<Stack
 								alignItems='center'
 								className={cn('icon', { active: !delayState })}
-								height={24}
+								height='100%'
 								justifyContent='center'
 								left={0}
 								position='absolute'
 								top={0}
-								width={24}
+								width='100%'
 							>
 								<CopyAll fontSize='inherit' />
 							</Stack>

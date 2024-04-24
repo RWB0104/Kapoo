@@ -7,7 +7,7 @@
 
 'use client';
 
-import { refererStore } from '@kapoo/state';
+import { refererStore, themeStore } from '@kapoo/state';
 import { Grid } from '@mui/material';
 import { MouseEventHandler, useCallback } from 'react';
 
@@ -20,6 +20,11 @@ export interface MarkdownGridProps
 	 * 리스트
 	 */
 	list: BlogMarkdownDetailProps<MarkdownHeaderProps>[];
+
+	/**
+	 * 리퍼러 비활성화 여부
+	 */
+	disabledReferer?: boolean;
 }
 
 /**
@@ -29,16 +34,21 @@ export interface MarkdownGridProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
+export default function MarkdownGrid({ list, disabledReferer }: MarkdownGridProps): JSX.Element
 {
+	const { themeState } = themeStore();
 	const { setRefererState } = refererStore();
 
 	const handleClick = useCallback<MouseEventHandler<HTMLButtonElement>>(() =>
 	{
 		sessionStorage.setItem('scroll', `${window.scrollY}`);
 
-		setRefererState(window.location.search);
-	}, []);
+		// 리퍼러가 활성화된 경우
+		if (!disabledReferer)
+		{
+			setRefererState(window.location.search);
+		}
+	}, [ disabledReferer ]);
 
 	return (
 		<Grid data-component='MarkdownGrid' spacing={4} container>
@@ -49,6 +59,7 @@ export default function MarkdownGrid({ list }: MarkdownGridProps): JSX.Element
 						description={meta.excerpt}
 						href={url}
 						tags={meta.tag}
+						theme={themeState}
 						thumbnail={meta.coverImage}
 						timestamp={meta.date}
 						title={meta.title}

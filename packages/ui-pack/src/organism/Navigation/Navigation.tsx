@@ -7,10 +7,10 @@
 
 'use client';
 
-import { useIntersectionObserver } from '@kapoo/common';
+import { useIntersectionObserver, useResizeObserver } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import { usePathname } from 'next/navigation';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Header, { HeaderProps } from '../../molecule/Header';
 import Sidebar, { SidebarProps } from '../../molecule/Sidebar';
@@ -57,6 +57,7 @@ export default function Navigation({ theme, logo, title, version, items }: Navig
 	const [ isTopState, setTopState ] = useState(true);
 	const [ isOpenState, setOpenState ] = useState(false);
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
+	const [ heightState, setHeightState ] = useState<number>();
 
 	const handleMenuClick = useCallback<Func<HeaderProps['onMenuClick']>>(() =>
 	{
@@ -68,26 +69,13 @@ export default function Navigation({ theme, logo, title, version, items }: Navig
 		setOpenState(false);
 	}, []);
 
-	const headerHeight = useMemo(() =>
-	{
-		const tag = domState?.getElementsByTagName('header');
-
-		let value = 0;
-
-		// 헤더가 유효할 경우
-		if (tag && tag[0])
-		{
-			value = tag[0].clientHeight;
-		}
-
-		return `${value}px`;
-	}, [ domState ]);
-
+	useResizeObserver('#header', (entry) => setHeightState(entry.borderBoxSize[0].blockSize));
 	useIntersectionObserver(domState, setTopState);
 
 	return (
 		<Box data-component='Navigation' ref={setDomState}>
 			<Header
+				id='header'
 				isTransparent={isTopState && !isOpenState}
 				logo={logo}
 				theme={theme}
@@ -100,7 +88,7 @@ export default function Navigation({ theme, logo, title, version, items }: Navig
 				items={items}
 				logo={logo}
 				open={isOpenState}
-				paddingTop={headerHeight}
+				paddingTop={`${heightState}px`}
 				title={title}
 				version={version}
 				onClose={handleClose}

@@ -9,16 +9,64 @@
 
 import { useEffect } from 'react';
 
+export type UseResizeObserverCallback = (entry: ResizeObserverEntry) => void;
 export type UseIntersectionObserverCallback = (isShow: boolean) => void;
+
+/**
+ * ResizeObserver 적용 훅 메서드
+ *
+ * @param {Element | string | null} ref: Element
+ * @param {UseResizeObserverCallback} callback: 콜백 메서드
+ */
+export function useResizeObserver(ref: Element | string | null, callback: UseResizeObserverCallback): void
+{
+	useEffect(() =>
+	{
+		const ro = new ResizeObserver((entries) =>
+		{
+			entries.forEach((entry) =>
+			{
+				callback?.(entry);
+			});
+		});
+
+		// DOM이 유효할 경우
+		if (ref)
+		{
+			// ref가 문자열일 경우
+			if (typeof ref === 'string')
+			{
+				const tag = document.querySelector(ref);
+
+				// 태그가 유효할 경우
+				if (tag)
+				{
+					ro.observe(tag);
+				}
+			}
+
+			// DOM일 경우
+			else
+			{
+				ro.observe(ref);
+			}
+		}
+
+		return () =>
+		{
+			ro.disconnect();
+		};
+	}, [ ref, callback ]);
+}
 
 /**
  * IntersectionObserver 적용 훅 메서드
  *
- * @param {Element | null} ref: Element
+ * @param {Element | string | null} ref: Element
  * @param {UseIntersectionObserverCallback} callback: 콜백 메서드
  * @param {IntersectionObserverInit} options: 옵션
  */
-export function useIntersectionObserver(ref: Element | null, callback: UseIntersectionObserverCallback, options?: IntersectionObserverInit): void
+export function useIntersectionObserver(ref: Element | string | null, callback: UseIntersectionObserverCallback, options?: IntersectionObserverInit): void
 {
 	useEffect(() =>
 	{
@@ -33,7 +81,23 @@ export function useIntersectionObserver(ref: Element | null, callback: UseInters
 		// DOM이 유효할 경우
 		if (ref)
 		{
-			io.observe(ref);
+			// ref가 문자열일 경우
+			if (typeof ref === 'string')
+			{
+				const tag = document.querySelector(ref);
+
+				// 태그가 유효할 경우
+				if (tag)
+				{
+					io.observe(tag);
+				}
+			}
+
+			// DOM일 경우
+			else
+			{
+				io.observe(ref);
+			}
 		}
 
 		return () =>

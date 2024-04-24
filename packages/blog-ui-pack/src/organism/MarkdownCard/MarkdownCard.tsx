@@ -7,9 +7,10 @@
 
 import { calcDuring, colors, parseLocalDate } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
+import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import { blue, green } from '@mui/material/colors';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -65,6 +66,11 @@ export interface MarkdownCardProps
 	timestamp: number;
 
 	/**
+	 * 테마
+	 */
+	theme?: PaletteMode;
+
+	/**
 	 * 클릭 이벤트 메서드
 	 */
 	onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -77,14 +83,12 @@ export interface MarkdownCardProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownCard({ type, href, title, description, category, thumbnail, tags, timestamp, onClick }: MarkdownCardProps): JSX.Element
+export default function MarkdownCard({ type, href, title, description, category, thumbnail, tags, timestamp, theme, onClick }: MarkdownCardProps): JSX.Element
 {
 	const { year, month, date, hour, minute, second, weekday } = parseLocalDate(timestamp);
 
 	const dateText = `${year.text}-${month.text}-${date.text} (${weekday.text}) ${hour.text}:${minute.text}:${second.text}`;
 	const during = calcDuring(timestamp);
-
-	const color = type === 'posts' ? blue[500] : green[500];
 
 	return (
 		<Box
@@ -137,9 +141,14 @@ export default function MarkdownCard({ type, href, title, description, category,
 
 							<Stack direction='row' flexWrap='wrap' gap={1} width='100%'>
 								{tags.map((i) => (
-									<Stack border='1px solid' borderColor={color} borderRadius={100} key={i} paddingLeft={1} paddingRight={1}>
-										<Typography color={color} variant='caption'># {i}</Typography>
-									</Stack>
+									<Chip
+										className={cn('tag')}
+										color={type === 'posts' ? 'info' : 'success'}
+										key={i}
+										label={`# ${i}`}
+										size='small'
+										variant={theme === 'dark' ? 'outlined' : undefined}
+									/>
 								))}
 							</Stack>
 
