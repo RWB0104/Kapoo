@@ -10,7 +10,7 @@
 import { useEffect } from 'react';
 
 export type UseResizeObserverCallback = (entry: ResizeObserverEntry) => void;
-export type UseIntersectionObserverCallback = (isShow: boolean) => void;
+export type UseIntersectionObserverCallback = (entry: IntersectionObserverEntry) => void;
 
 /**
  * ResizeObserver 적용 훅 메서드
@@ -24,10 +24,7 @@ export function useResizeObserver(ref: Element | string | null, callback: UseRes
 	{
 		const ro = new ResizeObserver((entries) =>
 		{
-			entries.forEach((entry) =>
-			{
-				callback?.(entry);
-			});
+			entries.forEach(callback);
 		});
 
 		// DOM이 유효할 경우
@@ -72,10 +69,7 @@ export function useIntersectionObserver(ref: Element | string | null, callback: 
 	{
 		const io = new IntersectionObserver((entries) =>
 		{
-			entries.forEach((entry) =>
-			{
-				callback?.(entry.isIntersecting);
-			});
+			entries.forEach(callback);
 		}, options);
 
 		// DOM이 유효할 경우

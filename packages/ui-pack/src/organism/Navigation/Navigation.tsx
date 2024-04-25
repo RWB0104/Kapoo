@@ -70,7 +70,7 @@ export default function Navigation({ theme, logo, title, version, items }: Navig
 	}, []);
 
 	useResizeObserver('#header', (entry) => setHeightState(entry.borderBoxSize[0].blockSize));
-	useIntersectionObserver(domState, setTopState);
+	useIntersectionObserver(domState, (entry) => setTopState(entry.isIntersecting));
 
 	return (
 		<Box data-component='Navigation' ref={setDomState}>

@@ -37,10 +37,10 @@ export default function InfiniteScroll({ disabled = false, onEnd, children, ...p
 {
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 
-	useIntersectionObserver(domState, (isShow) =>
+	useIntersectionObserver(domState, (entry) =>
 	{
 		// DOM이 보일 경우
-		if (isShow)
+		if (entry.isIntersecting)
 		{
 			onEnd?.();
 		}
