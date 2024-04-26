@@ -1,0 +1,33 @@
+.ship {
+	animation: floating 6s linear infinite alternate,
+		yay 6s linear infinite alternate;
+}
+
+@keyframes floating {
+	0% {
+
+		transform: translate(7px, 5px);
+	}
+
+	50% {
+		transform: translate(-7px, -5px);
+	}
+
+	100% {
+		transform: translate(7px, 5px);
+	}
+}
+
+@keyframes yay {
+	0% {
+		rotate: 10deg;
+	}
+
+	50% {
+		rotate: -10deg;
+	}
+
+	100% {
+		rotate: 10deg;
+	}
+}
