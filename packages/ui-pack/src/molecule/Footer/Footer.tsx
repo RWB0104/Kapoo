@@ -6,6 +6,13 @@
  */
 
 import Box, { BoxProps } from '@mui/material/Box';
+import classNames from 'classnames/bind';
+
+import styles from './Footer.module.scss';
+
+import Wave from '../../atom/Wave';
+
+const cn = classNames.bind(styles);
 
 export interface FooterProps extends BoxProps
 {
@@ -30,8 +37,16 @@ export interface FooterProps extends BoxProps
 export default function Footer({ logo, title, ...props }: FooterProps): JSX.Element
 {
 	return (
-		<Box component='footer' data-component='Footer' {...props}>
-			sdf
+		<Box component='footer' data-component='Footer' position='relative' {...props}>
+			<Box className={cn('ship')} left={50} position='absolute' top={-50}>
+				<img alt='22' height={100} src='https://cdn-icons-png.freepik.com/512/6643/6643562.png' width={100} />
+			</Box>
+
+			<Wave fillColor='lightskyblue' />
+
+			<Box bgcolor='lightskyblue' height={50}>
+				sdfsd
+			</Box>
 		</Box>
 	);
 }

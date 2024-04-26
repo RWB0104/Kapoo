@@ -5,7 +5,12 @@
  * @since 2024.04.25 Thu 17:55:16
  */
 
+import classNames from 'classnames/bind';
 import { CSSProperties, SVGProps } from 'react';
+
+import styles from './Wave.module.scss';
+
+const cn = classNames.bind(styles);
 
 export interface WaveProps extends SVGProps<SVGSVGElement>
 {
@@ -22,11 +27,11 @@ export interface WaveProps extends SVGProps<SVGSVGElement>
  *
  * @returns {JSX.Element} JSX
  */
-export default function Wave({ fill, ...props }: WaveProps): JSX.Element
+export default function Wave({ fillColor, ...props }: WaveProps): JSX.Element
 {
 	return (
 		<svg
-			className='waves'
+			className={cn('waves')}
 			data-component='Wave'
 			preserveAspectRatio='none'
 			shapeRendering='auto'
@@ -41,11 +46,11 @@ export default function Wave({ fill, ...props }: WaveProps): JSX.Element
 				/>
 			</defs>
 
-			<g className='parallax'>
-				<use fill={fill} opacity='0.7' x='48' xlinkHref='#gentle-wave' y='0' />
-				<use fill={fill} opacity='0.5' x='48' xlinkHref='#gentle-wave' y='3' />
-				<use fill={fill} opacity='0.3' x='48' xlinkHref='#gentle-wave' y='5' />
-				<use fill={fill} x='48' xlinkHref='#gentle-wave' y='7' />
+			<g className={cn('parallax')}>
+				<use fill={fillColor} opacity='0.7' x='48' xlinkHref='#gentle-wave' y='0' />
+				<use fill={fillColor} opacity='0.5' x='48' xlinkHref='#gentle-wave' y='3' />
+				<use fill={fillColor} opacity='0.3' x='48' xlinkHref='#gentle-wave' y='5' />
+				<use fill={fillColor} x='48' xlinkHref='#gentle-wave' y='7' />
 			</g>
 		</svg>
 	);

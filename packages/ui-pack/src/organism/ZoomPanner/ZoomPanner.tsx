@@ -9,7 +9,12 @@
 
 import Box from '@mui/material/Box';
 import Stack, { StackProps } from '@mui/material/Stack';
+import classNames from 'classnames/bind';
 import { MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
+
+import styles from './ZoomPanner.module.scss';
+
+const cn = classNames.bind(styles);
 
 interface OffsetProps
 {
@@ -201,6 +206,7 @@ export default function ZoomPanner({ defaultZoom = 1, zoomUnit = 0.1, controller
 
 	return (
 		<Stack
+			className={cn('panner')}
 			data-component='ZoomPanner'
 			overflow='hidden'
 			ref={ref}
