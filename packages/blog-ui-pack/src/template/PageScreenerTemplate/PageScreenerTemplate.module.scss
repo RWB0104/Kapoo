@@ -1,0 +1,11 @@
+:global(body.light) {
+	.root {
+		fill: white;
+	}
+}
+
+:global(body.dark) {
+	.root {
+		fill: #121212;
+	}
+}
