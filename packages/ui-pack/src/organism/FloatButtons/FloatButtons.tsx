@@ -26,7 +26,12 @@ export interface FloatButtonsProps
 	 */
 	theme?: PaletteMode;
 
-	onThemeClick?: (theme: PaletteMode) => void;
+	/**
+	 * 테마 클릭 이벤트 메서드
+	 *
+	 * @param {PaletteMode} theme: 테마
+	 */
+	onThemeClick?: (theme?: PaletteMode) => void;
 }
 
 /**
@@ -36,7 +41,7 @@ export interface FloatButtonsProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function FloatButtons({ theme = 'light', onThemeClick }: FloatButtonsProps): JSX.Element
+export default function FloatButtons({ theme, onThemeClick }: FloatButtonsProps): JSX.Element
 {
 	const bgcolor = useMemo<SymbolicButtonProps['bgcolor']>(() => (theme === 'light' ? 'white' : '#242424'), [ theme ]);
 

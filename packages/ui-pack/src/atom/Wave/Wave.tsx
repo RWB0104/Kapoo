@@ -27,15 +27,17 @@ export interface WaveProps extends SVGProps<SVGSVGElement>
  *
  * @returns {JSX.Element} JSX
  */
-export default function Wave({ fillColor, ...props }: WaveProps): JSX.Element
+export default function Wave({ fillColor, width = '100%', height = 40, className, ...props }: WaveProps): JSX.Element
 {
 	return (
 		<svg
-			className={cn('waves')}
+			className={cn('waves', className)}
 			data-component='Wave'
+			height={height}
 			preserveAspectRatio='none'
 			shapeRendering='auto'
 			viewBox='0 24 150 28'
+			width={width}
 			xmlns='http://www.w3.org/2000/svg'
 			{...props}
 		>

@@ -48,7 +48,7 @@ export interface MarkdownCodeBlockProps extends Omit<DetailedHTMLProps<HTMLAttri
  *
  * @return {JSX.Element} JSX
  */
-export default function MarkdownCodeBlock({ theme = 'light', languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
+export default function MarkdownCodeBlock({ theme, languageName, children, ...props }: MarkdownCodeBlockProps): JSX.Element
 {
 	const [ delayState, setDelayState ] = useState(false);
 

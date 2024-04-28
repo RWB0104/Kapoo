@@ -42,6 +42,12 @@ export default function AppThemeProvider({ children }: PropsWithChildren): JSX.E
 		}
 	}, []);
 
+	useEffect(() =>
+	{
+		document.body.classList.remove('light', 'dark');
+		document.body.classList.add(themeState);
+	}, [ themeState ]);
+
 	return (
 		<ThemeProvider theme={getTheme(themeState)}>
 			<CssBaseline />

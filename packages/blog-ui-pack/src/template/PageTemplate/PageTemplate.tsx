@@ -11,6 +11,7 @@ import pgk from 'package.json';
 import { PropsWithChildren } from 'react';
 
 import AppNavigation from '../../organism/AppNavigation/AppNavigation';
+import FooterTemplate from '../FooterTemplate';
 
 export interface PageTemplateProps extends PropsWithChildren
 {
@@ -38,7 +39,9 @@ export default function PageTemplate({ title, children }: PageTemplateProps): JS
 
 			{children}
 
-			<Footer />
+			<Footer mainColor='cornflowerblue'>
+				<FooterTemplate title={title} />
+			</Footer>
 		</Box>
 	);
 }

@@ -35,7 +35,7 @@ export const themeStore = create<ThemeStore>((set) => ({
 		localStorage.setItem('theme', themeState);
 		set({ themeState });
 	},
-	themeState: 'light',
+	themeState: 'dark',
 	toggleThemeState: (): void =>
 	{
 		set(({ themeState }) =>

@@ -6,6 +6,7 @@
  */
 
 import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
+import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
@@ -26,9 +27,18 @@ export default async function AppPage(): Promise<JSX.Element>
 	const projectsList = await getPopularList('projects');
 
 	return (
-		<ScreenPageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
+		<ScreenPageTemplate
+			title={process.env.NEXT_PUBLIC_TITLE}
+			template={(
+				<PageScreenerTemplate
+					borderColor='red'
+					subtitle={process.env.NEXT_PUBLIC_DESCRIPTION}
+					title={process.env.NEXT_PUBLIC_TITLE}
+				/>
+			)}
+		>
 			<Container>
-				<Stack gap={16}>
+				<Stack gap={16} marginTop={10}>
 					<TitleTemplate subtitle='한 달 이내의 게시글 중, 가장 조회수가 높은 게시글들의 목록입니다.' title='👑 인기 게시글'>
 						<MarkdownGrid list={postsList} disabledReferer />
 					</TitleTemplate>
