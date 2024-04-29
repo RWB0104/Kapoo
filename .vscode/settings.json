@@ -1,3 +1,5 @@
 {
-	"typescript.preferences.importModuleSpecifier": "project-relative"
+	"typescript.preferences.importModuleSpecifier": "project-relative",
+	"autoimport.filesToScan": "{apps,packages}/*.{js,jsx,ts,tsx}",
+	"autoimport.autoComplete": false
 }
