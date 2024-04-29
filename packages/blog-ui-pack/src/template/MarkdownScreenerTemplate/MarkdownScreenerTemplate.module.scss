@@ -1,0 +1,15 @@
+:global(body.light) {
+	.root {
+		fill: white;
+	}
+}
+
+:global(body.dark) {
+	.root {
+		fill: #121212;
+	}
+}
+
+.text {
+	text-shadow: 1px 1px 3px black;
+}
