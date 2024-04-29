@@ -28,9 +28,14 @@ export interface PageScreenerTemplateProps
 	subtitle: string;
 
 	/**
-	 * 테두리 색상
+	 * 텍스트
 	 */
-	borderColor?: CSSProperties['borderColor'];
+	text: string;
+
+	/**
+	 * 색상
+	 */
+	color?: CSSProperties['color'];
 }
 
 /**
@@ -40,7 +45,7 @@ export interface PageScreenerTemplateProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function PageScreenerTemplate({ title, subtitle, borderColor }: PageScreenerTemplateProps): JSX.Element
+export default function PageScreenerTemplate({ title, subtitle, text, color }: PageScreenerTemplateProps): JSX.Element
 {
 	return (
 		<BaseScreenerTemplate className={cn('root')}>
@@ -48,19 +53,18 @@ export default function PageScreenerTemplate({ title, subtitle, borderColor }: P
 				alignItems='center'
 				height='100%'
 				justifyContent='center'
+				padding={2}
 				width='100%'
 			>
 				<Stack
-					borderColor={borderColor}
-					borderLeft='5px solid'
+					borderLeft={`5px solid ${color}`}
 					color='white'
-					gap={1}
 					paddingLeft={2}
 					paddingRight={2}
 				>
-					<Typography fontWeight='bold' variant='h4'>{title}</Typography>
-
-					<Typography fontWeight='bold' variant='h6'>{subtitle}</Typography>
+					<Typography className={cn('text')} fontWeight='bold' variant='h4'>{title}</Typography>
+					<Typography className={cn('text')} fontWeight='bold' variant='h6'>{subtitle}</Typography>
+					<Typography className={cn('text')} color={color} fontWeight='bold' variant='h6'>{text}</Typography>
 				</Stack>
 			</Stack>
 		</BaseScreenerTemplate>

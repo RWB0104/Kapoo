@@ -91,7 +91,7 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 						width='100%'
 					>
 						<Typography color='white' variant='caption'>시리즈 모아보기</Typography>
-						<Typography color='dodgerblue' fontWeight='bold'>{title}</Typography>
+						<Typography color='dodgerblue' fontWeight='bold' variant='h6'>{title}</Typography>
 						<Typography color='white'>{currentIndex} / {groups.length}</Typography>
 					</Stack>
 				</Box>

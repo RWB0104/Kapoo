@@ -6,13 +6,16 @@
  */
 
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
+import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 
-import { getMetadata } from '../../common';
+import { getMetadata, routers } from '../../common';
 
 export const metadata = getMetadata({
-	title: '방명록',
+	description: routers.comments.subtitle,
+	title: routers.comments.title,
 	url: '/comments'
 });
 
@@ -24,9 +27,21 @@ export const metadata = getMetadata({
 export default function CommentsPage(): JSX.Element
 {
 	return (
-		<ScreenPageTemplate title={process.env.NEXT_PUBLIC_TITLE}>
+		<ScreenPageTemplate
+			title={process.env.NEXT_PUBLIC_TITLE}
+			template={(
+				<PageScreenerTemplate
+					color={routers.comments.color}
+					subtitle={routers.comments.subtitle}
+					text={routers.comments.title}
+					title={process.env.NEXT_PUBLIC_TITLE}
+				/>
+			)}
+		>
 			<Container>
-				<Comment />
+				<Stack marginTop={10}>
+					<Comment />
+				</Stack>
 			</Container>
 		</ScreenPageTemplate>
 	);

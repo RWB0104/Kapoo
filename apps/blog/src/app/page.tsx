@@ -31,8 +31,9 @@ export default async function AppPage(): Promise<JSX.Element>
 			title={process.env.NEXT_PUBLIC_TITLE}
 			template={(
 				<PageScreenerTemplate
-					borderColor='red'
+					color='gold'
 					subtitle={process.env.NEXT_PUBLIC_DESCRIPTION}
+					text='홈'
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>
 			)}

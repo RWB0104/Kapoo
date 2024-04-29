@@ -5,6 +5,7 @@
  * @since 2024.04.29 Mon 00:05:32
  */
 
+import { author } from '@kapoo/common';
 import CodeIcon from '@mui/icons-material/Code';
 import GitHub from '@mui/icons-material/GitHub';
 import Google from '@mui/icons-material/Google';
@@ -48,15 +49,15 @@ export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Elem
 					<img alt='itcode.dev' height='100%' src='https://itcode.dev/logo-transparent.png' width='100%' />
 				</FooterLinkButton>
 
-				<FooterLinkButton link='https://github.com/RWB0104'>
+				<FooterLinkButton link={author.social.github.link}>
 					<GitHub />
 				</FooterLinkButton>
 
-				<FooterLinkButton link='mailto:psj2716@mensakorea.org'>
+				<FooterLinkButton link={`mailto:${author.email}`}>
 					<Google />
 				</FooterLinkButton>
 
-				<FooterLinkButton link='https://www.linkedin.com/in/itcode/'>
+				<FooterLinkButton link={author.social.linkedin.link}>
 					<LinkedIn />
 				</FooterLinkButton>
 

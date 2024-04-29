@@ -203,11 +203,12 @@ export function doCopy(url: string, onSuccess?: CopyCallback, onError?: CopyCall
  * @param {ShareData} data: 공유 데이터
  * @param {ShareCallback} onSuccess: 성공 콜백 메서드
  * @param {ShareCallback} onError: 실패 콜백 메서드
+ * @param {ShareCallback} onSuccessCopy: 복사 성공 콜백 메서드
  */
-export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onError?: ShareCallback): void
+export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onError?: ShareCallback, onSuccessCopy?: ShareCallback): void
 {
 	doShare(data, onSuccess, () =>
 	{
-		doCopy(data.url || '', undefined, () => onError?.(data));
+		doCopy(data.url || '', () => onSuccessCopy?.(data), () => onError?.(data));
 	});
 }

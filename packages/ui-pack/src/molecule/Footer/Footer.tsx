@@ -34,7 +34,7 @@ export default function Footer({ mainColor = 'transparent', children, ...props }
 {
 	return (
 		<Box component='footer' data-component='Footer' marginTop={20} position='relative' {...props}>
-			<Box className={cn('ship')} left={100} position='absolute' top={-50}>
+			<Box className={cn('ship')} left='10%' position='absolute' top={-50}>
 				<img alt='22' height={100} src='https://cdn-icons-png.freepik.com/512/6643/6643562.png' width={100} />
 			</Box>
 

@@ -9,15 +9,17 @@ import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/commo
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import MarkdownGroup from '@kapoo/blog-ui-pack/organism/MarkdownGroup';
 import MarkdownMenu from '@kapoo/blog-ui-pack/organism/MarkdownMenu';
+import MarkdownScreenerTemplate from '@kapoo/blog-ui-pack/template/MarkdownScreenerTemplate/index';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
+import ScrollProgress from '@kapoo/ui-pack/organism/ScrollProgress/ScrollProgress';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Metadata } from 'next';
 
-import { getMetadata } from '../../common';
+import { getMetadata, routers } from '../../common';
 
 interface DynamicPageProps
 {
@@ -39,7 +41,21 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 	const { meta, body, toc, group, prev, next, url } = getMarkdownDetailBySlug(markdown);
 
 	return (
-		<ScreenPageTemplate src={meta.coverImage} title={process.env.NEXT_PUBLIC_TITLE}>
+		<ScreenPageTemplate
+			src={meta.coverImage}
+			title={process.env.NEXT_PUBLIC_TITLE}
+			template={(
+				<MarkdownScreenerTemplate
+					color={routers[meta.type].color}
+					description={meta.excerpt}
+					timestamp={meta.date}
+					title={meta.title}
+					url={`${process.env.NEXT_PUBLIC_BASE_URL}${url}`}
+				/>
+			)}
+		>
+			<ScrollProgress color={routers[meta.type].color} />
+
 			<Container>
 				<Stack gap={2} paddingTop={2}>
 					{meta.group && group ? (

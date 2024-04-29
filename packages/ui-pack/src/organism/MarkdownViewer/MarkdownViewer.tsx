@@ -99,7 +99,7 @@ export default function MarkdownViewer({ className, ...props }: MarkdownViewerPr
 	}, []);
 
 	return (
-		<Box data-component='MarkdownViewer'>
+		<Box data-component='MarkdownViewer' id='viewer'>
 			<ReactMarkdown
 				className={cn('markdown', className)}
 				components={components}

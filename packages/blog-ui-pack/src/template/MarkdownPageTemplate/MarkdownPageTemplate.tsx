@@ -6,6 +6,7 @@
  */
 
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
 
 import { getMarkdownDetailListForGrid, markdownPath } from '../../common';
 import MarkdownBox from '../../organism/MarkdownBox';
@@ -34,7 +35,9 @@ export default function MarkdownPageTemplate({ type, ...props }: MarkdownPageTem
 	return (
 		<ScreenPageTemplate {...props}>
 			<Container>
-				<MarkdownBox markdown={markdown} />
+				<Stack marginTop={10}>
+					<MarkdownBox markdown={markdown} />
+				</Stack>
 			</Container>
 		</ScreenPageTemplate>
 	);

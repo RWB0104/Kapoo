@@ -6,11 +6,13 @@
  */
 
 import MarkdownPageTemplate from '@kapoo/blog-ui-pack/template/MarkdownPageTemplate';
+import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 
-import { getMetadata } from '../../common';
+import { getMetadata, routers } from '../../common';
 
 export const metadata = getMetadata({
-	title: '프로젝트',
+	description: routers.projects.subtitle,
+	title: routers.projects.title,
 	url: '/projects'
 });
 
@@ -22,6 +24,17 @@ export const metadata = getMetadata({
 export default function ProjectsPage(): JSX.Element
 {
 	return (
-		<MarkdownPageTemplate title={process.env.NEXT_PUBLIC_TITLE} type='projects' />
+		<MarkdownPageTemplate
+			title={process.env.NEXT_PUBLIC_TITLE}
+			type='projects'
+			template={(
+				<PageScreenerTemplate
+					color={routers.projects.color}
+					subtitle={routers.projects.subtitle}
+					text={routers.projects.title}
+					title={process.env.NEXT_PUBLIC_TITLE}
+				/>
+			)}
+		/>
 	);
 }

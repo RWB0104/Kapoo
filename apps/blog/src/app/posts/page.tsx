@@ -6,11 +6,13 @@
  */
 
 import MarkdownPageTemplate from '@kapoo/blog-ui-pack/template/MarkdownPageTemplate';
+import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 
-import { getMetadata } from '../../common';
+import { getMetadata, routers } from '../../common';
 
 export const metadata = getMetadata({
-	title: '게시글',
+	description: routers.posts.subtitle,
+	title: routers.posts.title,
 	url: '/posts'
 });
 
@@ -22,6 +24,17 @@ export const metadata = getMetadata({
 export default function PostsPage(): JSX.Element
 {
 	return (
-		<MarkdownPageTemplate title={process.env.NEXT_PUBLIC_TITLE} type='posts' />
+		<MarkdownPageTemplate
+			title={process.env.NEXT_PUBLIC_TITLE}
+			type='posts'
+			template={(
+				<PageScreenerTemplate
+					color={routers.posts.color}
+					subtitle={routers.posts.subtitle}
+					text={routers.posts.title}
+					title={process.env.NEXT_PUBLIC_TITLE}
+				/>
+			)}
+		/>
 	);
 }
