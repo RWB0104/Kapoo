@@ -45,7 +45,7 @@ export default function TitleTemplate({ title, subtitle, children }: TitleTempla
 				<Typography color='GrayText'>{subtitle}</Typography>
 			</Stack>
 
-			<Box>
+			<Box width='100%'>
 				{children}
 			</Box>
 		</Stack>

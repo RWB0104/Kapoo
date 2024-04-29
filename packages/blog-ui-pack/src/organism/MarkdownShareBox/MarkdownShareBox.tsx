@@ -49,13 +49,13 @@ export default function MarkdownShareBox({ shareData, ...props }: MarkdownShareB
 		// 링크 복사일 경우
 		if (type === 'link')
 		{
-			toast(`[${shareData.title}] 페이지의 링크를 복사했어요!`, { icon: <LinkIcon color='success' />, type: 'success' });
+			toast(`[${shareData.title}] 페이지의 링크를 복사했어요!`, { icon: <LinkIcon htmlColor='dodgerblue' /> });
 		}
 
 		// 공유일 경우
 		else if (type === 'share')
 		{
-			toast(`[${shareData.title}] 페이지를 공유했어요!`, { icon: <Share color='success' />, type: 'success' });
+			toast(`[${shareData.title}] 페이지를 공유했어요!`, { icon: <Share htmlColor='dodgerblue' /> });
 		}
 
 		// 알 수 없는 동작일 경우
@@ -66,6 +66,6 @@ export default function MarkdownShareBox({ shareData, ...props }: MarkdownShareB
 	}, [ shareData.title, handleFail ]);
 
 	return (
-		<ShareBox shareData={shareData} onFail={handleFail} onSuccess={handleSuccess} {...props} />
+		<ShareBox iconColor='white' shareData={shareData} onFail={handleFail} onSuccess={handleSuccess} {...props} />
 	);
 }

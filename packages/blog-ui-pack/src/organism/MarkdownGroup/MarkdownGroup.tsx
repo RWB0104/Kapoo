@@ -75,7 +75,7 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 	return (
 		<Paper data-component='MarkdownGroup' variant='outlined'>
 			<Stack width='100%'>
-				<Box height='100%' minHeight={150} position='relative' width='100%'>
+				<Box height='100%' minHeight={200} position='relative' width='100%'>
 					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
 						<Img height='100%' src={thumbnail} width='100%' />
 					</Box>
@@ -83,7 +83,7 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 					<Stack
 						alignItems='center'
 						bgcolor='#00000070'
-						gap={1}
+						className={cn('text')}
 						height='100%'
 						justifyContent='center'
 						padding={2}
@@ -91,8 +91,8 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 						width='100%'
 					>
 						<Typography color='white' variant='caption'>시리즈 모아보기</Typography>
-						<Typography color='dodgerblue' fontWeight='bold' variant='h6'>{title}</Typography>
-						<Typography color='white'>{currentIndex} / {groups.length}</Typography>
+						<Typography color='gold' fontWeight='bold' variant='h5'>{title}</Typography>
+						<Typography color='white' fontWeight='bold'>{currentIndex} / {groups.length}</Typography>
 					</Stack>
 				</Box>
 

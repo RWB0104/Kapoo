@@ -57,7 +57,7 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 			<ScrollProgress color={routers[meta.type].color} />
 
 			<Container>
-				<Stack gap={2} paddingTop={2}>
+				<Stack gap={4} paddingTop={10}>
 					{meta.group && group ? (
 						<MarkdownGroup
 							current={url}

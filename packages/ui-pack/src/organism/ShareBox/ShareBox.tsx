@@ -62,11 +62,11 @@ export default function ShareBox({ iconColor, shareData, onSuccess, onFail, ...p
 
 	return (
 		<Stack data-component='ShareBox' {...props}>
-			<SymbolicButton borderColor={iconColor} onClick={handleLinkClick}>
+			<SymbolicButton borderColor={iconColor} height={40} width={40} onClick={handleLinkClick}>
 				<LinkIcon htmlColor={iconColor} />
 			</SymbolicButton>
 
-			<SymbolicButton borderColor={iconColor} onClick={handleShareClick}>
+			<SymbolicButton borderColor={iconColor} height={40} width={40} onClick={handleShareClick}>
 				<Share htmlColor={iconColor} />
 			</SymbolicButton>
 		</Stack>

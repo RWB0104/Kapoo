@@ -77,7 +77,7 @@ export default function MarkdownMenuSideCard({ href, title, subtitle, thumbnail,
 					direction='row'
 					gap={2}
 					height='100%'
-					minHeight={100}
+					minHeight={120}
 					padding={2}
 					width='100%'
 					zIndex={1}

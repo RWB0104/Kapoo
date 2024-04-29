@@ -7,6 +7,7 @@
 
 import { parseLocalDate } from '@kapoo/common';
 import BaseScreenerTemplate from '@kapoo/ui-pack/template/BaseScreenerTemplate';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -61,25 +62,30 @@ export default function MarkdownScreenerTemplate({ title, description, url, time
 		<BaseScreenerTemplate className={cn('root')}>
 			<Stack
 				alignItems='center'
-				gap={2}
 				height='100%'
 				justifyContent='center'
 				padding={2}
+				position='relative'
 				width='100%'
 			>
-				<Stack
-					borderLeft={`5px solid ${color}`}
-					color='white'
-					paddingLeft={2}
-					paddingRight={2}
-				>
-					<Typography className={cn('text')} fontWeight='bold' variant='h4'>{title}</Typography>
-					<Typography className={cn('text')}>{`${year.text}-${month.text}-${date.text} (${weekday.text}) ${hour.text}:${minute.text}:${second.text}`}</Typography>
+				<Stack direction='row'>
+					<Box bgcolor={color} boxShadow='0px 0px 5px black' height='100%' width={5} />
+
+					<Stack
+						color='white'
+						paddingLeft={2}
+						paddingRight={2}
+					>
+						<Typography className={cn('text')} fontWeight='bold' variant='h5'>{title}</Typography>
+						<Typography className={cn('text')}>{`⏰ ${year.text}-${month.text}-${date.text} (${weekday.text}) ${hour.text}:${minute.text}:${second.text}`}</Typography>
+					</Stack>
 				</Stack>
 
 				<MarkdownShareBox
+					bottom='10%'
 					direction='row'
-					gap={2}
+					gap={4}
+					position='absolute'
 					shareData={{
 						text: description,
 						title,

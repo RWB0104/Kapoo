@@ -7,7 +7,7 @@
 
 'use client';
 
-import { useResizeObserver } from '@kapoo/common';
+import { notoSans, useResizeObserver } from '@kapoo/common';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -35,6 +35,7 @@ export default function ToastifyProvider(): JSX.Element
 			limit={5}
 			style={{ top: heightState }}
 			theme={mode}
+			toastStyle={{ fontFamily: notoSans.style.fontFamily }}
 		/>
 	);
 }
