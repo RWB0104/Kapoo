@@ -1,0 +1,7 @@
+.icon {
+	transition: 0.3s;
+
+	&.open {
+		transform: rotateX(180deg);
+	}
+}
