@@ -65,9 +65,9 @@ export default function PageScreenerTemplate({ title, subtitle, text, color }: P
 						paddingLeft={2}
 						paddingRight={2}
 					>
-						<Typography className={cn('text')} fontWeight='bold' variant='h4'>{title}</Typography>
-						<Typography className={cn('text')} fontWeight='bold' variant='h6'>{subtitle}</Typography>
-						<Typography className={cn('text')} color={color} fontWeight='bold' variant='h6'>{text}</Typography>
+						<Typography className={cn('text')} fontWeight='bold' variant='h5'>{title}</Typography>
+						<Typography className={cn('text')} fontWeight='bold'>{subtitle}</Typography>
+						<Typography className={cn('text')} color={color} fontWeight='bold'>{text}</Typography>
 					</Stack>
 				</Stack>
 			</Stack>

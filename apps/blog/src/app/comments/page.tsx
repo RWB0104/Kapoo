@@ -8,6 +8,7 @@
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
+import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
@@ -40,7 +41,9 @@ export default function CommentsPage(): JSX.Element
 		>
 			<Container>
 				<Stack marginTop={10}>
-					<Comment />
+					<TitleTemplate subtitle='여러분들의 다양한 생각을 남겨주세요! 운영에 큰 힘이 됩니다.' title='💝 방명록'>
+						<Comment />
+					</TitleTemplate>
 				</Stack>
 			</Container>
 		</ScreenPageTemplate>

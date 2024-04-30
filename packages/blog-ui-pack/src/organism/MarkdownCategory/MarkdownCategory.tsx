@@ -5,16 +5,18 @@
  * @since 2024.04.11 Thu 17:56:40
  */
 
+'use client';
+
+import CollapseBox, { CollapseBoxControllerProps, CollapseBoxHandler } from '@kapoo/ui-pack/molecule/CollapseBox';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import ButtonBase from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import styles from './MarkdownCategory.module.scss';
 import MarkdownCategoryTile, { MarkdownCategoryTileProps } from './sub/MarkdownCategoryTile';
@@ -40,10 +42,18 @@ const key = 'category';
  */
 export default function MarkdownCategory({ categories }: MarkdownCategoryProps): JSX.Element
 {
+	const [ isOpenState, setOpenState ] = useState<boolean>();
+	const [ controllerState, setControllerState ] = useState<CollapseBoxControllerProps>();
+
 	const { replace } = useRouter();
 	const searchParams = useSearchParams();
 
 	const hasSelected = useMemo(() => searchParams.has(key), [ searchParams ]);
+
+	const handleOpenClick = useCallback(() =>
+	{
+		controllerState?.handle();
+	}, [ controllerState ]);
 
 	const handleClick = useCallback((label: string) =>
 	{
@@ -80,18 +90,35 @@ export default function MarkdownCategory({ categories }: MarkdownCategoryProps):
 		replace(`${window.location.pathname}?${urlParams.toString()}`, { scroll: false });
 	}, [ categories ]);
 
-	return (
-		<Accordion className={cn('category', { active: hasSelected })} data-component='MarkdownCategory' defaultExpanded>
-			<AccordionSummary expandIcon={<ExpandMore />}>
-				<Stack>
-					<Typography component='h5' fontWeight='bold' variant='h5'># 카테고리</Typography>
-				</Stack>
-			</AccordionSummary>
+	const handleControlled = useCallback<CollapseBoxHandler>((flag) =>
+	{
+		setOpenState(flag);
+	}, []);
 
-			<AccordionDetails>
+	return (
+		<Paper data-component='MarkdownCategory' variant='outlined'>
+			<Stack>
+				<ButtonBase onClick={handleOpenClick}>
+					<Stack
+						alignItems='center'
+						direction='row'
+						justifyContent='space-between'
+						padding={1}
+						paddingLeft={2}
+						paddingRight={2}
+						width='100%'
+					>
+						<Typography component='h5' fontWeight='bold' variant='h5'># 카테고리</Typography>
+
+						<ExpandMore className={cn('icon', { open: isOpenState })} />
+					</Stack>
+				</ButtonBase>
+			</Stack>
+
+			<CollapseBox controller={setControllerState} onControlled={handleControlled}>
 				<Grid spacing={0.5} container>
 					{categories.map(({ label, count, selected }) => (
-						<Grid className={cn('tile', { selected })} key={label} md={2} sm={3} xs={4} item>
+						<Grid key={label} md={2} sm={3} xs={4} item>
 							<MarkdownCategoryTile
 								count={count}
 								label={label}
@@ -101,7 +128,7 @@ export default function MarkdownCategory({ categories }: MarkdownCategoryProps):
 						</Grid>
 					))}
 				</Grid>
-			</AccordionDetails>
-		</Accordion>
+			</CollapseBox>
+		</Paper>
 	);
 }

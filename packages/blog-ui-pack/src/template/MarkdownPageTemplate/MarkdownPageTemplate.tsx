@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import { getMarkdownDetailListForGrid, markdownPath } from '../../common';
 import MarkdownBox from '../../organism/MarkdownBox';
 import ScreenPageTemplate, { ScreenPageTemplateProps } from '../ScreenPageTemplate';
+import TitleTemplate from '../TitleTemplate';
 
 export interface MarkdownPageTemplateProps extends ScreenPageTemplateProps
 {
@@ -32,11 +33,16 @@ export default function MarkdownPageTemplate({ type, ...props }: MarkdownPageTem
 	const markdown = getMarkdownDetailListForGrid(type)
 		.filter(({ meta }) => meta.publish);
 
+	const title = type === 'posts' ? '📚 게시글' : '💻 프로젝트';
+	const subtitle = type === 'posts' ? '개발과 관련된 다양한 내용을 다룬 글들의 목록입니다.' : '직접 개발한 프로젝트에 대한 내용을 다룬 글들의 목록입니다.';
+
 	return (
 		<ScreenPageTemplate {...props}>
 			<Container>
 				<Stack marginTop={10}>
-					<MarkdownBox markdown={markdown} />
+					<TitleTemplate subtitle={subtitle} title={title}>
+						<MarkdownBox markdown={markdown} />
+					</TitleTemplate>
 				</Stack>
 			</Container>
 		</ScreenPageTemplate>

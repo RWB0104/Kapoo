@@ -13,7 +13,7 @@ import LinkedIn from '@mui/icons-material/LinkedIn';
 import RssFeed from '@mui/icons-material/RssFeed';
 import Schema from '@mui/icons-material/Schema';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import pgk from 'package.json';

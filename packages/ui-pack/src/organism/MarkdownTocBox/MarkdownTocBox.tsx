@@ -7,7 +7,7 @@
 
 'use client';
 
-import { Menu } from '@mui/icons-material';
+import Menu from '@mui/icons-material/Menu';
 import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';

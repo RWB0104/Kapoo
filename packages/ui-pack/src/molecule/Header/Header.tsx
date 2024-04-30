@@ -7,8 +7,9 @@
 
 import { colors } from '@kapoo/common';
 import Menu from '@mui/icons-material/Menu';
-import { IconButton, PaletteMode } from '@mui/material';
+import { PaletteMode } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Stack, { StackProps } from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';

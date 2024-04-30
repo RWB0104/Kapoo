@@ -7,10 +7,10 @@
 
 import Tile from '@kapoo/ui-pack/atom/Tile';
 import Img from '@kapoo/ui-pack/organism/Img';
-import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import { MouseEventHandler } from 'react';
 

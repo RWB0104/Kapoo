@@ -8,7 +8,9 @@
 'use client';
 
 import { refererStore, themeStore } from '@kapoo/state';
-import { Grid } from '@mui/material';
+import DotLottieIcon from '@kapoo/ui-pack/atom/DotLottieIcon/DotLottieIcon';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import { MouseEventHandler, useCallback } from 'react';
 
 import { BlogMarkdownDetailProps, MarkdownHeaderProps } from '../../common';
@@ -52,7 +54,15 @@ export default function MarkdownGrid({ list, disabledReferer }: MarkdownGridProp
 
 	return (
 		<Grid data-component='MarkdownGrid' spacing={4} container>
-			{list.map(({ meta, url }) => (
+			{list.length === 0 ? (
+				<Grid xs={12} item>
+					<Stack alignItems='center' justifyContent='center' width='100%'>
+						<DotLottieIcon iconName='empty-file' maxWidth={200} width='100%' />
+					</Stack>
+				</Grid>
+			) : null}
+
+			{list.length > 0 ? list.map(({ meta, url }) => (
 				<Grid key={url} md={4} sm={6} xs={12} item>
 					<MarkdownCard
 						category={meta.category}
@@ -67,7 +77,7 @@ export default function MarkdownGrid({ list, disabledReferer }: MarkdownGridProp
 						onClick={handleClick}
 					/>
 				</Grid>
-			))}
+			)) : null}
 		</Grid>
 	);
 }

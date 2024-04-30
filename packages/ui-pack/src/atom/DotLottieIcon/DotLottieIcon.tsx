@@ -6,7 +6,7 @@
  */
 
 import { DotLottiePlayer, Props } from '@dotlottie/react-player';
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import { CSSProperties } from 'react';
 
@@ -15,6 +15,7 @@ import styles from './DotLottieIcon.module.scss';
 const cn = classNames.bind(styles);
 
 export const icons = [
+	'empty-file',
 	'image-loading-improved',
 	'lottie-logo',
 	'weather-broken-clouds',
