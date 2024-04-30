@@ -5,6 +5,8 @@
  * @since 2024.04.08 Mon 09:21:30
  */
 
+'use client';
+
 import { DotLottiePlayer, Props } from '@dotlottie/react-player';
 import Stack from '@mui/material/Stack';
 import classNames from 'classnames/bind';
@@ -18,6 +20,7 @@ export const icons = [
 	'empty-file',
 	'image-loading-improved',
 	'lottie-logo',
+	'love-message-burst',
 	'weather-broken-clouds',
 	'weather-clear-sky',
 	'weather-few-clouds',

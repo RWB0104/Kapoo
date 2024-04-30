@@ -9,12 +9,16 @@ import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/commo
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import MarkdownGroup from '@kapoo/blog-ui-pack/organism/MarkdownGroup';
 import MarkdownMenu from '@kapoo/blog-ui-pack/organism/MarkdownMenu';
+import MarkdownShareBox from '@kapoo/blog-ui-pack/organism/MarkdownShareBox';
+import MarkdownTagsBox from '@kapoo/blog-ui-pack/organism/MarkdownTagsBox';
+import ThanksCard from '@kapoo/blog-ui-pack/organism/ThanksCard';
 import MarkdownScreenerTemplate from '@kapoo/blog-ui-pack/template/MarkdownScreenerTemplate/index';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import ScrollProgress from '@kapoo/ui-pack/organism/ScrollProgress/ScrollProgress';
+import { Divider } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Metadata } from 'next';
@@ -69,11 +73,33 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 
 					<MarkdownTocBox list={toc} />
 
+					<Divider variant='fullWidth' />
+
 					<MarkdownViewer>
 						{body}
 					</MarkdownViewer>
 
+					<Divider variant='fullWidth' />
+
+					<MarkdownTagsBox tags={meta.tag} type={meta.type} />
+
 					<MarkdownMenu next={next} prev={prev} type={meta.type} />
+
+					<Stack alignItems='center' justifyContent='center' width='100%'>
+						<ThanksCard />
+					</Stack>
+
+					<MarkdownShareBox
+						direction='row'
+						gap={4}
+						iconColor='inherit'
+						justifyContent='center'
+						shareData={{
+							text: meta.excerpt,
+							title: meta.title,
+							url
+						}}
+					/>
 
 					{meta.comment ? <Comment /> : null}
 				</Stack>

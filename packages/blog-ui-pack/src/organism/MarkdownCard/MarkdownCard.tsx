@@ -10,7 +10,6 @@ import Img from '@kapoo/ui-pack/organism/Img';
 import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
-import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -20,6 +19,7 @@ import { MouseEventHandler } from 'react';
 import styles from './MarkdownCard.module.scss';
 
 import { MarkdownType } from '../../common';
+import MarkdownTags from '../../molecule/MarkdownTags';
 
 const cn = classNames.bind(styles);
 
@@ -139,18 +139,11 @@ export default function MarkdownCard({ type, href, title, description, category,
 								<Typography className={cn('description')} color='GrayText' textAlign='start' variant='caption'>{description}</Typography>
 							</Stack>
 
-							<Stack direction='row' flexWrap='wrap' gap={1} width='100%'>
-								{tags.map((i) => (
-									<Chip
-										className={cn('tag')}
-										color={type === 'posts' ? 'info' : 'success'}
-										key={i}
-										label={`# ${i}`}
-										size='small'
-										variant={theme === 'dark' ? 'outlined' : undefined}
-									/>
-								))}
-							</Stack>
+							<MarkdownTags
+								color={type === 'posts' ? 'info' : 'success'}
+								tags={tags}
+								variant={theme === 'light' ? 'filled' : 'outlined'}
+							/>
 
 							<Stack alignItems='center' direction='row' justifyContent='space-between'>
 								<Typography color='GrayText' variant='caption'>{dateText}</Typography>

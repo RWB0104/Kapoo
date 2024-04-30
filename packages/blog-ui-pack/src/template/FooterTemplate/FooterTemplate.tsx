@@ -6,6 +6,7 @@
  */
 
 import { author } from '@kapoo/common';
+import Hits from '@kapoo/ui-pack/atom/Hits';
 import CodeIcon from '@mui/icons-material/Code';
 import GitHub from '@mui/icons-material/GitHub';
 import Google from '@mui/icons-material/Google';
@@ -38,7 +39,7 @@ export interface FooterTemplateProps
 export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Element
 {
 	return (
-		<Stack alignItems='center' color='white' data-component='FooterTemplate' gap={2} padding={4}>
+		<Stack alignItems='center' color='white' data-component='FooterTemplate' gap={4} padding={4}>
 			<Stack alignItems='center' color='white'>
 				<Typography fontWeight='bold' variant='h6'>{title}</Typography>
 				<Typography variant='caption'>{pgk.version}</Typography>
@@ -81,6 +82,15 @@ export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Elem
 					<Typography variant='caption'>5th upgraded at 2024.05</Typography>
 				</Stack>
 			</Stack>
+
+			<Hits
+				countBgcolor='#484848'
+				icon='react.svg'
+				iconColor='dodgerblue'
+				text='view'
+				titleBgcolor='#242424'
+				unique={process.env.NODE_ENV === 'development' ? 'http://example.com' : 'https://blog.itcode.dev'}
+			/>
 		</Stack>
 	);
 }
