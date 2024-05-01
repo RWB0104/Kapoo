@@ -5,7 +5,7 @@
  * @since 2024.04.11 Thu 12:20:07
  */
 
-import { calcDuring, colors, parseLocalDate } from '@kapoo/common';
+import { calcDuring, colors, parseLocalDate, useIntersectionObserver } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
 import { PaletteMode } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 
 import styles from './MarkdownCard.module.scss';
 
@@ -85,19 +85,33 @@ export interface MarkdownCardProps
  */
 export default function MarkdownCard({ type, href, title, description, category, thumbnail, tags, timestamp, theme, onClick }: MarkdownCardProps): JSX.Element
 {
+	const [ refState, setRefState ] = useState<HTMLDivElement | null>(null);
+
+	const [ isShowState, setShowState ] = useState(false);
+
 	const { year, month, date, hour, minute, second, weekday } = parseLocalDate(timestamp);
 
 	const dateText = `${year.text}-${month.text}-${date.text} (${weekday.text}) ${hour.text}:${minute.text}:${second.text}`;
 	const during = calcDuring(timestamp);
 
+	useIntersectionObserver(refState, (entry) =>
+	{
+		if (entry.isIntersecting)
+		{
+			console.log(title);
+			setShowState(true);
+		}
+	}, { threshold: 0.5 });
+
 	return (
 		<Box
 			borderRadius={1}
 			boxShadow={`0px 0px 10px ${colors.shadow.default}`}
-			className={cn('card')}
+			className={cn('card', { active: isShowState })}
 			data-component='MarkdownCard'
 			height='100%'
 			overflow='hidden'
+			ref={setRefState}
 			width='100%'
 		>
 			<ButtonBase className={cn('button')} onClick={onClick}>
