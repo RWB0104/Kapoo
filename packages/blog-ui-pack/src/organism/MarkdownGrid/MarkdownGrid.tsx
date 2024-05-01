@@ -11,6 +11,7 @@ import { refererStore, themeStore } from '@kapoo/state';
 import DotLottieIcon from '@kapoo/ui-pack/atom/DotLottieIcon/DotLottieIcon';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import { motion } from 'framer-motion';
 import { MouseEventHandler, useCallback } from 'react';
 
 import { BlogMarkdownDetailProps, MarkdownHeaderProps } from '../../common';
@@ -64,18 +65,26 @@ export default function MarkdownGrid({ list, disabledReferer }: MarkdownGridProp
 
 			{list.length > 0 ? list.map(({ meta, url }) => (
 				<Grid key={url} md={4} sm={6} xs={12} item>
-					<MarkdownCard
-						category={meta.category}
-						description={meta.excerpt}
-						href={url}
-						tags={meta.tag}
-						theme={themeState}
-						thumbnail={meta.coverImage}
-						timestamp={meta.date}
-						title={meta.title}
-						type={meta.type}
-						onClick={handleClick}
-					/>
+					<motion.div
+						className='h-full'
+						initial={{ opacity: 0, translateY: '20px' }}
+						transition={{ duration: 1 }}
+						viewport={{ amount: 0.5, once: true }}
+						whileInView={{ opacity: 1, translateY: '0px' }}
+					>
+						<MarkdownCard
+							category={meta.category}
+							description={meta.excerpt}
+							href={url}
+							tags={meta.tag}
+							theme={themeState}
+							thumbnail={meta.coverImage}
+							timestamp={meta.date}
+							title={meta.title}
+							type={meta.type}
+							onClick={handleClick}
+						/>
+					</motion.div>
 				</Grid>
 			)) : null}
 		</Grid>

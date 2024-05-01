@@ -10,8 +10,12 @@ import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
 import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
+import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
+import Img from '@kapoo/ui-pack/organism/Img';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import { getMetadata, getPopularList } from '../common';
 
@@ -46,6 +50,24 @@ export default async function AppPage(): Promise<JSX.Element>
 		>
 			<Container>
 				<Stack gap={16} marginTop={10}>
+					<TiltBox>
+						<Stack alignItems='center' gap={2}>
+							<Box
+								borderRadius={2}
+								boxShadow='0px 0px 20px #00000050'
+								height='100%'
+								maxHeight={300}
+								maxWidth={300}
+								overflow='hidden'
+								width='100%'
+							>
+								<Img src='/thumb.png' />
+							</Box>
+
+							<Typography variant='h6'>{process.env.NEXT_PUBLIC_TITLE}</Typography>
+						</Stack>
+					</TiltBox>
+
 					<TitleTemplate subtitle='2주 이내에 작성된 컨텐츠들의 목록입니다.' title='🔥 최신 컨텐츠'>
 						<MarkdownGrid list={newistList} disabledReferer />
 					</TitleTemplate>

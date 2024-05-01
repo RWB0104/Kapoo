@@ -212,3 +212,16 @@ export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onErro
 		doCopy(data.url || '', () => onSuccessCopy?.(data), () => onError?.(data));
 	});
 }
+
+/**
+ * 특정 자릿수 반올림 결과 반환 메서드
+ *
+ * @param {number} num: 숫자
+ * @param {number} digit: 자릿수
+ *
+ * @returns {number}: 반올림 숫자
+ */
+export function mathRound(num: number, digit = 0): number
+{
+	return Math.round(num * (10 ** digit)) / (10 ** digit);
+}
