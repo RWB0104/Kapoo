@@ -1,6 +1,6 @@
 {
   "name": "state",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/state/src",
   "projectType": "library",
   "tags": [

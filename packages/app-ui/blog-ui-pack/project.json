@@ -1,6 +1,6 @@
 {
   "name": "blog-ui-pack",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/blog-ui-pack/src",
   "projectType": "library",
   "tags": [
