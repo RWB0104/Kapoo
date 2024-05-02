@@ -98,7 +98,6 @@ export default function MarkdownCard({ type, href, title, description, category,
 	{
 		if (entry.isIntersecting)
 		{
-			console.log(title);
 			setShowState(true);
 		}
 	}, { threshold: 0.5 });
