@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "outDir": "../../../dist/out-tsc",
     "types": [
       "node",
       "@nx/react/typings/cssmodule.d.ts",
@@ -26,6 +26,6 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../../global.d.ts"
+    "../../../global.d.ts"
   ]
 }
