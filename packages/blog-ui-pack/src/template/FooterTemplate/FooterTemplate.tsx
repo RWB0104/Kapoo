@@ -54,7 +54,7 @@ export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Elem
 			paddingTop={8}
 		>
 			<Stack alignItems='center' color='white'>
-				<Typography fontWeight='bold' sx={{ textShadow: '0px 0px 10px #00000050' }} variant='h6'>{title}</Typography>
+				<Typography className={cn('title')} fontWeight='bold' variant='h6'>{title}</Typography>
 				<Typography variant='caption'>{pgk.version}</Typography>
 			</Stack>
 
