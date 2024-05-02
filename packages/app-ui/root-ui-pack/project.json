@@ -1,7 +1,7 @@
 {
   "name": "root-ui-pack",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/root-ui-pack/src",
+  "sourceRoot": "packages/app-ui/root-ui-pack/src",
   "projectType": "library",
   "tags": [
     "lib:root",

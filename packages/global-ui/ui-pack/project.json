@@ -1,7 +1,7 @@
 {
   "name": "ui-pack",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/ui-pack/src",
+  "sourceRoot": "packages/global-ui/ui-pack/src",
   "projectType": "library",
   "tags": [
     "lib:shared",
