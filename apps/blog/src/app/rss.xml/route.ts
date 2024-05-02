@@ -129,7 +129,7 @@ export function GET(req: NextRequest, res: NextResponse<Response>): Response
 			<pubDate>2021-05-26T23:36:57.000Z</pubDate>
 			<title>${process.env.NEXT_PUBLIC_TITLE}</title>
 			<webMaster>${author.email}</webMaster>
-			${item}
+			${item.join('\n')}
 		</channel>
 	</rss>
 	`;
