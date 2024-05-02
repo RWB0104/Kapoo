@@ -7,38 +7,11 @@
 
 import { postGoogleLogin, postPopularData } from '@kapoo/api';
 import { BlogMarkdownDetailProps, MarkdownHeaderProps, MarkdownType, getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
-import { author } from '@kapoo/common';
+import { BaseMetadataProps, getBaseMetadata } from '@kapoo/common';
 import { Metadata } from 'next';
-import { Author } from 'next/dist/lib/metadata/types/metadata-types';
 import { CSSProperties } from 'react';
 
-export interface BaseMetadataProps
-{
-	/**
-	 * 타이틀
-	 */
-	title?: string;
-
-	/**
-	 * 설명
-	 */
-	description?: string;
-
-	/**
-	 * 키워드
-	 */
-	keywords?: string[];
-
-	/**
-	 * 경로
-	 */
-	url?: string;
-
-	/**
-	 * 썸네일 url
-	 */
-	thumbnail?: string;
-}
+export type MetadataProps = Omit<BaseMetadataProps, 'sitename' | 'baseurl'>;
 
 export interface RouterProps
 {
@@ -84,54 +57,23 @@ export const routers: Record<'home' | 'posts' | 'projects' | 'comments', RouterP
 /**
  * 메타데이터 반환 메서드
  *
- * @param {BaseMetadataProps} params: BaseMetadataProps
+ * @param {MetadataProps} params: MetadataProps
  *
  * @returns {Metadata} 메타데이터
  */
-export function getMetadata(params: BaseMetadataProps | undefined): Metadata
+export function getMetadata(params?: MetadataProps): Metadata
 {
 	const init: BaseMetadataProps = {
+		baseurl: process.env.NEXT_PUBLIC_BASE_URL,
 		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		keywords: [],
+		sitename: process.env.NEXT_PUBLIC_TITLE,
 		thumbnail: '/thumb.png',
 		title: process.env.NEXT_PUBLIC_TITLE,
 		url: '/'
 	};
 
-	const { title, description, keywords, url, thumbnail } = { ...init, ...params };
-
-	const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_TITLE}`;
-
-	return {
-		applicationName: process.env.NEXT_PUBLIC_TITLE,
-		authors: Object.values(author.social).map<Author>(({ link, name }) => ({ name, url: link })),
-		creator: author.nickname,
-		description,
-		generator: 'Next.js',
-		icons: [
-			'/favicon.ico',
-			{ rel: 'shortcut icon', url: '/favicon.ico' },
-			{ rel: 'apple-touch-icon', url: '/favicon.ico' }
-		],
-		keywords,
-		metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || ''),
-		openGraph: {
-			description,
-			images: thumbnail,
-			locale: 'ko-KR',
-			siteName: process.env.NEXT_PUBLIC_TITLE,
-			title: fullTitle,
-			type: 'website',
-			url
-		},
-		publisher: 'GitHub Pages',
-		title: fullTitle,
-		twitter: {
-			description,
-			images: thumbnail,
-			title: fullTitle
-		}
-	};
+	return getBaseMetadata({ ...init, ...params });
 }
 
 /**

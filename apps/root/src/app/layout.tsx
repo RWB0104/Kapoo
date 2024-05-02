@@ -1,3 +1,10 @@
+/**
+ * 레이아웃 컴포넌트
+ *
+ * @author RWB
+ * @since 2024.05.02 Thu 16:41:34
+ */
+
 import { PropsWithChildren } from 'react';
 
 export const metadata = {
@@ -5,6 +12,13 @@ export const metadata = {
 	title: 'Welcome to root'
 };
 
+/**
+ * 레이아웃 컴포넌트 반환 메서드
+ *
+ * @param {PropsWithChildren} param0: PropsWithChildren
+ *
+ * @returns {JSX.Element} JSX
+ */
 export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 {
 	return (

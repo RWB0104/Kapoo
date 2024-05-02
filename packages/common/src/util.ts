@@ -5,6 +5,11 @@
  * @since 2024.03.31 Sun 03:52:17
  */
 
+import { Metadata } from 'next';
+import { Author } from 'next/dist/lib/metadata/types/metadata-types';
+
+import { author } from './variables';
+
 interface ParsedDateObject
 {
 	/**
@@ -34,6 +39,44 @@ export interface ParsedDate extends Record<ParsedDateKey, ParsedDateObject>
 	 * date
 	 */
 	rawDate: Date;
+}
+
+export interface BaseMetadataProps
+{
+	/**
+	 * 사이트명
+	 */
+	sitename?: string;
+
+	/**
+	 * 기본 URL
+	 */
+	baseurl?: string;
+
+	/**
+	 * 타이틀
+	 */
+	title?: string;
+
+	/**
+	 * 설명
+	 */
+	description?: string;
+
+	/**
+	 * 키워드
+	 */
+	keywords?: string[];
+
+	/**
+	 * 경로
+	 */
+	url?: string;
+
+	/**
+	 * 썸네일 url
+	 */
+	thumbnail?: string;
 }
 
 /**
@@ -224,4 +267,47 @@ export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onErro
 export function mathRound(num: number, digit = 0): number
 {
 	return Math.round(num * (10 ** digit)) / (10 ** digit);
+}
+
+/**
+ * 기본 메타데이터 반환 메서드
+ *
+ * @param {BaseMetadataProps} param0: BaseMetadataProps
+ *
+ * @returns {Metadata} Metadata
+ */
+export function getBaseMetadata({ sitename, baseurl, title, description, keywords, url, thumbnail }: BaseMetadataProps): Metadata
+{
+	const fullTitle = `${title} - ${sitename}`;
+
+	return {
+		applicationName: sitename,
+		authors: Object.values(author.social).map<Author>(({ link, name }) => ({ name, url: link })),
+		creator: author.nickname,
+		description,
+		generator: 'Next.js',
+		icons: [
+			'/favicon.ico',
+			{ rel: 'shortcut icon', url: '/favicon.ico' },
+			{ rel: 'apple-touch-icon', url: '/favicon.ico' }
+		],
+		keywords,
+		metadataBase: new URL(baseurl || ''),
+		openGraph: {
+			description,
+			images: thumbnail,
+			locale: 'ko-KR',
+			siteName: sitename,
+			title: fullTitle,
+			type: 'website',
+			url
+		},
+		publisher: 'GitHub Pages',
+		title: fullTitle,
+		twitter: {
+			description,
+			images: thumbnail,
+			title: fullTitle
+		}
+	};
 }
