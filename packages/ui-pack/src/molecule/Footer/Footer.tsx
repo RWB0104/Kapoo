@@ -5,6 +5,7 @@
  * @since 2024.04.01 Mon 00:54:30
  */
 
+import { Stack } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
 import { CSSProperties } from 'react';
@@ -32,13 +33,30 @@ export interface FooterProps extends BoxProps
  */
 export default function Footer({ mainColor = 'transparent', children, ...props }: FooterProps): JSX.Element
 {
-	return (
-		<Box component='footer' data-component='Footer' marginTop={20} position='relative' {...props}>
-			<Box className={cn('ship')} left='10%' position='absolute' top={-50}>
-				<img alt='22' height={100} src='https://cdn-icons-png.freepik.com/512/6643/6643562.png' width={100} />
-			</Box>
+	const hour = new Date().getHours();
 
-			<Wave fillColor={mainColor} />
+	return (
+		<Box component='footer' data-component='Footer' marginTop={20} {...props}>
+			<Box position='relative'>
+				<Stack className={cn('cloud', `hour-${hour}`)} width='100%'>
+					<Wave fillColor='inherit' />
+				</Stack>
+
+				<Box className={cn('sky', `hour-${hour}`)} height={200} />
+
+				<Box bottom={-20} className={cn('ship')} left='10%' position='absolute'>
+					<img
+						alt='22'
+						height={100}
+						src='https://cdn-icons-png.freepik.com/512/6643/6643562.png'
+						width={100}
+					/>
+				</Box>
+
+				<Box bottom={0} position='absolute' width='100%'>
+					<Wave fillColor={mainColor} />
+				</Box>
+			</Box>
 
 			<Box bgcolor={mainColor}>
 				{children}

@@ -5,8 +5,6 @@
  * @since 2024.05.01 Wed 02:15:51
  */
 
-'use client';
-
 import DotLottieIcon from '@kapoo/ui-pack/atom/DotLottieIcon/DotLottieIcon';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Stack from '@mui/material/Stack';
@@ -22,14 +20,15 @@ export default function ThanksCard(): JSX.Element
 	return (
 		<TiltBox>
 			<Stack
+				alignItems='center'
 				bgcolor='lemonchiffon'
 				borderRadius={1}
 				boxShadow='0px 0px 10px #00000030'
 				component='div'
 				data-component='ThanksCard'
 				direction='row'
-				gap={4}
-				padding={4}
+				gap={2}
+				padding={2}
 			>
 				<DotLottieIcon iconName='love-message-burst' width={100} />
 

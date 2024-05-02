@@ -18,6 +18,11 @@ export interface WaveProps extends SVGProps<SVGSVGElement>
 	 * 채우기 색
 	 */
 	fillColor?: CSSProperties['fill'];
+
+	/**
+	 * 애니메이션 비활성화 여부
+	 */
+	disabledAnimation?: boolean;
 }
 
 /**
@@ -27,7 +32,7 @@ export interface WaveProps extends SVGProps<SVGSVGElement>
  *
  * @returns {JSX.Element} JSX
  */
-export default function Wave({ fillColor, width = '100%', height = 40, className, ...props }: WaveProps): JSX.Element
+export default function Wave({ fillColor, disabledAnimation, width = '100%', height = 40, className, ...props }: WaveProps): JSX.Element
 {
 	return (
 		<svg
@@ -48,7 +53,7 @@ export default function Wave({ fillColor, width = '100%', height = 40, className
 				/>
 			</defs>
 
-			<g className={cn('parallax')}>
+			<g className={cn('parallax', { disabled: disabledAnimation })}>
 				<use fill={fillColor} opacity='0.7' x='48' xlinkHref='#gentle-wave' y='0' />
 				<use fill={fillColor} opacity='0.5' x='48' xlinkHref='#gentle-wave' y='3' />
 				<use fill={fillColor} opacity='0.3' x='48' xlinkHref='#gentle-wave' y='5' />
