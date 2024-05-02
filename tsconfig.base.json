@@ -28,6 +28,9 @@
       "@kapoo/common": [
         "packages/global-module/common/src/index.ts"
       ],
+      "@kapoo/global-ui-pack/*": [
+        "packages/app-ui/global-ui-pack/src/*"
+      ],
       "@kapoo/markdown-kit": [
         "packages/global-module/markdown-kit/src/index.ts"
       ],
