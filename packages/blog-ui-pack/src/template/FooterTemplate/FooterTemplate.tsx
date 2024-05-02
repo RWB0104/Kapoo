@@ -17,9 +17,13 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import classNames from 'classnames/bind';
 import pgk from 'package.json';
 
+import styles from './FooterTemplate.module.scss';
 import FooterLinkButton from './sub/FooterLinkButton';
+
+const cn = classNames.bind(styles);
 
 export interface FooterTemplateProps
 {
@@ -39,9 +43,18 @@ export interface FooterTemplateProps
 export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Element
 {
 	return (
-		<Stack alignItems='center' color='white' data-component='FooterTemplate' gap={4} padding={4}>
+		<Stack
+			alignItems='center'
+			className={cn('footer')}
+			color='white'
+			data-component='FooterTemplate'
+			gap={4}
+			padding={4}
+			paddingBottom={8}
+			paddingTop={8}
+		>
 			<Stack alignItems='center' color='white'>
-				<Typography fontWeight='bold' variant='h6'>{title}</Typography>
+				<Typography fontWeight='bold' sx={{ textShadow: '0px 0px 10px #00000050' }} variant='h6'>{title}</Typography>
 				<Typography variant='caption'>{pgk.version}</Typography>
 			</Stack>
 

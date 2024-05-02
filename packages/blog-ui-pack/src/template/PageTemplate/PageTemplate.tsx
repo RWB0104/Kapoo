@@ -39,7 +39,7 @@ export default function PageTemplate({ title, children }: PageTemplateProps): JS
 
 			{children}
 
-			<Footer mainColor='cornflowerblue'>
+			<Footer mainColor='#6fb1fc'>
 				<FooterTemplate title={title} />
 			</Footer>
 		</Box>

@@ -36,7 +36,7 @@ export default function Footer({ mainColor = 'transparent', children, ...props }
 	const hour = new Date().getHours();
 
 	return (
-		<Box component='footer' data-component='Footer' marginTop={20} {...props}>
+		<Box component='footer' data-component='Footer' marginTop={10} {...props}>
 			<Box position='relative'>
 				<Stack className={cn('cloud', `hour-${hour}`)} width='100%'>
 					<Wave fillColor='inherit' />
@@ -46,7 +46,7 @@ export default function Footer({ mainColor = 'transparent', children, ...props }
 
 				<Box bottom={-20} className={cn('ship')} left='10%' position='absolute'>
 					<img
-						alt='22'
+						alt='icon'
 						height={100}
 						src='https://cdn-icons-png.freepik.com/512/6643/6643562.png'
 						width={100}
@@ -58,7 +58,7 @@ export default function Footer({ mainColor = 'transparent', children, ...props }
 				</Box>
 			</Box>
 
-			<Box bgcolor={mainColor}>
+			<Box>
 				{children}
 			</Box>
 		</Box>
