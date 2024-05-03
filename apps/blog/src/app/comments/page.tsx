@@ -6,9 +6,9 @@
  */
 
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
-import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
-import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
+import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
+import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 

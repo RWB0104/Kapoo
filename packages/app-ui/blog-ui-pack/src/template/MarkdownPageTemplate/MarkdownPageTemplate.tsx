@@ -5,13 +5,13 @@
  * @since 2024.04.11 Thu 14:19:36
  */
 
+import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
 import { getMarkdownDetailListForGrid, markdownPath } from '../../common';
 import MarkdownBox from '../../organism/MarkdownBox';
 import ScreenPageTemplate, { ScreenPageTemplateProps } from '../ScreenPageTemplate';
-import TitleTemplate from '../TitleTemplate';
 
 export interface MarkdownPageTemplateProps extends ScreenPageTemplateProps
 {

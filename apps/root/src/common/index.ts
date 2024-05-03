@@ -20,8 +20,10 @@ export type MetadataProps = Omit<BaseMetadataProps, 'sitename' | 'baseurl'>;
 export function getMetadata(params?: MetadataProps): Metadata
 {
 	const init: BaseMetadataProps = {
+		baseurl: process.env.NEXT_PUBLIC_BASE_URL,
 		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		keywords: [],
+		sitename: process.env.NEXT_PUBLIC_TITLE,
 		thumbnail: '/thumb.png',
 		title: process.env.NEXT_PUBLIC_TITLE,
 		url: '/'

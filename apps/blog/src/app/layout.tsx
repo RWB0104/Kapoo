@@ -13,7 +13,7 @@ import { PropsWithChildren, Suspense } from 'react';
 
 import { getMetadata } from '../common';
 
-import './global.scss';
+import '@kapoo/ui-pack/global.scss';
 
 export const metadata = getMetadata({});
 

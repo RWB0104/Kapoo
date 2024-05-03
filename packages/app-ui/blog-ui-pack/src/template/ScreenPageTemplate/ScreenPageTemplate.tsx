@@ -5,7 +5,7 @@
  * @since 2024.04.11 Thu 12:38:24
  */
 
-import Screener from '@kapoo/ui-pack/organism/Screener';
+import Screener from '@kapoo/global-ui-pack/organism/Screener';
 
 import PageTemplate, { PageTemplateProps } from '../PageTemplate';
 

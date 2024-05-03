@@ -7,9 +7,9 @@
 
 import { getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
 import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
-import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
+import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';

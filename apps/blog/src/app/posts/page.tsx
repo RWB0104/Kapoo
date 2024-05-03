@@ -6,7 +6,7 @@
  */
 
 import MarkdownPageTemplate from '@kapoo/blog-ui-pack/template/MarkdownPageTemplate';
-import PageScreenerTemplate from '@kapoo/blog-ui-pack/template/PageScreenerTemplate';
+import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 
 import { getMetadata, routers } from '../../common';
 
