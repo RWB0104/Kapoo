@@ -5,6 +5,7 @@
  * @since 2024.05.03 Fri 14:24:51
  */
 
+import { getDevStack } from '@kapoo/api';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
 import Container from '@mui/material/Container';
@@ -14,8 +15,10 @@ import Container from '@mui/material/Container';
  *
  * @returns {JSX.Element} JSX
  */
-export default function AppPage(): JSX.Element
+export default async function AppPage(): Promise<JSX.Element>
 {
+	await getDevStack();
+
 	return (
 		<ScreenPageTemplate
 			title={process.env.NEXT_PUBLIC_TITLE}
