@@ -5,8 +5,8 @@
  * @since 2024.03.31 Sun 02:51:31
  */
 
-import AppThemeProvider from '@kapoo/blog-ui-pack/organism/AppThemeProvider';
-import FloatButtonsBox from '@kapoo/blog-ui-pack/organism/FloatButtonsBox';
+import AppThemeProvider from '@kapoo/global-ui-pack/organism/AppThemeProvider';
+import FloatButtonsBox from '@kapoo/global-ui-pack/organism/FloatButtonsBox';
 import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
 import ToastifyProvider from '@kapoo/ui-pack/organism/ToastifyProvider';
 import { PropsWithChildren, Suspense } from 'react';
