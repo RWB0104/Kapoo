@@ -2,7 +2,7 @@
  * 🤖 에셋 컴포넌트
  *
  * @author RWB
- * @since 2024.04.12 금 12:13:04
+ * @since 2024.04.12 Fri 12:13:04
  */
 
 import { MetadataRoute } from 'next';
