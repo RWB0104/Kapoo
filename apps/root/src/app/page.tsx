@@ -7,6 +7,7 @@
 
 import { getDevStack } from '@kapoo/api';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
+import DevStackGrid from '@kapoo/root-ui-pack/organism/DevStackGrid';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
 import Container from '@mui/material/Container';
 
@@ -17,7 +18,7 @@ import Container from '@mui/material/Container';
  */
 export default async function AppPage(): Promise<JSX.Element>
 {
-	await getDevStack();
+	const stacks = await getDevStack();
 
 	return (
 		<ScreenPageTemplate
@@ -32,7 +33,7 @@ export default async function AppPage(): Promise<JSX.Element>
 			)}
 		>
 			<Container>
-				/
+				<DevStackGrid list={stacks} />
 			</Container>
 		</ScreenPageTemplate>
 	);
