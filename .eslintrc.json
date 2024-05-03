@@ -22,27 +22,37 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "app:root",
+                "sourceTag": "name:root",
                 "onlyDependOnLibsWithTags": [
                   "lib:root",
-                  "lib:shared"
+                  "lib:shared",
+                  "lib:shared-ui"
                 ]
               },
               {
-                "sourceTag": "app:blog",
+                "sourceTag": "name:blog",
                 "onlyDependOnLibsWithTags": [
                   "lib:blog",
-                  "lib:shared"
+                  "lib:shared",
+                  "lib:shared-ui"
                 ]
               },
               {
                 "sourceTag": "lib:root",
                 "onlyDependOnLibsWithTags": [
-                  "lib:shared"
+                  "lib:shared",
+                  "lib:shared-ui"
                 ]
               },
               {
                 "sourceTag": "lib:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "name:global-ui-pack",
                 "onlyDependOnLibsWithTags": [
                   "lib:shared"
                 ]
