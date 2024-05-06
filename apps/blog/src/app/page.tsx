@@ -8,10 +8,10 @@
 import { getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
 import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
-import TitleTemplate from '@kapoo/blog-ui-pack/template/TitleTemplate';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
+import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';

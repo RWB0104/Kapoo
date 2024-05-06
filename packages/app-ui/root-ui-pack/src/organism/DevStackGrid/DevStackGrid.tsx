@@ -6,9 +6,9 @@
  */
 
 import { DevStackItem } from '@kapoo/api';
-import Tile from '@kapoo/ui-pack/atom/Tile';
-import Img from '@kapoo/ui-pack/organism/Img';
 import Grid from '@mui/material/Grid';
+
+import DevStackGridTile from './sub/DevStackGridTile';
 
 export interface DevStackGridProps
 {
@@ -28,12 +28,10 @@ export interface DevStackGridProps
 export default function DevStackGrid({ list }: DevStackGridProps): JSX.Element
 {
 	return (
-		<Grid data-component='DevStackGrid' container>
-			{list.map(({ icon, name, category }) => (
-				<Grid key={name} md={3} sm={4} xs={6} item>
-					<Tile>
-						<Img src={icon} />
-					</Tile>
+		<Grid data-component='DevStackGrid' spacing={1} container>
+			{list.map(({ icon, name }) => (
+				<Grid key={name} md={2} sm={3} xs={6} item>
+					<DevStackGridTile image={icon} name={name} />
 				</Grid>
 			))}
 		</Grid>

@@ -25,7 +25,7 @@ export default function GuestbookPage(): JSX.Element
 			template={(
 				<PageScreenerTemplate
 					color='hotpink'
-					subtitle='두근대며 읽어보는 중...'
+					subtitle='💝 두근대며 읽어보는 중...'
 					text='방명록'
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>

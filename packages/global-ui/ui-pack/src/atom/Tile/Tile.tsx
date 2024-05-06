@@ -19,11 +19,11 @@ const cn = classNames.bind(styles);
  *
  * @returns {JSX.Element} JSX
  */
-export default function Tile({ ...props }: BoxProps): JSX.Element
+export default function Tile({ className, ...props }: BoxProps): JSX.Element
 {
 	return (
 		<Box
-			className={cn('tile')}
+			className={cn('tile', className)}
 			data-component='Tile'
 			overflow='hidden'
 			position='relative'
