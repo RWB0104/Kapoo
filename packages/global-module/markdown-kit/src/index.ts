@@ -27,32 +27,11 @@ export interface MarkdownAllListItemProps
 	filename: string;
 
 	/**
-	 * 전체 이름
-	 *
-	 * @example /root/workspace/src/dir/yyyy-MM-dd-filename.md
-	 */
-	fullname: string;
-
-	/**
-	 * 토큰
-	 *
-	 * @example [ 'yyyy', 'MM', 'dd', 'filename' ]
-	 */
-	token: string[];
-
-	/**
 	 * 경로
 	 *
 	 * @example src/dir
 	 */
 	path: string;
-
-	/**
-	 * 전체 경로
-	 *
-	 * @example /root/workspace/src/dir
-	 */
-	fullpath: string;
 
 	/**
 	 * 대상
@@ -83,6 +62,13 @@ export interface MarkdownTocProps
 export interface MarkdownDetailProps<T = Record<string, string>>
 {
 	/**
+	 * 파일 이름
+	 *
+	 * @example yyyy-MM-dd-filename.md
+	 */
+	filename: string;
+
+	/**
 	 * 메타
 	 */
 	meta: T;
@@ -91,11 +77,6 @@ export interface MarkdownDetailProps<T = Record<string, string>>
 	 * 내용
 	 */
 	body: string;
-
-	/**
-	 * URL 배열
-	 */
-	urls: string[];
 
 	/**
 	 * TOC
@@ -125,12 +106,9 @@ export function getMarkdownAllList(path: string): MarkdownAllListItemProps[]
 		.filter((filename) => markdownRegex.fullname.test(filename))
 		.map<MarkdownAllListItemProps>((filename) => ({
 			filename,
-			fullname: join(fullpath, filename),
-			fullpath,
 			name: markdownRegex.fullname.exec?.(filename)?.[1] || filename,
 			path,
-			target: join(path, filename),
-			token: markdownRegex.nameToken.exec?.(filename)?.slice(1, 5) || []
+			target: join(path, filename)
 		}))
 		.sort((a, b) => b.filename.localeCompare(a.filename));
 }
@@ -203,9 +181,9 @@ export function getMarkdownDetail<T = Record<string, string>>(target: string): M
 
 	return {
 		body: content,
+		filename: names[0],
 		meta: data as T,
-		toc,
-		urls: names.slice(1, 5)
+		toc
 	};
 }
 

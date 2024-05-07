@@ -5,7 +5,7 @@
  * @since 2024.04.05 Fri 14:21:09
  */
 
-import { MarkdownDetailProps, getMarkdownDetailList } from '@kapoo/markdown-kit';
+import { MarkdownDetailProps, getMarkdownDetailList, markdownRegex } from '@kapoo/markdown-kit';
 
 export type MarkdownType = 'posts' | 'projects';
 
@@ -158,6 +158,25 @@ export const markdownPath = {
 	projects: `${markdownBasePath}/projects`
 };
 
+export function getUrl(name: string, type?: MarkdownType): string
+{
+	let target = name;
+
+	if (!name.endsWith('.md'))
+	{
+		target += '.md';
+	}
+
+	const regex = markdownRegex.nameToken.exec(target);
+
+	if (!regex)
+	{
+		throw Error(`${target} can't find`);
+	}
+
+	return `${type ? `/${type}` : ''}/${regex.slice(1, 5).join('/')}`;
+}
+
 /**
  * 사이드 마크다운 반환 메서드
  *
@@ -165,12 +184,14 @@ export const markdownPath = {
  *
  * @returns {BlogMarkdownDetailSideProps} 마크다운 상세
  */
-function getMarkdownSide({ meta, urls }: MarkdownDetailProps<MarkdownHeaderProps>): BlogMarkdownDetailSideProps
+function getMarkdownSide({ filename, meta }: MarkdownDetailProps<MarkdownHeaderProps>): BlogMarkdownDetailSideProps
 {
+	const url = getUrl(filename, meta.type);
+
 	return {
 		thumbnail: meta.coverImage,
 		title: meta.title,
-		url: `/${meta.type}/${urls.join('/')}`
+		url
 	};
 }
 
@@ -193,7 +214,7 @@ export function getMarkdownDetailListForGrid(type: MarkdownType): BlogMarkdownDe
 				...item.meta.tag
 			].join('|||').toLowerCase();
 
-			const url = `/${item.meta.type}/${item.urls.join('/')}`;
+			const url = getUrl(item.filename, item.meta.type);
 
 			return {
 				...item,
@@ -215,26 +236,27 @@ export function getMarkdownDetailListForGrid(type: MarkdownType): BlogMarkdownDe
 export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps<MarkdownHeaderProps>
 {
 	const type = slug[0];
-	const filename = slug.slice(1, 5).join('-');
+	const name = slug.slice(1, 5).join('-');
 
 	const list = getMarkdownDetailList<MarkdownHeaderProps>(`${markdownBasePath}/${type}`);
 
-	const currentIndex = list.findIndex(({ urls }) => urls.join('-') === filename);
+	const currentIndex = list.findIndex(({ filename }) => filename === `${name}.md`);
 
 	// 찾을 수 없을 경우
 	if (currentIndex < 0)
 	{
-		throw Error(`${filename} can't find`);
+		throw Error(`${name} can't find`);
 	}
 
 	const current = list[currentIndex];
 	const prev = currentIndex + 1 < list.length ? getMarkdownSide(list[currentIndex + 1]) : undefined;
 	const next = currentIndex - 1 < 0 ? undefined : getMarkdownSide(list[currentIndex - 1]);
 
-	const groupList = list.filter(({ meta }) => meta.category === current.meta.category);
-	const group = groupList.length > 0 ? groupList.map<BlogMarkdownDetailGroupProps>(({ meta, urls }) => ({
+	const groupList = list.filter(({ meta }) => meta.group && meta.group === current.meta.group);
+
+	const group = groupList.length > 0 ? groupList.map<BlogMarkdownDetailGroupProps>(({ filename, meta }) => ({
 		title: meta.title,
-		url: `/${meta.type}/${urls.join('/')}`
+		url: getUrl(filename, meta.type)
 	})) : undefined;
 
 	const summary = [
@@ -256,6 +278,6 @@ export function getMarkdownDetailBySlug(slug: string[]): BlogMarkdownDetailProps
 		next,
 		prev,
 		summary: summary.join('|||').toLowerCase(),
-		url: `/${current.meta.type}/${current.urls.join('/')}`
+		url: getUrl(current.filename, current.meta.type)
 	};
 }

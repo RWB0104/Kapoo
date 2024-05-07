@@ -5,7 +5,7 @@
  * @since 2024.04.08 Mon 16:41:09
  */
 
-import { markdownPath } from '@kapoo/blog-ui-pack/common';
+import { getUrl, markdownPath } from '@kapoo/blog-ui-pack/common';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
 import { MetadataRoute } from 'next';
 
@@ -18,8 +18,8 @@ export default async function SitemapAssets(): Promise<MetadataRoute.Sitemap>
 {
 	const baseList = [ '', '/posts', '/projects', '/comments' ];
 
-	const postsList = getMarkdownAllList(markdownPath.posts).map(({ token }) => `/posts/${token.join('/')}`);
-	const projectsList = getMarkdownAllList(markdownPath.projects).map(({ token }) => `/projects/${token.join('/')}`);
+	const postsList = getMarkdownAllList(markdownPath.posts).map(({ filename }) => getUrl(filename, 'posts'));
+	const projectsList = getMarkdownAllList(markdownPath.projects).map(({ filename }) => getUrl(filename, 'projects'));
 
 	const totalList = baseList.concat(postsList).concat(projectsList);
 

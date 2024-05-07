@@ -5,7 +5,7 @@
  * @since 2024.04.05 Fri 18:45:16
  */
 
-import { getMarkdownDetailBySlug, markdownPath } from '@kapoo/blog-ui-pack/common';
+import { getMarkdownDetailBySlug, getUrl, markdownPath } from '@kapoo/blog-ui-pack/common';
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
 import MarkdownGroup from '@kapoo/blog-ui-pack/organism/MarkdownGroup';
 import MarkdownMenu from '@kapoo/blog-ui-pack/organism/MarkdownMenu';
@@ -116,9 +116,9 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 export async function generateStaticParams(): Promise<DynamicPageProps[]>
 {
 	const postsList = getMarkdownAllList(markdownPath.posts)
-		.map<DynamicPageProps>(({ token }) => ({ markdown: [ 'posts', ...token ] }));
+		.map<DynamicPageProps>(({ filename }) => ({ markdown: getUrl(filename, 'posts').split('/').slice(1, 6) }));
 	const projectsList = getMarkdownAllList(markdownPath.projects)
-		.map<DynamicPageProps>(({ token }) => ({ markdown: [ 'projects', ...token ] }));
+		.map<DynamicPageProps>(({ filename }) => ({ markdown: getUrl(filename, 'projects').split('/').slice(1, 6) }));
 
 	return postsList.concat(projectsList);
 }
@@ -132,13 +132,13 @@ export async function generateStaticParams(): Promise<DynamicPageProps[]>
  */
 export async function generateMetadata({ params: { markdown } }: NextPageProps<DynamicPageProps>): Promise<Metadata>
 {
-	const { meta, urls } = getMarkdownDetailBySlug(markdown);
+	const { filename, meta } = getMarkdownDetailBySlug(markdown);
 
 	return getMetadata({
 		description: meta.excerpt,
 		keywords: meta.tag,
 		thumbnail: meta.coverImage,
 		title: meta.title,
-		url: `${meta.type}/${urls.join('/')}`
+		url: getUrl(filename, meta.type)
 	});
 }
