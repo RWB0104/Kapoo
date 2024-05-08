@@ -1,0 +1,45 @@
+.tile {
+	width: 100%;
+	height: 100%;
+
+	opacity: 0.4;
+	transform: translateY(20px) perspective(1400px) rotateX(30deg);
+
+	transition: 0.75s ease-out;
+
+	&.active {
+		opacity: 1;
+		transform: translateY(0px) rotateX(0deg);
+	}
+
+	.thumb {
+		scale: 0.75;
+
+		transition: 0.3s ease;
+	}
+
+	&:hover .thumb {
+		scale: 1;
+	}
+}
+
+.backdrop {
+	animation: bluring linear 10s infinite;
+	scale: 2;
+
+	filter: blur(10px);
+}
+
+@keyframes bluring {
+	0% {
+		transform: scale(2) rotate(0deg) translateY(30px) rotate(0deg);
+	}
+
+	50% {
+		scale: 1.2;
+	}
+
+	100% {
+		transform: scale(2) rotate(360deg) translateY(30px) rotate(-360deg);
+	}
+}
