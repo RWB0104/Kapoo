@@ -23,8 +23,7 @@ import Stack from '@mui/material/Stack';
 export default function ProjectsPage(): JSX.Element
 {
 	const list = getMarkdownDetailList<MarkdownHeaderProps>('src/markdown')
-		.filter(({ meta }) => !meta.disabled)
-		.map(({ meta }) => meta);
+		.filter(({ meta }) => !meta.disabled);
 
 	return (
 		<ScreenPageTemplate

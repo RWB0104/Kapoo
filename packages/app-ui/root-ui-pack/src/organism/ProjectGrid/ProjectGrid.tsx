@@ -5,9 +5,10 @@
  * @since 2024.05.04 Sat 13:18:39
  */
 
+import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import Grid from '@mui/material/Grid';
 
-import ProjectGridTile from './sub/ProjectGridTile/ProjectGridTile';
+import ProjectGridTile from './sub/ProjectGridTile';
 
 import { MarkdownHeaderProps } from '../../common';
 
@@ -16,7 +17,7 @@ export interface ProjectGridProps
 	/**
 	 * 리스트
 	 */
-	list: MarkdownHeaderProps[];
+	list: MarkdownDetailProps<MarkdownHeaderProps>[];
 }
 
 /**
@@ -29,8 +30,8 @@ export default function ProjectGrid({ list }: ProjectGridProps): JSX.Element
 	return (
 		<Grid data-component='ProjectGrid' spacing={1} container>
 			{list.map((project) => (
-				<Grid key={project.title} md={3} sm={4} xs={6} item>
-					<ProjectGridTile project={project} />
+				<Grid key={project.filename} md={3} sm={4} xs={6} item>
+					<ProjectGridTile project={project.meta} />
 				</Grid>
 			))}
 		</Grid>

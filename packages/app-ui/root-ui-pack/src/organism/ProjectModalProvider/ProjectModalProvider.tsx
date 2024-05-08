@@ -7,6 +7,7 @@
 
 'use client';
 
+import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
@@ -18,7 +19,7 @@ export interface ProjectModalProviderProps
 	/**
 	 * 리스트
 	 */
-	list: MarkdownHeaderProps[];
+	list: MarkdownDetailProps<MarkdownHeaderProps>[];
 }
 
 /**
@@ -43,10 +44,10 @@ export default function ProjectModalProvider({ list }: ProjectModalProviderProps
 	{
 		const id = searchParams.get('project');
 
-		return list.find(({ title }) => title === id);
+		return list.find(({ filename }) => filename === id);
 	}, [ list, searchParams ]);
 
 	return (
-		<ProjectModal open={project !== undefined} project={project} onClose={handleClose} />
+		<ProjectModal open={project !== undefined} project={project?.meta} onClose={handleClose} />
 	);
 }
