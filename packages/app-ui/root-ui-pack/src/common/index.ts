@@ -69,4 +69,9 @@ export interface MarkdownHeaderProps
 	 * 완료일자
 	 */
 	completed?: number;
+
+	/**
+	 * 비활성화 여부
+	 */
+	disabled?: boolean;
 }

@@ -20,24 +20,29 @@ export interface CollapseBoxControllerProps
 	handle: CollapseBoxHandler;
 }
 
-export type CollapseBoxControllerHandler = (controller: CollapseBoxControllerProps) => void;
+export type CollapseBoxOnInitHandler = (controller: CollapseBoxControllerProps) => void;
 
 export interface CollapseBoxProps extends BoxProps
 {
-	/**
-	 * 컨트롤러 메서드
-	 */
-	controller?: CollapseBoxControllerHandler;
-
 	/**
 	 * 기본 열기 여부
 	 */
 	defaultOpen?: boolean;
 
 	/**
+	 * 열기 여부
+	 */
+	open?: boolean;
+
+	/**
 	 * 애니메이션 시간
 	 */
 	animationTime?: CSSProperties['transition'];
+
+	/**
+	 * 컨트롤러 메서드
+	 */
+	onInit?: CollapseBoxOnInitHandler;
 
 	/**
 	 * 컨트롤 이벤트 메서드
@@ -52,12 +57,11 @@ export interface CollapseBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function CollapseBox({ controller, defaultOpen, animationTime = '0.3s', onControlled, ...props }: CollapseBoxProps): JSX.Element
+export default function CollapseBox({ defaultOpen, open, animationTime = '0.3s', onInit, onControlled, ...props }: CollapseBoxProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const [ isOpenState, setOpenState ] = useState(defaultOpen);
-	const [ heightState, setHeightState ] = useState<CSSProperties['height']>(defaultOpen ? undefined : 0);
 
 	const handleAnimationEnd = useCallback(() =>
 	{
@@ -69,66 +73,75 @@ export default function CollapseBox({ controller, defaultOpen, animationTime = '
 			// 상자가 열릴 경우
 			if (isOpenState)
 			{
-				setHeightState(undefined);
+				ref.current.style.height = '';
 			}
 
 			// 닫힐 경우
 			else
 			{
-				setHeightState(0);
+				ref.current.style.height = '0px';
 			}
 		}
 	}, [ ref.current, isOpenState ]);
 
-	const actions = useCallback<CollapseBoxHandler>((flag) =>
-	{
-		if (ref.current)
+	const actions = useCallback<CollapseBoxHandler>(
+		(flag) =>
 		{
-			// 상자가 열릴 경우
-			if (flag)
+			if (ref.current)
 			{
-				setHeightState(0);
+				// 상자가 열릴 경우
+				if (flag)
+				{
+					ref.current.style.height = '0px';
+				}
+
+				// 닫힐 경우
+				else
+				{
+					ref.current.style.height = `${ref.current.scrollHeight}px`;
+				}
+			}
+		},
+		[ ref.current ]
+	);
+
+	const handler = useCallback<CollapseBoxHandler>(
+		(flag) =>
+		{
+			// 파라미터가 입력되지 않을 경우 (토글)
+			if (flag === undefined)
+			{
+				setOpenState((state) =>
+				{
+					const next = !state;
+
+					actions(next);
+
+					return next;
+				});
 			}
 
-			// 닫힐 경우
+			// 파라미터가 입력된 경우 (명시적 할당)
 			else
 			{
-				setHeightState(ref.current.scrollHeight);
+				setOpenState((state) =>
+				{
+					if (state !== flag)
+					{
+						actions(flag);
+					}
+
+					return flag;
+				});
 			}
-		}
-	}, [ ref.current ]);
-
-	const handler = useCallback<CollapseBoxHandler>((flag) =>
-	{
-		// 파라미터가 입력되지 않을 경우 (토글)
-		if (flag === undefined)
-		{
-			setOpenState((state) =>
-			{
-				const next = !state;
-
-				actions(next);
-
-				return next;
-			});
-		}
-
-		// 파라미터가 입력된 경우 (명시적 할당)
-		else
-		{
-			setOpenState(() =>
-			{
-				actions(flag);
-
-				return flag;
-			});
-		}
-	}, [ ref.current, animationTime, actions ]);
+		},
+		[ ref.current, animationTime, actions ]
+	);
 
 	useEffect(() =>
 	{
-		controller?.({ handle: handler });
-	}, [ controller, handler ]);
+		onInit?.({ handle: handler });
+	}, [ onInit, handler ]);
 
 	useEffect(() =>
 	{
@@ -140,13 +153,13 @@ export default function CollapseBox({ controller, defaultOpen, animationTime = '
 			// 상자가 열릴 경우
 			if (isOpenState)
 			{
-				setHeightState(ref.current.scrollHeight);
+				ref.current.style.height = `${ref.current.scrollHeight}px`;
 			}
 
 			// 닫힐 경우
 			else
 			{
-				setHeightState(0);
+				ref.current.style.height = '0px';
 			}
 		}
 	}, [ animationTime, ref.current, isOpenState ]);
@@ -156,11 +169,15 @@ export default function CollapseBox({ controller, defaultOpen, animationTime = '
 		onControlled?.(isOpenState);
 	}, [ isOpenState, onControlled ]);
 
+	useEffect(() =>
+	{
+		handler(open);
+	}, [ handler, open ]);
+
 	return (
 		<Box
 			component='div'
 			data-component='CollapseBox'
-			height={heightState}
 			overflow='hidden'
 			ref={ref}
 			onTransitionEnd={handleAnimationEnd}

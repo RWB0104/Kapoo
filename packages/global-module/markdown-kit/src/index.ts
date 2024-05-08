@@ -86,6 +86,7 @@ export interface MarkdownDetailProps<T = Record<string, string>>
 
 export const markdownRegex = {
 	codeBlock: /```[^]*?```/gim,
+	filename: /([^/\\]+)\.md$/,
 	fullname: /^(.*?).md$/,
 	heading: /^(#{1,6}) (.+)$/gm,
 	nameToken: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/
@@ -164,7 +165,7 @@ export function getMarkdownToc(body: string): MarkdownTocProps[]
  */
 export function getMarkdownDetail<T = Record<string, string>>(target: string): MarkdownDetailProps<T>
 {
-	const names = markdownRegex.nameToken.exec(target);
+	const names = markdownRegex.filename.exec(target);
 
 	// 정규식과 일치하지 않는 경우
 	if (names === null)

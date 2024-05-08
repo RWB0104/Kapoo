@@ -9,7 +9,7 @@ import { create } from 'zustand';
 
 export type RefererStoreSetHandler = (referer?: string) => void;
 
-export interface RefererStore
+export interface RefererStoreProps
 {
 	/**
 	 * 리퍼러
@@ -22,7 +22,7 @@ export interface RefererStore
 	setRefererState: RefererStoreSetHandler;
 }
 
-export const refererStore = create<RefererStore>((set) => ({
+export const refererStore = create<RefererStoreProps>((set) => ({
 	setRefererState: (refererState): void =>
 	{
 		set({ refererState });

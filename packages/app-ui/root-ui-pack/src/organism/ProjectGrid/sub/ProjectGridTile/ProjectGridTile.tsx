@@ -5,71 +5,101 @@
  * @since 2024.05.05 Sun 02:25:55
  */
 
+'use client';
+
+import { useIntersectionObserver } from '@kapoo/common';
 import Tile from '@kapoo/ui-pack/atom/Tile';
 import Img from '@kapoo/ui-pack/organism/Img';
-import { Box, Typography } from '@mui/material';
-import Stack, { StackProps } from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import classNames from 'classnames/bind';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 
-export interface ProjectGridTileProps extends StackProps
+import styles from './ProjectGridTile.module.scss';
+
+import { MarkdownHeaderProps } from '../../../../common';
+
+const cn = classNames.bind(styles);
+
+export interface ProjectGridTileProps extends ButtonBaseProps
 {
 	/**
-	 * 아이디
+	 * 프로젝트
 	 */
-	idx: string;
-
-	/**
-	 * 제목
-	 */
-	name: string;
-
-	/**
-	 * 아이콘
-	 */
-	icon: string;
-
-	/**
-	 * 제작자
-	 */
-	author: string;
-
-	/**
-	 * 시작일자
-	 */
-	startDate: number;
-
-	/**
-	 * 종료일자
-	 */
-	endDate?: number;
-
-	/**
-	 * 썸네일
-	 */
-	thumbnail: string;
+	project: MarkdownHeaderProps;
 }
 
-export default function ProjectGridTile({ idx, name, icon, author, startDate, endDate, thumbnail, ...props }: ProjectGridTileProps): JSX.Element
+/**
+ * 프로젝트 그리드 타일 서브 컴포넌트 반환 메서드
+ *
+ * @param {ProjectGridTileProps} param0: ProjectGridTileProps
+ *
+ * @returns {JSX.Element} JSX
+ */
+export default function ProjectGridTile({ project, ...props }: ProjectGridTileProps): JSX.Element
 {
+	const { push } = useRouter();
+
+	const [ domState, setDomState ] = useState<HTMLButtonElement | null>(null);
+	const [ isShowState, setShowState ] = useState(false);
+
+	const time = Math.round(((project.completed || Date.now()) - project.created) / 86400000);
+	const during = project.completed ? `${time}일 소요됨` : `D+${time}`;
+
+	const handleClick = useCallback(() =>
+	{
+		const params = new URLSearchParams(window.location.search);
+		params.set('project', project.title);
+
+		push(`${window.location.pathname}?${params}`, { scroll: false });
+	}, [ project ]);
+
+	useIntersectionObserver(domState, ({ isIntersecting }) =>
+	{
+		// DOM이 보일 경우
+		if (isIntersecting)
+		{
+			setShowState(true);
+		}
+	});
+
 	return (
-		<Stack data-component='ProjectGridTileProps' {...props}>
-			<Stack direction='row'>
-				<Img height={40} src={icon} width={40} />
+		<ButtonBase
+			className={cn('tile', { active: isShowState })}
+			data-component='ProjectGridTileProps'
+			ref={setDomState}
+			onClick={handleClick}
+			{...props}
+		>
+			<Stack height='100%' width='100%'>
+				<Stack alignItems='center' direction='row' flex={1} width='100%'>
+					<Box padding={1}>
+						<Img height={32} src={project.icon} width={32} />
+					</Box>
 
-				<Stack>
-					<Typography>{name}</Typography>
+					<Stack padding={1} width='100%'>
+						<Typography fontWeight='bold' textAlign='start'>{project.title}</Typography>
 
-					<Stack direction='row' justifyContent='space-between'>
-						<Typography color='GrayText' variant='caption'>{author}</Typography>
-						<Typography>{name}</Typography>
+						<Stack alignItems='center' direction='row' justifyContent='space-between' width='100%'>
+							<Typography color='GrayText' variant='caption'>{project.author}</Typography>
+							<Typography color={project.completed ? 'limegreen' : 'orange'} variant='caption'>{during}</Typography>
+						</Stack>
 					</Stack>
 				</Stack>
-			</Stack>
 
-			<Tile>
-				<Box left={0} position='absolute' top={0}>
-					<Img src={thumbnail} />
-				</Box>
-			</Tile>
-		</Stack>
+				<Tile>
+					<Box className={cn('backdrop')} left={0} position='absolute' top={0}>
+						<Img src={project.images[0]} />
+					</Box>
+
+					<Stack alignItems='center' height='100%' justifyContent='center' left={0} position='absolute' top={0} width='100%'>
+						<Img className={cn('thumb')} src={project.images[0]} />
+					</Stack>
+				</Tile>
+			</Stack>
+		</ButtonBase>
 	);
 }

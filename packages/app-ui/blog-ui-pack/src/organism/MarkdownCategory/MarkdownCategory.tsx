@@ -115,7 +115,7 @@ export default function MarkdownCategory({ categories }: MarkdownCategoryProps):
 				</ButtonBase>
 			</Stack>
 
-			<CollapseBox controller={setControllerState} onControlled={handleControlled}>
+			<CollapseBox onControlled={handleControlled} onInit={setControllerState}>
 				<Grid spacing={0.5} container>
 					{categories.map(({ label, count, selected }) => (
 						<Grid key={label} md={2} sm={3} xs={4} item>
