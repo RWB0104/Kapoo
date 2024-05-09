@@ -311,3 +311,24 @@ export function getBaseMetadata({ sitename, baseurl, title, description, keyword
 		}
 	};
 }
+
+/**
+ * 모듈러 연산 결과 반환 메서드
+ *
+ * @param {number} num: 값
+ * @param {number} max: 최대값
+ *
+ * @returns {number} 연산 결과
+ */
+export function modulo(num: number, max: number): number
+{
+	let val = num % max;
+
+	// 연산 결과가 음수일 경우
+	if (val < 0)
+	{
+		val += max;
+	}
+
+	return val;
+}

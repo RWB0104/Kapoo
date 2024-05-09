@@ -11,7 +11,7 @@ import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
-import { MarkdownHeaderProps } from '../../common';
+import { MarkdownHeaderProps, getId } from '../../common';
 import ProjectModal from '../../molecule/ProjectModal';
 
 export interface ProjectModalProviderProps
@@ -42,12 +42,14 @@ export default function ProjectModalProvider({ list }: ProjectModalProviderProps
 
 	const project = useMemo(() =>
 	{
-		const id = searchParams.get('project');
+		const id = searchParams.get('id');
 
-		return list.find(({ filename }) => filename === id);
+		return list.find(({ filename }) => getId(filename) === id);
 	}, [ list, searchParams ]);
 
 	return (
-		<ProjectModal open={project !== undefined} project={project?.meta} onClose={handleClose} />
+		<ProjectModal open={project !== undefined} project={project?.meta} onClose={handleClose}>
+			{project?.body}
+		</ProjectModal>
 	);
 }

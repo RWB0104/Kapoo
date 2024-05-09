@@ -5,7 +5,7 @@
  * @since 2024.04.05 Fri 14:21:09
  */
 
-import { MarkdownDetailProps, getMarkdownDetailList, markdownRegex } from '@kapoo/markdown-kit';
+import { MarkdownDetailProps, getMarkdownDetailList } from '@kapoo/markdown-kit';
 
 export type MarkdownType = 'posts' | 'projects';
 
@@ -158,6 +158,8 @@ export const markdownPath = {
 	projects: `${markdownBasePath}/projects`
 };
 
+const blogMarkdownRegex = { token: /(19|20\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])-(.*).md/ };
+
 export function getUrl(name: string, type?: MarkdownType): string
 {
 	let target = name;
@@ -167,7 +169,7 @@ export function getUrl(name: string, type?: MarkdownType): string
 		target += '.md';
 	}
 
-	const regex = markdownRegex.nameToken.exec(target);
+	const regex = blogMarkdownRegex.token.exec(target);
 
 	if (!regex)
 	{

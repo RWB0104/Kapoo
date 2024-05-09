@@ -75,3 +75,25 @@ export interface MarkdownHeaderProps
 	 */
 	disabled?: boolean;
 }
+
+const rootMarkdownRegex = { token: /(\d{4})-(.*?).md/ };
+
+/**
+ * 아이디 반환 메서드
+ *
+ * @param {string} filename: 파일명
+ *
+ * @returns {string | undefined} 아이디
+ */
+export function getId(filename: string): string | undefined
+{
+	const match = rootMarkdownRegex.token.exec(filename);
+
+	// 일치 여부
+	if (match)
+	{
+		return match[1];
+	}
+
+	return undefined;
+}

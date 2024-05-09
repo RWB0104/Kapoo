@@ -178,6 +178,7 @@ export default function CollapseBox({ defaultOpen, open, animationTime = '0.3s',
 		<Box
 			component='div'
 			data-component='CollapseBox'
+			height={0}
 			overflow='hidden'
 			ref={ref}
 			onTransitionEnd={handleAnimationEnd}

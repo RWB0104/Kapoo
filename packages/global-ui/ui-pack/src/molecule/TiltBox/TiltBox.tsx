@@ -36,7 +36,7 @@ export interface TiltBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function TiltBox({ tiltDisabled, angle = 10, perspective = 1400, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
+export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{

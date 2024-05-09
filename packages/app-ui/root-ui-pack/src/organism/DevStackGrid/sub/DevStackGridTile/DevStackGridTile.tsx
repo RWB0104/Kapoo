@@ -9,6 +9,7 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Tile from '@kapoo/ui-pack/atom/Tile';
+import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -55,24 +56,26 @@ export default function DevStackGridTile({ name, image }: DevStackGridTileProps)
 	});
 
 	return (
-		<Tile className={cn('tile', { active: isShowState })} data-component='DevStackGridTile'>
-			<Box className={cn('image')} height='100%' left={0} position='absolute' ref={setRefState} top={0} width='100%'>
-				<Img src={image} />
-			</Box>
+		<TiltBox data-component='DevStackGridTile'>
+			<Tile className={cn('tile', { active: isShowState })}>
+				<Box className={cn('image')} height='100%' left={0} position='absolute' ref={setRefState} top={0} width='100%'>
+					<Img src={image} />
+				</Box>
 
-			<Stack
-				alignItems='center'
-				bottom={0}
-				className={cn('title')}
-				left={0}
-				padding={1}
-				paddingBottom={2}
-				paddingTop={2}
-				position='absolute'
-				width='100%'
-			>
-				<Typography color='white' fontWeight='bold'>{name}</Typography>
-			</Stack>
-		</Tile>
+				<Stack
+					alignItems='center'
+					bottom={0}
+					className={cn('title')}
+					left={0}
+					padding={1}
+					paddingBottom={2}
+					paddingTop={2}
+					position='absolute'
+					width='100%'
+				>
+					<Typography color='white' fontWeight='bold'>{name}</Typography>
+				</Stack>
+			</Tile>
+		</TiltBox>
 	);
 }

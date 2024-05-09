@@ -27,6 +27,11 @@ const cn = classNames.bind(styles);
 export interface ProjectGridTileProps extends ButtonBaseProps
 {
 	/**
+	 * 고유값
+	 */
+	unique?: string;
+
+	/**
 	 * 프로젝트
 	 */
 	project: MarkdownHeaderProps;
@@ -39,7 +44,7 @@ export interface ProjectGridTileProps extends ButtonBaseProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ProjectGridTile({ project, ...props }: ProjectGridTileProps): JSX.Element
+export default function ProjectGridTile({ unique, project, ...props }: ProjectGridTileProps): JSX.Element
 {
 	const { push } = useRouter();
 
@@ -51,11 +56,15 @@ export default function ProjectGridTile({ project, ...props }: ProjectGridTilePr
 
 	const handleClick = useCallback(() =>
 	{
-		const params = new URLSearchParams(window.location.search);
-		params.set('project', project.title);
+		// 아이디가 있을 경우
+		if (unique)
+		{
+			const params = new URLSearchParams(window.location.search);
+			params.set('id', unique);
 
-		push(`${window.location.pathname}?${params}`, { scroll: false });
-	}, [ project ]);
+			push(`${window.location.pathname}?${params}`, { scroll: false });
+		}
+	}, [ unique, push ]);
 
 	useIntersectionObserver(domState, ({ isIntersecting }) =>
 	{
