@@ -4,17 +4,9 @@
 
 	transition: 1s ease;
 
-	.image {
-		transition: 0.3s ease;
-	}
-
 	&.active {
 		opacity: 1;
 		scale: 1;
-	}
-
-	&:hover .image {
-		scale: 1.1;
 	}
 }
 
