@@ -9,7 +9,12 @@
 
 import { mathRound } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
+import classNames from 'classnames/bind';
 import { MouseEventHandler, TransitionEventHandler, useCallback } from 'react';
+
+import styles from './TiltBox.module.scss';
+
+const cn = classNames.bind(styles);
 
 export interface TiltBoxProps extends BoxProps
 {
@@ -36,7 +41,7 @@ export interface TiltBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
+export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, className, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
@@ -63,6 +68,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, o
 	{
 		onMouseLeave?.(e);
 
+		// 틸트가 활성화된 경우
 		if (!tiltDisabled)
 		{
 			e.currentTarget.style.transition = '1s ease-out';
@@ -74,6 +80,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, o
 	{
 		onTransitionEnd?.(e);
 
+		// 틸트가 활성화된 경우
 		if (!tiltDisabled)
 		{
 			e.currentTarget.style.transition = '';
@@ -82,9 +89,9 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, o
 
 	return (
 		<Box
+			className={cn('box', className)}
 			component='div'
 			data-component='RotateBox'
-			sx={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}
 			onTransitionEnd={handleTransitionEnd}
