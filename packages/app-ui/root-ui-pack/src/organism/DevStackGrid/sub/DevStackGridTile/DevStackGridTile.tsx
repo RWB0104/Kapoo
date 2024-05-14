@@ -9,6 +9,7 @@
 
 import { useIntersectionObserver } from '@kapoo/common';
 import Tile from '@kapoo/ui-pack/atom/Tile';
+import Glow from '@kapoo/ui-pack/molecule/Glow';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
@@ -75,6 +76,8 @@ export default function DevStackGridTile({ name, image }: DevStackGridTileProps)
 				>
 					<Typography color='white' fontWeight='bold'>{name}</Typography>
 				</Stack>
+
+				<Glow />
 			</Tile>
 		</TiltBox>
 	);
