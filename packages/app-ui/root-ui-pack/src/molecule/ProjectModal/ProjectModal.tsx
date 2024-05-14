@@ -8,10 +8,12 @@
 import Wave from '@kapoo/ui-pack/atom/Wave';
 import Img from '@kapoo/ui-pack/organism/Img';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
+import Code from '@mui/icons-material/Code';
 import GitHub from '@mui/icons-material/GitHub';
 import LinkIcon from '@mui/icons-material/Link';
-import { ButtonBase } from '@mui/material';
 import Box from '@mui/material/Box';
+import ButtonBase from '@mui/material/ButtonBase';
+import Chip from '@mui/material/Chip';
 import Modal, { ModalProps } from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -84,6 +86,17 @@ export default function ProjectModal({ project, children, ...props }: ProjectMod
 							<Typography color='dodgerblue' fontWeight='bold' variant='h5'>{project.title}</Typography>
 							<Typography variant='caption'>{project.subtitle}</Typography>
 
+							<Stack direction='row' flexWrap='wrap' gap={1} marginTop={2}>
+								{project.languages.map((i) => (
+									<Chip
+										icon={<Code />}
+										key={i}
+										label={i}
+										variant='outlined'
+									/>
+								))}
+							</Stack>
+
 							<Stack width='100%'>
 								{project.links?.map(({ type, name, url }) => (
 									<Link href={url} key={url} target='_blank'>
@@ -109,11 +122,11 @@ export default function ProjectModal({ project, children, ...props }: ProjectMod
 							</Stack>
 						</Stack>
 
-						<Stack padding={1}>
+						<Stack padding={1} width='100%'>
 							{project.images.map((i) => <Img key={i} src={i} width='100%' />)}
 						</Stack>
 
-						<Box padding={4}>
+						<Box padding={4} width='100%'>
 							<MarkdownViewer>
 								{children}
 							</MarkdownViewer>
