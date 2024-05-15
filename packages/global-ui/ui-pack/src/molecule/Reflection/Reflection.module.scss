@@ -1,0 +1,9 @@
+.reflect {
+	mix-blend-mode: hard-light;
+	opacity: 0.7;
+	transform: scaleY(-1);
+}
+
+.glass {
+	background: linear-gradient(grey, transparent);
+}
