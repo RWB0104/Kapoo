@@ -31,7 +31,7 @@ export interface GlowProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Glow({ colors = [ '#CCCCCCBB', '#BFBFBF3F 30%', '#373737 130%' ], disabledGlow, className, onMouseMove, ...props }: GlowProps): JSX.Element
+export default function Glow({ colors = [ '#CCCCCCCC', '#BFBFBF3F 30%', '#373737 130%' ], disabledGlow, className, onMouseMove, ...props }: GlowProps): JSX.Element
 {
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{

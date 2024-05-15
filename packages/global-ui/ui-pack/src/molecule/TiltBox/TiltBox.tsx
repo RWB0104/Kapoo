@@ -41,7 +41,7 @@ export interface TiltBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, className, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
+export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, className, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
@@ -49,18 +49,19 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 350, c
 
 		if (!tiltDisabled)
 		{
-			const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-			const centerX = mathRound((left + width / 2), 2);
-			const centerY = mathRound((top + height / 2), 2);
+			const { width, height } = e.currentTarget.getBoundingClientRect();
 
-			const relativeX = mathRound(e.clientX - centerX, 2);
-			const relativeY = mathRound(e.clientY - centerY, 2);
+			const centerX = width / 2;
+			const centerY = height / 2;
 
-			const tileX = mathRound(relativeY / (height / 2), 2) * angle;
-			const tileY = mathRound(relativeX / (width / 2), 2) * angle;
+			const x = centerX - e.nativeEvent.offsetX;
+			const y = centerY - e.nativeEvent.offsetY;
+
+			const tileX = mathRound(y / centerY, 2) * angle;
+			const tileY = mathRound(x / centerX, 2) * angle;
 
 			e.currentTarget.style.transition = '';
-			e.currentTarget.style.transform = `rotateX(${tileX}deg) rotateY(${-tileY}deg) perspective(${perspective}px) scale3d(1.04, 1.04, 1.04)`;
+			e.currentTarget.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg) scale3d(1.04, 1.04, 1.04)`;
 		}
 	}, [ angle, perspective, tiltDisabled, onMouseMove ]);
 
