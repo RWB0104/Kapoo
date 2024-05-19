@@ -28,7 +28,7 @@ export interface DevStackGridProps
 export default function DevStackGrid({ list }: DevStackGridProps): JSX.Element
 {
 	return (
-		<Grid data-component='DevStackGrid' spacing={1} container>
+		<Grid data-component='DevStackGrid' spacing={4} container>
 			{list.map(({ icon, name }) => (
 				<Grid key={name} md={3} sm={4} xs={6} item>
 					<DevStackGridTile image={icon} name={name} />

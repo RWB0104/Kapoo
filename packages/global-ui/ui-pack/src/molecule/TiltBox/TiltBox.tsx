@@ -10,7 +10,7 @@
 import { mathRound } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { MouseEventHandler, TransitionEventHandler, useCallback } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 
 import styles from './TiltBox.module.scss';
 
@@ -49,10 +49,8 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 
 		if (!tiltDisabled)
 		{
-			const { width, height } = e.currentTarget.getBoundingClientRect();
-
-			const centerX = width / 2;
-			const centerY = height / 2;
+			const centerX = e.currentTarget.scrollWidth / 2;
+			const centerY = e.currentTarget.scrollHeight / 2;
 
 			const x = centerX - e.nativeEvent.offsetX;
 			const y = centerY - e.nativeEvent.offsetY;
@@ -61,7 +59,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 			const tileY = mathRound(x / centerX, 2) * angle;
 
 			e.currentTarget.style.transition = '';
-			e.currentTarget.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg) scale3d(1.04, 1.04, 1.04)`;
+			e.currentTarget.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg)`;
 		}
 	}, [ angle, perspective, tiltDisabled, onMouseMove ]);
 
@@ -77,17 +75,6 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 		}
 	}, [ tiltDisabled, onMouseLeave ]);
 
-	const handleTransitionEnd = useCallback<TransitionEventHandler<HTMLDivElement>>((e) =>
-	{
-		onTransitionEnd?.(e);
-
-		// 틸트가 활성화된 경우
-		if (!tiltDisabled)
-		{
-			e.currentTarget.style.transition = '';
-		}
-	}, [ tiltDisabled, onTransitionEnd ]);
-
 	return (
 		<Box
 			className={cn('box', className)}
@@ -95,7 +82,6 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 			data-component='RotateBox'
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}
-			onTransitionEnd={handleTransitionEnd}
 			{...props}
 		/>
 	);

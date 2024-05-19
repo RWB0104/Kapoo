@@ -58,7 +58,7 @@ export default function DevStackGridTile({ name, image }: DevStackGridTileProps)
 
 	return (
 		<TiltBox data-component='DevStackGridTile'>
-			<Tile className={cn('tile', { active: isShowState })}>
+			<Tile borderRadius={4} boxShadow='0px 0px 10px #00000050' className={cn('tile', { active: isShowState })} overflow='hidden'>
 				<Box className={cn('image')} height='100%' left={0} position='absolute' ref={setRefState} top={0} width='100%'>
 					<Img src={image} />
 				</Box>
