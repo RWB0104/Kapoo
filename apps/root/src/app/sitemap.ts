@@ -5,6 +5,8 @@
  * @since 2024.05.03 Fri 16:52:53
  */
 
+import { getMarkdownDetailList } from '@kapoo/markdown-kit';
+import { MarkdownHeaderProps, getId } from '@kapoo/root-ui-pack/common';
 import { MetadataRoute } from 'next';
 
 /**
@@ -16,10 +18,21 @@ export default async function SitemapAssets(): Promise<MetadataRoute.Sitemap>
 {
 	const baseList = [ '', '/projects', '/guestbook' ];
 
-	return baseList.map<MetadataRoute.Sitemap[number]>((url) => ({
+	const baseSitemap = baseList.map<MetadataRoute.Sitemap[number]>((url) => ({
 		changeFrequency: 'always',
 		lastModified: new Date(),
 		priority: 1,
 		url: `${process.env.BASE_URL}${url}`
 	}));
+
+	const projectsSitemap = getMarkdownDetailList<MarkdownHeaderProps>('src/markdown')
+		.filter(({ meta }) => !meta.disabled)
+		.map<MetadataRoute.Sitemap[number]>(({ filename }) => ({
+			changeFrequency: 'always',
+			lastModified: new Date(),
+			priority: 1,
+			url: `${process.env.BASE_URL}/projects?id=${getId(filename)}`
+		}));
+
+	return baseSitemap.concat(projectsSitemap);
 }
