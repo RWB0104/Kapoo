@@ -47,6 +47,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 	{
 		onMouseMove?.(e);
 
+		// 틸트가 활성화된 경우
 		if (!tiltDisabled)
 		{
 			const centerX = e.currentTarget.scrollWidth / 2;
