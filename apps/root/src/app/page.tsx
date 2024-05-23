@@ -10,6 +10,7 @@ import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTem
 import { getMarkdownDetailList } from '@kapoo/markdown-kit';
 import { MarkdownHeaderProps } from '@kapoo/root-ui-pack/common';
 import ProjectGrid from '@kapoo/root-ui-pack/organism/ProjectGrid';
+import Welcome from '@kapoo/root-ui-pack/organism/Welcome';
 import DevStackTemplate from '@kapoo/root-ui-pack/template/DevStackTemplate';
 import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
@@ -18,6 +19,35 @@ import { Button, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Link from 'next/link';
+
+const greeting = [
+	'반가워요!', // Korean
+	'Nice to meet you!', // English
+	'很高兴见到你!', // Chinese (Simplified)
+	'はじめまして!', // Japanese
+	'¡Mucho gusto!', // Spanish
+	'Enchanté!', // French
+	'Freut mich, Sie kennenzulernen!', // German
+	'Приятно познакомиться!', // Russian
+	'Piacere di conoscerti!', // Italian
+	'Prazer em conhecê-lo!', // Portuguese
+	'आप से मिलकर खुशी हुई!', // Hindi
+	'تشرفت بمقابلتك!', // Arabic
+	'Απόλαυση να σε γνωρίσω!', // Greek
+	'Encantado de conocerte!', // Catalan
+	'Senang bertemu denganmu!', // Indonesian
+	'Sana tanıştığıma memnun oldum!', // Turkish
+	"Të kënaqur për t'ju njohur!", // Albanian
+	'שמח לפגוש אותך!', // Hebrew
+	'Ravi de vous rencontrer!', // Quebec French
+	'Hyvää tavata!', // Finnish
+	'Trevligt att träffas!', // Swedish
+	'Mă bucur să te cunosc!', // Romanian
+	'Radost da te upoznam!', // Serbian
+	'Es freut mich, dich kennenzulernen!', // Swiss German
+	'Oikein mukava tavata!', // Finnish
+	'Dobrze cię poznać!' // Polish
+];
 
 /**
  * 앱 페이지 컴포넌트 반환 메서드
@@ -45,8 +75,13 @@ export default async function AppPage(): Promise<JSX.Element>
 				/>
 			)}
 		>
+			<Stack marginTop={10}>
+				<Welcome list={greeting} />
+			</Stack>
+
 			<Container>
 				<Stack gap={16} marginTop={10}>
+
 					<IntroduceTemplate image='/logo.png' name='박성진' org={process.env.NEXT_PUBLIC_TITLE} />
 
 					<TitleTemplate subtitle='현재 진행 중인 프로젝트의 목록입니다.' title='🚀 진행중인 프로젝트'>
