@@ -7,8 +7,8 @@
 
 'use client';
 
-import { getRandom } from '@kapoo/common';
-import Box from '@mui/material/Box';
+import { getRandom, useIntersectionObserver } from '@kapoo/common';
+import Box, { BoxProps } from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -18,7 +18,7 @@ import styles from './Welcome.module.scss';
 
 const cn = classNames.bind(styles);
 
-export interface WelcomeProps
+export interface WelcomeProps extends BoxProps
 {
 	/**
 	 * 인삿말 목록
@@ -33,8 +33,11 @@ export interface WelcomeProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Welcome({ list }: WelcomeProps): JSX.Element
+export default function Welcome({ list, ...props }: WelcomeProps): JSX.Element
 {
+	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
+	const [ isShowState, setShowState ] = useState(false);
+
 	const [ indexState, setIndexState ] = useState(0);
 
 	const handleAnimationEnd = useCallback(() =>
@@ -50,33 +53,49 @@ export default function Welcome({ list }: WelcomeProps): JSX.Element
 		setIndexState(index);
 	}, [ list, indexState ]);
 
+	useIntersectionObserver(domState, (entry) =>
+	{
+		// DOM이 보일 경우
+		if (entry.isIntersecting)
+		{
+			setShowState(true);
+		}
+	}, { threshold: 0.5 });
+
 	return (
-		<Box data-component='Welcome' overflow='hidden' width='100%'>
-			<Box className={cn('container')} minHeight='100vh' padding={2} position='relative' width='100%'>
-				{list.map((i, j) => (
-					<Stack
-						alignItems='center'
-						className={cn('text')}
-						justifyContent='center'
-						key={i}
-						left='50%'
-						position='absolute'
-						top='50%'
-						width='100%'
-						onAnimationEnd={handleAnimationEnd}
+		<Box
+			data-component='Welcome'
+			minHeight='100vh'
+			overflow='hidden'
+			padding={2}
+			position='relative'
+			ref={setDomState}
+			width='100%'
+			{...props}
+		>
+			{list.map((i, j) => (
+				<Stack
+					alignItems='center'
+					className={cn('text')}
+					justifyContent='center'
+					key={i}
+					left='50%'
+					position='absolute'
+					top='50%'
+					width='100%'
+					onAnimationEnd={handleAnimationEnd}
+				>
+					<Typography
+						className={cn('typo', { active: (j === indexState) && isShowState })}
+						color='white'
+						fontSize='calc(100vw / 20)'
+						fontWeight='bolder'
+						textAlign='center'
 					>
-						<Typography
-							className={cn('typo', { active: j === indexState })}
-							color='white'
-							fontSize='calc(100vw / 20)'
-							fontWeight='bold'
-							textAlign='center'
-						>
-							{i}
-						</Typography>
-					</Stack>
-				))}
-			</Box>
+						{i}
+					</Typography>
+				</Stack>
+			))}
 		</Box>
 	);
 }

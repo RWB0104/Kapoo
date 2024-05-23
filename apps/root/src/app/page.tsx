@@ -14,10 +14,13 @@ import Welcome from '@kapoo/root-ui-pack/organism/Welcome';
 import DevStackTemplate from '@kapoo/root-ui-pack/template/DevStackTemplate';
 import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
+import Img from '@kapoo/ui-pack/organism/Img';
 import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
-import { Button, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
 const greeting = [
@@ -75,8 +78,14 @@ export default async function AppPage(): Promise<JSX.Element>
 				/>
 			)}
 		>
-			<Stack marginTop={10}>
-				<Welcome list={greeting} />
+			<Stack marginTop={10} minHeight='300vh' position='relative'>
+				<Box left={0} position='sticky' top={0}>
+					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+						<Img height='100%' src='https://i.pinimg.com/originals/c7/54/9d/c7549df773adf3f843383a067a353aae.jpg' width='100%' />
+					</Box>
+
+					<Welcome list={greeting} />
+				</Box>
 			</Stack>
 
 			<Container>
