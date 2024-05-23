@@ -1,0 +1,46 @@
+.container {
+	background-image: url(https://images.pling.com/img/00/00/66/85/89/2134886/175849-nebula-star-galaxy-orion-nebula-universe-1920x1080.jpg);
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.text {
+	transform: translate(-50%, -50%);
+	transform-origin: center;
+}
+
+.typo {
+	text-shadow: 0px 0px 10px #00000050;
+	opacity: 0;
+
+	&.active {
+		animation: shooo 5s linear;
+	}
+}
+
+@keyframes shooo {
+	0% {
+		opacity: 0;
+		scale: 4;
+		filter: blur(20px);
+	}
+
+	20% {
+		opacity: 1;
+		scale: 2;
+		filter: blur(0px);
+	}
+
+	80% {
+		scale: 1.5;
+		opacity: 1;
+		filter: blur(0px);
+	}
+
+	100% {
+		opacity: 0;
+		scale: 1;
+		filter: blur(20px);
+	}
+}
