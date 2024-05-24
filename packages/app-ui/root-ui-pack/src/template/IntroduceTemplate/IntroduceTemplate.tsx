@@ -1,27 +1,62 @@
-import Img from '@kapoo/ui-pack/organism/Img';
-import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
+/**
+ * 소개 template 컴포넌트
+ *
+ * @author RWB
+ * @since 2024.05.24 Fri 13:33:02
+ */
+
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+
+import IntroduceHeader, { IntroduceHeaderProps } from './sub/IntroduceHeader';
+import IntroduceSkill, { IntroduceSkillProps } from './sub/IntroduceSkill';
 
 export interface IntroduceTemplateProps
 {
-	image: string;
+	/**
+	 * 이미지
+	 */
+	image: IntroduceHeaderProps['image'];
 
-	org: string;
+	/**
+	 * 소속
+	 */
+	org: IntroduceHeaderProps['org'];
 
-	name: string;
+	/**
+	 * 이름
+	 */
+	name: IntroduceHeaderProps['name'];
+
+	/**
+	 * 목록
+	 */
+	list: IntroduceSkillProps['list'];
 }
 
-export default function IntroduceTemplate({ image, org, name }: IntroduceTemplateProps): JSX.Element
+/**
+ * 소개 template 컴포넌트 반환 메서드
+ *
+ * @param {IntroduceTemplateProps} param0: IntroduceTemplateProps
+ *
+ * @returns {JSX.Element} JSX
+ */
+export default function IntroduceTemplate({ image, org, name, list }: IntroduceTemplateProps): JSX.Element
 {
 	return (
-		<Stack alignItems='center'>
-			<Box borderRadius='50%' boxShadow='0px 0px 30px #00000050' overflow='hidden'>
-				<Img height='10rem' src={image} width='10rem' />
-			</Box>
+		<Paper data-component='IntroduceTemplate'>
+			<Stack gap={4} padding={4}>
+				<Divider variant='fullWidth' />
 
-			<Typography color='gold'>{org}</Typography>
-			<Typography sx={{ textShadow: '5px 5px 5px black' }}>{name}</Typography>
-		</Stack>
+				<IntroduceHeader image={image} name={name} org={org} />
+
+				<Divider variant='fullWidth' />
+
+				<IntroduceSkill list={list} />
+
+				<Divider variant='fullWidth' />
+			</Stack>
+		</Paper>
 	);
 }

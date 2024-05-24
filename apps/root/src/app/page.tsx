@@ -90,8 +90,7 @@ export default async function AppPage(): Promise<JSX.Element>
 
 			<Container>
 				<Stack gap={16} marginTop={10}>
-
-					<IntroduceTemplate image='/logo.png' name='박성진' org={process.env.NEXT_PUBLIC_TITLE} />
+					<IntroduceTemplate image='https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg' name='박성진' org={process.env.NEXT_PUBLIC_TITLE} />
 
 					<TitleTemplate subtitle='현재 진행 중인 프로젝트의 목록입니다.' title='🚀 진행중인 프로젝트'>
 						<Stack alignItems='center' gap={8}>

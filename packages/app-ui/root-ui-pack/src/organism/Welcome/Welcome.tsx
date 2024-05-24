@@ -8,7 +8,7 @@
 'use client';
 
 import { getRandom, useIntersectionObserver } from '@kapoo/common';
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
@@ -18,7 +18,7 @@ import styles from './Welcome.module.scss';
 
 const cn = classNames.bind(styles);
 
-export interface WelcomeProps extends BoxProps
+export interface WelcomeProps
 {
 	/**
 	 * 인삿말 목록
@@ -33,7 +33,7 @@ export interface WelcomeProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Welcome({ list, ...props }: WelcomeProps): JSX.Element
+export default function Welcome({ list }: WelcomeProps): JSX.Element
 {
 	const [ domState, setDomState ] = useState<HTMLDivElement | null>(null);
 	const [ isShowState, setShowState ] = useState(false);
@@ -71,7 +71,6 @@ export default function Welcome({ list, ...props }: WelcomeProps): JSX.Element
 			position='relative'
 			ref={setDomState}
 			width='100%'
-			{...props}
 		>
 			{list.map((i, j) => (
 				<Stack

@@ -5,6 +5,8 @@
  * @since 2024.05.14 Tue 10:42:58
  */
 
+'use client';
+
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
 import { MouseEventHandler, useCallback } from 'react';
@@ -46,10 +48,13 @@ export default function Glow({ colors = [ '#CCCCCCCC', '#BFBFBF3F 30%', '#373737
 
 	return (
 		<Box
+			bgcolor='red'
 			className={cn('glow', className)}
 			component='div'
 			height='100%'
+			left={0}
 			position='absolute'
+			top={0}
 			width='100%'
 			onMouseMove={handleMouseMove}
 			{...props}
