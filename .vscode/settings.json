@@ -1,3 +1,4 @@
 {
-	"typescript.preferences.importModuleSpecifier": "project-relative"
+	"typescript.preferences.importModuleSpecifier": "project-relative",
+	"autoimport.filesToScan": "**/*.{ts,tsx}"
 }
