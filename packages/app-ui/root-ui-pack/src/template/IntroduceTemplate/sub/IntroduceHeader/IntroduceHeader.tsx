@@ -6,6 +6,7 @@
  */
 
 import { author } from '@kapoo/common';
+import Tile from '@kapoo/ui-pack/atom/Tile';
 import Glow from '@kapoo/ui-pack/molecule/Glow';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
@@ -50,29 +51,31 @@ export interface IntroduceHeaderProps
 export default function IntroduceHeader({ image, org, name }: IntroduceHeaderProps): JSX.Element
 {
 	return (
-		<Stack direction='row' gap={4}>
-			<Box position='relative'>
+		<Stack alignItems='center' data-component='IntroduceHeader' gap={4}>
+			<Box maxWidth={200} width='100%'>
 				<TiltBox borderRadius={4} boxShadow='0px 0px 20px #00000050' overflow='hidden'>
-					<Box>
-						<Img height='8rem' src={image} width='8rem' />
-					</Box>
+					<Tile>
+						<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+							<Img height='100%' src={image} width='100%' />
+						</Box>
 
-					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
-						<Glow />
-					</Box>
+						<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+							<Glow />
+						</Box>
+					</Tile>
 				</TiltBox>
 			</Box>
 
 			<Stack gap={2} justifyContent='center'>
-				<Stack>
+				<Stack alignItems='center'>
 					<Typography className={cn('text')} color='dodgerblue'>{org}</Typography>
 					<Typography className={cn('text')} fontWeight='bold' variant='h3'>{name}</Typography>
 				</Stack>
 
-				<Stack direction='row' gap={2}>
-					<Button color='inherit' href={`mailto:${author.email}`} startIcon={<Mail />} target='_blank'>{author.email}</Button>
-					<Button color='inherit' href={author.social.github.link} startIcon={<GitHub />} target='_blank'>{author.social.github.name}</Button>
-					<Button color='inherit' href={author.social.linkedin.link} startIcon={<LinkedIn />} target='_blank'>{author.social.linkedin.name}</Button>
+				<Stack direction='row' flexWrap='wrap' gap={1} justifyContent='center'>
+					<Button className={cn('button')} color='inherit' href={`mailto:${author.email}`} startIcon={<Mail />} target='_blank'>{author.email}</Button>
+					<Button className={cn('button')} color='inherit' href={author.social.github.link} startIcon={<GitHub />} target='_blank'>{author.social.github.name}</Button>
+					<Button className={cn('button')} color='inherit' href={author.social.linkedin.link} startIcon={<LinkedIn />} target='_blank'>{author.social.linkedin.name}</Button>
 				</Stack>
 			</Stack>
 		</Stack>

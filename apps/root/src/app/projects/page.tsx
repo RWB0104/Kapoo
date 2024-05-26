@@ -31,7 +31,7 @@ export default function ProjectsPage(): JSX.Element
 			template={(
 				<PageScreenerTemplate
 					color='orange'
-					subtitle='뭔가 보여줄게 없나 고민하는 중...'
+					subtitle='🚀 뭔가 보여줄게 없나 고민하는 중...'
 					text='프로젝트'
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>

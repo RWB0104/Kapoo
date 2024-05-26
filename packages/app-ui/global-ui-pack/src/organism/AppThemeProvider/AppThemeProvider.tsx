@@ -48,6 +48,18 @@ export default function AppThemeProvider({ children }: PropsWithChildren): JSX.E
 		document.body.classList.add(themeState);
 	}, [ themeState ]);
 
+	useEffect(() =>
+	{
+		const handle = (e: DocumentEventMap['contextmenu']): void => e.preventDefault();
+
+		document.addEventListener('contextmenu', handle);
+
+		return () =>
+		{
+			document.removeEventListener('contextmenu', handle);
+		};
+	}, []);
+
 	return (
 		<ThemeProvider theme={getTheme(themeState)}>
 			<CssBaseline />

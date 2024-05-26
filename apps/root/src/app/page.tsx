@@ -10,13 +10,12 @@ import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTem
 import { getMarkdownDetailList } from '@kapoo/markdown-kit';
 import { MarkdownHeaderProps } from '@kapoo/root-ui-pack/common';
 import ProjectGrid from '@kapoo/root-ui-pack/organism/ProjectGrid';
-import Welcome from '@kapoo/root-ui-pack/organism/Welcome';
 import DevStackTemplate from '@kapoo/root-ui-pack/template/DevStackTemplate';
 import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
+import { IntroduceCareerCardProps } from '@kapoo/root-ui-pack/template/IntroduceTemplate/sub/IntroduceCareerCard/IntroduceCareerCard';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
-import Img from '@kapoo/ui-pack/organism/Img';
+import WelcomeTemplate from '@kapoo/root-ui-pack/template/WelcomeTemplate';
 import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -52,6 +51,63 @@ const greeting = [
 	'Dobrze cię poznać!' // Polish
 ];
 
+const stackNames = [ 'TypeScript', 'React', 'Next.js', 'JAVA' ];
+
+const careers: IntroduceCareerCardProps[] = [
+	{
+		content: [
+			'Next.js를 활용한 프론트엔드 개발',
+			'Nest.js를 활용한 BFF 백엔드 서버 개발',
+			'소설 창작 플랫폼 "창작의날씨" 개발 및 유지보수'
+		],
+		icon: 'https://i.namu.wiki/i/qqcHBszynqQKPEP8isdydGXkYpPcu1iGtjKnW391xaq-8M_XwBW3WAvSZt8jCLFXRK5hm2JjEfdorw1nC2Bgog.svg',
+		joinDate: 1704067200000,
+		link: 'https://www.kyobobook.co.kr/',
+		mainColor: '#4DAC27',
+		name: '교보문고'
+	},
+	{
+		content: [
+			'Next.js를 활용한 프론트엔드 개발',
+			'Nest.js를 활용한 BFF 백엔드 서버 개발',
+			'GitHub Actions, Amplify를 활용한 CI/CD 파이프라인 구축',
+			'lerna, nx를 활용한 프론트엔드 모노레포 프로젝트 구축',
+			'PWA를 활용한 프로그레시브 웹앱 개발',
+			'Storybook을 활용한 디자인 시스템 개발',
+			'디자인 시스템 NPM 배포 및 관리 (@mint-ui)',
+			'사내 상업용 부동산 데이터 관리를 위한 "RTB" 개발 및 유지보수',
+			'해외 업무용 "RTB 글로벌" 개발 및 유지보수',
+			'사무실 임대 솔루션 "R.Find" 개발 및 유지보수',
+			'상업용 부동산 관련 IT 업무 수행'
+		],
+		icon: 'https://www.rsquare.co.kr/default/img/webbase/images/main/about/rsquare-symbols.png',
+		joinDate: 1643673600000,
+		link: 'https://www.rsquare.co.kr/',
+		mainColor: '#C9252C',
+		name: 'RSQUARE',
+		outDate: 1704067200000
+	},
+	{
+		content: [
+			'JSP를 활용한 프론트엔드 개발',
+			'JAVA Servlet를 활용한 백엔드 개발',
+			'"모두의지도" 웹 및 안드로이드 앱 개발',
+			'"uMap" 타일 지도 제작 업무 수행',
+			'KAIS 도로명주소 GIS 엔진 유지보수',
+			'서울시 도로점용관리 웹 시스템 개발 및 유지보수',
+			'한양대 탄소저감관리 웹 시스템 개발',
+			'GIS 관련 개발 및 연구 수행',
+			'IntraMap GIS 엔진 활용'
+		],
+		icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6YgElARTbgWVFpMfMAo7W7qeUoFiIKzIpS8z5r53kCg&s',
+		joinDate: 1551398400000,
+		link: 'https://www.ksic.net/',
+		mainColor: '#00509E',
+		name: '(주)한국공간정보통신',
+		outDate: 1635724800000
+	}
+];
+
 /**
  * 앱 페이지 컴포넌트 반환 메서드
  *
@@ -78,19 +134,17 @@ export default async function AppPage(): Promise<JSX.Element>
 				/>
 			)}
 		>
-			<Stack marginTop={10} minHeight='300vh' position='relative'>
-				<Box left={0} position='sticky' top={0}>
-					<Box height='100%' left={0} position='absolute' top={0} width='100%'>
-						<Img height='100%' src='https://i.pinimg.com/originals/c7/54/9d/c7549df773adf3f843383a067a353aae.jpg' width='100%' />
-					</Box>
-
-					<Welcome list={greeting} />
-				</Box>
-			</Stack>
+			<WelcomeTemplate list={greeting} />
 
 			<Container>
 				<Stack gap={16} marginTop={10}>
-					<IntroduceTemplate image='https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg' name='박성진' org={process.env.NEXT_PUBLIC_TITLE} />
+					<IntroduceTemplate
+						careers={careers}
+						image='https://user-images.githubusercontent.com/50317129/167695995-bb7080e0-dd19-455e-abdc-b16a0cafd98d.png'
+						name='박성진'
+						org={process.env.NEXT_PUBLIC_TITLE}
+						skills={stacks.filter(({ name }) => stackNames.includes(name))}
+					/>
 
 					<TitleTemplate subtitle='현재 진행 중인 프로젝트의 목록입니다.' title='🚀 진행중인 프로젝트'>
 						<Stack alignItems='center' gap={8}>
