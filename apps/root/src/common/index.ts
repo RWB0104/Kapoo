@@ -24,7 +24,7 @@ export function getMetadata(params?: MetadataProps): Metadata
 		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		keywords: [],
 		sitename: process.env.NEXT_PUBLIC_TITLE,
-		thumbnail: '/thumb.png',
+		thumbnail: 'https://user-images.githubusercontent.com/50317129/259803524-1354ec8d-c02f-44cc-a49c-2d5ea53452b6.png',
 		title: process.env.NEXT_PUBLIC_TITLE,
 		url: '/'
 	};
