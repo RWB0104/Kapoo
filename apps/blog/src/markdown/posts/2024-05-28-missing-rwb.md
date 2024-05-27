@@ -1,7 +1,7 @@
 ---
 title: "[속보] 반 년간 실종된 RWB. 자택에서 숨 쉰 채 발견돼.."
 excerpt: "'네티즌 曰 보자보자 하니 도가 지나쳐..' 실종 간 무슨 사연이 있었는지, 그 동안 쳐 논건 아닌지. 그의 행적에 귀추가 주목된다."
-coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/094a4fa5-f336-4c54-9df3-b5791d48de21"
+coverImage: "https://github.com/RWB0104/blog.itcode.dev/assets/50317129/028693b2-bde7-451c-a38e-cab34e3c00e2"
 date: 1716829157317
 type: "posts"
 category: "잡담"
