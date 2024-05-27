@@ -19,7 +19,7 @@ const cn = classNames.bind(styles);
  *
  * @returns {JSX.Element} JSX
  */
-export default function Tile({ className, ...props }: BoxProps): JSX.Element
+export default function Tile({ className, children, ...props }: BoxProps): JSX.Element
 {
 	return (
 		<Box
@@ -28,6 +28,10 @@ export default function Tile({ className, ...props }: BoxProps): JSX.Element
 			overflow='hidden'
 			position='relative'
 			{...props}
-		/>
+		>
+			<Box height='100%' left={0} position='absolute' top={0} width='100%'>
+				{children}
+			</Box>
+		</Box>
 	);
 }

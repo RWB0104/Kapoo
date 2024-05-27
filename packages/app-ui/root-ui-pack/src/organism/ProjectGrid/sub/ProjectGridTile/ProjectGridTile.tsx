@@ -100,7 +100,7 @@ export default function ProjectGridTile({ unique, project, ...props }: ProjectGr
 				</Stack>
 
 				<Tile>
-					<Box className={cn('backdrop')} left={0} position='absolute' top={0}>
+					<Box className={cn('backdrop')}>
 						<Img src={project.images[0]} />
 					</Box>
 

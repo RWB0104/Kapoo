@@ -7,6 +7,7 @@
 
 import AppThemeProvider from '@kapoo/global-ui-pack/organism/AppThemeProvider';
 import FloatButtonsBox from '@kapoo/global-ui-pack/organism/FloatButtonsBox';
+import GoogleAnalyticsProvider from '@kapoo/ui-pack/organism/GoogleAnalyticsProvider';
 import QueryProvider from '@kapoo/ui-pack/organism/QueryProvider';
 import ToastifyProvider from '@kapoo/ui-pack/organism/ToastifyProvider';
 import { PropsWithChildren, Suspense } from 'react';
@@ -30,14 +31,16 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 		<html lang='ko'>
 			<body>
 				<Suspense>
-					<QueryProvider>
-						<AppThemeProvider>
-							{children}
+					<GoogleAnalyticsProvider gaKey='G-ZH2SCZ2RB2'>
+						<QueryProvider>
+							<AppThemeProvider>
+								{children}
 
-							<FloatButtonsBox />
-							<ToastifyProvider />
-						</AppThemeProvider>
-					</QueryProvider>
+								<FloatButtonsBox />
+								<ToastifyProvider />
+							</AppThemeProvider>
+						</QueryProvider>
+					</GoogleAnalyticsProvider>
 				</Suspense>
 			</body>
 		</html>

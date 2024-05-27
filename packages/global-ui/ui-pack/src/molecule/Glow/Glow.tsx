@@ -48,7 +48,6 @@ export default function Glow({ colors = [ '#CCCCCCCC', '#BFBFBF3F 30%', '#373737
 
 	return (
 		<Box
-			bgcolor='red'
 			className={cn('glow', className)}
 			component='div'
 			height='100%'

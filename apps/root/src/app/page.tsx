@@ -15,7 +15,11 @@ import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
 import { IntroduceCareerCardProps } from '@kapoo/root-ui-pack/template/IntroduceTemplate/sub/IntroduceCareerCard/IntroduceCareerCard';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
 import WelcomeTemplate from '@kapoo/root-ui-pack/template/WelcomeTemplate';
+import Glow from '@kapoo/ui-pack/molecule/Glow';
+import NameTag from '@kapoo/ui-pack/molecule/NameTag';
+import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
@@ -169,6 +173,25 @@ export default async function AppPage(): Promise<JSX.Element>
 							))}
 						</Stack>
 					</TitleTemplate>
+
+					<Stack alignItems='center' width='100%'>
+						<Box boxShadow='0px 0px 10px #00000050' maxWidth={250}>
+							<Link href='https://blog.itcode.dev'>
+								<TiltBox scale={1.1}>
+									<NameTag
+										color='white'
+										colors={[ '#833AB4', '#FD2B20', '#fCAA43' ]}
+										image='/logo.png'
+										title={process.env.NEXT_PUBLIC_TITLE}
+									>
+										블로그에서 다양한 개발 아티클을 확인해보세요!
+									</NameTag>
+
+									<Glow />
+								</TiltBox>
+							</Link>
+						</Box>
+					</Stack>
 				</Stack>
 			</Container>
 		</ScreenPageTemplate>

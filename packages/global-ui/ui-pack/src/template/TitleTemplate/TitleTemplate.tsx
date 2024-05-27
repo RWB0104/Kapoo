@@ -38,7 +38,7 @@ export default function TitleTemplate({ title, subtitle, children }: TitleTempla
 			<Stack alignItems='center' gap={1} justifyContent='center' width='100%'>
 				<Typography fontWeight='bold' variant='h4'>{title}</Typography>
 
-				<Box color='red' maxWidth='sm' width='100%'>
+				<Box maxWidth='sm' width='100%'>
 					<Divider variant='fullWidth' />
 				</Box>
 

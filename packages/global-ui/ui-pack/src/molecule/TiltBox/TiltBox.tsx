@@ -10,7 +10,7 @@
 import { mathRound } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { MouseEventHandler, useCallback } from 'react';
+import { CSSProperties, MouseEventHandler, useCallback, useRef } from 'react';
 
 import styles from './TiltBox.module.scss';
 
@@ -32,6 +32,11 @@ export interface TiltBoxProps extends BoxProps
 	 * 원근법
 	 */
 	perspective?: number;
+
+	/**
+	 * 스케일
+	 */
+	scale?: CSSProperties['scale'];
 }
 
 /**
@@ -41,28 +46,35 @@ export interface TiltBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, className, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
+export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, scale = 1, className, children, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
+	const ref = useRef<HTMLDivElement | null>(null);
+
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
 		onMouseMove?.(e);
 
 		// 틸트가 활성화된 경우
-		if (!tiltDisabled)
+		if (!tiltDisabled && ref.current)
 		{
+			const rect = ref.current.getBoundingClientRect();
+			const offsetX = e.clientX - rect.left;
+			const offsetY = e.clientY - rect.top;
+
 			const centerX = e.currentTarget.scrollWidth / 2;
 			const centerY = e.currentTarget.scrollHeight / 2;
 
-			const x = centerX - e.nativeEvent.offsetX;
-			const y = centerY - e.nativeEvent.offsetY;
+			const x = centerX - offsetX;
+			const y = centerY - offsetY;
 
 			const tileX = mathRound(y / centerY, 2) * angle;
 			const tileY = mathRound(x / centerX, 2) * angle;
 
-			e.currentTarget.style.transition = '';
+			e.currentTarget.style.transition = '0.3s scale';
+			e.currentTarget.style.scale = `${scale}`;
 			e.currentTarget.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg)`;
 		}
-	}, [ angle, perspective, tiltDisabled, onMouseMove ]);
+	}, [ ref, angle, perspective, scale, tiltDisabled, onMouseMove ]);
 
 	const handleMouseLeave = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
@@ -72,6 +84,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 		if (!tiltDisabled)
 		{
 			e.currentTarget.style.transition = '1s ease-out';
+			e.currentTarget.style.scale = '';
 			e.currentTarget.style.transform = '';
 		}
 	}, [ tiltDisabled, onMouseLeave ]);
@@ -81,9 +94,12 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 			className={cn('box', className)}
 			component='div'
 			data-component='RotateBox'
+			ref={ref}
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}
 			{...props}
-		/>
+		>
+			<Box>{children}</Box>
+		</Box>
 	);
 }
