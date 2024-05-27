@@ -40,7 +40,7 @@ export default function ProjectsPage(): JSX.Element
 			<Container>
 				<Stack gap={16} marginTop={10}>
 					<TitleTemplate subtitle='진행한 프로젝트들의 목록입니다. 카드를 클릭하여 프로젝트들의 간단한 정보를 확인할 수 있습니다.' title='🖥️ 프로젝트'>
-						<ProjectGrid list={list} />
+						<ProjectGrid list={list} mode='modal' />
 					</TitleTemplate>
 				</Stack>
 			</Container>

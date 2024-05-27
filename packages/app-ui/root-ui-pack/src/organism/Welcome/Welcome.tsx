@@ -60,7 +60,7 @@ export default function Welcome({ list }: WelcomeProps): JSX.Element
 		{
 			setShowState(true);
 		}
-	}, { threshold: 0.5 });
+	}, { threshold: 0.2 });
 
 	return (
 		<Box

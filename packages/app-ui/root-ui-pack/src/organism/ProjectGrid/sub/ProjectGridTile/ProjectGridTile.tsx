@@ -35,6 +35,11 @@ export interface ProjectGridTileProps extends ButtonBaseProps
 	 * 프로젝트
 	 */
 	project: MarkdownHeaderProps;
+
+	/**
+	 * 타입
+	 */
+	mode: 'link' | 'modal';
 }
 
 /**
@@ -44,7 +49,7 @@ export interface ProjectGridTileProps extends ButtonBaseProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ProjectGridTile({ unique, project, ...props }: ProjectGridTileProps): JSX.Element
+export default function ProjectGridTile({ unique, project, mode, ...props }: ProjectGridTileProps): JSX.Element
 {
 	const { push } = useRouter();
 
@@ -59,12 +64,22 @@ export default function ProjectGridTile({ unique, project, ...props }: ProjectGr
 		// 아이디가 있을 경우
 		if (unique)
 		{
-			const params = new URLSearchParams(window.location.search);
-			params.set('id', unique);
+			// 모달 타입일 경우
+			if (mode === 'modal')
+			{
+				const params = new URLSearchParams(window.location.search);
+				params.set('id', unique);
 
-			push(`${window.location.pathname}?${params}`, { scroll: false });
+				push(`${window.location.pathname}?${params}`, { scroll: false });
+			}
+
+			// 아닐 경우
+			else
+			{
+				push(`/projects?id=${unique}`);
+			}
 		}
-	}, [ unique, push ]);
+	}, [ unique, mode, push ]);
 
 	useIntersectionObserver(domState, ({ isIntersecting }) =>
 	{

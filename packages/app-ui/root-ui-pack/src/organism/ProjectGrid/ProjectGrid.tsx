@@ -8,12 +8,17 @@
 import { MarkdownDetailProps } from '@kapoo/markdown-kit';
 import Grid from '@mui/material/Grid';
 
-import ProjectGridTile from './sub/ProjectGridTile';
+import ProjectGridTile, { ProjectGridTileProps } from './sub/ProjectGridTile';
 
 import { MarkdownHeaderProps, getId } from '../../common';
 
 export interface ProjectGridProps
 {
+	/**
+	 * 타입
+	 */
+	mode: ProjectGridTileProps['mode'];
+
 	/**
 	 * 리스트
 	 */
@@ -25,13 +30,13 @@ export interface ProjectGridProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ProjectGrid({ list }: ProjectGridProps): JSX.Element
+export default function ProjectGrid({ mode, list }: ProjectGridProps): JSX.Element
 {
 	return (
 		<Grid data-component='ProjectGrid' spacing={1} container>
 			{list.map(({ filename, meta }) => (
 				<Grid key={filename} md={3} sm={4} xs={6} item>
-					<ProjectGridTile project={meta} unique={getId(filename)} />
+					<ProjectGridTile mode={mode} project={meta} unique={getId(filename)} />
 				</Grid>
 			))}
 		</Grid>

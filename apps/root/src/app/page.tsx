@@ -152,7 +152,7 @@ export default async function AppPage(): Promise<JSX.Element>
 
 					<TitleTemplate subtitle='현재 진행 중인 프로젝트의 목록입니다.' title='🚀 진행중인 프로젝트'>
 						<Stack alignItems='center' gap={8}>
-							<ProjectGrid list={recendProjects} />
+							<ProjectGrid list={recendProjects} mode='link' />
 
 							<Link href='/projects'>
 								<Button color='info' variant='outlined'>
@@ -182,7 +182,7 @@ export default async function AppPage(): Promise<JSX.Element>
 										color='white'
 										colors={[ '#C1A2E6', '#74EBD5' ]}
 										image='https://blog.itcode.dev/logo.png'
-										title={process.env.NEXT_PUBLIC_TITLE}
+										title='𝝅번째 알파카의 개발 낙서장'
 									>
 										<Typography variant='caption'>이 카드를 클릭하고 블로그에서 다양한 개발 아티클을 확인해보세요!</Typography>
 									</NameTag>
