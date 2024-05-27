@@ -16,6 +16,7 @@ import ThanksCard from '@kapoo/blog-ui-pack/organism/ThanksCard';
 import MarkdownScreenerTemplate from '@kapoo/blog-ui-pack/template/MarkdownScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
+import Hits from '@kapoo/ui-pack/atom/Hits';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import ScrollProgress from '@kapoo/ui-pack/organism/ScrollProgress';
@@ -105,6 +106,17 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 					/>
 
 					{meta.comment ? <Comment /> : null}
+
+					<Stack alignItems='center'>
+						<Hits
+							countBgcolor='#484848'
+							icon='react.svg'
+							iconColor='dodgerblue'
+							text='view'
+							titleBgcolor='#242424'
+							unique={`${process.env.NEXT_PUBLIC_BASE_URL}${url}`}
+						/>
+					</Stack>
 				</Stack>
 			</Container>
 		</ScreenPageTemplate>
