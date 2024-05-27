@@ -96,7 +96,7 @@ export default function MarkdownGroup({ title, current, thumbnail, groups }: Mar
 					</Stack>
 				</Box>
 
-				<CollapseBox onControlled={handleControlled} onInit={setControllerState}>
+				<CollapseBox defaultOpen={false} onControlled={handleControlled} onInit={setControllerState}>
 					<Stack paddingLeft={2} paddingRight={2}>
 						<Box component='ul'>
 							{groups.map(({ title, url }) => (

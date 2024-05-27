@@ -100,7 +100,7 @@ export default function MarkdownCard({ type, href, title, description, category,
 		{
 			setShowState(true);
 		}
-	}, { threshold: 0.5 });
+	}, { threshold: 0.2 });
 
 	return (
 		<Box

@@ -6,6 +6,7 @@
  */
 
 import { getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
+import LabNameTag from '@kapoo/blog-ui-pack/organism/LabNameTag';
 import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
@@ -13,6 +14,7 @@ import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
 import Img from '@kapoo/ui-pack/organism/Img';
 import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -73,12 +75,27 @@ export default async function AppPage(): Promise<JSX.Element>
 					</TitleTemplate>
 
 					<TitleTemplate subtitle='한 달 이내의 게시글 중, 가장 조회수가 높은 게시글들의 목록입니다.' title='👑 인기 게시글'>
-						<MarkdownGrid list={postsList} disabledReferer />
+						<Stack alignItems='center' gap={4}>
+							<MarkdownGrid list={postsList} disabledReferer />
+
+							<Button href='/posts'>
+								<Typography variant='h5'>🔎 게시글 전체보기</Typography>
+							</Button>
+						</Stack>
+
 					</TitleTemplate>
 
 					<TitleTemplate subtitle='한 달 이내의 프로젝트 중, 가장 조회수가 높은 프로젝트들의 목록입니다.' title='👑 인기 프로젝트'>
-						<MarkdownGrid list={projectsList} disabledReferer />
+						<Stack alignItems='center' gap={4}>
+							<MarkdownGrid list={projectsList} disabledReferer />
+
+							<Button href='/projects'>
+								<Typography variant='h5'>🔎 프로젝트 전체보기</Typography>
+							</Button>
+						</Stack>
 					</TitleTemplate>
+
+					<LabNameTag />
 				</Stack>
 			</Container>
 		</ScreenPageTemplate>

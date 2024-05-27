@@ -67,7 +67,7 @@ export default function NameTag({ image, title, color, colors = [ 'transparent' 
 				<Box borderTop={`1px solid ${color}`} width='100%' />
 
 				<Stack gap={1}>
-					<Typography color='inherit' fontWeight='bold' variant='h5'>{title}</Typography>
+					<Typography color='inherit' fontWeight='bold'>{title}</Typography>
 
 					<Box color='inherit' width='100%'>
 						{children}

@@ -7,6 +7,7 @@
 
 import { getMarkdownDetailBySlug, getUrl, markdownPath } from '@kapoo/blog-ui-pack/common';
 import Comment from '@kapoo/blog-ui-pack/organism/Comment';
+import LabNameTag from '@kapoo/blog-ui-pack/organism/LabNameTag';
 import MarkdownGroup from '@kapoo/blog-ui-pack/organism/MarkdownGroup';
 import MarkdownMenu from '@kapoo/blog-ui-pack/organism/MarkdownMenu';
 import MarkdownShareBox from '@kapoo/blog-ui-pack/organism/MarkdownShareBox';
@@ -82,6 +83,8 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 					<Divider variant='fullWidth' />
 
 					<MarkdownTagsBox tags={meta.tag} type={meta.type} />
+
+					<LabNameTag />
 
 					<MarkdownMenu next={next} prev={prev} type={meta.type} />
 

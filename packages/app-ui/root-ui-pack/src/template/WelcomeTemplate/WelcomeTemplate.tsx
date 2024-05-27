@@ -7,13 +7,21 @@
 
 'use client';
 
-import { mathRound } from '@kapoo/common';
+import { getRandom, mathRound } from '@kapoo/common';
 import Img from '@kapoo/ui-pack/organism/Img';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { useEffect, useRef } from 'react';
 
 import Welcome, { WelcomeProps } from '../../organism/Welcome';
+
+const images = [
+	'https://github.com/RWB0104/blog.itcode.dev/assets/50317129/a1dba2fe-caae-4d12-81f0-78bbef241280',
+	'https://github.com/RWB0104/blog.itcode.dev/assets/50317129/755aee24-f2f1-42f4-bcd4-4649ac6a94eb',
+	'https://github.com/RWB0104/blog.itcode.dev/assets/50317129/aee34ef4-4221-4364-af3f-2e2be86860ab',
+	'https://github.com/RWB0104/blog.itcode.dev/assets/50317129/8b65a496-50ed-41a6-9891-802e4a1ef624',
+	'https://github.com/RWB0104/blog.itcode.dev/assets/50317129/9074ac51-ac46-4630-969c-f8674f2a2dfe'
+];
 
 export interface WelcomeTemplateProps
 {
@@ -50,6 +58,7 @@ export default function WelcomeTemplate({ list }: WelcomeTemplateProps): JSX.Ele
 					const ref = end - start;
 					const percent = mathRound(val / ref, 2);
 
+					imageRef.current.style.filter = `blur(${(percent * 5)}px)`;
 					imageRef.current.style.scale = `${1 + percent}`;
 					imageRef.current.style.transition = '0.3s';
 				}
@@ -68,7 +77,7 @@ export default function WelcomeTemplate({ list }: WelcomeTemplateProps): JSX.Ele
 		<Stack data-component='WelcomeTemplate' marginTop={10} minHeight='300vh' position='relative' ref={ref}>
 			<Box left={0} overflow='hidden' position='sticky' top={0}>
 				<Box height='100%' left={0} position='absolute' ref={imageRef} top={0} width='100%'>
-					<Img height='100%' src='https://i.pinimg.com/originals/c7/54/9d/c7549df773adf3f843383a067a353aae.jpg' width='100%' />
+					<Img height='100%' src={images[getRandom(images)]} width='100%' />
 				</Box>
 
 				<Welcome list={list} />

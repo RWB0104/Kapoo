@@ -30,11 +30,6 @@ export interface CollapseBoxProps extends BoxProps
 	defaultOpen?: boolean;
 
 	/**
-	 * 열기 여부
-	 */
-	open?: boolean;
-
-	/**
 	 * 애니메이션 시간
 	 */
 	animationTime?: CSSProperties['transition'];
@@ -57,7 +52,7 @@ export interface CollapseBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function CollapseBox({ defaultOpen, open, animationTime = '0.3s', onInit, onControlled, ...props }: CollapseBoxProps): JSX.Element
+export default function CollapseBox({ defaultOpen, animationTime = '0.3s', onInit, onControlled, ...props }: CollapseBoxProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -169,16 +164,10 @@ export default function CollapseBox({ defaultOpen, open, animationTime = '0.3s',
 		onControlled?.(isOpenState);
 	}, [ isOpenState, onControlled ]);
 
-	useEffect(() =>
-	{
-		handler(open);
-	}, [ handler, open ]);
-
 	return (
 		<Box
 			component='div'
 			data-component='CollapseBox'
-			height={0}
 			overflow='hidden'
 			ref={ref}
 			onTransitionEnd={handleAnimationEnd}

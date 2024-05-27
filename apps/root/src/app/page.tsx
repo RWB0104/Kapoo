@@ -175,16 +175,16 @@ export default async function AppPage(): Promise<JSX.Element>
 					</TitleTemplate>
 
 					<Stack alignItems='center' width='100%'>
-						<Box boxShadow='0px 0px 10px #00000050' maxWidth={250}>
-							<Link href='https://blog.itcode.dev'>
+						<Box boxShadow='0px 0px 10px #00000050' maxWidth={250} width='100%'>
+							<Link href='https://blog.itcode.dev' target='_blank'>
 								<TiltBox scale={1.1}>
 									<NameTag
 										color='white'
-										colors={[ '#833AB4', '#FD2B20', '#fCAA43' ]}
-										image='/logo.png'
+										colors={[ '#C1A2E6', '#74EBD5' ]}
+										image='https://blog.itcode.dev/logo.png'
 										title={process.env.NEXT_PUBLIC_TITLE}
 									>
-										블로그에서 다양한 개발 아티클을 확인해보세요!
+										<Typography variant='caption'>이 카드를 클릭하고 블로그에서 다양한 개발 아티클을 확인해보세요!</Typography>
 									</NameTag>
 
 									<Glow />
