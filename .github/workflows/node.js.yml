@@ -71,10 +71,10 @@ jobs:
         restore-keys: ${{ runner.os }}-kapoo
 
     - name: build root
-      run: pnpm nx build root
+      run: NX_NO_CLOUD=true pnpm nx build root
 
     - name: build blog
-      run: pnpm nx build blog
+      run: NX_NO_CLOUD=true pnpm nx build blog
 
     - name: Pushes to itcode.dev Public Repository
       uses: cpina/github-action-push-to-another-repository@main
