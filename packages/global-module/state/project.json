@@ -1,0 +1,12 @@
+{
+  "name": "state",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/global-module/state/src",
+  "projectType": "library",
+  "tags": [
+    "lib:shared",
+    "name:state"
+  ],
+  "// targets": "to see all targets run: nx show project state --web",
+  "targets": {}
+}

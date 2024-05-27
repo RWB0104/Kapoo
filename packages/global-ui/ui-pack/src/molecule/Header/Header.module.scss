@@ -1,0 +1,11 @@
+.header {
+	transition: 0.3s;
+
+	&:not(.transparent) {
+		backdrop-filter: blur(10px);
+	}
+}
+
+.title {
+	font-weight: bold;
+}

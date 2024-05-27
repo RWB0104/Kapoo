@@ -1,0 +1,46 @@
+.card {
+	opacity: 0.4;
+	transform: translateY(20px) perspective(1400px) rotateX(30deg);
+
+	transition: 0.75s ease-out;
+
+	&.active {
+		opacity: 1;
+		transform: translateY(0px) rotateX(0deg);
+	}
+
+	&.active .thumbnail img {
+		transition: 0.75s ease-out;
+	}
+
+	&.active:hover {
+		transform: translateY(-10px);
+
+		.thumbnail img {
+			scale: 1.2;
+		}
+	}
+}
+
+.button {
+	width: 100%;
+	height: 100%;
+}
+
+.thumbnail {
+	overflow: hidden;
+
+	&::after {
+		display: block;
+		content: "";
+		padding-bottom: 70%;
+	}
+}
+
+.description {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}

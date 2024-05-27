@@ -1,0 +1,10 @@
+.glow {
+	transition: 0.5s opacity;
+	opacity: 0;
+	mix-blend-mode: soft-light;
+	filter: brightness(0.9) contrast(2);
+
+	&:hover {
+		opacity: 1;
+	}
+}

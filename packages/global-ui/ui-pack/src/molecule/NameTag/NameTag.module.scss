@@ -1,0 +1,19 @@
+.tag {
+	background-size: 400% 400%;
+
+	animation: move 10s linear infinite;
+}
+
+@keyframes move {
+	0% {
+		background-position: 50% 0%;
+	}
+
+	50% {
+		background-position: 0% 100%;
+	}
+
+	100% {
+		background-position: 50% 0%;
+	}
+}

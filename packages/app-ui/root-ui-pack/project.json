@@ -1,0 +1,12 @@
+{
+  "name": "root-ui-pack",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/app-ui/root-ui-pack/src",
+  "projectType": "library",
+  "tags": [
+    "lib:root",
+    "name:root-ui-pack"
+  ],
+  "// targets": "to see all targets run: nx show project root-ui-pack --web",
+  "targets": {}
+}

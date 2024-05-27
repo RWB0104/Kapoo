@@ -1,0 +1,11 @@
+.img {
+	opacity: 1;
+	pointer-events: none;
+
+	object-fit: cover;
+	object-position: center;
+
+	&.loading {
+		opacity: 0;
+	}
+}

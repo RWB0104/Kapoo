@@ -1,0 +1,14 @@
+.backdrop {
+	backdrop-filter: blur(10px);
+
+	z-index: 10010;
+}
+
+.buttons {
+	background-color: white;
+}
+
+#button {
+	padding: 4px;
+	min-width: 0px;
+}

@@ -1,0 +1,52 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@kapoo/api": [
+        "packages/global-module/api/src/index.ts"
+      ],
+      "@kapoo/blog-ui-pack/*": [
+        "packages/app-ui/blog-ui-pack/src/*"
+      ],
+      "@kapoo/common": [
+        "packages/global-module/common/src/index.ts"
+      ],
+      "@kapoo/global-ui-pack/*": [
+        "packages/app-ui/global-ui-pack/src/*"
+      ],
+      "@kapoo/markdown-kit": [
+        "packages/global-module/markdown-kit/src/index.ts"
+      ],
+      "@kapoo/root-ui-pack/*": [
+        "packages/app-ui/root-ui-pack/src/*"
+      ],
+      "@kapoo/state": [
+        "packages/global-module/state/src/index.ts"
+      ],
+      "@kapoo/ui-pack/*": [
+        "packages/global-ui/ui-pack/src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

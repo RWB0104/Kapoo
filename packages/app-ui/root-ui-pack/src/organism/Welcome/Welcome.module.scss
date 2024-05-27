@@ -1,0 +1,39 @@
+.text {
+	transform: translate(-50%, -50%);
+	transform-origin: center;
+}
+
+.typo {
+	text-shadow: 0px 0px 10px #00000050;
+	opacity: 0;
+
+	&.active {
+		animation: shooo 5s linear;
+	}
+}
+
+@keyframes shooo {
+	0% {
+		opacity: 0;
+		scale: 4;
+		filter: blur(20px);
+	}
+
+	20% {
+		opacity: 1;
+		scale: 2;
+		filter: blur(0px);
+	}
+
+	80% {
+		opacity: 1;
+		scale: 1.5;
+		filter: blur(0px);
+	}
+
+	100% {
+		opacity: 0;
+		scale: 1;
+		filter: blur(20px);
+	}
+}

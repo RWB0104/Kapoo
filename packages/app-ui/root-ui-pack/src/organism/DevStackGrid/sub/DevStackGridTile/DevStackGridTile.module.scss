@@ -1,0 +1,21 @@
+.tile {
+	opacity: 0;
+	scale: 0.5;
+
+	transition: 1s ease;
+
+	&.active {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+.title {
+	background: linear-gradient(to bottom, transparent, black);
+
+	text-shadow:
+		-1px 0px black,
+		0px 1px black,
+		1px 0px black,
+		0px -1px black;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "blog-ui-pack",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/app-ui/blog-ui-pack/src",
+  "projectType": "library",
+  "tags": [
+    "lib:blog",
+    "name:blog-ui-pack"
+  ],
+  "// targets": "to see all targets run: nx show project blog-ui-pack --web",
+  "targets": {}
+}

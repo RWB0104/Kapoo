@@ -1,0 +1,110 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "name:root",
+                "onlyDependOnLibsWithTags": [
+                  "lib:root",
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "name:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:blog",
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "lib:root",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "lib:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "name:global-ui-pack",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared"
+                ]
+              },
+              {
+                "sourceTag": "name:ui-pack",
+                "onlyDependOnLibsWithTags": [
+                  "name:common"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript",
+        "@itcode-dev/eslint-config/react-ts"
+      ],
+      "rules": {
+        "indent": [
+          "error",
+          "tab"
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}
