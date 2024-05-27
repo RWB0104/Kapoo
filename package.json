@@ -1,6 +1,6 @@
 {
   "name": "@kapoo/source",
-  "version": "5.0.0-alpha1",
+  "version": "5.0.0-alpha2",
   "license": "MIT",
   "private": true,
   "dependencies": {
