@@ -5,7 +5,6 @@
  * @since 2024.04.01 Mon 00:54:30
  */
 
-import { Stack } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
 import { CSSProperties } from 'react';
@@ -13,6 +12,7 @@ import { CSSProperties } from 'react';
 import styles from './Footer.module.scss';
 
 import Wave from '../../atom/Wave';
+import Sky from '../Sky';
 
 const cn = classNames.bind(styles);
 
@@ -33,16 +33,10 @@ export interface FooterProps extends BoxProps
  */
 export default function Footer({ mainColor = 'transparent', children, ...props }: FooterProps): JSX.Element
 {
-	const hour = new Date().getHours();
-
 	return (
 		<Box component='footer' data-component='Footer' marginTop={10} {...props}>
 			<Box position='relative'>
-				<Stack className={cn('cloud', `hour-${hour}`)} width='100%'>
-					<Wave fillColor='inherit' />
-				</Stack>
-
-				<Box className={cn('sky', `hour-${hour}`)} height={200} />
+				<Sky />
 
 				<Box bottom={-20} className={cn('ship')} left='10%' position='absolute'>
 					<img
