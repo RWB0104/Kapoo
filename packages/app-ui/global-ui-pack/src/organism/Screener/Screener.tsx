@@ -42,7 +42,7 @@ export interface ScreenerProps extends PropsWithChildren
  *
  * @returns {Promise} 비동기 JSX
  */
-export default function Screener({ width = '100%', height = '100vh', src, children }: ScreenerProps): JSX.Element
+export default function Screener({ width = '100%', height = '100dvh', src, children }: ScreenerProps): JSX.Element
 {
 	const [ isReadyState, setReadyState ] = useState(false);
 

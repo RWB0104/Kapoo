@@ -74,7 +74,7 @@ export default function WelcomeTemplate({ list }: WelcomeTemplateProps): JSX.Ele
 	}, [ ref.current, imageRef.current ]);
 
 	return (
-		<Stack data-component='WelcomeTemplate' marginTop={10} minHeight='300vh' position='relative' ref={ref}>
+		<Stack data-component='WelcomeTemplate' marginTop={10} minHeight='300dvh' position='relative' ref={ref}>
 			<Box left={0} overflow='hidden' position='sticky' top={0}>
 				<Box height='100%' left={0} position='absolute' ref={imageRef} top={0} width='100%'>
 					<Img height='100%' src={images[getRandom(images)]} width='100%' />

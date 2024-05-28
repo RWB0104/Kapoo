@@ -65,7 +65,7 @@ export default function Welcome({ list }: WelcomeProps): JSX.Element
 	return (
 		<Box
 			data-component='Welcome'
-			minHeight='100vh'
+			minHeight='100dvh'
 			overflow='hidden'
 			padding={2}
 			position='relative'
