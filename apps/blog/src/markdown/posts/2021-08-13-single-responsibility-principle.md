@@ -81,15 +81,15 @@ public class Car
 			}
 			
 			case "RWD" -> {
+				WHEEL[2] = power;
 				WHEEL[3] = power;
-				WHEEL[4] = power;
 			}
 			
 			case "AWD" -> {
 				WHEEL[0] = power;
 				WHEEL[1] = power;
+				WHEEL[2] = power;
 				WHEEL[3] = power;
-				WHEEL[4] = power;
 			}
 		}
 		

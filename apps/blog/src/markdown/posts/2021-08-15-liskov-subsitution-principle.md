@@ -221,6 +221,12 @@ public class Shape
 {
 	protected int width;
 	protected int height;
+
+	public Shape(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+	}
 	
 	/**
 	 * 너비 반환 함수
@@ -243,26 +249,6 @@ public class Shape
 	}
 	
 	/**
-	 * 너비 할당 함수
-	 *
-	 * @param width: [int] 너비
-	 */
-	public void setWidth(int width)
-	{
-		this.width = width;
-	}
-	
-	/**
-	 * 높이 할당 함수
-	 *
-	 * @param height: [int] 높이
-	 */
-	public void setHeight(int height)
-	{
-		this.height = height;
-	}
-	
-	/**
 	 * 넓이 반환 함수
 	 *
 	 * @return [int] 넓이
@@ -275,6 +261,10 @@ public class Shape
 ```
 
 위와 같이 `Shape`라는 사각형 객체를 구현한다.
+
+> 기존 코드에서 Setter 메서드를 제외하고, 인스턴스 생성 시에만 할당할 수 있도록 강제해야한다.  
+Setter 메서드가 있을 경우 객체가 정의된 이후에도 객체의 상태를 언제든지 바꿀 수 있기 때문이다.  
+2024-05-28 이전까지 잘못된 서술이 적혀있었으므로, 다시 수정했다.
 
 ``` java
 /**
@@ -293,8 +283,7 @@ class Rectangle extends Shape
 	 */
 	public Rectangle(int width, int height)
 	{
-		setWidth(width);
-		setHeight(height);
+		super(width, height);
 	}
 }
 
@@ -313,8 +302,7 @@ class Square extends Shape
 	 */
 	public Square(int length)
 	{
-		setWidth(length);
-		setHeight(length);
+		super(length, length);
 	}
 }
 ```
@@ -360,3 +348,9 @@ public class Main
 리스코프 치환 원칙을 지키기 위해선 가급적 부모 객체의 일반 메소드를 그 의도와 다르게 오버라이딩 하지 않는 것이 중요하다.
 
 부모 객체의 오버라이딩은 주로 동일한 메소드를 자식 객체만의 동작을 추가하기 위해 한다는 걸 감안하면 매우 준수하기 까다로운 원칙.
+
+<br />
+<br />
+<br />
+
+코드의 오류를 지적해주신 [@SungilJung](https://github.com/SungilJung), [@splitCoding](https://github.com/splitCoding)님께 감사드립니다.
