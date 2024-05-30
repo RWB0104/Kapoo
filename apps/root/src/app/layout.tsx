@@ -29,6 +29,10 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 {
 	return (
 		<html lang='ko'>
+			<head>
+				<meta content='ca-pub-5522045122225064' name='google-adsense-account' />
+			</head>
+
 			<body>
 				<Suspense>
 					<GoogleAnalyticsProvider gaKey='G-ZH2SCZ2RB2'>
