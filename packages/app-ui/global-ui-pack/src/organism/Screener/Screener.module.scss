@@ -16,6 +16,8 @@
 .cover {
 	object-fit: cover;
 	object-position: center;
+
+	pointer-events: none;
 }
 
 @keyframes gradient {
