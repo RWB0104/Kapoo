@@ -8,7 +8,7 @@
 'use client';
 
 import Box, { BoxProps } from '@mui/material/Box';
-import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export type CollapseBoxHandler = (flag?: boolean) => void;
 
@@ -52,7 +52,7 @@ export interface CollapseBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function CollapseBox({ defaultOpen, animationTime = '0.3s', onInit, onControlled, ...props }: CollapseBoxProps): JSX.Element
+export default function CollapseBox({ defaultOpen, animationTime = '0.3s', style, onInit, onControlled, ...props }: CollapseBoxProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -138,7 +138,7 @@ export default function CollapseBox({ defaultOpen, animationTime = '0.3s', onIni
 		onInit?.({ handle: handler });
 	}, [ onInit, handler ]);
 
-	useEffect(() =>
+	useLayoutEffect(() =>
 	{
 		// DOM이 유효할 경우
 		if (ref.current)
@@ -170,6 +170,7 @@ export default function CollapseBox({ defaultOpen, animationTime = '0.3s', onIni
 			data-component='CollapseBox'
 			overflow='hidden'
 			ref={ref}
+			style={{ height: 0, ...style }}
 			onTransitionEnd={handleAnimationEnd}
 			{...props}
 		/>
