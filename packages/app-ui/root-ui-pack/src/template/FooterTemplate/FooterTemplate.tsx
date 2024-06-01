@@ -60,7 +60,7 @@ export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Elem
 
 			<Box display='grid' gap={2} gridTemplateColumns='1fr 1fr 1fr'>
 				<FooterLinkButton link='https://blog.itcode.dev'>
-					<img alt='blog.itcode.dev' height='100%' src='https://blog.itcode.dev/logo-transparent.png' width='100%' />
+					<img alt='blog.itcode.dev' height='100%' src='https://blog.itcode.dev/logo_transparent.png' width='100%' />
 				</FooterLinkButton>
 
 				<FooterLinkButton link={author.social.github.link}>

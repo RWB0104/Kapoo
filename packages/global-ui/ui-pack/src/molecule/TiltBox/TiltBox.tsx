@@ -49,13 +49,14 @@ export interface TiltBoxProps extends BoxProps
 export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, scale = 1, className, children, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement | null>(null);
+	const boxRef = useRef<HTMLDivElement | null>(null);
 
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
 		onMouseMove?.(e);
 
 		// 틸트가 활성화된 경우
-		if (!tiltDisabled && ref.current)
+		if (!tiltDisabled && ref.current && boxRef.current)
 		{
 			const rect = ref.current.getBoundingClientRect();
 			const offsetX = e.clientX - rect.left;
@@ -70,36 +71,36 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 			const tileX = mathRound(y / centerY, 2) * angle;
 			const tileY = mathRound(x / centerX, 2) * angle;
 
-			e.currentTarget.style.transition = '0.3s scale';
-			e.currentTarget.style.scale = `${scale}`;
-			e.currentTarget.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg)`;
+			boxRef.current.style.transition = '0.3s scale';
+			boxRef.current.style.scale = `${scale}`;
+			boxRef.current.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg)`;
 		}
-	}, [ ref, angle, perspective, scale, tiltDisabled, onMouseMove ]);
+	}, [ ref, boxRef, angle, perspective, scale, tiltDisabled, onMouseMove ]);
 
 	const handleMouseLeave = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
 		onMouseLeave?.(e);
 
 		// 틸트가 활성화된 경우
-		if (!tiltDisabled)
+		if (!tiltDisabled && boxRef.current)
 		{
-			e.currentTarget.style.transition = '1s ease-out';
-			e.currentTarget.style.scale = '';
-			e.currentTarget.style.transform = '';
+			boxRef.current.style.transition = '1s ease-out';
+			boxRef.current.style.scale = '';
+			boxRef.current.style.transform = '';
 		}
-	}, [ tiltDisabled, onMouseLeave ]);
+	}, [ boxRef, tiltDisabled, onMouseLeave ]);
 
 	return (
 		<Box
 			className={cn('box', className)}
 			component='div'
-			data-component='RotateBox'
+			data-component='TiltBox'
 			ref={ref}
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}
 			{...props}
 		>
-			<Box>{children}</Box>
+			<Box ref={boxRef}>{children}</Box>
 		</Box>
 	);
 }
