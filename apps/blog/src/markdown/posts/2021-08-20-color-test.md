@@ -90,10 +90,10 @@ publish: true
 <p class="indigo-700">색상 테스트</p>
 <p class="indigo-800">색상 테스트</p>
 <p class="indigo-900">색상 테스트</p>
-<p class="indigo-">색상 테스트</p>
-<p class="indigo-">색상 테스트</p>
-<p class="indigo-">색상 테스트</p>
-<p class="indigo-">색상 테스트</p>
+<p class="indigo-A100">색상 테스트</p>
+<p class="indigo-A200">색상 테스트</p>
+<p class="indigo-A400">색상 테스트</p>
+<p class="indigo-A700">색상 테스트</p>
 
 # 파란색
 
