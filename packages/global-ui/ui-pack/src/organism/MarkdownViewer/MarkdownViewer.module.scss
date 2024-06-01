@@ -1,5 +1,44 @@
+@import "../../color.scss";
+
+@mixin genColor($map, $str) {
+	@each $key, $val in $map {
+		&:global(.#{$str}-#{$key}) {
+			color: $val;
+		}
+	}
+}
+
 .markdown {
 	pre {
 		margin: 0px !important;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	span {
+		@include genColor($red, red);
+		@include genColor($pink, pink);
+		@include genColor($purple, purple);
+		@include genColor($deepPurple, deepPurple);
+		@include genColor($indigo, indigo);
+		@include genColor($blue, blue);
+		@include genColor($lightBlue, lightBlue);
+		@include genColor($cyan, cyan);
+		@include genColor($teal, teal);
+		@include genColor($green, green);
+		@include genColor($lightGreen, lightGreen);
+		@include genColor($lime, lime);
+		@include genColor($yellow, yellow);
+		@include genColor($amber, amber);
+		@include genColor($orange, orange);
+		@include genColor($deepOrange, deepOrange);
+		@include genColor($brown, brown);
+		@include genColor($grey, grey);
+		@include genColor($blueGrey, blueGrey);
 	}
 }
