@@ -12,7 +12,7 @@ import { MarkdownHeaderProps } from '@kapoo/root-ui-pack/common';
 import ProjectGrid from '@kapoo/root-ui-pack/organism/ProjectGrid';
 import DevStackTemplate from '@kapoo/root-ui-pack/template/DevStackTemplate';
 import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
-import { IntroduceCareerCardProps } from '@kapoo/root-ui-pack/template/IntroduceTemplate/sub/IntroduceCareerCard/IntroduceCareerCard';
+import { IntroduceCareerCardProps } from '@kapoo/root-ui-pack/template/IntroduceTemplate/sub/IntroduceCareerCard';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
 import WelcomeTemplate from '@kapoo/root-ui-pack/template/WelcomeTemplate';
 import Glow from '@kapoo/ui-pack/molecule/Glow';
