@@ -6,10 +6,13 @@
  */
 
 import Wave from '@kapoo/ui-pack/atom/Wave';
+import Carousel, { CarouselControllerProps } from '@kapoo/ui-pack/organism/Carousel';
 import Img from '@kapoo/ui-pack/organism/Img';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import Code from '@mui/icons-material/Code';
 import GitHub from '@mui/icons-material/GitHub';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LinkIcon from '@mui/icons-material/Link';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -20,6 +23,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import styles from './ProjectModal.module.scss';
 
@@ -34,6 +38,9 @@ export interface ProjectModalProps extends Omit<ModalProps, 'children'>
 	 */
 	project?: MarkdownHeaderProps;
 
+	/**
+	 * 내용
+	 */
 	children?: string;
 }
 
@@ -46,6 +53,8 @@ export interface ProjectModalProps extends Omit<ModalProps, 'children'>
  */
 export default function ProjectModal({ project, children, ...props }: ProjectModalProps): JSX.Element
 {
+	const [ controllerState, setControllerState ] = useState<CarouselControllerProps>();
+
 	return (
 		<Modal data-component='ProjectModal' {...props}>
 			{project ? (
@@ -122,9 +131,43 @@ export default function ProjectModal({ project, children, ...props }: ProjectMod
 							</Stack>
 						</Stack>
 
-						<Stack padding={1} width='100%'>
-							{project.images.map((i) => <Img key={i} src={i} width='100%' />)}
-						</Stack>
+						<Box flexShrink={0} height={400} position='relative' width='100%'>
+							<Carousel
+								height='100%'
+								total={project.images.length}
+								width='100%'
+								onInit={setControllerState}
+							>
+								{(i) => (
+									<Box height='100%' position='relative' width='100%'>
+										<Img height='100%' src={project.images[i]} style={{ objectFit: 'contain' }} width='100%' />
+
+										<Stack
+											bgcolor='black'
+											borderRadius={100}
+											bottom={10}
+											padding='4px 16px'
+											position='absolute'
+											right={10}
+										>
+											<Typography variant='caption'>{i + 1} / {project.images.length}</Typography>
+										</Stack>
+									</Box>
+								)}
+							</Carousel>
+
+							<Box height='100%' left={0} position='absolute' top={0}>
+								<ButtonBase className={cn('button')} onClick={() => controllerState?.move('left')}>
+									<KeyboardArrowLeft fontSize='inherit' />
+								</ButtonBase>
+							</Box>
+
+							<Box height='100%' position='absolute' right={0} top={0}>
+								<ButtonBase className={cn('button')} onClick={() => controllerState?.move('right')}>
+									<KeyboardArrowRight fontSize='inherit' />
+								</ButtonBase>
+							</Box>
+						</Box>
 
 						<Box padding={4} width='100%'>
 							<MarkdownViewer>

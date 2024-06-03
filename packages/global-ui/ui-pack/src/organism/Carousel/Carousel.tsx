@@ -9,7 +9,7 @@
 
 import { modulo } from '@kapoo/common';
 import Box from '@mui/material/Box';
-import { CSSProperties, TouchEventHandler, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, MouseEventHandler } from 'react';
+import { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
 export type CarouselRenderHandler = (index: number) => JSX.Element;
 export type CarouselMovetoHandler = (index: number) => void;
@@ -74,13 +74,18 @@ export interface CarouselProps
 	onChange?: CarouselChangeHandler;
 }
 
+/**
+ * 캐러셀 organism 컴포넌트 반환 메서드
+ *
+ * @param {CarouselProps} param0: CarouselProps
+ *
+ * @returns {JSX.Element} JSX
+ */
 export default function Carousel({ defaultIndex = 0, total, width = '100%', height = '100%', transition = 500, onInit, onChange, children }: CarouselProps): JSX.Element
 {
 	const [ indexState, setIndexState ] = useState(defaultIndex);
 	const [ isAnimateState, setAnimateState ] = useState(true);
 	const [ delayState, setDelayState ] = useState(false);
-
-	const dragRef = useRef(0);
 
 	const list = useMemo(() =>
 	{
@@ -141,65 +146,6 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 		[ indexState, total, moveto ]
 	);
 
-	const dragStart = useCallback((num: number) =>
-	{
-		dragRef.current = num;
-	}, []);
-
-	const dragMove = useCallback((num: number, tag: HTMLElement) =>
-	{
-		const currTouchX = num;
-
-		tag.style.transform = `translateX(calc(${
-			indexState * -100
-		}% - ${dragRef.current - currTouchX || 0}px))`;
-		tag.style.transition = '';
-	}, []);
-
-	const dragEnd = useCallback((num: number, tag: HTMLElement) =>
-	{
-		tag.style.transition = '0.5s';
-
-		if (dragRef.current >= num)
-		{
-			move('right');
-		}
-		else
-		{
-			move('left');
-		}
-	}, [ dragRef.current, move ]);
-
-	const handleMouseDown: MouseEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragStart(e.nativeEvent.clientX);
-	};
-
-	const handleMouseMove: MouseEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragMove(e.nativeEvent.clientX, e.currentTarget);
-	};
-
-	const handleMouseUp: MouseEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragEnd(e.nativeEvent.clientX, e.currentTarget);
-	};
-
-	const handleTouchStart: TouchEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragStart(e.nativeEvent.touches[0].clientX);
-	};
-
-	const handleTouchMove: TouchEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragMove(e.nativeEvent.changedTouches[0].clientX, e.currentTarget);
-	};
-
-	const handleTouchEnd: TouchEventHandler<HTMLDivElement> = (e) =>
-	{
-		dragEnd(e.nativeEvent.changedTouches[0].clientX, e.currentTarget);
-	};
-
 	useLayoutEffect(() =>
 	{
 		onInit?.({ move, moveto });
@@ -227,12 +173,6 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 					transform: `translateX(${indexState * -100}%)`,
 					transition: isAnimateState ? '0.5s' : undefined
 				}}
-				onDrag={handleMouseMove}
-				onDragEnd={handleMouseDown}
-				onDragStart={handleMouseUp}
-				onTouchEnd={handleTouchEnd}
-				onTouchMove={handleTouchMove}
-				onTouchStart={handleTouchStart}
 			>
 				{list.map((i) => (
 					<Box
