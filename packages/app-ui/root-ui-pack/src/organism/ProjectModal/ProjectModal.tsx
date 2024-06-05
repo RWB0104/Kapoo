@@ -1,9 +1,11 @@
 /**
- * 프로젝트 모달 molecule 컴포넌트
+ * 프로젝트 모달 organism 컴포넌트
  *
  * @author RWB
  * @since 2024.05.08 Wed 17:56:39
  */
+
+'use client';
 
 import Wave from '@kapoo/ui-pack/atom/Wave';
 import Carousel, { CarouselControllerProps } from '@kapoo/ui-pack/organism/Carousel';
@@ -45,7 +47,7 @@ export interface ProjectModalProps extends Omit<ModalProps, 'children'>
 }
 
 /**
- * 프로젝트 모달 molecule 컴포넌트 반환 메서드
+ * 프로젝트 모달 organism 컴포넌트 반환 메서드
  *
  * @param {ProjectModalProps} param0: ProjectModalProps
  *
