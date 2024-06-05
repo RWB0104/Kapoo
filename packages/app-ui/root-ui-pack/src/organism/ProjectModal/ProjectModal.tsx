@@ -56,6 +56,7 @@ export interface ProjectModalProps extends Omit<ModalProps, 'children'>
 export default function ProjectModal({ project, children, ...props }: ProjectModalProps): JSX.Element
 {
 	const [ controllerState, setControllerState ] = useState<CarouselControllerProps>();
+	const [ indexState, setIndexState ] = useState(0);
 
 	return (
 		<Modal data-component='ProjectModal' {...props}>
@@ -133,27 +134,18 @@ export default function ProjectModal({ project, children, ...props }: ProjectMod
 							</Stack>
 						</Stack>
 
-						<Box flexShrink={0} height={400} position='relative' width='100%'>
+						<Box className={cn('carousel')} flexShrink={0} height={400} position='relative' width='100%'>
 							<Carousel
 								height='100%'
 								total={project.images.length}
 								width='100%'
+								infinite
+								onChange={setIndexState}
 								onInit={setControllerState}
 							>
 								{(i) => (
-									<Box height='100%' position='relative' width='100%'>
+									<Box height='100%' width='100%'>
 										<Img height='100%' src={project.images[i]} style={{ objectFit: 'contain' }} width='100%' />
-
-										<Stack
-											bgcolor='black'
-											borderRadius={100}
-											bottom={10}
-											padding='4px 16px'
-											position='absolute'
-											right={10}
-										>
-											<Typography variant='caption'>{i + 1} / {project.images.length}</Typography>
-										</Stack>
 									</Box>
 								)}
 							</Carousel>
@@ -169,6 +161,18 @@ export default function ProjectModal({ project, children, ...props }: ProjectMod
 									<KeyboardArrowRight fontSize='inherit' />
 								</ButtonBase>
 							</Box>
+
+							<Stack
+								bgcolor='black'
+								borderRadius={100}
+								bottom={10}
+								className={cn('counter')}
+								left='50%'
+								padding='4px 16px'
+								position='absolute'
+							>
+								<Typography color='white' variant='caption'>{indexState + 1} / {project.images.length}</Typography>
+							</Stack>
 						</Box>
 
 						<Box padding={4} width='100%'>

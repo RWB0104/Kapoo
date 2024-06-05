@@ -10,7 +10,7 @@
 import { modulo } from '@kapoo/common';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { CSSProperties, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { CSSProperties, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 type CarouselInteractionHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent> | TouchEvent<HTMLDivElement>) => void;
 
@@ -119,10 +119,9 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 	const [ indexState, setIndexState ] = useState(defaultIndex);
 	const [ isAnimateState, setAnimateState ] = useState(true);
 	const [ delayState, setDelayState ] = useState(false);
-	const [ dragState, setDragState ] = useState({
-		end: 0,
-		start: 0
-	});
+	const [ deltaState, setDeltaState ] = useState(0);
+
+	const posRef = useRef(0);
 
 	const list = useMemo(() =>
 	{
@@ -145,8 +144,8 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 		() => (gap + sideGap) * (indexState + 3)
 			+ sideGap * 2
 			+ sideGap * indexState
-			+ dragState.end - dragState.start,
-		[ indexState, gap, sideGap, dragState ]
+			+ deltaState,
+		[ indexState, gap, sideGap, deltaState ]
 	);
 
 	const moveto = useCallback<CarouselMovetoHandler>(
@@ -213,8 +212,8 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 
 	const handleInteractionStart = useCallback<CarouselInteractionHandler>((e) =>
 	{
-		// 드래그 비활성화일 경우
-		if (disabledDrag)
+		// 슬라이딩 조건이 아닐 경우
+		if (disabledDrag || delayState)
 		{
 			return;
 		}
@@ -233,15 +232,13 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 			pageX = e.nativeEvent.pageX;
 		}
 
-		setDragState((state) => ({
-			...state,
-			start: pageX
-		}));
-	}, [ disabledDrag ]);
+		posRef.current = pageX;
+	}, [ delayState, disabledDrag ]);
 
 	const handleInteractionMove = useCallback<CarouselInteractionHandler>((e) =>
 	{
-		if (disabledDrag)
+		// 슬라이딩 조건이 아닐 경우
+		if (disabledDrag || delayState)
 		{
 			return;
 		}
@@ -260,38 +257,43 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 			clientX = e.nativeEvent.clientX;
 		}
 
-		setAnimateState(false);
-		setDragState((state) => ({
-			...state,
-			end: clientX
-		}));
-	}, [ disabledDrag ]);
+		// 드래그한 경우
+		if (posRef.current > 0)
+		{
+			e.currentTarget.style.transition = '0s';
 
-	const handleInteractionEnd = useCallback<CarouselInteractionHandler>(() =>
+			setDeltaState(clientX - posRef.current);
+		}
+	}, [ delayState, disabledDrag, posRef.current ]);
+
+	const handleInteractionEnd = useCallback<CarouselInteractionHandler>((e) =>
 	{
-		if (disabledDrag)
+		// 슬라이딩 조건이 아닐 경우
+		if (disabledDrag || delayState)
 		{
 			return;
 		}
 
+		e.currentTarget.style.transition = '';
+
 		setAnimateState(true);
 
-		const delta = dragState.end - dragState.start;
-
-		if (delta > dragDelta)
+		// 제한 이상으로 왼쪽 드래그인 경우
+		if (deltaState > dragDelta)
 		{
 			move('left');
 		}
 
-		else if (delta < -dragDelta)
+		// 제한 이상으로 오른쪽 드래그인 경우
+		else if (deltaState < -dragDelta)
 		{
 			move('right');
 		}
 
-		setDragState({ end: 0, start: 0 });
+		setDeltaState(0);
 
-		console.log(dragState);
-	}, [ disabledDrag, move, dragState, dragDelta ]);
+		posRef.current = 0;
+	}, [ delayState, disabledDrag, move, deltaState, dragDelta ]);
 
 	useLayoutEffect(() =>
 	{
@@ -300,8 +302,30 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 
 	useEffect(() =>
 	{
-		onChange?.(indexState);
-	}, [ indexState, onChange ]);
+		onChange?.(modulo(indexState, total));
+	}, [ indexState, total, onChange ]);
+
+	useEffect(() =>
+	{
+		// 자동 실행 시간이 있을 경우
+		if (autoPlayTime)
+		{
+			const interval = setInterval(() =>
+			{
+				move('right');
+			}, autoPlayTime);
+
+			return () =>
+			{
+				clearInterval(interval);
+			};
+		}
+
+		return () =>
+		{
+			// empty
+		};
+	}, [ autoPlayTime, move ]);
 
 	return (
 		<Box
@@ -329,13 +353,12 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 				onTouchMove={handleInteractionMove}
 				onTouchStart={handleInteractionStart}
 			>
-				{list.map((i) => (
+				{list.map((i, j) => (
 					<Stack
-						bgcolor='white'
 						draggable={false}
 						flexShrink={0}
 						height='100%'
-						key={i}
+						key={j}
 						width={`calc(100% - ${(gap + sideGap) * 2}px)`}
 					>
 						{handleRender(i)}
