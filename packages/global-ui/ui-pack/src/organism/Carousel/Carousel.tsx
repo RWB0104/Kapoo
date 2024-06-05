@@ -9,7 +9,10 @@
 
 import { modulo } from '@kapoo/common';
 import Box from '@mui/material/Box';
-import { CSSProperties, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import Stack from '@mui/material/Stack';
+import { CSSProperties, MouseEvent, TouchEvent, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+
+type CarouselInteractionHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent> | TouchEvent<HTMLDivElement>) => void;
 
 export type CarouselRenderHandler = (index: number) => JSX.Element;
 export type CarouselMovetoHandler = (index: number) => void;
@@ -54,9 +57,39 @@ export interface CarouselProps
 	height?: CSSProperties['height'];
 
 	/**
+	 * 갭
+	 */
+	gap?: number;
+
+	/**
+	 * 사이드 갭
+	 */
+	sideGap?: number;
+
+	/**
+	 * 무한 여부
+	 */
+	infinite?: boolean;
+
+	/**
+	 * 드래그 비활성화 여부
+	 */
+	disabledDrag?: boolean;
+
+	/**
+	 * 드래그 감지 크기
+	 */
+	dragDelta?: number;
+
+	/**
 	 * 애니메이션 시간 (ms)
 	 */
 	transition?: number;
+
+	/**
+	 * 자동 실행 시간 (ms)
+	 */
+	autoPlayTime?: number;
 
 	/**
 	 * 렌더링 핸들러
@@ -81,17 +114,21 @@ export interface CarouselProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Carousel({ defaultIndex = 0, total, width = '100%', height = '100%', transition = 500, onInit, onChange, children }: CarouselProps): JSX.Element
+export default function Carousel({ defaultIndex = 0, total, width = '100%', height = '100%', gap = 0, sideGap = 0, infinite, disabledDrag, dragDelta = 20, transition = 500, autoPlayTime, onInit, onChange, children }: CarouselProps): JSX.Element
 {
 	const [ indexState, setIndexState ] = useState(defaultIndex);
 	const [ isAnimateState, setAnimateState ] = useState(true);
 	const [ delayState, setDelayState ] = useState(false);
+	const [ dragState, setDragState ] = useState({
+		end: 0,
+		start: 0
+	});
 
 	const list = useMemo(() =>
 	{
 		const base = Array.from({ length: total }, (i, j) => j);
 
-		return [ -1, ...base, total ];
+		return [ -2, -1, ...base, total, total - 1 ];
 	}, [ total ]);
 
 	const slide = useCallback((n: number): void =>
@@ -104,27 +141,38 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 		}, transition);
 	}, [ transition ]);
 
+	const x = useMemo(
+		() => (gap + sideGap) * (indexState + 3)
+			+ sideGap * 2
+			+ sideGap * indexState
+			+ dragState.end - dragState.start,
+		[ indexState, gap, sideGap, dragState ]
+	);
+
 	const moveto = useCallback<CarouselMovetoHandler>(
 		(n) =>
 		{
-			// 아직 대기 중일 경우
-			if (delayState)
+			// 딜레이 중이거나, 일반 캐러셀 밖으로 이동할 때
+			if (delayState || (!infinite && (n < 0 || n >= total)))
 			{
 				return;
 			}
 
+			const first = 0;
+			const last = total - 1;
+
 			setDelayState(true);
 
 			// 마지막 슬라이드로 넘어갈 경우
-			if (n === total)
+			if (n > last)
 			{
-				slide(0);
+				slide(first);
 			}
 
 			// 첫 슬라이드로 넘어갈 경우
-			else if (n === -1)
+			else if (n < first)
 			{
-				slide(total - 1);
+				slide(last);
 			}
 
 			setIndexState(n);
@@ -146,6 +194,105 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 		[ indexState, total, moveto ]
 	);
 
+	const handleRender = useCallback((i: number): JSX.Element | null =>
+	{
+		// 무한 캐러셀이 아닐 경우
+		if (!infinite)
+		{
+			// 더미 영역일 경우
+			if (i < 0 || i >= total)
+			{
+				return null;
+			}
+
+			return children(i);
+		}
+
+		return children(modulo(i, total));
+	}, [ infinite, total, children ]);
+
+	const handleInteractionStart = useCallback<CarouselInteractionHandler>((e) =>
+	{
+		// 드래그 비활성화일 경우
+		if (disabledDrag)
+		{
+			return;
+		}
+
+		let pageX = 0;
+
+		// 터치 이벤트일 경우
+		if (e.nativeEvent instanceof globalThis.TouchEvent)
+		{
+			pageX = e.nativeEvent.touches[0].pageX;
+		}
+
+		// 마우스 이벤트일 경우
+		else if (e.nativeEvent instanceof globalThis.MouseEvent)
+		{
+			pageX = e.nativeEvent.pageX;
+		}
+
+		setDragState((state) => ({
+			...state,
+			start: pageX
+		}));
+	}, [ disabledDrag ]);
+
+	const handleInteractionMove = useCallback<CarouselInteractionHandler>((e) =>
+	{
+		if (disabledDrag)
+		{
+			return;
+		}
+
+		let clientX = 0;
+
+		// 터치 이벤트일 경우
+		if (e.nativeEvent instanceof globalThis.TouchEvent)
+		{
+			clientX = e.nativeEvent.touches[0].clientX;
+		}
+
+		// 마우스 이벤트일 경우
+		else if (e.nativeEvent instanceof globalThis.MouseEvent)
+		{
+			clientX = e.nativeEvent.clientX;
+		}
+
+		setAnimateState(false);
+		setDragState((state) => ({
+			...state,
+			end: clientX
+		}));
+	}, [ disabledDrag ]);
+
+	const handleInteractionEnd = useCallback<CarouselInteractionHandler>(() =>
+	{
+		if (disabledDrag)
+		{
+			return;
+		}
+
+		setAnimateState(true);
+
+		const delta = dragState.end - dragState.start;
+
+		if (delta > dragDelta)
+		{
+			move('left');
+		}
+
+		else if (delta < -dragDelta)
+		{
+			move('right');
+		}
+
+		setDragState({ end: 0, start: 0 });
+
+		console.log(dragState);
+	}, [ disabledDrag, move, dragState, dragDelta ]);
+
 	useLayoutEffect(() =>
 	{
 		onInit?.({ move, moveto });
@@ -163,31 +310,38 @@ export default function Carousel({ defaultIndex = 0, total, width = '100%', heig
 			overflow='hidden'
 			width={width}
 		>
-			<Box
+			<Stack
 				component='div'
+				direction='row'
 				draggable={false}
+				gap={`${gap}px`}
 				height='100%'
-				position='relative'
 				width='100%'
 				sx={{
-					transform: `translateX(${indexState * -100}%)`,
-					transition: isAnimateState ? '0.5s' : undefined
+					transform: `translateX(calc(${(indexState + 2) * -100}% + ${x}px))`,
+					transition: isAnimateState ? `${transition}ms` : undefined
 				}}
+				onMouseDown={handleInteractionStart}
+				onMouseMove={handleInteractionMove}
+				onMouseUp={handleInteractionEnd}
+				onTouchCancel={handleInteractionEnd}
+				onTouchEnd={handleInteractionEnd}
+				onTouchMove={handleInteractionMove}
+				onTouchStart={handleInteractionStart}
 			>
 				{list.map((i) => (
-					<Box
+					<Stack
+						bgcolor='white'
 						draggable={false}
+						flexShrink={0}
 						height='100%'
 						key={i}
-						left={`${i * 100}%`}
-						position='absolute'
-						top={0}
-						width='100%'
+						width={`calc(100% - ${(gap + sideGap) * 2}px)`}
 					>
-						{children(modulo(i, total))}
-					</Box>
+						{handleRender(i)}
+					</Stack>
 				))}
-			</Box>
+			</Stack>
 		</Box>
 	);
 }
