@@ -12,7 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 
 import { MarkdownHeaderProps, getId } from '../../common';
-import ProjectModal from '../../molecule/ProjectModal';
+import ProjectModal from '../ProjectModal';
 
 export interface ProjectModalProviderProps
 {
