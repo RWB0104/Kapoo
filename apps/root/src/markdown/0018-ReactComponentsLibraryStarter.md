@@ -23,5 +23,8 @@ created: 1654441200000
 completed: 1689519600000
 ---
 
-# KorCharm 개발 일지
+# react-components-library-starter 프로젝트 개발 일지
 
+React 컴포넌트 라이브러리 프로젝트
+
+react-components-library-starter 프로젝트 개발 일지 추가 예정

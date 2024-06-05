@@ -1,8 +1,8 @@
 ---
-title : "OpenLayers6 Sandbox"
+title : "OpenLayers Box"
 author: "RWB"
 subtitle:
- - "OpenLayers6로 구현할만한 예제 프로젝트"
+ - "OpenLayers로 구현할만한 예제 프로젝트"
 icon: "https://user-images.githubusercontent.com/50317129/260221893-02bc86f9-c37a-48f2-884d-4ef822e2f273.png"
 languages:
  - "TypeScript"
@@ -22,5 +22,8 @@ created: 1644937200000
 completed: 1654182000000
 ---
 
-# KorCharm 개발 일지
+# OpenLayers Box 프로젝트 개발 일지
 
+OpenLayers로 구현할만한 예제 프로젝트
+
+OpenLayers Box 프로젝트 개발 일지 추가 예정

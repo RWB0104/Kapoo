@@ -17,5 +17,8 @@ created: 1693958400000
 completed: 1694217600000
 ---
 
-# KorCharm 개발 일지
+# piedit 프로젝트 개발 일지
 
+itcode 마크다운 에디터
+
+piedit 프로젝트 개발 일지 추가 예정

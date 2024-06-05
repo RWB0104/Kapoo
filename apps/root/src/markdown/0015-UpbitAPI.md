@@ -20,5 +20,8 @@ created: 1638198000000
 completed: 1638889200000
 ---
 
-# KorCharm 개발 일지
+# Upbit API for JAVA 프로젝트 개발 일지
 
+JAVA 오픈소스 라이브러리 만들기 for Dummy
+
+Upbit API for JAVA 프로젝트 개발 일지 추가 예정

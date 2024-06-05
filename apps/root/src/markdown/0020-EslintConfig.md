@@ -20,5 +20,8 @@ created: 1689174000000
 completed: 1690729200000
 ---
 
-# KorCharm 개발 일지
+# @itcode-dev/eslint-config 프로젝트 개발 일지
 
+나만의 ESLint 설정 플러그인 프로젝트
+
+@itcode-dev/eslint-config 프로젝트 개발 일지 추가 예정

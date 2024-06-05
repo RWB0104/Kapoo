@@ -11,3 +11,9 @@ images:
 created: 1562803200000
 completed: 1576281600000
 ---
+
+# KInstaller 개발 일지
+
+얼떨결에 맡아버린 프로젝트
+
+KInstaller 개발 일지 추가 예정

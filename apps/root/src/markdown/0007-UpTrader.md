@@ -16,3 +16,9 @@ images:
 created: 1583366400000
 completed: 1603843200000
 ---
+
+# UpTrader 개발 일지
+
+Upbit 자동 매매 프로그램
+
+UpTrader 개발 일지 추가 예정
