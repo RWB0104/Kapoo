@@ -18,7 +18,6 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
-import pgk from 'package.json';
 
 import styles from './FooterTemplate.module.scss';
 import FooterLinkButton from './sub/FooterLinkButton';
@@ -31,6 +30,11 @@ export interface FooterTemplateProps
 	 * 타이틀
 	 */
 	title: string;
+
+	/**
+	 * 버전
+	 */
+	version: string;
 }
 
 /**
@@ -40,7 +44,7 @@ export interface FooterTemplateProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Element
+export default function FooterTemplate({ title, version }: FooterTemplateProps): JSX.Element
 {
 	return (
 		<Stack
@@ -55,7 +59,7 @@ export default function FooterTemplate({ title }: FooterTemplateProps): JSX.Elem
 		>
 			<Stack alignItems='center' color='white'>
 				<Typography className={cn('title')} fontWeight='bold' variant='h6'>{title}</Typography>
-				<Typography variant='caption'>{pgk.version}</Typography>
+				<Typography variant='caption'>{version}</Typography>
 			</Stack>
 
 			<Box display='grid' gap={2} gridTemplateColumns='1fr 1fr 1fr'>

@@ -12,6 +12,7 @@ import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import pkg from '../../../package.json';
 import { routers } from '../../common';
 
 /**
@@ -24,6 +25,7 @@ export default function GuestbookPage(): JSX.Element
 	return (
 		<ScreenPageTemplate
 			title={process.env.NEXT_PUBLIC_TITLE}
+			version={pkg.version}
 			template={(
 				<PageScreenerTemplate
 					color={routers.guestbook.color}

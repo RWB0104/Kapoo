@@ -19,6 +19,11 @@ export interface PageTemplateProps extends PropsWithChildren
 	 * 타이틀
 	 */
 	title: string;
+
+	/**
+	 * 버전
+	 */
+	version: string;
 }
 
 /**
@@ -28,7 +33,7 @@ export interface PageTemplateProps extends PropsWithChildren
  *
  * @returns {JSX.Element} JSX
  */
-export default function PageTemplate({ title, children }: PageTemplateProps): JSX.Element
+export default function PageTemplate({ title, version, children }: PageTemplateProps): JSX.Element
 {
 	return (
 		<Box component='main' data-component='PageTemplate'>
@@ -40,7 +45,7 @@ export default function PageTemplate({ title, children }: PageTemplateProps): JS
 			{children}
 
 			<Footer mainColor='#6fb1fc'>
-				<FooterTemplate title={title} />
+				<FooterTemplate title={title} version={version} />
 			</Footer>
 		</Box>
 	);

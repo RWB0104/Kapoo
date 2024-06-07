@@ -25,6 +25,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { Metadata } from 'next';
 
+import pkg from '../../../package.json';
 import { getMetadata, routers } from '../../common';
 
 interface DynamicPageProps
@@ -50,6 +51,7 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 		<ScreenPageTemplate
 			src={meta.coverImage}
 			title={process.env.NEXT_PUBLIC_TITLE}
+			version={pkg.version}
 			template={(
 				<MarkdownScreenerTemplate
 					color={routers[meta.type].color}

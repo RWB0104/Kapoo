@@ -8,6 +8,7 @@
 import MarkdownPageTemplate from '@kapoo/blog-ui-pack/template/MarkdownPageTemplate';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 
+import pkg from '../../../package.json';
 import { getMetadata, routers } from '../../common';
 
 export const metadata = getMetadata({
@@ -27,6 +28,7 @@ export default function PostsPage(): JSX.Element
 		<MarkdownPageTemplate
 			title={process.env.NEXT_PUBLIC_TITLE}
 			type='posts'
+			version={pkg.version}
 			template={(
 				<PageScreenerTemplate
 					color={routers.posts.color}

@@ -26,6 +26,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
+import pkg from '../../package.json';
 import { routers } from '../common';
 
 const greeting = [
@@ -131,6 +132,7 @@ export default async function AppPage(): Promise<JSX.Element>
 	return (
 		<ScreenPageTemplate
 			title={process.env.NEXT_PUBLIC_TITLE}
+			version={pkg.version}
 			template={(
 				<PageScreenerTemplate
 					color={routers.home.color}

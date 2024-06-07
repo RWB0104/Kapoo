@@ -29,10 +29,10 @@ export interface ScreenPageTemplateProps extends PageTemplateProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function ScreenPageTemplate({ src, template, title, children }: ScreenPageTemplateProps): JSX.Element
+export default function ScreenPageTemplate({ src, template, title, version, children }: ScreenPageTemplateProps): JSX.Element
 {
 	return (
-		<PageTemplate data-component='ScreenPageTemplate' title={title}>
+		<PageTemplate data-component='ScreenPageTemplate' title={title} version={version}>
 			<Screener src={src}>
 				{template}
 			</Screener>
