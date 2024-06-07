@@ -15,6 +15,8 @@ import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import { routers } from '../../common';
+
 /**
  * 프로젝트 페이지 컴포넌트 반환 메서드
  *
@@ -30,9 +32,9 @@ export default function ProjectsPage(): JSX.Element
 			title={process.env.NEXT_PUBLIC_TITLE}
 			template={(
 				<PageScreenerTemplate
-					color='orange'
-					subtitle='🚀 뭔가 보여줄게 없나 고민하는 중...'
-					text='프로젝트'
+					color={routers.projects.color}
+					subtitle={routers.projects.subtitle}
+					text={routers.projects.title}
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>
 			)}

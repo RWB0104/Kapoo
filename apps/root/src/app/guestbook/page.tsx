@@ -12,6 +12,8 @@ import TitleTemplate from '@kapoo/ui-pack/template/TitleTemplate';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import { routers } from '../../common';
+
 /**
  * 방명록 페이지 컴포넌트 반환 메서드
  *
@@ -24,9 +26,9 @@ export default function GuestbookPage(): JSX.Element
 			title={process.env.NEXT_PUBLIC_TITLE}
 			template={(
 				<PageScreenerTemplate
-					color='hotpink'
-					subtitle='💝 두근대며 읽어보는 중...'
-					text='방명록'
+					color={routers.guestbook.color}
+					subtitle={routers.guestbook.subtitle}
+					text={routers.guestbook.title}
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>
 			)}

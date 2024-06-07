@@ -79,6 +79,52 @@ export interface BaseMetadataProps
 	thumbnail?: string;
 }
 
+export interface RssInfoProps
+{
+	/**
+	 * 제목
+	 */
+	title: string;
+
+	/**
+	 * 내용
+	 */
+	description: string;
+
+	/**
+	 * 링크
+	 */
+	link: string;
+}
+
+export interface RssItemProps
+{
+	/**
+	 * 제목
+	 */
+	title: string;
+
+	/**
+	 * 설명
+	 */
+	description: string;
+
+	/**
+	 * 발행일자
+	 */
+	pubDate: string;
+
+	/**
+	 * 링크
+	 */
+	link: string;
+
+	/**
+	 * 카테고리
+	 */
+	category?: string;
+}
+
 /**
  * 배열의 랜덤 인덱스 반환 메서드
  *
@@ -331,4 +377,63 @@ export function modulo(num: number, max: number): number
 	}
 
 	return val;
+}
+
+/**
+ * RSS 반환 메서드
+ *
+ * @param {RssInfoProps} info: RssInfoProps
+ * @param {RssItemProps} list: RssItemProps
+ *
+ * @returns {string} RSS
+ */
+export function getBaseRss(info: RssInfoProps, list: RssItemProps[]): string
+{
+	const item = list.map((i) =>
+	{
+		let { title } = i;
+
+		title = title.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;')
+			.replace(/&/g, '&amp;');
+
+		const desc = i.description.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;')
+			.replace(/&/g, '&amp;');
+
+		return `
+				<item>
+					<title>${title}</title>
+					<description>${desc}</description>
+					<pubDate>${i.pubDate}</pubDate>
+					<link>${i.link}</link>
+					<guid isPermaLink="true">${i.link}</guid>
+					${i.category ? `<category>${i.category}</category>` : ''}
+				</item>
+			`;
+	});
+
+	const xmlContent = `
+		<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+			<channel>
+				<copyright>Copyright ⓒ ${author.nickname} 2021.05</copyright>
+				<description>${info.description}</description>
+				<generator>${info.title}</generator>
+				<language>ko-KR</language>
+				<lastBuildDate>${new Date().toISOString()}</lastBuildDate>
+				<link>${info.link}</link>
+				<managingEditor>${author.email}</managingEditor>
+				<pubDate>2021-05-26T23:36:57.000Z</pubDate>
+				<title>${info.title}</title>
+				<webMaster>${author.email}</webMaster>
+				${item.join('\n')}
+			</channel>
+		</rss>
+		`;
+
+	return xmlContent;
 }

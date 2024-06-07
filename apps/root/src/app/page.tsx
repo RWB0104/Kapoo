@@ -26,6 +26,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
+import { routers } from '../common';
+
 const greeting = [
 	'반가워요!', // Korean
 	'Nice to meet you!', // English
@@ -131,9 +133,9 @@ export default async function AppPage(): Promise<JSX.Element>
 			title={process.env.NEXT_PUBLIC_TITLE}
 			template={(
 				<PageScreenerTemplate
-					color='gold'
-					subtitle={process.env.NEXT_PUBLIC_DESCRIPTION}
-					text='홈'
+					color={routers.home.color}
+					subtitle={routers.home.subtitle}
+					text={routers.home.title}
 					title={process.env.NEXT_PUBLIC_TITLE}
 				/>
 			)}
