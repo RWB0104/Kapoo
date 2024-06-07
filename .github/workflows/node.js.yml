@@ -6,7 +6,8 @@ name: Node.js CI
 on:
   push:
     tags:
-      - v*
+      - root/*
+      - blog/*
 
 jobs:
   set-dependencies:
@@ -70,34 +71,39 @@ jobs:
         key: ${{ runner.os }}-kapoo-${{ hashFiles('pnpm-lock.yaml') }}
         restore-keys: ${{ runner.os }}-kapoo
 
-    - name: build root
-      run: NX_NO_CLOUD=true pnpm nx build root
+    - name: Set Target Environment Variable
+      id: variable
+      run: |
+        TAG_NAME=${GITHUB_REF#refs/tags/}
 
-    - name: build blog
-      run: NX_NO_CLOUD=true pnpm nx build blog
+        if [[ $TAG_NAME == root/* ]]; then
+          echo "TARGET=root"
+          echo "REPO=itcode.dev"
+          echo "BRANCH=main"
 
-    - name: Pushes to itcode.dev Public Repository
+        elif [[ $TAG_NAME == blog/* ]]; then
+          echo "TARGET=blog"
+          echo "REPO=blog.itcode.dev"
+          echo "BRANCH=master"
+
+        else
+          echo "❌ [$TAG_NAME] is undefined tag name"
+          exit 1
+        fi
+      shell: bash
+
+    - name: build ${{ steps.variable.outputs.TARGET }}
+      run: NX_NO_CLOUD=true pnpm nx build ${{ steps.variable.outputs.TARGET }}
+
+    - name: Pushes to ${{ steps.variable.outputs.TARGET }} Public Repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
       with:
-        source-directory: apps/root/out
+        source-directory: apps/${{ steps.variable.outputs.TARGET }}/out
         destination-github-username: RWB0104
-        destination-repository-name: itcode.dev
+        destination-repository-name: ${{ steps.variable.outputs.REPO }}
         user-email: psj2716@mensakorea.org
-        target-branch: main
-        target-directory: docs
-        commit-message: ${{ github.event.head_commit.message }}
-
-    - name: Pushes to blog.itcode.dev Public Repository
-      uses: cpina/github-action-push-to-another-repository@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
-      with:
-        source-directory: apps/blog/out
-        destination-github-username: RWB0104
-        destination-repository-name: blog.itcode.dev
-        user-email: psj2716@mensakorea.org
-        target-branch: master
+        target-branch: ${{ steps.variable.outputs.BRANCH }}
         target-directory: docs
         commit-message: ${{ github.event.head_commit.message }}
