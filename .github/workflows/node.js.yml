@@ -19,7 +19,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -53,10 +53,10 @@ jobs:
 
     steps:
     - name: Repository Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -77,14 +77,14 @@ jobs:
         TAG_NAME=${GITHUB_REF#refs/tags/}
 
         if [[ $TAG_NAME == root/* ]]; then
-          echo "::set-output name=TARGET::root"
-          echo "::set-output name=REPO::itcode.dev"
-          echo "::set-output name=BRANCH::main"
+          echo "TARGET=root" >> $GITHUB_OUTPUT
+          echo "REPO=itcode.dev" >> $GITHUB_OUTPUT
+          echo "BRANCH=main" >> $GITHUB_OUTPUT
 
         elif [[ $TAG_NAME == blog/* ]]; then
-          echo "::set-output name=TARGET::blog"
-          echo "::set-output name=REPO::blog.itcode.dev"
-          echo "::set-output name=BRANCH::master"
+          echo "TARGET=blog" >> $GITHUB_OUTPUT
+          echo "REPO=blog.itcode.dev" >> $GITHUB_OUTPUT
+          echo "BRANCH=master" >> $GITHUB_OUTPUT
 
         else
           echo "❌ [$TAG_NAME] is undefined tag name"
