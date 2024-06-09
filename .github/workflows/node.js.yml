@@ -106,4 +106,4 @@ jobs:
         user-email: psj2716@mensakorea.org
         target-branch: ${{ steps.variable.outputs.BRANCH }}
         target-directory: docs
-        commit-message: ${{ github.event.head_commit.message }}
+        commit-message: "[🚀 ${{ steps.variable.outputs.TARGET }}] ${{ github.event.head_commit.message }}"
