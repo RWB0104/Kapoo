@@ -10,6 +10,8 @@ on:
     paths:
       - 'pnpm-lock.yaml'
 
+  workflow_dispatch:
+
 jobs:
   set-dependencies:
     runs-on: ubuntu-latest
