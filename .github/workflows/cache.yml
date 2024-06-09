@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - 'pnpm-lock.yaml'
+      - '.nx/**/*'
 
   workflow_dispatch:
 
@@ -37,7 +38,9 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: node_modules
+          path: |
+            node_modules
+            .nx
           key: ${{ runner.os }}-kapoo-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-kapoo
 
