@@ -59,6 +59,11 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+  KEY: value
+
+  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -229,3 +234,9 @@ SSH 연결을 위해 필요한 파라미터들을 입력하는 것을 확인할 
 순서 상 전체적인 요소를 설명한 후, 각각의 세부 요소를 설명하는 것이 맞는 것 같아, 순서를 바꿨다.
 
 어차피 읽은 사람도 많지 않고, 인용된 곳도 없을 것 같아서 별 문제는 없을거야...
+
+<br />
+<br />
+<br />
+
+- [2024-06-09 03:35:27] Jobs env 내용 추가

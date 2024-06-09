@@ -96,12 +96,12 @@ jobs:
 
 위 스크립트는 최신 우분투 OS에서 워크플로우가 실행된다. `ubuntu-latest`는 우분투 최신버전으로, 현재 기준 `22.04` 버전이 실행된다.
 
-|OS|CPU|RAM|SSD|목록|
-|------|---|---|---|---|
-| Linux | 2 | 7GB | 14GB | `ubuntu-latest`, `ubuntu-22.04`, `ubuntu-20.04` |
-| Windows | 2 | 7GB | 14GB | `windows-latest`, `windows-2022`, `windows-2019` |
-| macOS | 3 | 14GB | 14GB | `macos-latest`, `macos-12`, `macos-11` |
-| macOS (Beta) | 4 | 14GB | 14GB | `macos-13` |
+| OS           | CPU | RAM  | SSD  | 목록                                             |
+| ------------ | --- | ---- | ---- | ------------------------------------------------ |
+| Linux        | 2   | 7GB  | 14GB | `ubuntu-latest`, `ubuntu-22.04`, `ubuntu-20.04`  |
+| Windows      | 2   | 7GB  | 14GB | `windows-latest`, `windows-2022`, `windows-2019` |
+| macOS        | 3   | 14GB | 14GB | `macos-latest`, `macos-12`, `macos-11`           |
+| macOS (Beta) | 4   | 14GB | 14GB | `macos-13`                                       |
 
 `-latest`는 버전 목록의 가장 최신버전이 자동으로 선택된다.
 
@@ -295,6 +295,46 @@ output2
 
 
 
+### 작업에 환경변수(env) 정의하기
+
+작업에 공통된 값을 사용할 필요가 생기기도 한다. 이 때, 환경변수를 사용하면 여러 작업에 공통된 값을 할당할 수 있다.
+
+``` yaml
+name: env test
+on: workflow_dispatch
+
+env:
+  KEY: Hello World
+
+jobs:
+  env-job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print env
+        run: echo "${{ env.KEY }}"
+        
+  env-job2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print env
+        run: echo "${{ env.KEY }}"
+```
+
+위와 같이 `env` 키워드로 워크플로의 환경변수를 지정할 수 있다. `${{ env.[KEY] }}` 형태로 환경변수를 호출할 수 있다.
+
+워크플로에 선언된 환경변수는 워크플로 내 어디서든 사용이 가능하다. 이를 통해 동일한 값을 공통으로 관리할 수 있다.
+
+``` bash
+Hello World
+Hello World
+```
+
+두 작업에서 모두 같은 결과를 출력한다.
+
+
+
 ## 마치며
 
 이번 장에서는 GitHub Actions의 큰 틀인 작업에 대해 다뤄봤다.
@@ -302,3 +342,9 @@ output2
 다음 장에서는 작업의 세부 동작을 기술하는 `Steps`에 대해 다뤄본다.
 
 해당 문서의 자세한 내용은 [GitHub Actions Docs - Using Jobs](https://docs.github.com/en/actions/using-jobs)를 참조하자.
+
+<br />
+<br />
+<br />
+
+- [2024-06-09 03:37:00] env 내용 추가
