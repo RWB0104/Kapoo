@@ -9,16 +9,63 @@
 
 import { useEffect } from 'react';
 
+export type UseMutationObserverCallback = (entry: MutationRecord) => void;
 export type UseResizeObserverCallback = (entry: ResizeObserverEntry) => void;
 export type UseIntersectionObserverCallback = (entry: IntersectionObserverEntry) => void;
+
+/**
+ * MutationObserver 적용 훅 메서드
+ *
+ * @param {Element | string | null} ref: Element
+ * @param {UseMutationObserverCallback} callback: 콜백 메서드
+ * @param {MutationObserverInit} options: 옵션
+ */
+export function useMutationObserver(ref: Element | string | null, callback: UseMutationObserverCallback, options: MutationObserverInit): void
+{
+	useEffect(() =>
+	{
+		const mo = new MutationObserver((entries) =>
+		{
+			entries.forEach(callback);
+		});
+
+		// DOM이 유효할 경우
+		if (ref)
+		{
+			// ref가 문자열일 경우
+			if (typeof ref === 'string')
+			{
+				const tag = document.querySelector(ref);
+
+				// 태그가 유효할 경우
+				if (tag)
+				{
+					mo.observe(tag, options);
+				}
+			}
+
+			// DOM일 경우
+			else
+			{
+				mo.observe(ref, options);
+			}
+		}
+
+		return () =>
+		{
+			mo.disconnect();
+		};
+	}, [ ref, callback, options ]);
+}
 
 /**
  * ResizeObserver 적용 훅 메서드
  *
  * @param {Element | string | null} ref: Element
  * @param {UseResizeObserverCallback} callback: 콜백 메서드
+ * @param {ResizeObserverOptions} options: 옵션
  */
-export function useResizeObserver(ref: Element | string | null, callback: UseResizeObserverCallback): void
+export function useResizeObserver(ref: Element | string | null, callback: UseResizeObserverCallback, options?: ResizeObserverOptions): void
 {
 	useEffect(() =>
 	{
@@ -38,14 +85,14 @@ export function useResizeObserver(ref: Element | string | null, callback: UseRes
 				// 태그가 유효할 경우
 				if (tag)
 				{
-					ro.observe(tag);
+					ro.observe(tag, options);
 				}
 			}
 
 			// DOM일 경우
 			else
 			{
-				ro.observe(ref);
+				ro.observe(ref, options);
 			}
 		}
 
@@ -53,7 +100,7 @@ export function useResizeObserver(ref: Element | string | null, callback: UseRes
 		{
 			ro.disconnect();
 		};
-	}, [ ref, callback ]);
+	}, [ ref, callback, options ]);
 }
 
 /**
