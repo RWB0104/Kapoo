@@ -14,7 +14,6 @@ import DevStackTemplate from '@kapoo/root-ui-pack/template/DevStackTemplate';
 import IntroduceTemplate from '@kapoo/root-ui-pack/template/IntroduceTemplate';
 import { IntroduceCareerCardProps } from '@kapoo/root-ui-pack/template/IntroduceTemplate/sub/IntroduceCareerCard';
 import ScreenPageTemplate from '@kapoo/root-ui-pack/template/ScreenPageTemplate';
-import WelcomeTemplate from '@kapoo/root-ui-pack/template/WelcomeTemplate';
 import Glow from '@kapoo/ui-pack/molecule/Glow';
 import NameTag from '@kapoo/ui-pack/molecule/NameTag';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
@@ -28,35 +27,6 @@ import Link from 'next/link';
 
 import pkg from '../../package.json';
 import { routers } from '../common';
-
-const greeting = [
-	'반가워요!', // Korean
-	'Nice to meet you!', // English
-	'很高兴见到你!', // Chinese (Simplified)
-	'はじめまして!', // Japanese
-	'¡Mucho gusto!', // Spanish
-	'Enchanté!', // French
-	'Freut mich, Sie kennenzulernen!', // German
-	'Приятно познакомиться!', // Russian
-	'Piacere di conoscerti!', // Italian
-	'Prazer em conhecê-lo!', // Portuguese
-	'आप से मिलकर खुशी हुई!', // Hindi
-	'تشرفت بمقابلتك!', // Arabic
-	'Απόλαυση να σε γνωρίσω!', // Greek
-	'Encantado de conocerte!', // Catalan
-	'Senang bertemu denganmu!', // Indonesian
-	'Sana tanıştığıma memnun oldum!', // Turkish
-	"Të kënaqur për t'ju njohur!", // Albanian
-	'שמח לפגוש אותך!', // Hebrew
-	'Ravi de vous rencontrer!', // Quebec French
-	'Hyvää tavata!', // Finnish
-	'Trevligt att träffas!', // Swedish
-	'Mă bucur să te cunosc!', // Romanian
-	'Radost da te upoznam!', // Serbian
-	'Es freut mich, dich kennenzulernen!', // Swiss German
-	'Oikein mukava tavata!', // Finnish
-	'Dobrze cię poznać!' // Polish
-];
 
 const stackNames = [ 'TypeScript', 'React', 'Next.js', 'JAVA' ];
 
@@ -142,8 +112,6 @@ export default async function AppPage(): Promise<JSX.Element>
 				/>
 			)}
 		>
-			<WelcomeTemplate list={greeting} />
-
 			<Container>
 				<Stack gap={16} marginTop={10}>
 					<IntroduceTemplate
