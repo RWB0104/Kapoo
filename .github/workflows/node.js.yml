@@ -63,9 +63,9 @@ jobs:
     - name: kapoo Dependencies Install
       if: steps.cache.outputs.cache-hit != 'true'
       run: pnpm install
-        
+
     - name: build ${{ steps.variable.outputs.TARGET }}
-      run: NX_NO_CLOUD=true pnpm nx build ${{ steps.variable.outputs.TARGET }}
+      run: pnpm nx build ${{ steps.variable.outputs.TARGET }}
 
     - name: Pushes to ${{ steps.variable.outputs.TARGET }} Public Repository
       uses: cpina/github-action-push-to-another-repository@main
