@@ -64,7 +64,20 @@
     "projectsRelationship": "independent",
     "releaseTagPattern": "{projectName}/v{version}",
     "changelog": {
-      "projectChangelogs": true
+      "projectChangelogs": {
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      },
+      "workspaceChangelog": {
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
     }
   }
 }
