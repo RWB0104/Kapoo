@@ -10,7 +10,7 @@
 import { mathRound } from '@kapoo/common';
 import Box, { BoxProps } from '@mui/material/Box';
 import classNames from 'classnames/bind';
-import { CSSProperties, MouseEventHandler, useCallback, useRef } from 'react';
+import { CSSProperties, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
 import styles from './TiltBox.module.scss';
 
@@ -46,10 +46,12 @@ export interface TiltBoxProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, scale = 1, className, children, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
+export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, scale = 1, className, children, onMouseEnter, onMouseMove, onMouseLeave, onTransitionEnd, ...props }: TiltBoxProps): JSX.Element
 {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const boxRef = useRef<HTMLDivElement | null>(null);
+
+	const [ enterState, setEnterState ] = useState(false);
 
 	const handleMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
@@ -71,11 +73,23 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 			const tileX = mathRound(y / centerY, 2) * angle;
 			const tileY = mathRound(x / centerX, 2) * angle;
 
-			boxRef.current.style.transition = '0.3s scale';
 			boxRef.current.style.scale = `${scale}`;
 			boxRef.current.style.transform = `perspective(${perspective}px) rotateX(${tileX}deg) rotateY(${-tileY}deg)`;
 		}
-	}, [ ref, boxRef, angle, perspective, scale, tiltDisabled, onMouseMove ]);
+	}, [ ref, boxRef, enterState, angle, perspective, scale, tiltDisabled, onMouseMove ]);
+
+	const handleMouseEnter = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
+	{
+		onMouseEnter?.(e);
+
+		// 틸트가 활성화된 경우
+		if (!tiltDisabled && boxRef.current)
+		{
+			setEnterState(true);
+
+			setTimeout(() => setEnterState(false), 300);
+		}
+	}, [ boxRef, tiltDisabled, onMouseEnter ]);
 
 	const handleMouseLeave = useCallback<MouseEventHandler<HTMLDivElement>>((e) =>
 	{
@@ -90,12 +104,21 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 		}
 	}, [ boxRef, tiltDisabled, onMouseLeave ]);
 
+	useEffect(() =>
+	{
+		if (boxRef.current)
+		{
+			boxRef.current.style.transition = enterState ? '0.3s ease' : '0.3s scale';
+		}
+	}, [ boxRef.current, enterState ]);
+
 	return (
 		<Box
 			className={cn('box', className)}
 			component='div'
 			data-component='TiltBox'
 			ref={ref}
+			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 			onMouseMove={handleMouseMove}
 			{...props}

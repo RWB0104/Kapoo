@@ -7,7 +7,7 @@
 
 'use client';
 
-import { colors, doCopy } from '@kapoo/common';
+import { colors, doCopy, ubuntuMono } from '@kapoo/common';
 import Check from '@mui/icons-material/Check';
 import Code from '@mui/icons-material/Code';
 import CopyAll from '@mui/icons-material/CopyAll';
@@ -83,7 +83,7 @@ export default function MarkdownCodeBlock({ theme, languageName, children, ...pr
 	}, [ delayState, languageName, code ]);
 
 	return (
-		<Box data-component='MarkdownCodeBlock' paddingBottom={4} paddingTop={4}>
+		<Box className={cn('code')} data-component='MarkdownCodeBlock' fontFamily={[ ubuntuMono.style.fontFamily ]} paddingBottom={4} paddingTop={4}>
 			<Stack
 				bgcolor={bgcolor}
 				border='1px solid'
@@ -132,7 +132,7 @@ export default function MarkdownCodeBlock({ theme, languageName, children, ...pr
 					</Stack>
 				</Stack>
 
-				<Box className={cn('markdown')} position='relative'>
+				<Box position='relative'>
 					<Box
 						bgcolor={bgcolor}
 						border='1px solid'
