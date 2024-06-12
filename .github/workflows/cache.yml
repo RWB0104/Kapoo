@@ -40,7 +40,6 @@ jobs:
         with:
           path: |
             node_modules
-            .nx
           key: ${{ runner.os }}-kapoo-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-kapoo
 
