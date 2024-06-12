@@ -16,6 +16,7 @@ import ThanksCard from '@kapoo/blog-ui-pack/organism/ThanksCard';
 import MarkdownScreenerTemplate from '@kapoo/blog-ui-pack/template/MarkdownScreenerTemplate';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import { getMarkdownAllList } from '@kapoo/markdown-kit';
+import GoogleAdsense from '@kapoo/ui-pack/atom/GoogleAdsense/GoogleAdsense';
 import Hits from '@kapoo/ui-pack/atom/Hits';
 import MarkdownTocBox from '@kapoo/ui-pack/organism/MarkdownTocBox';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
@@ -84,6 +85,8 @@ export default function MarkdownPage({ params: { markdown } }: NextPageProps<Dyn
 					</MarkdownViewer>
 
 					<Divider variant='fullWidth' />
+
+					<GoogleAdsense />
 
 					<MarkdownTagsBox tags={meta.tag} type={meta.type} />
 
