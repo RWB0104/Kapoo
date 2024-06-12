@@ -20,12 +20,16 @@ export default function GoogleAdsense(): JSX.Element
 	return (
 		<Stack alignItems='center' data-component='GoogleAdsense' justifyContent='center' width='100%'>
 			<Adsense
-				client='pub-5522045122225064'
+				adTest='on'
+				client='ca-pub-5522045122225064'
 				format='fluid'
 				layout='in-article'
 				responsive='true'
-				slot='8348565597'
-				style={{ display: 'block' }}
+				slot='4917762755'
+				style={{
+					display: 'block',
+					width: '100%'
+				}}
 			/>
 		</Stack>
 	);
