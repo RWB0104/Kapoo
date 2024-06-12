@@ -30,7 +30,11 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 	return (
 		<html lang='ko'>
 			<head>
-				<script src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' async />
+				<script
+					crossOrigin='anonymous'
+					src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5522045122225064'
+					async
+				/>
 
 				<meta content='ca-pub-5522045122225064' name='google-adsense-account' />
 			</head>
