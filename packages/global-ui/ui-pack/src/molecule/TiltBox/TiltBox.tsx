@@ -106,6 +106,7 @@ export default function TiltBox({ tiltDisabled, angle = 30, perspective = 1400, 
 
 	useEffect(() =>
 	{
+		// DOM이 유효할 경우
 		if (boxRef.current)
 		{
 			boxRef.current.style.transition = enterState ? '0.3s ease' : '0.3s scale';
