@@ -6,7 +6,7 @@
  */
 
 export const author = {
-	email: 'psj2716@mensakorea.org',
+	email: 'psj2716@gmail.com',
 	nickname: 'RWB',
 	social: {
 		github: {
