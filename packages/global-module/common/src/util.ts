@@ -157,12 +157,16 @@ export function addZero(num: number, digit: number): string
  * 날짜 파싱 반환 메서드
  *
  * @param {Date | number | string} source: 날짜 소스
+ * @param {number} timezone: 타임존
  *
  * @returns {ParsedDate} 날짜 파싱 결과
  */
-export function parseLocalDate(source?: Date | number | string): ParsedDate
+export function parseLocalDate(source?: Date | number | string, timezone = 9): ParsedDate
 {
-	const date = new Date(source || Date.now());
+	const baseDate = new Date(source || Date.now());
+	const offset = -timezone - baseDate.getTimezoneOffset() / 60;
+
+	const date = new Date(baseDate.getTime() - offset * 3600 * 1000);
 
 	const weekday = [ '일', '월', '화', '수', '목', '금', '토', '일' ];
 
