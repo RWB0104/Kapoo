@@ -21,7 +21,7 @@ publish: true
 ``` typescript
 const ro = new ResizeObserver(callback);
 
-ro.observe(tag, options)
+ro.observe(tag, options);
 ```
 
 이전 장의 `IntersectionObserver`와 다르게 옵션을 API에서 할당하지 않는다. `observe` 메서드를 통해 요소를 등록할 때, `options`를 같이 지정할 수 있다.
@@ -214,7 +214,7 @@ export function useResizeObserver(ref: Element | string | null, callback: UseRes
 
 `typeof ref === "string"` 구문을 통해 `ref`가 문자열인지를 판별하여 구현했다.
 
-`io.observe()` 메서드를 통해 태그를 등록할 수 있다.
+`ro.observe()` 메서드를 통해 태그를 등록할 수 있다.
 
 ``` typescript
 import { useEffect } from "react";
@@ -332,7 +332,7 @@ export function useResizeObserver(ref: Element | string | null, callback: UseRes
 CodeSandbox로 간단한 예시를 구현했다.
 
 <iframe src="https://codesandbox.io/embed/k3grs6?view=split&module=%2Fsrc%2Foberserver-hook.ts&expanddevtools=1&editorsize=50&fontsize=14"
-     style="width:100%; height: 500px; border:0; border-radius: 4px; overflow:hidden;"
+     style="width:100%; height: 1000px; border:0; border-radius: 4px; overflow:hidden;"
      title="ResizeObserver"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
