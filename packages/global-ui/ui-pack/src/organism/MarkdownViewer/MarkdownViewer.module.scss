@@ -13,6 +13,15 @@
 		margin: 0px !important;
 	}
 
+	ul,
+	ol {
+		padding-inline-start: 40px;
+	}
+
+	li:not(last-child) {
+		padding-bottom: 12px;
+	}
+
 	h1,
 	h2,
 	h3,
