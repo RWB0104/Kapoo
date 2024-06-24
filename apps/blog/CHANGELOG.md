@@ -1,3 +1,7 @@
+## 5.5.1 (2024-06-24)
+
+This was a version bump only for blog to align it with other projects, there were no code changes.
+
 ## 5.5.0 (2024-06-23)
 
 This was a version bump only for blog to align it with other projects, there were no code changes.
