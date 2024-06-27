@@ -1,3 +1,15 @@
+## 5.6.0 (2024-06-27)
+
+
+### 🚀 Features
+
+- ✨ Observer API 5편 신규 추가
+
+
+### ❤️  Thank You
+
+- RWB0104
+
 ## 5.5.1 (2024-06-24)
 
 This was a version bump only for blog to align it with other projects, there were no code changes.
