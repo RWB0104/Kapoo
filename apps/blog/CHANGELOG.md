@@ -1,3 +1,30 @@
+## 5.7.0 (2024-06-29)
+
+
+### 🚀 Features
+
+- 📝 [FEATURE] Observer API 6편 신규 추가
+
+
+### 📖 Documentation
+
+- 📝 [UPDATE] Observer API 내용 보강
+
+
+### 🏡 Chore
+
+- 🔧  [UPDATE] NX 커밋 메시지 설정 개선
+
+
+### 🤖 CI
+
+- 👷 [UPDATE] 배포 레포지토리에 Changelog 적용
+
+
+### ❤️  Thank You
+
+- RWB0104
+
 ## 5.6.0 (2024-06-27)
 
 
