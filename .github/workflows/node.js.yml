@@ -79,3 +79,15 @@ jobs:
         target-branch: ${{ steps.variable.outputs.BRANCH }}
         target-directory: docs
         commit-message: "[🚀 ${{ steps.variable.outputs.TARGET }}] ${{ github.event.head_commit.message }}"
+
+    - name: Pushes to ${{ steps.variable.outputs.TARGET }} Changelog
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.TOKEN }}
+      with:
+        source-directory: apps/${{ steps.variable.outputs.TARGET }}/CHANGELOG.md
+        destination-github-username: RWB0104
+        destination-repository-name: ${{ steps.variable.outputs.REPO }}
+        user-email: psj2716@gmail.com
+        target-branch: ${{ steps.variable.outputs.BRANCH }}
+        commit-message: "[🚀 ${{ steps.variable.outputs.TARGET }}] ${{ github.event.head_commit.message }}"
