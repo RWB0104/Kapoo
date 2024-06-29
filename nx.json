@@ -78,6 +78,17 @@
           "versionTitleDate": true
         }
       }
+    },
+    "conventionalCommits": {
+      "types": {
+        "docs": true,
+        "chore": true,
+        "ci": true,
+        "styles": true,
+        "fix": true,
+        "build": true,
+        "remove": true
+      }
     }
   }
 }
