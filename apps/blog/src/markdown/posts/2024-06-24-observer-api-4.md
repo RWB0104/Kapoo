@@ -287,6 +287,12 @@ tag.setAttributeNS("ns", "class", "hi");
 
 
 
+### observer
+
+`MutationObserver` 객체를 반환해준다. 이를 통해 콜백 메서드 내에서도 `MutationObserver`를 연쇄적으로 다룰 수 있다.
+
+
+
 
 
 # React에서 커스텀 훅으로 간편하게 사용하기
