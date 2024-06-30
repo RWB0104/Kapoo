@@ -7,7 +7,6 @@
 
 import Footer from '@kapoo/ui-pack/molecule/Footer';
 import Box from '@mui/material/Box';
-import pgk from 'package.json';
 import { PropsWithChildren } from 'react';
 
 import AppNavigation from '../../organism/AppNavigation/AppNavigation';
@@ -39,7 +38,7 @@ export default function PageTemplate({ title, version, children }: PageTemplateP
 		<Box component='main' data-component='PageTemplate'>
 			<AppNavigation
 				title={title}
-				version={pgk.version}
+				version={version}
 			/>
 
 			{children}

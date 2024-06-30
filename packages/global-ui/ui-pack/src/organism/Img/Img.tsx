@@ -7,8 +7,7 @@
 
 'use client';
 
-import Box, { BoxProps } from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import Stack, { StackProps } from '@mui/material/Stack';
 import classNames from 'classnames/bind';
 import { DetailedHTMLProps, ImgHTMLAttributes, ReactEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -20,7 +19,7 @@ const cn = classNames.bind(styles);
 
 export interface ImgProps extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 {
-	containerProps?: BoxProps;
+	containerProps?: StackProps;
 }
 
 type StatusType = 'loading' | 'error' | 'success';
@@ -69,7 +68,7 @@ export default function Img({ containerProps, alt, width, height, className, onE
 	}, [ imageRef, setStatusState ]);
 
 	return (
-		<Box
+		<Stack
 			data-component='Img'
 			height={height}
 			position='relative'
@@ -94,6 +93,6 @@ export default function Img({ containerProps, alt, width, height, className, onE
 					<DotLottieIcon iconName='image-loading-improved' />
 				</Stack>
 			)}
-		</Box>
+		</Stack>
 	);
 }

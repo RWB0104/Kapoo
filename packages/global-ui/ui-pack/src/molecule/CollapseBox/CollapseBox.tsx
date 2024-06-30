@@ -84,6 +84,8 @@ export default function CollapseBox({ defaultOpen, animationTime = '0.3s', style
 		{
 			if (ref.current)
 			{
+				ref.current.style.transition = animationTime;
+
 				// 상자가 열릴 경우
 				if (flag)
 				{
@@ -133,7 +135,7 @@ export default function CollapseBox({ defaultOpen, animationTime = '0.3s', style
 		[ ref.current, animationTime, actions ]
 	);
 
-	useEffect(() =>
+	useLayoutEffect(() =>
 	{
 		onInit?.({ handle: handler });
 	}, [ onInit, handler ]);
@@ -143,8 +145,6 @@ export default function CollapseBox({ defaultOpen, animationTime = '0.3s', style
 		// DOM이 유효할 경우
 		if (ref.current)
 		{
-			ref.current.style.transition = animationTime;
-
 			// 상자가 열릴 경우
 			if (isOpenState)
 			{
