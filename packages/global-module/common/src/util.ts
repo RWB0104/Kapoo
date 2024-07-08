@@ -122,7 +122,7 @@ export interface RssItemProps
 	/**
 	 * 카테고리
 	 */
-	category?: string;
+	category?: string[];
 }
 
 /**
@@ -416,7 +416,7 @@ export function getBaseRss(info: RssInfoProps, list: RssItemProps[]): string
 					<pubDate>${i.pubDate}</pubDate>
 					<link>${i.link}</link>
 					<guid isPermaLink="true">${i.link}</guid>
-					${i.category ? `<category>${i.category}</category>` : ''}
+					${i.category?.map((j) => `<category>${j}</category>`)}
 				</item>
 			`;
 	});

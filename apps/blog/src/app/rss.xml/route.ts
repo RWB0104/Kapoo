@@ -50,7 +50,8 @@ export function GET(): Response
 		}
 	];
 
-	totalList.forEach(({ meta: { title, excerpt }, url }) => rssList.push({
+	totalList.forEach(({ meta: { title, excerpt, tag }, url }) => rssList.push({
+		category: tag,
 		description: excerpt,
 		link: `${process.env.NEXT_PUBLIC_BASE_URL}${url}`,
 		pubDate: date,

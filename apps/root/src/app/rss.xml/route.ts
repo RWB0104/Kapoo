@@ -44,7 +44,8 @@ export function GET(): Response
 		}
 	];
 
-	list.forEach(({ meta: { title, subtitle }, filename }) => rssList.push({
+	list.forEach(({ meta: { title, subtitle, languages }, filename }) => rssList.push({
+		category: languages,
 		description: subtitle.join(' '),
 		link: `${process.env.NEXT_PUBLIC_BASE_URL}/projects?id=${getId(filename)}`,
 		pubDate: date,
