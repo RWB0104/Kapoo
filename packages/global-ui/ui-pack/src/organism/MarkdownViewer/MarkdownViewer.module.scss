@@ -48,7 +48,21 @@
 	h5,
 	h6,
 	p,
+	b,
+	i,
 	span {
+		&.large {
+			font-size: 1.2rem;
+		}
+
+		&.small {
+			font-size: 0.8rem;
+		}
+
+		&.center {
+			text-align: center;
+		}
+
 		@include genColor($red, red);
 		@include genColor($pink, pink);
 		@include genColor($purple, purple);
