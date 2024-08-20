@@ -38,6 +38,14 @@
                 ]
               },
               {
+                "sourceTag": "name:piedit",
+                "onlyDependOnLibsWithTags": [
+                  "lib:piedit",
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
                 "sourceTag": "lib:root",
                 "onlyDependOnLibsWithTags": [
                   "lib:shared",
@@ -46,6 +54,13 @@
               },
               {
                 "sourceTag": "lib:blog",
+                "onlyDependOnLibsWithTags": [
+                  "lib:shared",
+                  "lib:shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "lib:piedit",
                 "onlyDependOnLibsWithTags": [
                   "lib:shared",
                   "lib:shared-ui"

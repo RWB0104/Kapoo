@@ -1,0 +1,12 @@
+{
+  "name": "piedit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/piedit",
+  "projectType": "application",
+  "tags": [
+    "app:piedit",
+    "name:piedit"
+  ],
+  "// targets": "to see all targets run: nx show project piedit --web",
+  "targets": {}
+}

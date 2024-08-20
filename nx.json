@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -58,9 +55,7 @@
   },
   "nxCloudAccessToken": "ZDFhMGRjMDItZjhiYi00NTM1LWJkYjMtODkzMmU5Nzc1NzI0fHJlYWQtd3JpdGU=",
   "release": {
-    "projects": [
-      "apps/*"
-    ],
+    "projects": ["apps/*"],
     "projectsRelationship": "independent",
     "releaseTagPattern": "{projectName}/v{version}",
     "changelog": {
