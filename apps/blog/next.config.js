@@ -18,9 +18,6 @@ const nextConfig = withPWA({
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false
-  },
   swcMinify: true
 });
 
