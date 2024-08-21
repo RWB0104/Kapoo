@@ -23,6 +23,10 @@
       "@kapoo/markdown-kit": [
         "packages/global-module/markdown-kit/src/index.ts"
       ],
+      "@kapoo/piedit-ui-pack": ["packages/app-ui/piedit-ui-pack/src/index.ts"],
+      "@kapoo/piedit-ui-pack/server": [
+        "packages/app-ui/piedit-ui-pack/src/server.ts"
+      ],
       "@kapoo/root-ui-pack/*": ["packages/app-ui/root-ui-pack/src/*"],
       "@kapoo/state": ["packages/global-module/state/src/index.ts"],
       "@kapoo/ui-pack/*": ["packages/global-ui/ui-pack/src/*"]
