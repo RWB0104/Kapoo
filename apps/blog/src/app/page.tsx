@@ -8,6 +8,7 @@
 import { getMarkdownDetailListForGrid } from '@kapoo/blog-ui-pack/common';
 import LabNameTag from '@kapoo/blog-ui-pack/organism/LabNameTag';
 import MarkdownGrid from '@kapoo/blog-ui-pack/organism/MarkdownGrid';
+import MarkdownNewistGrid from '@kapoo/blog-ui-pack/organism/MarkdownNewistGrid';
 import ScreenPageTemplate from '@kapoo/blog-ui-pack/template/ScreenPageTemplate';
 import PageScreenerTemplate from '@kapoo/global-ui-pack/template/PageScreenerTemplate';
 import TiltBox from '@kapoo/ui-pack/molecule/TiltBox';
@@ -37,9 +38,7 @@ export default async function AppPage(): Promise<JSX.Element>
 	const postsList = await getPopularList('posts');
 	const projectsList = await getPopularList('projects');
 
-	const newistList = postsGrid.concat(projectsGrid)
-		.filter(({ meta: { date } }) => Date.now() - date < 86400000 * 15)
-		.sort((prev, next) => next.meta.date - prev.meta.date);
+	const totalList = postsGrid.concat(projectsGrid);
 
 	return (
 		<ScreenPageTemplate
@@ -77,7 +76,7 @@ export default async function AppPage(): Promise<JSX.Element>
 					</Stack>
 
 					<TitleTemplate subtitle='2주 이내에 작성된 컨텐츠들의 목록입니다.' title='🔥 최신 컨텐츠'>
-						<MarkdownGrid list={newistList} disabledReferer />
+						<MarkdownNewistGrid list={totalList} newistDay={15} disabledReferer />
 					</TitleTemplate>
 
 					<TitleTemplate subtitle='한 달 이내의 게시글 중, 가장 조회수가 높은 게시글들의 목록입니다.' title='👑 인기 게시글'>
