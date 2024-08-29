@@ -33,6 +33,11 @@ export interface NavigationProps
 	title?: HeaderProps['title'];
 
 	/**
+	 * 포지션
+	 */
+	position?: HeaderProps['position'];
+
+	/**
 	 * 버전
 	 */
 	version?: SidebarProps['version'];
@@ -50,7 +55,7 @@ export interface NavigationProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Navigation({ theme, logo, title, version, items }: NavigationProps): JSX.Element
+export default function Navigation({ theme, logo, title, position, version, items }: NavigationProps): JSX.Element
 {
 	const pathname = usePathname();
 
@@ -78,21 +83,24 @@ export default function Navigation({ theme, logo, title, version, items }: Navig
 				id='header'
 				isTransparent={isTopState && !isOpenState}
 				logo={logo}
+				position={position}
 				theme={theme}
 				title={title}
-				onMenuClick={handleMenuClick}
+				onMenuClick={items ? handleMenuClick : undefined}
 			/>
 
-			<Sidebar
-				currentUrl={pathname}
-				items={items}
-				logo={logo}
-				open={isOpenState}
-				paddingTop={`${heightState}px`}
-				title={title}
-				version={version}
-				onClose={handleClose}
-			/>
+			{items ? (
+				<Sidebar
+					currentUrl={pathname}
+					items={items}
+					logo={logo}
+					open={isOpenState}
+					paddingTop={`${heightState}px`}
+					title={title}
+					version={version}
+					onClose={handleClose}
+				/>
+			) : null}
 		</Box>
 	);
 }

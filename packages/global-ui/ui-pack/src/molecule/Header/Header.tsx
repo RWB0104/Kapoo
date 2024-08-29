@@ -55,7 +55,7 @@ export interface HeaderProps extends BoxProps
  *
  * @returns {JSX.Element} JSX
  */
-export default function Header({ theme, logo, title, isTransparent, onMenuClick, ...props }: HeaderProps): JSX.Element
+export default function Header({ theme, logo, title, isTransparent, onMenuClick, position = 'fixed', ...props }: HeaderProps): JSX.Element
 {
 	const calc = <T, >(transparent: T, light: T, dark: T): T =>
 	{
@@ -83,16 +83,18 @@ export default function Header({ theme, logo, title, isTransparent, onMenuClick,
 			data-component='Header'
 			left={0}
 			padding={0.5}
-			position='fixed'
+			position={position}
 			top={0}
 			width='100%'
 			zIndex={10000}
 			{...props}
 		>
 			<Stack alignItems='center' color={calc<StackProps['color']>('white', undefined, undefined)} direction='row' gap={2} height='100%' width='100%'>
-				<IconButton color='inherit' onClick={onMenuClick}>
-					<Menu htmlColor='inherit' />
-				</IconButton>
+				{onMenuClick ? (
+					<IconButton color='inherit' onClick={onMenuClick}>
+						<Menu htmlColor='inherit' />
+					</IconButton>
+				) : null}
 
 				<Link href='/'>
 					<Stack alignItems='center' direction='row' gap={2}>

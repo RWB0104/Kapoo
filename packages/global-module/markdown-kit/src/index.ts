@@ -196,5 +196,5 @@ export function getMarkdownDetail<T = Record<string, string>>(target: string): M
  */
 export function getMarkdownDetailList<T = Record<string, string>>(path: string): MarkdownDetailProps<T>[]
 {
-	return getMarkdownAllList(path).map<MarkdownDetailProps<T>>(({ target }) => getMarkdownDetail(target));
+	return getMarkdownAllList(path).map<MarkdownDetailProps<T>>(({ target }) => getMarkdownDetail<T>(target));
 }
