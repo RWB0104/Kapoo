@@ -4,7 +4,7 @@
   "sourceRoot": "packages/app-ui/piedit-ui-pack/src",
   "projectType": "library",
   "tags": [
-    "lib:shared",
+    "lib:piedit",
     "name:piedit-ui-pack"
   ],
   "// targets": "to see all targets run: nx show project piedit-ui-pack --web",
