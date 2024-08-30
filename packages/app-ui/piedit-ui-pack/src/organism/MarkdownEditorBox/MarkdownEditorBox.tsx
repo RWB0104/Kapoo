@@ -47,7 +47,7 @@ export default function MarkdownEditorBox(): JSX.Element
 			width='100%'
 		>
 			<Stack border='1px solid' borderColor={divider} width='50%'>
-				<MarkdownEditor theme={themeState === 'light' ? 'light' : 'vs-dark'} onChange={handleChange} />
+				<MarkdownEditor theme={themeState === 'light' ? 'GitHubLight' : 'GitHubDark'} onChange={handleChange} />
 			</Stack>
 
 			<Stack

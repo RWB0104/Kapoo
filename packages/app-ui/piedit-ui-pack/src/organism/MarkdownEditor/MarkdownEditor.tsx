@@ -9,8 +9,11 @@
 
 import { notoSans, ubuntuMono } from '@kapoo/common';
 import DotLottieIcon from '@kapoo/ui-pack/atom/DotLottieIcon';
-import MonacoEdtior, { EditorProps } from '@monaco-editor/react';
+import MonacoEdtior, { EditorProps, useMonaco } from '@monaco-editor/react';
 import Box from '@mui/material/Box';
+import GitHubDark from 'monaco-themes/themes/GitHub Dark.json';
+import GitHubLight from 'monaco-themes/themes/GitHub Light.json';
+import { useLayoutEffect } from 'react';
 
 export type MarkdownEditorProps = EditorProps;
 
@@ -25,11 +28,26 @@ const fonts = [ ubuntuMono.style.fontFamily, notoSans.style.fontFamily, 'sans-se
  */
 export default function MarkdownEditor({ ...props }: MarkdownEditorProps): JSX.Element
 {
+	const monaco = useMonaco();
+
+	useLayoutEffect(() =>
+	{
+		if (monaco)
+		{
+			monaco.editor.defineTheme('GitHubLight', GitHubLight as Parameters<typeof monaco.editor.defineTheme>[1]);
+			monaco.editor.defineTheme('GitHubDark', GitHubDark as Parameters<typeof monaco.editor.defineTheme>[1]);
+
+			monaco.editor.setTheme('GitHubDark');
+			monaco.editor.setTheme('GitHubLight');
+		}
+	}, [ monaco ]);
+
 	return (
 		<MonacoEdtior
 			data-component='MarkdownEditor'
 			defaultLanguage='markdown'
 			height='100%'
+			theme='test'
 			width='100%'
 			loading={(
 				<Box maxHeight={200} maxWidth={200}>
