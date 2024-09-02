@@ -9,14 +9,18 @@
 
 import { themeStore } from '@kapoo/state';
 import Img from '@kapoo/ui-pack/organism/Img';
+import NightsStay from '@mui/icons-material/NightsStay';
 import WbSunny from '@mui/icons-material/WbSunny';
-import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
+import { amber, blue } from '@mui/material/colors';
+import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 type SelectType = 'root' | 'blog';
 
@@ -53,32 +57,50 @@ const list: SelectProps[] = [
 
 export default function Toolbar(): JSX.Element
 {
-	const { toggleThemeState } = themeStore();
+	const { themeState, toggleThemeState } = themeStore();
+
+	const [ wrapState, setWrapState ] = useState(false);
 
 	const handleClick = useCallback(() =>
 	{
 		toggleThemeState();
 	}, [ toggleThemeState ]);
 
+	const handleWrapChange = useCallback<Exclude<ToggleButtonGroupProps['onChange'], undefined>>((e, value) =>
+	{
+		setWrapState(value);
+	}, []);
+
 	return (
-		<Stack bgcolor='black' data-component='Toolbar' direction='row' padding={1}>
-			<Box width={150}>
-				<Select defaultValue='blog' size='small' fullWidth>
-					{list.map(({ label, logo, value }) => (
-						<MenuItem key={value} value={value}>
-							<Stack alignItems='center' direction='row' gap={1}>
-								<Img alt={logo} height={24} src={logo} width={24} />
+		<Stack data-component='Toolbar' direction='row' gap={1} justifyContent='space-between' padding={1}>
+			<Stack direction='row' gap={1}>
+				<Box gap={1} width={150}>
+					<Select defaultValue='blog' size='small' fullWidth>
+						{list.map(({ label, logo, value }) => (
+							<MenuItem key={value} value={value}>
+								<Stack alignItems='center' direction='row' gap={1}>
+									<Img alt={logo} height={24} src={logo} width={24} />
 
-								<Typography>{label}</Typography>
-							</Stack>
-						</MenuItem>
-					))}
-				</Select>
-			</Box>
+									<Typography>{label}</Typography>
+								</Stack>
+							</MenuItem>
+						))}
+					</Select>
+				</Box>
 
-			<IconButton onClick={handleClick}>
-				<WbSunny />
-			</IconButton>
+				<ToggleButtonGroup value={wrapState} onChange={handleWrapChange}>
+					<ToggleButton size='small' value='wrap'>
+						<WbSunny />
+					</ToggleButton>
+				</ToggleButtonGroup>
+			</Stack>
+
+			<Stack justifyContent='center'>
+				<IconButton onClick={handleClick}>
+					{themeState === 'light' ? <NightsStay htmlColor={blue[500]} /> : null}
+					{themeState === 'dark' ? <WbSunny htmlColor={amber[500]} /> : null}
+				</IconButton>
+			</Stack>
 		</Stack>
 	);
 }
