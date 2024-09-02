@@ -55,8 +55,10 @@ export default function MarkdownEditor({ ...props }: MarkdownEditorProps): JSX.E
 				</Box>
 			)}
 			options={{
+				automaticLayout: true,
 				fontFamily: fonts.join(', '),
-				fontSize: 16
+				fontSize: 16,
+				minimap: { enabled: false }
 			}}
 			{...props}
 		/>

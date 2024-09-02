@@ -35,7 +35,7 @@ export interface PageTemplateProps extends PropsWithChildren
 export default function PageTemplate({ title, version, children }: PageTemplateProps): JSX.Element
 {
 	return (
-		<Stack component='main' data-component='PageTemplate' height='100dvh'>
+		<Stack component='main' data-component='PageTemplate' height='100vh'>
 			<Stack>
 				<AppNavigation
 					title={title}
@@ -45,7 +45,7 @@ export default function PageTemplate({ title, version, children }: PageTemplateP
 
 			<Toolbar />
 
-			<Box flex='1'>
+			<Box height='100%'>
 				{children}
 			</Box>
 		</Stack>

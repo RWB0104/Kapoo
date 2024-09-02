@@ -12,8 +12,7 @@ import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import { OnChange } from '@monaco-editor/react';
 import { Box, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import matter from 'gray-matter';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import MarkdownEditor from '../MarkdownEditor';
 
@@ -35,9 +34,24 @@ export default function MarkdownEditorBox(): JSX.Element
 		setTextState(value);
 	}, []);
 
+	const content = useMemo(() =>
+	{
+		const regex = /^(---\s*[\s\S]*?\s*---)\s*([\s\S]*)/;
+
+		const value = textState || '';
+
+		const match = regex.exec(value);
+
+		if (match)
+		{
+			return match[2];
+		}
+
+		return value;
+	}, [ textState ]);
+
 	return (
 		<Stack
-			borderTop={`1px solid ${divider}`}
 			data-component='MarkdownEditorBox'
 			direction='row'
 			gap={2}
@@ -46,13 +60,18 @@ export default function MarkdownEditorBox(): JSX.Element
 			position='relative'
 			width='100%'
 		>
-			<Stack border='1px solid' borderColor={divider} width='50%'>
+			<Stack
+				height='100%'
+				left={0}
+				position='absolute'
+				top={0}
+				width='50%'
+			>
 				<MarkdownEditor theme={themeState === 'light' ? 'GitHubLight' : 'GitHubDark'} onChange={handleChange} />
 			</Stack>
 
 			<Stack
 				height='100%'
-				padding={2}
 				position='absolute'
 				right={0}
 				top={0}
@@ -67,7 +86,7 @@ export default function MarkdownEditorBox(): JSX.Element
 					padding={2}
 				>
 					<MarkdownViewer>
-						{matter(textState || '').content}
+						{content}
 					</MarkdownViewer>
 				</Box>
 			</Stack>
