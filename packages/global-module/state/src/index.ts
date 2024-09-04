@@ -8,3 +8,4 @@
 export * from './theme';
 
 export * from './blog/referer';
+export * from './piedit/editor';

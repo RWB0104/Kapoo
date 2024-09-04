@@ -26,7 +26,7 @@ const fonts = [ ubuntuMono.style.fontFamily, notoSans.style.fontFamily, 'sans-se
  *
  * @returns {JSX.Element} JSX
  */
-export default function MarkdownEditor({ ...props }: MarkdownEditorProps): JSX.Element
+export default function MarkdownEditor({ options, ...props }: MarkdownEditorProps): JSX.Element
 {
 	const monaco = useMonaco();
 
@@ -58,7 +58,8 @@ export default function MarkdownEditor({ ...props }: MarkdownEditorProps): JSX.E
 				automaticLayout: true,
 				fontFamily: fonts.join(', '),
 				fontSize: 16,
-				minimap: { enabled: false }
+				minimap: { enabled: false },
+				...options
 			}}
 			{...props}
 		/>

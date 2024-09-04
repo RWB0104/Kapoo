@@ -7,7 +7,7 @@
 
 'use client';
 
-import { themeStore } from '@kapoo/state';
+import { editorStore, themeStore } from '@kapoo/state';
 import Img from '@kapoo/ui-pack/organism/Img';
 import NightsStay from '@mui/icons-material/NightsStay';
 import WbSunny from '@mui/icons-material/WbSunny';
@@ -20,7 +20,7 @@ import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
 type SelectType = 'root' | 'blog';
 
@@ -58,8 +58,7 @@ const list: SelectProps[] = [
 export default function Toolbar(): JSX.Element
 {
 	const { themeState, toggleThemeState } = themeStore();
-
-	const [ wrapState, setWrapState ] = useState(false);
+	const { editorState, setEditorState } = editorStore();
 
 	const handleClick = useCallback(() =>
 	{
@@ -68,8 +67,10 @@ export default function Toolbar(): JSX.Element
 
 	const handleWrapChange = useCallback<Exclude<ToggleButtonGroupProps['onChange'], undefined>>((e, value) =>
 	{
-		setWrapState(value);
-	}, []);
+		console.log(value);
+
+		setEditorState({ wrap: value[0] === 'wrap' });
+	}, [ setEditorState ]);
 
 	return (
 		<Stack data-component='Toolbar' direction='row' gap={1} justifyContent='space-between' padding={1}>
@@ -88,7 +89,7 @@ export default function Toolbar(): JSX.Element
 					</Select>
 				</Box>
 
-				<ToggleButtonGroup value={wrapState} onChange={handleWrapChange}>
+				<ToggleButtonGroup value={editorState.wrap ? [ 'wrap' ] : undefined} onChange={handleWrapChange}>
 					<ToggleButton size='small' value='wrap'>
 						<WbSunny />
 					</ToggleButton>

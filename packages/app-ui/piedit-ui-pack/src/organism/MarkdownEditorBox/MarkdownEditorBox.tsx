@@ -7,7 +7,7 @@
 
 'use client';
 
-import { themeStore } from '@kapoo/state';
+import { editorStore, themeStore } from '@kapoo/state';
 import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import { OnChange } from '@monaco-editor/react';
 import { Box, useTheme } from '@mui/material';
@@ -24,6 +24,7 @@ import MarkdownEditor from '../MarkdownEditor';
 export default function MarkdownEditorBox(): JSX.Element
 {
 	const { themeState } = themeStore();
+	const { editorState } = editorStore();
 
 	const { palette: { divider } } = useTheme();
 
@@ -67,7 +68,11 @@ export default function MarkdownEditorBox(): JSX.Element
 				top={0}
 				width='50%'
 			>
-				<MarkdownEditor theme={themeState === 'light' ? 'GitHubLight' : 'GitHubDark'} onChange={handleChange} />
+				<MarkdownEditor
+					options={{ wordWrap: editorState.wrap ? 'on' : undefined }}
+					theme={themeState === 'light' ? 'GitHubLight' : 'GitHubDark'}
+					onChange={handleChange}
+				/>
 			</Stack>
 
 			<Stack
