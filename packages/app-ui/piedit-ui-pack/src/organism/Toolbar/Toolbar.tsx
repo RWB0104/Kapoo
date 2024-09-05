@@ -10,7 +10,9 @@
 import { editorStore, themeStore } from '@kapoo/state';
 import Img from '@kapoo/ui-pack/organism/Img';
 import NightsStay from '@mui/icons-material/NightsStay';
+import VisibilityOutlined from '@mui/icons-material/VisibilityOutlined';
 import WbSunny from '@mui/icons-material/WbSunny';
+import WrapText from '@mui/icons-material/WrapText';
 import Box from '@mui/material/Box';
 import { amber, blue } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
@@ -20,7 +22,7 @@ import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 type SelectType = 'root' | 'blog';
 
@@ -58,7 +60,9 @@ const list: SelectProps[] = [
 export default function Toolbar(): JSX.Element
 {
 	const { themeState, toggleThemeState } = themeStore();
-	const { editorState, setEditorState } = editorStore();
+	const { setEditorState } = editorStore();
+
+	const [ toogleState, setToggleState ] = useState<string[]>([]);
 
 	const handleClick = useCallback(() =>
 	{
@@ -67,10 +71,18 @@ export default function Toolbar(): JSX.Element
 
 	const handleWrapChange = useCallback<Exclude<ToggleButtonGroupProps['onChange'], undefined>>((e, value) =>
 	{
-		console.log(value);
-
-		setEditorState({ wrap: value[0] === 'wrap' });
+		setToggleState(value || []);
 	}, [ setEditorState ]);
+
+	useEffect(() =>
+	{
+		setEditorState(() => ({
+			editorState: {
+				preview: toogleState.includes('preview'),
+				wrap: toogleState.includes('wrap')
+			}
+		}));
+	}, [ toogleState ]);
 
 	return (
 		<Stack data-component='Toolbar' direction='row' gap={1} justifyContent='space-between' padding={1}>
@@ -89,9 +101,13 @@ export default function Toolbar(): JSX.Element
 					</Select>
 				</Box>
 
-				<ToggleButtonGroup value={editorState.wrap ? [ 'wrap' ] : undefined} onChange={handleWrapChange}>
+				<ToggleButtonGroup value={toogleState} onChange={handleWrapChange}>
 					<ToggleButton size='small' value='wrap'>
-						<WbSunny />
+						<WrapText />
+					</ToggleButton>
+
+					<ToggleButton size='small' value='preview'>
+						<VisibilityOutlined />
 					</ToggleButton>
 				</ToggleButtonGroup>
 			</Stack>

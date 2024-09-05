@@ -12,9 +12,14 @@ import MarkdownViewer from '@kapoo/ui-pack/organism/MarkdownViewer';
 import { OnChange } from '@monaco-editor/react';
 import { Box, useTheme } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import classNames from 'classnames/bind';
 import { useCallback, useMemo, useState } from 'react';
 
+import styles from './MarkdownEditorBox.module.scss';
+
 import MarkdownEditor from '../MarkdownEditor';
+
+const cn = classNames.bind(styles);
 
 /**
  * 마크다운 에디터 박스 organism 컴포넌트 반환 메서드
@@ -75,26 +80,29 @@ export default function MarkdownEditorBox(): JSX.Element
 				/>
 			</Stack>
 
-			<Stack
-				height='100%'
-				position='absolute'
-				right={0}
-				top={0}
-				width='50%'
-				zIndex={2}
-			>
-				<Box
-					border='1px solid'
-					borderColor={divider}
+			{editorState.preview ? (
+				<Stack
 					height='100%'
-					overflow='auto'
-					padding={2}
+					position='absolute'
+					right={0}
+					top={0}
+					width='50%'
+					zIndex={2}
 				>
-					<MarkdownViewer>
-						{content}
-					</MarkdownViewer>
-				</Box>
-			</Stack>
+					<Box
+						border='1px solid'
+						borderColor={divider}
+						className={cn('viewer')}
+						height='100%'
+						overflow='auto'
+						padding={2}
+					>
+						<MarkdownViewer>
+							{content}
+						</MarkdownViewer>
+					</Box>
+				</Stack>
+			) : null}
 		</Stack>
 	);
 }

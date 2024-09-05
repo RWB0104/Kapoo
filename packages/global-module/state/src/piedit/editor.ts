@@ -10,12 +10,17 @@ import { create } from 'zustand';
 export interface EditorProps
 {
 	/**
+	 * 미리보기
+	 */
+	preview: boolean;
+
+	/**
 	 * 래핑
 	 */
 	wrap: boolean;
 }
 
-export type SetEditorHandler = (editor: EditorProps) => void;
+export type SetEditorHandler = (editor: EditorStoreProps | Partial<EditorStoreProps> | ((state: EditorStoreProps) => EditorStoreProps | Partial<EditorStoreProps>)) => void;
 
 export interface EditorStoreProps
 {
@@ -31,9 +36,9 @@ export interface EditorStoreProps
 }
 
 export const editorStore = create<EditorStoreProps>((set) => ({
-	editorState: { wrap: true },
+	editorState: { preview: true, wrap: true },
 	setEditorState: (editor): void =>
 	{
-		set({ editorState: editor });
+		set(editor);
 	}
 }));
