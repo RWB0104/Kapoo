@@ -22,9 +22,10 @@ import Stack from '@mui/material/Stack';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 
 type SelectType = 'root' | 'blog';
+type PannelType = 'preview' | 'wrap';
 
 interface SelectProps
 {
@@ -60,29 +61,42 @@ const list: SelectProps[] = [
 export default function Toolbar(): JSX.Element
 {
 	const { themeState, toggleThemeState } = themeStore();
-	const { setEditorState } = editorStore();
+	const { editorState, setEditorState } = editorStore();
 
-	const [ toogleState, setToggleState ] = useState<string[]>([]);
+	const pannel = useMemo<PannelType[]>(() =>
+	{
+		const list: PannelType[] = [];
+
+		if (editorState.preview)
+		{
+			list.push('preview');
+		}
+
+		if (editorState.wrap)
+		{
+			list.push('wrap');
+		}
+
+		return list;
+	}, [ editorState ]);
 
 	const handleClick = useCallback(() =>
 	{
 		toggleThemeState();
 	}, [ toggleThemeState ]);
 
-	const handleWrapChange = useCallback<Exclude<ToggleButtonGroupProps['onChange'], undefined>>((e, value) =>
+	const handlePannelChange = useCallback<Exclude<ToggleButtonGroupProps['onChange'], undefined>>((e, value) =>
 	{
-		setToggleState(value || []);
-	}, [ setEditorState ]);
+		const list: PannelType[] = Array.isArray(value) ? value : [];
 
-	useEffect(() =>
-	{
-		setEditorState(() => ({
+		setEditorState((state) => ({
+			...state,
 			editorState: {
-				preview: toogleState.includes('preview'),
-				wrap: toogleState.includes('wrap')
+				preview: list.includes('preview'),
+				wrap: list.includes('wrap')
 			}
 		}));
-	}, [ toogleState ]);
+	}, [ setEditorState ]);
 
 	return (
 		<Stack data-component='Toolbar' direction='row' gap={1} justifyContent='space-between' padding={1}>
@@ -101,7 +115,7 @@ export default function Toolbar(): JSX.Element
 					</Select>
 				</Box>
 
-				<ToggleButtonGroup value={toogleState} onChange={handleWrapChange}>
+				<ToggleButtonGroup value={pannel} onChange={handlePannelChange}>
 					<ToggleButton size='small' value='wrap'>
 						<WrapText />
 					</ToggleButton>

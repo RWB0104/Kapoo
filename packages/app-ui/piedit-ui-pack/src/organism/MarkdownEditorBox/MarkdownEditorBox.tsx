@@ -67,11 +67,11 @@ export default function MarkdownEditorBox(): JSX.Element
 			width='100%'
 		>
 			<Stack
+				className={cn('left', { dual: editorState.preview })}
 				height='100%'
 				left={0}
 				position='absolute'
 				top={0}
-				width='50%'
 			>
 				<MarkdownEditor
 					options={{ wordWrap: editorState.wrap ? 'on' : undefined }}
@@ -82,14 +82,15 @@ export default function MarkdownEditorBox(): JSX.Element
 
 			{editorState.preview ? (
 				<Stack
+					className={cn('right')}
 					height='100%'
 					position='absolute'
 					right={0}
 					top={0}
-					width='50%'
 					zIndex={2}
 				>
 					<Box
+						bgcolor='background.paper'
 						border='1px solid'
 						borderColor={divider}
 						className={cn('viewer')}
