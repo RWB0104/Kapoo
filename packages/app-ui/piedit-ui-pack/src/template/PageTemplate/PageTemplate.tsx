@@ -6,11 +6,13 @@
  */
 
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import { PropsWithChildren } from 'react';
 
-import AppNavigation from '../../organism/AppNavigation';
 import Toolbar from '../../organism/Toolbar';
+import BottomTemplate from '../BottomTemplate';
+import TopTemplate from '../TopTemplate';
 
 export interface PageTemplateProps extends PropsWithChildren
 {
@@ -36,18 +38,17 @@ export default function PageTemplate({ title, version, children }: PageTemplateP
 {
 	return (
 		<Stack component='main' data-component='PageTemplate' height='100vh'>
-			<Stack>
-				<AppNavigation
-					title={title}
-					version={version}
-				/>
-			</Stack>
+			<TopTemplate logo='/favicon.ico' title={title} />
+
+			<Divider variant='fullWidth' />
 
 			<Toolbar />
 
 			<Box height='100%'>
 				{children}
 			</Box>
+
+			<BottomTemplate version={version} />
 		</Stack>
 	);
 }

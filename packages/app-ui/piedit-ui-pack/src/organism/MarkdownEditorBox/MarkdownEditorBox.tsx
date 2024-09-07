@@ -58,6 +58,8 @@ export default function MarkdownEditorBox(): JSX.Element
 
 	return (
 		<Stack
+			border='1px solid'
+			borderColor={divider}
 			data-component='MarkdownEditorBox'
 			direction='row'
 			gap={2}
@@ -82,6 +84,7 @@ export default function MarkdownEditorBox(): JSX.Element
 
 			{editorState.preview ? (
 				<Stack
+					borderLeft={`1px solid ${divider}`}
 					className={cn('right')}
 					height='100%'
 					position='absolute'
@@ -91,8 +94,6 @@ export default function MarkdownEditorBox(): JSX.Element
 				>
 					<Box
 						bgcolor='background.paper'
-						border='1px solid'
-						borderColor={divider}
 						className={cn('viewer')}
 						height='100%'
 						overflow='auto'

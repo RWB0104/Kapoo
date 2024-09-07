@@ -106,7 +106,7 @@ export default function Toolbar(): JSX.Element
 						{list.map(({ label, logo, value }) => (
 							<MenuItem key={value} value={value}>
 								<Stack alignItems='center' direction='row' gap={1}>
-									<Img alt={logo} height={24} src={logo} width={24} />
+									<Img alt={logo} height='1.2rem' src={logo} width='1.2rem' />
 
 									<Typography>{label}</Typography>
 								</Stack>

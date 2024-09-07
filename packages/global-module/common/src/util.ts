@@ -328,7 +328,7 @@ export function mathRound(num: number, digit = 0): number
  */
 export function getBaseMetadata({ sitename, baseurl, title, description, keywords, url, thumbnail }: BaseMetadataProps): Metadata
 {
-	const fullTitle = `${title} - ${sitename}`;
+	const fullTitle = [ title, sitename ].filter((i) => i !== undefined).join(' - ');
 
 	return {
 		applicationName: sitename,
