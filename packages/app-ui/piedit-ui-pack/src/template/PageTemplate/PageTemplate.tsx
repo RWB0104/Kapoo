@@ -38,7 +38,7 @@ export default function PageTemplate({ title, version, children }: PageTemplateP
 {
 	return (
 		<Stack component='main' data-component='PageTemplate' height='100vh'>
-			<TopTemplate logo='/favicon.ico' title={title} />
+			<TopTemplate logo='/piedit/favicon.ico' title={title} />
 
 			<Divider variant='fullWidth' />
 
