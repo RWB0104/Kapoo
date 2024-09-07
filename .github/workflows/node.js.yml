@@ -8,6 +8,7 @@ on:
     tags:
       - root/*
       - blog/*
+      - piedit/*
 
 jobs:
   build:
@@ -45,6 +46,11 @@ jobs:
           echo "TARGET=blog" >> $GITHUB_OUTPUT
           echo "REPO=blog.itcode.dev" >> $GITHUB_OUTPUT
           echo "BRANCH=master" >> $GITHUB_OUTPUT
+
+        elif [[ $TAG_NAME == piedit/* ]]; then
+          echo "TARGET=piedit" >> $GITHUB_OUTPUT
+          echo "REPO=piedit.itcode.dev" >> $GITHUB_OUTPUT
+          echo "BRANCH=main" >> $GITHUB_OUTPUT
 
         else
           echo "❌ [$TAG_NAME] is undefined tag name"
