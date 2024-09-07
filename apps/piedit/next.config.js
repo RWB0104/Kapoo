@@ -13,6 +13,7 @@ const withPWA = require('next-pwa')({
  **/
 // @ts-expect-error nx with PWA
 const nextConfig = withPWA({
+  output: 'export',
   nx: {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr
