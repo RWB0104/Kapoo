@@ -49,7 +49,7 @@ jobs:
 
         elif [[ $TAG_NAME == piedit/* ]]; then
           echo "TARGET=piedit" >> $GITHUB_OUTPUT
-          echo "REPO=piedit.itcode.dev" >> $GITHUB_OUTPUT
+          echo "REPO=piedit" >> $GITHUB_OUTPUT
           echo "BRANCH=main" >> $GITHUB_OUTPUT
 
         else
