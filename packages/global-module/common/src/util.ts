@@ -77,6 +77,11 @@ export interface BaseMetadataProps
 	 * 썸네일 url
 	 */
 	thumbnail?: string;
+
+	/**
+	 * 서브 경로
+	 */
+	subpath?: string;
 }
 
 export interface RssInfoProps
@@ -314,9 +319,11 @@ export function doShareOrCopy(data: ShareData, onSuccess?: ShareCallback, onErro
  *
  * @returns {number}: 반올림 숫자
  */
-export function mathRound(num: number, digit = 0): number
+export function mathRound(num: number, digit?: number): number
 {
-	return Math.round(num * (10 ** digit)) / (10 ** digit);
+	const dig = digit || 0;
+
+	return Math.round(num * (10 ** dig)) / (10 ** dig);
 }
 
 /**
@@ -326,9 +333,10 @@ export function mathRound(num: number, digit = 0): number
  *
  * @returns {Metadata} Metadata
  */
-export function getBaseMetadata({ sitename, baseurl, title, description, keywords, url, thumbnail }: BaseMetadataProps): Metadata
+export function getBaseMetadata({ sitename, baseurl, title, description, keywords, url, thumbnail, subpath }: BaseMetadataProps): Metadata
 {
 	const fullTitle = [ title, sitename ].filter((i) => i !== undefined).join(' - ');
+	const favicon = [ subpath, 'favicon.ico' ].filter((i) => i !== undefined).join('/');
 
 	return {
 		applicationName: sitename,
@@ -337,9 +345,9 @@ export function getBaseMetadata({ sitename, baseurl, title, description, keyword
 		description,
 		generator: 'Next.js',
 		icons: [
-			'/favicon.ico',
-			{ rel: 'shortcut icon', url: '/favicon.ico' },
-			{ rel: 'apple-touch-icon', url: '/favicon.ico' }
+			favicon,
+			{ rel: 'shortcut icon', url: favicon },
+			{ rel: 'apple-touch-icon', url: favicon }
 		],
 		keywords,
 		metadataBase: new URL(baseurl || ''),

@@ -26,6 +26,10 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 {
 	return (
 		<html lang='ko'>
+			<head>
+				<link href='/piedit/manifest.webmanifest' rel='manifest' />
+			</head>
+
 			<body>
 				<Suspense>
 					<GoogleAnalyticsProvider gaKey='G-7QYWYNZ90R'>

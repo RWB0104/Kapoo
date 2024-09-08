@@ -24,7 +24,8 @@ export function getMetadata(params?: MetadataProps): Metadata
 		description: process.env.NEXT_PUBLIC_DESCRIPTION,
 		keywords: [],
 		sitename: process.env.NEXT_PUBLIC_TITLE,
-		thumbnail: '/thumb.png',
+		subpath: '/piedit',
+		thumbnail: '/piedit/thumb.png',
 		url: '/'
 	};
 
