@@ -32,7 +32,7 @@ export default function RootLayout({ children }: PropsWithChildren): JSX.Element
 
 			<body>
 				<Suspense>
-					<GoogleAnalyticsProvider gaKey='G-7QYWYNZ90R'>
+					<GoogleAnalyticsProvider gaKey='G-1YPNLPR0CQ'>
 						<AppThemeProvider>
 							{children}
 						</AppThemeProvider>
