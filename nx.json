@@ -53,7 +53,6 @@
       }
     }
   },
-  "nxCloudAccessToken": "ZDFhMGRjMDItZjhiYi00NTM1LWJkYjMtODkzMmU5Nzc1NzI0fHJlYWQtd3JpdGU=",
   "release": {
     "projects": ["apps/*"],
     "projectsRelationship": "independent",

@@ -1,4 +1,5 @@
 {
 	"typescript.preferences.importModuleSpecifier": "project-relative",
-	"autoimport.filesToScan": "**/*.{ts,tsx}"
+	"autoimport.filesToScan": "**/*.{ts,tsx}",
+	"json.format.enable": false
 }
