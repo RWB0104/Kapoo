@@ -1,3 +1,23 @@
+## 5.9.2 (2024-10-11)
+
+
+### 🏡 Chore
+
+- 🔧 [UPDATE] 파이딧 alias 추가
+
+- ➕ [UPDATE] monaco-theme 디펜던시 추가
+
+- 👷 [UPDATE] 파이딧 CI/CD 대응
+
+- 👷 [UPDATE] 파이딧 배포 레포지토리 변경
+
+- 🔧 [UPDATE] 설정파일 개선
+
+
+### ❤️  Thank You
+
+- RWB0104
+
 ## 5.9.1 (2024-08-28)
 
 
